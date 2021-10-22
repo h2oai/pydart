@@ -2,6 +2,7 @@ from enum import Enum
 from typing import Callable, Optional
 
 
+# packages/flutter/lib/src/material/theme_data.dart
 class MaterialTapTargetSize(Enum):
     INDEX = 'index'
     VALUES = 'values'
@@ -9,6 +10,7 @@ class MaterialTapTargetSize(Enum):
     SHRINK_WRAP = 'shrinkWrap'
 
 
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Clip(Enum):
     INDEX = 'index'
     VALUES = 'values'
@@ -18,6 +20,7 @@ class Clip(Enum):
     ANTI_ALIAS_WITH_SAVE_LAYER = 'antiAliasWithSaveLayer'
 
 
+# packages/flutter/lib/src/foundation/key.dart
 class KeyWithEmpty:
     def __init__(
             self,
@@ -25,6 +28,7 @@ class KeyWithEmpty:
         pass
 
 
+# packages/flutter/lib/src/foundation/key.dart
 class Key:
     def __init__(
             self,
@@ -39,6 +43,7 @@ class Key:
         )
 
 
+# packages/flutter/lib/src/material/material_state.dart
 class MaterialStateProperty:
     def __init__(
             self,
@@ -46,6 +51,7 @@ class MaterialStateProperty:
         pass
 
 
+# packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity:
     def __init__(
             self,
@@ -56,6 +62,7 @@ class VisualDensity:
         self.vertical = vertical
 
 
+# bin/cache/pkg/sky_engine/lib/core/duration.dart
 class DurationWith_microseconds:
     def __init__(
             self,
@@ -64,6 +71,7 @@ class DurationWith_microseconds:
         self._duration = _duration
 
 
+# bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration:
     def __init__(
             self,
@@ -90,6 +98,7 @@ class Duration:
         )
 
 
+# packages/flutter/lib/src/painting/alignment.dart
 class AlignmentGeometry:
     def __init__(
             self,
@@ -97,6 +106,7 @@ class AlignmentGeometry:
         pass
 
 
+# packages/flutter/lib/src/material/ink_well.dart
 class InteractiveInkFeatureFactory:
     def __init__(
             self,
@@ -104,6 +114,7 @@ class InteractiveInkFeatureFactory:
         pass
 
 
+# packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle:
     def __init__(
             self,
@@ -148,6 +159,7 @@ class ButtonStyle:
         self.splash_factory = splash_factory
 
 
+# packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode:
     def __init__(
             self,
@@ -166,6 +178,7 @@ class FocusNode:
         self.descendants_are_focusable = descendants_are_focusable
 
 
+# packages/flutter/lib/src/widgets/framework.dart
 class Widget:
     def __init__(
             self,
@@ -174,6 +187,7 @@ class Widget:
         self.key = key
 
 
+# packages/flutter/lib/src/material/elevated_button.dart
 class ElevatedButtonWithIcon:
     def __init__(
             self,
@@ -187,17 +201,18 @@ class ElevatedButtonWithIcon:
             autofocus: Optional[bool] = None,
             clip_behavior: Optional[Clip] = None,
     ):
-        self.key = key
         self.on_pressed = on_pressed
+        self.icon = icon
+        self.label = label
+        self.key = key
         self.on_long_press = on_long_press
         self.style = style
         self.focus_node = focus_node
         self.autofocus = autofocus
         self.clip_behavior = clip_behavior
-        self.icon = icon
-        self.label = label
 
 
+# packages/flutter/lib/src/material/elevated_button.dart
 class ElevatedButton:
     def __init__(
             self,
@@ -210,14 +225,14 @@ class ElevatedButton:
             autofocus: Optional[bool] = None,
             clip_behavior: Optional[Clip] = None,
     ):
-        self.key = key
         self.on_pressed = on_pressed
+        self.child = child
+        self.key = key
         self.on_long_press = on_long_press
         self.style = style
         self.focus_node = focus_node
         self.autofocus = autofocus
         self.clip_behavior = clip_behavior
-        self.child = child
 
     @staticmethod
     def with_icon(
@@ -232,13 +247,13 @@ class ElevatedButton:
             clip_behavior: Optional[Clip] = None,
     ) -> ElevatedButtonWithIcon:
         return ElevatedButtonWithIcon(
-            key,
             on_pressed,
+            icon,
+            label,
+            key,
             on_long_press,
             style,
             focus_node,
             autofocus,
             clip_behavior,
-            icon,
-            label,
         )

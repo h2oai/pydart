@@ -46,12 +46,33 @@ class Printer {
   }
 }
 
-class PythonClass {
+class PythonUnit {
+  final String path;
+
+  PythonUnit(this.path);
+}
+
+class PythonEnum extends PythonUnit {
+  final String name;
+  final List<String> values;
+
+  PythonEnum(String path, this.name, this.values) : super(path);
+}
+
+class PythonClass extends PythonUnit {
   final String name;
   final List<PythonField> fields;
+  late List<PythonField> sortedFields;
   final List<PythonVariant>? variants;
 
-  PythonClass(this.name, this.fields, {this.variants});
+  PythonClass(String path, this.name, this.fields, {this.variants})
+      : super(path) {
+    // Non-default params must precede default params in Python
+    sortedFields = [
+      ...fields.where((f) => !f.type.isOptional),
+      ...fields.where((f) => f.type.isOptional),
+    ];
+  }
 }
 
 class PythonVariant {
@@ -81,13 +102,6 @@ class PythonType {
     final args = (types ?? []).map((e) => e.code).join(', ');
     return args.isEmpty ? name : '$name[$args]';
   }
-}
-
-class PythonEnum {
-  final String name;
-  final List<String> values;
-
-  PythonEnum(this.name, this.values);
 }
 
 String snakeCase(String name) => name.replaceAllMapped(
@@ -162,15 +176,16 @@ class PythonTranslator {
   void printClass(PythonClass klass) {
     p('');
     p('');
+    p('# ${klass.path}');
     p('class ${klass.name}:');
     p.t(() {
       // TODO class doc
       // TODO ctor doc
       p('def __init__(');
-      printParameters(klass.fields);
+      printParameters(klass.sortedFields);
       p('):');
       p.t(() {
-        printInitialization(klass.fields);
+        printInitialization(klass.sortedFields);
       });
     });
     for (final variant in klass.variants ?? []) {
@@ -178,12 +193,12 @@ class PythonTranslator {
         p('');
         p('@staticmethod');
         p('def with_${variant.name}(');
-        printParameters(variant.klass.fields, isMethod: false);
+        printParameters(variant.klass.sortedFields, isMethod: false);
         p(') -> ${variant.klass.name}:');
         p.t(() {
           p('return ${variant.klass.name}(');
           p.t(() {
-            for (final f in variant.klass.fields) {
+            for (final f in variant.klass.sortedFields) {
               p('${f.name},');
             }
           });
@@ -196,6 +211,7 @@ class PythonTranslator {
   void printEnum(PythonEnum e) {
     p('');
     p('');
+    p('# ${e.path}');
     p('class ${e.name}(Enum):');
     p.t(() {
       for (final v in e.values) {
@@ -204,28 +220,34 @@ class PythonTranslator {
     });
   }
 
-  void processClass(ClassElement e) {
-    final ctors = e.constructors;
-    final ctor0 = ctors.firstWhere((c) => c.name.isEmpty);
-    final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
-      final name = '${e.name}With${titleCase(c.name)}';
-      final variantClass = PythonClass(name, toFields(c.parameters));
-      return PythonVariant(c.name, variantClass);
-    }).toList();
-    classes.addAll(variants.map((v) => v.klass).toList());
-    classes.add(
-        PythonClass(e.name, toFields(ctor0.parameters), variants: variants));
+  String getRelativeSourcePath(ClassElement e) {
+    final absPath = e.source.fullName;
+    final libPath = 'flutter';
+    // FIXME assumes SDK path doesn't contain ../flutter/../flutter/..
+    final pos = absPath.indexOf(libPath);
+    return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
   }
 
   void processElement(ClassElement e) {
-    print(e);
+    final sourcePath = getRelativeSourcePath(e);
     if (printedClasses.contains(e)) return;
     if (e.isEnum) {
-      enums.add(PythonEnum(e.name, e.fields.map((f) => f.name).toList()));
+      enums.add(
+          PythonEnum(sourcePath, e.name, e.fields.map((f) => f.name).toList()));
     } else if (e.isMixin) {
       throw 'cannot translate mixins';
     } else {
-      processClass(e);
+      final ctors = e.constructors;
+      final ctor0 = ctors.firstWhere((c) => c.name.isEmpty);
+      final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
+        final name = '${e.name}With${titleCase(c.name)}';
+        final variantClass =
+            PythonClass(sourcePath, name, toFields(c.parameters));
+        return PythonVariant(c.name, variantClass);
+      }).toList();
+      classes.addAll(variants.map((v) => v.klass).toList());
+      classes.add(PythonClass(sourcePath, e.name, toFields(ctor0.parameters),
+          variants: variants));
     }
     printedClasses.add(e);
   }
