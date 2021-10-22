@@ -4,6 +4,8 @@ import 'package:path/path.dart' as path;
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/src/dart/element/element.dart'
+    show ConstFieldElementImpl;
 
 void compile(String loaderPath, String outputDir) {
   _analyze(path.normalize(File(loaderPath).absolute.path))
@@ -63,10 +65,14 @@ class PythonEnum extends PythonUnit {
 class PythonClass extends PythonUnit {
   final String name;
   final List<PythonField> fields;
+  final List<PythonStaticField> staticFields;
   late List<PythonField> sortedFields;
-  final List<PythonVariant>? variants;
+  final List<PythonVariant> variants;
 
-  PythonClass(String path, this.name, this.fields, {this.variants})
+  PythonClass(String path, this.name,
+      {required this.fields,
+      required this.variants,
+      required this.staticFields})
       : super(path) {
     // Non-default params must precede default params in Python
     sortedFields = [
@@ -81,6 +87,22 @@ class PythonVariant {
   final PythonClass klass;
 
   PythonVariant(this.name, this.klass);
+}
+
+class PythonStaticField {
+  final String name;
+  final PythonType type;
+  final bool isEnumLike;
+
+  PythonStaticField(this.name, this.type, {this.isEnumLike = false});
+
+  // Python doesn't handle recursive type definitions: static fields of the
+  // same type as the containing class need to be assigned after the class
+  // definition.
+  // TODO: Make sure IDE static analysis does not raise false positives.
+  String get code => isEnumLike
+      ? '${type.code}.$name = ${type.code}(None)'
+      : '$name: ${type.code} = None'; //XXX constant value
 }
 
 class PythonField {
@@ -136,9 +158,10 @@ class PythonTranslator {
     if (t is InterfaceType) {
       final typeArgs = t.typeArguments;
       if (typeArgs.isEmpty) {
-        traceDepth+='\t';
-        processElement(t.element); // recurse: Python requires forward declaration
-        traceDepth=traceDepth.substring(1);
+        traceDepth += '\t';
+        processElement(
+            t.element); // recurse: Python requires forward declaration
+        traceDepth = traceDepth.substring(1);
         return PythonType(t.element.name);
       } else {
         final types = typeArgs.map(toType).toList(); // recurse
@@ -173,6 +196,13 @@ class PythonTranslator {
     final required = param.isRequiredNamed || param.isRequiredPositional;
     return PythonField(
         snakeCase(param.name), required ? type : toOptional(type));
+  }
+
+  PythonStaticField toStaticField(ClassElement e, ConstFieldElementImpl f) {
+    trace('\t$f');
+    final type = toType(f.type);
+    return PythonStaticField(snakeCase(f.name), type,
+        isEnumLike: f.type.element == e);
   }
 
   List<PythonField> toFields(List<ParameterElement> params) =>
@@ -210,6 +240,16 @@ class PythonTranslator {
     p.t(() {
       // TODO class doc
       // TODO ctor doc
+
+      if (klass.staticFields.isNotEmpty) {
+        for (final f in klass.staticFields) {
+          if (!f.isEnumLike) {
+            p(f.code);
+          }
+        }
+        p('');
+      }
+
       p('def __init__(');
       printParameters(klass.sortedFields);
       p('):');
@@ -217,7 +257,7 @@ class PythonTranslator {
         printInitialization(klass.sortedFields);
       });
     });
-    for (final variant in klass.variants ?? []) {
+    for (final variant in klass.variants) {
       p.t(() {
         p('');
         p('@staticmethod');
@@ -234,6 +274,15 @@ class PythonTranslator {
           p(')');
         });
       });
+    }
+    if (klass.staticFields.isNotEmpty) {
+      p('');
+      p('');
+      for (final f in klass.staticFields) {
+        if (f.isEnumLike) {
+          p(f.code);
+        }
+      }
     }
   }
 
@@ -269,18 +318,32 @@ class PythonTranslator {
     } else if (e.isMixin) {
       throw 'cannot translate mixins';
     } else {
+      final staticFields = <PythonStaticField>[];
+      for (final field in e.fields) {
+        if (field.isStatic &&
+            field.isConst &&
+            field is ConstFieldElementImpl &&
+            !field.name.startsWith(r'_')) {
+          staticFields.add(toStaticField(e, field));
+        }
+      }
       final ctors = e.constructors;
       final ctor0 = ctors.where((c) => c.name.isEmpty);
       if (ctor0.isNotEmpty) {
-      final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
-        final name = '${e.name}With${titleCase(c.name)}';
-        final variantClass =
-            PythonClass(sourcePath, name, toFields(c.parameters));
-        return PythonVariant(c.name, variantClass);
-      }).toList();
-      classes.addAll(variants.map((v) => v.klass).toList());
-      classes.add(PythonClass(sourcePath, e.name, toFields(ctor0.first.parameters),
-          variants: variants));
+        // FIXME coalesce all ctor fields into one class; include marker for ctor
+        final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
+          final name = '${e.name}With${titleCase(c.name)}';
+          final variantClass = PythonClass(sourcePath, name,
+              fields: toFields(c.parameters),
+              variants: [],
+              staticFields: staticFields);
+          return PythonVariant(c.name, variantClass);
+        }).toList();
+        classes.addAll(variants.map((v) => v.klass).toList());
+        classes.add(PythonClass(sourcePath, e.name,
+            fields: toFields(ctor0.first.parameters),
+            variants: variants,
+            staticFields: staticFields));
       } else {
         // TODO handle enum-like classes (e.g. FontWeight)
       }

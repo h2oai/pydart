@@ -341,6 +341,9 @@ class Color:
 
 # packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity:
+    minimum_density: float = None
+    maximum_density: float = None
+
     def __init__(
             self,
             horizontal: Optional[float] = None,
@@ -348,6 +351,11 @@ class VisualDensity:
     ):
         self.horizontal = horizontal
         self.vertical = vertical
+
+
+VisualDensity.standard = VisualDensity(None)
+VisualDensity.comfortable = VisualDensity(None)
+VisualDensity.compact = VisualDensity(None)
 
 
 # packages/flutter/lib/src/material/ink_well.dart
@@ -360,10 +368,14 @@ class InteractiveInkFeatureFactory:
 
 # packages/flutter/lib/src/painting/edge_insets.dart
 class EdgeInsetsGeometry:
+
     def __init__(
             self,
     ):
         pass
+
+
+EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(None)
 
 
 # packages/flutter/lib/src/painting/borders.dart
@@ -802,6 +814,7 @@ class Paint:
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class OffsetWithFromDirection:
+
     def __init__(
             self,
             direction: float,
@@ -811,8 +824,13 @@ class OffsetWithFromDirection:
         self.distance = distance
 
 
+Offset.zero = Offset(None)
+Offset.infinite = Offset(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Offset:
+
     def __init__(
             self,
             dx: float,
@@ -830,6 +848,10 @@ class Offset:
             direction,
             distance,
         )
+
+
+Offset.zero = Offset(None)
+Offset.infinite = Offset(None)
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -1317,6 +1339,7 @@ class TextStyle:
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class SizeWithCopy:
+
     def __init__(
             self,
             source: Size,
@@ -1324,8 +1347,13 @@ class SizeWithCopy:
         self.source = source
 
 
+Size.zero = Size(None)
+Size.infinite = Size(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class SizeWithSquare:
+
     def __init__(
             self,
             dimension: float,
@@ -1333,8 +1361,13 @@ class SizeWithSquare:
         self.dimension = dimension
 
 
+Size.zero = Size(None)
+Size.infinite = Size(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class SizeWithFromWidth:
+
     def __init__(
             self,
             width: float,
@@ -1342,8 +1375,13 @@ class SizeWithFromWidth:
         self.width = width
 
 
+Size.zero = Size(None)
+Size.infinite = Size(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class SizeWithFromHeight:
+
     def __init__(
             self,
             height: float,
@@ -1351,8 +1389,13 @@ class SizeWithFromHeight:
         self.height = height
 
 
+Size.zero = Size(None)
+Size.infinite = Size(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class SizeWithFromRadius:
+
     def __init__(
             self,
             radius: float,
@@ -1360,8 +1403,13 @@ class SizeWithFromRadius:
         self.radius = radius
 
 
+Size.zero = Size(None)
+Size.infinite = Size(None)
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size:
+
     def __init__(
             self,
             width: float,
@@ -1409,6 +1457,10 @@ class Size:
         return SizeWithFromRadius(
             radius,
         )
+
+
+Size.zero = Size(None)
+Size.infinite = Size(None)
 
 
 # packages/flutter/lib/src/rendering/box.dart
@@ -1595,6 +1647,7 @@ class TextTheme:
 
 # packages/flutter/lib/src/painting/borders.dart
 class BorderSide:
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -1606,13 +1659,20 @@ class BorderSide:
         self.style = style
 
 
+BorderSide.none = BorderSide(None)
+
+
 # packages/flutter/lib/src/material/input_border.dart
 class InputBorder:
+
     def __init__(
             self,
             border_side: Optional[BorderSide] = None,
     ):
         self.border_side = border_side
+
+
+InputBorder.none = InputBorder(None)
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
@@ -1878,6 +1938,22 @@ class TabBarTheme:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class DurationWith_microseconds:
+    microseconds_per_millisecond: int = None
+    milliseconds_per_second: int = None
+    seconds_per_minute: int = None
+    minutes_per_hour: int = None
+    hours_per_day: int = None
+    microseconds_per_second: int = None
+    microseconds_per_minute: int = None
+    microseconds_per_hour: int = None
+    microseconds_per_day: int = None
+    milliseconds_per_minute: int = None
+    milliseconds_per_hour: int = None
+    milliseconds_per_day: int = None
+    seconds_per_hour: int = None
+    seconds_per_day: int = None
+    minutes_per_day: int = None
+
     def __init__(
             self,
             _duration: int,
@@ -1885,8 +1961,27 @@ class DurationWith_microseconds:
         self._duration = _duration
 
 
+Duration.zero = Duration(None)
+
+
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration:
+    microseconds_per_millisecond: int = None
+    milliseconds_per_second: int = None
+    seconds_per_minute: int = None
+    minutes_per_hour: int = None
+    hours_per_day: int = None
+    microseconds_per_second: int = None
+    microseconds_per_minute: int = None
+    microseconds_per_hour: int = None
+    microseconds_per_day: int = None
+    milliseconds_per_minute: int = None
+    milliseconds_per_hour: int = None
+    milliseconds_per_day: int = None
+    seconds_per_hour: int = None
+    seconds_per_day: int = None
+    minutes_per_day: int = None
+
     def __init__(
             self,
             days: Optional[int] = None,
@@ -1910,6 +2005,9 @@ class Duration:
         return DurationWith_microseconds(
             _duration,
         )
+
+
+Duration.zero = Duration(None)
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
@@ -2062,6 +2160,7 @@ class PageTransitionsTheme:
 
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle:
+
     def __init__(
             self,
             system_navigation_bar_color: Optional[Color] = None,
@@ -2081,6 +2180,10 @@ class SystemUiOverlayStyle:
         self.status_bar_brightness = status_bar_brightness
         self.status_bar_icon_brightness = status_bar_icon_brightness
         self.system_status_bar_contrast_enforced = system_status_bar_contrast_enforced
+
+
+SystemUiOverlayStyle.light = SystemUiOverlayStyle(None)
+SystemUiOverlayStyle.dark = SystemUiOverlayStyle(None)
 
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
@@ -2261,6 +2364,23 @@ class NavigationRailThemeData:
 
 # packages/flutter/lib/src/material/typography.dart
 class TypographyWithMaterial2014:
+    black_mountain_view: TextTheme = None
+    white_mountain_view: TextTheme = None
+    black_redmond: TextTheme = None
+    white_redmond: TextTheme = None
+    black_helsinki: TextTheme = None
+    white_helsinki: TextTheme = None
+    black_cupertino: TextTheme = None
+    white_cupertino: TextTheme = None
+    black_redwood_city: TextTheme = None
+    white_redwood_city: TextTheme = None
+    english_like2014: TextTheme = None
+    english_like2018: TextTheme = None
+    dense2014: TextTheme = None
+    dense2018: TextTheme = None
+    tall2014: TextTheme = None
+    tall2018: TextTheme = None
+
     def __init__(
             self,
             platform: Optional[TargetPlatform] = None,
@@ -2276,10 +2396,29 @@ class TypographyWithMaterial2014:
         self.english_like = english_like
         self.dense = dense
         self.tall = tall
+
+
 
 
 # packages/flutter/lib/src/material/typography.dart
 class TypographyWithMaterial2018:
+    black_mountain_view: TextTheme = None
+    white_mountain_view: TextTheme = None
+    black_redmond: TextTheme = None
+    white_redmond: TextTheme = None
+    black_helsinki: TextTheme = None
+    white_helsinki: TextTheme = None
+    black_cupertino: TextTheme = None
+    white_cupertino: TextTheme = None
+    black_redwood_city: TextTheme = None
+    white_redwood_city: TextTheme = None
+    english_like2014: TextTheme = None
+    english_like2018: TextTheme = None
+    dense2014: TextTheme = None
+    dense2018: TextTheme = None
+    tall2014: TextTheme = None
+    tall2018: TextTheme = None
+
     def __init__(
             self,
             platform: Optional[TargetPlatform] = None,
@@ -2297,8 +2436,27 @@ class TypographyWithMaterial2018:
         self.tall = tall
 
 
+
+
 # packages/flutter/lib/src/material/typography.dart
 class TypographyWith_withPlatform:
+    black_mountain_view: TextTheme = None
+    white_mountain_view: TextTheme = None
+    black_redmond: TextTheme = None
+    white_redmond: TextTheme = None
+    black_helsinki: TextTheme = None
+    white_helsinki: TextTheme = None
+    black_cupertino: TextTheme = None
+    white_cupertino: TextTheme = None
+    black_redwood_city: TextTheme = None
+    white_redwood_city: TextTheme = None
+    english_like2014: TextTheme = None
+    english_like2018: TextTheme = None
+    dense2014: TextTheme = None
+    dense2018: TextTheme = None
+    tall2014: TextTheme = None
+    tall2018: TextTheme = None
+
     def __init__(
             self,
             platform: TargetPlatform,
@@ -2316,8 +2474,27 @@ class TypographyWith_withPlatform:
         self.tall = tall
 
 
+
+
 # packages/flutter/lib/src/material/typography.dart
 class TypographyWith_:
+    black_mountain_view: TextTheme = None
+    white_mountain_view: TextTheme = None
+    black_redmond: TextTheme = None
+    white_redmond: TextTheme = None
+    black_helsinki: TextTheme = None
+    white_helsinki: TextTheme = None
+    black_cupertino: TextTheme = None
+    white_cupertino: TextTheme = None
+    black_redwood_city: TextTheme = None
+    white_redwood_city: TextTheme = None
+    english_like2014: TextTheme = None
+    english_like2018: TextTheme = None
+    dense2014: TextTheme = None
+    dense2018: TextTheme = None
+    tall2014: TextTheme = None
+    tall2018: TextTheme = None
+
     def __init__(
             self,
             black: TextTheme,
@@ -2333,8 +2510,27 @@ class TypographyWith_:
         self.tall = tall
 
 
+
+
 # packages/flutter/lib/src/material/typography.dart
 class Typography:
+    black_mountain_view: TextTheme = None
+    white_mountain_view: TextTheme = None
+    black_redmond: TextTheme = None
+    white_redmond: TextTheme = None
+    black_helsinki: TextTheme = None
+    white_helsinki: TextTheme = None
+    black_cupertino: TextTheme = None
+    white_cupertino: TextTheme = None
+    black_redwood_city: TextTheme = None
+    white_redwood_city: TextTheme = None
+    english_like2014: TextTheme = None
+    english_like2018: TextTheme = None
+    dense2014: TextTheme = None
+    dense2018: TextTheme = None
+    tall2014: TextTheme = None
+    tall2018: TextTheme = None
+
     def __init__(
             self,
             platform: Optional[TargetPlatform] = None,
@@ -2420,6 +2616,8 @@ class Typography:
             dense,
             tall,
         )
+
+
 
 
 # packages/flutter/lib/src/cupertino/text_theme.dart
@@ -2722,10 +2920,15 @@ class TimePickerThemeData:
 
 # packages/flutter/lib/src/services/mouse_cursor.dart
 class MouseCursor:
+
     def __init__(
             self,
     ):
         pass
+
+
+MouseCursor.defer = MouseCursor(None)
+MouseCursor.uncontrolled = MouseCursor(None)
 
 
 # packages/flutter/lib/src/painting/alignment.dart
@@ -3496,11 +3699,37 @@ class ShortcutActivator:
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class Intent:
+class DoNothingIntentWith_:
     def __init__(
             self,
     ):
         pass
+
+
+# packages/flutter/lib/src/widgets/actions.dart
+class DoNothingIntent:
+    def __init__(
+            self,
+    ):
+        pass
+
+    @staticmethod
+    def with__(
+    ) -> DoNothingIntentWith_:
+        return DoNothingIntentWith_(
+        )
+
+
+# packages/flutter/lib/src/widgets/actions.dart
+class Intent:
+    do_nothing: DoNothingIntent = None
+
+    def __init__(
+            self,
+    ):
+        pass
+
+
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
