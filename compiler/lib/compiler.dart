@@ -116,12 +116,18 @@ class PythonTranslator {
   final classes = <PythonClass>[];
   final enums = <PythonEnum>[];
   final processedClasses = <Element>{};
+  String traceDepth = '';
+
+  void trace(Object? o) {
+    print('$traceDepth$o');
+  }
 
   PythonType toType(DartType t) {
     if (t.isDartCoreBool) return PythonType('bool');
     if (t.isDartCoreInt) return PythonType('int');
     if (t.isDartCoreDouble) return PythonType('float');
     if (t.isDartCoreString) return PythonType('str');
+    if (t.isDynamic) return PythonType('any');
 
     if (t is FunctionType) {
       return PythonType('Callable'); // TODO
@@ -130,16 +136,31 @@ class PythonTranslator {
     if (t is InterfaceType) {
       final typeArgs = t.typeArguments;
       if (typeArgs.isEmpty) {
+        traceDepth+='\t';
         processElement(t.element); // recurse: Python requires forward declaration
+        traceDepth=traceDepth.substring(1);
         return PythonType(t.element.name);
       } else {
         final types = typeArgs.map(toType).toList(); // recurse
-        return PythonType(t.element.name, types: types);
+        String typeName = t.element.name;
+        final location = t.element.location;
+        if (location != null) {
+          final components = location.components;
+          if (components.contains('dart:core')) {
+            if (components.contains('Iterable')) {
+              typeName = 'Iterable';
+            } else if (components.contains('List')) {
+              typeName = 'List';
+            } else if (components.contains('Map')) {
+              typeName = 'Dict';
+            }
+          }
+        }
+        return PythonType(typeName, types: types);
       }
     }
 
-    final typeName = t.getDisplayString(withNullability: true);
-    throw 'cannot translate $typeName';
+    throw 'cannot translate $t';
   }
 
   PythonType toOptional(PythonType t) {
@@ -147,6 +168,7 @@ class PythonTranslator {
   }
 
   PythonField toField(ParameterElement param) {
+    trace('\t$param');
     final type = toType(param.type);
     final required = param.isRequiredNamed || param.isRequiredPositional;
     return PythonField(
@@ -236,10 +258,11 @@ class PythonTranslator {
   }
 
   void processElement(ClassElement e) {
-    final sourcePath = getRelativeSourcePath(e);
-    print('$e@$sourcePath');
     if (processedClasses.contains(e)) return;
     processedClasses.add(e);
+
+    final sourcePath = getRelativeSourcePath(e);
+    trace('$e@$sourcePath');
     if (e.isEnum) {
       enums.add(
           PythonEnum(sourcePath, e.name, e.fields.map((f) => f.name).toList()));
@@ -248,7 +271,7 @@ class PythonTranslator {
     } else {
       final ctors = e.constructors;
       final ctor0 = ctors.where((c) => c.name.isEmpty);
-      if (ctor0.isEmpty) return;
+      if (ctor0.isNotEmpty) {
       final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
         final name = '${e.name}With${titleCase(c.name)}';
         final variantClass =
@@ -258,12 +281,15 @@ class PythonTranslator {
       classes.addAll(variants.map((v) => v.klass).toList());
       classes.add(PythonClass(sourcePath, e.name, toFields(ctor0.first.parameters),
           variants: variants));
+      } else {
+        // TODO handle enum-like classes (e.g. FontWeight)
+      }
     }
   }
 
   String translate(Set<Element> elements) {
     p('from enum import Enum');
-    p('from typing import Callable, Optional, List, Set');
+    p('from typing import Callable, Optional, Iterable, List, Dict');
     for (final e in elements) {
       if (e is! ClassElement) continue;
       if (!widgetWhitelist.contains(e.name)) continue;
