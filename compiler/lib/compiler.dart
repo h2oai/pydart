@@ -15,6 +15,7 @@ const libraryWhitelist = {
 };
 
 const widgetWhitelist = {
+  'MaterialApp',
   'ElevatedButton',
 };
 
@@ -114,7 +115,7 @@ class PythonTranslator {
   final p = Printer('    ');
   final classes = <PythonClass>[];
   final enums = <PythonEnum>[];
-  final printedClasses = <Element>{};
+  final processedClasses = <Element>{};
 
   PythonType toType(DartType t) {
     if (t.isDartCoreBool) return PythonType('bool');
@@ -127,8 +128,14 @@ class PythonTranslator {
     }
 
     if (t is InterfaceType) {
-      processElement(t.element); // recurse: Python requires forward declaration
-      return PythonType(t.element.name);
+      final typeArgs = t.typeArguments;
+      if (typeArgs.isEmpty) {
+        processElement(t.element); // recurse: Python requires forward declaration
+        return PythonType(t.element.name);
+      } else {
+        final types = typeArgs.map(toType).toList(); // recurse
+        return PythonType(t.element.name, types: types);
+      }
     }
 
     final typeName = t.getDisplayString(withNullability: true);
@@ -215,7 +222,7 @@ class PythonTranslator {
     p('class ${e.name}(Enum):');
     p.t(() {
       for (final v in e.values) {
-        p('${snakeCase(v).toUpperCase()} = \'${v}\'');
+        p('${snakeCase(v).toUpperCase()} = \'$v\'');
       }
     });
   }
@@ -230,7 +237,9 @@ class PythonTranslator {
 
   void processElement(ClassElement e) {
     final sourcePath = getRelativeSourcePath(e);
-    if (printedClasses.contains(e)) return;
+    print('$e@$sourcePath');
+    if (processedClasses.contains(e)) return;
+    processedClasses.add(e);
     if (e.isEnum) {
       enums.add(
           PythonEnum(sourcePath, e.name, e.fields.map((f) => f.name).toList()));
@@ -238,7 +247,8 @@ class PythonTranslator {
       throw 'cannot translate mixins';
     } else {
       final ctors = e.constructors;
-      final ctor0 = ctors.firstWhere((c) => c.name.isEmpty);
+      final ctor0 = ctors.where((c) => c.name.isEmpty);
+      if (ctor0.isEmpty) return;
       final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
         final name = '${e.name}With${titleCase(c.name)}';
         final variantClass =
@@ -246,15 +256,14 @@ class PythonTranslator {
         return PythonVariant(c.name, variantClass);
       }).toList();
       classes.addAll(variants.map((v) => v.klass).toList());
-      classes.add(PythonClass(sourcePath, e.name, toFields(ctor0.parameters),
+      classes.add(PythonClass(sourcePath, e.name, toFields(ctor0.first.parameters),
           variants: variants));
     }
-    printedClasses.add(e);
   }
 
   String translate(Set<Element> elements) {
     p('from enum import Enum');
-    p('from typing import Callable, Optional');
+    p('from typing import Callable, Optional, List, Set');
     for (final e in elements) {
       if (e is! ClassElement) continue;
       if (!widgetWhitelist.contains(e.name)) continue;
