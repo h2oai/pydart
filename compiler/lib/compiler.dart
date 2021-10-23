@@ -62,12 +62,19 @@ class PythonEnum extends PythonUnit {
   PythonEnum(String path, this.name, this.values) : super(path);
 }
 
+List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
+  return [
+    ...fields.where((f) => !f.type.isOptional),
+    ...fields.where((f) => f.type.isOptional),
+  ];
+}
+
 class PythonClass extends PythonUnit {
   final String name;
   final List<PythonField> fields;
   final List<PythonStaticField> staticFields;
-  late List<PythonField> sortedFields;
   final List<PythonVariant> variants;
+  late List<PythonField> sortedFields;
 
   PythonClass(String path, this.name,
       {required this.fields,
@@ -75,18 +82,19 @@ class PythonClass extends PythonUnit {
       required this.staticFields})
       : super(path) {
     // Non-default params must precede default params in Python
-    sortedFields = [
-      ...fields.where((f) => !f.type.isOptional),
-      ...fields.where((f) => f.type.isOptional),
-    ];
+    sortedFields = sortNonDefaultFields(fields);
   }
 }
 
 class PythonVariant {
   final String name;
-  final PythonClass klass;
+  final List<PythonField> fields;
+  late List<PythonField> sortedFields;
 
-  PythonVariant(this.name, this.klass);
+  PythonVariant(this.name, this.fields) {
+    // Non-default params must precede default params in Python
+    sortedFields = sortNonDefaultFields(fields);
+  }
 }
 
 class PythonStaticField {
@@ -95,14 +103,6 @@ class PythonStaticField {
   final bool isEnumLike;
 
   PythonStaticField(this.name, this.type, {this.isEnumLike = false});
-
-  // Python doesn't handle recursive type definitions: static fields of the
-  // same type as the containing class need to be assigned after the class
-  // definition.
-  // TODO: Make sure IDE static analysis does not raise false positives.
-  String get code => isEnumLike
-      ? '${type.code}.$name = ${type.code}(None)'
-      : '$name: ${type.code} = None'; //XXX constant value
 }
 
 class PythonField {
@@ -110,8 +110,6 @@ class PythonField {
   final PythonType type;
 
   PythonField(this.name, this.type);
-
-  String get code => '$name: ${type.code}';
 }
 
 class PythonType {
@@ -120,28 +118,60 @@ class PythonType {
   final bool isOptional;
 
   PythonType(this.name, {this.types, this.isOptional = false});
-
-  String get code {
-    final args = (types ?? []).map((e) => e.code).join(', ');
-    return args.isEmpty ? name : '$name[$args]';
-  }
 }
 
-String snakeCase(String name) => name.replaceAllMapped(
-    RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}'.toLowerCase());
+String snakeCase(String name) => name
+    .replaceAllMapped(
+        RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}'.toLowerCase())
+    .toLowerCase();
 
-String titleCase(String name) =>
+String _titleCase(String name) =>
     name.replaceFirstMapped(RegExp(r'^[a-z]'), (m) => '${m[0]}'.toUpperCase());
 
 class PythonTranslator {
   final p = Printer('    ');
-  final classes = <PythonClass>[];
-  final enums = <PythonEnum>[];
-  final processedClasses = <Element>{};
-  String traceDepth = '';
+  final _classes = <PythonClass>[];
+  final _enums = <PythonEnum>[];
+  final _processedClasses = <Element>{};
+  final _declaredUnits = <String>{
+    'bool',
+    'int',
+    'float',
+    'str',
+    'Any',
+    'Callable',
+    'Optional',
+    'Iterable',
+    'List',
+    'Dict',
+  };
+  String _traceDepth = '';
+
+  // XXX not called anywhere
+  String quote(String name) =>
+      _declaredUnits.contains(name) ? name : '\'$name\'';
 
   void trace(Object? o) {
-    print('$traceDepth$o');
+    print('$_traceDepth$o');
+  }
+
+  String stringifyField(PythonField f) {
+    return '${f.name}: ${stringifyType(f.type)}';
+  }
+
+  String stringifyType(PythonType t) {
+    final args = (t.types ?? []).map((e) => stringifyType(e)).join(', ');
+    return args.isEmpty ? quote(t.name) : '${t.name}[$args]';
+  }
+
+  String stringifyStaticField(PythonStaticField f) {
+    // Python doesn't handle recursive type definitions: static fields of the
+    // same type as the containing class need to be assigned after the class
+    // definition.
+    // TODO: Make sure IDE static analysis does not raise false positives.
+    return f.isEnumLike
+        ? '${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(None)'
+        : '${f.name}: ${stringifyType(f.type)} = None'; //XXX constant value
   }
 
   PythonType toType(DartType t) {
@@ -149,7 +179,7 @@ class PythonTranslator {
     if (t.isDartCoreInt) return PythonType('int');
     if (t.isDartCoreDouble) return PythonType('float');
     if (t.isDartCoreString) return PythonType('str');
-    if (t.isDynamic) return PythonType('any');
+    if (t.isDynamic) return PythonType('Any');
 
     if (t is FunctionType) {
       return PythonType('Callable'); // TODO
@@ -158,10 +188,10 @@ class PythonTranslator {
     if (t is InterfaceType) {
       final typeArgs = t.typeArguments;
       if (typeArgs.isEmpty) {
-        traceDepth += '\t';
+        _traceDepth += '\t';
         processElement(
             t.element); // recurse: Python requires forward declaration
-        traceDepth = traceDepth.substring(1);
+        _traceDepth = _traceDepth.substring(1);
         return PythonType(t.element.name);
       } else {
         final types = typeArgs.map(toType).toList(); // recurse
@@ -208,6 +238,10 @@ class PythonTranslator {
   List<PythonField> toFields(List<ParameterElement> params) =>
       params.map(toField).toList();
 
+  bool isPrivateSymbol(String name) {
+    return name.startsWith(r'_');
+  }
+
   void printParameters(List<PythonField> fields, {isMethod = true}) {
     p.t(() {
       p.t(() {
@@ -215,10 +249,12 @@ class PythonTranslator {
           p('self,');
         }
         // Non-default params must precede default params
-        fields.where((f) => !f.type.isOptional).forEach((f) => p('${f.code},'));
+        fields
+            .where((f) => !f.type.isOptional)
+            .forEach((f) => p('${stringifyField(f)},'));
         fields
             .where((f) => f.type.isOptional)
-            .forEach((f) => p('${f.code} = None,'));
+            .forEach((f) => p('${stringifyField(f)} = None,'));
       });
     });
   }
@@ -240,47 +276,56 @@ class PythonTranslator {
     p.t(() {
       // TODO class doc
       // TODO ctor doc
-
       if (klass.staticFields.isNotEmpty) {
         for (final f in klass.staticFields) {
           if (!f.isEnumLike) {
-            p(f.code);
+            p(stringifyStaticField(f));
           }
         }
         p('');
       }
 
-      p('def __init__(');
-      printParameters(klass.sortedFields);
-      p('):');
-      p.t(() {
-        printInitialization(klass.sortedFields);
-      });
-    });
-    for (final variant in klass.variants) {
-      p.t(() {
+      if (klass.fields.isNotEmpty) {
+        p('def __init__(');
+        printParameters(klass.sortedFields);
+        p('):');
+        p.t(() {
+          printInitialization(klass.sortedFields);
+        });
+      }
+
+      for (final variant in klass.variants) {
         p('');
         p('@staticmethod');
-        p('def with_${variant.name}(');
-        printParameters(variant.klass.sortedFields, isMethod: false);
-        p(') -> ${variant.klass.name}:');
+        p('def ${variant.name}(');
+        printParameters(variant.sortedFields, isMethod: false);
+        p(') -> ${quote(klass.name)}:'); // XXX
         p.t(() {
-          p('return ${variant.klass.name}(');
+          p('return ${klass.name}(');
           p.t(() {
-            for (final f in variant.klass.sortedFields) {
+            for (final f in variant.sortedFields) {
               p('${f.name},');
             }
           });
           p(')');
         });
-      });
-    }
+      }
+
+      if (klass.fields.isEmpty &&
+          klass.fields.isEmpty &&
+          klass.variants.isEmpty) {
+        p('pass');
+      }
+    });
+
+    _declaredUnits.add(klass.name);
+
     if (klass.staticFields.isNotEmpty) {
       p('');
       p('');
       for (final f in klass.staticFields) {
         if (f.isEnumLike) {
-          p(f.code);
+          p(stringifyStaticField(f));
         }
       }
     }
@@ -296,6 +341,8 @@ class PythonTranslator {
         p('${snakeCase(v).toUpperCase()} = \'$v\'');
       }
     });
+
+    _declaredUnits.add(e.name);
   }
 
   String getRelativeSourcePath(ClassElement e) {
@@ -307,46 +354,34 @@ class PythonTranslator {
   }
 
   void processElement(ClassElement e) {
-    if (processedClasses.contains(e)) return;
-    processedClasses.add(e);
+    if (_processedClasses.contains(e)) return;
+    _processedClasses.add(e);
 
     final sourcePath = getRelativeSourcePath(e);
     trace('$e@$sourcePath');
     if (e.isEnum) {
-      enums.add(
+      _enums.add(
           PythonEnum(sourcePath, e.name, e.fields.map((f) => f.name).toList()));
     } else if (e.isMixin) {
       throw 'cannot translate mixins';
     } else {
-      final staticFields = <PythonStaticField>[];
-      for (final field in e.fields) {
-        if (field.isStatic &&
-            field.isConst &&
-            field is ConstFieldElementImpl &&
-            !field.name.startsWith(r'_')) {
-          staticFields.add(toStaticField(e, field));
-        }
-      }
-      final ctors = e.constructors;
-      final ctor0 = ctors.where((c) => c.name.isEmpty);
-      if (ctor0.isNotEmpty) {
-        // FIXME coalesce all ctor fields into one class; include marker for ctor
-        final variants = ctors.where((c) => c.name.isNotEmpty).map((c) {
-          final name = '${e.name}With${titleCase(c.name)}';
-          final variantClass = PythonClass(sourcePath, name,
-              fields: toFields(c.parameters),
-              variants: [],
-              staticFields: staticFields);
-          return PythonVariant(c.name, variantClass);
-        }).toList();
-        classes.addAll(variants.map((v) => v.klass).toList());
-        classes.add(PythonClass(sourcePath, e.name,
-            fields: toFields(ctor0.first.parameters),
-            variants: variants,
-            staticFields: staticFields));
-      } else {
-        // TODO handle enum-like classes (e.g. FontWeight)
-      }
+      final staticFields = e.fields
+          .whereType<ConstFieldElementImpl>()
+          .where((f) => !isPrivateSymbol(f.name))
+          .map((f) => toStaticField(e, f))
+          .toList();
+      final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
+      final variants = e.constructors
+          .where((c) => c.name.isNotEmpty && !isPrivateSymbol(c.name))
+          .map((c) => PythonVariant(snakeCase(c.name), toFields(c.parameters)))
+          .toList();
+
+      final fields = toFields(defaultConstructor.isNotEmpty
+          ? defaultConstructor.first.parameters
+          : []);
+
+      _classes.add(PythonClass(sourcePath, e.name,
+          fields: fields, variants: variants, staticFields: staticFields));
     }
   }
 
@@ -359,11 +394,11 @@ class PythonTranslator {
       processElement(e);
     }
 
-    for (final e in enums) {
+    for (final e in _enums) {
       printEnum(e);
     }
 
-    for (final klass in classes) {
+    for (final klass in _classes) {
       printClass(klass);
     }
 

@@ -146,6 +146,14 @@ class TargetPlatform(Enum):
     WINDOWS = 'windows'
 
 
+# packages/flutter/lib/src/material/snack_bar_theme.dart
+class SnackBarBehavior(Enum):
+    INDEX = 'index'
+    VALUES = 'values'
+    FIXED = 'fixed'
+    FLOATING = 'floating'
+
+
 # packages/flutter/lib/src/material/navigation_rail.dart
 class NavigationRailLabelType(Enum):
     INDEX = 'index'
@@ -153,14 +161,6 @@ class NavigationRailLabelType(Enum):
     NONE = 'none'
     SELECTED = 'selected'
     ALL = 'all'
-
-
-# packages/flutter/lib/src/material/snack_bar_theme.dart
-class SnackBarBehavior(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    FIXED = 'fixed'
-    FLOATING = 'floating'
 
 
 # packages/flutter/lib/src/rendering/flex.dart
@@ -217,12 +217,14 @@ class ThemeMode(Enum):
     DARK = 'dark'
 
 
-# packages/flutter/lib/src/foundation/key.dart
-class KeyWithEmpty:
-    def __init__(
-            self,
-    ):
-        pass
+# packages/flutter/lib/src/widgets/navigator.dart
+class NavigatorState:
+    pass
+
+
+# packages/flutter/lib/src/material/scaffold.dart
+class ScaffoldMessengerState:
+    pass
 
 
 # packages/flutter/lib/src/foundation/key.dart
@@ -234,115 +236,51 @@ class Key:
         self.value = value
 
     @staticmethod
-    def with_empty(
-    ) -> KeyWithEmpty:
-        return KeyWithEmpty(
+    def empty(
+    ) -> 'Key':
+        return Key(
         )
 
 
-# packages/flutter/lib/src/material/scaffold.dart
-class ScaffoldMessengerState:
+# packages/flutter/lib/src/widgets/framework.dart
+class Widget:
+    key: Key = None
+
     def __init__(
             self,
+            key: Optional[Key] = None,
     ):
-        pass
+        self.key = key
+
+
+
+
+# packages/flutter/lib/src/widgets/navigator.dart
+class NavigatorObserver:
+    pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformationProvider:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # bin/cache/pkg/sky_engine/lib/core/object.dart
 class Object:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
 class BackButtonDispatcher:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class ColorWithFromARGB:
-    def __init__(
-            self,
-            a: int,
-            r: int,
-            g: int,
-            b: int,
-    ):
-        self.a = a
-        self.r = r
-        self.g = g
-        self.b = b
-
-
-# bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class ColorWithFromRGBO:
-    def __init__(
-            self,
-            r: int,
-            g: int,
-            b: int,
-            opacity: float,
-    ):
-        self.r = r
-        self.g = g
-        self.b = b
-        self.opacity = opacity
-
-
-# bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class Color:
-    def __init__(
-            self,
-            value: int,
-    ):
-        self.value = value
-
-    @staticmethod
-    def with_fromARGB(
-            a: int,
-            r: int,
-            g: int,
-            b: int,
-    ) -> ColorWithFromARGB:
-        return ColorWithFromARGB(
-            a,
-            r,
-            g,
-            b,
-        )
-
-    @staticmethod
-    def with_fromRGBO(
-            r: int,
-            g: int,
-            b: int,
-            opacity: float,
-    ) -> ColorWithFromRGBO:
-        return ColorWithFromRGBO(
-            r,
-            g,
-            b,
-            opacity,
-        )
+    pass
 
 
 # packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity:
     minimum_density: float = None
     maximum_density: float = None
+    horizontal: float = None
+    vertical: float = None
 
     def __init__(
             self,
@@ -358,32 +296,50 @@ VisualDensity.comfortable = VisualDensity(None)
 VisualDensity.compact = VisualDensity(None)
 
 
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
+class Color:
+    value: int = None
+
+    def __init__(
+            self,
+            value: int,
+    ):
+        self.value = value
+
+    @staticmethod
+    def from_argb(
+            a: int,
+            r: int,
+            g: int,
+            b: int,
+    ) -> 'Color':
+        return Color(
+            a,
+            r,
+            g,
+            b,
+        )
+
+    @staticmethod
+    def from_rgbo(
+            r: int,
+            g: int,
+            b: int,
+            opacity: float,
+    ) -> 'Color':
+        return Color(
+            r,
+            g,
+            b,
+            opacity,
+        )
+
+
+
+
 # packages/flutter/lib/src/material/ink_well.dart
 class InteractiveInkFeatureFactory:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/painting/edge_insets.dart
-class EdgeInsetsGeometry:
-
-    def __init__(
-            self,
-    ):
-        pass
-
-
-EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(None)
-
-
-# packages/flutter/lib/src/painting/borders.dart
-class ShapeBorder:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/colors.dart
@@ -398,160 +354,21 @@ class MaterialColor:
 
 
 # packages/flutter/lib/src/material/color_scheme.dart
-class ColorSchemeWithLight:
-    def __init__(
-            self,
-            primary: Optional[Color] = None,
-            primary_variant: Optional[Color] = None,
-            secondary: Optional[Color] = None,
-            secondary_variant: Optional[Color] = None,
-            surface: Optional[Color] = None,
-            background: Optional[Color] = None,
-            error: Optional[Color] = None,
-            on_primary: Optional[Color] = None,
-            on_secondary: Optional[Color] = None,
-            on_surface: Optional[Color] = None,
-            on_background: Optional[Color] = None,
-            on_error: Optional[Color] = None,
-            brightness: Optional[Brightness] = None,
-    ):
-        self.primary = primary
-        self.primary_variant = primary_variant
-        self.secondary = secondary
-        self.secondary_variant = secondary_variant
-        self.surface = surface
-        self.background = background
-        self.error = error
-        self.on_primary = on_primary
-        self.on_secondary = on_secondary
-        self.on_surface = on_surface
-        self.on_background = on_background
-        self.on_error = on_error
-        self.brightness = brightness
-
-
-# packages/flutter/lib/src/material/color_scheme.dart
-class ColorSchemeWithDark:
-    def __init__(
-            self,
-            primary: Optional[Color] = None,
-            primary_variant: Optional[Color] = None,
-            secondary: Optional[Color] = None,
-            secondary_variant: Optional[Color] = None,
-            surface: Optional[Color] = None,
-            background: Optional[Color] = None,
-            error: Optional[Color] = None,
-            on_primary: Optional[Color] = None,
-            on_secondary: Optional[Color] = None,
-            on_surface: Optional[Color] = None,
-            on_background: Optional[Color] = None,
-            on_error: Optional[Color] = None,
-            brightness: Optional[Brightness] = None,
-    ):
-        self.primary = primary
-        self.primary_variant = primary_variant
-        self.secondary = secondary
-        self.secondary_variant = secondary_variant
-        self.surface = surface
-        self.background = background
-        self.error = error
-        self.on_primary = on_primary
-        self.on_secondary = on_secondary
-        self.on_surface = on_surface
-        self.on_background = on_background
-        self.on_error = on_error
-        self.brightness = brightness
-
-
-# packages/flutter/lib/src/material/color_scheme.dart
-class ColorSchemeWithHighContrastLight:
-    def __init__(
-            self,
-            primary: Optional[Color] = None,
-            primary_variant: Optional[Color] = None,
-            secondary: Optional[Color] = None,
-            secondary_variant: Optional[Color] = None,
-            surface: Optional[Color] = None,
-            background: Optional[Color] = None,
-            error: Optional[Color] = None,
-            on_primary: Optional[Color] = None,
-            on_secondary: Optional[Color] = None,
-            on_surface: Optional[Color] = None,
-            on_background: Optional[Color] = None,
-            on_error: Optional[Color] = None,
-            brightness: Optional[Brightness] = None,
-    ):
-        self.primary = primary
-        self.primary_variant = primary_variant
-        self.secondary = secondary
-        self.secondary_variant = secondary_variant
-        self.surface = surface
-        self.background = background
-        self.error = error
-        self.on_primary = on_primary
-        self.on_secondary = on_secondary
-        self.on_surface = on_surface
-        self.on_background = on_background
-        self.on_error = on_error
-        self.brightness = brightness
-
-
-# packages/flutter/lib/src/material/color_scheme.dart
-class ColorSchemeWithHighContrastDark:
-    def __init__(
-            self,
-            primary: Optional[Color] = None,
-            primary_variant: Optional[Color] = None,
-            secondary: Optional[Color] = None,
-            secondary_variant: Optional[Color] = None,
-            surface: Optional[Color] = None,
-            background: Optional[Color] = None,
-            error: Optional[Color] = None,
-            on_primary: Optional[Color] = None,
-            on_secondary: Optional[Color] = None,
-            on_surface: Optional[Color] = None,
-            on_background: Optional[Color] = None,
-            on_error: Optional[Color] = None,
-            brightness: Optional[Brightness] = None,
-    ):
-        self.primary = primary
-        self.primary_variant = primary_variant
-        self.secondary = secondary
-        self.secondary_variant = secondary_variant
-        self.surface = surface
-        self.background = background
-        self.error = error
-        self.on_primary = on_primary
-        self.on_secondary = on_secondary
-        self.on_surface = on_surface
-        self.on_background = on_background
-        self.on_error = on_error
-        self.brightness = brightness
-
-
-# packages/flutter/lib/src/material/color_scheme.dart
-class ColorSchemeWithFromSwatch:
-    def __init__(
-            self,
-            primary_swatch: Optional[MaterialColor] = None,
-            primary_color_dark: Optional[Color] = None,
-            accent_color: Optional[Color] = None,
-            card_color: Optional[Color] = None,
-            background_color: Optional[Color] = None,
-            error_color: Optional[Color] = None,
-            brightness: Optional[Brightness] = None,
-    ):
-        self.primary_swatch = primary_swatch
-        self.primary_color_dark = primary_color_dark
-        self.accent_color = accent_color
-        self.card_color = card_color
-        self.background_color = background_color
-        self.error_color = error_color
-        self.brightness = brightness
-
-
-# packages/flutter/lib/src/material/color_scheme.dart
 class ColorScheme:
+    primary: Color = None
+    primary_variant: Color = None
+    secondary: Color = None
+    secondary_variant: Color = None
+    surface: Color = None
+    background: Color = None
+    error: Color = None
+    on_primary: Color = None
+    on_secondary: Color = None
+    on_surface: Color = None
+    on_background: Color = None
+    on_error: Color = None
+    brightness: Brightness = None
+
     def __init__(
             self,
             primary: Color,
@@ -583,7 +400,7 @@ class ColorScheme:
         self.brightness = brightness
 
     @staticmethod
-    def with_light(
+    def light(
             primary: Optional[Color] = None,
             primary_variant: Optional[Color] = None,
             secondary: Optional[Color] = None,
@@ -597,8 +414,8 @@ class ColorScheme:
             on_background: Optional[Color] = None,
             on_error: Optional[Color] = None,
             brightness: Optional[Brightness] = None,
-    ) -> ColorSchemeWithLight:
-        return ColorSchemeWithLight(
+    ) -> 'ColorScheme':
+        return ColorScheme(
             primary,
             primary_variant,
             secondary,
@@ -615,7 +432,7 @@ class ColorScheme:
         )
 
     @staticmethod
-    def with_dark(
+    def dark(
             primary: Optional[Color] = None,
             primary_variant: Optional[Color] = None,
             secondary: Optional[Color] = None,
@@ -629,8 +446,8 @@ class ColorScheme:
             on_background: Optional[Color] = None,
             on_error: Optional[Color] = None,
             brightness: Optional[Brightness] = None,
-    ) -> ColorSchemeWithDark:
-        return ColorSchemeWithDark(
+    ) -> 'ColorScheme':
+        return ColorScheme(
             primary,
             primary_variant,
             secondary,
@@ -647,7 +464,7 @@ class ColorScheme:
         )
 
     @staticmethod
-    def with_highContrastLight(
+    def high_contrast_light(
             primary: Optional[Color] = None,
             primary_variant: Optional[Color] = None,
             secondary: Optional[Color] = None,
@@ -661,8 +478,8 @@ class ColorScheme:
             on_background: Optional[Color] = None,
             on_error: Optional[Color] = None,
             brightness: Optional[Brightness] = None,
-    ) -> ColorSchemeWithHighContrastLight:
-        return ColorSchemeWithHighContrastLight(
+    ) -> 'ColorScheme':
+        return ColorScheme(
             primary,
             primary_variant,
             secondary,
@@ -679,7 +496,7 @@ class ColorScheme:
         )
 
     @staticmethod
-    def with_highContrastDark(
+    def high_contrast_dark(
             primary: Optional[Color] = None,
             primary_variant: Optional[Color] = None,
             secondary: Optional[Color] = None,
@@ -693,8 +510,8 @@ class ColorScheme:
             on_background: Optional[Color] = None,
             on_error: Optional[Color] = None,
             brightness: Optional[Brightness] = None,
-    ) -> ColorSchemeWithHighContrastDark:
-        return ColorSchemeWithHighContrastDark(
+    ) -> 'ColorScheme':
+        return ColorScheme(
             primary,
             primary_variant,
             secondary,
@@ -711,7 +528,7 @@ class ColorScheme:
         )
 
     @staticmethod
-    def with_fromSwatch(
+    def from_swatch(
             primary_swatch: Optional[MaterialColor] = None,
             primary_color_dark: Optional[Color] = None,
             accent_color: Optional[Color] = None,
@@ -719,8 +536,8 @@ class ColorScheme:
             background_color: Optional[Color] = None,
             error_color: Optional[Color] = None,
             brightness: Optional[Brightness] = None,
-    ) -> ColorSchemeWithFromSwatch:
-        return ColorSchemeWithFromSwatch(
+    ) -> 'ColorScheme':
+        return ColorScheme(
             primary_swatch,
             primary_color_dark,
             accent_color,
@@ -731,8 +548,31 @@ class ColorScheme:
         )
 
 
+
+
+# packages/flutter/lib/src/painting/edge_insets.dart
+class EdgeInsetsGeometry:
+
+    pass
+
+
+EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(None)
+
+
+# packages/flutter/lib/src/painting/borders.dart
+class ShapeBorder:
+    pass
+
+
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonThemeData:
+    min_width: float = None
+    height: float = None
+    text_theme: ButtonTextTheme = None
+    layout_behavior: ButtonBarLayoutBehavior = None
+    aligned_dropdown: bool = None
+    color_scheme: ColorScheme = None
+
     def __init__(
             self,
             text_theme: Optional[ButtonTextTheme] = None,
@@ -768,21 +608,33 @@ class ButtonThemeData:
         self.material_tap_target_size = material_tap_target_size
 
 
-# bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
-class LocaleWithFromSubtags:
-    def __init__(
-            self,
-            language_code: Optional[str] = None,
-            script_code: Optional[str] = None,
-            country_code: Optional[str] = None,
-    ):
-        self.language_code = language_code
-        self.script_code = script_code
-        self.country_code = country_code
+
+
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
+class FontWeight:
+    index: int = None
+    values: List['FontWeight'] = None
+
+    pass
+
+
+FontWeight.w100 = FontWeight(None)
+FontWeight.w200 = FontWeight(None)
+FontWeight.w300 = FontWeight(None)
+FontWeight.w400 = FontWeight(None)
+FontWeight.w500 = FontWeight(None)
+FontWeight.w600 = FontWeight(None)
+FontWeight.w700 = FontWeight(None)
+FontWeight.w800 = FontWeight(None)
+FontWeight.w900 = FontWeight(None)
+FontWeight.normal = FontWeight(None)
+FontWeight.bold = FontWeight(None)
 
 
 # bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
 class Locale:
+    script_code: str = None
+
     def __init__(
             self,
             _language_code: str,
@@ -792,40 +644,42 @@ class Locale:
         self._country_code = _country_code
 
     @staticmethod
-    def with_fromSubtags(
+    def from_subtags(
             language_code: Optional[str] = None,
             script_code: Optional[str] = None,
             country_code: Optional[str] = None,
-    ) -> LocaleWithFromSubtags:
-        return LocaleWithFromSubtags(
+    ) -> 'Locale':
+        return Locale(
             language_code,
             script_code,
             country_code,
         )
 
 
+
+
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class OffsetWithFromDirection:
-
-    def __init__(
-            self,
-            direction: float,
-            distance: Optional[float] = None,
-    ):
-        self.direction = direction
-        self.distance = distance
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
+class TextDecoration:
 
 
-Offset.zero = Offset(None)
-Offset.infinite = Offset(None)
+    @staticmethod
+    def combine(
+            decorations: List['TextDecoration'],
+    ) -> 'TextDecoration':
+        return TextDecoration(
+            decorations,
+        )
+
+
+TextDecoration.none = TextDecoration(None)
+TextDecoration.underline = TextDecoration(None)
+TextDecoration.overline = TextDecoration(None)
+TextDecoration.line_through = TextDecoration(None)
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -840,11 +694,11 @@ class Offset:
         self.dy = dy
 
     @staticmethod
-    def with_fromDirection(
+    def from_direction(
             direction: float,
             distance: Optional[float] = None,
-    ) -> OffsetWithFromDirection:
-        return OffsetWithFromDirection(
+    ) -> 'Offset':
+        return Offset(
             direction,
             distance,
         )
@@ -856,6 +710,10 @@ Offset.infinite = Offset(None)
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Shadow:
+    color: Color = None
+    offset: Offset = None
+    blur_radius: float = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -867,232 +725,13 @@ class Shadow:
         self.blur_radius = blur_radius
 
 
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithEnable:
-    def __init__(
-            self,
-            feature: str,
-    ):
-        self.feature = feature
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithDisable:
-    def __init__(
-            self,
-            feature: str,
-    ):
-        self.feature = feature
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithAlternative:
-    def __init__(
-            self,
-            value: int,
-    ):
-        self.value = value
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithAlternativeFractions:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithContextualAlternates:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithCaseSensitiveForms:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithCharacterVariant:
-    def __init__(
-            self,
-            value: int,
-    ):
-        self.value = value
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithDenominator:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithFractions:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithHistoricalForms:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithHistoricalLigatures:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithLiningFigures:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithLocaleAware:
-    def __init__(
-            self,
-            enable: Optional[bool] = None,
-    ):
-        self.enable = enable
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithNotationalForms:
-    def __init__(
-            self,
-            value: Optional[int] = None,
-    ):
-        self.value = value
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithNumerators:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithOldstyleFigures:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithOrdinalForms:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithProportionalFigures:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithRandomize:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithStylisticAlternates:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithScientificInferiors:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithStylisticSet:
-    def __init__(
-            self,
-            value: int,
-    ):
-        self.value = value
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithSubscripts:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithSuperscripts:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithSwash:
-    def __init__(
-            self,
-            value: Optional[int] = None,
-    ):
-        self.value = value
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithTabularFigures:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeatureWithSlashedZero:
-    def __init__(
-            self,
-    ):
-        pass
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature:
+    feature: str = None
+    value: int = None
+
     def __init__(
             self,
             feature: str,
@@ -1102,186 +741,212 @@ class FontFeature:
         self.value = value
 
     @staticmethod
-    def with_enable(
+    def enable(
             feature: str,
-    ) -> FontFeatureWithEnable:
-        return FontFeatureWithEnable(
+    ) -> 'FontFeature':
+        return FontFeature(
             feature,
         )
 
     @staticmethod
-    def with_disable(
+    def disable(
             feature: str,
-    ) -> FontFeatureWithDisable:
-        return FontFeatureWithDisable(
+    ) -> 'FontFeature':
+        return FontFeature(
             feature,
         )
 
     @staticmethod
-    def with_alternative(
+    def alternative(
             value: int,
-    ) -> FontFeatureWithAlternative:
-        return FontFeatureWithAlternative(
+    ) -> 'FontFeature':
+        return FontFeature(
             value,
         )
 
     @staticmethod
-    def with_alternativeFractions(
-    ) -> FontFeatureWithAlternativeFractions:
-        return FontFeatureWithAlternativeFractions(
+    def alternative_fractions(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_contextualAlternates(
-    ) -> FontFeatureWithContextualAlternates:
-        return FontFeatureWithContextualAlternates(
+    def contextual_alternates(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_caseSensitiveForms(
-    ) -> FontFeatureWithCaseSensitiveForms:
-        return FontFeatureWithCaseSensitiveForms(
+    def case_sensitive_forms(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_characterVariant(
+    def character_variant(
             value: int,
-    ) -> FontFeatureWithCharacterVariant:
-        return FontFeatureWithCharacterVariant(
+    ) -> 'FontFeature':
+        return FontFeature(
             value,
         )
 
     @staticmethod
-    def with_denominator(
-    ) -> FontFeatureWithDenominator:
-        return FontFeatureWithDenominator(
+    def denominator(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_fractions(
-    ) -> FontFeatureWithFractions:
-        return FontFeatureWithFractions(
+    def fractions(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_historicalForms(
-    ) -> FontFeatureWithHistoricalForms:
-        return FontFeatureWithHistoricalForms(
+    def historical_forms(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_historicalLigatures(
-    ) -> FontFeatureWithHistoricalLigatures:
-        return FontFeatureWithHistoricalLigatures(
+    def historical_ligatures(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_liningFigures(
-    ) -> FontFeatureWithLiningFigures:
-        return FontFeatureWithLiningFigures(
+    def lining_figures(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_localeAware(
+    def locale_aware(
             enable: Optional[bool] = None,
-    ) -> FontFeatureWithLocaleAware:
-        return FontFeatureWithLocaleAware(
+    ) -> 'FontFeature':
+        return FontFeature(
             enable,
         )
 
     @staticmethod
-    def with_notationalForms(
+    def notational_forms(
             value: Optional[int] = None,
-    ) -> FontFeatureWithNotationalForms:
-        return FontFeatureWithNotationalForms(
+    ) -> 'FontFeature':
+        return FontFeature(
             value,
         )
 
     @staticmethod
-    def with_numerators(
-    ) -> FontFeatureWithNumerators:
-        return FontFeatureWithNumerators(
+    def numerators(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_oldstyleFigures(
-    ) -> FontFeatureWithOldstyleFigures:
-        return FontFeatureWithOldstyleFigures(
+    def oldstyle_figures(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_ordinalForms(
-    ) -> FontFeatureWithOrdinalForms:
-        return FontFeatureWithOrdinalForms(
+    def ordinal_forms(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_proportionalFigures(
-    ) -> FontFeatureWithProportionalFigures:
-        return FontFeatureWithProportionalFigures(
+    def proportional_figures(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_randomize(
-    ) -> FontFeatureWithRandomize:
-        return FontFeatureWithRandomize(
+    def randomize(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_stylisticAlternates(
-    ) -> FontFeatureWithStylisticAlternates:
-        return FontFeatureWithStylisticAlternates(
+    def stylistic_alternates(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_scientificInferiors(
-    ) -> FontFeatureWithScientificInferiors:
-        return FontFeatureWithScientificInferiors(
+    def scientific_inferiors(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_stylisticSet(
+    def stylistic_set(
             value: int,
-    ) -> FontFeatureWithStylisticSet:
-        return FontFeatureWithStylisticSet(
+    ) -> 'FontFeature':
+        return FontFeature(
             value,
         )
 
     @staticmethod
-    def with_subscripts(
-    ) -> FontFeatureWithSubscripts:
-        return FontFeatureWithSubscripts(
+    def subscripts(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_superscripts(
-    ) -> FontFeatureWithSuperscripts:
-        return FontFeatureWithSuperscripts(
+    def superscripts(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_swash(
+    def swash(
             value: Optional[int] = None,
-    ) -> FontFeatureWithSwash:
-        return FontFeatureWithSwash(
+    ) -> 'FontFeature':
+        return FontFeature(
             value,
         )
 
     @staticmethod
-    def with_tabularFigures(
-    ) -> FontFeatureWithTabularFigures:
-        return FontFeatureWithTabularFigures(
+    def tabular_figures(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
 
     @staticmethod
-    def with_slashedZero(
-    ) -> FontFeatureWithSlashedZero:
-        return FontFeatureWithSlashedZero(
+    def slashed_zero(
+    ) -> 'FontFeature':
+        return FontFeature(
         )
+
+
 
 
 # packages/flutter/lib/src/painting/text_style.dart
 class TextStyle:
+    inherit: bool = None
+    color: Color = None
+    background_color: Color = None
+    font_family: str = None
+    font_size: float = None
+    font_weight: FontWeight = None
+    font_style: FontStyle = None
+    letter_spacing: float = None
+    word_spacing: float = None
+    text_baseline: TextBaseline = None
+    height: float = None
+    leading_distribution: TextLeadingDistribution = None
+    locale: Locale = None
+    foreground: Paint = None
+    background: Paint = None
+    decoration: TextDecoration = None
+    decoration_color: Color = None
+    decoration_style: TextDecorationStyle = None
+    decoration_thickness: float = None
+    debug_label: str = None
+    shadows: List[Shadow] = None
+    font_features: List[FontFeature] = None
+    overflow: TextOverflow = None
+
     def __init__(
             self,
             inherit: Optional[bool] = None,
@@ -1337,74 +1002,6 @@ class TextStyle:
         self.overflow = overflow
 
 
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class SizeWithCopy:
-
-    def __init__(
-            self,
-            source: Size,
-    ):
-        self.source = source
-
-
-Size.zero = Size(None)
-Size.infinite = Size(None)
-
-
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class SizeWithSquare:
-
-    def __init__(
-            self,
-            dimension: float,
-    ):
-        self.dimension = dimension
-
-
-Size.zero = Size(None)
-Size.infinite = Size(None)
-
-
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class SizeWithFromWidth:
-
-    def __init__(
-            self,
-            width: float,
-    ):
-        self.width = width
-
-
-Size.zero = Size(None)
-Size.infinite = Size(None)
-
-
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class SizeWithFromHeight:
-
-    def __init__(
-            self,
-            height: float,
-    ):
-        self.height = height
-
-
-Size.zero = Size(None)
-Size.infinite = Size(None)
-
-
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class SizeWithFromRadius:
-
-    def __init__(
-            self,
-            radius: float,
-    ):
-        self.radius = radius
-
-
-Size.zero = Size(None)
-Size.infinite = Size(None)
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -1419,42 +1016,42 @@ class Size:
         self.height = height
 
     @staticmethod
-    def with_copy(
-            source: Size,
-    ) -> SizeWithCopy:
-        return SizeWithCopy(
+    def copy(
+            source: 'Size',
+    ) -> 'Size':
+        return Size(
             source,
         )
 
     @staticmethod
-    def with_square(
+    def square(
             dimension: float,
-    ) -> SizeWithSquare:
-        return SizeWithSquare(
+    ) -> 'Size':
+        return Size(
             dimension,
         )
 
     @staticmethod
-    def with_fromWidth(
+    def from_width(
             width: float,
-    ) -> SizeWithFromWidth:
-        return SizeWithFromWidth(
+    ) -> 'Size':
+        return Size(
             width,
         )
 
     @staticmethod
-    def with_fromHeight(
+    def from_height(
             height: float,
-    ) -> SizeWithFromHeight:
-        return SizeWithFromHeight(
+    ) -> 'Size':
+        return Size(
             height,
         )
 
     @staticmethod
-    def with_fromRadius(
+    def from_radius(
             radius: float,
-    ) -> SizeWithFromRadius:
-        return SizeWithFromRadius(
+    ) -> 'Size':
+        return Size(
             radius,
         )
 
@@ -1464,58 +1061,12 @@ Size.infinite = Size(None)
 
 
 # packages/flutter/lib/src/rendering/box.dart
-class BoxConstraintsWithTight:
-    def __init__(
-            self,
-            size: Size,
-    ):
-        self.size = size
-
-
-# packages/flutter/lib/src/rendering/box.dart
-class BoxConstraintsWithTightFor:
-    def __init__(
-            self,
-            width: Optional[float] = None,
-            height: Optional[float] = None,
-    ):
-        self.width = width
-        self.height = height
-
-
-# packages/flutter/lib/src/rendering/box.dart
-class BoxConstraintsWithTightForFinite:
-    def __init__(
-            self,
-            width: Optional[float] = None,
-            height: Optional[float] = None,
-    ):
-        self.width = width
-        self.height = height
-
-
-# packages/flutter/lib/src/rendering/box.dart
-class BoxConstraintsWithLoose:
-    def __init__(
-            self,
-            size: Size,
-    ):
-        self.size = size
-
-
-# packages/flutter/lib/src/rendering/box.dart
-class BoxConstraintsWithExpand:
-    def __init__(
-            self,
-            width: Optional[float] = None,
-            height: Optional[float] = None,
-    ):
-        self.width = width
-        self.height = height
-
-
-# packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints:
+    min_width: float = None
+    max_width: float = None
+    min_height: float = None
+    max_height: float = None
+
     def __init__(
             self,
             min_width: Optional[float] = None,
@@ -1529,54 +1080,162 @@ class BoxConstraints:
         self.max_height = max_height
 
     @staticmethod
-    def with_tight(
+    def tight(
             size: Size,
-    ) -> BoxConstraintsWithTight:
-        return BoxConstraintsWithTight(
+    ) -> 'BoxConstraints':
+        return BoxConstraints(
             size,
         )
 
     @staticmethod
-    def with_tightFor(
+    def tight_for(
             width: Optional[float] = None,
             height: Optional[float] = None,
-    ) -> BoxConstraintsWithTightFor:
-        return BoxConstraintsWithTightFor(
+    ) -> 'BoxConstraints':
+        return BoxConstraints(
             width,
             height,
         )
 
     @staticmethod
-    def with_tightForFinite(
+    def tight_for_finite(
             width: Optional[float] = None,
             height: Optional[float] = None,
-    ) -> BoxConstraintsWithTightForFinite:
-        return BoxConstraintsWithTightForFinite(
+    ) -> 'BoxConstraints':
+        return BoxConstraints(
             width,
             height,
         )
 
     @staticmethod
-    def with_loose(
+    def loose(
             size: Size,
-    ) -> BoxConstraintsWithLoose:
-        return BoxConstraintsWithLoose(
+    ) -> 'BoxConstraints':
+        return BoxConstraints(
             size,
         )
 
     @staticmethod
-    def with_expand(
+    def expand(
             width: Optional[float] = None,
             height: Optional[float] = None,
-    ) -> BoxConstraintsWithExpand:
-        return BoxConstraintsWithExpand(
+    ) -> 'BoxConstraints':
+        return BoxConstraints(
             width,
             height,
         )
+
+
+
+
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
+class Radius:
+    x: float = None
+    y: float = None
+
+
+    @staticmethod
+    def circular(
+            radius: float,
+    ) -> 'Radius':
+        return Radius(
+            radius,
+        )
+
+    @staticmethod
+    def elliptical(
+            x: float,
+            y: float,
+    ) -> 'Radius':
+        return Radius(
+            x,
+            y,
+        )
+
+
+Radius.zero = Radius(None)
+
+
+# packages/flutter/lib/src/painting/border_radius.dart
+class BorderRadius:
+    top_left: Radius = None
+    top_right: Radius = None
+    bottom_left: Radius = None
+    bottom_right: Radius = None
+
+
+    @staticmethod
+    def all(
+            radius: Radius,
+    ) -> 'BorderRadius':
+        return BorderRadius(
+            radius,
+        )
+
+    @staticmethod
+    def circular(
+            radius: float,
+    ) -> 'BorderRadius':
+        return BorderRadius(
+            radius,
+        )
+
+    @staticmethod
+    def vertical(
+            top: Optional[Radius] = None,
+            bottom: Optional[Radius] = None,
+    ) -> 'BorderRadius':
+        return BorderRadius(
+            top,
+            bottom,
+        )
+
+    @staticmethod
+    def horizontal(
+            left: Optional[Radius] = None,
+            right: Optional[Radius] = None,
+    ) -> 'BorderRadius':
+        return BorderRadius(
+            left,
+            right,
+        )
+
+    @staticmethod
+    def only(
+            top_left: Optional[Radius] = None,
+            top_right: Optional[Radius] = None,
+            bottom_left: Optional[Radius] = None,
+            bottom_right: Optional[Radius] = None,
+    ) -> 'BorderRadius':
+        return BorderRadius(
+            top_left,
+            top_right,
+            bottom_left,
+            bottom_right,
+        )
+
+
+BorderRadius.zero = BorderRadius(None)
 
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
 class ToggleButtonsThemeData:
+    text_style: TextStyle = None
+    constraints: BoxConstraints = None
+    color: Color = None
+    selected_color: Color = None
+    disabled_color: Color = None
+    fill_color: Color = None
+    focus_color: Color = None
+    highlight_color: Color = None
+    splash_color: Color = None
+    hover_color: Color = None
+    border_color: Color = None
+    selected_border_color: Color = None
+    disabled_border_color: Color = None
+    border_width: float = None
+    border_radius: BorderRadius = None
+
     def __init__(
             self,
             text_style: Optional[TextStyle] = None,
@@ -1612,8 +1271,24 @@ class ToggleButtonsThemeData:
         self.border_width = border_width
 
 
+
+
 # packages/flutter/lib/src/material/text_theme.dart
 class TextTheme:
+    headline1: TextStyle = None
+    headline2: TextStyle = None
+    headline3: TextStyle = None
+    headline4: TextStyle = None
+    headline5: TextStyle = None
+    headline6: TextStyle = None
+    subtitle1: TextStyle = None
+    subtitle2: TextStyle = None
+    body_text1: TextStyle = None
+    body_text2: TextStyle = None
+    caption: TextStyle = None
+    button: TextStyle = None
+    overline: TextStyle = None
+
     def __init__(
             self,
             headline1: Optional[TextStyle] = None,
@@ -1645,8 +1320,13 @@ class TextTheme:
         self.overline = overline
 
 
+
+
 # packages/flutter/lib/src/painting/borders.dart
 class BorderSide:
+    color: Color = None
+    width: float = None
+    style: BorderStyle = None
 
     def __init__(
             self,
@@ -1664,6 +1344,7 @@ BorderSide.none = BorderSide(None)
 
 # packages/flutter/lib/src/material/input_border.dart
 class InputBorder:
+    border_side: BorderSide = None
 
     def __init__(
             self,
@@ -1677,6 +1358,33 @@ InputBorder.none = InputBorder(None)
 
 # packages/flutter/lib/src/material/input_decorator.dart
 class InputDecorationTheme:
+    label_style: TextStyle = None
+    floating_label_style: TextStyle = None
+    helper_style: TextStyle = None
+    helper_max_lines: int = None
+    hint_style: TextStyle = None
+    error_style: TextStyle = None
+    error_max_lines: int = None
+    floating_label_behavior: FloatingLabelBehavior = None
+    is_dense: bool = None
+    content_padding: EdgeInsetsGeometry = None
+    is_collapsed: bool = None
+    prefix_style: TextStyle = None
+    suffix_style: TextStyle = None
+    counter_style: TextStyle = None
+    filled: bool = None
+    fill_color: Color = None
+    focus_color: Color = None
+    hover_color: Color = None
+    error_border: InputBorder = None
+    focused_border: InputBorder = None
+    focused_error_border: InputBorder = None
+    disabled_border: InputBorder = None
+    enabled_border: InputBorder = None
+    border: InputBorder = None
+    align_label_with_hint: bool = None
+    constraints: BoxConstraints = None
+
     def __init__(
             self,
             label_style: Optional[TextStyle] = None,
@@ -1734,16 +1442,13 @@ class InputDecorationTheme:
         self.constraints = constraints
 
 
-# packages/flutter/lib/src/widgets/icon_theme_data.dart
-class IconThemeDataWithFallback:
-    def __init__(
-            self,
-    ):
-        pass
 
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
 class IconThemeData:
+    color: Color = None
+    size: float = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -1755,85 +1460,79 @@ class IconThemeData:
         self.size = size
 
     @staticmethod
-    def with_fallback(
-    ) -> IconThemeDataWithFallback:
-        return IconThemeDataWithFallback(
+    def fallback(
+    ) -> 'IconThemeData':
+        return IconThemeData(
         )
 
 
-# packages/flutter/lib/src/material/slider_theme.dart
-class SliderThemeDataWithFromPrimaryColors:
-    def __init__(
-            self,
-            primary_color: Color,
-            primary_color_dark: Color,
-            primary_color_light: Color,
-            value_indicator_text_style: TextStyle,
-    ):
-        self.primary_color = primary_color
-        self.primary_color_dark = primary_color_dark
-        self.primary_color_light = primary_color_light
-        self.value_indicator_text_style = value_indicator_text_style
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderComponentShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderTickMarkShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderTrackShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderTickMarkShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderThumbShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderTrackShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderValueIndicatorShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderThemeData:
+    track_height: float = None
+    active_track_color: Color = None
+    inactive_track_color: Color = None
+    disabled_active_track_color: Color = None
+    disabled_inactive_track_color: Color = None
+    active_tick_mark_color: Color = None
+    inactive_tick_mark_color: Color = None
+    disabled_active_tick_mark_color: Color = None
+    disabled_inactive_tick_mark_color: Color = None
+    thumb_color: Color = None
+    overlapping_shape_stroke_color: Color = None
+    disabled_thumb_color: Color = None
+    overlay_color: Color = None
+    value_indicator_color: Color = None
+    overlay_shape: SliderComponentShape = None
+    tick_mark_shape: SliderTickMarkShape = None
+    thumb_shape: SliderComponentShape = None
+    track_shape: SliderTrackShape = None
+    value_indicator_shape: SliderComponentShape = None
+    range_tick_mark_shape: RangeSliderTickMarkShape = None
+    range_thumb_shape: RangeSliderThumbShape = None
+    range_track_shape: RangeSliderTrackShape = None
+    range_value_indicator_shape: RangeSliderValueIndicatorShape = None
+    show_value_indicator: ShowValueIndicator = None
+    value_indicator_text_style: TextStyle = None
+    min_thumb_separation: float = None
+    thumb_selector: Callable = None
+
     def __init__(
             self,
             track_height: Optional[float] = None,
@@ -1893,13 +1592,13 @@ class SliderThemeData:
         self.thumb_selector = thumb_selector
 
     @staticmethod
-    def with_fromPrimaryColors(
+    def from_primary_colors(
             primary_color: Color,
             primary_color_dark: Color,
             primary_color_light: Color,
             value_indicator_text_style: TextStyle,
-    ) -> SliderThemeDataWithFromPrimaryColors:
-        return SliderThemeDataWithFromPrimaryColors(
+    ) -> 'SliderThemeData':
+        return SliderThemeData(
             primary_color,
             primary_color_dark,
             primary_color_light,
@@ -1907,16 +1606,23 @@ class SliderThemeData:
         )
 
 
+
+
 # packages/flutter/lib/src/painting/decoration.dart
 class Decoration:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/tab_bar_theme.dart
 class TabBarTheme:
+    indicator: Decoration = None
+    indicator_size: TabBarIndicatorSize = None
+    label_color: Color = None
+    label_padding: EdgeInsetsGeometry = None
+    label_style: TextStyle = None
+    unselected_label_color: Color = None
+    unselected_label_style: TextStyle = None
+
     def __init__(
             self,
             indicator: Optional[Decoration] = None,
@@ -1936,32 +1642,6 @@ class TabBarTheme:
         self.unselected_label_style = unselected_label_style
 
 
-# bin/cache/pkg/sky_engine/lib/core/duration.dart
-class DurationWith_microseconds:
-    microseconds_per_millisecond: int = None
-    milliseconds_per_second: int = None
-    seconds_per_minute: int = None
-    minutes_per_hour: int = None
-    hours_per_day: int = None
-    microseconds_per_second: int = None
-    microseconds_per_minute: int = None
-    microseconds_per_hour: int = None
-    microseconds_per_day: int = None
-    milliseconds_per_minute: int = None
-    milliseconds_per_hour: int = None
-    milliseconds_per_day: int = None
-    seconds_per_hour: int = None
-    seconds_per_day: int = None
-    minutes_per_day: int = None
-
-    def __init__(
-            self,
-            _duration: int,
-    ):
-        self._duration = _duration
-
-
-Duration.zero = Duration(None)
 
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
@@ -1998,20 +1678,25 @@ class Duration:
         self.milliseconds = milliseconds
         self.microseconds = microseconds
 
-    @staticmethod
-    def with__microseconds(
-            _duration: int,
-    ) -> DurationWith_microseconds:
-        return DurationWith_microseconds(
-            _duration,
-        )
-
 
 Duration.zero = Duration(None)
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipThemeData:
+    height: float = None
+    padding: EdgeInsetsGeometry = None
+    margin: EdgeInsetsGeometry = None
+    vertical_offset: float = None
+    prefer_below: bool = None
+    exclude_from_semantics: bool = None
+    decoration: Decoration = None
+    text_style: TextStyle = None
+    wait_duration: Duration = None
+    show_duration: Duration = None
+    trigger_mode: TooltipTriggerMode = None
+    enable_feedback: bool = None
+
     def __init__(
             self,
             height: Optional[float] = None,
@@ -2041,8 +1726,17 @@ class TooltipThemeData:
         self.enable_feedback = enable_feedback
 
 
+
+
 # packages/flutter/lib/src/material/card_theme.dart
 class CardTheme:
+    clip_behavior: Clip = None
+    color: Color = None
+    shadow_color: Color = None
+    elevation: float = None
+    margin: EdgeInsetsGeometry = None
+    shape: ShapeBorder = None
+
     def __init__(
             self,
             clip_behavior: Optional[Clip] = None,
@@ -2060,23 +1754,12 @@ class CardTheme:
         self.shape = shape
 
 
-# packages/flutter/lib/src/material/chip_theme.dart
-class ChipThemeDataWithFromDefaults:
-    def __init__(
-            self,
-            secondary_color: Color,
-            label_style: TextStyle,
-            brightness: Optional[Brightness] = None,
-            primary_color: Optional[Color] = None,
-    ):
-        self.secondary_color = secondary_color
-        self.label_style = label_style
-        self.brightness = brightness
-        self.primary_color = primary_color
 
 
 # packages/flutter/lib/src/painting/borders.dart
 class OutlinedBorder:
+    side: BorderSide = None
+
     def __init__(
             self,
             side: Optional[BorderSide] = None,
@@ -2084,8 +1767,29 @@ class OutlinedBorder:
         self.side = side
 
 
+
+
 # packages/flutter/lib/src/material/chip_theme.dart
 class ChipThemeData:
+    background_color: Color = None
+    delete_icon_color: Color = None
+    disabled_color: Color = None
+    selected_color: Color = None
+    secondary_selected_color: Color = None
+    shadow_color: Color = None
+    selected_shadow_color: Color = None
+    show_checkmark: bool = None
+    checkmark_color: Color = None
+    label_padding: EdgeInsetsGeometry = None
+    padding: EdgeInsetsGeometry = None
+    side: BorderSide = None
+    shape: OutlinedBorder = None
+    label_style: TextStyle = None
+    secondary_label_style: TextStyle = None
+    brightness: Brightness = None
+    elevation: float = None
+    press_elevation: float = None
+
     def __init__(
             self,
             background_color: Color,
@@ -2127,13 +1831,13 @@ class ChipThemeData:
         self.press_elevation = press_elevation
 
     @staticmethod
-    def with_fromDefaults(
+    def from_defaults(
             secondary_color: Color,
             label_style: TextStyle,
             brightness: Optional[Brightness] = None,
             primary_color: Optional[Color] = None,
-    ) -> ChipThemeDataWithFromDefaults:
-        return ChipThemeDataWithFromDefaults(
+    ) -> 'ChipThemeData':
+        return ChipThemeData(
             secondary_color,
             label_style,
             brightness,
@@ -2141,12 +1845,11 @@ class ChipThemeData:
         )
 
 
+
+
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsBuilder:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
@@ -2160,6 +1863,14 @@ class PageTransitionsTheme:
 
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle:
+    system_navigation_bar_color: Color = None
+    system_navigation_bar_divider_color: Color = None
+    system_navigation_bar_icon_brightness: Brightness = None
+    system_navigation_bar_contrast_enforced: bool = None
+    status_bar_color: Color = None
+    status_bar_brightness: Brightness = None
+    status_bar_icon_brightness: Brightness = None
+    system_status_bar_contrast_enforced: bool = None
 
     def __init__(
             self,
@@ -2188,6 +1899,23 @@ SystemUiOverlayStyle.dark = SystemUiOverlayStyle(None)
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
 class AppBarTheme:
+    brightness: Brightness = None
+    background_color: Color = None
+    foreground_color: Color = None
+    elevation: float = None
+    shadow_color: Color = None
+    shape: ShapeBorder = None
+    icon_theme: IconThemeData = None
+    actions_icon_theme: IconThemeData = None
+    text_theme: TextTheme = None
+    center_title: bool = None
+    title_spacing: float = None
+    toolbar_height: float = None
+    toolbar_text_style: TextStyle = None
+    title_text_style: TextStyle = None
+    system_overlay_style: SystemUiOverlayStyle = None
+    backwards_compatibility: bool = None
+
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -2227,8 +1955,22 @@ class AppBarTheme:
         self.backwards_compatibility = backwards_compatibility
 
 
+
+
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData:
+    thickness: MaterialStateProperty[float] = None
+    show_track_on_hover: bool = None
+    is_always_shown: bool = None
+    interactive: bool = None
+    radius: Radius = None
+    thumb_color: MaterialStateProperty[Color] = None
+    track_color: MaterialStateProperty[Color] = None
+    track_border_color: MaterialStateProperty[Color] = None
+    cross_axis_margin: float = None
+    main_axis_margin: float = None
+    min_thumb_length: float = None
+
     def __init__(
             self,
             thickness: Optional[MaterialStateProperty[float]] = None,
@@ -2256,16 +1998,19 @@ class ScrollbarThemeData:
         self.interactive = interactive
 
 
+
+
 # packages/flutter/lib/src/painting/notched_shapes.dart
 class NotchedShape:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/bottom_app_bar_theme.dart
 class BottomAppBarTheme:
+    color: Color = None
+    elevation: float = None
+    shape: NotchedShape = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2277,8 +2022,47 @@ class BottomAppBarTheme:
         self.shape = shape
 
 
+
+
+# packages/flutter/lib/src/material/snack_bar_theme.dart
+class SnackBarThemeData:
+    background_color: Color = None
+    action_text_color: Color = None
+    disabled_action_text_color: Color = None
+    content_text_style: TextStyle = None
+    elevation: float = None
+    shape: ShapeBorder = None
+    behavior: SnackBarBehavior = None
+
+    def __init__(
+            self,
+            background_color: Optional[Color] = None,
+            action_text_color: Optional[Color] = None,
+            disabled_action_text_color: Optional[Color] = None,
+            content_text_style: Optional[TextStyle] = None,
+            elevation: Optional[float] = None,
+            shape: Optional[ShapeBorder] = None,
+            behavior: Optional[SnackBarBehavior] = None,
+    ):
+        self.background_color = background_color
+        self.action_text_color = action_text_color
+        self.disabled_action_text_color = disabled_action_text_color
+        self.content_text_style = content_text_style
+        self.elevation = elevation
+        self.shape = shape
+        self.behavior = behavior
+
+
+
+
 # packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme:
+    background_color: Color = None
+    elevation: float = None
+    shape: ShapeBorder = None
+    title_text_style: TextStyle = None
+    content_text_style: TextStyle = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2294,8 +2078,30 @@ class DialogTheme:
         self.content_text_style = content_text_style
 
 
+
+
 # packages/flutter/lib/src/material/floating_action_button_theme.dart
 class FloatingActionButtonThemeData:
+    foreground_color: Color = None
+    background_color: Color = None
+    focus_color: Color = None
+    hover_color: Color = None
+    splash_color: Color = None
+    elevation: float = None
+    focus_elevation: float = None
+    hover_elevation: float = None
+    disabled_elevation: float = None
+    highlight_elevation: float = None
+    shape: ShapeBorder = None
+    enable_feedback: bool = None
+    size_constraints: BoxConstraints = None
+    small_size_constraints: BoxConstraints = None
+    large_size_constraints: BoxConstraints = None
+    extended_size_constraints: BoxConstraints = None
+    extended_icon_label_spacing: float = None
+    extended_padding: EdgeInsetsGeometry = None
+    extended_text_style: TextStyle = None
+
     def __init__(
             self,
             foreground_color: Optional[Color] = None,
@@ -2339,8 +2145,19 @@ class FloatingActionButtonThemeData:
         self.extended_text_style = extended_text_style
 
 
+
+
 # packages/flutter/lib/src/material/navigation_rail_theme.dart
 class NavigationRailThemeData:
+    background_color: Color = None
+    elevation: float = None
+    unselected_label_text_style: TextStyle = None
+    selected_label_text_style: TextStyle = None
+    unselected_icon_theme: IconThemeData = None
+    selected_icon_theme: IconThemeData = None
+    group_alignment: float = None
+    label_type: NavigationRailLabelType = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2362,158 +2179,15 @@ class NavigationRailThemeData:
         self.label_type = label_type
 
 
-# packages/flutter/lib/src/material/typography.dart
-class TypographyWithMaterial2014:
-    black_mountain_view: TextTheme = None
-    white_mountain_view: TextTheme = None
-    black_redmond: TextTheme = None
-    white_redmond: TextTheme = None
-    black_helsinki: TextTheme = None
-    white_helsinki: TextTheme = None
-    black_cupertino: TextTheme = None
-    white_cupertino: TextTheme = None
-    black_redwood_city: TextTheme = None
-    white_redwood_city: TextTheme = None
-    english_like2014: TextTheme = None
-    english_like2018: TextTheme = None
-    dense2014: TextTheme = None
-    dense2018: TextTheme = None
-    tall2014: TextTheme = None
-    tall2018: TextTheme = None
-
-    def __init__(
-            self,
-            platform: Optional[TargetPlatform] = None,
-            black: Optional[TextTheme] = None,
-            white: Optional[TextTheme] = None,
-            english_like: Optional[TextTheme] = None,
-            dense: Optional[TextTheme] = None,
-            tall: Optional[TextTheme] = None,
-    ):
-        self.platform = platform
-        self.black = black
-        self.white = white
-        self.english_like = english_like
-        self.dense = dense
-        self.tall = tall
-
-
-
-
-# packages/flutter/lib/src/material/typography.dart
-class TypographyWithMaterial2018:
-    black_mountain_view: TextTheme = None
-    white_mountain_view: TextTheme = None
-    black_redmond: TextTheme = None
-    white_redmond: TextTheme = None
-    black_helsinki: TextTheme = None
-    white_helsinki: TextTheme = None
-    black_cupertino: TextTheme = None
-    white_cupertino: TextTheme = None
-    black_redwood_city: TextTheme = None
-    white_redwood_city: TextTheme = None
-    english_like2014: TextTheme = None
-    english_like2018: TextTheme = None
-    dense2014: TextTheme = None
-    dense2018: TextTheme = None
-    tall2014: TextTheme = None
-    tall2018: TextTheme = None
-
-    def __init__(
-            self,
-            platform: Optional[TargetPlatform] = None,
-            black: Optional[TextTheme] = None,
-            white: Optional[TextTheme] = None,
-            english_like: Optional[TextTheme] = None,
-            dense: Optional[TextTheme] = None,
-            tall: Optional[TextTheme] = None,
-    ):
-        self.platform = platform
-        self.black = black
-        self.white = white
-        self.english_like = english_like
-        self.dense = dense
-        self.tall = tall
-
-
-
-
-# packages/flutter/lib/src/material/typography.dart
-class TypographyWith_withPlatform:
-    black_mountain_view: TextTheme = None
-    white_mountain_view: TextTheme = None
-    black_redmond: TextTheme = None
-    white_redmond: TextTheme = None
-    black_helsinki: TextTheme = None
-    white_helsinki: TextTheme = None
-    black_cupertino: TextTheme = None
-    white_cupertino: TextTheme = None
-    black_redwood_city: TextTheme = None
-    white_redwood_city: TextTheme = None
-    english_like2014: TextTheme = None
-    english_like2018: TextTheme = None
-    dense2014: TextTheme = None
-    dense2018: TextTheme = None
-    tall2014: TextTheme = None
-    tall2018: TextTheme = None
-
-    def __init__(
-            self,
-            platform: TargetPlatform,
-            black: TextTheme,
-            white: TextTheme,
-            english_like: TextTheme,
-            dense: TextTheme,
-            tall: TextTheme,
-    ):
-        self.platform = platform
-        self.black = black
-        self.white = white
-        self.english_like = english_like
-        self.dense = dense
-        self.tall = tall
-
-
-
-
-# packages/flutter/lib/src/material/typography.dart
-class TypographyWith_:
-    black_mountain_view: TextTheme = None
-    white_mountain_view: TextTheme = None
-    black_redmond: TextTheme = None
-    white_redmond: TextTheme = None
-    black_helsinki: TextTheme = None
-    white_helsinki: TextTheme = None
-    black_cupertino: TextTheme = None
-    white_cupertino: TextTheme = None
-    black_redwood_city: TextTheme = None
-    white_redwood_city: TextTheme = None
-    english_like2014: TextTheme = None
-    english_like2018: TextTheme = None
-    dense2014: TextTheme = None
-    dense2018: TextTheme = None
-    tall2014: TextTheme = None
-    tall2018: TextTheme = None
-
-    def __init__(
-            self,
-            black: TextTheme,
-            white: TextTheme,
-            english_like: TextTheme,
-            dense: TextTheme,
-            tall: TextTheme,
-    ):
-        self.black = black
-        self.white = white
-        self.english_like = english_like
-        self.dense = dense
-        self.tall = tall
-
-
 
 
 # packages/flutter/lib/src/material/typography.dart
 class Typography:
+    black: TextTheme = None
+    white: TextTheme = None
+    english_like: TextTheme = None
+    dense: TextTheme = None
+    tall: TextTheme = None
     black_mountain_view: TextTheme = None
     white_mountain_view: TextTheme = None
     black_redmond: TextTheme = None
@@ -2548,15 +2222,15 @@ class Typography:
         self.tall = tall
 
     @staticmethod
-    def with_material2014(
+    def material2014(
             platform: Optional[TargetPlatform] = None,
             black: Optional[TextTheme] = None,
             white: Optional[TextTheme] = None,
             english_like: Optional[TextTheme] = None,
             dense: Optional[TextTheme] = None,
             tall: Optional[TextTheme] = None,
-    ) -> TypographyWithMaterial2014:
-        return TypographyWithMaterial2014(
+    ) -> 'Typography':
+        return Typography(
             platform,
             black,
             white,
@@ -2566,15 +2240,15 @@ class Typography:
         )
 
     @staticmethod
-    def with_material2018(
+    def material2018(
             platform: Optional[TargetPlatform] = None,
             black: Optional[TextTheme] = None,
             white: Optional[TextTheme] = None,
             english_like: Optional[TextTheme] = None,
             dense: Optional[TextTheme] = None,
             tall: Optional[TextTheme] = None,
-    ) -> TypographyWithMaterial2018:
-        return TypographyWithMaterial2018(
+    ) -> 'Typography':
+        return Typography(
             platform,
             black,
             white,
@@ -2583,79 +2257,7 @@ class Typography:
             tall,
         )
 
-    @staticmethod
-    def with__withPlatform(
-            platform: TargetPlatform,
-            black: TextTheme,
-            white: TextTheme,
-            english_like: TextTheme,
-            dense: TextTheme,
-            tall: TextTheme,
-    ) -> TypographyWith_withPlatform:
-        return TypographyWith_withPlatform(
-            platform,
-            black,
-            white,
-            english_like,
-            dense,
-            tall,
-        )
 
-    @staticmethod
-    def with__(
-            black: TextTheme,
-            white: TextTheme,
-            english_like: TextTheme,
-            dense: TextTheme,
-            tall: TextTheme,
-    ) -> TypographyWith_:
-        return TypographyWith_(
-            black,
-            white,
-            english_like,
-            dense,
-            tall,
-        )
-
-
-
-
-# packages/flutter/lib/src/cupertino/text_theme.dart
-class _TextThemeDefaultsBuilder:
-    def __init__(
-            self,
-            label_color: Color,
-            inactive_gray_color: Color,
-    ):
-        self.label_color = label_color
-        self.inactive_gray_color = inactive_gray_color
-
-
-# packages/flutter/lib/src/cupertino/text_theme.dart
-class CupertinoTextThemeDataWith_raw:
-    def __init__(
-            self,
-            _defaults: _TextThemeDefaultsBuilder,
-            _primary_color: Color,
-            _text_style: TextStyle,
-            _action_text_style: TextStyle,
-            _tab_label_text_style: TextStyle,
-            _nav_title_text_style: TextStyle,
-            _nav_large_title_text_style: TextStyle,
-            _nav_action_text_style: TextStyle,
-            _picker_text_style: TextStyle,
-            _date_time_picker_text_style: TextStyle,
-    ):
-        self._defaults = _defaults
-        self._primary_color = _primary_color
-        self._text_style = _text_style
-        self._action_text_style = _action_text_style
-        self._tab_label_text_style = _tab_label_text_style
-        self._nav_title_text_style = _nav_title_text_style
-        self._nav_large_title_text_style = _nav_large_title_text_style
-        self._nav_action_text_style = _nav_action_text_style
-        self._picker_text_style = _picker_text_style
-        self._date_time_picker_text_style = _date_time_picker_text_style
 
 
 # packages/flutter/lib/src/cupertino/text_theme.dart
@@ -2682,35 +2284,16 @@ class CupertinoTextThemeData:
         self.picker_text_style = picker_text_style
         self.date_time_picker_text_style = date_time_picker_text_style
 
-    @staticmethod
-    def with__raw(
-            _defaults: _TextThemeDefaultsBuilder,
-            _primary_color: Color,
-            _text_style: TextStyle,
-            _action_text_style: TextStyle,
-            _tab_label_text_style: TextStyle,
-            _nav_title_text_style: TextStyle,
-            _nav_large_title_text_style: TextStyle,
-            _nav_action_text_style: TextStyle,
-            _picker_text_style: TextStyle,
-            _date_time_picker_text_style: TextStyle,
-    ) -> CupertinoTextThemeDataWith_raw:
-        return CupertinoTextThemeDataWith_raw(
-            _defaults,
-            _primary_color,
-            _text_style,
-            _action_text_style,
-            _tab_label_text_style,
-            _nav_title_text_style,
-            _nav_large_title_text_style,
-            _nav_action_text_style,
-            _picker_text_style,
-            _date_time_picker_text_style,
-        )
-
 
 # packages/flutter/lib/src/cupertino/theme.dart
 class NoDefaultCupertinoThemeData:
+    brightness: Brightness = None
+    primary_color: Color = None
+    primary_contrasting_color: Color = None
+    text_theme: CupertinoTextThemeData = None
+    bar_background_color: Color = None
+    scaffold_background_color: Color = None
+
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -2728,29 +2311,18 @@ class NoDefaultCupertinoThemeData:
         self.scaffold_background_color = scaffold_background_color
 
 
-# packages/flutter/lib/src/material/snack_bar_theme.dart
-class SnackBarThemeData:
-    def __init__(
-            self,
-            background_color: Optional[Color] = None,
-            action_text_color: Optional[Color] = None,
-            disabled_action_text_color: Optional[Color] = None,
-            content_text_style: Optional[TextStyle] = None,
-            elevation: Optional[float] = None,
-            shape: Optional[ShapeBorder] = None,
-            behavior: Optional[SnackBarBehavior] = None,
-    ):
-        self.background_color = background_color
-        self.action_text_color = action_text_color
-        self.disabled_action_text_color = disabled_action_text_color
-        self.content_text_style = content_text_style
-        self.elevation = elevation
-        self.shape = shape
-        self.behavior = behavior
 
 
 # packages/flutter/lib/src/material/bottom_sheet_theme.dart
 class BottomSheetThemeData:
+    background_color: Color = None
+    elevation: float = None
+    modal_background_color: Color = None
+    modal_elevation: float = None
+    shape: ShapeBorder = None
+    clip_behavior: Clip = None
+    constraints: BoxConstraints = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2770,8 +2342,16 @@ class BottomSheetThemeData:
         self.constraints = constraints
 
 
+
+
 # packages/flutter/lib/src/material/popup_menu_theme.dart
 class PopupMenuThemeData:
+    color: Color = None
+    shape: ShapeBorder = None
+    elevation: float = None
+    text_style: TextStyle = None
+    enable_feedback: bool = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2787,8 +2367,15 @@ class PopupMenuThemeData:
         self.enable_feedback = enable_feedback
 
 
+
+
 # packages/flutter/lib/src/material/banner_theme.dart
 class MaterialBannerThemeData:
+    background_color: Color = None
+    content_text_style: TextStyle = None
+    padding: EdgeInsetsGeometry = None
+    leading_padding: EdgeInsetsGeometry = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2802,8 +2389,16 @@ class MaterialBannerThemeData:
         self.leading_padding = leading_padding
 
 
+
+
 # packages/flutter/lib/src/material/divider_theme.dart
 class DividerThemeData:
+    color: Color = None
+    space: float = None
+    thickness: float = None
+    indent: float = None
+    end_indent: float = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2819,8 +2414,20 @@ class DividerThemeData:
         self.end_indent = end_indent
 
 
+
+
 # packages/flutter/lib/src/material/button_bar_theme.dart
 class ButtonBarThemeData:
+    alignment: MainAxisAlignment = None
+    main_axis_size: MainAxisSize = None
+    button_text_theme: ButtonTextTheme = None
+    button_min_width: float = None
+    button_height: float = None
+    button_padding: EdgeInsetsGeometry = None
+    button_aligned_dropdown: bool = None
+    layout_behavior: ButtonBarLayoutBehavior = None
+    overflow_direction: VerticalDirection = None
+
     def __init__(
             self,
             alignment: Optional[MainAxisAlignment] = None,
@@ -2844,8 +2451,24 @@ class ButtonBarThemeData:
         self.overflow_direction = overflow_direction
 
 
+
+
 # packages/flutter/lib/src/material/bottom_navigation_bar_theme.dart
 class BottomNavigationBarThemeData:
+    background_color: Color = None
+    elevation: float = None
+    selected_icon_theme: IconThemeData = None
+    unselected_icon_theme: IconThemeData = None
+    selected_item_color: Color = None
+    unselected_item_color: Color = None
+    selected_label_style: TextStyle = None
+    unselected_label_style: TextStyle = None
+    show_selected_labels: bool = None
+    show_unselected_labels: bool = None
+    type: BottomNavigationBarType = None
+    enable_feedback: bool = None
+    landscape_layout: BottomNavigationBarLandscapeLayout = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2877,8 +2500,28 @@ class BottomNavigationBarThemeData:
         self.landscape_layout = landscape_layout
 
 
+
+
 # packages/flutter/lib/src/material/time_picker_theme.dart
 class TimePickerThemeData:
+    background_color: Color = None
+    hour_minute_text_color: Color = None
+    hour_minute_color: Color = None
+    day_period_text_color: Color = None
+    day_period_color: Color = None
+    dial_hand_color: Color = None
+    dial_background_color: Color = None
+    dial_text_color: Color = None
+    entry_mode_icon_color: Color = None
+    hour_minute_text_style: TextStyle = None
+    day_period_text_style: TextStyle = None
+    help_text_style: TextStyle = None
+    shape: ShapeBorder = None
+    hour_minute_shape: ShapeBorder = None
+    day_period_shape: OutlinedBorder = None
+    day_period_border_side: BorderSide = None
+    input_decoration_theme: InputDecorationTheme = None
+
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2918,13 +2561,12 @@ class TimePickerThemeData:
         self.input_decoration_theme = input_decoration_theme
 
 
+
+
 # packages/flutter/lib/src/services/mouse_cursor.dart
 class MouseCursor:
 
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 MouseCursor.defer = MouseCursor(None)
@@ -2933,14 +2575,31 @@ MouseCursor.uncontrolled = MouseCursor(None)
 
 # packages/flutter/lib/src/painting/alignment.dart
 class AlignmentGeometry:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle:
+    text_style: MaterialStateProperty[TextStyle] = None
+    background_color: MaterialStateProperty[Color] = None
+    foreground_color: MaterialStateProperty[Color] = None
+    overlay_color: MaterialStateProperty[Color] = None
+    shadow_color: MaterialStateProperty[Color] = None
+    elevation: MaterialStateProperty[float] = None
+    padding: MaterialStateProperty[EdgeInsetsGeometry] = None
+    minimum_size: MaterialStateProperty[Size] = None
+    fixed_size: MaterialStateProperty[Size] = None
+    maximum_size: MaterialStateProperty[Size] = None
+    side: MaterialStateProperty[BorderSide] = None
+    shape: MaterialStateProperty[OutlinedBorder] = None
+    mouse_cursor: MaterialStateProperty[MouseCursor] = None
+    visual_density: VisualDensity = None
+    tap_target_size: MaterialTapTargetSize = None
+    animation_duration: Duration = None
+    enable_feedback: bool = None
+    alignment: AlignmentGeometry = None
+    splash_factory: InteractiveInkFeatureFactory = None
+
     def __init__(
             self,
             text_style: Optional[MaterialStateProperty[TextStyle]] = None,
@@ -2984,26 +2643,38 @@ class ButtonStyle:
         self.splash_factory = splash_factory
 
 
+
+
 # packages/flutter/lib/src/material/text_button_theme.dart
 class TextButtonThemeData:
+    style: ButtonStyle = None
+
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
     ):
         self.style = style
+
+
 
 
 # packages/flutter/lib/src/material/elevated_button_theme.dart
 class ElevatedButtonThemeData:
+    style: ButtonStyle = None
+
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
     ):
         self.style = style
+
+
 
 
 # packages/flutter/lib/src/material/outlined_button_theme.dart
 class OutlinedButtonThemeData:
+    style: ButtonStyle = None
+
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
@@ -3011,8 +2682,14 @@ class OutlinedButtonThemeData:
         self.style = style
 
 
+
+
 # packages/flutter/lib/src/material/text_selection_theme.dart
 class TextSelectionThemeData:
+    cursor_color: Color = None
+    selection_color: Color = None
+    selection_handle_color: Color = None
+
     def __init__(
             self,
             cursor_color: Optional[Color] = None,
@@ -3024,8 +2701,22 @@ class TextSelectionThemeData:
         self.selection_handle_color = selection_handle_color
 
 
+
+
 # packages/flutter/lib/src/material/data_table_theme.dart
 class DataTableThemeData:
+    decoration: Decoration = None
+    data_row_color: MaterialStateProperty[Color] = None
+    data_row_height: float = None
+    data_text_style: TextStyle = None
+    heading_row_color: MaterialStateProperty[Color] = None
+    heading_row_height: float = None
+    heading_text_style: TextStyle = None
+    horizontal_margin: float = None
+    column_spacing: float = None
+    divider_thickness: float = None
+    checkbox_horizontal_margin: float = None
+
     def __init__(
             self,
             decoration: Optional[Decoration] = None,
@@ -3053,8 +2744,20 @@ class DataTableThemeData:
         self.checkbox_horizontal_margin = checkbox_horizontal_margin
 
 
+
+
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData:
+    mouse_cursor: MaterialStateProperty[MouseCursor] = None
+    fill_color: MaterialStateProperty[Color] = None
+    check_color: MaterialStateProperty[Color] = None
+    overlay_color: MaterialStateProperty[Color] = None
+    splash_radius: float = None
+    material_tap_target_size: MaterialTapTargetSize = None
+    visual_density: VisualDensity = None
+    shape: OutlinedBorder = None
+    side: BorderSide = None
+
     def __init__(
             self,
             mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -3078,8 +2781,17 @@ class CheckboxThemeData:
         self.side = side
 
 
+
+
 # packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData:
+    mouse_cursor: MaterialStateProperty[MouseCursor] = None
+    fill_color: MaterialStateProperty[Color] = None
+    overlay_color: MaterialStateProperty[Color] = None
+    splash_radius: float = None
+    material_tap_target_size: MaterialTapTargetSize = None
+    visual_density: VisualDensity = None
+
     def __init__(
             self,
             mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -3097,8 +2809,17 @@ class RadioThemeData:
         self.visual_density = visual_density
 
 
+
+
 # packages/flutter/lib/src/material/switch_theme.dart
 class SwitchThemeData:
+    thumb_color: MaterialStateProperty[Color] = None
+    track_color: MaterialStateProperty[Color] = None
+    material_tap_target_size: MaterialTapTargetSize = None
+    mouse_cursor: MaterialStateProperty[MouseCursor] = None
+    overlay_color: MaterialStateProperty[Color] = None
+    splash_radius: float = None
+
     def __init__(
             self,
             thumb_color: Optional[MaterialStateProperty[Color]] = None,
@@ -3116,8 +2837,16 @@ class SwitchThemeData:
         self.splash_radius = splash_radius
 
 
+
+
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData:
+    color: Color = None
+    linear_track_color: Color = None
+    linear_min_height: float = None
+    circular_track_color: Color = None
+    refresh_background_color: Color = None
+
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -3133,206 +2862,89 @@ class ProgressIndicatorThemeData:
         self.refresh_background_color = refresh_background_color
 
 
-# packages/flutter/lib/src/material/theme_data.dart
-class ThemeDataWithRaw:
-    def __init__(
-            self,
-            visual_density: VisualDensity,
-            primary_color: Color,
-            primary_color_brightness: Brightness,
-            primary_color_light: Color,
-            primary_color_dark: Color,
-            canvas_color: Color,
-            shadow_color: Color,
-            accent_color: Color,
-            accent_color_brightness: Brightness,
-            scaffold_background_color: Color,
-            bottom_app_bar_color: Color,
-            card_color: Color,
-            divider_color: Color,
-            focus_color: Color,
-            hover_color: Color,
-            highlight_color: Color,
-            splash_color: Color,
-            splash_factory: InteractiveInkFeatureFactory,
-            selected_row_color: Color,
-            unselected_widget_color: Color,
-            disabled_color: Color,
-            button_theme: ButtonThemeData,
-            button_color: Color,
-            toggle_buttons_theme: ToggleButtonsThemeData,
-            secondary_header_color: Color,
-            text_selection_color: Color,
-            cursor_color: Color,
-            text_selection_handle_color: Color,
-            background_color: Color,
-            dialog_background_color: Color,
-            indicator_color: Color,
-            hint_color: Color,
-            error_color: Color,
-            toggleable_active_color: Color,
-            text_theme: TextTheme,
-            primary_text_theme: TextTheme,
-            accent_text_theme: TextTheme,
-            input_decoration_theme: InputDecorationTheme,
-            icon_theme: IconThemeData,
-            primary_icon_theme: IconThemeData,
-            accent_icon_theme: IconThemeData,
-            slider_theme: SliderThemeData,
-            tab_bar_theme: TabBarTheme,
-            tooltip_theme: TooltipThemeData,
-            card_theme: CardTheme,
-            chip_theme: ChipThemeData,
-            platform: TargetPlatform,
-            material_tap_target_size: MaterialTapTargetSize,
-            apply_elevation_overlay_color: bool,
-            page_transitions_theme: PageTransitionsTheme,
-            app_bar_theme: AppBarTheme,
-            scrollbar_theme: ScrollbarThemeData,
-            bottom_app_bar_theme: BottomAppBarTheme,
-            color_scheme: ColorScheme,
-            dialog_theme: DialogTheme,
-            floating_action_button_theme: FloatingActionButtonThemeData,
-            navigation_rail_theme: NavigationRailThemeData,
-            typography: Typography,
-            cupertino_override_theme: NoDefaultCupertinoThemeData,
-            snack_bar_theme: SnackBarThemeData,
-            bottom_sheet_theme: BottomSheetThemeData,
-            popup_menu_theme: PopupMenuThemeData,
-            banner_theme: MaterialBannerThemeData,
-            divider_theme: DividerThemeData,
-            button_bar_theme: ButtonBarThemeData,
-            bottom_navigation_bar_theme: BottomNavigationBarThemeData,
-            time_picker_theme: TimePickerThemeData,
-            text_button_theme: TextButtonThemeData,
-            elevated_button_theme: ElevatedButtonThemeData,
-            outlined_button_theme: OutlinedButtonThemeData,
-            text_selection_theme: TextSelectionThemeData,
-            data_table_theme: DataTableThemeData,
-            checkbox_theme: CheckboxThemeData,
-            radio_theme: RadioThemeData,
-            switch_theme: SwitchThemeData,
-            progress_indicator_theme: ProgressIndicatorThemeData,
-            fix_text_field_outline_label: bool,
-            use_text_selection_theme: bool,
-    ):
-        self.visual_density = visual_density
-        self.primary_color = primary_color
-        self.primary_color_brightness = primary_color_brightness
-        self.primary_color_light = primary_color_light
-        self.primary_color_dark = primary_color_dark
-        self.canvas_color = canvas_color
-        self.shadow_color = shadow_color
-        self.accent_color = accent_color
-        self.accent_color_brightness = accent_color_brightness
-        self.scaffold_background_color = scaffold_background_color
-        self.bottom_app_bar_color = bottom_app_bar_color
-        self.card_color = card_color
-        self.divider_color = divider_color
-        self.focus_color = focus_color
-        self.hover_color = hover_color
-        self.highlight_color = highlight_color
-        self.splash_color = splash_color
-        self.splash_factory = splash_factory
-        self.selected_row_color = selected_row_color
-        self.unselected_widget_color = unselected_widget_color
-        self.disabled_color = disabled_color
-        self.button_theme = button_theme
-        self.button_color = button_color
-        self.toggle_buttons_theme = toggle_buttons_theme
-        self.secondary_header_color = secondary_header_color
-        self.text_selection_color = text_selection_color
-        self.cursor_color = cursor_color
-        self.text_selection_handle_color = text_selection_handle_color
-        self.background_color = background_color
-        self.dialog_background_color = dialog_background_color
-        self.indicator_color = indicator_color
-        self.hint_color = hint_color
-        self.error_color = error_color
-        self.toggleable_active_color = toggleable_active_color
-        self.text_theme = text_theme
-        self.primary_text_theme = primary_text_theme
-        self.accent_text_theme = accent_text_theme
-        self.input_decoration_theme = input_decoration_theme
-        self.icon_theme = icon_theme
-        self.primary_icon_theme = primary_icon_theme
-        self.accent_icon_theme = accent_icon_theme
-        self.slider_theme = slider_theme
-        self.tab_bar_theme = tab_bar_theme
-        self.tooltip_theme = tooltip_theme
-        self.card_theme = card_theme
-        self.chip_theme = chip_theme
-        self.platform = platform
-        self.material_tap_target_size = material_tap_target_size
-        self.apply_elevation_overlay_color = apply_elevation_overlay_color
-        self.page_transitions_theme = page_transitions_theme
-        self.app_bar_theme = app_bar_theme
-        self.scrollbar_theme = scrollbar_theme
-        self.bottom_app_bar_theme = bottom_app_bar_theme
-        self.color_scheme = color_scheme
-        self.dialog_theme = dialog_theme
-        self.floating_action_button_theme = floating_action_button_theme
-        self.navigation_rail_theme = navigation_rail_theme
-        self.typography = typography
-        self.cupertino_override_theme = cupertino_override_theme
-        self.snack_bar_theme = snack_bar_theme
-        self.bottom_sheet_theme = bottom_sheet_theme
-        self.popup_menu_theme = popup_menu_theme
-        self.banner_theme = banner_theme
-        self.divider_theme = divider_theme
-        self.button_bar_theme = button_bar_theme
-        self.bottom_navigation_bar_theme = bottom_navigation_bar_theme
-        self.time_picker_theme = time_picker_theme
-        self.text_button_theme = text_button_theme
-        self.elevated_button_theme = elevated_button_theme
-        self.outlined_button_theme = outlined_button_theme
-        self.text_selection_theme = text_selection_theme
-        self.data_table_theme = data_table_theme
-        self.checkbox_theme = checkbox_theme
-        self.radio_theme = radio_theme
-        self.switch_theme = switch_theme
-        self.progress_indicator_theme = progress_indicator_theme
-        self.fix_text_field_outline_label = fix_text_field_outline_label
-        self.use_text_selection_theme = use_text_selection_theme
-
-
-# packages/flutter/lib/src/material/theme_data.dart
-class ThemeDataWithFrom:
-    def __init__(
-            self,
-            color_scheme: ColorScheme,
-            text_theme: Optional[TextTheme] = None,
-    ):
-        self.color_scheme = color_scheme
-        self.text_theme = text_theme
-
-
-# packages/flutter/lib/src/material/theme_data.dart
-class ThemeDataWithLight:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/material/theme_data.dart
-class ThemeDataWithDark:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/material/theme_data.dart
-class ThemeDataWithFallback:
-    def __init__(
-            self,
-    ):
-        pass
 
 
 # packages/flutter/lib/src/material/theme_data.dart
 class ThemeData:
+    visual_density: VisualDensity = None
+    primary_color: Color = None
+    primary_color_brightness: Brightness = None
+    primary_color_light: Color = None
+    primary_color_dark: Color = None
+    canvas_color: Color = None
+    shadow_color: Color = None
+    accent_color: Color = None
+    accent_color_brightness: Brightness = None
+    scaffold_background_color: Color = None
+    bottom_app_bar_color: Color = None
+    card_color: Color = None
+    divider_color: Color = None
+    focus_color: Color = None
+    hover_color: Color = None
+    highlight_color: Color = None
+    splash_color: Color = None
+    splash_factory: InteractiveInkFeatureFactory = None
+    selected_row_color: Color = None
+    unselected_widget_color: Color = None
+    disabled_color: Color = None
+    button_theme: ButtonThemeData = None
+    toggle_buttons_theme: ToggleButtonsThemeData = None
+    button_color: Color = None
+    secondary_header_color: Color = None
+    text_selection_color: Color = None
+    cursor_color: Color = None
+    text_selection_handle_color: Color = None
+    background_color: Color = None
+    dialog_background_color: Color = None
+    indicator_color: Color = None
+    hint_color: Color = None
+    error_color: Color = None
+    toggleable_active_color: Color = None
+    text_theme: TextTheme = None
+    primary_text_theme: TextTheme = None
+    accent_text_theme: TextTheme = None
+    input_decoration_theme: InputDecorationTheme = None
+    icon_theme: IconThemeData = None
+    primary_icon_theme: IconThemeData = None
+    accent_icon_theme: IconThemeData = None
+    slider_theme: SliderThemeData = None
+    tab_bar_theme: TabBarTheme = None
+    tooltip_theme: TooltipThemeData = None
+    card_theme: CardTheme = None
+    chip_theme: ChipThemeData = None
+    platform: TargetPlatform = None
+    material_tap_target_size: MaterialTapTargetSize = None
+    apply_elevation_overlay_color: bool = None
+    page_transitions_theme: PageTransitionsTheme = None
+    app_bar_theme: AppBarTheme = None
+    scrollbar_theme: ScrollbarThemeData = None
+    bottom_app_bar_theme: BottomAppBarTheme = None
+    color_scheme: ColorScheme = None
+    snack_bar_theme: SnackBarThemeData = None
+    dialog_theme: DialogTheme = None
+    floating_action_button_theme: FloatingActionButtonThemeData = None
+    navigation_rail_theme: NavigationRailThemeData = None
+    typography: Typography = None
+    cupertino_override_theme: NoDefaultCupertinoThemeData = None
+    bottom_sheet_theme: BottomSheetThemeData = None
+    popup_menu_theme: PopupMenuThemeData = None
+    banner_theme: MaterialBannerThemeData = None
+    divider_theme: DividerThemeData = None
+    button_bar_theme: ButtonBarThemeData = None
+    bottom_navigation_bar_theme: BottomNavigationBarThemeData = None
+    time_picker_theme: TimePickerThemeData = None
+    text_button_theme: TextButtonThemeData = None
+    elevated_button_theme: ElevatedButtonThemeData = None
+    outlined_button_theme: OutlinedButtonThemeData = None
+    text_selection_theme: TextSelectionThemeData = None
+    data_table_theme: DataTableThemeData = None
+    checkbox_theme: CheckboxThemeData = None
+    radio_theme: RadioThemeData = None
+    switch_theme: SwitchThemeData = None
+    progress_indicator_theme: ProgressIndicatorThemeData = None
+    fix_text_field_outline_label: bool = None
+    use_text_selection_theme: bool = None
+
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -3500,7 +3112,7 @@ class ThemeData:
         self.use_text_selection_theme = use_text_selection_theme
 
     @staticmethod
-    def with_raw(
+    def raw(
             visual_density: VisualDensity,
             primary_color: Color,
             primary_color_brightness: Brightness,
@@ -3579,8 +3191,8 @@ class ThemeData:
             progress_indicator_theme: ProgressIndicatorThemeData,
             fix_text_field_outline_label: bool,
             use_text_selection_theme: bool,
-    ) -> ThemeDataWithRaw:
-        return ThemeDataWithRaw(
+    ) -> 'ThemeData':
+        return ThemeData(
             visual_density,
             primary_color,
             primary_color_brightness,
@@ -3662,188 +3274,106 @@ class ThemeData:
         )
 
     @staticmethod
-    def with_from(
+    def from(
             color_scheme: ColorScheme,
             text_theme: Optional[TextTheme] = None,
-    ) -> ThemeDataWithFrom:
-        return ThemeDataWithFrom(
+    ) -> 'ThemeData':
+        return ThemeData(
             color_scheme,
             text_theme,
         )
 
     @staticmethod
-    def with_light(
-    ) -> ThemeDataWithLight:
-        return ThemeDataWithLight(
+    def light(
+    ) -> 'ThemeData':
+        return ThemeData(
         )
 
     @staticmethod
-    def with_dark(
-    ) -> ThemeDataWithDark:
-        return ThemeDataWithDark(
+    def dark(
+    ) -> 'ThemeData':
+        return ThemeData(
         )
 
     @staticmethod
-    def with_fallback(
-    ) -> ThemeDataWithFallback:
-        return ThemeDataWithFallback(
+    def fallback(
+    ) -> 'ThemeData':
+        return ThemeData(
         )
+
+
 
 
 # packages/flutter/lib/src/widgets/shortcuts.dart
 class ShortcutActivator:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/widgets/actions.dart
-class DoNothingIntentWith_:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
 class DoNothingIntent:
-    def __init__(
-            self,
-    ):
-        pass
-
-    @staticmethod
-    def with__(
-    ) -> DoNothingIntentWith_:
-        return DoNothingIntentWith_(
-        )
+    pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent:
     do_nothing: DoNothingIntent = None
 
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
 class Type:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/widgets/scroll_configuration.dart
 class ScrollBehavior:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/material/app.dart
-class MaterialAppWithRouter:
-    def __init__(
-            self,
-            route_information_parser: RouteInformationParser[Object],
-            router_delegate: RouterDelegate[Object],
-            key: Optional[Key] = None,
-            scaffold_messenger_key: Optional[GlobalKey[ScaffoldMessengerState]] = None,
-            route_information_provider: Optional[RouteInformationProvider] = None,
-            back_button_dispatcher: Optional[BackButtonDispatcher] = None,
-            builder: Optional[Callable] = None,
-            title: Optional[str] = None,
-            on_generate_title: Optional[Callable] = None,
-            color: Optional[Color] = None,
-            theme: Optional[ThemeData] = None,
-            dark_theme: Optional[ThemeData] = None,
-            high_contrast_theme: Optional[ThemeData] = None,
-            high_contrast_dark_theme: Optional[ThemeData] = None,
-            theme_mode: Optional[ThemeMode] = None,
-            locale: Optional[Locale] = None,
-            localizations_delegates: Optional[Iterable[LocalizationsDelegate[any]]] = None,
-            locale_list_resolution_callback: Optional[Callable] = None,
-            locale_resolution_callback: Optional[Callable] = None,
-            supported_locales: Optional[Iterable[Locale]] = None,
-            debug_show_material_grid: Optional[bool] = None,
-            show_performance_overlay: Optional[bool] = None,
-            checkerboard_raster_cache_images: Optional[bool] = None,
-            checkerboard_offscreen_layers: Optional[bool] = None,
-            show_semantics_debugger: Optional[bool] = None,
-            debug_show_checked_mode_banner: Optional[bool] = None,
-            shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
-            actions: Optional[Dict[Type, Action[Intent]]] = None,
-            restoration_scope_id: Optional[str] = None,
-            scroll_behavior: Optional[ScrollBehavior] = None,
-            use_inherited_media_query: Optional[bool] = None,
-    ):
-        self.route_information_parser = route_information_parser
-        self.router_delegate = router_delegate
-        self.key = key
-        self.scaffold_messenger_key = scaffold_messenger_key
-        self.route_information_provider = route_information_provider
-        self.back_button_dispatcher = back_button_dispatcher
-        self.builder = builder
-        self.title = title
-        self.on_generate_title = on_generate_title
-        self.color = color
-        self.theme = theme
-        self.dark_theme = dark_theme
-        self.high_contrast_theme = high_contrast_theme
-        self.high_contrast_dark_theme = high_contrast_dark_theme
-        self.theme_mode = theme_mode
-        self.locale = locale
-        self.localizations_delegates = localizations_delegates
-        self.locale_list_resolution_callback = locale_list_resolution_callback
-        self.locale_resolution_callback = locale_resolution_callback
-        self.supported_locales = supported_locales
-        self.debug_show_material_grid = debug_show_material_grid
-        self.show_performance_overlay = show_performance_overlay
-        self.checkerboard_raster_cache_images = checkerboard_raster_cache_images
-        self.checkerboard_offscreen_layers = checkerboard_offscreen_layers
-        self.show_semantics_debugger = show_semantics_debugger
-        self.debug_show_checked_mode_banner = debug_show_checked_mode_banner
-        self.shortcuts = shortcuts
-        self.actions = actions
-        self.restoration_scope_id = restoration_scope_id
-        self.scroll_behavior = scroll_behavior
-        self.use_inherited_media_query = use_inherited_media_query
-
-
-# packages/flutter/lib/src/widgets/navigator.dart
-class NavigatorState:
-    def __init__(
-            self,
-    ):
-        pass
-
-
-# packages/flutter/lib/src/widgets/framework.dart
-class Widget:
-    def __init__(
-            self,
-            key: Optional[Key] = None,
-    ):
-        self.key = key
-
-
-# packages/flutter/lib/src/widgets/navigator.dart
-class NavigatorObserver:
-    def __init__(
-            self,
-    ):
-        pass
+    pass
 
 
 # packages/flutter/lib/src/material/app.dart
 class MaterialApp:
+    navigator_key: GlobalKey[NavigatorState] = None
+    scaffold_messenger_key: GlobalKey[ScaffoldMessengerState] = None
+    home: Widget = None
+    routes: Dict[str, Callable] = None
+    initial_route: str = None
+    on_generate_route: Callable = None
+    on_generate_initial_routes: Callable = None
+    on_unknown_route: Callable = None
+    navigator_observers: List[NavigatorObserver] = None
+    route_information_provider: RouteInformationProvider = None
+    route_information_parser: RouteInformationParser[Object] = None
+    router_delegate: RouterDelegate[Object] = None
+    back_button_dispatcher: BackButtonDispatcher = None
+    builder: Callable = None
+    title: str = None
+    on_generate_title: Callable = None
+    theme: ThemeData = None
+    dark_theme: ThemeData = None
+    high_contrast_theme: ThemeData = None
+    high_contrast_dark_theme: ThemeData = None
+    theme_mode: ThemeMode = None
+    color: Color = None
+    locale: Locale = None
+    localizations_delegates: Iterable[LocalizationsDelegate[Any]] = None
+    locale_list_resolution_callback: Callable = None
+    locale_resolution_callback: Callable = None
+    supported_locales: Iterable[Locale] = None
+    show_performance_overlay: bool = None
+    checkerboard_raster_cache_images: bool = None
+    checkerboard_offscreen_layers: bool = None
+    show_semantics_debugger: bool = None
+    debug_show_checked_mode_banner: bool = None
+    shortcuts: Dict[ShortcutActivator, Intent] = None
+    actions: Dict[Type, Action[Intent]] = None
+    restoration_scope_id: str = None
+    scroll_behavior: ScrollBehavior = None
+    debug_show_material_grid: bool = None
+    use_inherited_media_query: bool = None
+
     def __init__(
             self,
             key: Optional[Key] = None,
@@ -3866,7 +3396,7 @@ class MaterialApp:
             high_contrast_dark_theme: Optional[ThemeData] = None,
             theme_mode: Optional[ThemeMode] = None,
             locale: Optional[Locale] = None,
-            localizations_delegates: Optional[Iterable[LocalizationsDelegate[any]]] = None,
+            localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
             locale_list_resolution_callback: Optional[Callable] = None,
             locale_resolution_callback: Optional[Callable] = None,
             supported_locales: Optional[Iterable[Locale]] = None,
@@ -3919,7 +3449,7 @@ class MaterialApp:
         self.use_inherited_media_query = use_inherited_media_query
 
     @staticmethod
-    def with_router(
+    def router(
             route_information_parser: RouteInformationParser[Object],
             router_delegate: RouterDelegate[Object],
             key: Optional[Key] = None,
@@ -3936,7 +3466,7 @@ class MaterialApp:
             high_contrast_dark_theme: Optional[ThemeData] = None,
             theme_mode: Optional[ThemeMode] = None,
             locale: Optional[Locale] = None,
-            localizations_delegates: Optional[Iterable[LocalizationsDelegate[any]]] = None,
+            localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
             locale_list_resolution_callback: Optional[Callable] = None,
             locale_resolution_callback: Optional[Callable] = None,
             supported_locales: Optional[Iterable[Locale]] = None,
@@ -3951,8 +3481,8 @@ class MaterialApp:
             restoration_scope_id: Optional[str] = None,
             scroll_behavior: Optional[ScrollBehavior] = None,
             use_inherited_media_query: Optional[bool] = None,
-    ) -> MaterialAppWithRouter:
-        return MaterialAppWithRouter(
+    ) -> 'MaterialApp':
+        return MaterialApp(
             route_information_parser,
             router_delegate,
             key,
@@ -3987,6 +3517,8 @@ class MaterialApp:
         )
 
 
+
+
 # packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode:
     def __init__(
@@ -4004,31 +3536,6 @@ class FocusNode:
         self.skip_traversal = skip_traversal
         self.can_request_focus = can_request_focus
         self.descendants_are_focusable = descendants_are_focusable
-
-
-# packages/flutter/lib/src/material/elevated_button.dart
-class ElevatedButtonWithIcon:
-    def __init__(
-            self,
-            on_pressed: Callable,
-            icon: Widget,
-            label: Widget,
-            key: Optional[Key] = None,
-            on_long_press: Optional[Callable] = None,
-            style: Optional[ButtonStyle] = None,
-            focus_node: Optional[FocusNode] = None,
-            autofocus: Optional[bool] = None,
-            clip_behavior: Optional[Clip] = None,
-    ):
-        self.on_pressed = on_pressed
-        self.icon = icon
-        self.label = label
-        self.key = key
-        self.on_long_press = on_long_press
-        self.style = style
-        self.focus_node = focus_node
-        self.autofocus = autofocus
-        self.clip_behavior = clip_behavior
 
 
 # packages/flutter/lib/src/material/elevated_button.dart
@@ -4054,7 +3561,7 @@ class ElevatedButton:
         self.clip_behavior = clip_behavior
 
     @staticmethod
-    def with_icon(
+    def icon(
             on_pressed: Callable,
             icon: Widget,
             label: Widget,
@@ -4064,8 +3571,8 @@ class ElevatedButton:
             focus_node: Optional[FocusNode] = None,
             autofocus: Optional[bool] = None,
             clip_behavior: Optional[Clip] = None,
-    ) -> ElevatedButtonWithIcon:
-        return ElevatedButtonWithIcon(
+    ) -> 'ElevatedButton':
+        return ElevatedButton(
             on_pressed,
             icon,
             label,
