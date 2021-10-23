@@ -75,11 +75,13 @@ class PythonClass extends PythonUnit {
   final List<PythonStaticField> staticFields;
   final List<PythonVariant> variants;
   late List<PythonField> sortedFields;
+  final List<String> typeParameters;
 
   PythonClass(String path, this.name,
       {required this.fields,
       required this.variants,
-      required this.staticFields})
+      required this.staticFields,
+      required this.typeParameters})
       : super(path) {
     // Non-default params must precede default params in Python
     sortedFields = sortNonDefaultFields(fields);
@@ -128,6 +130,51 @@ String snakeCase(String name) => name
 String _titleCase(String name) =>
     name.replaceFirstMapped(RegExp(r'^[a-z]'), (m) => '${m[0]}'.toUpperCase());
 
+// From Python 3.9.5
+// >>> import keyword
+// >>> keyword.kwlist
+final _reservedWords = {
+  'False',
+  'None',
+  'True',
+  '__peg_parser__',
+  'and',
+  'as',
+  'assert',
+  'async',
+  'await',
+  'break',
+  'class',
+  'continue',
+  'def',
+  'del',
+  'elif',
+  'else',
+  'except',
+  'finally',
+  'for',
+  'from',
+  'global',
+  'if',
+  'import',
+  'in',
+  'is',
+  'lambda',
+  'nonlocal',
+  'not',
+  'or',
+  'pass',
+  'raise',
+  'return',
+  'try',
+  'while',
+  'with',
+  'yield'
+};
+
+String _unreserved(String name) =>
+    _reservedWords.contains(name) ? '${name}_' : name;
+
 class PythonTranslator {
   final p = Printer('    ');
   final _classes = <PythonClass>[];
@@ -173,6 +220,7 @@ class PythonTranslator {
   }
 
   void pushTrace() => _traceDepth += '\t';
+
   void popTrace() => _traceDepth = _traceDepth.substring(1);
 
   PythonType toType(DartType t) {
@@ -213,7 +261,6 @@ class PythonTranslator {
         pushTrace();
         processElement(t.element);
         popTrace();
-        // XXX handle generic typevars
         return PythonType(t.element.name, types: types);
       }
     }
@@ -266,7 +313,7 @@ class PythonTranslator {
 
   void printInitialization(List<PythonField> fields) {
     if (fields.isEmpty) {
-      p('pass');
+      return p('pass');
     }
     for (final f in fields) {
       p('self.${f.name} = ${f.name}');
@@ -277,17 +324,24 @@ class PythonTranslator {
     p('');
     p('');
     p('# ${klass.path}');
-    p('class ${klass.name}:');
+
+    final typeVars = klass.typeParameters.join(', ');
+    final base = typeVars.isEmpty ? '' : '(Generic[$typeVars])';
+    p('class ${klass.name}$base:');
+
+    final internalStaticFields = klass.staticFields.where((f) => !f.isEnumLike);
+    final externalStaticFields = klass.staticFields.where((f) => f.isEnumLike);
+
     p.t(() {
       // TODO class doc
       // TODO ctor doc
-      if (klass.staticFields.isNotEmpty) {
-        for (final f in klass.staticFields) {
-          if (!f.isEnumLike) {
-            p(stringifyStaticField(f));
-          }
+      if (internalStaticFields.isNotEmpty) {
+        for (final f in internalStaticFields) {
+          p(stringifyStaticField(f));
         }
-        p('');
+        if (klass.fields.isNotEmpty) {
+          p('');
+        }
       }
 
       if (klass.fields.isNotEmpty) {
@@ -304,7 +358,7 @@ class PythonTranslator {
         p('@staticmethod');
         p('def ${variant.name}(');
         printParameters(variant.sortedFields, isMethod: false);
-        p(') -> ${quote(klass.name)}:'); // XXX
+        p(') -> ${quote(klass.name)}:');
         p.t(() {
           p('return ${klass.name}(');
           p.t(() {
@@ -325,13 +379,11 @@ class PythonTranslator {
 
     _declaredUnits.add(klass.name);
 
-    if (klass.staticFields.isNotEmpty) {
+    if (externalStaticFields.isNotEmpty) {
       p('');
       p('');
-      for (final f in klass.staticFields) {
-        if (f.isEnumLike) {
-          p(stringifyStaticField(f));
-        }
+      for (final f in externalStaticFields) {
+        p(stringifyStaticField(f));
       }
     }
   }
@@ -379,15 +431,21 @@ class PythonTranslator {
       final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
       final variants = e.constructors
           .where((c) => c.name.isNotEmpty && !isPrivateSymbol(c.name))
-          .map((c) => PythonVariant(snakeCase(c.name), toFields(c.parameters)))
+          .map((c) => PythonVariant(
+              _unreserved(snakeCase(c.name)), toFields(c.parameters)))
           .toList();
 
       final fields = toFields(defaultConstructor.isNotEmpty
           ? defaultConstructor.first.parameters
           : []);
 
+      final typeParameters = e.typeParameters.map((t) => t.name).toList();
+
       _classes.add(PythonClass(sourcePath, e.name,
-          fields: fields, variants: variants, staticFields: staticFields));
+          fields: fields,
+          variants: variants,
+          staticFields: staticFields,
+          typeParameters: typeParameters));
     }
   }
 

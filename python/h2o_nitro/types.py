@@ -225,7 +225,7 @@ class NavigatorState:
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class GlobalKey:
+class GlobalKey(Generic[T]):
     def __init__(
             self,
             debug_label: Optional[str] = None,
@@ -270,8 +270,6 @@ class Widget:
         self.key = key
 
 
-
-
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorObserver:
     pass
@@ -288,12 +286,12 @@ class Object:
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouteInformationParser:
+class RouteInformationParser(Generic[T]):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouterDelegate:
+class RouterDelegate(Generic[T]):
     pass
 
 
@@ -360,8 +358,6 @@ class Color:
             b,
             opacity,
         )
-
-
 
 
 # packages/flutter/lib/src/material/ink_well.dart
@@ -575,11 +571,8 @@ class ColorScheme:
         )
 
 
-
-
 # packages/flutter/lib/src/painting/edge_insets.dart
 class EdgeInsetsGeometry:
-
     pass
 
 
@@ -635,13 +628,10 @@ class ButtonThemeData:
         self.material_tap_target_size = material_tap_target_size
 
 
-
-
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontWeight:
     index: int = None
     values: List['FontWeight'] = None
-
     pass
 
 
@@ -683,8 +673,6 @@ class Locale:
         )
 
 
-
-
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint:
     pass
@@ -692,7 +680,6 @@ class Paint:
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextDecoration:
-
 
     @staticmethod
     def combine(
@@ -711,7 +698,6 @@ TextDecoration.line_through = TextDecoration(None)
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Offset:
-
     def __init__(
             self,
             dx: float,
@@ -750,8 +736,6 @@ class Shadow:
         self.color = color
         self.offset = offset
         self.blur_radius = blur_radius
-
-
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -946,8 +930,6 @@ class FontFeature:
         )
 
 
-
-
 # packages/flutter/lib/src/painting/text_style.dart
 class TextStyle:
     inherit: bool = None
@@ -1029,11 +1011,8 @@ class TextStyle:
         self.overflow = overflow
 
 
-
-
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size:
-
     def __init__(
             self,
             width: float,
@@ -1153,13 +1132,10 @@ class BoxConstraints:
         )
 
 
-
-
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Radius:
     x: float = None
     y: float = None
-
 
     @staticmethod
     def circular(
@@ -1189,7 +1165,6 @@ class BorderRadius:
     top_right: Radius = None
     bottom_left: Radius = None
     bottom_right: Radius = None
-
 
     @staticmethod
     def all(
@@ -1298,8 +1273,6 @@ class ToggleButtonsThemeData:
         self.border_width = border_width
 
 
-
-
 # packages/flutter/lib/src/material/text_theme.dart
 class TextTheme:
     headline1: TextStyle = None
@@ -1345,8 +1318,6 @@ class TextTheme:
         self.caption = caption
         self.button = button
         self.overline = overline
-
-
 
 
 # packages/flutter/lib/src/painting/borders.dart
@@ -1469,8 +1440,6 @@ class InputDecorationTheme:
         self.constraints = constraints
 
 
-
-
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
 class IconThemeData:
     color: Color = None
@@ -1491,8 +1460,6 @@ class IconThemeData:
     ) -> 'IconThemeData':
         return IconThemeData(
         )
-
-
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -1633,8 +1600,6 @@ class SliderThemeData:
         )
 
 
-
-
 # packages/flutter/lib/src/painting/decoration.dart
 class Decoration:
     pass
@@ -1667,8 +1632,6 @@ class TabBarTheme:
         self.label_style = label_style
         self.unselected_label_color = unselected_label_color
         self.unselected_label_style = unselected_label_style
-
-
 
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
@@ -1753,8 +1716,6 @@ class TooltipThemeData:
         self.enable_feedback = enable_feedback
 
 
-
-
 # packages/flutter/lib/src/material/card_theme.dart
 class CardTheme:
     clip_behavior: Clip = None
@@ -1781,8 +1742,6 @@ class CardTheme:
         self.shape = shape
 
 
-
-
 # packages/flutter/lib/src/painting/borders.dart
 class OutlinedBorder:
     side: BorderSide = None
@@ -1792,8 +1751,6 @@ class OutlinedBorder:
             side: Optional[BorderSide] = None,
     ):
         self.side = side
-
-
 
 
 # packages/flutter/lib/src/material/chip_theme.dart
@@ -1870,8 +1827,6 @@ class ChipThemeData:
             brightness,
             primary_color,
         )
-
-
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
@@ -1982,10 +1937,8 @@ class AppBarTheme:
         self.backwards_compatibility = backwards_compatibility
 
 
-
-
 # packages/flutter/lib/src/material/material_state.dart
-class MaterialStateProperty:
+class MaterialStateProperty(Generic[T]):
     pass
 
 
@@ -2030,8 +1983,6 @@ class ScrollbarThemeData:
         self.interactive = interactive
 
 
-
-
 # packages/flutter/lib/src/painting/notched_shapes.dart
 class NotchedShape:
     pass
@@ -2052,8 +2003,6 @@ class BottomAppBarTheme:
         self.color = color
         self.elevation = elevation
         self.shape = shape
-
-
 
 
 # packages/flutter/lib/src/material/snack_bar_theme.dart
@@ -2085,8 +2034,6 @@ class SnackBarThemeData:
         self.behavior = behavior
 
 
-
-
 # packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme:
     background_color: Color = None
@@ -2108,8 +2055,6 @@ class DialogTheme:
         self.shape = shape
         self.title_text_style = title_text_style
         self.content_text_style = content_text_style
-
-
 
 
 # packages/flutter/lib/src/material/floating_action_button_theme.dart
@@ -2177,8 +2122,6 @@ class FloatingActionButtonThemeData:
         self.extended_text_style = extended_text_style
 
 
-
-
 # packages/flutter/lib/src/material/navigation_rail_theme.dart
 class NavigationRailThemeData:
     background_color: Color = None
@@ -2209,8 +2152,6 @@ class NavigationRailThemeData:
         self.selected_icon_theme = selected_icon_theme
         self.group_alignment = group_alignment
         self.label_type = label_type
-
-
 
 
 # packages/flutter/lib/src/material/typography.dart
@@ -2290,8 +2231,6 @@ class Typography:
         )
 
 
-
-
 # packages/flutter/lib/src/cupertino/text_theme.dart
 class CupertinoTextThemeData:
     def __init__(
@@ -2343,8 +2282,6 @@ class NoDefaultCupertinoThemeData:
         self.scaffold_background_color = scaffold_background_color
 
 
-
-
 # packages/flutter/lib/src/material/bottom_sheet_theme.dart
 class BottomSheetThemeData:
     background_color: Color = None
@@ -2374,8 +2311,6 @@ class BottomSheetThemeData:
         self.constraints = constraints
 
 
-
-
 # packages/flutter/lib/src/material/popup_menu_theme.dart
 class PopupMenuThemeData:
     color: Color = None
@@ -2399,8 +2334,6 @@ class PopupMenuThemeData:
         self.enable_feedback = enable_feedback
 
 
-
-
 # packages/flutter/lib/src/material/banner_theme.dart
 class MaterialBannerThemeData:
     background_color: Color = None
@@ -2419,8 +2352,6 @@ class MaterialBannerThemeData:
         self.content_text_style = content_text_style
         self.padding = padding
         self.leading_padding = leading_padding
-
-
 
 
 # packages/flutter/lib/src/material/divider_theme.dart
@@ -2444,8 +2375,6 @@ class DividerThemeData:
         self.thickness = thickness
         self.indent = indent
         self.end_indent = end_indent
-
-
 
 
 # packages/flutter/lib/src/material/button_bar_theme.dart
@@ -2481,8 +2410,6 @@ class ButtonBarThemeData:
         self.button_aligned_dropdown = button_aligned_dropdown
         self.layout_behavior = layout_behavior
         self.overflow_direction = overflow_direction
-
-
 
 
 # packages/flutter/lib/src/material/bottom_navigation_bar_theme.dart
@@ -2530,8 +2457,6 @@ class BottomNavigationBarThemeData:
         self.type = type
         self.enable_feedback = enable_feedback
         self.landscape_layout = landscape_layout
-
-
 
 
 # packages/flutter/lib/src/material/time_picker_theme.dart
@@ -2593,11 +2518,8 @@ class TimePickerThemeData:
         self.input_decoration_theme = input_decoration_theme
 
 
-
-
 # packages/flutter/lib/src/services/mouse_cursor.dart
 class MouseCursor:
-
     pass
 
 
@@ -2675,8 +2597,6 @@ class ButtonStyle:
         self.splash_factory = splash_factory
 
 
-
-
 # packages/flutter/lib/src/material/text_button_theme.dart
 class TextButtonThemeData:
     style: ButtonStyle = None
@@ -2686,8 +2606,6 @@ class TextButtonThemeData:
             style: Optional[ButtonStyle] = None,
     ):
         self.style = style
-
-
 
 
 # packages/flutter/lib/src/material/elevated_button_theme.dart
@@ -2701,8 +2619,6 @@ class ElevatedButtonThemeData:
         self.style = style
 
 
-
-
 # packages/flutter/lib/src/material/outlined_button_theme.dart
 class OutlinedButtonThemeData:
     style: ButtonStyle = None
@@ -2712,8 +2628,6 @@ class OutlinedButtonThemeData:
             style: Optional[ButtonStyle] = None,
     ):
         self.style = style
-
-
 
 
 # packages/flutter/lib/src/material/text_selection_theme.dart
@@ -2731,8 +2645,6 @@ class TextSelectionThemeData:
         self.cursor_color = cursor_color
         self.selection_color = selection_color
         self.selection_handle_color = selection_handle_color
-
-
 
 
 # packages/flutter/lib/src/material/data_table_theme.dart
@@ -2776,8 +2688,6 @@ class DataTableThemeData:
         self.checkbox_horizontal_margin = checkbox_horizontal_margin
 
 
-
-
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData:
     mouse_cursor: MaterialStateProperty[MouseCursor] = None
@@ -2813,8 +2723,6 @@ class CheckboxThemeData:
         self.side = side
 
 
-
-
 # packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData:
     mouse_cursor: MaterialStateProperty[MouseCursor] = None
@@ -2839,8 +2747,6 @@ class RadioThemeData:
         self.splash_radius = splash_radius
         self.material_tap_target_size = material_tap_target_size
         self.visual_density = visual_density
-
-
 
 
 # packages/flutter/lib/src/material/switch_theme.dart
@@ -2869,8 +2775,6 @@ class SwitchThemeData:
         self.splash_radius = splash_radius
 
 
-
-
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData:
     color: Color = None
@@ -2892,8 +2796,6 @@ class ProgressIndicatorThemeData:
         self.linear_min_height = linear_min_height
         self.circular_track_color = circular_track_color
         self.refresh_background_color = refresh_background_color
-
-
 
 
 # packages/flutter/lib/src/material/theme_data.dart
@@ -3306,7 +3208,7 @@ class ThemeData:
         )
 
     @staticmethod
-    def from(
+    def from_(
             color_scheme: ColorScheme,
             text_theme: Optional[TextTheme] = None,
     ) -> 'ThemeData':
@@ -3334,10 +3236,8 @@ class ThemeData:
         )
 
 
-
-
 # packages/flutter/lib/src/widgets/localizations.dart
-class LocalizationsDelegate:
+class LocalizationsDelegate(Generic[T]):
     pass
 
 
@@ -3354,10 +3254,7 @@ class DoNothingIntent:
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent:
     do_nothing: DoNothingIntent = None
-
     pass
-
-
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
@@ -3366,7 +3263,7 @@ class Type:
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class Action:
+class Action(Generic[T]):
     pass
 
 
@@ -3557,8 +3454,6 @@ class MaterialApp:
             scroll_behavior,
             use_inherited_media_query,
         )
-
-
 
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
