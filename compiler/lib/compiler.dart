@@ -51,15 +51,15 @@ class Printer {
 
 class PythonUnit {
   final String path;
+  final String name;
 
-  PythonUnit(this.path);
+  PythonUnit(this.path, this.name);
 }
 
 class PythonEnum extends PythonUnit {
-  final String name;
   final List<PythonEnumEntry> entries;
 
-  PythonEnum(String path, this.name, this.entries) : super(path);
+  PythonEnum(String path, String name, this.entries) : super(path, name);
 }
 
 class PythonEnumEntry {
@@ -77,19 +77,18 @@ List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
 }
 
 class PythonClass extends PythonUnit {
-  final String name;
   final List<PythonField> fields;
   final List<PythonStaticField> staticFields;
   final List<PythonVariant> variants;
   late List<PythonField> sortedFields;
   final List<String> typeParameters;
 
-  PythonClass(String path, this.name,
+  PythonClass(String path, String name,
       {required this.fields,
       required this.variants,
       required this.staticFields,
       required this.typeParameters})
-      : super(path) {
+      : super(path, name) {
     // Non-default params must precede default params in Python
     sortedFields = sortNonDefaultFields(fields);
   }
@@ -186,8 +185,7 @@ String _unreserved(String name) =>
 
 class PythonTranslator {
   final p = Printer('    ');
-  final _classes = <PythonClass>[];
-  final _enums = <PythonEnum>[];
+  final _units = <PythonUnit>[];
   final _processedClasses = <Element>{};
   final _declaredUnits = <String>{
     'bool',
@@ -440,7 +438,7 @@ class PythonTranslator {
     final sourcePath = getRelativeSourcePath(e);
     trace('$e\t$sourcePath');
     if (e.isEnum) {
-      _enums.add(PythonEnum(
+      _units.add(PythonEnum(
           sourcePath,
           e.name,
           e.fields
@@ -473,7 +471,7 @@ class PythonTranslator {
       final typeParameters = e.typeParameters.map((t) => t.name).toList();
       _knownTypeParameters.addAll(typeParameters);
 
-      _classes.add(PythonClass(sourcePath, e.name,
+      _units.add(PythonClass(sourcePath, e.name,
           fields: fields,
           variants: variants,
           staticFields: staticFields,
@@ -489,12 +487,12 @@ class PythonTranslator {
       p("$t = TypeVar('$t')");
     }
 
-    for (final e in _enums) {
-      printEnum(e);
-    }
-
-    for (final klass in _classes) {
-      printClass(klass);
+    for (final unit in _units) {
+      if (unit is PythonClass) {
+        printClass(unit);
+      } else if (unit is PythonEnum) {
+        printEnum(unit);
+      }
     }
 
     return p.lines.join();
