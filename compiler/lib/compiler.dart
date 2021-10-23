@@ -147,9 +147,7 @@ class PythonTranslator {
   };
   String _traceDepth = '';
 
-  // XXX not called anywhere
-  String quote(String name) =>
-      _declaredUnits.contains(name) ? name : '\'$name\'';
+  String quote(String name) => _declaredUnits.contains(name) ? name : "'$name'";
 
   void trace(Object? o) {
     print('$_traceDepth$o');
@@ -174,6 +172,9 @@ class PythonTranslator {
         : '${f.name}: ${stringifyType(f.type)} = None'; //XXX constant value
   }
 
+  void pushTrace() => _traceDepth += '\t';
+  void popTrace() => _traceDepth = _traceDepth.substring(1);
+
   PythonType toType(DartType t) {
     if (t.isDartCoreBool) return PythonType('bool');
     if (t.isDartCoreInt) return PythonType('int');
@@ -188,28 +189,32 @@ class PythonTranslator {
     if (t is InterfaceType) {
       final typeArgs = t.typeArguments;
       if (typeArgs.isEmpty) {
-        _traceDepth += '\t';
-        processElement(
-            t.element); // recurse: Python requires forward declaration
-        _traceDepth = _traceDepth.substring(1);
+        // recurse: Python requires forward declaration
+        pushTrace();
+        processElement(t.element);
+        popTrace();
         return PythonType(t.element.name);
       } else {
         final types = typeArgs.map(toType).toList(); // recurse
-        String typeName = t.element.name;
         final location = t.element.location;
         if (location != null) {
           final components = location.components;
           if (components.contains('dart:core')) {
             if (components.contains('Iterable')) {
-              typeName = 'Iterable';
+              return PythonType('Iterable', types: types);
             } else if (components.contains('List')) {
-              typeName = 'List';
+              return PythonType('List', types: types);
             } else if (components.contains('Map')) {
-              typeName = 'Dict';
+              return PythonType('Dict', types: types);
             }
           }
         }
-        return PythonType(typeName, types: types);
+        // recurse: Python requires forward declaration
+        pushTrace();
+        processElement(t.element);
+        popTrace();
+        // XXX handle generic typevars
+        return PythonType(t.element.name, types: types);
       }
     }
 
@@ -338,7 +343,7 @@ class PythonTranslator {
     p('class ${e.name}(Enum):');
     p.t(() {
       for (final v in e.values) {
-        p('${snakeCase(v).toUpperCase()} = \'$v\'');
+        p("${snakeCase(v).toUpperCase()} = '$v'");
       }
     });
 
@@ -354,6 +359,7 @@ class PythonTranslator {
   }
 
   void processElement(ClassElement e) {
+    // FIXME ctors with _arg not handled (e.g. Locale)
     if (_processedClasses.contains(e)) return;
     _processedClasses.add(e);
 
@@ -387,7 +393,9 @@ class PythonTranslator {
 
   String translate(Set<Element> elements) {
     p('from enum import Enum');
-    p('from typing import Callable, Optional, Iterable, List, Dict');
+    p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
+    p('');
+    p("T = TypeVar('T')");
     for (final e in elements) {
       if (e is! ClassElement) continue;
       if (!widgetWhitelist.contains(e.name)) continue;

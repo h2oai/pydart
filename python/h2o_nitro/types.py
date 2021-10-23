@@ -1,5 +1,7 @@
 from enum import Enum
-from typing import Callable, Optional, Iterable, List, Dict
+from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict
+
+T = TypeVar('T')
 
 
 # bin/cache/pkg/sky_engine/lib/ui/window.dart
@@ -222,6 +224,21 @@ class NavigatorState:
     pass
 
 
+# packages/flutter/lib/src/widgets/framework.dart
+class GlobalKey:
+    def __init__(
+            self,
+            debug_label: Optional[str] = None,
+    ):
+        self.debug_label = debug_label
+
+    @staticmethod
+    def constructor(
+    ) -> 'GlobalKey':
+        return GlobalKey(
+        )
+
+
 # packages/flutter/lib/src/material/scaffold.dart
 class ScaffoldMessengerState:
     pass
@@ -267,6 +284,16 @@ class RouteInformationProvider:
 
 # bin/cache/pkg/sky_engine/lib/core/object.dart
 class Object:
+    pass
+
+
+# packages/flutter/lib/src/widgets/router.dart
+class RouteInformationParser:
+    pass
+
+
+# packages/flutter/lib/src/widgets/router.dart
+class RouterDelegate:
     pass
 
 
@@ -1957,6 +1984,11 @@ class AppBarTheme:
 
 
 
+# packages/flutter/lib/src/material/material_state.dart
+class MaterialStateProperty:
+    pass
+
+
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData:
     thickness: MaterialStateProperty[float] = None
@@ -3304,6 +3336,11 @@ class ThemeData:
 
 
 
+# packages/flutter/lib/src/widgets/localizations.dart
+class LocalizationsDelegate:
+    pass
+
+
 # packages/flutter/lib/src/widgets/shortcuts.dart
 class ShortcutActivator:
     pass
@@ -3325,6 +3362,11 @@ class Intent:
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
 class Type:
+    pass
+
+
+# packages/flutter/lib/src/widgets/actions.dart
+class Action:
     pass
 
 
