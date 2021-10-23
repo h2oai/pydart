@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:path/path.dart' as path;
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
@@ -72,8 +71,8 @@ class PythonEnumEntry {
 
 List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
   return [
-    ...fields.where((f) => !f.type.isOptional),
-    ...fields.where((f) => f.type.isOptional),
+    ...fields.where((f) => !f.isOptional),
+    ...fields.where((f) => f.isOptional),
   ];
 }
 
@@ -120,16 +119,16 @@ class PythonField {
   final String name;
   final String dartName;
   final PythonType type;
+  final bool isOptional;
 
-  PythonField(this.name, this.dartName, this.type);
+  PythonField(this.name, this.dartName, this.type, this.isOptional);
 }
 
 class PythonType {
   final String name;
   final List<PythonType>? types;
-  final bool isOptional; // XXX move to PythonField
 
-  PythonType(this.name, {this.types, this.isOptional = false});
+  PythonType(this.name, {this.types});
 }
 
 String snakeCase(String name) => name
@@ -282,16 +281,14 @@ class PythonTranslator {
     throw 'cannot translate $t';
   }
 
-  PythonType toOptional(PythonType t) {
-    return PythonType('Optional', types: [t], isOptional: true);
-  }
+  PythonType toOptional(PythonType t) => PythonType('Optional', types: [t]);
 
   PythonField toField(ParameterElement param) {
     trace('\t$param');
     final type = toType(param.type);
     final required = param.isRequiredNamed || param.isRequiredPositional;
-    return PythonField(
-        snakeCase(param.name), param.name, required ? type : toOptional(type));
+    return PythonField(snakeCase(param.name), param.name,
+        required ? type : toOptional(type), !required);
   }
 
   PythonStaticField toStaticField(ClassElement e, ConstFieldElementImpl f) {
@@ -316,10 +313,10 @@ class PythonTranslator {
         }
         // Non-default params must precede default params
         fields
-            .where((f) => !f.type.isOptional)
+            .where((f) => !f.isOptional)
             .forEach((f) => p('${stringifyField(f)},'));
         fields
-            .where((f) => f.type.isOptional)
+            .where((f) => f.isOptional)
             .forEach((f) => p('${stringifyField(f)} = None,'));
       });
     });
