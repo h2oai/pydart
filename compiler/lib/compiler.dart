@@ -54,6 +54,8 @@ class PythonUnit {
   final String name;
 
   PythonUnit(this.path, this.name);
+
+  static final PythonUnit placeholder = PythonUnit('NA', 'NA');
 }
 
 class PythonEnum extends PythonUnit {
@@ -186,7 +188,8 @@ String _unreserved(String name) =>
 class PythonTranslator {
   final p = Printer('    ');
   final _units = <PythonUnit>[];
-  final _processedClasses = <Element>{};
+  final _processedElements = <Element>{};
+  final _typeCache = <Element, PythonUnit>{};
   final _declaredUnits = <String>{
     'bool',
     'int',
@@ -234,7 +237,7 @@ class PythonTranslator {
 
   void popTrace() => _traceDepth = _traceDepth.substring(1);
 
-  PythonType toType(DartType t) {
+  PythonType _toType(DartType t) {
     if (t.isDartCoreBool) return PythonType('bool');
     if (t.isDartCoreInt) return PythonType('int');
     if (t.isDartCoreDouble) return PythonType('float');
@@ -242,7 +245,7 @@ class PythonTranslator {
     if (t.isDynamic) return PythonType('Any');
 
     if (t is FunctionType) {
-      return PythonType('Callable'); // TODO
+      return PythonType('Callable'); // XXX handle delegates
     }
 
     if (t is InterfaceType) {
@@ -254,7 +257,7 @@ class PythonTranslator {
         popTrace();
         return PythonType(t.element.name);
       } else {
-        final types = typeArgs.map(toType).toList(); // recurse
+        final types = typeArgs.map(_toType).toList(); // recurse
         final location = t.element.location;
         if (location != null) {
           final components = location.components;
@@ -279,27 +282,72 @@ class PythonTranslator {
     throw 'cannot translate $t';
   }
 
-  PythonType toOptional(PythonType t) => PythonType('Optional', types: [t]);
+  PythonType _toOptional(PythonType t) => PythonType('Optional', types: [t]);
 
-  PythonField toField(ParameterElement param) {
+  PythonField _toField(ParameterElement param) {
     trace('\t$param');
-    final type = toType(param.type);
+    final type = _toType(param.type);
     final required = param.isRequiredNamed || param.isRequiredPositional;
     return PythonField(snakeCase(param.name), param.name,
-        required ? type : toOptional(type), !required);
+        required ? type : _toOptional(type), !required);
   }
 
-  PythonStaticField toStaticField(ClassElement e, ConstFieldElementImpl f) {
+  PythonStaticField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
     trace('\t$f');
-    final type = toType(f.type);
+    final type = _toType(f.type);
     return PythonStaticField(snakeCase(f.name), type,
         isEnumLike: f.type.element == e);
   }
 
-  List<PythonField> toFields(List<ParameterElement> params) =>
-      params.map(toField).toList();
+  List<PythonField> _toFields(List<ParameterElement> params) =>
+      params.map(_toField).toList();
 
-  bool isPrivateSymbol(String name) {
+  PythonUnit _toUnit(ClassElement e) {
+    final sourcePath = getRelativeSourcePath(e);
+    trace('$e\t$sourcePath');
+    if (e.isEnum) {
+      return PythonEnum(
+          sourcePath,
+          e.name,
+          e.fields
+              .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
+              .toList());
+    } else if (e.isMixin) {
+      throw 'cannot translate mixins';
+    } else {
+      // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
+      // XXX find and include implementers; recurse before adding abstract class
+      final staticFields = e.fields
+          .whereType<ConstFieldElementImpl>()
+          .where((f) => !_isPrivateSymbol(f.name))
+          .map((f) => _toStaticField(e, f))
+          .toList();
+      final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
+
+      // XXX fix argument ordering
+      // XXX add marker for which ctor was used
+      final variants = e.constructors
+          .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
+          .map((c) => PythonVariant(
+          _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
+          .toList();
+
+      final fields = _toFields(defaultConstructor.isNotEmpty
+          ? defaultConstructor.first.parameters
+          : []);
+
+      final typeParameters = e.typeParameters.map((t) => t.name).toList();
+      _knownTypeParameters.addAll(typeParameters);
+
+      return PythonClass(sourcePath, e.name,
+          fields: fields,
+          variants: variants,
+          staticFields: staticFields,
+          typeParameters: typeParameters);
+    }
+  }
+
+  bool _isPrivateSymbol(String name) {
     return name.startsWith(r'_');
   }
 
@@ -430,53 +478,19 @@ class PythonTranslator {
     return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
   }
 
-  void translateElement(ClassElement e) {
+  PythonUnit translateElement(ClassElement e) {
     // XXX ctors with _arg not handled (e.g. Locale)
-    if (_processedClasses.contains(e)) return;
-    _processedClasses.add(e);
-
-    final sourcePath = getRelativeSourcePath(e);
-    trace('$e\t$sourcePath');
-    if (e.isEnum) {
-      _units.add(PythonEnum(
-          sourcePath,
-          e.name,
-          e.fields
-              .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
-              .toList()));
-    } else if (e.isMixin) {
-      throw 'cannot translate mixins';
-    } else {
-      // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
-      // XXX find and include implementers; recurse before adding abstract class
-      final staticFields = e.fields
-          .whereType<ConstFieldElementImpl>()
-          .where((f) => !isPrivateSymbol(f.name))
-          .map((f) => toStaticField(e, f))
-          .toList();
-      final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
-
-      // XXX fix argument ordering
-      // XXX add marker for which ctor was used
-      final variants = e.constructors
-          .where((c) => c.name.isNotEmpty && !isPrivateSymbol(c.name))
-          .map((c) => PythonVariant(
-              _unreserved(snakeCase(c.name)), c.name, toFields(c.parameters)))
-          .toList();
-
-      final fields = toFields(defaultConstructor.isNotEmpty
-          ? defaultConstructor.first.parameters
-          : []);
-
-      final typeParameters = e.typeParameters.map((t) => t.name).toList();
-      _knownTypeParameters.addAll(typeParameters);
-
-      _units.add(PythonClass(sourcePath, e.name,
-          fields: fields,
-          variants: variants,
-          staticFields: staticFields,
-          typeParameters: typeParameters));
+    if (_typeCache.containsKey(e)) {
+      final unit = _typeCache[e];
+      if (unit != null) return unit;
+      throw 'type not found in cache'; // XXX ugly
     }
+    _typeCache[e] = PythonUnit.placeholder;
+
+    final unit = _toUnit(e);
+    _units.add(unit);
+    _typeCache[e] = unit;
+    return unit;
   }
 
   String printAll() {
