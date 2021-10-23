@@ -192,6 +192,7 @@ class PythonTranslator {
     'List',
     'Dict',
   };
+  final _knownTypeParameters = <String>{};
   String _traceDepth = '';
 
   String quote(String name) => _declaredUnits.contains(name) ? name : "'$name'";
@@ -239,7 +240,7 @@ class PythonTranslator {
       if (typeArgs.isEmpty) {
         // recurse: Python requires forward declaration
         pushTrace();
-        processElement(t.element);
+        translateElement(t.element);
         popTrace();
         return PythonType(t.element.name);
       } else {
@@ -259,7 +260,7 @@ class PythonTranslator {
         }
         // recurse: Python requires forward declaration
         pushTrace();
-        processElement(t.element);
+        translateElement(t.element);
         popTrace();
         return PythonType(t.element.name, types: types);
       }
@@ -410,7 +411,7 @@ class PythonTranslator {
     return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
   }
 
-  void processElement(ClassElement e) {
+  void translateElement(ClassElement e) {
     // FIXME ctors with _arg not handled (e.g. Locale)
     if (_processedClasses.contains(e)) return;
     _processedClasses.add(e);
@@ -440,6 +441,7 @@ class PythonTranslator {
           : []);
 
       final typeParameters = e.typeParameters.map((t) => t.name).toList();
+      _knownTypeParameters.addAll(typeParameters);
 
       _classes.add(PythonClass(sourcePath, e.name,
           fields: fields,
@@ -449,15 +451,12 @@ class PythonTranslator {
     }
   }
 
-  String translate(Set<Element> elements) {
+  String printAll() {
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
     p('');
-    p("T = TypeVar('T')");
-    for (final e in elements) {
-      if (e is! ClassElement) continue;
-      if (!widgetWhitelist.contains(e.name)) continue;
-      processElement(e);
+    for (final t in _knownTypeParameters) {
+      p("$t = TypeVar('$t')");
     }
 
     for (final e in _enums) {
@@ -469,6 +468,16 @@ class PythonTranslator {
     }
 
     return p.lines.join();
+  }
+
+  String translate(Set<Element> elements) {
+    for (final e in elements) {
+      if (e is! ClassElement) continue;
+      if (!widgetWhitelist.contains(e.name)) continue;
+      translateElement(e);
+    }
+
+    return printAll();
   }
 }
 
