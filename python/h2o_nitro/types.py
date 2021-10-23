@@ -6,217 +6,217 @@ T = TypeVar('T')
 
 # bin/cache/pkg/sky_engine/lib/ui/window.dart
 class Brightness(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    DARK = 'dark'
-    LIGHT = 'light'
+    index = 'index'
+    values = 'values'
+    dark = 'dark'
+    light = 'light'
 
 
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonTextTheme(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NORMAL = 'normal'
-    ACCENT = 'accent'
-    PRIMARY = 'primary'
+    index = 'index'
+    values = 'values'
+    normal = 'normal'
+    accent = 'accent'
+    primary = 'primary'
 
 
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonBarLayoutBehavior(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    CONSTRAINED = 'constrained'
-    PADDED = 'padded'
+    index = 'index'
+    values = 'values'
+    constrained = 'constrained'
+    padded = 'padded'
 
 
 # packages/flutter/lib/src/material/theme_data.dart
 class MaterialTapTargetSize(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    PADDED = 'padded'
-    SHRINK_WRAP = 'shrinkWrap'
+    index = 'index'
+    values = 'values'
+    padded = 'padded'
+    shrink_wrap = 'shrinkWrap'
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontStyle(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NORMAL = 'normal'
-    ITALIC = 'italic'
+    index = 'index'
+    values = 'values'
+    normal = 'normal'
+    italic = 'italic'
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextBaseline(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    ALPHABETIC = 'alphabetic'
-    IDEOGRAPHIC = 'ideographic'
+    index = 'index'
+    values = 'values'
+    alphabetic = 'alphabetic'
+    ideographic = 'ideographic'
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextLeadingDistribution(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    PROPORTIONAL = 'proportional'
-    EVEN = 'even'
+    index = 'index'
+    values = 'values'
+    proportional = 'proportional'
+    even = 'even'
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextDecorationStyle(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    SOLID = 'solid'
-    DOUBLE = 'double'
-    DOTTED = 'dotted'
-    DASHED = 'dashed'
-    WAVY = 'wavy'
+    index = 'index'
+    values = 'values'
+    solid = 'solid'
+    double = 'double'
+    dotted = 'dotted'
+    dashed = 'dashed'
+    wavy = 'wavy'
 
 
 # packages/flutter/lib/src/painting/text_painter.dart
 class TextOverflow(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    CLIP = 'clip'
-    FADE = 'fade'
-    ELLIPSIS = 'ellipsis'
-    VISIBLE = 'visible'
+    index = 'index'
+    values = 'values'
+    clip = 'clip'
+    fade = 'fade'
+    ellipsis = 'ellipsis'
+    visible = 'visible'
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
 class FloatingLabelBehavior(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NEVER = 'never'
-    AUTO = 'auto'
-    ALWAYS = 'always'
+    index = 'index'
+    values = 'values'
+    never = 'never'
+    auto = 'auto'
+    always = 'always'
 
 
 # packages/flutter/lib/src/painting/borders.dart
 class BorderStyle(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NONE = 'none'
-    SOLID = 'solid'
+    index = 'index'
+    values = 'values'
+    none = 'none'
+    solid = 'solid'
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class ShowValueIndicator(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    ONLY_FOR_DISCRETE = 'onlyForDiscrete'
-    ONLY_FOR_CONTINUOUS = 'onlyForContinuous'
-    ALWAYS = 'always'
-    NEVER = 'never'
+    index = 'index'
+    values = 'values'
+    only_for_discrete = 'onlyForDiscrete'
+    only_for_continuous = 'onlyForContinuous'
+    always = 'always'
+    never = 'never'
 
 
 # packages/flutter/lib/src/material/tabs.dart
 class TabBarIndicatorSize(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    TAB = 'tab'
-    LABEL = 'label'
+    index = 'index'
+    values = 'values'
+    tab = 'tab'
+    label = 'label'
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipTriggerMode(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    MANUAL = 'manual'
-    LONG_PRESS = 'longPress'
-    TAP = 'tap'
+    index = 'index'
+    values = 'values'
+    manual = 'manual'
+    long_press = 'longPress'
+    tap = 'tap'
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Clip(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NONE = 'none'
-    HARD_EDGE = 'hardEdge'
-    ANTI_ALIAS = 'antiAlias'
-    ANTI_ALIAS_WITH_SAVE_LAYER = 'antiAliasWithSaveLayer'
+    index = 'index'
+    values = 'values'
+    none = 'none'
+    hard_edge = 'hardEdge'
+    anti_alias = 'antiAlias'
+    anti_alias_with_save_layer = 'antiAliasWithSaveLayer'
 
 
 # packages/flutter/lib/src/foundation/platform.dart
 class TargetPlatform(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    ANDROID = 'android'
-    FUCHSIA = 'fuchsia'
-    I_OS = 'iOS'
-    LINUX = 'linux'
-    MAC_OS = 'macOS'
-    WINDOWS = 'windows'
+    index = 'index'
+    values = 'values'
+    android = 'android'
+    fuchsia = 'fuchsia'
+    i_os = 'iOS'
+    linux = 'linux'
+    mac_os = 'macOS'
+    windows = 'windows'
 
 
 # packages/flutter/lib/src/material/snack_bar_theme.dart
 class SnackBarBehavior(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    FIXED = 'fixed'
-    FLOATING = 'floating'
+    index = 'index'
+    values = 'values'
+    fixed = 'fixed'
+    floating = 'floating'
 
 
 # packages/flutter/lib/src/material/navigation_rail.dart
 class NavigationRailLabelType(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    NONE = 'none'
-    SELECTED = 'selected'
-    ALL = 'all'
+    index = 'index'
+    values = 'values'
+    none = 'none'
+    selected = 'selected'
+    all = 'all'
 
 
 # packages/flutter/lib/src/rendering/flex.dart
 class MainAxisAlignment(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    START = 'start'
-    END = 'end'
-    CENTER = 'center'
-    SPACE_BETWEEN = 'spaceBetween'
-    SPACE_AROUND = 'spaceAround'
-    SPACE_EVENLY = 'spaceEvenly'
+    index = 'index'
+    values = 'values'
+    start = 'start'
+    end = 'end'
+    center = 'center'
+    space_between = 'spaceBetween'
+    space_around = 'spaceAround'
+    space_evenly = 'spaceEvenly'
 
 
 # packages/flutter/lib/src/rendering/flex.dart
 class MainAxisSize(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    MIN = 'min'
-    MAX = 'max'
+    index = 'index'
+    values = 'values'
+    min = 'min'
+    max = 'max'
 
 
 # packages/flutter/lib/src/painting/basic_types.dart
 class VerticalDirection(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    UP = 'up'
-    DOWN = 'down'
+    index = 'index'
+    values = 'values'
+    up = 'up'
+    down = 'down'
 
 
 # packages/flutter/lib/src/material/bottom_navigation_bar.dart
 class BottomNavigationBarType(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    FIXED = 'fixed'
-    SHIFTING = 'shifting'
+    index = 'index'
+    values = 'values'
+    fixed = 'fixed'
+    shifting = 'shifting'
 
 
 # packages/flutter/lib/src/material/bottom_navigation_bar.dart
 class BottomNavigationBarLandscapeLayout(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    SPREAD = 'spread'
-    CENTERED = 'centered'
-    LINEAR = 'linear'
+    index = 'index'
+    values = 'values'
+    spread = 'spread'
+    centered = 'centered'
+    linear = 'linear'
 
 
 # packages/flutter/lib/src/material/app.dart
 class ThemeMode(Enum):
-    INDEX = 'index'
-    VALUES = 'values'
-    SYSTEM = 'system'
-    LIGHT = 'light'
-    DARK = 'dark'
+    index = 'index'
+    values = 'values'
+    system = 'system'
+    light = 'light'
+    dark = 'dark'
 
 
 # packages/flutter/lib/src/widgets/navigator.dart

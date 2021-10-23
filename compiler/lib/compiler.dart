@@ -57,9 +57,16 @@ class PythonUnit {
 
 class PythonEnum extends PythonUnit {
   final String name;
-  final List<String> values;
+  final List<PythonEnumEntry> entries;
 
-  PythonEnum(String path, this.name, this.values) : super(path);
+  PythonEnum(String path, this.name, this.entries) : super(path);
+}
+
+class PythonEnumEntry {
+  final String name;
+  final String value;
+
+  PythonEnumEntry(this.name, this.value);
 }
 
 List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
@@ -395,8 +402,8 @@ class PythonTranslator {
     p('# ${e.path}');
     p('class ${e.name}(Enum):');
     p.t(() {
-      for (final v in e.values) {
-        p("${snakeCase(v).toUpperCase()} = '$v'");
+      for (final v in e.entries) {
+        p("${v.name} = '${v.value}'");
       }
     });
 
@@ -419,8 +426,12 @@ class PythonTranslator {
     final sourcePath = getRelativeSourcePath(e);
     trace('$e@$sourcePath');
     if (e.isEnum) {
-      _enums.add(
-          PythonEnum(sourcePath, e.name, e.fields.map((f) => f.name).toList()));
+      _enums.add(PythonEnum(
+          sourcePath,
+          e.name,
+          e.fields
+              .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
+              .toList()));
     } else if (e.isMixin) {
       throw 'cannot translate mixins';
     } else {
