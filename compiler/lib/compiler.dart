@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:path/path.dart' as path;
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
@@ -97,10 +98,11 @@ class PythonClass extends PythonUnit {
 
 class PythonVariant {
   final String name;
+  final String dartName;
   final List<PythonField> fields;
   late List<PythonField> sortedFields;
 
-  PythonVariant(this.name, this.fields) {
+  PythonVariant(this.name, this.dartName, this.fields) {
     // Non-default params must precede default params in Python
     sortedFields = sortNonDefaultFields(fields);
   }
@@ -116,15 +118,16 @@ class PythonStaticField {
 
 class PythonField {
   final String name;
+  final String dartName;
   final PythonType type;
 
-  PythonField(this.name, this.type);
+  PythonField(this.name, this.dartName, this.type);
 }
 
 class PythonType {
   final String name;
   final List<PythonType>? types;
-  final bool isOptional;
+  final bool isOptional; // XXX move to PythonField
 
   PythonType(this.name, {this.types, this.isOptional = false});
 }
@@ -221,7 +224,10 @@ class PythonTranslator {
     // Python doesn't handle recursive type definitions: static fields of the
     // same type as the containing class need to be assigned after the class
     // definition.
-    // TODO: Make sure IDE static analysis does not raise false positives.
+    // TODO Make sure IDE static analysis does not raise false positives.
+    // XXX assign static const __ctor
+    // e.g. EdgeInsetsGeometry.infinity = EdgeInsetsGeometry()
+    //      EdgeInsetsGeometry.infinity.__ctor = (...)
     return f.isEnumLike
         ? '${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(None)'
         : '${f.name}: ${stringifyType(f.type)} = None'; //XXX constant value
@@ -285,7 +291,7 @@ class PythonTranslator {
     final type = toType(param.type);
     final required = param.isRequiredNamed || param.isRequiredPositional;
     return PythonField(
-        snakeCase(param.name), required ? type : toOptional(type));
+        snakeCase(param.name), param.name, required ? type : toOptional(type));
   }
 
   PythonStaticField toStaticField(ClassElement e, ConstFieldElementImpl f) {
@@ -357,7 +363,14 @@ class PythonTranslator {
         printParameters(klass.sortedFields);
         p('):');
         p.t(() {
-          printInitialization(klass.sortedFields);
+          // printInitialization(klass.sortedFields);
+          p("self.__ctor = ('', (");
+          p.t(() {
+            for (final f in klass.fields) {
+              p("'${f.dartName}', ${f.name},");
+            }
+          });
+          p('))');
         });
       }
 
@@ -368,13 +381,17 @@ class PythonTranslator {
         printParameters(variant.sortedFields, isMethod: false);
         p(') -> ${quote(klass.name)}:');
         p.t(() {
-          p('return ${klass.name}(');
+          p('_o = ${klass.name}(');
+          for (final f in klass.sortedFields) {}
+          p(')');
+          p("_o.__ctor = ('${variant.dartName}', (");
           p.t(() {
-            for (final f in variant.sortedFields) {
-              p('${f.name},');
+            for (final f in variant.fields) {
+              p("'${f.dartName}', ${f.name},");
             }
           });
-          p(')');
+          p('))');
+          p('return _o');
         });
       }
 
@@ -413,18 +430,18 @@ class PythonTranslator {
   String getRelativeSourcePath(ClassElement e) {
     final absPath = e.source.fullName;
     final libPath = 'flutter';
-    // FIXME assumes SDK path doesn't contain ../flutter/../flutter/..
+    // TODO assumes SDK path doesn't contain ../flutter/../flutter/..
     final pos = absPath.indexOf(libPath);
     return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
   }
 
   void translateElement(ClassElement e) {
-    // FIXME ctors with _arg not handled (e.g. Locale)
+    // XXX ctors with _arg not handled (e.g. Locale)
     if (_processedClasses.contains(e)) return;
     _processedClasses.add(e);
 
     final sourcePath = getRelativeSourcePath(e);
-    trace('$e@$sourcePath');
+    trace('$e\t$sourcePath');
     if (e.isEnum) {
       _enums.add(PythonEnum(
           sourcePath,
@@ -435,16 +452,21 @@ class PythonTranslator {
     } else if (e.isMixin) {
       throw 'cannot translate mixins';
     } else {
+      // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
+      // XXX find and include implementers; recurse before adding abstract class
       final staticFields = e.fields
           .whereType<ConstFieldElementImpl>()
           .where((f) => !isPrivateSymbol(f.name))
           .map((f) => toStaticField(e, f))
           .toList();
       final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
+
+      // XXX fix argument ordering
+      // XXX add marker for which ctor was used
       final variants = e.constructors
           .where((c) => c.name.isNotEmpty && !isPrivateSymbol(c.name))
           .map((c) => PythonVariant(
-              _unreserved(snakeCase(c.name)), toFields(c.parameters)))
+              _unreserved(snakeCase(c.name)), c.name, toFields(c.parameters)))
           .toList();
 
       final fields = toFields(defaultConstructor.isNotEmpty
