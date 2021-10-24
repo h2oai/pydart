@@ -316,6 +316,7 @@ class PythonTranslator {
       // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
       // XXX find and include implementers; recurse before adding abstract class
       final staticFields = e.fields
+          .where((f) => f.isStatic)
           .whereType<ConstFieldElementImpl>()
           .where((f) => !_isPrivateSymbol(f.name))
           .map((f) => _toStaticField(e, f))
