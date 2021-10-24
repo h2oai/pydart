@@ -10,7 +10,7 @@ class Key:
             self,
             value: str,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'value', value,
         ))
 
@@ -20,7 +20,7 @@ class Key:
         _o = Key(
             value='',
         )
-        _o.__ctor = ('empty', (
+        _o.__ctor = (('empty',), (
         ))
         return _o
 
@@ -36,7 +36,7 @@ class GlobalKey(Generic[T]):
             self,
             debug_label: Optional[str] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'debugLabel', debug_label,
         ))
 
@@ -45,7 +45,7 @@ class GlobalKey(Generic[T]):
     ) -> 'GlobalKey':
         _o = GlobalKey(
         )
-        _o.__ctor = ('constructor', (
+        _o.__ctor = (('constructor',), (
         ))
         return _o
 
@@ -81,7 +81,7 @@ class Color:
             self,
             value: int,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'value', value,
         ))
 
@@ -95,7 +95,7 @@ class Color:
         _o = Color(
             value=0,
         )
-        _o.__ctor = ('fromARGB', (
+        _o.__ctor = (('fromARGB',), (
             'a', a,
             'r', r,
             'g', g,
@@ -113,7 +113,7 @@ class Color:
         _o = Color(
             value=0,
         )
-        _o.__ctor = ('fromRGBO', (
+        _o.__ctor = (('fromRGBO',), (
             'r', r,
             'g', g,
             'b', b,
@@ -132,7 +132,7 @@ class VisualDensity:
             horizontal: Optional[float] = None,
             vertical: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'horizontal', horizontal,
             'vertical', vertical,
         ))
@@ -201,7 +201,7 @@ class MaterialColor:
             primary: int,
             swatch: Dict[int, Color],
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'primary', primary,
             'swatch', swatch,
         ))
@@ -225,7 +225,7 @@ class ColorScheme:
             on_error: Color,
             brightness: Brightness,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -272,7 +272,7 @@ class ColorScheme:
             on_error=Color(0),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('light', (
+        _o.__ctor = (('light',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -320,7 +320,7 @@ class ColorScheme:
             on_error=Color(0),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('dark', (
+        _o.__ctor = (('dark',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -368,7 +368,7 @@ class ColorScheme:
             on_error=Color(0),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('highContrastLight', (
+        _o.__ctor = (('highContrastLight',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -416,7 +416,7 @@ class ColorScheme:
             on_error=Color(0),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('highContrastDark', (
+        _o.__ctor = (('highContrastDark',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -458,7 +458,7 @@ class ColorScheme:
             on_error=Color(0),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('fromSwatch', (
+        _o.__ctor = (('fromSwatch',), (
             'primarySwatch', primary_swatch,
             'primaryColorDark', primary_color_dark,
             'accentColor', accent_color,
@@ -498,7 +498,7 @@ class ButtonThemeData:
             color_scheme: Optional[ColorScheme] = None,
             material_tap_target_size: Optional[MaterialTapTargetSize] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'textTheme', text_theme,
             'minWidth', min_width,
             'height', height,
@@ -589,7 +589,7 @@ class Locale:
             _language_code: str,
             _country_code: Optional[str] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             '_languageCode', _language_code,
             '_countryCode', _country_code,
         ))
@@ -603,7 +603,7 @@ class Locale:
         _o = Locale(
             _language_code='',
         )
-        _o.__ctor = ('fromSubtags', (
+        _o.__ctor = (('fromSubtags',), (
             'languageCode', language_code,
             'scriptCode', script_code,
             'countryCode', country_code,
@@ -623,7 +623,7 @@ class Offset:
             dx: float,
             dy: float,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'dx', dx,
             'dy', dy,
         ))
@@ -637,7 +637,7 @@ class Offset:
             dx=0.0,
             dy=0.0,
         )
-        _o.__ctor = ('fromDirection', (
+        _o.__ctor = (('fromDirection',), (
             'direction', direction,
             'distance', distance,
         ))
@@ -664,7 +664,7 @@ class Shadow:
             offset: Optional[Offset] = None,
             blur_radius: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'offset', offset,
             'blurRadius', blur_radius,
@@ -678,7 +678,7 @@ class FontFeature:
             feature: str,
             value: Optional[int] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'feature', feature,
             'value', value,
         ))
@@ -690,7 +690,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('enable', (
+        _o.__ctor = (('enable',), (
             'feature', feature,
         ))
         return _o
@@ -702,7 +702,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('disable', (
+        _o.__ctor = (('disable',), (
             'feature', feature,
         ))
         return _o
@@ -714,7 +714,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('alternative', (
+        _o.__ctor = (('alternative',), (
             'value', value,
         ))
         return _o
@@ -725,7 +725,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('alternativeFractions', (
+        _o.__ctor = (('alternativeFractions',), (
         ))
         return _o
 
@@ -735,7 +735,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('contextualAlternates', (
+        _o.__ctor = (('contextualAlternates',), (
         ))
         return _o
 
@@ -745,7 +745,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('caseSensitiveForms', (
+        _o.__ctor = (('caseSensitiveForms',), (
         ))
         return _o
 
@@ -756,7 +756,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('characterVariant', (
+        _o.__ctor = (('characterVariant',), (
             'value', value,
         ))
         return _o
@@ -767,7 +767,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('denominator', (
+        _o.__ctor = (('denominator',), (
         ))
         return _o
 
@@ -777,7 +777,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('fractions', (
+        _o.__ctor = (('fractions',), (
         ))
         return _o
 
@@ -787,7 +787,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('historicalForms', (
+        _o.__ctor = (('historicalForms',), (
         ))
         return _o
 
@@ -797,7 +797,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('historicalLigatures', (
+        _o.__ctor = (('historicalLigatures',), (
         ))
         return _o
 
@@ -807,7 +807,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('liningFigures', (
+        _o.__ctor = (('liningFigures',), (
         ))
         return _o
 
@@ -818,7 +818,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('localeAware', (
+        _o.__ctor = (('localeAware',), (
             'enable', enable,
         ))
         return _o
@@ -830,7 +830,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('notationalForms', (
+        _o.__ctor = (('notationalForms',), (
             'value', value,
         ))
         return _o
@@ -841,7 +841,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('numerators', (
+        _o.__ctor = (('numerators',), (
         ))
         return _o
 
@@ -851,7 +851,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('oldstyleFigures', (
+        _o.__ctor = (('oldstyleFigures',), (
         ))
         return _o
 
@@ -861,7 +861,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('ordinalForms', (
+        _o.__ctor = (('ordinalForms',), (
         ))
         return _o
 
@@ -871,7 +871,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('proportionalFigures', (
+        _o.__ctor = (('proportionalFigures',), (
         ))
         return _o
 
@@ -881,7 +881,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('randomize', (
+        _o.__ctor = (('randomize',), (
         ))
         return _o
 
@@ -891,7 +891,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('stylisticAlternates', (
+        _o.__ctor = (('stylisticAlternates',), (
         ))
         return _o
 
@@ -901,7 +901,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('scientificInferiors', (
+        _o.__ctor = (('scientificInferiors',), (
         ))
         return _o
 
@@ -912,7 +912,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('stylisticSet', (
+        _o.__ctor = (('stylisticSet',), (
             'value', value,
         ))
         return _o
@@ -923,7 +923,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('subscripts', (
+        _o.__ctor = (('subscripts',), (
         ))
         return _o
 
@@ -933,7 +933,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('superscripts', (
+        _o.__ctor = (('superscripts',), (
         ))
         return _o
 
@@ -944,7 +944,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('swash', (
+        _o.__ctor = (('swash',), (
             'value', value,
         ))
         return _o
@@ -955,7 +955,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('tabularFigures', (
+        _o.__ctor = (('tabularFigures',), (
         ))
         return _o
 
@@ -965,7 +965,7 @@ class FontFeature:
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = ('slashedZero', (
+        _o.__ctor = (('slashedZero',), (
         ))
         return _o
 
@@ -979,7 +979,7 @@ class TextDecoration:
     ) -> 'TextDecoration':
         _o = TextDecoration(
         )
-        _o.__ctor = ('combine', (
+        _o.__ctor = (('combine',), (
             'decorations', decorations,
         ))
         return _o
@@ -1050,7 +1050,7 @@ class TextStyle:
             package: Optional[str] = None,
             overflow: Optional[TextOverflow] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'inherit', inherit,
             'color', color,
             'backgroundColor', background_color,
@@ -1086,7 +1086,7 @@ class Size:
             width: float,
             height: float,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'width', width,
             'height', height,
         ))
@@ -1099,7 +1099,7 @@ class Size:
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = ('copy', (
+        _o.__ctor = (('copy',), (
             'source', source,
         ))
         return _o
@@ -1112,7 +1112,7 @@ class Size:
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = ('square', (
+        _o.__ctor = (('square',), (
             'dimension', dimension,
         ))
         return _o
@@ -1125,7 +1125,7 @@ class Size:
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = ('fromWidth', (
+        _o.__ctor = (('fromWidth',), (
             'width', width,
         ))
         return _o
@@ -1138,7 +1138,7 @@ class Size:
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = ('fromHeight', (
+        _o.__ctor = (('fromHeight',), (
             'height', height,
         ))
         return _o
@@ -1151,7 +1151,7 @@ class Size:
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = ('fromRadius', (
+        _o.__ctor = (('fromRadius',), (
             'radius', radius,
         ))
         return _o
@@ -1178,7 +1178,7 @@ class BoxConstraints:
             min_height: Optional[float] = None,
             max_height: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'minWidth', min_width,
             'maxWidth', max_width,
             'minHeight', min_height,
@@ -1191,7 +1191,7 @@ class BoxConstraints:
     ) -> 'BoxConstraints':
         _o = BoxConstraints(
         )
-        _o.__ctor = ('tight', (
+        _o.__ctor = (('tight',), (
             'size', size,
         ))
         return _o
@@ -1203,7 +1203,7 @@ class BoxConstraints:
     ) -> 'BoxConstraints':
         _o = BoxConstraints(
         )
-        _o.__ctor = ('tightFor', (
+        _o.__ctor = (('tightFor',), (
             'width', width,
             'height', height,
         ))
@@ -1216,7 +1216,7 @@ class BoxConstraints:
     ) -> 'BoxConstraints':
         _o = BoxConstraints(
         )
-        _o.__ctor = ('tightForFinite', (
+        _o.__ctor = (('tightForFinite',), (
             'width', width,
             'height', height,
         ))
@@ -1228,7 +1228,7 @@ class BoxConstraints:
     ) -> 'BoxConstraints':
         _o = BoxConstraints(
         )
-        _o.__ctor = ('loose', (
+        _o.__ctor = (('loose',), (
             'size', size,
         ))
         return _o
@@ -1240,7 +1240,7 @@ class BoxConstraints:
     ) -> 'BoxConstraints':
         _o = BoxConstraints(
         )
-        _o.__ctor = ('expand', (
+        _o.__ctor = (('expand',), (
             'width', width,
             'height', height,
         ))
@@ -1256,7 +1256,7 @@ class Radius:
     ) -> 'Radius':
         _o = Radius(
         )
-        _o.__ctor = ('circular', (
+        _o.__ctor = (('circular',), (
             'radius', radius,
         ))
         return _o
@@ -1268,7 +1268,7 @@ class Radius:
     ) -> 'Radius':
         _o = Radius(
         )
-        _o.__ctor = ('elliptical', (
+        _o.__ctor = (('elliptical',), (
             'x', x,
             'y', y,
         ))
@@ -1289,7 +1289,7 @@ class BorderRadius:
     ) -> 'BorderRadius':
         _o = BorderRadius(
         )
-        _o.__ctor = ('all', (
+        _o.__ctor = (('all',), (
             'radius', radius,
         ))
         return _o
@@ -1300,7 +1300,7 @@ class BorderRadius:
     ) -> 'BorderRadius':
         _o = BorderRadius(
         )
-        _o.__ctor = ('circular', (
+        _o.__ctor = (('circular',), (
             'radius', radius,
         ))
         return _o
@@ -1312,7 +1312,7 @@ class BorderRadius:
     ) -> 'BorderRadius':
         _o = BorderRadius(
         )
-        _o.__ctor = ('vertical', (
+        _o.__ctor = (('vertical',), (
             'top', top,
             'bottom', bottom,
         ))
@@ -1325,7 +1325,7 @@ class BorderRadius:
     ) -> 'BorderRadius':
         _o = BorderRadius(
         )
-        _o.__ctor = ('horizontal', (
+        _o.__ctor = (('horizontal',), (
             'left', left,
             'right', right,
         ))
@@ -1340,7 +1340,7 @@ class BorderRadius:
     ) -> 'BorderRadius':
         _o = BorderRadius(
         )
-        _o.__ctor = ('only', (
+        _o.__ctor = (('only',), (
             'topLeft', top_left,
             'topRight', top_right,
             'bottomLeft', bottom_left,
@@ -1374,7 +1374,7 @@ class ToggleButtonsThemeData:
             border_radius: Optional[BorderRadius] = None,
             border_width: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'textStyle', text_style,
             'constraints', constraints,
             'color', color,
@@ -1411,7 +1411,7 @@ class TextTheme:
             button: Optional[TextStyle] = None,
             overline: Optional[TextStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'headline1', headline1,
             'headline2', headline2,
             'headline3', headline3,
@@ -1453,7 +1453,7 @@ class BorderSide:
             width: Optional[float] = None,
             style: Optional[BorderStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'width', width,
             'style', style,
@@ -1471,7 +1471,7 @@ class InputBorder:
             self,
             border_side: Optional[BorderSide] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'borderSide', border_side,
         ))
 
@@ -1512,7 +1512,7 @@ class InputDecorationTheme:
             align_label_with_hint: Optional[bool] = None,
             constraints: Optional[BoxConstraints] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'labelStyle', label_style,
             'floatingLabelStyle', floating_label_style,
             'helperStyle', helper_style,
@@ -1550,7 +1550,7 @@ class IconThemeData:
             opacity: Optional[float] = None,
             size: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'opacity', opacity,
             'size', size,
@@ -1561,7 +1561,7 @@ class IconThemeData:
     ) -> 'IconThemeData':
         _o = IconThemeData(
         )
-        _o.__ctor = ('fallback', (
+        _o.__ctor = (('fallback',), (
         ))
         return _o
 
@@ -1643,7 +1643,7 @@ class SliderThemeData:
             min_thumb_separation: Optional[float] = None,
             thumb_selector: Optional[Callable] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'trackHeight', track_height,
             'activeTrackColor', active_track_color,
             'inactiveTrackColor', inactive_track_color,
@@ -1682,7 +1682,7 @@ class SliderThemeData:
     ) -> 'SliderThemeData':
         _o = SliderThemeData(
         )
-        _o.__ctor = ('fromPrimaryColors', (
+        _o.__ctor = (('fromPrimaryColors',), (
             'primaryColor', primary_color,
             'primaryColorDark', primary_color_dark,
             'primaryColorLight', primary_color_light,
@@ -1716,7 +1716,7 @@ class TabBarTheme:
             unselected_label_color: Optional[Color] = None,
             unselected_label_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'indicator', indicator,
             'indicatorSize', indicator_size,
             'labelColor', label_color,
@@ -1754,7 +1754,7 @@ class Duration:
             milliseconds: Optional[int] = None,
             microseconds: Optional[int] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'days', days,
             'hours', hours,
             'minutes', minutes,
@@ -1795,7 +1795,7 @@ class TooltipThemeData:
             trigger_mode: Optional[TooltipTriggerMode] = None,
             enable_feedback: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'height', height,
             'padding', padding,
             'margin', margin,
@@ -1832,7 +1832,7 @@ class CardTheme:
             margin: Optional[EdgeInsetsGeometry] = None,
             shape: Optional[ShapeBorder] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'clipBehavior', clip_behavior,
             'color', color,
             'shadowColor', shadow_color,
@@ -1848,7 +1848,7 @@ class OutlinedBorder:
             self,
             side: Optional[BorderSide] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'side', side,
         ))
 
@@ -1876,7 +1876,7 @@ class ChipThemeData:
             elevation: Optional[float] = None,
             press_elevation: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'deleteIconColor', delete_icon_color,
             'disabledColor', disabled_color,
@@ -1914,7 +1914,7 @@ class ChipThemeData:
             secondary_label_style=TextStyle(),
             brightness=Brightness.index,
         )
-        _o.__ctor = ('fromDefaults', (
+        _o.__ctor = (('fromDefaults',), (
             'brightness', brightness,
             'primaryColor', primary_color,
             'secondaryColor', secondary_color,
@@ -1946,7 +1946,7 @@ class PageTransitionsTheme:
             self,
             builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'builders', builders,
         ))
 
@@ -1964,7 +1964,7 @@ class SystemUiOverlayStyle:
             status_bar_icon_brightness: Optional[Brightness] = None,
             system_status_bar_contrast_enforced: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'systemNavigationBarColor', system_navigation_bar_color,
             'systemNavigationBarDividerColor', system_navigation_bar_divider_color,
             'systemNavigationBarIconBrightness', system_navigation_bar_icon_brightness,
@@ -2006,7 +2006,7 @@ class AppBarTheme:
             system_overlay_style: Optional[SystemUiOverlayStyle] = None,
             backwards_compatibility: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'brightness', brightness,
             'color', color,
             'backgroundColor', background_color,
@@ -2048,7 +2048,7 @@ class ScrollbarThemeData:
             min_thumb_length: Optional[float] = None,
             interactive: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'thickness', thickness,
             'showTrackOnHover', show_track_on_hover,
             'isAlwaysShown', is_always_shown,
@@ -2076,7 +2076,7 @@ class BottomAppBarTheme:
             elevation: Optional[float] = None,
             shape: Optional[NotchedShape] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'elevation', elevation,
             'shape', shape,
@@ -2093,7 +2093,7 @@ class DialogTheme:
             title_text_style: Optional[TextStyle] = None,
             content_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'elevation', elevation,
             'shape', shape,
@@ -2126,7 +2126,7 @@ class FloatingActionButtonThemeData:
             extended_padding: Optional[EdgeInsetsGeometry] = None,
             extended_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'foregroundColor', foreground_color,
             'backgroundColor', background_color,
             'focusColor', focus_color,
@@ -2171,7 +2171,7 @@ class NavigationRailThemeData:
             group_alignment: Optional[float] = None,
             label_type: Optional[NavigationRailLabelType] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'elevation', elevation,
             'unselectedLabelTextStyle', unselected_label_text_style,
@@ -2211,7 +2211,7 @@ class Typography:
             dense: Optional[TextTheme] = None,
             tall: Optional[TextTheme] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'platform', platform,
             'black', black,
             'white', white,
@@ -2231,7 +2231,7 @@ class Typography:
     ) -> 'Typography':
         _o = Typography(
         )
-        _o.__ctor = ('material2014', (
+        _o.__ctor = (('material2014',), (
             'platform', platform,
             'black', black,
             'white', white,
@@ -2252,7 +2252,7 @@ class Typography:
     ) -> 'Typography':
         _o = Typography(
         )
-        _o.__ctor = ('material2018', (
+        _o.__ctor = (('material2018',), (
             'platform', platform,
             'black', black,
             'white', white,
@@ -2277,7 +2277,7 @@ class CupertinoTextThemeData:
             picker_text_style: Optional[TextStyle] = None,
             date_time_picker_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'primaryColor', primary_color,
             'textStyle', text_style,
             'actionTextStyle', action_text_style,
@@ -2301,7 +2301,7 @@ class NoDefaultCupertinoThemeData:
             bar_background_color: Optional[Color] = None,
             scaffold_background_color: Optional[Color] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'brightness', brightness,
             'primaryColor', primary_color,
             'primaryContrastingColor', primary_contrasting_color,
@@ -2331,7 +2331,7 @@ class SnackBarThemeData:
             shape: Optional[ShapeBorder] = None,
             behavior: Optional[SnackBarBehavior] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'actionTextColor', action_text_color,
             'disabledActionTextColor', disabled_action_text_color,
@@ -2354,7 +2354,7 @@ class BottomSheetThemeData:
             clip_behavior: Optional[Clip] = None,
             constraints: Optional[BoxConstraints] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'elevation', elevation,
             'modalBackgroundColor', modal_background_color,
@@ -2375,7 +2375,7 @@ class PopupMenuThemeData:
             text_style: Optional[TextStyle] = None,
             enable_feedback: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'shape', shape,
             'elevation', elevation,
@@ -2393,7 +2393,7 @@ class MaterialBannerThemeData:
             padding: Optional[EdgeInsetsGeometry] = None,
             leading_padding: Optional[EdgeInsetsGeometry] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'contentTextStyle', content_text_style,
             'padding', padding,
@@ -2411,7 +2411,7 @@ class DividerThemeData:
             indent: Optional[float] = None,
             end_indent: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'space', space,
             'thickness', thickness,
@@ -2462,7 +2462,7 @@ class ButtonBarThemeData:
             layout_behavior: Optional[ButtonBarLayoutBehavior] = None,
             overflow_direction: Optional[VerticalDirection] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'alignment', alignment,
             'mainAxisSize', main_axis_size,
             'buttonTextTheme', button_text_theme,
@@ -2510,7 +2510,7 @@ class BottomNavigationBarThemeData:
             enable_feedback: Optional[bool] = None,
             landscape_layout: Optional[BottomNavigationBarLandscapeLayout] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'elevation', elevation,
             'selectedIconTheme', selected_icon_theme,
@@ -2549,7 +2549,7 @@ class TimePickerThemeData:
             day_period_border_side: Optional[BorderSide] = None,
             input_decoration_theme: Optional[InputDecorationTheme] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'backgroundColor', background_color,
             'hourMinuteTextColor', hour_minute_text_color,
             'hourMinuteColor', hour_minute_color,
@@ -2612,7 +2612,7 @@ class ButtonStyle:
             alignment: Optional[AlignmentGeometry] = None,
             splash_factory: Optional[InteractiveInkFeatureFactory] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'textStyle', text_style,
             'backgroundColor', background_color,
             'foregroundColor', foreground_color,
@@ -2641,7 +2641,7 @@ class TextButtonThemeData:
             self,
             style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'style', style,
         ))
 
@@ -2652,7 +2652,7 @@ class ElevatedButtonThemeData:
             self,
             style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'style', style,
         ))
 
@@ -2663,7 +2663,7 @@ class OutlinedButtonThemeData:
             self,
             style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'style', style,
         ))
 
@@ -2676,7 +2676,7 @@ class TextSelectionThemeData:
             selection_color: Optional[Color] = None,
             selection_handle_color: Optional[Color] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'cursorColor', cursor_color,
             'selectionColor', selection_color,
             'selectionHandleColor', selection_handle_color,
@@ -2699,7 +2699,7 @@ class DataTableThemeData:
             divider_thickness: Optional[float] = None,
             checkbox_horizontal_margin: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'decoration', decoration,
             'dataRowColor', data_row_color,
             'dataRowHeight', data_row_height,
@@ -2728,7 +2728,7 @@ class CheckboxThemeData:
             shape: Optional[OutlinedBorder] = None,
             side: Optional[BorderSide] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'mouseCursor', mouse_cursor,
             'fillColor', fill_color,
             'checkColor', check_color,
@@ -2752,7 +2752,7 @@ class RadioThemeData:
             material_tap_target_size: Optional[MaterialTapTargetSize] = None,
             visual_density: Optional[VisualDensity] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'mouseCursor', mouse_cursor,
             'fillColor', fill_color,
             'overlayColor', overlay_color,
@@ -2773,7 +2773,7 @@ class SwitchThemeData:
             overlay_color: Optional[MaterialStateProperty[Color]] = None,
             splash_radius: Optional[float] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'thumbColor', thumb_color,
             'trackColor', track_color,
             'materialTapTargetSize', material_tap_target_size,
@@ -2793,7 +2793,7 @@ class ProgressIndicatorThemeData:
             circular_track_color: Optional[Color] = None,
             refresh_background_color: Optional[Color] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'color', color,
             'linearTrackColor', linear_track_color,
             'linearMinHeight', linear_min_height,
@@ -2888,7 +2888,7 @@ class ThemeData:
             fix_text_field_outline_label: Optional[bool] = None,
             use_text_selection_theme: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'brightness', brightness,
             'visualDensity', visual_density,
             'primarySwatch', primary_swatch,
@@ -3055,7 +3055,7 @@ class ThemeData:
     ) -> 'ThemeData':
         _o = ThemeData(
         )
-        _o.__ctor = ('raw', (
+        _o.__ctor = (('raw',), (
             'visualDensity', visual_density,
             'primaryColor', primary_color,
             'primaryColorBrightness', primary_color_brightness,
@@ -3144,7 +3144,7 @@ class ThemeData:
     ) -> 'ThemeData':
         _o = ThemeData(
         )
-        _o.__ctor = ('from', (
+        _o.__ctor = (('from',), (
             'colorScheme', color_scheme,
             'textTheme', text_theme,
         ))
@@ -3155,7 +3155,7 @@ class ThemeData:
     ) -> 'ThemeData':
         _o = ThemeData(
         )
-        _o.__ctor = ('light', (
+        _o.__ctor = (('light',), (
         ))
         return _o
 
@@ -3164,7 +3164,7 @@ class ThemeData:
     ) -> 'ThemeData':
         _o = ThemeData(
         )
-        _o.__ctor = ('dark', (
+        _o.__ctor = (('dark',), (
         ))
         return _o
 
@@ -3173,7 +3173,7 @@ class ThemeData:
     ) -> 'ThemeData':
         _o = ThemeData(
         )
-        _o.__ctor = ('fallback', (
+        _o.__ctor = (('fallback',), (
         ))
         return _o
 
@@ -3234,7 +3234,7 @@ class Widget:
             self,
             key: Optional[Key] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'key', key,
         ))
 
@@ -3284,7 +3284,7 @@ class MaterialApp:
             scroll_behavior: Optional[ScrollBehavior] = None,
             use_inherited_media_query: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'key', key,
             'navigatorKey', navigator_key,
             'scaffoldMessengerKey', scaffold_messenger_key,
@@ -3358,7 +3358,7 @@ class MaterialApp:
     ) -> 'MaterialApp':
         _o = MaterialApp(
         )
-        _o.__ctor = ('router', (
+        _o.__ctor = (('router',), (
             'key', key,
             'scaffoldMessengerKey', scaffold_messenger_key,
             'routeInformationProvider', route_information_provider,
@@ -3405,7 +3405,7 @@ class FocusNode:
             can_request_focus: Optional[bool] = None,
             descendants_are_focusable: Optional[bool] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'debugLabel', debug_label,
             'onKey', on_key,
             'onKeyEvent', on_key_event,
@@ -3428,7 +3428,7 @@ class ElevatedButton:
             autofocus: Optional[bool] = None,
             clip_behavior: Optional[Clip] = None,
     ):
-        self.__ctor = ('', (
+        self.__ctor = (('',), (
             'key', key,
             'onPressed', on_pressed,
             'onLongPress', on_long_press,
@@ -3455,7 +3455,7 @@ class ElevatedButton:
             on_pressed=None,
             child=Widget(),
         )
-        _o.__ctor = ('icon', (
+        _o.__ctor = (('icon',), (
             'key', key,
             'onPressed', on_pressed,
             'onLongPress', on_long_press,

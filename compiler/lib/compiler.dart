@@ -424,6 +424,9 @@ class PythonTranslator {
       // TODO ctor doc
       if (internalStaticFields.isNotEmpty) {
         for (final f in internalStaticFields) {
+          // XXX Typography.black_mountain_view: TextTheme = None
+          // ^ needs ctor marker for TextTheme on Typography
+
           if (!f.isEnumLike) {
             p('${f.name}: ${stringifyType(f.type)} = None'); //XXX constant value
           }
@@ -439,7 +442,7 @@ class PythonTranslator {
         p('):');
         p.t(() {
           // printInitialization(klass.sortedFields);
-          p("self.__ctor = ('', (");
+          p("self.__ctor = (('',), (");
           p.t(() {
             for (final f in klass.fields) {
               p("'${f.dartName}', ${f.name},");
@@ -459,7 +462,7 @@ class PythonTranslator {
           p('_o = ${klass.name}(');
           _printDefaultCtorArgs(klass);
           p(')');
-          p("_o.__ctor = ('${variant.dartName}', (");
+          p("_o.__ctor = (('${variant.dartName}',), (");
           p.t(() {
             for (final f in variant.fields) {
               p("'${f.dartName}', ${f.name},");
@@ -490,7 +493,6 @@ class PythonTranslator {
           p('${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(');
           _printDefaultCtorArgs(klass);
           p(')');
-          // XXX static const ctors need to be distinguished from  static ctors
           p("${stringifyType(f.type)}.${f.name}.__ctor = ('${f.name}', )");
         }
       }
