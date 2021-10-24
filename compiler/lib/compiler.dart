@@ -94,6 +94,10 @@ class PythonClass extends PythonUnit {
     // Non-default params must precede default params in Python
     sortedFields = sortNonDefaultFields(fields);
   }
+
+  Iterable<PythonField> get requiredFields {
+    return sortedFields.where((f) => !f.isOptional);
+  }
 }
 
 class PythonVariant {
@@ -381,8 +385,7 @@ class PythonTranslator {
     final u = t.unit;
     if (u != null) {
       if (u is PythonClass) {
-        final args = u.sortedFields
-            .where((f) => !f.isOptional)
+        final args = u.requiredFields
             .map((f) => _defaultValueOf(f.type))
             .join(', ');
         return '${u.name}($args)';
@@ -486,10 +489,8 @@ class PythonTranslator {
 
   void _printDefaultCtorArgs(PythonClass klass) {
     p.t(() {
-      for (final f in klass.sortedFields) {
-        if (!f.isOptional) {
-          p('${f.name}=${_defaultValueOf(f.type)},');
-        }
+      for (final f in klass.requiredFields) {
+        p('${f.name}=${_defaultValueOf(f.type)},');
       }
     });
   }
