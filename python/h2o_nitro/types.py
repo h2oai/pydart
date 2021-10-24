@@ -48,6 +48,7 @@ class Key:
     def empty(
     ) -> 'Key':
         _o = Key(
+            value='',
         )
         _o.__ctor = ('empty', (
         ))
@@ -140,6 +141,7 @@ class Color:
             b: int,
     ) -> 'Color':
         _o = Color(
+            value=0,
         )
         _o.__ctor = ('fromARGB', (
             'a', a,
@@ -157,6 +159,7 @@ class Color:
             opacity: float,
     ) -> 'Color':
         _o = Color(
+            value=0,
         )
         _o.__ctor = ('fromRGBO', (
             'r', r,
@@ -275,6 +278,19 @@ class ColorScheme:
             brightness: Optional[Brightness] = None,
     ) -> 'ColorScheme':
         _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('light', (
             'primary', primary,
@@ -310,6 +326,19 @@ class ColorScheme:
             brightness: Optional[Brightness] = None,
     ) -> 'ColorScheme':
         _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('dark', (
             'primary', primary,
@@ -345,6 +374,19 @@ class ColorScheme:
             brightness: Optional[Brightness] = None,
     ) -> 'ColorScheme':
         _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('highContrastLight', (
             'primary', primary,
@@ -380,6 +422,19 @@ class ColorScheme:
             brightness: Optional[Brightness] = None,
     ) -> 'ColorScheme':
         _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('highContrastDark', (
             'primary', primary,
@@ -409,6 +464,19 @@ class ColorScheme:
             brightness: Optional[Brightness] = None,
     ) -> 'ColorScheme':
         _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('fromSwatch', (
             'primarySwatch', primary_swatch,
@@ -554,6 +622,7 @@ class Locale:
             country_code: Optional[str] = None,
     ) -> 'Locale':
         _o = Locale(
+            _language_code='',
         )
         _o.__ctor = ('fromSubtags', (
             'languageCode', language_code,
@@ -618,6 +687,8 @@ class Offset:
             distance: Optional[float] = None,
     ) -> 'Offset':
         _o = Offset(
+            dx=0.0,
+            dy=0.0,
         )
         _o.__ctor = ('fromDirection', (
             'direction', direction,
@@ -669,6 +740,7 @@ class FontFeature:
             feature: str,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('enable', (
             'feature', feature,
@@ -680,6 +752,7 @@ class FontFeature:
             feature: str,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('disable', (
             'feature', feature,
@@ -691,6 +764,7 @@ class FontFeature:
             value: int,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('alternative', (
             'value', value,
@@ -701,6 +775,7 @@ class FontFeature:
     def alternative_fractions(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('alternativeFractions', (
         ))
@@ -710,6 +785,7 @@ class FontFeature:
     def contextual_alternates(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('contextualAlternates', (
         ))
@@ -719,6 +795,7 @@ class FontFeature:
     def case_sensitive_forms(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('caseSensitiveForms', (
         ))
@@ -729,6 +806,7 @@ class FontFeature:
             value: int,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('characterVariant', (
             'value', value,
@@ -739,6 +817,7 @@ class FontFeature:
     def denominator(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('denominator', (
         ))
@@ -748,6 +827,7 @@ class FontFeature:
     def fractions(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('fractions', (
         ))
@@ -757,6 +837,7 @@ class FontFeature:
     def historical_forms(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('historicalForms', (
         ))
@@ -766,6 +847,7 @@ class FontFeature:
     def historical_ligatures(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('historicalLigatures', (
         ))
@@ -775,6 +857,7 @@ class FontFeature:
     def lining_figures(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('liningFigures', (
         ))
@@ -785,6 +868,7 @@ class FontFeature:
             enable: Optional[bool] = None,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('localeAware', (
             'enable', enable,
@@ -796,6 +880,7 @@ class FontFeature:
             value: Optional[int] = None,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('notationalForms', (
             'value', value,
@@ -806,6 +891,7 @@ class FontFeature:
     def numerators(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('numerators', (
         ))
@@ -815,6 +901,7 @@ class FontFeature:
     def oldstyle_figures(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('oldstyleFigures', (
         ))
@@ -824,6 +911,7 @@ class FontFeature:
     def ordinal_forms(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('ordinalForms', (
         ))
@@ -833,6 +921,7 @@ class FontFeature:
     def proportional_figures(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('proportionalFigures', (
         ))
@@ -842,6 +931,7 @@ class FontFeature:
     def randomize(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('randomize', (
         ))
@@ -851,6 +941,7 @@ class FontFeature:
     def stylistic_alternates(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('stylisticAlternates', (
         ))
@@ -860,6 +951,7 @@ class FontFeature:
     def scientific_inferiors(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('scientificInferiors', (
         ))
@@ -870,6 +962,7 @@ class FontFeature:
             value: int,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('stylisticSet', (
             'value', value,
@@ -880,6 +973,7 @@ class FontFeature:
     def subscripts(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('subscripts', (
         ))
@@ -889,6 +983,7 @@ class FontFeature:
     def superscripts(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('superscripts', (
         ))
@@ -899,6 +994,7 @@ class FontFeature:
             value: Optional[int] = None,
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('swash', (
             'value', value,
@@ -909,6 +1005,7 @@ class FontFeature:
     def tabular_figures(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('tabularFigures', (
         ))
@@ -918,6 +1015,7 @@ class FontFeature:
     def slashed_zero(
     ) -> 'FontFeature':
         _o = FontFeature(
+            feature='',
         )
         _o.__ctor = ('slashedZero', (
         ))
@@ -1034,6 +1132,8 @@ class Size:
             source: 'Size',
     ) -> 'Size':
         _o = Size(
+            width=0.0,
+            height=0.0,
         )
         _o.__ctor = ('copy', (
             'source', source,
@@ -1045,6 +1145,8 @@ class Size:
             dimension: float,
     ) -> 'Size':
         _o = Size(
+            width=0.0,
+            height=0.0,
         )
         _o.__ctor = ('square', (
             'dimension', dimension,
@@ -1056,6 +1158,8 @@ class Size:
             width: float,
     ) -> 'Size':
         _o = Size(
+            width=0.0,
+            height=0.0,
         )
         _o.__ctor = ('fromWidth', (
             'width', width,
@@ -1067,6 +1171,8 @@ class Size:
             height: float,
     ) -> 'Size':
         _o = Size(
+            width=0.0,
+            height=0.0,
         )
         _o.__ctor = ('fromHeight', (
             'height', height,
@@ -1078,6 +1184,8 @@ class Size:
             radius: float,
     ) -> 'Size':
         _o = Size(
+            width=0.0,
+            height=0.0,
         )
         _o.__ctor = ('fromRadius', (
             'radius', radius,
@@ -1969,6 +2077,14 @@ class ChipThemeData:
             primary_color: Optional[Color] = None,
     ) -> 'ChipThemeData':
         _o = ChipThemeData(
+            background_color=Color(0),
+            disabled_color=Color(0),
+            selected_color=Color(0),
+            secondary_selected_color=Color(0),
+            padding=EdgeInsetsGeometry(),
+            label_style=TextStyle(),
+            secondary_label_style=TextStyle(),
+            brightness=Brightness.index,
         )
         _o.__ctor = ('fromDefaults', (
             'brightness', brightness,
@@ -3833,6 +3949,8 @@ class ElevatedButton:
             clip_behavior: Optional[Clip] = None,
     ) -> 'ElevatedButton':
         _o = ElevatedButton(
+            on_pressed=None,
+            child=Widget(),
         )
         _o.__ctor = ('icon', (
             'key', key,

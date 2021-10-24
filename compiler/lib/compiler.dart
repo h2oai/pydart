@@ -128,8 +128,9 @@ class PythonField {
 class PythonType {
   final String name;
   final List<PythonType>? types;
+  final PythonUnit? unit;
 
-  PythonType(this.name, {this.types});
+  PythonType(this.name, {this.types, this.unit});
 }
 
 String snakeCase(String name) => name
@@ -225,7 +226,6 @@ class PythonTranslator {
     // same type as the containing class need to be assigned after the class
     // definition.
     // TODO Make sure IDE static analysis does not raise false positives.
-    // XXX assign static const __ctor
     // e.g. EdgeInsetsGeometry.infinity = EdgeInsetsGeometry()
     //      EdgeInsetsGeometry.infinity.__ctor = (...)
     return f.isEnumLike
@@ -253,9 +253,9 @@ class PythonTranslator {
       if (typeArgs.isEmpty) {
         // recurse: Python requires forward declaration
         pushTrace();
-        translateElement(t.element);
+        final unit = translateElement(t.element);
         popTrace();
-        return PythonType(t.element.name);
+        return PythonType(t.element.name, unit: unit);
       } else {
         final types = typeArgs.map(_toType).toList(); // recurse
         final location = t.element.location;
@@ -273,9 +273,9 @@ class PythonTranslator {
         }
         // recurse: Python requires forward declaration
         pushTrace();
-        translateElement(t.element);
+        final unit = translateElement(t.element);
         popTrace();
-        return PythonType(t.element.name, types: types);
+        return PythonType(t.element.name, types: types, unit: unit);
       }
     }
 
@@ -324,12 +324,10 @@ class PythonTranslator {
           .toList();
       final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
 
-      // XXX fix argument ordering
-      // XXX add marker for which ctor was used
       final variants = e.constructors
           .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
           .map((c) => PythonVariant(
-          _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
+              _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
           .toList();
 
       final fields = _toFields(defaultConstructor.isNotEmpty
@@ -375,6 +373,37 @@ class PythonTranslator {
     for (final f in fields) {
       p('self.${f.name} = ${f.name}');
     }
+  }
+
+  String _defaultValueOf(PythonType t) {
+    switch (t.name) {
+      case 'bool':
+        return 'False';
+      case 'int':
+        return '0';
+      case 'float':
+        return '0.0';
+      case 'str':
+        return "''";
+      case 'Optional':
+        return 'None';
+      case 'Callable':
+        return 'None'; // XXX pass noop
+    }
+    final u = t.unit;
+    if (u != null) {
+      if (u is PythonClass) {
+        final args = u.sortedFields
+            .where((f) => !f.isOptional)
+            .map((f) => _defaultValueOf(f.type))
+            .join(', ');
+        return '${u.name}($args)';
+      } else if (u is PythonEnum) {
+        return '${u.name}.${u.entries.first.name}';
+      }
+    }
+
+    throw 'could not determine default value for ${t.name}';
   }
 
   void printClass(PythonClass klass) {
@@ -425,7 +454,13 @@ class PythonTranslator {
         p(') -> ${quote(klass.name)}:');
         p.t(() {
           p('_o = ${klass.name}(');
-          for (final f in klass.sortedFields) {}
+          p.t(() {
+            for (final f in klass.sortedFields) {
+              if (!f.isOptional) {
+                p('${f.name}=${_defaultValueOf(f.type)},');
+              }
+            }
+          });
           p(')');
           p("_o.__ctor = ('${variant.dartName}', (");
           p.t(() {
