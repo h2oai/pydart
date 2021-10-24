@@ -116,9 +116,15 @@ class VisualDensity:
         ))
 
 
-VisualDensity.standard = VisualDensity(None)
-VisualDensity.comfortable = VisualDensity(None)
-VisualDensity.compact = VisualDensity(None)
+VisualDensity.standard = VisualDensity(
+)
+VisualDensity.standard.__ctor = ('standard', )
+VisualDensity.comfortable = VisualDensity(
+)
+VisualDensity.comfortable.__ctor = ('comfortable', )
+VisualDensity.compact = VisualDensity(
+)
+VisualDensity.compact.__ctor = ('compact', )
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -495,7 +501,9 @@ class EdgeInsetsGeometry:
     pass
 
 
-EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(None)
+EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(
+)
+EdgeInsetsGeometry.infinity.__ctor = ('infinity', )
 
 
 # packages/flutter/lib/src/painting/borders.dart
@@ -564,17 +572,39 @@ class FontWeight:
     pass
 
 
-FontWeight.w100 = FontWeight(None)
-FontWeight.w200 = FontWeight(None)
-FontWeight.w300 = FontWeight(None)
-FontWeight.w400 = FontWeight(None)
-FontWeight.w500 = FontWeight(None)
-FontWeight.w600 = FontWeight(None)
-FontWeight.w700 = FontWeight(None)
-FontWeight.w800 = FontWeight(None)
-FontWeight.w900 = FontWeight(None)
-FontWeight.normal = FontWeight(None)
-FontWeight.bold = FontWeight(None)
+FontWeight.w100 = FontWeight(
+)
+FontWeight.w100.__ctor = ('w100', )
+FontWeight.w200 = FontWeight(
+)
+FontWeight.w200.__ctor = ('w200', )
+FontWeight.w300 = FontWeight(
+)
+FontWeight.w300.__ctor = ('w300', )
+FontWeight.w400 = FontWeight(
+)
+FontWeight.w400.__ctor = ('w400', )
+FontWeight.w500 = FontWeight(
+)
+FontWeight.w500.__ctor = ('w500', )
+FontWeight.w600 = FontWeight(
+)
+FontWeight.w600.__ctor = ('w600', )
+FontWeight.w700 = FontWeight(
+)
+FontWeight.w700.__ctor = ('w700', )
+FontWeight.w800 = FontWeight(
+)
+FontWeight.w800.__ctor = ('w800', )
+FontWeight.w900 = FontWeight(
+)
+FontWeight.w900.__ctor = ('w900', )
+FontWeight.normal = FontWeight(
+)
+FontWeight.normal.__ctor = ('normal', )
+FontWeight.bold = FontWeight(
+)
+FontWeight.bold.__ctor = ('bold', )
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -652,10 +682,18 @@ class TextDecoration:
         return _o
 
 
-TextDecoration.none = TextDecoration(None)
-TextDecoration.underline = TextDecoration(None)
-TextDecoration.overline = TextDecoration(None)
-TextDecoration.line_through = TextDecoration(None)
+TextDecoration.none = TextDecoration(
+)
+TextDecoration.none.__ctor = ('none', )
+TextDecoration.underline = TextDecoration(
+)
+TextDecoration.underline.__ctor = ('underline', )
+TextDecoration.overline = TextDecoration(
+)
+TextDecoration.overline.__ctor = ('overline', )
+TextDecoration.line_through = TextDecoration(
+)
+TextDecoration.line_through.__ctor = ('line_through', )
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -697,8 +735,16 @@ class Offset:
         return _o
 
 
-Offset.zero = Offset(None)
-Offset.infinite = Offset(None)
+Offset.zero = Offset(
+    dx=0.0,
+    dy=0.0,
+)
+Offset.zero.__ctor = ('zero', )
+Offset.infinite = Offset(
+    dx=0.0,
+    dy=0.0,
+)
+Offset.infinite.__ctor = ('infinite', )
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -1193,8 +1239,16 @@ class Size:
         return _o
 
 
-Size.zero = Size(None)
-Size.infinite = Size(None)
+Size.zero = Size(
+    width=0.0,
+    height=0.0,
+)
+Size.zero.__ctor = ('zero', )
+Size.infinite = Size(
+    width=0.0,
+    height=0.0,
+)
+Size.infinite.__ctor = ('infinite', )
 
 
 # packages/flutter/lib/src/rendering/box.dart
@@ -1310,7 +1364,9 @@ class Radius:
         return _o
 
 
-Radius.zero = Radius(None)
+Radius.zero = Radius(
+)
+Radius.zero.__ctor = ('zero', )
 
 
 # packages/flutter/lib/src/painting/border_radius.dart
@@ -1386,7 +1442,9 @@ class BorderRadius:
         return _o
 
 
-BorderRadius.zero = BorderRadius(None)
+BorderRadius.zero = BorderRadius(
+)
+BorderRadius.zero.__ctor = ('zero', )
 
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
@@ -1529,7 +1587,9 @@ class BorderSide:
         ))
 
 
-BorderSide.none = BorderSide(None)
+BorderSide.none = BorderSide(
+)
+BorderSide.none.__ctor = ('none', )
 
 
 # packages/flutter/lib/src/material/input_border.dart
@@ -1545,7 +1605,9 @@ class InputBorder:
         ))
 
 
-InputBorder.none = InputBorder(None)
+InputBorder.none = InputBorder(
+)
+InputBorder.none.__ctor = ('none', )
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
@@ -1897,7 +1959,9 @@ class Duration:
         ))
 
 
-Duration.zero = Duration(None)
+Duration.zero = Duration(
+)
+Duration.zero.__ctor = ('zero', )
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
@@ -2157,8 +2221,12 @@ class SystemUiOverlayStyle:
         ))
 
 
-SystemUiOverlayStyle.light = SystemUiOverlayStyle(None)
-SystemUiOverlayStyle.dark = SystemUiOverlayStyle(None)
+SystemUiOverlayStyle.light = SystemUiOverlayStyle(
+)
+SystemUiOverlayStyle.light.__ctor = ('light', )
+SystemUiOverlayStyle.dark = SystemUiOverlayStyle(
+)
+SystemUiOverlayStyle.dark.__ctor = ('dark', )
 
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
@@ -2907,8 +2975,12 @@ class MouseCursor:
     pass
 
 
-MouseCursor.defer = MouseCursor(None)
-MouseCursor.uncontrolled = MouseCursor(None)
+MouseCursor.defer = MouseCursor(
+)
+MouseCursor.defer.__ctor = ('defer', )
+MouseCursor.uncontrolled = MouseCursor(
+)
+MouseCursor.uncontrolled.__ctor = ('uncontrolled', )
 
 
 # packages/flutter/lib/src/painting/alignment.dart

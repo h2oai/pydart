@@ -221,18 +221,6 @@ class PythonTranslator {
     return args.isEmpty ? quote(t.name) : '${t.name}[$args]';
   }
 
-  String stringifyStaticField(PythonStaticField f) {
-    // Python doesn't handle recursive type definitions: static fields of the
-    // same type as the containing class need to be assigned after the class
-    // definition.
-    // TODO Make sure IDE static analysis does not raise false positives.
-    // e.g. EdgeInsetsGeometry.infinity = EdgeInsetsGeometry()
-    //      EdgeInsetsGeometry.infinity.__ctor = (...)
-    return f.isEnumLike
-        ? '${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(None)'
-        : '${f.name}: ${stringifyType(f.type)} = None'; //XXX constant value
-  }
-
   void pushTrace() => _traceDepth += '\t';
 
   void popTrace() => _traceDepth = _traceDepth.substring(1);
@@ -423,7 +411,9 @@ class PythonTranslator {
       // TODO ctor doc
       if (internalStaticFields.isNotEmpty) {
         for (final f in internalStaticFields) {
-          p(stringifyStaticField(f));
+          if (!f.isEnumLike) {
+            p('${f.name}: ${stringifyType(f.type)} = None'); //XXX constant value
+          }
         }
         if (klass.fields.isNotEmpty) {
           p('');
@@ -454,13 +444,7 @@ class PythonTranslator {
         p(') -> ${quote(klass.name)}:');
         p.t(() {
           p('_o = ${klass.name}(');
-          p.t(() {
-            for (final f in klass.sortedFields) {
-              if (!f.isOptional) {
-                p('${f.name}=${_defaultValueOf(f.type)},');
-              }
-            }
-          });
+          _printDefaultCtorArgs(klass);
           p(')');
           p("_o.__ctor = ('${variant.dartName}', (");
           p.t(() {
@@ -482,13 +466,32 @@ class PythonTranslator {
 
     _declaredUnits.add(klass.name);
 
+    // Python doesn't handle recursive type definitions: static fields of the
+    // same type as the containing class need to be assigned after the class
+    // definition.
     if (externalStaticFields.isNotEmpty) {
       p('');
       p('');
       for (final f in externalStaticFields) {
-        p(stringifyStaticField(f));
+        if (f.isEnumLike) {
+          p('${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(');
+          _printDefaultCtorArgs(klass);
+          p(')');
+          // XXX static const ctors need to be distinguished from  static ctors
+          p("${stringifyType(f.type)}.${f.name}.__ctor = ('${f.name}', )");
+        }
       }
     }
+  }
+
+  void _printDefaultCtorArgs(PythonClass klass) {
+    p.t(() {
+      for (final f in klass.sortedFields) {
+        if (!f.isOptional) {
+          p('${f.name}=${_defaultValueOf(f.type)},');
+        }
+      }
+    });
   }
 
   void printEnum(PythonEnum e) {
