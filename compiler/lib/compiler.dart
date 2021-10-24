@@ -384,6 +384,10 @@ class PythonTranslator {
         return '0.0';
       case 'str':
         return "''";
+      case 'List':
+        return '[]';
+      case 'Dict':
+        return '{}';
       case 'Optional':
         return 'None';
       case 'Callable':
