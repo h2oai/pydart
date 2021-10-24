@@ -135,6 +135,13 @@ class PythonType {
   final PythonUnit? unit;
 
   PythonType(this.name, {this.types, this.unit});
+
+  static final PythonType bool = PythonType('bool');
+  static final PythonType int = PythonType('int');
+  static final PythonType float = PythonType('float');
+  static final PythonType str = PythonType('str');
+  static final PythonType any = PythonType('Any');
+  static final PythonType callable = PythonType('Callable');
 }
 
 String snakeCase(String name) => name
@@ -193,9 +200,8 @@ String _unreserved(String name) =>
 class PythonTranslator {
   final p = Printer('    ');
   final _units = <PythonUnit>[];
-  final _processedElements = <Element>{};
-  final _typeCache = <Element, PythonUnit>{};
-  final _declaredUnits = <String>{
+  final _unitCache = <Element, PythonUnit>{};
+  final _declaredNames = <String>{
     'bool',
     'int',
     'float',
@@ -210,7 +216,7 @@ class PythonTranslator {
   final _knownTypeParameters = <String>{};
   String _traceDepth = '';
 
-  String quote(String name) => _declaredUnits.contains(name) ? name : "'$name'";
+  String quote(String name) => _declaredNames.contains(name) ? name : "'$name'";
 
   void trace(Object? o) {
     print('$_traceDepth$o');
@@ -230,14 +236,14 @@ class PythonTranslator {
   void popTrace() => _traceDepth = _traceDepth.substring(1);
 
   PythonType _toType(DartType t) {
-    if (t.isDartCoreBool) return PythonType('bool');
-    if (t.isDartCoreInt) return PythonType('int');
-    if (t.isDartCoreDouble) return PythonType('float');
-    if (t.isDartCoreString) return PythonType('str');
-    if (t.isDynamic) return PythonType('Any');
+    if (t.isDartCoreBool) return PythonType.bool;
+    if (t.isDartCoreInt) return PythonType.int;
+    if (t.isDartCoreDouble) return PythonType.float;
+    if (t.isDartCoreString) return PythonType.str;
+    if (t.isDynamic) return PythonType.any;
 
     if (t is FunctionType) {
-      return PythonType('Callable'); // XXX handle delegates
+      return PythonType.callable; // XXX handle delegates
     }
 
     if (t is InterfaceType) {
@@ -385,9 +391,8 @@ class PythonTranslator {
     final u = t.unit;
     if (u != null) {
       if (u is PythonClass) {
-        final args = u.requiredFields
-            .map((f) => _defaultValueOf(f.type))
-            .join(', ');
+        final args =
+            u.requiredFields.map((f) => _defaultValueOf(f.type)).join(', ');
         return '${u.name}($args)';
       } else if (u is PythonEnum) {
         return '${u.name}.${u.entries.first.name}';
@@ -467,7 +472,7 @@ class PythonTranslator {
       }
     });
 
-    _declaredUnits.add(klass.name);
+    _declaredNames.add(klass.name);
 
     // Python doesn't handle recursive type definitions: static fields of the
     // same type as the containing class need to be assigned after the class
@@ -506,7 +511,7 @@ class PythonTranslator {
       }
     });
 
-    _declaredUnits.add(e.name);
+    _declaredNames.add(e.name);
   }
 
   String getRelativeSourcePath(ClassElement e) {
@@ -519,16 +524,16 @@ class PythonTranslator {
 
   PythonUnit translateElement(ClassElement e) {
     // XXX ctors with _arg not handled (e.g. Locale)
-    if (_typeCache.containsKey(e)) {
-      final unit = _typeCache[e];
+    if (_unitCache.containsKey(e)) {
+      final unit = _unitCache[e];
       if (unit != null) return unit;
       throw 'type not found in cache'; // XXX ugly
     }
-    _typeCache[e] = PythonUnit.placeholder;
+    _unitCache[e] = PythonUnit.placeholder;
 
     final unit = _toUnit(e);
     _units.add(unit);
-    _typeCache[e] = unit;
+    _unitCache[e] = unit;
     return unit;
   }
 
