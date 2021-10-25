@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:path/path.dart' as path;
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
@@ -277,6 +278,16 @@ class PythonTranslator {
       }
     }
 
+    if (t is TypeParameterType) {
+      // Treat X<T extends Y> as X<Y>
+      // .isDynamic is false if the type parameter has bounds.
+      final type =
+          t.bound.isDynamic ? PythonType(t.element.name) : _toType(t.bound);
+      return t.nullabilitySuffix == NullabilitySuffix.question
+          ? _toOptional(type)
+          : type;
+    }
+
     throw 'cannot translate $t';
   }
 
@@ -315,6 +326,7 @@ class PythonTranslator {
     } else {
       // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
       // XXX find and include implementers; recurse before adding abstract class
+
       final staticFields = e.fields
           .where((f) => f.isStatic)
           .whereType<ConstFieldElementImpl>()
