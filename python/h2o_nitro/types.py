@@ -2183,24 +2183,31 @@ class NavigationRailThemeData:
         ))
 
 
+def _typography__text_theme(_k: str) -> TextTheme:
+    _o = TextTheme(
+    )
+    _o.__ctor = (('Typography', _k),)
+    return _o
+
+
 # packages/flutter/lib/src/material/typography.dart
 class Typography:
-    black_mountain_view: TextTheme = None
-    white_mountain_view: TextTheme = None
-    black_redmond: TextTheme = None
-    white_redmond: TextTheme = None
-    black_helsinki: TextTheme = None
-    white_helsinki: TextTheme = None
-    black_cupertino: TextTheme = None
-    white_cupertino: TextTheme = None
-    black_redwood_city: TextTheme = None
-    white_redwood_city: TextTheme = None
-    english_like2014: TextTheme = None
-    english_like2018: TextTheme = None
-    dense2014: TextTheme = None
-    dense2018: TextTheme = None
-    tall2014: TextTheme = None
-    tall2018: TextTheme = None
+    black_mountain_view: TextTheme = _typography__text_theme('black_mountain_view')
+    white_mountain_view: TextTheme = _typography__text_theme('white_mountain_view')
+    black_redmond: TextTheme = _typography__text_theme('black_redmond')
+    white_redmond: TextTheme = _typography__text_theme('white_redmond')
+    black_helsinki: TextTheme = _typography__text_theme('black_helsinki')
+    white_helsinki: TextTheme = _typography__text_theme('white_helsinki')
+    black_cupertino: TextTheme = _typography__text_theme('black_cupertino')
+    white_cupertino: TextTheme = _typography__text_theme('white_cupertino')
+    black_redwood_city: TextTheme = _typography__text_theme('black_redwood_city')
+    white_redwood_city: TextTheme = _typography__text_theme('white_redwood_city')
+    english_like2014: TextTheme = _typography__text_theme('english_like2014')
+    english_like2018: TextTheme = _typography__text_theme('english_like2018')
+    dense2014: TextTheme = _typography__text_theme('dense2014')
+    dense2018: TextTheme = _typography__text_theme('dense2018')
+    tall2014: TextTheme = _typography__text_theme('tall2014')
+    tall2018: TextTheme = _typography__text_theme('tall2018')
 
     def __init__(
             self,
@@ -3202,9 +3209,16 @@ class DoNothingIntent:
     pass
 
 
+def _intent__do_nothing_intent(_k: str) -> DoNothingIntent:
+    _o = DoNothingIntent(
+    )
+    _o.__ctor = (('Intent', _k),)
+    return _o
+
+
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent:
-    do_nothing: DoNothingIntent = None
+    do_nothing: DoNothingIntent = _intent__do_nothing_intent('do_nothing')
     pass
 
 

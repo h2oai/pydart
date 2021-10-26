@@ -115,10 +115,12 @@ class PythonVariant {
 
 class PythonStaticField {
   final String name;
+  final String dartName;
   final PythonType type;
   final bool isEnumLike;
 
-  PythonStaticField(this.name, this.type, {this.isEnumLike = false});
+  PythonStaticField(this.name, this.dartName, this.type,
+      {this.isEnumLike = false});
 }
 
 class PythonField {
@@ -304,7 +306,7 @@ class PythonTranslator {
   PythonStaticField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
     trace('\t$f');
     final type = _toType(f.type);
-    return PythonStaticField(snakeCase(f.name), type,
+    return PythonStaticField(snakeCase(f.name), f.name, type,
         isEnumLike: f.type.element == e);
   }
 
@@ -420,27 +422,53 @@ class PythonTranslator {
   }
 
   void printClass(PythonClass klass) {
+    final typeVars = klass.typeParameters.join(', ');
+    final base = typeVars.isEmpty ? '' : '(Generic[$typeVars])';
+    final internalStaticFields = klass.staticFields.where((f) => !f.isEnumLike);
+    final externalStaticFields = klass.staticFields.where((f) => f.isEnumLike);
+
+    final constBuilders = <String, PythonStaticField>{};
+    for (final f in internalStaticFields) {
+      final unit = f.type.unit;
+      if (unit != null && unit is PythonClass) {
+        constBuilders[stringifyType(f.type)] = f;
+      }
+    }
+
+    for (final entry in constBuilders.entries) {
+      final type = entry.key;
+      final f = entry.value;
+      final unit = f.type.unit;
+      if (unit != null && unit is PythonClass) {
+        p('');
+        p('');
+        p('def _${snakeCase(klass.name)}__${snakeCase(type)}(_k: str) -> $type:');
+        p.t(() {
+          p('_o = $type(');
+          _printDefaultCtorArgs(unit);
+          p(')');
+          p("_o.__ctor = (('${klass.name}', _k),)");
+          p('return _o');
+        });
+      }
+    }
+
     p('');
     p('');
     p('# ${klass.path}');
-
-    final typeVars = klass.typeParameters.join(', ');
-    final base = typeVars.isEmpty ? '' : '(Generic[$typeVars])';
     p('class ${klass.name}$base:');
-
-    final internalStaticFields = klass.staticFields.where((f) => !f.isEnumLike);
-    final externalStaticFields = klass.staticFields.where((f) => f.isEnumLike);
 
     p.t(() {
       // TODO class doc
       // TODO ctor doc
       if (internalStaticFields.isNotEmpty) {
         for (final f in internalStaticFields) {
-          // XXX Typography.black_mountain_view: TextTheme = None
-          // ^ needs ctor marker for TextTheme on Typography
-
-          if (!f.isEnumLike) {
-            p('${f.name}: ${stringifyType(f.type)} = None'); //XXX constant value
+          final unit = f.type.unit;
+          final type = stringifyType(f.type);
+          if (unit != null) {
+            p("${f.name}: $type = _${snakeCase(klass.name)}__${snakeCase(type)}('${f.name}')");
+          } else {
+            p('${f.name}: $type = None'); //XXX constant value
           }
         }
         if (klass.fields.isNotEmpty) {
