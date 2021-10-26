@@ -1,12 +1,14 @@
 import 'dart:io';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:path/path.dart' as path;
+
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/nullability_suffix.dart';
+import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/element.dart'
     show ConstFieldElementImpl;
+import 'package:path/path.dart' as path;
 
 void compile(String loaderPath, String outputDir) {
   _analyze(path.normalize(File(loaderPath).absolute.path))
@@ -117,10 +119,11 @@ class PythonStaticField {
   final String name;
   final String dartName;
   final PythonType type;
+  final String value;
   final bool isEnumLike;
 
-  PythonStaticField(this.name, this.dartName, this.type,
-      {this.isEnumLike = false});
+  PythonStaticField(
+      this.name, this.dartName, this.type, this.value, this.isEnumLike);
 }
 
 class PythonField {
@@ -303,11 +306,45 @@ class PythonTranslator {
         required ? type : _toOptional(type), !required);
   }
 
+  static const unknown = 'UNKNOWN';
+
+  String _toConst(DartObject? o) {
+    if (o == null) return unknown;
+
+    final t = o.type;
+    if (t == null) return unknown;
+
+    if (t.isDartCoreBool) {
+      final v = o.toBoolValue();
+      if (v != null) return v ? 'True' : 'False';
+    } else if (t.isDartCoreInt) {
+      final v = o.toIntValue();
+      if (v != null) return '$v';
+    } else if (t.isDartCoreDouble) {
+      final v = o.toDoubleValue();
+      if (v != null) return '$v';
+    } else if (t.isDartCoreString) {
+      final v = o.toStringValue();
+      if (v != null) return "'$v'"; // XXX quote string
+    } else if (t.isDartCoreList) {
+      final l = o.toListValue();
+      if (l != null) {
+        final vs = l.map(_toConst).join(', ');
+        return '[$vs]';
+      }
+    }
+
+    return unknown;
+  }
+
   PythonStaticField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
     trace('\t$f');
     final type = _toType(f.type);
-    return PythonStaticField(snakeCase(f.name), f.name, type,
-        isEnumLike: f.type.element == e);
+    final value = _toConst(f.computeConstantValue());
+    final isEnumLike = f.type.element == e;
+    // XXX handle !isEnumLike && value == unknown
+    return PythonStaticField(
+        snakeCase(f.name), f.name, type, value, isEnumLike);
   }
 
   List<PythonField> _toFields(List<ParameterElement> params) =>
@@ -468,7 +505,7 @@ class PythonTranslator {
           if (unit != null) {
             p("${f.name}: $type = _${snakeCase(klass.name)}__${snakeCase(type)}('${f.name}')");
           } else {
-            p('${f.name}: $type = None'); //XXX constant value
+            p('${f.name}: $type = ${f.value}');
           }
         }
         if (klass.fields.isNotEmpty) {
@@ -542,6 +579,7 @@ class PythonTranslator {
   void _printDefaultCtorArgs(PythonClass klass) {
     p.t(() {
       for (final f in klass.requiredFields) {
+        // XXX use analyzer to eval original values?
         p('${f.name}=${_defaultValueOf(f.type)},');
       }
     });

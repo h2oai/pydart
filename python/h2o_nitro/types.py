@@ -124,8 +124,8 @@ class Color:
 
 # packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity:
-    minimum_density: float = None
-    maximum_density: float = None
+    minimum_density: float = -4.0
+    maximum_density: float = 4.0
 
     def __init__(
             self,
@@ -519,7 +519,7 @@ class ButtonThemeData:
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontWeight:
-    values: List['FontWeight'] = None
+    values: List['FontWeight'] = [UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN]
     pass
 
 
@@ -1729,21 +1729,21 @@ class TabBarTheme:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration:
-    microseconds_per_millisecond: int = None
-    milliseconds_per_second: int = None
-    seconds_per_minute: int = None
-    minutes_per_hour: int = None
-    hours_per_day: int = None
-    microseconds_per_second: int = None
-    microseconds_per_minute: int = None
-    microseconds_per_hour: int = None
-    microseconds_per_day: int = None
-    milliseconds_per_minute: int = None
-    milliseconds_per_hour: int = None
-    milliseconds_per_day: int = None
-    seconds_per_hour: int = None
-    seconds_per_day: int = None
-    minutes_per_day: int = None
+    microseconds_per_millisecond: int = 1000
+    milliseconds_per_second: int = 1000
+    seconds_per_minute: int = 60
+    minutes_per_hour: int = 60
+    hours_per_day: int = 24
+    microseconds_per_second: int = 1000000
+    microseconds_per_minute: int = 60000000
+    microseconds_per_hour: int = 3600000000
+    microseconds_per_day: int = 86400000000
+    milliseconds_per_minute: int = 60000
+    milliseconds_per_hour: int = 3600000
+    milliseconds_per_day: int = 86400000
+    seconds_per_hour: int = 3600
+    seconds_per_day: int = 86400
+    minutes_per_day: int = 1440
 
     def __init__(
             self,
