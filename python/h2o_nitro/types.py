@@ -519,7 +519,6 @@ class ButtonThemeData:
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontWeight:
-    values: List['FontWeight'] = [UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN]
     pass
 
 

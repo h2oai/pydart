@@ -241,6 +241,21 @@ class PythonTranslator {
 
   void popTrace() => _traceDepth = _traceDepth.substring(1);
 
+  // TODO is there a simpler way to determine this?
+  bool _hasInterface(DartType t, List<String> names) {
+    if (t is InterfaceType) {
+      final location = t.element.location;
+      if (location != null) {
+        final components = location.components;
+        for (final name in names) {
+          if (!components.contains(name)) return false;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
   PythonType _toType(DartType t) {
     if (t.isDartCoreBool) return PythonType.bool;
     if (t.isDartCoreInt) return PythonType.int;
@@ -262,18 +277,12 @@ class PythonTranslator {
         return PythonType(t.element.name, unit: unit);
       } else {
         final types = typeArgs.map(_toType).toList(); // recurse
-        final location = t.element.location;
-        if (location != null) {
-          final components = location.components;
-          if (components.contains('dart:core')) {
-            if (components.contains('Iterable')) {
-              return PythonType('Iterable', types: types);
-            } else if (components.contains('List')) {
-              return PythonType('List', types: types);
-            } else if (components.contains('Map')) {
-              return PythonType('Dict', types: types);
-            }
-          }
+        if (_hasInterface(t, ['dart:core', 'Iterable'])) {
+          return PythonType('Iterable', types: types);
+        } else if (_hasInterface(t, ['dart:core', 'List'])) {
+          return PythonType('List', types: types);
+        } else if (_hasInterface(t, ['dart:core', 'Map'])) {
+          return PythonType('Dict', types: types);
         }
         // recurse: Python requires forward declaration
         pushTrace();
@@ -370,8 +379,11 @@ class PythonTranslator {
           .where((f) => f.isStatic)
           .whereType<ConstFieldElementImpl>()
           .where((f) => !_isPrivateSymbol(f.name))
+          // Ignore FontWeight.values, etc.
+          .where((f) => !_hasInterface(f.type, ['dart:core', 'List']))
           .map((f) => _toStaticField(e, f))
           .toList();
+
       final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
 
       final variants = e.constructors
