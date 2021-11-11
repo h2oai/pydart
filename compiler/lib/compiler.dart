@@ -525,7 +525,7 @@ class PythonTranslator {
           final type = stringifyType(f.type);
           if (unit != null) {
             final name = _toStaticFieldInitializerName(klass.name, type);
-            p("${f.name}: $type = $name('${f.name}')");
+            p("${f.name}: $type = $name('${f.dartName}')");
           } else {
             p('${f.name}: $type = ${f.value}');
           }

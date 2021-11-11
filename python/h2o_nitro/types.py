@@ -2191,18 +2191,18 @@ def _typography__text_theme(_k: str) -> TextTheme:
 
 # packages/flutter/lib/src/material/typography.dart
 class Typography:
-    black_mountain_view: TextTheme = _typography__text_theme('black_mountain_view')
-    white_mountain_view: TextTheme = _typography__text_theme('white_mountain_view')
-    black_redmond: TextTheme = _typography__text_theme('black_redmond')
-    white_redmond: TextTheme = _typography__text_theme('white_redmond')
-    black_helsinki: TextTheme = _typography__text_theme('black_helsinki')
-    white_helsinki: TextTheme = _typography__text_theme('white_helsinki')
-    black_cupertino: TextTheme = _typography__text_theme('black_cupertino')
-    white_cupertino: TextTheme = _typography__text_theme('white_cupertino')
-    black_redwood_city: TextTheme = _typography__text_theme('black_redwood_city')
-    white_redwood_city: TextTheme = _typography__text_theme('white_redwood_city')
-    english_like2014: TextTheme = _typography__text_theme('english_like2014')
-    english_like2018: TextTheme = _typography__text_theme('english_like2018')
+    black_mountain_view: TextTheme = _typography__text_theme('blackMountainView')
+    white_mountain_view: TextTheme = _typography__text_theme('whiteMountainView')
+    black_redmond: TextTheme = _typography__text_theme('blackRedmond')
+    white_redmond: TextTheme = _typography__text_theme('whiteRedmond')
+    black_helsinki: TextTheme = _typography__text_theme('blackHelsinki')
+    white_helsinki: TextTheme = _typography__text_theme('whiteHelsinki')
+    black_cupertino: TextTheme = _typography__text_theme('blackCupertino')
+    white_cupertino: TextTheme = _typography__text_theme('whiteCupertino')
+    black_redwood_city: TextTheme = _typography__text_theme('blackRedwoodCity')
+    white_redwood_city: TextTheme = _typography__text_theme('whiteRedwoodCity')
+    english_like2014: TextTheme = _typography__text_theme('englishLike2014')
+    english_like2018: TextTheme = _typography__text_theme('englishLike2018')
     dense2014: TextTheme = _typography__text_theme('dense2014')
     dense2018: TextTheme = _typography__text_theme('dense2018')
     tall2014: TextTheme = _typography__text_theme('tall2014')
@@ -3217,7 +3217,7 @@ def _intent__do_nothing_intent(_k: str) -> DoNothingIntent:
 
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent:
-    do_nothing: DoNothingIntent = _intent__do_nothing_intent('do_nothing')
+    do_nothing: DoNothingIntent = _intent__do_nothing_intent('doNothing')
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
