@@ -311,7 +311,7 @@ class PythonTranslator {
     trace('\t$param');
     final type = _toType(param.type);
     final required = param.isRequiredNamed || param.isRequiredPositional;
-    return PythonField(snakeCase(param.name), param.name,
+    return PythonField(_unreserved(snakeCase(param.name)), param.name,
         required ? type : _toOptional(type), !required);
   }
 
