@@ -574,7 +574,8 @@ class PythonTranslator {
 
       if (klass.fields.isEmpty &&
           klass.fields.isEmpty &&
-          klass.variants.isEmpty) {
+          klass.variants.isEmpty &&
+          internalStaticFields.isEmpty) {
         p('pass');
       }
     });

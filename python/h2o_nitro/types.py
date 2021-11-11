@@ -3218,7 +3218,6 @@ def _intent__do_nothing_intent(_k: str) -> DoNothingIntent:
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent:
     do_nothing: DoNothingIntent = _intent__do_nothing_intent('do_nothing')
-    pass
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
