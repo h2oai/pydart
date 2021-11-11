@@ -369,8 +369,9 @@ class PythonTranslator {
           e.fields
               .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
               .toList());
-    } else if (e.isMixin) {
-      throw 'cannot translate mixins';
+      // } else if (e.isMixin) {
+      //  // XXX translate?
+      //  throw 'cannot translate mixins';
     } else {
       // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
       // XXX find and include implementers; recurse before adding abstract class
