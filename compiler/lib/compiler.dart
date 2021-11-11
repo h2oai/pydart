@@ -471,6 +471,13 @@ class PythonTranslator {
     throw 'could not determine default value for ${t.name}';
   }
 
+  String _toStaticFieldInitializerName(String className, String type) {
+    final ctorExtn = type
+        .replaceAll(RegExp(r'[\]]'), '')
+        .replaceAll(RegExp(r'[\[]'), '_of_');
+    return snakeCase("_${className}__$ctorExtn");
+  }
+
   void printClass(PythonClass klass) {
     final typeVars = klass.typeParameters.join(', ');
     final base = typeVars.isEmpty ? '' : '(Generic[$typeVars])';
@@ -492,7 +499,8 @@ class PythonTranslator {
       if (unit != null && unit is PythonClass) {
         p('');
         p('');
-        p('def _${snakeCase(klass.name)}__${snakeCase(type)}(_k: str) -> $type:');
+        final name = _toStaticFieldInitializerName(klass.name, type);
+        p('def $name(_k: str) -> $type:');
         p.t(() {
           p('_o = $type(');
           _printDefaultCtorArgs(unit);
@@ -516,7 +524,8 @@ class PythonTranslator {
           final unit = f.type.unit;
           final type = stringifyType(f.type);
           if (unit != null) {
-            p("${f.name}: $type = _${snakeCase(klass.name)}__${snakeCase(type)}('${f.name}')");
+            final name = _toStaticFieldInitializerName(klass.name, type);
+            p("${f.name}: $type = $name('${f.name}')");
           } else {
             p('${f.name}: $type = ${f.value}');
           }
