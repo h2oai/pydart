@@ -1819,8 +1819,13 @@ class TabBarTheme(Object):
         ))
 
 
+# bin/cache/pkg/sky_engine/lib/core/comparable.dart
+class Comparable(Generic[T], Object):
+    pass
+
+
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
-class Duration(Object):
+class Duration(Object, Comparable):
     microseconds_per_millisecond: int = 1000
     milliseconds_per_second: int = 1000
     seconds_per_minute: int = 60

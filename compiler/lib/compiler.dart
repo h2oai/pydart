@@ -83,6 +83,7 @@ List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
 
 class PythonClass extends PythonUnit {
   final List<PythonClass> supertypes;
+  final List<PythonClass> interfaces;
   final List<PythonField> fields;
   final List<PythonStaticField> staticFields;
   final List<PythonVariant> variants;
@@ -91,6 +92,7 @@ class PythonClass extends PythonUnit {
 
   PythonClass(String path, String name,
       {required this.supertypes,
+      required this.interfaces,
       required this.fields,
       required this.variants,
       required this.staticFields,
@@ -274,7 +276,7 @@ class PythonTranslator {
       if (typeArgs.isEmpty) {
         // recurse: Python requires forward declaration
         pushTrace();
-        final unit = translateElement(t.element);
+        final unit = _toUnit(t.element);
         popTrace();
         return PythonType(t.element.name, unit: unit);
       } else {
@@ -288,7 +290,7 @@ class PythonTranslator {
         }
         // recurse: Python requires forward declaration
         pushTrace();
-        final unit = translateElement(t.element);
+        final unit = _toUnit(t.element);
         popTrace();
         return PythonType(t.element.name, types: types, unit: unit);
       }
@@ -383,8 +385,9 @@ class PythonTranslator {
     // XXX find and include implementers; recurse before adding abstract class
 
     final supertype = e.supertype;
-    final supertypeUnit =
-        supertype != null ? translateElement(supertype.element) : null;
+    final supertypeUnit = supertype != null ? _toUnit(supertype.element) : null;
+
+    final interfaces = e.interfaces.map((i) => _toUnit(i.element));
 
     final staticFields = e.fields
         .where((f) => f.isStatic)
@@ -412,6 +415,7 @@ class PythonTranslator {
 
     return PythonClass(sourcePath, e.name,
         supertypes: supertypeUnit is PythonClass ? [supertypeUnit] : [],
+        interfaces: interfaces.whereType<PythonClass>().toList(),
         fields: fields,
         variants: variants,
         staticFields: staticFields,
@@ -497,9 +501,12 @@ class PythonTranslator {
     for (final st in klass.supertypes) {
       // TODO flag abstract/interface supertypes accordingly
       // TODO ensure supertype is already emitted
-      // TODO ignore Object supertype?
       // TODO might conflict with Generic[T] type annotation or trip type-checker
+      // TODO don't emit Object if already in hierarchy (e.g. class PreferredSizeWidget(Object, Widget))
       supertypes.add(st.name);
+    }
+    for (final i in klass.interfaces) {
+      supertypes.add(i.name);
     }
     final base = supertypes.isEmpty ? '' : "(${supertypes.join(', ')})";
 
@@ -652,7 +659,7 @@ class PythonTranslator {
     return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
   }
 
-  PythonUnit translateElement(ClassElement e) {
+  PythonUnit _toUnit(ClassElement e) {
     // XXX ctors with _arg not handled (e.g. Locale)
     if (_unitCache.containsKey(e)) {
       final unit = _unitCache[e];
@@ -690,7 +697,7 @@ class PythonTranslator {
     for (final e in elements) {
       if (e is! ClassElement) continue;
       if (!widgetWhitelist.contains(e.name)) continue;
-      translateElement(e);
+      _toUnit(e);
     }
 
     return _emitAll();
