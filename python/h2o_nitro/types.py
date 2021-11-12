@@ -4,6 +4,16 @@ from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Di
 T = TypeVar('T')
 
 
+# bin/cache/pkg/sky_engine/lib/core/object.dart
+class Object:
+    pass
+
+
+# packages/flutter/lib/src/foundation/diagnostics.dart
+class DiagnosticableTree(Object):
+    pass
+
+
 # packages/flutter/lib/src/foundation/key.dart
 class Key(Object):
     def __init__(
@@ -23,6 +33,33 @@ class Key(Object):
         _o.__ctor = (('empty',), (
         ))
         return _o
+
+
+# packages/flutter/lib/src/widgets/framework.dart
+class Widget(DiagnosticableTree):
+    def __init__(
+            self,
+            key: Optional[Key] = None,
+    ):
+        self.__ctor = (('',), (
+            'key', key,
+        ))
+
+
+# packages/flutter/lib/src/widgets/framework.dart
+class StatefulWidget(Widget):
+    def __init__(
+            self,
+            key: Optional[Key] = None,
+    ):
+        self.__ctor = (('',), (
+            'key', key,
+        ))
+
+
+# packages/flutter/lib/src/widgets/framework.dart
+class State(Generic[T], Object):
+    pass
 
 
 # packages/flutter/lib/src/material/scaffold.dart
@@ -65,13 +102,13 @@ class Listenable(Object):
         return _o
 
 
-# packages/flutter/lib/src/widgets/router.dart
-class RouteInformationProvider(ValueListenable):
+# packages/flutter/lib/src/foundation/change_notifier.dart
+class ValueListenable(Generic[T], Listenable):
     pass
 
 
-# bin/cache/pkg/sky_engine/lib/core/object.dart
-class Object:
+# packages/flutter/lib/src/widgets/router.dart
+class RouteInformationProvider(ValueListenable):
     pass
 
 
@@ -82,6 +119,11 @@ class RouteInformationParser(Generic[T], Object):
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouterDelegate(Generic[T], Listenable):
+    pass
+
+
+# packages/flutter/lib/src/widgets/router.dart
+class _CallbackHookProvider(Generic[T], Object):
     pass
 
 
@@ -207,6 +249,19 @@ class ButtonBarLayoutBehavior(Enum):
     values = 'values'
     constrained = 'constrained'
     padded = 'padded'
+
+
+# packages/flutter/lib/src/painting/colors.dart
+class ColorSwatch(Generic[T], Color):
+    def __init__(
+            self,
+            primary: int,
+            _swatch: Dict['T', Color],
+    ):
+        self.__ctor = (('',), (
+            'primary', primary,
+            '_swatch', _swatch,
+        ))
 
 
 # packages/flutter/lib/src/material/colors.dart
@@ -628,6 +683,19 @@ class Locale(Object):
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint(Object):
     pass
+
+
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
+class OffsetBase(Object):
+    def __init__(
+            self,
+            _dx: float,
+            _dy: float,
+    ):
+        self.__ctor = (('',), (
+            '_dx', _dx,
+            '_dy', _dy,
+        ))
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -1093,6 +1161,11 @@ class TextStyle(Object):
         ))
 
 
+# packages/flutter/lib/src/rendering/object.dart
+class Constraints(Object):
+    pass
+
+
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size(OffsetBase):
     def __init__(
@@ -1259,6 +1332,11 @@ class BoxConstraints(Constraints):
             'height', height,
         ))
         return _o
+
+
+# packages/flutter/lib/src/painting/border_radius.dart
+class BorderRadiusGeometry(Object):
+    pass
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -3219,7 +3297,7 @@ class ShortcutActivator(Object):
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class DoNothingIntent(Intent):
+class DoNothingIntent:
     pass
 
 
@@ -3253,17 +3331,6 @@ class ScrollBehavior(Object):
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorState(State):
     pass
-
-
-# packages/flutter/lib/src/widgets/framework.dart
-class Widget(DiagnosticableTree):
-    def __init__(
-            self,
-            key: Optional[Key] = None,
-    ):
-        self.__ctor = (('',), (
-            'key', key,
-        ))
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -3439,6 +3506,31 @@ class FocusNode(Object):
             'skipTraversal', skip_traversal,
             'canRequestFocus', can_request_focus,
             'descendantsAreFocusable', descendants_are_focusable,
+        ))
+
+
+# packages/flutter/lib/src/material/button_style_button.dart
+class ButtonStyleButton(StatefulWidget):
+    def __init__(
+            self,
+            on_pressed: Callable,
+            on_long_press: Callable,
+            style: ButtonStyle,
+            focus_node: FocusNode,
+            autofocus: bool,
+            clip_behavior: Clip,
+            child: Widget,
+            key: Optional[Key] = None,
+    ):
+        self.__ctor = (('',), (
+            'key', key,
+            'onPressed', on_pressed,
+            'onLongPress', on_long_press,
+            'style', style,
+            'focusNode', focus_node,
+            'autofocus', autofocus,
+            'clipBehavior', clip_behavior,
+            'child', child,
         ))
 
 

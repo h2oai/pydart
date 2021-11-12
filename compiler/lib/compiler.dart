@@ -384,7 +384,7 @@ class PythonTranslator {
 
     final supertype = e.supertype;
     final supertypeUnit =
-        supertype != null ? _toClass(supertype.element) : null;
+        supertype != null ? translateElement(supertype.element) : null;
 
     final staticFields = e.fields
         .where((f) => f.isStatic)
@@ -411,22 +411,18 @@ class PythonTranslator {
     _knownTypeParameters.addAll(typeParameters);
 
     return PythonClass(sourcePath, e.name,
-        supertypes: supertypeUnit != null ? [supertypeUnit] : [],
+        supertypes: supertypeUnit is PythonClass ? [supertypeUnit] : [],
         fields: fields,
         variants: variants,
         staticFields: staticFields,
         typeParameters: typeParameters);
   }
 
-  PythonUnit _toUnit(ClassElement e) {
-    return e.isEnum ? _toEnum(e) : _toClass(e);
-  }
-
   bool _isPrivateSymbol(String name) {
     return name.startsWith(r'_');
   }
 
-  void printParameters(List<PythonField> fields, {isMethod = true}) {
+  void emitParameters(List<PythonField> fields, {isMethod = true}) {
     p.t(() {
       p.t(() {
         if (isMethod) {
@@ -443,7 +439,7 @@ class PythonTranslator {
     });
   }
 
-  void printInitialization(List<PythonField> fields) {
+  void emitInitialization(List<PythonField> fields) {
     if (fields.isEmpty) {
       return p('pass');
     }
@@ -492,7 +488,7 @@ class PythonTranslator {
     return snakeCase("_${className}__$ctorExtn");
   }
 
-  void printClass(PythonClass klass) {
+  void _emitClass(PythonClass klass) {
     final supertypes = <String>[];
     if (klass.typeParameters.isNotEmpty) {
       final typeVars = klass.typeParameters.join(', ');
@@ -529,7 +525,7 @@ class PythonTranslator {
         p('def $name(_k: str) -> $type:');
         p.t(() {
           p('_o = $type(');
-          _printDefaultCtorArgs(unit);
+          _emitDefaultCtorArgs(unit);
           p(')');
           p("_o.__ctor = (('${klass.name}', _k),)");
           p('return _o');
@@ -563,7 +559,7 @@ class PythonTranslator {
 
       if (klass.fields.isNotEmpty) {
         p('def __init__(');
-        printParameters(klass.sortedFields);
+        emitParameters(klass.sortedFields);
         p('):');
         p.t(() {
           // printInitialization(klass.sortedFields);
@@ -581,11 +577,11 @@ class PythonTranslator {
         p('');
         p('@staticmethod');
         p('def ${variant.name}(');
-        printParameters(variant.sortedFields, isMethod: false);
+        emitParameters(variant.sortedFields, isMethod: false);
         p(') -> ${quote(klass.name)}:');
         p.t(() {
           p('_o = ${klass.name}(');
-          _printDefaultCtorArgs(klass);
+          _emitDefaultCtorArgs(klass);
           p(')');
           p("_o.__ctor = (('${variant.dartName}',), (");
           p.t(() {
@@ -617,7 +613,7 @@ class PythonTranslator {
       for (final f in externalStaticFields) {
         if (f.isEnumLike) {
           p('${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(');
-          _printDefaultCtorArgs(klass);
+          _emitDefaultCtorArgs(klass);
           p(')');
           p("${stringifyType(f.type)}.${f.name}.__ctor = ('${f.name}', )");
         }
@@ -625,7 +621,7 @@ class PythonTranslator {
     }
   }
 
-  void _printDefaultCtorArgs(PythonClass klass) {
+  void _emitDefaultCtorArgs(PythonClass klass) {
     p.t(() {
       for (final f in klass.requiredFields) {
         // XXX use analyzer to eval original values?
@@ -634,7 +630,7 @@ class PythonTranslator {
     });
   }
 
-  void printEnum(PythonEnum e) {
+  void _emitEnum(PythonEnum e) {
     p('');
     p('');
     p('# ${e.path}');
@@ -665,13 +661,13 @@ class PythonTranslator {
     }
     _unitCache[e] = PythonUnit.placeholder;
 
-    final unit = _toUnit(e);
+    final unit = e.isEnum ? _toEnum(e) : _toClass(e);
     _units.add(unit);
     _unitCache[e] = unit;
     return unit;
   }
 
-  String printAll() {
+  String _emitAll() {
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
     p('');
@@ -681,9 +677,9 @@ class PythonTranslator {
 
     for (final unit in _units) {
       if (unit is PythonClass) {
-        printClass(unit);
+        _emitClass(unit);
       } else if (unit is PythonEnum) {
-        printEnum(unit);
+        _emitEnum(unit);
       }
     }
 
@@ -697,7 +693,7 @@ class PythonTranslator {
       translateElement(e);
     }
 
-    return printAll();
+    return _emitAll();
   }
 }
 
