@@ -82,6 +82,7 @@ List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
 }
 
 class PythonClass extends PythonUnit {
+  final List<PythonClass> supertypes;
   final List<PythonField> fields;
   final List<PythonStaticField> staticFields;
   final List<PythonVariant> variants;
@@ -89,7 +90,8 @@ class PythonClass extends PythonUnit {
   final List<String> typeParameters;
 
   PythonClass(String path, String name,
-      {required this.fields,
+      {required this.supertypes,
+      required this.fields,
       required this.variants,
       required this.staticFields,
       required this.typeParameters})
@@ -359,53 +361,65 @@ class PythonTranslator {
   List<PythonField> _toFields(List<ParameterElement> params) =>
       params.map(_toField).toList();
 
-  PythonUnit _toUnit(ClassElement e) {
+  PythonEnum _toEnum(ClassElement e) {
+    assert(e.isEnum);
     final sourcePath = getRelativeSourcePath(e);
     trace('$e\t$sourcePath');
-    if (e.isEnum) {
-      return PythonEnum(
-          sourcePath,
-          e.name,
-          e.fields
-              .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
-              .toList());
-      // } else if (e.isMixin) {
-      //  // XXX translate?
-      //  throw 'cannot translate mixins';
-    } else {
-      // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
-      // XXX find and include implementers; recurse before adding abstract class
 
-      final staticFields = e.fields
-          .where((f) => f.isStatic)
-          .whereType<ConstFieldElementImpl>()
-          .where((f) => !_isPrivateSymbol(f.name))
-          // Ignore FontWeight.values, etc.
-          .where((f) => !_hasInterface(f.type, ['dart:core', 'List']))
-          .map((f) => _toStaticField(e, f))
-          .toList();
+    return PythonEnum(
+        sourcePath,
+        e.name,
+        e.fields
+            .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
+            .toList());
+  }
 
-      final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
+  PythonClass _toClass(ClassElement e) {
+    assert(!e.isEnum);
+    final sourcePath = getRelativeSourcePath(e);
+    trace('$e\t$sourcePath');
+    // TODO special handling for mixins?
+    // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
+    // XXX find and include implementers; recurse before adding abstract class
 
-      final variants = e.constructors
-          .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
-          .map((c) => PythonVariant(
-              _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
-          .toList();
+    final supertype = e.supertype;
+    final supertypeUnit =
+        supertype != null ? _toClass(supertype.element) : null;
 
-      final fields = _toFields(defaultConstructor.isNotEmpty
-          ? defaultConstructor.first.parameters
-          : []);
+    final staticFields = e.fields
+        .where((f) => f.isStatic)
+        .whereType<ConstFieldElementImpl>()
+        .where((f) => !_isPrivateSymbol(f.name))
+        // Ignore FontWeight.values, etc.
+        .where((f) => !_hasInterface(f.type, ['dart:core', 'List']))
+        .map((f) => _toStaticField(e, f))
+        .toList();
 
-      final typeParameters = e.typeParameters.map((t) => t.name).toList();
-      _knownTypeParameters.addAll(typeParameters);
+    final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
 
-      return PythonClass(sourcePath, e.name,
-          fields: fields,
-          variants: variants,
-          staticFields: staticFields,
-          typeParameters: typeParameters);
-    }
+    final variants = e.constructors
+        .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
+        .map((c) => PythonVariant(
+            _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
+        .toList();
+
+    final fields = _toFields(defaultConstructor.isNotEmpty
+        ? defaultConstructor.first.parameters
+        : []);
+
+    final typeParameters = e.typeParameters.map((t) => t.name).toList();
+    _knownTypeParameters.addAll(typeParameters);
+
+    return PythonClass(sourcePath, e.name,
+        supertypes: supertypeUnit != null ? [supertypeUnit] : [],
+        fields: fields,
+        variants: variants,
+        staticFields: staticFields,
+        typeParameters: typeParameters);
+  }
+
+  PythonUnit _toUnit(ClassElement e) {
+    return e.isEnum ? _toEnum(e) : _toClass(e);
   }
 
   bool _isPrivateSymbol(String name) {

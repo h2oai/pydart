@@ -50,6 +50,21 @@ class GlobalKey(Generic[T]):
         return _o
 
 
+# packages/flutter/lib/src/foundation/change_notifier.dart
+class Listenable(Object):
+
+    @staticmethod
+    def merge(
+            listenables: List['Listenable'],
+    ) -> 'Listenable':
+        _o = Listenable(
+        )
+        _o.__ctor = (('merge',), (
+            'listenables', listenables,
+        ))
+        return _o
+
+
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformationProvider:
     pass
