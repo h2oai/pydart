@@ -493,8 +493,20 @@ class PythonTranslator {
   }
 
   void printClass(PythonClass klass) {
-    final typeVars = klass.typeParameters.join(', ');
-    final base = typeVars.isEmpty ? '' : '(Generic[$typeVars])';
+    final supertypes = <String>[];
+    if (klass.typeParameters.isNotEmpty) {
+      final typeVars = klass.typeParameters.join(', ');
+      supertypes.add('Generic[$typeVars]');
+    }
+    for (final st in klass.supertypes) {
+      // TODO flag abstract/interface supertypes accordingly
+      // TODO ensure supertype is already emitted
+      // TODO ignore Object supertype?
+      // TODO might conflict with Generic[T] type annotation or trip type-checker
+      supertypes.add(st.name);
+    }
+    final base = supertypes.isEmpty ? '' : "(${supertypes.join(', ')})";
+
     final internalStaticFields = klass.staticFields.where((f) => !f.isEnumLike);
     final externalStaticFields = klass.staticFields.where((f) => f.isEnumLike);
 

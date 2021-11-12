@@ -5,7 +5,7 @@ T = TypeVar('T')
 
 
 # packages/flutter/lib/src/foundation/key.dart
-class Key:
+class Key(Object):
     def __init__(
             self,
             value: str,
@@ -26,12 +26,12 @@ class Key:
 
 
 # packages/flutter/lib/src/material/scaffold.dart
-class ScaffoldMessengerState:
+class ScaffoldMessengerState(State):
     pass
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class GlobalKey(Generic[T]):
+class GlobalKey(Generic[T], Key):
     def __init__(
             self,
             debug_label: Optional[str] = None,
@@ -66,7 +66,7 @@ class Listenable(Object):
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouteInformationProvider:
+class RouteInformationProvider(ValueListenable):
     pass
 
 
@@ -76,22 +76,22 @@ class Object:
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouteInformationParser(Generic[T]):
+class RouteInformationParser(Generic[T], Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouterDelegate(Generic[T]):
+class RouterDelegate(Generic[T], Listenable):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class BackButtonDispatcher:
+class BackButtonDispatcher(_CallbackHookProvider):
     pass
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class Color:
+class Color(Object):
     def __init__(
             self,
             value: int,
@@ -138,7 +138,7 @@ class Color:
 
 
 # packages/flutter/lib/src/material/theme_data.dart
-class VisualDensity:
+class VisualDensity(Object):
     minimum_density: float = -4.0
     maximum_density: float = 4.0
 
@@ -173,7 +173,7 @@ class Brightness(Enum):
 
 
 # packages/flutter/lib/src/material/ink_well.dart
-class InteractiveInkFeatureFactory:
+class InteractiveInkFeatureFactory(Object):
     pass
 
 
@@ -187,7 +187,7 @@ class ButtonTextTheme(Enum):
 
 
 # packages/flutter/lib/src/painting/edge_insets.dart
-class EdgeInsetsGeometry:
+class EdgeInsetsGeometry(Object):
     pass
 
 
@@ -197,7 +197,7 @@ EdgeInsetsGeometry.infinity.__ctor = ('infinity', )
 
 
 # packages/flutter/lib/src/painting/borders.dart
-class ShapeBorder:
+class ShapeBorder(Object):
     pass
 
 
@@ -210,7 +210,7 @@ class ButtonBarLayoutBehavior(Enum):
 
 
 # packages/flutter/lib/src/material/colors.dart
-class MaterialColor:
+class MaterialColor(ColorSwatch):
     def __init__(
             self,
             primary: int,
@@ -223,7 +223,7 @@ class MaterialColor:
 
 
 # packages/flutter/lib/src/material/color_scheme.dart
-class ColorScheme:
+class ColorScheme(Object):
     def __init__(
             self,
             primary: Color,
@@ -494,7 +494,7 @@ class MaterialTapTargetSize(Enum):
 
 
 # packages/flutter/lib/src/material/button_theme.dart
-class ButtonThemeData:
+class ButtonThemeData(Object):
     def __init__(
             self,
             text_theme: Optional[ButtonTextTheme] = None,
@@ -533,7 +533,7 @@ class ButtonThemeData:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontWeight:
+class FontWeight(Object):
     pass
 
 
@@ -597,7 +597,7 @@ class TextLeadingDistribution(Enum):
 
 
 # bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
-class Locale:
+class Locale(Object):
     def __init__(
             self,
             _language_code: str,
@@ -626,12 +626,12 @@ class Locale:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class Paint:
+class Paint(Object):
     pass
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class Offset:
+class Offset(OffsetBase):
     def __init__(
             self,
             dx: float,
@@ -671,7 +671,7 @@ Offset.infinite.__ctor = ('infinite', )
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
-class Shadow:
+class Shadow(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -686,7 +686,7 @@ class Shadow:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
-class FontFeature:
+class FontFeature(Object):
     def __init__(
             self,
             feature: str,
@@ -985,7 +985,7 @@ class FontFeature:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
-class TextDecoration:
+class TextDecoration(Object):
 
     @staticmethod
     def combine(
@@ -1035,7 +1035,7 @@ class TextOverflow(Enum):
 
 
 # packages/flutter/lib/src/painting/text_style.dart
-class TextStyle:
+class TextStyle(Object):
     def __init__(
             self,
             inherit: Optional[bool] = None,
@@ -1094,7 +1094,7 @@ class TextStyle:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class Size:
+class Size(OffsetBase):
     def __init__(
             self,
             width: float,
@@ -1184,7 +1184,7 @@ Size.infinite.__ctor = ('infinite', )
 
 
 # packages/flutter/lib/src/rendering/box.dart
-class BoxConstraints:
+class BoxConstraints(Constraints):
     def __init__(
             self,
             min_width: Optional[float] = None,
@@ -1262,7 +1262,7 @@ class BoxConstraints:
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class Radius:
+class Radius(Object):
 
     @staticmethod
     def circular(
@@ -1295,7 +1295,7 @@ Radius.zero.__ctor = ('zero', )
 
 
 # packages/flutter/lib/src/painting/border_radius.dart
-class BorderRadius:
+class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def all(
@@ -1369,7 +1369,7 @@ BorderRadius.zero.__ctor = ('zero', )
 
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
-class ToggleButtonsThemeData:
+class ToggleButtonsThemeData(Object):
     def __init__(
             self,
             text_style: Optional[TextStyle] = None,
@@ -1408,7 +1408,7 @@ class ToggleButtonsThemeData:
 
 
 # packages/flutter/lib/src/material/text_theme.dart
-class TextTheme:
+class TextTheme(Object):
     def __init__(
             self,
             headline1: Optional[TextStyle] = None,
@@ -1460,7 +1460,7 @@ class BorderStyle(Enum):
 
 
 # packages/flutter/lib/src/painting/borders.dart
-class BorderSide:
+class BorderSide(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -1480,7 +1480,7 @@ BorderSide.none.__ctor = ('none', )
 
 
 # packages/flutter/lib/src/material/input_border.dart
-class InputBorder:
+class InputBorder(ShapeBorder):
     def __init__(
             self,
             border_side: Optional[BorderSide] = None,
@@ -1496,7 +1496,7 @@ InputBorder.none.__ctor = ('none', )
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
-class InputDecorationTheme:
+class InputDecorationTheme(Object):
     def __init__(
             self,
             label_style: Optional[TextStyle] = None,
@@ -1557,7 +1557,7 @@ class InputDecorationTheme:
 
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
-class IconThemeData:
+class IconThemeData(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -1581,37 +1581,37 @@ class IconThemeData:
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderComponentShape:
+class SliderComponentShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderTickMarkShape:
+class SliderTickMarkShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderTrackShape:
+class SliderTrackShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderTickMarkShape:
+class RangeSliderTickMarkShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderThumbShape:
+class RangeSliderThumbShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderTrackShape:
+class RangeSliderTrackShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderValueIndicatorShape:
+class RangeSliderValueIndicatorShape(Object):
     pass
 
 
@@ -1626,7 +1626,7 @@ class ShowValueIndicator(Enum):
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderThemeData:
+class SliderThemeData(Object):
     def __init__(
             self,
             track_height: Optional[float] = None,
@@ -1706,7 +1706,7 @@ class SliderThemeData:
 
 
 # packages/flutter/lib/src/painting/decoration.dart
-class Decoration:
+class Decoration(Object):
     pass
 
 
@@ -1719,7 +1719,7 @@ class TabBarIndicatorSize(Enum):
 
 
 # packages/flutter/lib/src/material/tab_bar_theme.dart
-class TabBarTheme:
+class TabBarTheme(Object):
     def __init__(
             self,
             indicator: Optional[Decoration] = None,
@@ -1742,7 +1742,7 @@ class TabBarTheme:
 
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
-class Duration:
+class Duration(Object):
     microseconds_per_millisecond: int = 1000
     milliseconds_per_second: int = 1000
     seconds_per_minute: int = 60
@@ -1793,7 +1793,7 @@ class TooltipTriggerMode(Enum):
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
-class TooltipThemeData:
+class TooltipThemeData(Object):
     def __init__(
             self,
             height: Optional[float] = None,
@@ -1836,7 +1836,7 @@ class Clip(Enum):
 
 
 # packages/flutter/lib/src/material/card_theme.dart
-class CardTheme:
+class CardTheme(Object):
     def __init__(
             self,
             clip_behavior: Optional[Clip] = None,
@@ -1857,7 +1857,7 @@ class CardTheme:
 
 
 # packages/flutter/lib/src/painting/borders.dart
-class OutlinedBorder:
+class OutlinedBorder(ShapeBorder):
     def __init__(
             self,
             side: Optional[BorderSide] = None,
@@ -1868,7 +1868,7 @@ class OutlinedBorder:
 
 
 # packages/flutter/lib/src/material/chip_theme.dart
-class ChipThemeData:
+class ChipThemeData(Object):
     def __init__(
             self,
             background_color: Color,
@@ -1950,12 +1950,12 @@ class TargetPlatform(Enum):
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
-class PageTransitionsBuilder:
+class PageTransitionsBuilder(Object):
     pass
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
-class PageTransitionsTheme:
+class PageTransitionsTheme(Object):
     def __init__(
             self,
             builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
@@ -1966,7 +1966,7 @@ class PageTransitionsTheme:
 
 
 # packages/flutter/lib/src/services/system_chrome.dart
-class SystemUiOverlayStyle:
+class SystemUiOverlayStyle(Object):
     def __init__(
             self,
             system_navigation_bar_color: Optional[Color] = None,
@@ -1999,7 +1999,7 @@ SystemUiOverlayStyle.dark.__ctor = ('dark', )
 
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
-class AppBarTheme:
+class AppBarTheme(Object):
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -2042,12 +2042,12 @@ class AppBarTheme:
 
 
 # packages/flutter/lib/src/material/material_state.dart
-class MaterialStateProperty(Generic[T]):
+class MaterialStateProperty(Generic[T], Object):
     pass
 
 
 # packages/flutter/lib/src/material/scrollbar_theme.dart
-class ScrollbarThemeData:
+class ScrollbarThemeData(Object):
     def __init__(
             self,
             thickness: Optional[MaterialStateProperty[float]] = None,
@@ -2078,12 +2078,12 @@ class ScrollbarThemeData:
 
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
-class NotchedShape:
+class NotchedShape(Object):
     pass
 
 
 # packages/flutter/lib/src/material/bottom_app_bar_theme.dart
-class BottomAppBarTheme:
+class BottomAppBarTheme(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2098,7 +2098,7 @@ class BottomAppBarTheme:
 
 
 # packages/flutter/lib/src/material/dialog_theme.dart
-class DialogTheme:
+class DialogTheme(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2117,7 +2117,7 @@ class DialogTheme:
 
 
 # packages/flutter/lib/src/material/floating_action_button_theme.dart
-class FloatingActionButtonThemeData:
+class FloatingActionButtonThemeData(Object):
     def __init__(
             self,
             foreground_color: Optional[Color] = None,
@@ -2173,7 +2173,7 @@ class NavigationRailLabelType(Enum):
 
 
 # packages/flutter/lib/src/material/navigation_rail_theme.dart
-class NavigationRailThemeData:
+class NavigationRailThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2205,7 +2205,7 @@ def _typography__text_theme(_k: str) -> TextTheme:
 
 
 # packages/flutter/lib/src/material/typography.dart
-class Typography:
+class Typography(Object):
     black_mountain_view: TextTheme = _typography__text_theme('blackMountainView')
     white_mountain_view: TextTheme = _typography__text_theme('whiteMountainView')
     black_redmond: TextTheme = _typography__text_theme('blackRedmond')
@@ -2285,7 +2285,7 @@ class Typography:
 
 
 # packages/flutter/lib/src/cupertino/text_theme.dart
-class CupertinoTextThemeData:
+class CupertinoTextThemeData(Object):
     def __init__(
             self,
             primary_color: Optional[Color] = None,
@@ -2312,7 +2312,7 @@ class CupertinoTextThemeData:
 
 
 # packages/flutter/lib/src/cupertino/theme.dart
-class NoDefaultCupertinoThemeData:
+class NoDefaultCupertinoThemeData(Object):
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -2341,7 +2341,7 @@ class SnackBarBehavior(Enum):
 
 
 # packages/flutter/lib/src/material/snack_bar_theme.dart
-class SnackBarThemeData:
+class SnackBarThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2364,7 +2364,7 @@ class SnackBarThemeData:
 
 
 # packages/flutter/lib/src/material/bottom_sheet_theme.dart
-class BottomSheetThemeData:
+class BottomSheetThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2387,7 +2387,7 @@ class BottomSheetThemeData:
 
 
 # packages/flutter/lib/src/material/popup_menu_theme.dart
-class PopupMenuThemeData:
+class PopupMenuThemeData(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2406,7 +2406,7 @@ class PopupMenuThemeData:
 
 
 # packages/flutter/lib/src/material/banner_theme.dart
-class MaterialBannerThemeData:
+class MaterialBannerThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2423,7 +2423,7 @@ class MaterialBannerThemeData:
 
 
 # packages/flutter/lib/src/material/divider_theme.dart
-class DividerThemeData:
+class DividerThemeData(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2470,7 +2470,7 @@ class VerticalDirection(Enum):
 
 
 # packages/flutter/lib/src/material/button_bar_theme.dart
-class ButtonBarThemeData:
+class ButtonBarThemeData(Object):
     def __init__(
             self,
             alignment: Optional[MainAxisAlignment] = None,
@@ -2514,7 +2514,7 @@ class BottomNavigationBarLandscapeLayout(Enum):
 
 
 # packages/flutter/lib/src/material/bottom_navigation_bar_theme.dart
-class BottomNavigationBarThemeData:
+class BottomNavigationBarThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2549,7 +2549,7 @@ class BottomNavigationBarThemeData:
 
 
 # packages/flutter/lib/src/material/time_picker_theme.dart
-class TimePickerThemeData:
+class TimePickerThemeData(Object):
     def __init__(
             self,
             background_color: Optional[Color] = None,
@@ -2592,7 +2592,7 @@ class TimePickerThemeData:
 
 
 # packages/flutter/lib/src/services/mouse_cursor.dart
-class MouseCursor:
+class MouseCursor(Object):
     pass
 
 
@@ -2605,12 +2605,12 @@ MouseCursor.uncontrolled.__ctor = ('uncontrolled', )
 
 
 # packages/flutter/lib/src/painting/alignment.dart
-class AlignmentGeometry:
+class AlignmentGeometry(Object):
     pass
 
 
 # packages/flutter/lib/src/material/button_style.dart
-class ButtonStyle:
+class ButtonStyle(Object):
     def __init__(
             self,
             text_style: Optional[MaterialStateProperty[TextStyle]] = None,
@@ -2657,7 +2657,7 @@ class ButtonStyle:
 
 
 # packages/flutter/lib/src/material/text_button_theme.dart
-class TextButtonThemeData:
+class TextButtonThemeData(Object):
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
@@ -2668,7 +2668,7 @@ class TextButtonThemeData:
 
 
 # packages/flutter/lib/src/material/elevated_button_theme.dart
-class ElevatedButtonThemeData:
+class ElevatedButtonThemeData(Object):
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
@@ -2679,7 +2679,7 @@ class ElevatedButtonThemeData:
 
 
 # packages/flutter/lib/src/material/outlined_button_theme.dart
-class OutlinedButtonThemeData:
+class OutlinedButtonThemeData(Object):
     def __init__(
             self,
             style: Optional[ButtonStyle] = None,
@@ -2690,7 +2690,7 @@ class OutlinedButtonThemeData:
 
 
 # packages/flutter/lib/src/material/text_selection_theme.dart
-class TextSelectionThemeData:
+class TextSelectionThemeData(Object):
     def __init__(
             self,
             cursor_color: Optional[Color] = None,
@@ -2705,7 +2705,7 @@ class TextSelectionThemeData:
 
 
 # packages/flutter/lib/src/material/data_table_theme.dart
-class DataTableThemeData:
+class DataTableThemeData(Object):
     def __init__(
             self,
             decoration: Optional[Decoration] = None,
@@ -2736,7 +2736,7 @@ class DataTableThemeData:
 
 
 # packages/flutter/lib/src/material/checkbox_theme.dart
-class CheckboxThemeData:
+class CheckboxThemeData(Object):
     def __init__(
             self,
             mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -2763,7 +2763,7 @@ class CheckboxThemeData:
 
 
 # packages/flutter/lib/src/material/radio_theme.dart
-class RadioThemeData:
+class RadioThemeData(Object):
     def __init__(
             self,
             mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -2784,7 +2784,7 @@ class RadioThemeData:
 
 
 # packages/flutter/lib/src/material/switch_theme.dart
-class SwitchThemeData:
+class SwitchThemeData(Object):
     def __init__(
             self,
             thumb_color: Optional[MaterialStateProperty[Color]] = None,
@@ -2805,7 +2805,7 @@ class SwitchThemeData:
 
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
-class ProgressIndicatorThemeData:
+class ProgressIndicatorThemeData(Object):
     def __init__(
             self,
             color: Optional[Color] = None,
@@ -2824,7 +2824,7 @@ class ProgressIndicatorThemeData:
 
 
 # packages/flutter/lib/src/material/theme_data.dart
-class ThemeData:
+class ThemeData(Object):
     def __init__(
             self,
             brightness: Optional[Brightness] = None,
@@ -3209,17 +3209,17 @@ class ThemeMode(Enum):
 
 
 # packages/flutter/lib/src/widgets/localizations.dart
-class LocalizationsDelegate(Generic[T]):
+class LocalizationsDelegate(Generic[T], Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/shortcuts.dart
-class ShortcutActivator:
+class ShortcutActivator(Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class DoNothingIntent:
+class DoNothingIntent(Intent):
     pass
 
 
@@ -3231,32 +3231,32 @@ def _intent__do_nothing_intent(_k: str) -> DoNothingIntent:
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class Intent:
+class Intent(Object):
     do_nothing: DoNothingIntent = _intent__do_nothing_intent('doNothing')
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
-class Type:
+class Type(Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class Action(Generic[T]):
+class Action(Generic[T], Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/scroll_configuration.dart
-class ScrollBehavior:
+class ScrollBehavior(Object):
     pass
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
-class NavigatorState:
+class NavigatorState(State):
     pass
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class Widget:
+class Widget(DiagnosticableTree):
     def __init__(
             self,
             key: Optional[Key] = None,
@@ -3267,12 +3267,12 @@ class Widget:
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
-class NavigatorObserver:
+class NavigatorObserver(Object):
     pass
 
 
 # packages/flutter/lib/src/material/app.dart
-class MaterialApp:
+class MaterialApp(StatefulWidget):
     def __init__(
             self,
             key: Optional[Key] = None,
@@ -3422,7 +3422,7 @@ class MaterialApp:
 
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
-class FocusNode:
+class FocusNode(Object):
     def __init__(
             self,
             debug_label: Optional[str] = None,
@@ -3443,7 +3443,7 @@ class FocusNode:
 
 
 # packages/flutter/lib/src/material/elevated_button.dart
-class ElevatedButton:
+class ElevatedButton(ButtonStyleButton):
     def __init__(
             self,
             on_pressed: Callable,
