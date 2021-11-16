@@ -165,6 +165,12 @@ class IRType {
   static final IRType any = IRType('any');
 }
 
+class IRParameterType extends IRType {
+  final IRType? bound;
+
+  IRParameterType(String name, this.bound) : super(name);
+}
+
 class IRInterface extends IRType {
   final IRElement element;
   final List<IRType> types; // Parameters
@@ -175,16 +181,16 @@ class IRInterface extends IRType {
   ) : super(element.name);
 }
 
-class IRParameter {
-  final String name;
-  final IRType? bound;
-
-  IRParameter(this.name, this.bound);
-}
+// class IRParameter {
+//   final String name;
+//   final IRType? bound;
+//
+//   IRParameter(this.name, this.bound);
+// }
 
 class IRClass extends IRElement {
   final bool isAbstract;
-  final List<IRParameter> parameters;
+  final List<IRParameterType> parameters;
   final List<IRType> supertypes;
   final List<IRType> interfaces;
   final IRConstructor constructor;
@@ -872,6 +878,11 @@ class IRBuilder {
     return IREnum(path, e.name, values: values, dartElement: e);
   }
 
+  IRParameterType _toParameterType(TypeParameterElement p) {
+    final bound = p.bound;
+    return IRParameterType(p.name, bound != null ? _toType(bound) : null);
+  }
+
   IRType _toType(DartType t) {
     if (t.isVoid) return IRType.nothing;
     if (t.isDartCoreBool) return IRType.bool;
@@ -893,6 +904,10 @@ class IRBuilder {
       }).toList();
       final returnType = _toType(t.returnType);
       return IRInterface(IRElement.func, [...parameterTypes, returnType]);
+    }
+
+    if (t is TypeParameterType) {
+      return _toParameterType(t.element);
     }
 
     return IRType.unknown;
@@ -973,10 +988,7 @@ class IRBuilder {
         .map((c) => IRConstructor(c.name, _toFields(c.parameters)))
         .toList();
 
-    final parameters = e.typeParameters.map((p) {
-      final bound = p.bound;
-      return IRParameter(p.name, bound != null ? _toType(bound) : null);
-    }).toList();
+    final parameters = e.typeParameters.map(_toParameterType).toList();
 
     return IRClass(path, e.name,
         // XXX handle e.isMixin
@@ -1044,14 +1056,11 @@ class IRBuilder {
         final params = t.types.map(_dumpType).join(', ');
         return '${t.name}<$params>';
       }
+    } else if (t is IRParameterType) {
+      final b = t.bound;
+      return t.name + (b != null ? ' extends ${_dumpType(b)}' : '');
     }
-
     return t.name;
-  }
-
-  static String _dumpParameter(IRParameter t) {
-    final b = t.bound;
-    return t.name + (b != null ? ' extends ${_dumpType(b)}' : '');
   }
 
   static String dump(List<IRElement> elements) {
@@ -1068,7 +1077,7 @@ class IRBuilder {
       } else if (e is IRClass) {
         final abs = e.isAbstract ? 'abstract ' : '';
         final params = e.parameters.isNotEmpty
-            ? '<${comma(e.parameters.map(_dumpParameter))}>'
+            ? '<${comma(e.parameters.map(_dumpType))}>'
             : '';
         final ext = e.supertypes.isNotEmpty
             ? ' extends ' + comma(e.supertypes.map(_dumpType))

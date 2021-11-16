@@ -33,19 +33,19 @@ abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
 abstract class Iterable<E> extends Object:
 	generate:
 		count: int
-		generator: opt<func<int, unknown>>
+		generator: opt<func<int, E>>
 	empty:
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
-abstract class EfficientLengthIterable<T> extends Iterable<unknown>:
+abstract class EfficientLengthIterable<T> extends Iterable<T>:
 
 # bin/cache/pkg/sky_engine/lib/core/list.dart
-abstract class List<E> extends Object implements EfficientLengthIterable<unknown>:
+abstract class List<E> extends Object implements EfficientLengthIterable<E>:
 	default:
 		length: opt<int>
 	filled:
 		length: int
-		fill: unknown
+		fill: E
 		growable: opt<bool>
 	empty:
 		growable: opt<bool>
@@ -53,11 +53,11 @@ abstract class List<E> extends Object implements EfficientLengthIterable<unknown
 		elements: Iterable<any>
 		growable: opt<bool>
 	of:
-		elements: Iterable<unknown>
+		elements: Iterable<E>
 		growable: opt<bool>
 	generate:
 		length: int
-		generator: func<int, unknown>
+		generator: func<int, E>
 		growable: opt<bool>
 	unmodifiable:
 		elements: Iterable<any>
@@ -122,27 +122,27 @@ class ScaffoldMessengerState extends State<ScaffoldMessenger>:
 # bin/cache/pkg/sky_engine/lib/core/map.dart
 class MapEntry<K, V> extends Object:
 	default:
-		key: unknown
-		value: unknown
+		key: K
+		value: V
 
 # bin/cache/pkg/sky_engine/lib/core/map.dart
 abstract class Map<K, V> extends Object:
 	from:
 		other: __PLACEHOLDER__<any, any>
 	of:
-		other: __PLACEHOLDER__<unknown, unknown>
+		other: __PLACEHOLDER__<K, V>
 	unmodifiable:
 		other: __PLACEHOLDER__<any, any>
 	identity:
 	fromIterable:
 		iterable: Iterable<any>
-		key: opt<func<any, unknown>>
-		value: opt<func<any, unknown>>
+		key: opt<func<any, K>>
+		value: opt<func<any, V>>
 	fromIterables:
-		keys: Iterable<unknown>
-		values: Iterable<unknown>
+		keys: Iterable<K>
+		values: Iterable<V>
 	fromEntries:
-		entries: Iterable<MapEntry<unknown, unknown>>
+		entries: Iterable<MapEntry<K, V>>
 
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class BuildContext extends Object:
@@ -183,7 +183,7 @@ class VisualDensity extends Object:
 class ColorSwatch<T> extends Color:
 	default:
 		primary: int
-		_swatch: Map<unknown, Color>
+		_swatch: Map<T, Color>
 
 # packages/flutter/lib/src/material/colors.dart
 class MaterialColor extends ColorSwatch<int>:
@@ -1541,19 +1541,19 @@ abstract class StackTrace extends Object:
 # bin/cache/pkg/sky_engine/lib/async/future.dart
 abstract class Future<T> extends Object:
 	default:
-		computation: func<FutureOr<unknown>>
+		computation: func<FutureOr<T>>
 	microtask:
-		computation: func<FutureOr<unknown>>
+		computation: func<FutureOr<T>>
 	sync:
-		computation: func<FutureOr<unknown>>
+		computation: func<FutureOr<T>>
 	value:
-		value: opt<FutureOr<unknown>>
+		value: opt<FutureOr<T>>
 	error:
 		error: Object
 		stackTrace: opt<StackTrace>
 	delayed:
 		duration: Duration
-		computation: opt<func<FutureOr<unknown>>>
+		computation: opt<func<FutureOr<T>>>
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider<Future<bool>>:
