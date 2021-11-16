@@ -102,8 +102,14 @@ class IRElement {
   final String name;
 
   IRElement(this.path, this.name);
+}
 
-  static final placeholder = IRElement('placeholder', 'placeholder');
+final IRElement optional = IRElement('', 'Optional');
+
+class IRPlaceholderElement extends IRElement {
+  final ClassElement dartElement;
+
+  IRPlaceholderElement(this.dartElement) : super('', '__PLACEHOLDER__');
 }
 
 class IREnum extends IRElement {
@@ -159,9 +165,13 @@ class IRType {
 }
 
 class IRInterface extends IRType {
+  final IRElement element;
   final List<IRType> types; // Parameters
 
-  IRInterface(String name, this.types) : super(name);
+  IRInterface(
+    this.element,
+    this.types,
+  ) : super(element.name);
 }
 
 class IRClass extends IRElement {
@@ -861,7 +871,7 @@ class IRBuilder {
     if (t is InterfaceType) {
       // XXX handle t.typeArguments
       final e = _load(t.element);
-      return IRInterface(e.name, []);
+      return IRInterface(e, []);
     }
 
     return IRType.unknown;
@@ -899,7 +909,7 @@ class IRBuilder {
   }
 
   IRType _toOptional(IRType t) {
-    return IRInterface('Optional', [t]);
+    return IRInterface(optional, [t]);
   }
 
   IRField _toField(ParameterElement e) {
@@ -960,7 +970,7 @@ class IRBuilder {
     if (ir0 != null) return ir0;
 
     // prevent stack overflow caused by recursive type references.
-    _cache[e] = IRElement.placeholder;
+    _cache[e] = IRPlaceholderElement(e);
 
     final ir = e.isEnum ? _toEnum(e) : _toClass(e);
     _cache[e] = ir;
@@ -974,6 +984,32 @@ class IRBuilder {
         _load(e);
       }
     }
+
+    // XXX replace placeholder elements
+    // for (var i = 0; i < _elements.length; i++) {
+    //   final e = _elements[i];
+    //   if (e is IRClass) {
+    //     final fs = e.constructor.fields;
+    //     for (var j = 0; j < fs.length; j++) {
+    //       final f =  fs[j];
+    //       final t = f.type;
+    //       if (t is IRInterface) {
+    //         final p = t.element;
+    //         if (p is IRPlaceholderElement) {
+    //             final ir = _cache[p.dartElement];
+    //             if (ir != null) {
+    //               fs[j] = IRField(name: f.name, type: IRInterface());
+    //             }
+    //         }
+    //       }
+    //     }
+    //     for (final c in e.constructors) {
+    //       for (final f in c.fields) {
+    //       }
+    //     }
+    //   }
+    // }
+
     return _elements;
   }
 
@@ -992,10 +1028,21 @@ class IRBuilder {
     final p = Printer('\t');
     for (final e in elements) {
       if (e is IREnum) {
-        p(e.name);
+        p('enum ${e.name}:');
+        p.t(() {
+          for (final v in e.values) {
+            p(v);
+          }
+        });
       } else if (e is IRClass) {
-        final abstr = e.isAbstract ? 'abstract ' : '';
-        p('${abstr}class ${e.name}');
+        final abs = e.isAbstract ? 'abstract ' : '';
+        final ext = e.supertypes.isNotEmpty
+            ? ' extends ' + e.supertypes.map(_dumpType).join(', ')
+            : '';
+        final impl = e.interfaces.isNotEmpty
+            ? ' implements ' + e.interfaces.map(_dumpType).join(', ')
+            : '';
+        p('${abs}class ${e.name}$ext$impl:');
         p.t(() {
           if (e.fields.isNotEmpty) {
             p('static:');
@@ -1006,9 +1053,17 @@ class IRBuilder {
             });
           }
           if (e.constructor.fields.isNotEmpty) {
-            p('fields:');
+            p('default:');
             p.t(() {
               for (final f in e.constructor.fields) {
+                p('${f.name}: ${_dumpType(f.type)}');
+              }
+            });
+          }
+          for (final c in e.constructors) {
+            p('${c.name}:');
+            p.t(() {
+              for (final f in c.fields) {
                 p('${f.name}: ${_dumpType(f.type)}');
               }
             });
