@@ -881,9 +881,8 @@ class IRBuilder {
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
-      // XXX handle t.typeArguments
-      final e = _load(t.element);
-      return IRInterface(e, []);
+      return IRInterface(
+          _load(t.element), t.typeArguments.map(_toType).toList());
     }
 
     if (t is FunctionType) {

@@ -21,10 +21,10 @@ abstract class StatefulWidget extends Widget:
 		key: opt<Key>
 
 # packages/flutter/lib/src/widgets/framework.dart
-abstract class State<T> extends Object:
+abstract class State<T extends StatefulWidget> extends Object:
 
 # packages/flutter/lib/src/widgets/framework.dart
-abstract class GlobalKey<T> extends Key:
+abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
 	default:
 		debugLabel: opt<str>
 	constructor:
@@ -36,41 +36,11 @@ abstract class Iterable<E> extends Object:
 		generator: opt<func<int, unknown>>
 	empty:
 
-# bin/cache/pkg/sky_engine/lib/core/map.dart
-abstract class Map<K, V> extends Object:
-	from:
-		other: __PLACEHOLDER__
-	of:
-		other: __PLACEHOLDER__
-	unmodifiable:
-		other: __PLACEHOLDER__
-	identity:
-	fromIterable:
-		iterable: Iterable
-		key: opt<func<any, unknown>>
-		value: opt<func<any, unknown>>
-	fromIterables:
-		keys: Iterable
-		values: Iterable
-	fromEntries:
-		entries: Iterable
-
-# packages/flutter/lib/src/widgets/navigator.dart
-class RouteSettings extends Object:
-	default:
-		name: opt<str>
-		arguments: opt<Object>
-
-# packages/flutter/lib/src/widgets/navigator.dart
-abstract class Route<T> extends Object:
-	default:
-		settings: opt<RouteSettings>
-
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
-abstract class EfficientLengthIterable<T> extends Iterable:
+abstract class EfficientLengthIterable<T> extends Iterable<unknown>:
 
 # bin/cache/pkg/sky_engine/lib/core/list.dart
-abstract class List<E> extends Object implements EfficientLengthIterable:
+abstract class List<E> extends Object implements EfficientLengthIterable<unknown>:
 	default:
 		length: opt<int>
 	filled:
@@ -80,17 +50,99 @@ abstract class List<E> extends Object implements EfficientLengthIterable:
 	empty:
 		growable: opt<bool>
 	from:
-		elements: Iterable
+		elements: Iterable<any>
 		growable: opt<bool>
 	of:
-		elements: Iterable
+		elements: Iterable<unknown>
 		growable: opt<bool>
 	generate:
 		length: int
 		generator: func<int, unknown>
 		growable: opt<bool>
 	unmodifiable:
-		elements: Iterable
+		elements: Iterable<any>
+
+# packages/flutter/lib/src/widgets/navigator.dart
+class RouteSettings extends Object:
+	default:
+		name: opt<str>
+		arguments: opt<Object>
+
+# packages/flutter/lib/src/foundation/key.dart
+abstract class LocalKey extends Key:
+
+# packages/flutter/lib/src/widgets/navigator.dart
+abstract class Page<T> extends RouteSettings:
+	default:
+		key: opt<LocalKey>
+		name: opt<str>
+		arguments: opt<Object>
+		restorationId: opt<str>
+
+# packages/flutter/lib/src/widgets/navigator.dart
+abstract class Route<T> extends Object:
+	default:
+		settings: opt<RouteSettings>
+
+# packages/flutter/lib/src/widgets/navigator.dart
+abstract class TransitionDelegate<T> extends Object:
+
+# packages/flutter/lib/src/widgets/navigator.dart
+class NavigatorObserver extends Object:
+
+# packages/flutter/lib/src/widgets/navigator.dart
+class Navigator extends StatefulWidget:
+	static:
+		defaultRouteName: str
+	default:
+		key: opt<Key>
+		pages: opt<List<Page<any>>>
+		onPopPage: opt<func<Route<any>, any, bool>>
+		initialRoute: opt<str>
+		onGenerateInitialRoutes: opt<func<__PLACEHOLDER__, str, List<Route<any>>>>
+		onGenerateRoute: opt<func<RouteSettings, Route<any>>>
+		onUnknownRoute: opt<func<RouteSettings, Route<any>>>
+		transitionDelegate: opt<TransitionDelegate<any>>
+		reportsRouteUpdateToEngine: opt<bool>
+		observers: opt<List<NavigatorObserver>>
+		restorationScopeId: opt<str>
+
+# packages/flutter/lib/src/widgets/navigator.dart
+class NavigatorState extends State<Navigator>:
+
+# packages/flutter/lib/src/material/scaffold.dart
+class ScaffoldMessenger extends StatefulWidget:
+	default:
+		key: opt<Key>
+		child: Widget
+
+# packages/flutter/lib/src/material/scaffold.dart
+class ScaffoldMessengerState extends State<ScaffoldMessenger>:
+
+# bin/cache/pkg/sky_engine/lib/core/map.dart
+class MapEntry<K, V> extends Object:
+	default:
+		key: unknown
+		value: unknown
+
+# bin/cache/pkg/sky_engine/lib/core/map.dart
+abstract class Map<K, V> extends Object:
+	from:
+		other: __PLACEHOLDER__<any, any>
+	of:
+		other: __PLACEHOLDER__<unknown, unknown>
+	unmodifiable:
+		other: __PLACEHOLDER__<any, any>
+	identity:
+	fromIterable:
+		iterable: Iterable<any>
+		key: opt<func<any, unknown>>
+		value: opt<func<any, unknown>>
+	fromIterables:
+		keys: Iterable<unknown>
+		values: Iterable<unknown>
+	fromEntries:
+		entries: Iterable<MapEntry<unknown, unknown>>
 
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class BuildContext extends Object:
@@ -131,13 +183,13 @@ class VisualDensity extends Object:
 class ColorSwatch<T> extends Color:
 	default:
 		primary: int
-		_swatch: Map
+		_swatch: Map<unknown, Color>
 
 # packages/flutter/lib/src/material/colors.dart
-class MaterialColor extends ColorSwatch:
+class MaterialColor extends ColorSwatch<int>:
 	default:
 		primary: int
-		swatch: Map
+		swatch: Map<int, Color>
 
 # packages/flutter/lib/src/material/ink_well.dart
 abstract class InteractiveInkFeatureFactory extends Object:
@@ -309,6 +361,72 @@ class Locale extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint extends Object:
 
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
+abstract class OffsetBase extends Object:
+	default:
+		_dx: float
+		_dy: float
+
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
+class Offset extends OffsetBase:
+	static:
+		zero: __PLACEHOLDER__
+		infinite: __PLACEHOLDER__
+	default:
+		dx: float
+		dy: float
+	fromDirection:
+		direction: float
+		distance: opt<float>
+
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
+class Shadow extends Object:
+	default:
+		color: opt<Color>
+		offset: opt<Offset>
+		blurRadius: opt<float>
+
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
+class FontFeature extends Object:
+	default:
+		feature: str
+		value: opt<int>
+	enable:
+		feature: str
+	disable:
+		feature: str
+	alternative:
+		value: int
+	alternativeFractions:
+	contextualAlternates:
+	caseSensitiveForms:
+	characterVariant:
+		value: int
+	denominator:
+	fractions:
+	historicalForms:
+	historicalLigatures:
+	liningFigures:
+	localeAware:
+		enable: opt<bool>
+	notationalForms:
+		value: opt<int>
+	numerators:
+	oldstyleFigures:
+	ordinalForms:
+	proportionalFigures:
+	randomize:
+	stylisticAlternates:
+	scientificInferiors:
+	stylisticSet:
+		value: int
+	subscripts:
+	superscripts:
+	swash:
+		value: opt<int>
+	tabularFigures:
+	slashedZero:
+
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextDecoration extends Object:
 	static:
@@ -317,7 +435,7 @@ class TextDecoration extends Object:
 		overline: __PLACEHOLDER__
 		lineThrough: __PLACEHOLDER__
 	combine:
-		decorations: List
+		decorations: List<__PLACEHOLDER__>
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextDecorationStyle:
@@ -351,26 +469,20 @@ class TextStyle extends Object:
 		locale: opt<Locale>
 		foreground: opt<Paint>
 		background: opt<Paint>
-		shadows: opt<List>
-		fontFeatures: opt<List>
+		shadows: opt<List<Shadow>>
+		fontFeatures: opt<List<FontFeature>>
 		decoration: opt<TextDecoration>
 		decorationColor: opt<Color>
 		decorationStyle: opt<TextDecorationStyle>
 		decorationThickness: opt<float>
 		debugLabel: opt<str>
 		fontFamily: opt<str>
-		fontFamilyFallback: opt<List>
+		fontFamilyFallback: opt<List<str>>
 		package: opt<str>
 		overflow: opt<TextOverflow>
 
 # packages/flutter/lib/src/rendering/object.dart
 abstract class Constraints extends Object:
-
-# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-abstract class OffsetBase extends Object:
-	default:
-		_dx: float
-		_dy: float
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size extends OffsetBase:
@@ -649,7 +761,7 @@ class TabBarTheme extends Object:
 abstract class Comparable<T> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
-class Duration extends Object implements Comparable:
+class Duration extends Object implements Comparable<__PLACEHOLDER__>:
 	static:
 		microsecondsPerMillisecond: int
 		millisecondsPerSecond: int
@@ -756,9 +868,12 @@ enum TargetPlatform:
 	windows
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
+abstract class PageTransitionsBuilder extends Object:
+
+# packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsTheme extends Object:
 	default:
-		builders: opt<Map>
+		builders: opt<Map<TargetPlatform, PageTransitionsBuilder>>
 
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle extends Object:
@@ -802,13 +917,13 @@ abstract class MaterialStateProperty<T> extends Object:
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData extends Object:
 	default:
-		thickness: opt<MaterialStateProperty>
+		thickness: opt<MaterialStateProperty<float>>
 		showTrackOnHover: opt<bool>
 		isAlwaysShown: opt<bool>
 		radius: opt<Radius>
-		thumbColor: opt<MaterialStateProperty>
-		trackColor: opt<MaterialStateProperty>
-		trackBorderColor: opt<MaterialStateProperty>
+		thumbColor: opt<MaterialStateProperty<Color>>
+		trackColor: opt<MaterialStateProperty<Color>>
+		trackBorderColor: opt<MaterialStateProperty<Color>>
 		crossAxisMargin: opt<float>
 		mainAxisMargin: opt<float>
 		minThumbLength: opt<float>
@@ -1072,25 +1187,31 @@ class TimePickerThemeData extends Object:
 		dayPeriodBorderSide: opt<BorderSide>
 		inputDecorationTheme: opt<InputDecorationTheme>
 
+# packages/flutter/lib/src/services/mouse_cursor.dart
+abstract class MouseCursor extends Object:
+	static:
+		defer: __PLACEHOLDER__
+		uncontrolled: __PLACEHOLDER__
+
 # packages/flutter/lib/src/painting/alignment.dart
 abstract class AlignmentGeometry extends Object:
 
 # packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle extends Object:
 	default:
-		textStyle: opt<MaterialStateProperty>
-		backgroundColor: opt<MaterialStateProperty>
-		foregroundColor: opt<MaterialStateProperty>
-		overlayColor: opt<MaterialStateProperty>
-		shadowColor: opt<MaterialStateProperty>
-		elevation: opt<MaterialStateProperty>
-		padding: opt<MaterialStateProperty>
-		minimumSize: opt<MaterialStateProperty>
-		fixedSize: opt<MaterialStateProperty>
-		maximumSize: opt<MaterialStateProperty>
-		side: opt<MaterialStateProperty>
-		shape: opt<MaterialStateProperty>
-		mouseCursor: opt<MaterialStateProperty>
+		textStyle: opt<MaterialStateProperty<TextStyle>>
+		backgroundColor: opt<MaterialStateProperty<Color>>
+		foregroundColor: opt<MaterialStateProperty<Color>>
+		overlayColor: opt<MaterialStateProperty<Color>>
+		shadowColor: opt<MaterialStateProperty<Color>>
+		elevation: opt<MaterialStateProperty<float>>
+		padding: opt<MaterialStateProperty<EdgeInsetsGeometry>>
+		minimumSize: opt<MaterialStateProperty<Size>>
+		fixedSize: opt<MaterialStateProperty<Size>>
+		maximumSize: opt<MaterialStateProperty<Size>>
+		side: opt<MaterialStateProperty<BorderSide>>
+		shape: opt<MaterialStateProperty<OutlinedBorder>>
+		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
 		visualDensity: opt<VisualDensity>
 		tapTargetSize: opt<MaterialTapTargetSize>
 		animationDuration: opt<Duration>
@@ -1124,10 +1245,10 @@ class TextSelectionThemeData extends Object:
 class DataTableThemeData extends Object:
 	default:
 		decoration: opt<Decoration>
-		dataRowColor: opt<MaterialStateProperty>
+		dataRowColor: opt<MaterialStateProperty<Color>>
 		dataRowHeight: opt<float>
 		dataTextStyle: opt<TextStyle>
-		headingRowColor: opt<MaterialStateProperty>
+		headingRowColor: opt<MaterialStateProperty<Color>>
 		headingRowHeight: opt<float>
 		headingTextStyle: opt<TextStyle>
 		horizontalMargin: opt<float>
@@ -1138,10 +1259,10 @@ class DataTableThemeData extends Object:
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData extends Object:
 	default:
-		mouseCursor: opt<MaterialStateProperty>
-		fillColor: opt<MaterialStateProperty>
-		checkColor: opt<MaterialStateProperty>
-		overlayColor: opt<MaterialStateProperty>
+		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
+		fillColor: opt<MaterialStateProperty<Color>>
+		checkColor: opt<MaterialStateProperty<Color>>
+		overlayColor: opt<MaterialStateProperty<Color>>
 		splashRadius: opt<float>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		visualDensity: opt<VisualDensity>
@@ -1151,9 +1272,9 @@ class CheckboxThemeData extends Object:
 # packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData extends Object:
 	default:
-		mouseCursor: opt<MaterialStateProperty>
-		fillColor: opt<MaterialStateProperty>
-		overlayColor: opt<MaterialStateProperty>
+		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
+		fillColor: opt<MaterialStateProperty<Color>>
+		overlayColor: opt<MaterialStateProperty<Color>>
 		splashRadius: opt<float>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		visualDensity: opt<VisualDensity>
@@ -1161,11 +1282,11 @@ class RadioThemeData extends Object:
 # packages/flutter/lib/src/material/switch_theme.dart
 class SwitchThemeData extends Object:
 	default:
-		thumbColor: opt<MaterialStateProperty>
-		trackColor: opt<MaterialStateProperty>
+		thumbColor: opt<MaterialStateProperty<Color>>
+		trackColor: opt<MaterialStateProperty<Color>>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
-		mouseCursor: opt<MaterialStateProperty>
-		overlayColor: opt<MaterialStateProperty>
+		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
+		overlayColor: opt<MaterialStateProperty<Color>>
 		splashRadius: opt<float>
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
@@ -1353,19 +1474,45 @@ enum ThemeMode:
 	light
 	dark
 
+# packages/flutter/lib/src/widgets/localizations.dart
+abstract class LocalizationsDelegate<T> extends Object:
+
+# packages/flutter/lib/src/widgets/shortcuts.dart
+abstract class ShortcutActivator extends Object:
+
+# packages/flutter/lib/src/widgets/actions.dart
+class DoNothingIntent extends __PLACEHOLDER__:
+
+# packages/flutter/lib/src/widgets/actions.dart
+abstract class Intent extends Object:
+	static:
+		doNothing: DoNothingIntent
+
+# bin/cache/pkg/sky_engine/lib/core/type.dart
+abstract class Type extends Object:
+
+# packages/flutter/lib/src/widgets/actions.dart
+abstract class Action<T extends Intent> extends Object:
+
 # packages/flutter/lib/src/widgets/scroll_configuration.dart
 class ScrollBehavior extends Object:
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class Listenable extends Object:
 	merge:
-		listenables: List
+		listenables: List<__PLACEHOLDER__>
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class ValueListenable<T> extends Listenable:
 
 # packages/flutter/lib/src/widgets/router.dart
-abstract class RouteInformationProvider extends ValueListenable:
+class RouteInformation extends Object:
+	default:
+		location: opt<str>
+		state: opt<Object>
+
+# packages/flutter/lib/src/widgets/router.dart
+abstract class RouteInformationProvider extends ValueListenable<RouteInformation>:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationParser<T> extends Object:
@@ -1376,22 +1523,54 @@ abstract class RouterDelegate<T> extends Listenable:
 # packages/flutter/lib/src/widgets/router.dart
 class _CallbackHookProvider<T> extends Object:
 
+# bin/cache/pkg/sky_engine/lib/async/future.dart
+abstract class FutureOr<T> extends Object:
+
+# bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
+class _StringStackTrace extends Object implements __PLACEHOLDER__:
+	default:
+		_stackTrace: str
+
+# bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
+abstract class StackTrace extends Object:
+	static:
+		empty: _StringStackTrace
+	fromString:
+		stackTraceString: str
+
+# bin/cache/pkg/sky_engine/lib/async/future.dart
+abstract class Future<T> extends Object:
+	default:
+		computation: func<FutureOr<unknown>>
+	microtask:
+		computation: func<FutureOr<unknown>>
+	sync:
+		computation: func<FutureOr<unknown>>
+	value:
+		value: opt<FutureOr<unknown>>
+	error:
+		error: Object
+		stackTrace: opt<StackTrace>
+	delayed:
+		duration: Duration
+		computation: opt<func<FutureOr<unknown>>>
+
 # packages/flutter/lib/src/widgets/router.dart
-abstract class BackButtonDispatcher extends _CallbackHookProvider:
+abstract class BackButtonDispatcher extends _CallbackHookProvider<Future<bool>>:
 
 # packages/flutter/lib/src/material/app.dart
 class MaterialApp extends StatefulWidget:
 	default:
 		key: opt<Key>
-		navigatorKey: opt<GlobalKey>
-		scaffoldMessengerKey: opt<GlobalKey>
+		navigatorKey: opt<GlobalKey<NavigatorState>>
+		scaffoldMessengerKey: opt<GlobalKey<ScaffoldMessengerState>>
 		home: opt<Widget>
-		routes: opt<Map>
+		routes: opt<Map<str, func<BuildContext, Widget>>>
 		initialRoute: opt<str>
-		onGenerateRoute: opt<func<RouteSettings, Route>>
-		onGenerateInitialRoutes: opt<func<str, List>>
-		onUnknownRoute: opt<func<RouteSettings, Route>>
-		navigatorObservers: opt<List>
+		onGenerateRoute: opt<func<RouteSettings, Route<any>>>
+		onGenerateInitialRoutes: opt<func<str, List<Route<any>>>>
+		onUnknownRoute: opt<func<RouteSettings, Route<any>>>
+		navigatorObservers: opt<List<NavigatorObserver>>
 		builder: opt<func<BuildContext, Widget, Widget>>
 		title: opt<str>
 		onGenerateTitle: opt<func<BuildContext, str>>
@@ -1402,27 +1581,27 @@ class MaterialApp extends StatefulWidget:
 		highContrastDarkTheme: opt<ThemeData>
 		themeMode: opt<ThemeMode>
 		locale: opt<Locale>
-		localizationsDelegates: opt<Iterable>
-		localeListResolutionCallback: opt<func<List, Iterable, Locale>>
-		localeResolutionCallback: opt<func<Locale, Iterable, Locale>>
-		supportedLocales: opt<Iterable>
+		localizationsDelegates: opt<Iterable<LocalizationsDelegate<any>>>
+		localeListResolutionCallback: opt<func<List<Locale>, Iterable<Locale>, Locale>>
+		localeResolutionCallback: opt<func<Locale, Iterable<Locale>, Locale>>
+		supportedLocales: opt<Iterable<Locale>>
 		debugShowMaterialGrid: opt<bool>
 		showPerformanceOverlay: opt<bool>
 		checkerboardRasterCacheImages: opt<bool>
 		checkerboardOffscreenLayers: opt<bool>
 		showSemanticsDebugger: opt<bool>
 		debugShowCheckedModeBanner: opt<bool>
-		shortcuts: opt<Map>
-		actions: opt<Map>
+		shortcuts: opt<Map<ShortcutActivator, Intent>>
+		actions: opt<Map<Type, Action<Intent>>>
 		restorationScopeId: opt<str>
 		scrollBehavior: opt<ScrollBehavior>
 		useInheritedMediaQuery: opt<bool>
 	router:
 		key: opt<Key>
-		scaffoldMessengerKey: opt<GlobalKey>
+		scaffoldMessengerKey: opt<GlobalKey<ScaffoldMessengerState>>
 		routeInformationProvider: opt<RouteInformationProvider>
-		routeInformationParser: RouteInformationParser
-		routerDelegate: RouterDelegate
+		routeInformationParser: RouteInformationParser<Object>
+		routerDelegate: RouterDelegate<Object>
 		backButtonDispatcher: opt<BackButtonDispatcher>
 		builder: opt<func<BuildContext, Widget, Widget>>
 		title: opt<str>
@@ -1434,18 +1613,18 @@ class MaterialApp extends StatefulWidget:
 		highContrastDarkTheme: opt<ThemeData>
 		themeMode: opt<ThemeMode>
 		locale: opt<Locale>
-		localizationsDelegates: opt<Iterable>
-		localeListResolutionCallback: opt<func<List, Iterable, Locale>>
-		localeResolutionCallback: opt<func<Locale, Iterable, Locale>>
-		supportedLocales: opt<Iterable>
+		localizationsDelegates: opt<Iterable<LocalizationsDelegate<any>>>
+		localeListResolutionCallback: opt<func<List<Locale>, Iterable<Locale>, Locale>>
+		localeResolutionCallback: opt<func<Locale, Iterable<Locale>, Locale>>
+		supportedLocales: opt<Iterable<Locale>>
 		debugShowMaterialGrid: opt<bool>
 		showPerformanceOverlay: opt<bool>
 		checkerboardRasterCacheImages: opt<bool>
 		checkerboardOffscreenLayers: opt<bool>
 		showSemanticsDebugger: opt<bool>
 		debugShowCheckedModeBanner: opt<bool>
-		shortcuts: opt<Map>
-		actions: opt<Map>
+		shortcuts: opt<Map<ShortcutActivator, Intent>>
+		actions: opt<Map<Type, Action<Intent>>>
 		restorationScopeId: opt<str>
 		scrollBehavior: opt<ScrollBehavior>
 		useInheritedMediaQuery: opt<bool>
@@ -1459,7 +1638,7 @@ abstract class RawKeyEvent extends Object:
 		data: RawKeyEventData
 		character: opt<str>
 	fromMessage:
-		message: Map
+		message: Map<str, any>
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 enum KeyEventResult:
