@@ -1040,6 +1040,7 @@ class IRBuilder {
   static String dump(List<IRElement> elements) {
     final p = Printer('\t');
     for (final e in elements) {
+      p('# ${e.path}');
       if (e is IREnum) {
         p('enum ${e.name}:');
         p.t(() {
@@ -1061,7 +1062,7 @@ class IRBuilder {
             p('static:');
             p.t(() {
               for (final f in e.fields) {
-                p(f.name);
+                p('${f.name}: ${_dumpType(f.type)}');
               }
             });
           }

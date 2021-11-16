@@ -1,31 +1,39 @@
+# bin/cache/pkg/sky_engine/lib/core/object.dart
 class Object:
 
+# packages/flutter/lib/src/foundation/diagnostics.dart
 abstract class DiagnosticableTree extends Object:
 
+# packages/flutter/lib/src/foundation/key.dart
 abstract class Key extends Object:
 	default:
 		value: str
 	empty:
 
+# packages/flutter/lib/src/widgets/framework.dart
 abstract class Widget extends DiagnosticableTree:
 	default:
 		key: opt<Key>
 
+# packages/flutter/lib/src/widgets/framework.dart
 abstract class StatefulWidget extends Widget:
 	default:
 		key: opt<Key>
 
+# packages/flutter/lib/src/widgets/framework.dart
 abstract class GlobalKey extends Key:
 	default:
 		debugLabel: opt<str>
 	constructor:
 
+# bin/cache/pkg/sky_engine/lib/core/iterable.dart
 abstract class Iterable extends Object:
 	generate:
 		count: int
 		generator: opt<func<int, unknown>>
 	empty:
 
+# bin/cache/pkg/sky_engine/lib/core/map.dart
 abstract class Map extends Object:
 	from:
 		other: __PLACEHOLDER__
@@ -44,17 +52,21 @@ abstract class Map extends Object:
 	fromEntries:
 		entries: Iterable
 
+# packages/flutter/lib/src/widgets/navigator.dart
 class RouteSettings extends Object:
 	default:
 		name: opt<str>
 		arguments: opt<Object>
 
+# packages/flutter/lib/src/widgets/navigator.dart
 abstract class Route extends Object:
 	default:
 		settings: opt<RouteSettings>
 
+# bin/cache/pkg/sky_engine/lib/internal/iterable.dart
 abstract class EfficientLengthIterable extends Iterable:
 
+# bin/cache/pkg/sky_engine/lib/core/list.dart
 abstract class List extends Object implements EfficientLengthIterable:
 	default:
 		length: opt<int>
@@ -77,8 +89,10 @@ abstract class List extends Object implements EfficientLengthIterable:
 	unmodifiable:
 		elements: Iterable
 
+# packages/flutter/lib/src/widgets/framework.dart
 abstract class BuildContext extends Object:
 
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Color extends Object:
 	default:
 		value: int
@@ -93,48 +107,58 @@ class Color extends Object:
 		b: int
 		opacity: float
 
+# bin/cache/pkg/sky_engine/lib/ui/window.dart
 enum Brightness:
 	dark
 	light
 
+# packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity extends Object:
 	static:
-		minimumDensity
-		maximumDensity
-		standard
-		comfortable
-		compact
+		minimumDensity: float
+		maximumDensity: float
+		standard: __PLACEHOLDER__
+		comfortable: __PLACEHOLDER__
+		compact: __PLACEHOLDER__
 	default:
 		horizontal: opt<float>
 		vertical: opt<float>
 
+# packages/flutter/lib/src/painting/colors.dart
 class ColorSwatch extends Color:
 	default:
 		primary: int
 		_swatch: Map
 
+# packages/flutter/lib/src/material/colors.dart
 class MaterialColor extends ColorSwatch:
 	default:
 		primary: int
 		swatch: Map
 
+# packages/flutter/lib/src/material/ink_well.dart
 abstract class InteractiveInkFeatureFactory extends Object:
 
+# packages/flutter/lib/src/material/button_theme.dart
 enum ButtonTextTheme:
 	normal
 	accent
 	primary
 
+# packages/flutter/lib/src/painting/edge_insets.dart
 abstract class EdgeInsetsGeometry extends Object:
 	static:
-		infinity
+		infinity: __PLACEHOLDER__
 
+# packages/flutter/lib/src/painting/borders.dart
 abstract class ShapeBorder extends Object:
 
+# packages/flutter/lib/src/material/button_theme.dart
 enum ButtonBarLayoutBehavior:
 	constrained
 	padded
 
+# packages/flutter/lib/src/material/color_scheme.dart
 class ColorScheme extends Object:
 	default:
 		primary: Color
@@ -215,10 +239,12 @@ class ColorScheme extends Object:
 		errorColor: opt<Color>
 		brightness: opt<Brightness>
 
+# packages/flutter/lib/src/material/theme_data.dart
 enum MaterialTapTargetSize:
 	padded
 	shrinkWrap
 
+# packages/flutter/lib/src/material/button_theme.dart
 class ButtonThemeData extends Object:
 	default:
 		textTheme: opt<ButtonTextTheme>
@@ -237,32 +263,37 @@ class ButtonThemeData extends Object:
 		colorScheme: opt<ColorScheme>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontWeight extends Object:
 	static:
-		w100
-		w200
-		w300
-		w400
-		w500
-		w600
-		w700
-		w800
-		w900
-		normal
-		bold
+		w100: __PLACEHOLDER__
+		w200: __PLACEHOLDER__
+		w300: __PLACEHOLDER__
+		w400: __PLACEHOLDER__
+		w500: __PLACEHOLDER__
+		w600: __PLACEHOLDER__
+		w700: __PLACEHOLDER__
+		w800: __PLACEHOLDER__
+		w900: __PLACEHOLDER__
+		normal: __PLACEHOLDER__
+		bold: __PLACEHOLDER__
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum FontStyle:
 	normal
 	italic
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextBaseline:
 	alphabetic
 	ideographic
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextLeadingDistribution:
 	proportional
 	even
 
+# bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
 class Locale extends Object:
 	default:
 		_languageCode: str
@@ -272,17 +303,20 @@ class Locale extends Object:
 		scriptCode: opt<str>
 		countryCode: opt<str>
 
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint extends Object:
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextDecoration extends Object:
 	static:
-		none
-		underline
-		overline
-		lineThrough
+		none: __PLACEHOLDER__
+		underline: __PLACEHOLDER__
+		overline: __PLACEHOLDER__
+		lineThrough: __PLACEHOLDER__
 	combine:
 		decorations: List
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextDecorationStyle:
 	solid
 	double
@@ -290,12 +324,14 @@ enum TextDecorationStyle:
 	dashed
 	wavy
 
+# packages/flutter/lib/src/painting/text_painter.dart
 enum TextOverflow:
 	clip
 	fade
 	ellipsis
 	visible
 
+# packages/flutter/lib/src/painting/text_style.dart
 class TextStyle extends Object:
 	default:
 		inherit: opt<bool>
@@ -324,17 +360,20 @@ class TextStyle extends Object:
 		package: opt<str>
 		overflow: opt<TextOverflow>
 
+# packages/flutter/lib/src/rendering/object.dart
 abstract class Constraints extends Object:
 
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 abstract class OffsetBase extends Object:
 	default:
 		_dx: float
 		_dy: float
 
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size extends OffsetBase:
 	static:
-		zero
-		infinite
+		zero: __PLACEHOLDER__
+		infinite: __PLACEHOLDER__
 	default:
 		width: float
 		height: float
@@ -349,6 +388,7 @@ class Size extends OffsetBase:
 	fromRadius:
 		radius: float
 
+# packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints extends Constraints:
 	default:
 		minWidth: opt<float>
@@ -369,20 +409,23 @@ class BoxConstraints extends Constraints:
 		width: opt<float>
 		height: opt<float>
 
+# packages/flutter/lib/src/painting/border_radius.dart
 abstract class BorderRadiusGeometry extends Object:
 
+# bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Radius extends Object:
 	static:
-		zero
+		zero: __PLACEHOLDER__
 	circular:
 		radius: float
 	elliptical:
 		x: float
 		y: float
 
+# packages/flutter/lib/src/painting/border_radius.dart
 class BorderRadius extends BorderRadiusGeometry:
 	static:
-		zero
+		zero: __PLACEHOLDER__
 	all:
 		radius: Radius
 	circular:
@@ -399,6 +442,7 @@ class BorderRadius extends BorderRadiusGeometry:
 		bottomLeft: opt<Radius>
 		bottomRight: opt<Radius>
 
+# packages/flutter/lib/src/material/toggle_buttons_theme.dart
 class ToggleButtonsThemeData extends Object:
 	default:
 		textStyle: opt<TextStyle>
@@ -417,6 +461,7 @@ class ToggleButtonsThemeData extends Object:
 		borderRadius: opt<BorderRadius>
 		borderWidth: opt<float>
 
+# packages/flutter/lib/src/material/text_theme.dart
 class TextTheme extends Object:
 	default:
 		headline1: opt<TextStyle>
@@ -433,29 +478,34 @@ class TextTheme extends Object:
 		button: opt<TextStyle>
 		overline: opt<TextStyle>
 
+# packages/flutter/lib/src/material/input_decorator.dart
 enum FloatingLabelBehavior:
 	never
 	auto
 	always
 
+# packages/flutter/lib/src/painting/borders.dart
 enum BorderStyle:
 	none
 	solid
 
+# packages/flutter/lib/src/painting/borders.dart
 class BorderSide extends Object:
 	static:
-		none
+		none: __PLACEHOLDER__
 	default:
 		color: opt<Color>
 		width: opt<float>
 		style: opt<BorderStyle>
 
+# packages/flutter/lib/src/material/input_border.dart
 abstract class InputBorder extends ShapeBorder:
 	static:
-		none
+		none: __PLACEHOLDER__
 	default:
 		borderSide: opt<BorderSide>
 
+# packages/flutter/lib/src/material/input_decorator.dart
 class InputDecorationTheme extends Object:
 	default:
 		labelStyle: opt<TextStyle>
@@ -485,6 +535,7 @@ class InputDecorationTheme extends Object:
 		alignLabelWithHint: opt<bool>
 		constraints: opt<BoxConstraints>
 
+# packages/flutter/lib/src/widgets/icon_theme_data.dart
 class IconThemeData extends Object:
 	default:
 		color: opt<Color>
@@ -492,39 +543,51 @@ class IconThemeData extends Object:
 		size: opt<float>
 	fallback:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderComponentShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderTickMarkShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderTrackShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderTickMarkShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderThumbShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderTrackShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderValueIndicatorShape extends Object:
 
+# packages/flutter/lib/src/material/slider_theme.dart
 enum ShowValueIndicator:
 	onlyForDiscrete
 	onlyForContinuous
 	always
 	never
 
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextDirection:
 	rtl
 	ltr
 
+# packages/flutter/lib/src/material/slider_theme.dart
 class RangeValues extends Object:
 	default:
 		start: float
 		end: float
 
+# packages/flutter/lib/src/material/slider_theme.dart
 enum Thumb:
 	start
 	end
 
+# packages/flutter/lib/src/material/slider_theme.dart
 class SliderThemeData extends Object:
 	default:
 		trackHeight: opt<float>
@@ -560,12 +623,15 @@ class SliderThemeData extends Object:
 		primaryColorLight: Color
 		valueIndicatorTextStyle: TextStyle
 
+# packages/flutter/lib/src/painting/decoration.dart
 abstract class Decoration extends Object:
 
+# packages/flutter/lib/src/material/tabs.dart
 enum TabBarIndicatorSize:
 	tab
 	label
 
+# packages/flutter/lib/src/material/tab_bar_theme.dart
 class TabBarTheme extends Object:
 	default:
 		indicator: opt<Decoration>
@@ -576,26 +642,28 @@ class TabBarTheme extends Object:
 		unselectedLabelColor: opt<Color>
 		unselectedLabelStyle: opt<TextStyle>
 
+# bin/cache/pkg/sky_engine/lib/core/comparable.dart
 abstract class Comparable extends Object:
 
+# bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration extends Object implements Comparable:
 	static:
-		microsecondsPerMillisecond
-		millisecondsPerSecond
-		secondsPerMinute
-		minutesPerHour
-		hoursPerDay
-		microsecondsPerSecond
-		microsecondsPerMinute
-		microsecondsPerHour
-		microsecondsPerDay
-		millisecondsPerMinute
-		millisecondsPerHour
-		millisecondsPerDay
-		secondsPerHour
-		secondsPerDay
-		minutesPerDay
-		zero
+		microsecondsPerMillisecond: int
+		millisecondsPerSecond: int
+		secondsPerMinute: int
+		minutesPerHour: int
+		hoursPerDay: int
+		microsecondsPerSecond: int
+		microsecondsPerMinute: int
+		microsecondsPerHour: int
+		microsecondsPerDay: int
+		millisecondsPerMinute: int
+		millisecondsPerHour: int
+		millisecondsPerDay: int
+		secondsPerHour: int
+		secondsPerDay: int
+		minutesPerDay: int
+		zero: __PLACEHOLDER__
 	default:
 		days: opt<int>
 		hours: opt<int>
@@ -604,11 +672,13 @@ class Duration extends Object implements Comparable:
 		milliseconds: opt<int>
 		microseconds: opt<int>
 
+# packages/flutter/lib/src/material/tooltip_theme.dart
 enum TooltipTriggerMode:
 	manual
 	longPress
 	tap
 
+# packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipThemeData extends Object:
 	default:
 		height: opt<float>
@@ -624,12 +694,14 @@ class TooltipThemeData extends Object:
 		triggerMode: opt<TooltipTriggerMode>
 		enableFeedback: opt<bool>
 
+# bin/cache/pkg/sky_engine/lib/ui/painting.dart
 enum Clip:
 	none
 	hardEdge
 	antiAlias
 	antiAliasWithSaveLayer
 
+# packages/flutter/lib/src/material/card_theme.dart
 class CardTheme extends Object:
 	default:
 		clipBehavior: opt<Clip>
@@ -639,10 +711,12 @@ class CardTheme extends Object:
 		margin: opt<EdgeInsetsGeometry>
 		shape: opt<ShapeBorder>
 
+# packages/flutter/lib/src/painting/borders.dart
 abstract class OutlinedBorder extends ShapeBorder:
 	default:
 		side: opt<BorderSide>
 
+# packages/flutter/lib/src/material/chip_theme.dart
 class ChipThemeData extends Object:
 	default:
 		backgroundColor: Color
@@ -669,6 +743,7 @@ class ChipThemeData extends Object:
 		secondaryColor: Color
 		labelStyle: TextStyle
 
+# packages/flutter/lib/src/foundation/platform.dart
 enum TargetPlatform:
 	android
 	fuchsia
@@ -677,14 +752,16 @@ enum TargetPlatform:
 	macOS
 	windows
 
+# packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsTheme extends Object:
 	default:
 		builders: opt<Map>
 
+# packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle extends Object:
 	static:
-		light
-		dark
+		light: __PLACEHOLDER__
+		dark: __PLACEHOLDER__
 	default:
 		systemNavigationBarColor: opt<Color>
 		systemNavigationBarDividerColor: opt<Color>
@@ -695,6 +772,7 @@ class SystemUiOverlayStyle extends Object:
 		statusBarIconBrightness: opt<Brightness>
 		systemStatusBarContrastEnforced: opt<bool>
 
+# packages/flutter/lib/src/material/app_bar_theme.dart
 class AppBarTheme extends Object:
 	default:
 		brightness: opt<Brightness>
@@ -715,8 +793,10 @@ class AppBarTheme extends Object:
 		systemOverlayStyle: opt<SystemUiOverlayStyle>
 		backwardsCompatibility: opt<bool>
 
+# packages/flutter/lib/src/material/material_state.dart
 abstract class MaterialStateProperty extends Object:
 
+# packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData extends Object:
 	default:
 		thickness: opt<MaterialStateProperty>
@@ -731,14 +811,17 @@ class ScrollbarThemeData extends Object:
 		minThumbLength: opt<float>
 		interactive: opt<bool>
 
+# packages/flutter/lib/src/painting/notched_shapes.dart
 abstract class NotchedShape extends Object:
 
+# packages/flutter/lib/src/material/bottom_app_bar_theme.dart
 class BottomAppBarTheme extends Object:
 	default:
 		color: opt<Color>
 		elevation: opt<float>
 		shape: opt<NotchedShape>
 
+# packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -747,6 +830,7 @@ class DialogTheme extends Object:
 		titleTextStyle: opt<TextStyle>
 		contentTextStyle: opt<TextStyle>
 
+# packages/flutter/lib/src/material/floating_action_button_theme.dart
 class FloatingActionButtonThemeData extends Object:
 	default:
 		foregroundColor: opt<Color>
@@ -769,11 +853,13 @@ class FloatingActionButtonThemeData extends Object:
 		extendedPadding: opt<EdgeInsetsGeometry>
 		extendedTextStyle: opt<TextStyle>
 
+# packages/flutter/lib/src/material/navigation_rail.dart
 enum NavigationRailLabelType:
 	none
 	selected
 	all
 
+# packages/flutter/lib/src/material/navigation_rail_theme.dart
 class NavigationRailThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -785,24 +871,25 @@ class NavigationRailThemeData extends Object:
 		groupAlignment: opt<float>
 		labelType: opt<NavigationRailLabelType>
 
+# packages/flutter/lib/src/material/typography.dart
 class Typography extends Object:
 	static:
-		blackMountainView
-		whiteMountainView
-		blackRedmond
-		whiteRedmond
-		blackHelsinki
-		whiteHelsinki
-		blackCupertino
-		whiteCupertino
-		blackRedwoodCity
-		whiteRedwoodCity
-		englishLike2014
-		englishLike2018
-		dense2014
-		dense2018
-		tall2014
-		tall2018
+		blackMountainView: TextTheme
+		whiteMountainView: TextTheme
+		blackRedmond: TextTheme
+		whiteRedmond: TextTheme
+		blackHelsinki: TextTheme
+		whiteHelsinki: TextTheme
+		blackCupertino: TextTheme
+		whiteCupertino: TextTheme
+		blackRedwoodCity: TextTheme
+		whiteRedwoodCity: TextTheme
+		englishLike2014: TextTheme
+		englishLike2018: TextTheme
+		dense2014: TextTheme
+		dense2018: TextTheme
+		tall2014: TextTheme
+		tall2018: TextTheme
 	default:
 		platform: opt<TargetPlatform>
 		black: opt<TextTheme>
@@ -825,6 +912,7 @@ class Typography extends Object:
 		dense: opt<TextTheme>
 		tall: opt<TextTheme>
 
+# packages/flutter/lib/src/cupertino/text_theme.dart
 class CupertinoTextThemeData extends Object:
 	default:
 		primaryColor: opt<Color>
@@ -837,6 +925,7 @@ class CupertinoTextThemeData extends Object:
 		pickerTextStyle: opt<TextStyle>
 		dateTimePickerTextStyle: opt<TextStyle>
 
+# packages/flutter/lib/src/cupertino/theme.dart
 class NoDefaultCupertinoThemeData extends Object:
 	default:
 		brightness: opt<Brightness>
@@ -846,10 +935,12 @@ class NoDefaultCupertinoThemeData extends Object:
 		barBackgroundColor: opt<Color>
 		scaffoldBackgroundColor: opt<Color>
 
+# packages/flutter/lib/src/material/snack_bar_theme.dart
 enum SnackBarBehavior:
 	fixed
 	floating
 
+# packages/flutter/lib/src/material/snack_bar_theme.dart
 class SnackBarThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -860,6 +951,7 @@ class SnackBarThemeData extends Object:
 		shape: opt<ShapeBorder>
 		behavior: opt<SnackBarBehavior>
 
+# packages/flutter/lib/src/material/bottom_sheet_theme.dart
 class BottomSheetThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -870,6 +962,7 @@ class BottomSheetThemeData extends Object:
 		clipBehavior: opt<Clip>
 		constraints: opt<BoxConstraints>
 
+# packages/flutter/lib/src/material/popup_menu_theme.dart
 class PopupMenuThemeData extends Object:
 	default:
 		color: opt<Color>
@@ -878,6 +971,7 @@ class PopupMenuThemeData extends Object:
 		textStyle: opt<TextStyle>
 		enableFeedback: opt<bool>
 
+# packages/flutter/lib/src/material/banner_theme.dart
 class MaterialBannerThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -885,6 +979,7 @@ class MaterialBannerThemeData extends Object:
 		padding: opt<EdgeInsetsGeometry>
 		leadingPadding: opt<EdgeInsetsGeometry>
 
+# packages/flutter/lib/src/material/divider_theme.dart
 class DividerThemeData extends Object:
 	default:
 		color: opt<Color>
@@ -893,6 +988,7 @@ class DividerThemeData extends Object:
 		indent: opt<float>
 		endIndent: opt<float>
 
+# packages/flutter/lib/src/rendering/flex.dart
 enum MainAxisAlignment:
 	start
 	end
@@ -901,14 +997,17 @@ enum MainAxisAlignment:
 	spaceAround
 	spaceEvenly
 
+# packages/flutter/lib/src/rendering/flex.dart
 enum MainAxisSize:
 	min
 	max
 
+# packages/flutter/lib/src/painting/basic_types.dart
 enum VerticalDirection:
 	up
 	down
 
+# packages/flutter/lib/src/material/button_bar_theme.dart
 class ButtonBarThemeData extends Object:
 	default:
 		alignment: opt<MainAxisAlignment>
@@ -921,15 +1020,18 @@ class ButtonBarThemeData extends Object:
 		layoutBehavior: opt<ButtonBarLayoutBehavior>
 		overflowDirection: opt<VerticalDirection>
 
+# packages/flutter/lib/src/material/bottom_navigation_bar.dart
 enum BottomNavigationBarType:
 	fixed
 	shifting
 
+# packages/flutter/lib/src/material/bottom_navigation_bar.dart
 enum BottomNavigationBarLandscapeLayout:
 	spread
 	centered
 	linear
 
+# packages/flutter/lib/src/material/bottom_navigation_bar_theme.dart
 class BottomNavigationBarThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -946,6 +1048,7 @@ class BottomNavigationBarThemeData extends Object:
 		enableFeedback: opt<bool>
 		landscapeLayout: opt<BottomNavigationBarLandscapeLayout>
 
+# packages/flutter/lib/src/material/time_picker_theme.dart
 class TimePickerThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
@@ -966,8 +1069,10 @@ class TimePickerThemeData extends Object:
 		dayPeriodBorderSide: opt<BorderSide>
 		inputDecorationTheme: opt<InputDecorationTheme>
 
+# packages/flutter/lib/src/painting/alignment.dart
 abstract class AlignmentGeometry extends Object:
 
+# packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle extends Object:
 	default:
 		textStyle: opt<MaterialStateProperty>
@@ -990,24 +1095,29 @@ class ButtonStyle extends Object:
 		alignment: opt<AlignmentGeometry>
 		splashFactory: opt<InteractiveInkFeatureFactory>
 
+# packages/flutter/lib/src/material/text_button_theme.dart
 class TextButtonThemeData extends Object:
 	default:
 		style: opt<ButtonStyle>
 
+# packages/flutter/lib/src/material/elevated_button_theme.dart
 class ElevatedButtonThemeData extends Object:
 	default:
 		style: opt<ButtonStyle>
 
+# packages/flutter/lib/src/material/outlined_button_theme.dart
 class OutlinedButtonThemeData extends Object:
 	default:
 		style: opt<ButtonStyle>
 
+# packages/flutter/lib/src/material/text_selection_theme.dart
 class TextSelectionThemeData extends Object:
 	default:
 		cursorColor: opt<Color>
 		selectionColor: opt<Color>
 		selectionHandleColor: opt<Color>
 
+# packages/flutter/lib/src/material/data_table_theme.dart
 class DataTableThemeData extends Object:
 	default:
 		decoration: opt<Decoration>
@@ -1022,6 +1132,7 @@ class DataTableThemeData extends Object:
 		dividerThickness: opt<float>
 		checkboxHorizontalMargin: opt<float>
 
+# packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData extends Object:
 	default:
 		mouseCursor: opt<MaterialStateProperty>
@@ -1034,6 +1145,7 @@ class CheckboxThemeData extends Object:
 		shape: opt<OutlinedBorder>
 		side: opt<BorderSide>
 
+# packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData extends Object:
 	default:
 		mouseCursor: opt<MaterialStateProperty>
@@ -1043,6 +1155,7 @@ class RadioThemeData extends Object:
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		visualDensity: opt<VisualDensity>
 
+# packages/flutter/lib/src/material/switch_theme.dart
 class SwitchThemeData extends Object:
 	default:
 		thumbColor: opt<MaterialStateProperty>
@@ -1052,6 +1165,7 @@ class SwitchThemeData extends Object:
 		overlayColor: opt<MaterialStateProperty>
 		splashRadius: opt<float>
 
+# packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData extends Object:
 	default:
 		color: opt<Color>
@@ -1060,6 +1174,7 @@ class ProgressIndicatorThemeData extends Object:
 		circularTrackColor: opt<Color>
 		refreshBackgroundColor: opt<Color>
 
+# packages/flutter/lib/src/material/theme_data.dart
 class ThemeData extends Object:
 	default:
 		brightness: opt<Brightness>
@@ -1229,29 +1344,39 @@ class ThemeData extends Object:
 	dark:
 	fallback:
 
+# packages/flutter/lib/src/material/app.dart
 enum ThemeMode:
 	system
 	light
 	dark
 
+# packages/flutter/lib/src/widgets/scroll_configuration.dart
 class ScrollBehavior extends Object:
 
+# packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class Listenable extends Object:
 	merge:
 		listenables: List
 
+# packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class ValueListenable extends Listenable:
 
+# packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationProvider extends ValueListenable:
 
+# packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationParser extends Object:
 
+# packages/flutter/lib/src/widgets/router.dart
 abstract class RouterDelegate extends Listenable:
 
+# packages/flutter/lib/src/widgets/router.dart
 class _CallbackHookProvider extends Object:
 
+# packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider:
 
+# packages/flutter/lib/src/material/app.dart
 class MaterialApp extends StatefulWidget:
 	default:
 		key: opt<Key>
@@ -1322,8 +1447,10 @@ class MaterialApp extends StatefulWidget:
 		scrollBehavior: opt<ScrollBehavior>
 		useInheritedMediaQuery: opt<bool>
 
+# packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEventData extends Object:
 
+# packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEvent extends Object:
 	default:
 		data: RawKeyEventData
@@ -1331,749 +1458,754 @@ abstract class RawKeyEvent extends Object:
 	fromMessage:
 		message: Map
 
+# packages/flutter/lib/src/widgets/focus_manager.dart
 enum KeyEventResult:
 	handled
 	ignored
 	skipRemainingHandlers
 
+# packages/flutter/lib/src/services/keyboard_key.dart
 abstract class KeyboardKey extends Object:
 
+# packages/flutter/lib/src/services/keyboard_key.dart
 class PhysicalKeyboardKey extends KeyboardKey:
 	static:
-		hyper
-		superKey
-		fn
-		fnLock
-		suspend
-		resume
-		turbo
-		privacyScreenToggle
-		sleep
-		wakeUp
-		displayToggleIntExt
-		gameButton1
-		gameButton2
-		gameButton3
-		gameButton4
-		gameButton5
-		gameButton6
-		gameButton7
-		gameButton8
-		gameButton9
-		gameButton10
-		gameButton11
-		gameButton12
-		gameButton13
-		gameButton14
-		gameButton15
-		gameButton16
-		gameButtonA
-		gameButtonB
-		gameButtonC
-		gameButtonLeft1
-		gameButtonLeft2
-		gameButtonMode
-		gameButtonRight1
-		gameButtonRight2
-		gameButtonSelect
-		gameButtonStart
-		gameButtonThumbLeft
-		gameButtonThumbRight
-		gameButtonX
-		gameButtonY
-		gameButtonZ
-		usbReserved
-		usbErrorRollOver
-		usbPostFail
-		usbErrorUndefined
-		keyA
-		keyB
-		keyC
-		keyD
-		keyE
-		keyF
-		keyG
-		keyH
-		keyI
-		keyJ
-		keyK
-		keyL
-		keyM
-		keyN
-		keyO
-		keyP
-		keyQ
-		keyR
-		keyS
-		keyT
-		keyU
-		keyV
-		keyW
-		keyX
-		keyY
-		keyZ
-		digit1
-		digit2
-		digit3
-		digit4
-		digit5
-		digit6
-		digit7
-		digit8
-		digit9
-		digit0
-		enter
-		escape
-		backspace
-		tab
-		space
-		minus
-		equal
-		bracketLeft
-		bracketRight
-		backslash
-		semicolon
-		quote
-		backquote
-		comma
-		period
-		slash
-		capsLock
-		f1
-		f2
-		f3
-		f4
-		f5
-		f6
-		f7
-		f8
-		f9
-		f10
-		f11
-		f12
-		printScreen
-		scrollLock
-		pause
-		insert
-		home
-		pageUp
-		delete
-		end
-		pageDown
-		arrowRight
-		arrowLeft
-		arrowDown
-		arrowUp
-		numLock
-		numpadDivide
-		numpadMultiply
-		numpadSubtract
-		numpadAdd
-		numpadEnter
-		numpad1
-		numpad2
-		numpad3
-		numpad4
-		numpad5
-		numpad6
-		numpad7
-		numpad8
-		numpad9
-		numpad0
-		numpadDecimal
-		intlBackslash
-		contextMenu
-		power
-		numpadEqual
-		f13
-		f14
-		f15
-		f16
-		f17
-		f18
-		f19
-		f20
-		f21
-		f22
-		f23
-		f24
-		open
-		help
-		select
-		again
-		undo
-		cut
-		copy
-		paste
-		find
-		audioVolumeMute
-		audioVolumeUp
-		audioVolumeDown
-		numpadComma
-		intlRo
-		kanaMode
-		intlYen
-		convert
-		nonConvert
-		lang1
-		lang2
-		lang3
-		lang4
-		lang5
-		abort
-		props
-		numpadParenLeft
-		numpadParenRight
-		numpadBackspace
-		numpadMemoryStore
-		numpadMemoryRecall
-		numpadMemoryClear
-		numpadMemoryAdd
-		numpadMemorySubtract
-		numpadSignChange
-		numpadClear
-		numpadClearEntry
-		controlLeft
-		shiftLeft
-		altLeft
-		metaLeft
-		controlRight
-		shiftRight
-		altRight
-		metaRight
-		info
-		closedCaptionToggle
-		brightnessUp
-		brightnessDown
-		brightnessToggle
-		brightnessMinimum
-		brightnessMaximum
-		brightnessAuto
-		kbdIllumUp
-		kbdIllumDown
-		mediaLast
-		launchPhone
-		programGuide
-		exit
-		channelUp
-		channelDown
-		mediaPlay
-		mediaPause
-		mediaRecord
-		mediaFastForward
-		mediaRewind
-		mediaTrackNext
-		mediaTrackPrevious
-		mediaStop
-		eject
-		mediaPlayPause
-		speechInputToggle
-		bassBoost
-		mediaSelect
-		launchWordProcessor
-		launchSpreadsheet
-		launchMail
-		launchContacts
-		launchCalendar
-		launchApp2
-		launchApp1
-		launchInternetBrowser
-		logOff
-		lockScreen
-		launchControlPanel
-		selectTask
-		launchDocuments
-		spellCheck
-		launchKeyboardLayout
-		launchScreenSaver
-		launchAudioBrowser
-		launchAssistant
-		newKey
-		close
-		save
-		print
-		browserSearch
-		browserHome
-		browserBack
-		browserForward
-		browserStop
-		browserRefresh
-		browserFavorites
-		zoomIn
-		zoomOut
-		zoomToggle
-		redo
-		mailReply
-		mailForward
-		mailSend
-		keyboardLayoutSelect
-		showAllWindows
+		hyper: __PLACEHOLDER__
+		superKey: __PLACEHOLDER__
+		fn: __PLACEHOLDER__
+		fnLock: __PLACEHOLDER__
+		suspend: __PLACEHOLDER__
+		resume: __PLACEHOLDER__
+		turbo: __PLACEHOLDER__
+		privacyScreenToggle: __PLACEHOLDER__
+		sleep: __PLACEHOLDER__
+		wakeUp: __PLACEHOLDER__
+		displayToggleIntExt: __PLACEHOLDER__
+		gameButton1: __PLACEHOLDER__
+		gameButton2: __PLACEHOLDER__
+		gameButton3: __PLACEHOLDER__
+		gameButton4: __PLACEHOLDER__
+		gameButton5: __PLACEHOLDER__
+		gameButton6: __PLACEHOLDER__
+		gameButton7: __PLACEHOLDER__
+		gameButton8: __PLACEHOLDER__
+		gameButton9: __PLACEHOLDER__
+		gameButton10: __PLACEHOLDER__
+		gameButton11: __PLACEHOLDER__
+		gameButton12: __PLACEHOLDER__
+		gameButton13: __PLACEHOLDER__
+		gameButton14: __PLACEHOLDER__
+		gameButton15: __PLACEHOLDER__
+		gameButton16: __PLACEHOLDER__
+		gameButtonA: __PLACEHOLDER__
+		gameButtonB: __PLACEHOLDER__
+		gameButtonC: __PLACEHOLDER__
+		gameButtonLeft1: __PLACEHOLDER__
+		gameButtonLeft2: __PLACEHOLDER__
+		gameButtonMode: __PLACEHOLDER__
+		gameButtonRight1: __PLACEHOLDER__
+		gameButtonRight2: __PLACEHOLDER__
+		gameButtonSelect: __PLACEHOLDER__
+		gameButtonStart: __PLACEHOLDER__
+		gameButtonThumbLeft: __PLACEHOLDER__
+		gameButtonThumbRight: __PLACEHOLDER__
+		gameButtonX: __PLACEHOLDER__
+		gameButtonY: __PLACEHOLDER__
+		gameButtonZ: __PLACEHOLDER__
+		usbReserved: __PLACEHOLDER__
+		usbErrorRollOver: __PLACEHOLDER__
+		usbPostFail: __PLACEHOLDER__
+		usbErrorUndefined: __PLACEHOLDER__
+		keyA: __PLACEHOLDER__
+		keyB: __PLACEHOLDER__
+		keyC: __PLACEHOLDER__
+		keyD: __PLACEHOLDER__
+		keyE: __PLACEHOLDER__
+		keyF: __PLACEHOLDER__
+		keyG: __PLACEHOLDER__
+		keyH: __PLACEHOLDER__
+		keyI: __PLACEHOLDER__
+		keyJ: __PLACEHOLDER__
+		keyK: __PLACEHOLDER__
+		keyL: __PLACEHOLDER__
+		keyM: __PLACEHOLDER__
+		keyN: __PLACEHOLDER__
+		keyO: __PLACEHOLDER__
+		keyP: __PLACEHOLDER__
+		keyQ: __PLACEHOLDER__
+		keyR: __PLACEHOLDER__
+		keyS: __PLACEHOLDER__
+		keyT: __PLACEHOLDER__
+		keyU: __PLACEHOLDER__
+		keyV: __PLACEHOLDER__
+		keyW: __PLACEHOLDER__
+		keyX: __PLACEHOLDER__
+		keyY: __PLACEHOLDER__
+		keyZ: __PLACEHOLDER__
+		digit1: __PLACEHOLDER__
+		digit2: __PLACEHOLDER__
+		digit3: __PLACEHOLDER__
+		digit4: __PLACEHOLDER__
+		digit5: __PLACEHOLDER__
+		digit6: __PLACEHOLDER__
+		digit7: __PLACEHOLDER__
+		digit8: __PLACEHOLDER__
+		digit9: __PLACEHOLDER__
+		digit0: __PLACEHOLDER__
+		enter: __PLACEHOLDER__
+		escape: __PLACEHOLDER__
+		backspace: __PLACEHOLDER__
+		tab: __PLACEHOLDER__
+		space: __PLACEHOLDER__
+		minus: __PLACEHOLDER__
+		equal: __PLACEHOLDER__
+		bracketLeft: __PLACEHOLDER__
+		bracketRight: __PLACEHOLDER__
+		backslash: __PLACEHOLDER__
+		semicolon: __PLACEHOLDER__
+		quote: __PLACEHOLDER__
+		backquote: __PLACEHOLDER__
+		comma: __PLACEHOLDER__
+		period: __PLACEHOLDER__
+		slash: __PLACEHOLDER__
+		capsLock: __PLACEHOLDER__
+		f1: __PLACEHOLDER__
+		f2: __PLACEHOLDER__
+		f3: __PLACEHOLDER__
+		f4: __PLACEHOLDER__
+		f5: __PLACEHOLDER__
+		f6: __PLACEHOLDER__
+		f7: __PLACEHOLDER__
+		f8: __PLACEHOLDER__
+		f9: __PLACEHOLDER__
+		f10: __PLACEHOLDER__
+		f11: __PLACEHOLDER__
+		f12: __PLACEHOLDER__
+		printScreen: __PLACEHOLDER__
+		scrollLock: __PLACEHOLDER__
+		pause: __PLACEHOLDER__
+		insert: __PLACEHOLDER__
+		home: __PLACEHOLDER__
+		pageUp: __PLACEHOLDER__
+		delete: __PLACEHOLDER__
+		end: __PLACEHOLDER__
+		pageDown: __PLACEHOLDER__
+		arrowRight: __PLACEHOLDER__
+		arrowLeft: __PLACEHOLDER__
+		arrowDown: __PLACEHOLDER__
+		arrowUp: __PLACEHOLDER__
+		numLock: __PLACEHOLDER__
+		numpadDivide: __PLACEHOLDER__
+		numpadMultiply: __PLACEHOLDER__
+		numpadSubtract: __PLACEHOLDER__
+		numpadAdd: __PLACEHOLDER__
+		numpadEnter: __PLACEHOLDER__
+		numpad1: __PLACEHOLDER__
+		numpad2: __PLACEHOLDER__
+		numpad3: __PLACEHOLDER__
+		numpad4: __PLACEHOLDER__
+		numpad5: __PLACEHOLDER__
+		numpad6: __PLACEHOLDER__
+		numpad7: __PLACEHOLDER__
+		numpad8: __PLACEHOLDER__
+		numpad9: __PLACEHOLDER__
+		numpad0: __PLACEHOLDER__
+		numpadDecimal: __PLACEHOLDER__
+		intlBackslash: __PLACEHOLDER__
+		contextMenu: __PLACEHOLDER__
+		power: __PLACEHOLDER__
+		numpadEqual: __PLACEHOLDER__
+		f13: __PLACEHOLDER__
+		f14: __PLACEHOLDER__
+		f15: __PLACEHOLDER__
+		f16: __PLACEHOLDER__
+		f17: __PLACEHOLDER__
+		f18: __PLACEHOLDER__
+		f19: __PLACEHOLDER__
+		f20: __PLACEHOLDER__
+		f21: __PLACEHOLDER__
+		f22: __PLACEHOLDER__
+		f23: __PLACEHOLDER__
+		f24: __PLACEHOLDER__
+		open: __PLACEHOLDER__
+		help: __PLACEHOLDER__
+		select: __PLACEHOLDER__
+		again: __PLACEHOLDER__
+		undo: __PLACEHOLDER__
+		cut: __PLACEHOLDER__
+		copy: __PLACEHOLDER__
+		paste: __PLACEHOLDER__
+		find: __PLACEHOLDER__
+		audioVolumeMute: __PLACEHOLDER__
+		audioVolumeUp: __PLACEHOLDER__
+		audioVolumeDown: __PLACEHOLDER__
+		numpadComma: __PLACEHOLDER__
+		intlRo: __PLACEHOLDER__
+		kanaMode: __PLACEHOLDER__
+		intlYen: __PLACEHOLDER__
+		convert: __PLACEHOLDER__
+		nonConvert: __PLACEHOLDER__
+		lang1: __PLACEHOLDER__
+		lang2: __PLACEHOLDER__
+		lang3: __PLACEHOLDER__
+		lang4: __PLACEHOLDER__
+		lang5: __PLACEHOLDER__
+		abort: __PLACEHOLDER__
+		props: __PLACEHOLDER__
+		numpadParenLeft: __PLACEHOLDER__
+		numpadParenRight: __PLACEHOLDER__
+		numpadBackspace: __PLACEHOLDER__
+		numpadMemoryStore: __PLACEHOLDER__
+		numpadMemoryRecall: __PLACEHOLDER__
+		numpadMemoryClear: __PLACEHOLDER__
+		numpadMemoryAdd: __PLACEHOLDER__
+		numpadMemorySubtract: __PLACEHOLDER__
+		numpadSignChange: __PLACEHOLDER__
+		numpadClear: __PLACEHOLDER__
+		numpadClearEntry: __PLACEHOLDER__
+		controlLeft: __PLACEHOLDER__
+		shiftLeft: __PLACEHOLDER__
+		altLeft: __PLACEHOLDER__
+		metaLeft: __PLACEHOLDER__
+		controlRight: __PLACEHOLDER__
+		shiftRight: __PLACEHOLDER__
+		altRight: __PLACEHOLDER__
+		metaRight: __PLACEHOLDER__
+		info: __PLACEHOLDER__
+		closedCaptionToggle: __PLACEHOLDER__
+		brightnessUp: __PLACEHOLDER__
+		brightnessDown: __PLACEHOLDER__
+		brightnessToggle: __PLACEHOLDER__
+		brightnessMinimum: __PLACEHOLDER__
+		brightnessMaximum: __PLACEHOLDER__
+		brightnessAuto: __PLACEHOLDER__
+		kbdIllumUp: __PLACEHOLDER__
+		kbdIllumDown: __PLACEHOLDER__
+		mediaLast: __PLACEHOLDER__
+		launchPhone: __PLACEHOLDER__
+		programGuide: __PLACEHOLDER__
+		exit: __PLACEHOLDER__
+		channelUp: __PLACEHOLDER__
+		channelDown: __PLACEHOLDER__
+		mediaPlay: __PLACEHOLDER__
+		mediaPause: __PLACEHOLDER__
+		mediaRecord: __PLACEHOLDER__
+		mediaFastForward: __PLACEHOLDER__
+		mediaRewind: __PLACEHOLDER__
+		mediaTrackNext: __PLACEHOLDER__
+		mediaTrackPrevious: __PLACEHOLDER__
+		mediaStop: __PLACEHOLDER__
+		eject: __PLACEHOLDER__
+		mediaPlayPause: __PLACEHOLDER__
+		speechInputToggle: __PLACEHOLDER__
+		bassBoost: __PLACEHOLDER__
+		mediaSelect: __PLACEHOLDER__
+		launchWordProcessor: __PLACEHOLDER__
+		launchSpreadsheet: __PLACEHOLDER__
+		launchMail: __PLACEHOLDER__
+		launchContacts: __PLACEHOLDER__
+		launchCalendar: __PLACEHOLDER__
+		launchApp2: __PLACEHOLDER__
+		launchApp1: __PLACEHOLDER__
+		launchInternetBrowser: __PLACEHOLDER__
+		logOff: __PLACEHOLDER__
+		lockScreen: __PLACEHOLDER__
+		launchControlPanel: __PLACEHOLDER__
+		selectTask: __PLACEHOLDER__
+		launchDocuments: __PLACEHOLDER__
+		spellCheck: __PLACEHOLDER__
+		launchKeyboardLayout: __PLACEHOLDER__
+		launchScreenSaver: __PLACEHOLDER__
+		launchAudioBrowser: __PLACEHOLDER__
+		launchAssistant: __PLACEHOLDER__
+		newKey: __PLACEHOLDER__
+		close: __PLACEHOLDER__
+		save: __PLACEHOLDER__
+		print: __PLACEHOLDER__
+		browserSearch: __PLACEHOLDER__
+		browserHome: __PLACEHOLDER__
+		browserBack: __PLACEHOLDER__
+		browserForward: __PLACEHOLDER__
+		browserStop: __PLACEHOLDER__
+		browserRefresh: __PLACEHOLDER__
+		browserFavorites: __PLACEHOLDER__
+		zoomIn: __PLACEHOLDER__
+		zoomOut: __PLACEHOLDER__
+		zoomToggle: __PLACEHOLDER__
+		redo: __PLACEHOLDER__
+		mailReply: __PLACEHOLDER__
+		mailForward: __PLACEHOLDER__
+		mailSend: __PLACEHOLDER__
+		keyboardLayoutSelect: __PLACEHOLDER__
+		showAllWindows: __PLACEHOLDER__
 	default:
 		usbHidUsage: int
 
+# packages/flutter/lib/src/services/keyboard_key.dart
 class LogicalKeyboardKey extends KeyboardKey:
 	static:
-		valueMask
-		planeMask
-		unicodePlane
-		unprintablePlane
-		flutterPlane
-		startOfPlatformPlanes
-		androidPlane
-		fuchsiaPlane
-		iosPlane
-		macosPlane
-		gtkPlane
-		windowsPlane
-		webPlane
-		glfwPlane
-		space
-		exclamation
-		quote
-		numberSign
-		dollar
-		percent
-		ampersand
-		quoteSingle
-		parenthesisLeft
-		parenthesisRight
-		asterisk
-		add
-		comma
-		minus
-		period
-		slash
-		digit0
-		digit1
-		digit2
-		digit3
-		digit4
-		digit5
-		digit6
-		digit7
-		digit8
-		digit9
-		colon
-		semicolon
-		less
-		equal
-		greater
-		question
-		at
-		bracketLeft
-		backslash
-		bracketRight
-		caret
-		underscore
-		backquote
-		keyA
-		keyB
-		keyC
-		keyD
-		keyE
-		keyF
-		keyG
-		keyH
-		keyI
-		keyJ
-		keyK
-		keyL
-		keyM
-		keyN
-		keyO
-		keyP
-		keyQ
-		keyR
-		keyS
-		keyT
-		keyU
-		keyV
-		keyW
-		keyX
-		keyY
-		keyZ
-		braceLeft
-		bar
-		braceRight
-		tilde
-		unidentified
-		backspace
-		tab
-		enter
-		escape
-		delete
-		accel
-		altGraph
-		capsLock
-		fn
-		fnLock
-		hyper
-		numLock
-		scrollLock
-		superKey
-		symbol
-		symbolLock
-		shiftLevel5
-		arrowDown
-		arrowLeft
-		arrowRight
-		arrowUp
-		end
-		home
-		pageDown
-		pageUp
-		clear
-		copy
-		crSel
-		cut
-		eraseEof
-		exSel
-		insert
-		paste
-		redo
-		undo
-		accept
-		again
-		attn
-		cancel
-		contextMenu
-		execute
-		find
-		help
-		pause
-		play
-		props
-		select
-		zoomIn
-		zoomOut
-		brightnessDown
-		brightnessUp
-		camera
-		eject
-		logOff
-		power
-		powerOff
-		printScreen
-		hibernate
-		standby
-		wakeUp
-		allCandidates
-		alphanumeric
-		codeInput
-		compose
-		convert
-		finalMode
-		groupFirst
-		groupLast
-		groupNext
-		groupPrevious
-		modeChange
-		nextCandidate
-		nonConvert
-		previousCandidate
-		process
-		singleCandidate
-		hangulMode
-		hanjaMode
-		junjaMode
-		eisu
-		hankaku
-		hiragana
-		hiraganaKatakana
-		kanaMode
-		kanjiMode
-		katakana
-		romaji
-		zenkaku
-		zenkakuHankaku
-		f1
-		f2
-		f3
-		f4
-		f5
-		f6
-		f7
-		f8
-		f9
-		f10
-		f11
-		f12
-		f13
-		f14
-		f15
-		f16
-		f17
-		f18
-		f19
-		f20
-		f21
-		f22
-		f23
-		f24
-		soft1
-		soft2
-		soft3
-		soft4
-		soft5
-		soft6
-		soft7
-		soft8
-		close
-		mailForward
-		mailReply
-		mailSend
-		mediaPlayPause
-		mediaStop
-		mediaTrackNext
-		mediaTrackPrevious
-		newKey
-		open
-		print
-		save
-		spellCheck
-		audioVolumeDown
-		audioVolumeUp
-		audioVolumeMute
-		launchApplication2
-		launchCalendar
-		launchMail
-		launchMediaPlayer
-		launchMusicPlayer
-		launchApplication1
-		launchScreenSaver
-		launchSpreadsheet
-		launchWebBrowser
-		launchWebCam
-		launchWordProcessor
-		launchContacts
-		launchPhone
-		launchAssistant
-		launchControlPanel
-		browserBack
-		browserFavorites
-		browserForward
-		browserHome
-		browserRefresh
-		browserSearch
-		browserStop
-		audioBalanceLeft
-		audioBalanceRight
-		audioBassBoostDown
-		audioBassBoostUp
-		audioFaderFront
-		audioFaderRear
-		audioSurroundModeNext
-		avrInput
-		avrPower
-		channelDown
-		channelUp
-		colorF0Red
-		colorF1Green
-		colorF2Yellow
-		colorF3Blue
-		colorF4Grey
-		colorF5Brown
-		closedCaptionToggle
-		dimmer
-		displaySwap
-		exit
-		favoriteClear0
-		favoriteClear1
-		favoriteClear2
-		favoriteClear3
-		favoriteRecall0
-		favoriteRecall1
-		favoriteRecall2
-		favoriteRecall3
-		favoriteStore0
-		favoriteStore1
-		favoriteStore2
-		favoriteStore3
-		guide
-		guideNextDay
-		guidePreviousDay
-		info
-		instantReplay
-		link
-		listProgram
-		liveContent
-		lock
-		mediaApps
-		mediaFastForward
-		mediaLast
-		mediaPause
-		mediaPlay
-		mediaRecord
-		mediaRewind
-		mediaSkip
-		nextFavoriteChannel
-		nextUserProfile
-		onDemand
-		pInPDown
-		pInPMove
-		pInPToggle
-		pInPUp
-		playSpeedDown
-		playSpeedReset
-		playSpeedUp
-		randomToggle
-		rcLowBattery
-		recordSpeedNext
-		rfBypass
-		scanChannelsToggle
-		screenModeNext
-		settings
-		splitScreenToggle
-		stbInput
-		stbPower
-		subtitle
-		teletext
-		tv
-		tvInput
-		tvPower
-		videoModeNext
-		wink
-		zoomToggle
-		dvr
-		mediaAudioTrack
-		mediaSkipBackward
-		mediaSkipForward
-		mediaStepBackward
-		mediaStepForward
-		mediaTopMenu
-		navigateIn
-		navigateNext
-		navigateOut
-		navigatePrevious
-		pairing
-		mediaClose
-		audioBassBoostToggle
-		audioTrebleDown
-		audioTrebleUp
-		microphoneToggle
-		microphoneVolumeDown
-		microphoneVolumeUp
-		microphoneVolumeMute
-		speechCorrectionList
-		speechInputToggle
-		appSwitch
-		call
-		cameraFocus
-		endCall
-		goBack
-		goHome
-		headsetHook
-		lastNumberRedial
-		notification
-		mannerMode
-		voiceDial
-		tv3DMode
-		tvAntennaCable
-		tvAudioDescription
-		tvAudioDescriptionMixDown
-		tvAudioDescriptionMixUp
-		tvContentsMenu
-		tvDataService
-		tvInputComponent1
-		tvInputComponent2
-		tvInputComposite1
-		tvInputComposite2
-		tvInputHDMI1
-		tvInputHDMI2
-		tvInputHDMI3
-		tvInputHDMI4
-		tvInputVGA1
-		tvMediaContext
-		tvNetwork
-		tvNumberEntry
-		tvRadioService
-		tvSatellite
-		tvSatelliteBS
-		tvSatelliteCS
-		tvSatelliteToggle
-		tvTerrestrialAnalog
-		tvTerrestrialDigital
-		tvTimer
-		key11
-		key12
-		suspend
-		resume
-		sleep
-		abort
-		lang1
-		lang2
-		lang3
-		lang4
-		lang5
-		intlBackslash
-		intlRo
-		intlYen
-		controlLeft
-		controlRight
-		shiftLeft
-		shiftRight
-		altLeft
-		altRight
-		metaLeft
-		metaRight
-		control
-		shift
-		alt
-		meta
-		numpadEnter
-		numpadParenLeft
-		numpadParenRight
-		numpadMultiply
-		numpadAdd
-		numpadComma
-		numpadSubtract
-		numpadDecimal
-		numpadDivide
-		numpad0
-		numpad1
-		numpad2
-		numpad3
-		numpad4
-		numpad5
-		numpad6
-		numpad7
-		numpad8
-		numpad9
-		numpadEqual
-		gameButton1
-		gameButton2
-		gameButton3
-		gameButton4
-		gameButton5
-		gameButton6
-		gameButton7
-		gameButton8
-		gameButton9
-		gameButton10
-		gameButton11
-		gameButton12
-		gameButton13
-		gameButton14
-		gameButton15
-		gameButton16
-		gameButtonA
-		gameButtonB
-		gameButtonC
-		gameButtonLeft1
-		gameButtonLeft2
-		gameButtonMode
-		gameButtonRight1
-		gameButtonRight2
-		gameButtonSelect
-		gameButtonStart
-		gameButtonThumbLeft
-		gameButtonThumbRight
-		gameButtonX
-		gameButtonY
-		gameButtonZ
+		valueMask: int
+		planeMask: int
+		unicodePlane: int
+		unprintablePlane: int
+		flutterPlane: int
+		startOfPlatformPlanes: int
+		androidPlane: int
+		fuchsiaPlane: int
+		iosPlane: int
+		macosPlane: int
+		gtkPlane: int
+		windowsPlane: int
+		webPlane: int
+		glfwPlane: int
+		space: __PLACEHOLDER__
+		exclamation: __PLACEHOLDER__
+		quote: __PLACEHOLDER__
+		numberSign: __PLACEHOLDER__
+		dollar: __PLACEHOLDER__
+		percent: __PLACEHOLDER__
+		ampersand: __PLACEHOLDER__
+		quoteSingle: __PLACEHOLDER__
+		parenthesisLeft: __PLACEHOLDER__
+		parenthesisRight: __PLACEHOLDER__
+		asterisk: __PLACEHOLDER__
+		add: __PLACEHOLDER__
+		comma: __PLACEHOLDER__
+		minus: __PLACEHOLDER__
+		period: __PLACEHOLDER__
+		slash: __PLACEHOLDER__
+		digit0: __PLACEHOLDER__
+		digit1: __PLACEHOLDER__
+		digit2: __PLACEHOLDER__
+		digit3: __PLACEHOLDER__
+		digit4: __PLACEHOLDER__
+		digit5: __PLACEHOLDER__
+		digit6: __PLACEHOLDER__
+		digit7: __PLACEHOLDER__
+		digit8: __PLACEHOLDER__
+		digit9: __PLACEHOLDER__
+		colon: __PLACEHOLDER__
+		semicolon: __PLACEHOLDER__
+		less: __PLACEHOLDER__
+		equal: __PLACEHOLDER__
+		greater: __PLACEHOLDER__
+		question: __PLACEHOLDER__
+		at: __PLACEHOLDER__
+		bracketLeft: __PLACEHOLDER__
+		backslash: __PLACEHOLDER__
+		bracketRight: __PLACEHOLDER__
+		caret: __PLACEHOLDER__
+		underscore: __PLACEHOLDER__
+		backquote: __PLACEHOLDER__
+		keyA: __PLACEHOLDER__
+		keyB: __PLACEHOLDER__
+		keyC: __PLACEHOLDER__
+		keyD: __PLACEHOLDER__
+		keyE: __PLACEHOLDER__
+		keyF: __PLACEHOLDER__
+		keyG: __PLACEHOLDER__
+		keyH: __PLACEHOLDER__
+		keyI: __PLACEHOLDER__
+		keyJ: __PLACEHOLDER__
+		keyK: __PLACEHOLDER__
+		keyL: __PLACEHOLDER__
+		keyM: __PLACEHOLDER__
+		keyN: __PLACEHOLDER__
+		keyO: __PLACEHOLDER__
+		keyP: __PLACEHOLDER__
+		keyQ: __PLACEHOLDER__
+		keyR: __PLACEHOLDER__
+		keyS: __PLACEHOLDER__
+		keyT: __PLACEHOLDER__
+		keyU: __PLACEHOLDER__
+		keyV: __PLACEHOLDER__
+		keyW: __PLACEHOLDER__
+		keyX: __PLACEHOLDER__
+		keyY: __PLACEHOLDER__
+		keyZ: __PLACEHOLDER__
+		braceLeft: __PLACEHOLDER__
+		bar: __PLACEHOLDER__
+		braceRight: __PLACEHOLDER__
+		tilde: __PLACEHOLDER__
+		unidentified: __PLACEHOLDER__
+		backspace: __PLACEHOLDER__
+		tab: __PLACEHOLDER__
+		enter: __PLACEHOLDER__
+		escape: __PLACEHOLDER__
+		delete: __PLACEHOLDER__
+		accel: __PLACEHOLDER__
+		altGraph: __PLACEHOLDER__
+		capsLock: __PLACEHOLDER__
+		fn: __PLACEHOLDER__
+		fnLock: __PLACEHOLDER__
+		hyper: __PLACEHOLDER__
+		numLock: __PLACEHOLDER__
+		scrollLock: __PLACEHOLDER__
+		superKey: __PLACEHOLDER__
+		symbol: __PLACEHOLDER__
+		symbolLock: __PLACEHOLDER__
+		shiftLevel5: __PLACEHOLDER__
+		arrowDown: __PLACEHOLDER__
+		arrowLeft: __PLACEHOLDER__
+		arrowRight: __PLACEHOLDER__
+		arrowUp: __PLACEHOLDER__
+		end: __PLACEHOLDER__
+		home: __PLACEHOLDER__
+		pageDown: __PLACEHOLDER__
+		pageUp: __PLACEHOLDER__
+		clear: __PLACEHOLDER__
+		copy: __PLACEHOLDER__
+		crSel: __PLACEHOLDER__
+		cut: __PLACEHOLDER__
+		eraseEof: __PLACEHOLDER__
+		exSel: __PLACEHOLDER__
+		insert: __PLACEHOLDER__
+		paste: __PLACEHOLDER__
+		redo: __PLACEHOLDER__
+		undo: __PLACEHOLDER__
+		accept: __PLACEHOLDER__
+		again: __PLACEHOLDER__
+		attn: __PLACEHOLDER__
+		cancel: __PLACEHOLDER__
+		contextMenu: __PLACEHOLDER__
+		execute: __PLACEHOLDER__
+		find: __PLACEHOLDER__
+		help: __PLACEHOLDER__
+		pause: __PLACEHOLDER__
+		play: __PLACEHOLDER__
+		props: __PLACEHOLDER__
+		select: __PLACEHOLDER__
+		zoomIn: __PLACEHOLDER__
+		zoomOut: __PLACEHOLDER__
+		brightnessDown: __PLACEHOLDER__
+		brightnessUp: __PLACEHOLDER__
+		camera: __PLACEHOLDER__
+		eject: __PLACEHOLDER__
+		logOff: __PLACEHOLDER__
+		power: __PLACEHOLDER__
+		powerOff: __PLACEHOLDER__
+		printScreen: __PLACEHOLDER__
+		hibernate: __PLACEHOLDER__
+		standby: __PLACEHOLDER__
+		wakeUp: __PLACEHOLDER__
+		allCandidates: __PLACEHOLDER__
+		alphanumeric: __PLACEHOLDER__
+		codeInput: __PLACEHOLDER__
+		compose: __PLACEHOLDER__
+		convert: __PLACEHOLDER__
+		finalMode: __PLACEHOLDER__
+		groupFirst: __PLACEHOLDER__
+		groupLast: __PLACEHOLDER__
+		groupNext: __PLACEHOLDER__
+		groupPrevious: __PLACEHOLDER__
+		modeChange: __PLACEHOLDER__
+		nextCandidate: __PLACEHOLDER__
+		nonConvert: __PLACEHOLDER__
+		previousCandidate: __PLACEHOLDER__
+		process: __PLACEHOLDER__
+		singleCandidate: __PLACEHOLDER__
+		hangulMode: __PLACEHOLDER__
+		hanjaMode: __PLACEHOLDER__
+		junjaMode: __PLACEHOLDER__
+		eisu: __PLACEHOLDER__
+		hankaku: __PLACEHOLDER__
+		hiragana: __PLACEHOLDER__
+		hiraganaKatakana: __PLACEHOLDER__
+		kanaMode: __PLACEHOLDER__
+		kanjiMode: __PLACEHOLDER__
+		katakana: __PLACEHOLDER__
+		romaji: __PLACEHOLDER__
+		zenkaku: __PLACEHOLDER__
+		zenkakuHankaku: __PLACEHOLDER__
+		f1: __PLACEHOLDER__
+		f2: __PLACEHOLDER__
+		f3: __PLACEHOLDER__
+		f4: __PLACEHOLDER__
+		f5: __PLACEHOLDER__
+		f6: __PLACEHOLDER__
+		f7: __PLACEHOLDER__
+		f8: __PLACEHOLDER__
+		f9: __PLACEHOLDER__
+		f10: __PLACEHOLDER__
+		f11: __PLACEHOLDER__
+		f12: __PLACEHOLDER__
+		f13: __PLACEHOLDER__
+		f14: __PLACEHOLDER__
+		f15: __PLACEHOLDER__
+		f16: __PLACEHOLDER__
+		f17: __PLACEHOLDER__
+		f18: __PLACEHOLDER__
+		f19: __PLACEHOLDER__
+		f20: __PLACEHOLDER__
+		f21: __PLACEHOLDER__
+		f22: __PLACEHOLDER__
+		f23: __PLACEHOLDER__
+		f24: __PLACEHOLDER__
+		soft1: __PLACEHOLDER__
+		soft2: __PLACEHOLDER__
+		soft3: __PLACEHOLDER__
+		soft4: __PLACEHOLDER__
+		soft5: __PLACEHOLDER__
+		soft6: __PLACEHOLDER__
+		soft7: __PLACEHOLDER__
+		soft8: __PLACEHOLDER__
+		close: __PLACEHOLDER__
+		mailForward: __PLACEHOLDER__
+		mailReply: __PLACEHOLDER__
+		mailSend: __PLACEHOLDER__
+		mediaPlayPause: __PLACEHOLDER__
+		mediaStop: __PLACEHOLDER__
+		mediaTrackNext: __PLACEHOLDER__
+		mediaTrackPrevious: __PLACEHOLDER__
+		newKey: __PLACEHOLDER__
+		open: __PLACEHOLDER__
+		print: __PLACEHOLDER__
+		save: __PLACEHOLDER__
+		spellCheck: __PLACEHOLDER__
+		audioVolumeDown: __PLACEHOLDER__
+		audioVolumeUp: __PLACEHOLDER__
+		audioVolumeMute: __PLACEHOLDER__
+		launchApplication2: __PLACEHOLDER__
+		launchCalendar: __PLACEHOLDER__
+		launchMail: __PLACEHOLDER__
+		launchMediaPlayer: __PLACEHOLDER__
+		launchMusicPlayer: __PLACEHOLDER__
+		launchApplication1: __PLACEHOLDER__
+		launchScreenSaver: __PLACEHOLDER__
+		launchSpreadsheet: __PLACEHOLDER__
+		launchWebBrowser: __PLACEHOLDER__
+		launchWebCam: __PLACEHOLDER__
+		launchWordProcessor: __PLACEHOLDER__
+		launchContacts: __PLACEHOLDER__
+		launchPhone: __PLACEHOLDER__
+		launchAssistant: __PLACEHOLDER__
+		launchControlPanel: __PLACEHOLDER__
+		browserBack: __PLACEHOLDER__
+		browserFavorites: __PLACEHOLDER__
+		browserForward: __PLACEHOLDER__
+		browserHome: __PLACEHOLDER__
+		browserRefresh: __PLACEHOLDER__
+		browserSearch: __PLACEHOLDER__
+		browserStop: __PLACEHOLDER__
+		audioBalanceLeft: __PLACEHOLDER__
+		audioBalanceRight: __PLACEHOLDER__
+		audioBassBoostDown: __PLACEHOLDER__
+		audioBassBoostUp: __PLACEHOLDER__
+		audioFaderFront: __PLACEHOLDER__
+		audioFaderRear: __PLACEHOLDER__
+		audioSurroundModeNext: __PLACEHOLDER__
+		avrInput: __PLACEHOLDER__
+		avrPower: __PLACEHOLDER__
+		channelDown: __PLACEHOLDER__
+		channelUp: __PLACEHOLDER__
+		colorF0Red: __PLACEHOLDER__
+		colorF1Green: __PLACEHOLDER__
+		colorF2Yellow: __PLACEHOLDER__
+		colorF3Blue: __PLACEHOLDER__
+		colorF4Grey: __PLACEHOLDER__
+		colorF5Brown: __PLACEHOLDER__
+		closedCaptionToggle: __PLACEHOLDER__
+		dimmer: __PLACEHOLDER__
+		displaySwap: __PLACEHOLDER__
+		exit: __PLACEHOLDER__
+		favoriteClear0: __PLACEHOLDER__
+		favoriteClear1: __PLACEHOLDER__
+		favoriteClear2: __PLACEHOLDER__
+		favoriteClear3: __PLACEHOLDER__
+		favoriteRecall0: __PLACEHOLDER__
+		favoriteRecall1: __PLACEHOLDER__
+		favoriteRecall2: __PLACEHOLDER__
+		favoriteRecall3: __PLACEHOLDER__
+		favoriteStore0: __PLACEHOLDER__
+		favoriteStore1: __PLACEHOLDER__
+		favoriteStore2: __PLACEHOLDER__
+		favoriteStore3: __PLACEHOLDER__
+		guide: __PLACEHOLDER__
+		guideNextDay: __PLACEHOLDER__
+		guidePreviousDay: __PLACEHOLDER__
+		info: __PLACEHOLDER__
+		instantReplay: __PLACEHOLDER__
+		link: __PLACEHOLDER__
+		listProgram: __PLACEHOLDER__
+		liveContent: __PLACEHOLDER__
+		lock: __PLACEHOLDER__
+		mediaApps: __PLACEHOLDER__
+		mediaFastForward: __PLACEHOLDER__
+		mediaLast: __PLACEHOLDER__
+		mediaPause: __PLACEHOLDER__
+		mediaPlay: __PLACEHOLDER__
+		mediaRecord: __PLACEHOLDER__
+		mediaRewind: __PLACEHOLDER__
+		mediaSkip: __PLACEHOLDER__
+		nextFavoriteChannel: __PLACEHOLDER__
+		nextUserProfile: __PLACEHOLDER__
+		onDemand: __PLACEHOLDER__
+		pInPDown: __PLACEHOLDER__
+		pInPMove: __PLACEHOLDER__
+		pInPToggle: __PLACEHOLDER__
+		pInPUp: __PLACEHOLDER__
+		playSpeedDown: __PLACEHOLDER__
+		playSpeedReset: __PLACEHOLDER__
+		playSpeedUp: __PLACEHOLDER__
+		randomToggle: __PLACEHOLDER__
+		rcLowBattery: __PLACEHOLDER__
+		recordSpeedNext: __PLACEHOLDER__
+		rfBypass: __PLACEHOLDER__
+		scanChannelsToggle: __PLACEHOLDER__
+		screenModeNext: __PLACEHOLDER__
+		settings: __PLACEHOLDER__
+		splitScreenToggle: __PLACEHOLDER__
+		stbInput: __PLACEHOLDER__
+		stbPower: __PLACEHOLDER__
+		subtitle: __PLACEHOLDER__
+		teletext: __PLACEHOLDER__
+		tv: __PLACEHOLDER__
+		tvInput: __PLACEHOLDER__
+		tvPower: __PLACEHOLDER__
+		videoModeNext: __PLACEHOLDER__
+		wink: __PLACEHOLDER__
+		zoomToggle: __PLACEHOLDER__
+		dvr: __PLACEHOLDER__
+		mediaAudioTrack: __PLACEHOLDER__
+		mediaSkipBackward: __PLACEHOLDER__
+		mediaSkipForward: __PLACEHOLDER__
+		mediaStepBackward: __PLACEHOLDER__
+		mediaStepForward: __PLACEHOLDER__
+		mediaTopMenu: __PLACEHOLDER__
+		navigateIn: __PLACEHOLDER__
+		navigateNext: __PLACEHOLDER__
+		navigateOut: __PLACEHOLDER__
+		navigatePrevious: __PLACEHOLDER__
+		pairing: __PLACEHOLDER__
+		mediaClose: __PLACEHOLDER__
+		audioBassBoostToggle: __PLACEHOLDER__
+		audioTrebleDown: __PLACEHOLDER__
+		audioTrebleUp: __PLACEHOLDER__
+		microphoneToggle: __PLACEHOLDER__
+		microphoneVolumeDown: __PLACEHOLDER__
+		microphoneVolumeUp: __PLACEHOLDER__
+		microphoneVolumeMute: __PLACEHOLDER__
+		speechCorrectionList: __PLACEHOLDER__
+		speechInputToggle: __PLACEHOLDER__
+		appSwitch: __PLACEHOLDER__
+		call: __PLACEHOLDER__
+		cameraFocus: __PLACEHOLDER__
+		endCall: __PLACEHOLDER__
+		goBack: __PLACEHOLDER__
+		goHome: __PLACEHOLDER__
+		headsetHook: __PLACEHOLDER__
+		lastNumberRedial: __PLACEHOLDER__
+		notification: __PLACEHOLDER__
+		mannerMode: __PLACEHOLDER__
+		voiceDial: __PLACEHOLDER__
+		tv3DMode: __PLACEHOLDER__
+		tvAntennaCable: __PLACEHOLDER__
+		tvAudioDescription: __PLACEHOLDER__
+		tvAudioDescriptionMixDown: __PLACEHOLDER__
+		tvAudioDescriptionMixUp: __PLACEHOLDER__
+		tvContentsMenu: __PLACEHOLDER__
+		tvDataService: __PLACEHOLDER__
+		tvInputComponent1: __PLACEHOLDER__
+		tvInputComponent2: __PLACEHOLDER__
+		tvInputComposite1: __PLACEHOLDER__
+		tvInputComposite2: __PLACEHOLDER__
+		tvInputHDMI1: __PLACEHOLDER__
+		tvInputHDMI2: __PLACEHOLDER__
+		tvInputHDMI3: __PLACEHOLDER__
+		tvInputHDMI4: __PLACEHOLDER__
+		tvInputVGA1: __PLACEHOLDER__
+		tvMediaContext: __PLACEHOLDER__
+		tvNetwork: __PLACEHOLDER__
+		tvNumberEntry: __PLACEHOLDER__
+		tvRadioService: __PLACEHOLDER__
+		tvSatellite: __PLACEHOLDER__
+		tvSatelliteBS: __PLACEHOLDER__
+		tvSatelliteCS: __PLACEHOLDER__
+		tvSatelliteToggle: __PLACEHOLDER__
+		tvTerrestrialAnalog: __PLACEHOLDER__
+		tvTerrestrialDigital: __PLACEHOLDER__
+		tvTimer: __PLACEHOLDER__
+		key11: __PLACEHOLDER__
+		key12: __PLACEHOLDER__
+		suspend: __PLACEHOLDER__
+		resume: __PLACEHOLDER__
+		sleep: __PLACEHOLDER__
+		abort: __PLACEHOLDER__
+		lang1: __PLACEHOLDER__
+		lang2: __PLACEHOLDER__
+		lang3: __PLACEHOLDER__
+		lang4: __PLACEHOLDER__
+		lang5: __PLACEHOLDER__
+		intlBackslash: __PLACEHOLDER__
+		intlRo: __PLACEHOLDER__
+		intlYen: __PLACEHOLDER__
+		controlLeft: __PLACEHOLDER__
+		controlRight: __PLACEHOLDER__
+		shiftLeft: __PLACEHOLDER__
+		shiftRight: __PLACEHOLDER__
+		altLeft: __PLACEHOLDER__
+		altRight: __PLACEHOLDER__
+		metaLeft: __PLACEHOLDER__
+		metaRight: __PLACEHOLDER__
+		control: __PLACEHOLDER__
+		shift: __PLACEHOLDER__
+		alt: __PLACEHOLDER__
+		meta: __PLACEHOLDER__
+		numpadEnter: __PLACEHOLDER__
+		numpadParenLeft: __PLACEHOLDER__
+		numpadParenRight: __PLACEHOLDER__
+		numpadMultiply: __PLACEHOLDER__
+		numpadAdd: __PLACEHOLDER__
+		numpadComma: __PLACEHOLDER__
+		numpadSubtract: __PLACEHOLDER__
+		numpadDecimal: __PLACEHOLDER__
+		numpadDivide: __PLACEHOLDER__
+		numpad0: __PLACEHOLDER__
+		numpad1: __PLACEHOLDER__
+		numpad2: __PLACEHOLDER__
+		numpad3: __PLACEHOLDER__
+		numpad4: __PLACEHOLDER__
+		numpad5: __PLACEHOLDER__
+		numpad6: __PLACEHOLDER__
+		numpad7: __PLACEHOLDER__
+		numpad8: __PLACEHOLDER__
+		numpad9: __PLACEHOLDER__
+		numpadEqual: __PLACEHOLDER__
+		gameButton1: __PLACEHOLDER__
+		gameButton2: __PLACEHOLDER__
+		gameButton3: __PLACEHOLDER__
+		gameButton4: __PLACEHOLDER__
+		gameButton5: __PLACEHOLDER__
+		gameButton6: __PLACEHOLDER__
+		gameButton7: __PLACEHOLDER__
+		gameButton8: __PLACEHOLDER__
+		gameButton9: __PLACEHOLDER__
+		gameButton10: __PLACEHOLDER__
+		gameButton11: __PLACEHOLDER__
+		gameButton12: __PLACEHOLDER__
+		gameButton13: __PLACEHOLDER__
+		gameButton14: __PLACEHOLDER__
+		gameButton15: __PLACEHOLDER__
+		gameButton16: __PLACEHOLDER__
+		gameButtonA: __PLACEHOLDER__
+		gameButtonB: __PLACEHOLDER__
+		gameButtonC: __PLACEHOLDER__
+		gameButtonLeft1: __PLACEHOLDER__
+		gameButtonLeft2: __PLACEHOLDER__
+		gameButtonMode: __PLACEHOLDER__
+		gameButtonRight1: __PLACEHOLDER__
+		gameButtonRight2: __PLACEHOLDER__
+		gameButtonSelect: __PLACEHOLDER__
+		gameButtonStart: __PLACEHOLDER__
+		gameButtonThumbLeft: __PLACEHOLDER__
+		gameButtonThumbRight: __PLACEHOLDER__
+		gameButtonX: __PLACEHOLDER__
+		gameButtonY: __PLACEHOLDER__
+		gameButtonZ: __PLACEHOLDER__
 	default:
 		keyId: int
 
+# packages/flutter/lib/src/services/hardware_keyboard.dart
 abstract class KeyEvent extends Object:
 	default:
 		physicalKey: PhysicalKeyboardKey
@@ -2082,6 +2214,7 @@ abstract class KeyEvent extends Object:
 		timeStamp: Duration
 		synthesized: opt<bool>
 
+# packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode extends Object:
 	default:
 		debugLabel: opt<str>
@@ -2091,6 +2224,7 @@ class FocusNode extends Object:
 		canRequestFocus: opt<bool>
 		descendantsAreFocusable: opt<bool>
 
+# packages/flutter/lib/src/material/button_style_button.dart
 abstract class ButtonStyleButton extends StatefulWidget:
 	default:
 		key: opt<Key>
@@ -2102,6 +2236,7 @@ abstract class ButtonStyleButton extends StatefulWidget:
 		clipBehavior: Clip
 		child: Widget
 
+# packages/flutter/lib/src/material/elevated_button.dart
 class ElevatedButton extends ButtonStyleButton:
 	default:
 		key: opt<Key>
