@@ -175,26 +175,33 @@ class IRInterface extends IRType {
   ) : super(element.name);
 }
 
+class IRParameter {
+  final String name;
+  final IRType? bound;
+
+  IRParameter(this.name, this.bound);
+}
+
 class IRClass extends IRElement {
   final bool isAbstract;
+  final List<IRParameter> parameters;
   final List<IRType> supertypes;
   final List<IRType> interfaces;
   final IRConstructor constructor;
   final List<IRConstructor> constructors;
   final List<IRField> fields;
-  final List<String> parameters;
   final ClassElement dartElement;
 
   IRClass(
     String path,
     String name, {
     required this.isAbstract,
+    required this.parameters,
     required this.supertypes,
     required this.interfaces,
     required this.constructor,
     required this.constructors,
     required this.fields,
-    required this.parameters,
     required this.dartElement,
   }) : super(path, name);
 }
@@ -368,6 +375,8 @@ final _reservedWords = {
 
 String _unreserved(String name) =>
     _reservedWords.contains(name) ? '${name}_' : name;
+
+String comma(Iterable<String> items) => items.join(', ');
 
 bool _isPrivateSymbol(String name) {
   return name.startsWith(r'_');
@@ -965,16 +974,20 @@ class IRBuilder {
         .map((c) => IRConstructor(c.name, _toFields(c.parameters)))
         .toList();
 
+    final parameters = e.typeParameters.map((p) {
+      final bound = p.bound;
+      return IRParameter(p.name, bound != null ? _toType(bound) : null);
+    }).toList();
+
     return IRClass(path, e.name,
         // XXX handle e.isMixin
         isAbstract: e.isAbstract,
+        parameters: parameters,
         supertypes: supertypes,
         interfaces: interfaces,
         constructor: IRConstructor('', defaultFields),
         constructors: constructors,
         fields: fields,
-        parameters: [],
-        // XXX Handle type parameters
         dartElement: e);
   }
 
@@ -1037,6 +1050,11 @@ class IRBuilder {
     return t.name;
   }
 
+  static String _dumpParameter(IRParameter t) {
+    final b = t.bound;
+    return t.name + (b != null ? ' extends ${_dumpType(b)}' : '');
+  }
+
   static String dump(List<IRElement> elements) {
     final p = Printer('\t');
     for (final e in elements) {
@@ -1050,13 +1068,16 @@ class IRBuilder {
         });
       } else if (e is IRClass) {
         final abs = e.isAbstract ? 'abstract ' : '';
+        final params = e.parameters.isNotEmpty
+            ? '<${comma(e.parameters.map(_dumpParameter))}>'
+            : '';
         final ext = e.supertypes.isNotEmpty
-            ? ' extends ' + e.supertypes.map(_dumpType).join(', ')
+            ? ' extends ' + comma(e.supertypes.map(_dumpType))
             : '';
         final impl = e.interfaces.isNotEmpty
-            ? ' implements ' + e.interfaces.map(_dumpType).join(', ')
+            ? ' implements ' + comma(e.interfaces.map(_dumpType))
             : '';
-        p('${abs}class ${e.name}$ext$impl:');
+        p('${abs}class ${e.name}$params$ext$impl:');
         p.t(() {
           if (e.fields.isNotEmpty) {
             p('static:');

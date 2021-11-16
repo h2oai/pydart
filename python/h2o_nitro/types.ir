@@ -21,20 +21,23 @@ abstract class StatefulWidget extends Widget:
 		key: opt<Key>
 
 # packages/flutter/lib/src/widgets/framework.dart
-abstract class GlobalKey extends Key:
+abstract class State<T> extends Object:
+
+# packages/flutter/lib/src/widgets/framework.dart
+abstract class GlobalKey<T> extends Key:
 	default:
 		debugLabel: opt<str>
 	constructor:
 
 # bin/cache/pkg/sky_engine/lib/core/iterable.dart
-abstract class Iterable extends Object:
+abstract class Iterable<E> extends Object:
 	generate:
 		count: int
 		generator: opt<func<int, unknown>>
 	empty:
 
 # bin/cache/pkg/sky_engine/lib/core/map.dart
-abstract class Map extends Object:
+abstract class Map<K, V> extends Object:
 	from:
 		other: __PLACEHOLDER__
 	of:
@@ -59,15 +62,15 @@ class RouteSettings extends Object:
 		arguments: opt<Object>
 
 # packages/flutter/lib/src/widgets/navigator.dart
-abstract class Route extends Object:
+abstract class Route<T> extends Object:
 	default:
 		settings: opt<RouteSettings>
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
-abstract class EfficientLengthIterable extends Iterable:
+abstract class EfficientLengthIterable<T> extends Iterable:
 
 # bin/cache/pkg/sky_engine/lib/core/list.dart
-abstract class List extends Object implements EfficientLengthIterable:
+abstract class List<E> extends Object implements EfficientLengthIterable:
 	default:
 		length: opt<int>
 	filled:
@@ -125,7 +128,7 @@ class VisualDensity extends Object:
 		vertical: opt<float>
 
 # packages/flutter/lib/src/painting/colors.dart
-class ColorSwatch extends Color:
+class ColorSwatch<T> extends Color:
 	default:
 		primary: int
 		_swatch: Map
@@ -643,7 +646,7 @@ class TabBarTheme extends Object:
 		unselectedLabelStyle: opt<TextStyle>
 
 # bin/cache/pkg/sky_engine/lib/core/comparable.dart
-abstract class Comparable extends Object:
+abstract class Comparable<T> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration extends Object implements Comparable:
@@ -794,7 +797,7 @@ class AppBarTheme extends Object:
 		backwardsCompatibility: opt<bool>
 
 # packages/flutter/lib/src/material/material_state.dart
-abstract class MaterialStateProperty extends Object:
+abstract class MaterialStateProperty<T> extends Object:
 
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData extends Object:
@@ -1359,19 +1362,19 @@ abstract class Listenable extends Object:
 		listenables: List
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
-abstract class ValueListenable extends Listenable:
+abstract class ValueListenable<T> extends Listenable:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationProvider extends ValueListenable:
 
 # packages/flutter/lib/src/widgets/router.dart
-abstract class RouteInformationParser extends Object:
+abstract class RouteInformationParser<T> extends Object:
 
 # packages/flutter/lib/src/widgets/router.dart
-abstract class RouterDelegate extends Listenable:
+abstract class RouterDelegate<T> extends Listenable:
 
 # packages/flutter/lib/src/widgets/router.dart
-class _CallbackHookProvider extends Object:
+class _CallbackHookProvider<T> extends Object:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider:
