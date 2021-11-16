@@ -94,8 +94,6 @@ class Color extends Object:
 		opacity: float
 
 enum Brightness:
-	index
-	values
 	dark
 	light
 
@@ -123,8 +121,6 @@ class MaterialColor extends ColorSwatch:
 abstract class InteractiveInkFeatureFactory extends Object:
 
 enum ButtonTextTheme:
-	index
-	values
 	normal
 	accent
 	primary
@@ -136,8 +132,6 @@ abstract class EdgeInsetsGeometry extends Object:
 abstract class ShapeBorder extends Object:
 
 enum ButtonBarLayoutBehavior:
-	index
-	values
 	constrained
 	padded
 
@@ -222,8 +216,6 @@ class ColorScheme extends Object:
 		brightness: opt<Brightness>
 
 enum MaterialTapTargetSize:
-	index
-	values
 	padded
 	shrinkWrap
 
@@ -260,20 +252,14 @@ class FontWeight extends Object:
 		bold
 
 enum FontStyle:
-	index
-	values
 	normal
 	italic
 
 enum TextBaseline:
-	index
-	values
 	alphabetic
 	ideographic
 
 enum TextLeadingDistribution:
-	index
-	values
 	proportional
 	even
 
@@ -298,8 +284,6 @@ class TextDecoration extends Object:
 		decorations: List
 
 enum TextDecorationStyle:
-	index
-	values
 	solid
 	double
 	dotted
@@ -307,8 +291,6 @@ enum TextDecorationStyle:
 	wavy
 
 enum TextOverflow:
-	index
-	values
 	clip
 	fade
 	ellipsis
@@ -452,15 +434,11 @@ class TextTheme extends Object:
 		overline: opt<TextStyle>
 
 enum FloatingLabelBehavior:
-	index
-	values
 	never
 	auto
 	always
 
 enum BorderStyle:
-	index
-	values
 	none
 	solid
 
@@ -529,16 +507,12 @@ abstract class RangeSliderTrackShape extends Object:
 abstract class RangeSliderValueIndicatorShape extends Object:
 
 enum ShowValueIndicator:
-	index
-	values
 	onlyForDiscrete
 	onlyForContinuous
 	always
 	never
 
 enum TextDirection:
-	index
-	values
 	rtl
 	ltr
 
@@ -548,8 +522,6 @@ class RangeValues extends Object:
 		end: float
 
 enum Thumb:
-	index
-	values
 	start
 	end
 
@@ -591,8 +563,6 @@ class SliderThemeData extends Object:
 abstract class Decoration extends Object:
 
 enum TabBarIndicatorSize:
-	index
-	values
 	tab
 	label
 
@@ -635,8 +605,6 @@ class Duration extends Object implements Comparable:
 		microseconds: opt<int>
 
 enum TooltipTriggerMode:
-	index
-	values
 	manual
 	longPress
 	tap
@@ -657,8 +625,6 @@ class TooltipThemeData extends Object:
 		enableFeedback: opt<bool>
 
 enum Clip:
-	index
-	values
 	none
 	hardEdge
 	antiAlias
@@ -704,8 +670,6 @@ class ChipThemeData extends Object:
 		labelStyle: TextStyle
 
 enum TargetPlatform:
-	index
-	values
 	android
 	fuchsia
 	iOS
@@ -806,8 +770,6 @@ class FloatingActionButtonThemeData extends Object:
 		extendedTextStyle: opt<TextStyle>
 
 enum NavigationRailLabelType:
-	index
-	values
 	none
 	selected
 	all
@@ -885,8 +847,6 @@ class NoDefaultCupertinoThemeData extends Object:
 		scaffoldBackgroundColor: opt<Color>
 
 enum SnackBarBehavior:
-	index
-	values
 	fixed
 	floating
 
@@ -934,8 +894,6 @@ class DividerThemeData extends Object:
 		endIndent: opt<float>
 
 enum MainAxisAlignment:
-	index
-	values
 	start
 	end
 	center
@@ -944,14 +902,10 @@ enum MainAxisAlignment:
 	spaceEvenly
 
 enum MainAxisSize:
-	index
-	values
 	min
 	max
 
 enum VerticalDirection:
-	index
-	values
 	up
 	down
 
@@ -968,14 +922,10 @@ class ButtonBarThemeData extends Object:
 		overflowDirection: opt<VerticalDirection>
 
 enum BottomNavigationBarType:
-	index
-	values
 	fixed
 	shifting
 
 enum BottomNavigationBarLandscapeLayout:
-	index
-	values
 	spread
 	centered
 	linear
@@ -1280,8 +1230,6 @@ class ThemeData extends Object:
 	fallback:
 
 enum ThemeMode:
-	index
-	values
 	system
 	light
 	dark
@@ -1384,8 +1332,6 @@ abstract class RawKeyEvent extends Object:
 		message: Map
 
 enum KeyEventResult:
-	index
-	values
 	handled
 	ignored
 	skipRemainingHandlers

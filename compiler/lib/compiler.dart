@@ -102,10 +102,10 @@ class IRElement {
   final String name;
 
   IRElement(this.path, this.name);
+
   static final IRElement optional = IRElement('', 'opt');
   static final IRElement func = IRElement('', 'func');
 }
-
 
 class IRPlaceholderElement extends IRElement {
   final ClassElement dartElement;
@@ -858,8 +858,9 @@ class IRBuilder {
   IREnum _toEnum(ClassElement e) {
     assert(e.isEnum);
     final path = _getRelativeSourcePath(e);
-    return IREnum(path, e.name,
-        values: e.fields.map((f) => f.name).toList(), dartElement: e);
+    final values =
+        e.fields.where((f) => f.isEnumConstant).map((f) => f.name).toList();
+    return IREnum(path, e.name, values: values, dartElement: e);
   }
 
   IRType _toType(DartType t) {
