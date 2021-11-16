@@ -102,9 +102,10 @@ class IRElement {
   final String name;
 
   IRElement(this.path, this.name);
+  static final IRElement optional = IRElement('', 'opt');
+  static final IRElement func = IRElement('', 'func');
 }
 
-final IRElement optional = IRElement('', 'Optional');
 
 class IRPlaceholderElement extends IRElement {
   final ClassElement dartElement;
@@ -156,12 +157,12 @@ class IRType {
   IRType(this.name);
 
   static final IRType unknown = IRType('unknown');
+  static final IRType nothing = IRType('void');
   static final IRType bool = IRType('bool');
   static final IRType int = IRType('int');
   static final IRType float = IRType('float');
   static final IRType str = IRType('str');
   static final IRType any = IRType('any');
-  static final IRType callable = IRType('func');
 }
 
 class IRInterface extends IRType {
@@ -862,6 +863,7 @@ class IRBuilder {
   }
 
   IRType _toType(DartType t) {
+    if (t.isVoid) return IRType.nothing;
     if (t.isDartCoreBool) return IRType.bool;
     if (t.isDartCoreInt) return IRType.int;
     if (t.isDartCoreDouble) return IRType.float;
@@ -872,6 +874,16 @@ class IRBuilder {
       // XXX handle t.typeArguments
       final e = _load(t.element);
       return IRInterface(e, []);
+    }
+
+    if (t is FunctionType) {
+      // XXX handle t.typeArguments
+      final parameterTypes = t.parameters.map((p) {
+        final t = _toType(p.type);
+        return p.isOptional ? _toOptional(t) : t;
+      }).toList();
+      final returnType = _toType(t.returnType);
+      return IRInterface(IRElement.func, [...parameterTypes, returnType]);
     }
 
     return IRType.unknown;
@@ -909,7 +921,7 @@ class IRBuilder {
   }
 
   IRType _toOptional(IRType t) {
-    return IRInterface(optional, [t]);
+    return IRInterface(IRElement.optional, [t]);
   }
 
   IRField _toField(ParameterElement e) {

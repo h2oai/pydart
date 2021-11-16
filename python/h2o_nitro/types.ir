@@ -9,21 +9,21 @@ abstract class Key extends Object:
 
 abstract class Widget extends DiagnosticableTree:
 	default:
-		key: Optional<Key>
+		key: opt<Key>
 
 abstract class StatefulWidget extends Widget:
 	default:
-		key: Optional<Key>
+		key: opt<Key>
 
 abstract class GlobalKey extends Key:
 	default:
-		debugLabel: Optional<str>
+		debugLabel: opt<str>
 	constructor:
 
 abstract class Iterable extends Object:
 	generate:
 		count: int
-		generator: Optional<unknown>
+		generator: opt<func<int, unknown>>
 	empty:
 
 abstract class Map extends Object:
@@ -36,37 +36,48 @@ abstract class Map extends Object:
 	identity:
 	fromIterable:
 		iterable: Iterable
-		key: Optional<unknown>
-		value: Optional<unknown>
+		key: opt<func<any, unknown>>
+		value: opt<func<any, unknown>>
 	fromIterables:
 		keys: Iterable
 		values: Iterable
 	fromEntries:
 		entries: Iterable
 
+class RouteSettings extends Object:
+	default:
+		name: opt<str>
+		arguments: opt<Object>
+
+abstract class Route extends Object:
+	default:
+		settings: opt<RouteSettings>
+
 abstract class EfficientLengthIterable extends Iterable:
 
 abstract class List extends Object implements EfficientLengthIterable:
 	default:
-		length: Optional<int>
+		length: opt<int>
 	filled:
 		length: int
 		fill: unknown
-		growable: Optional<bool>
+		growable: opt<bool>
 	empty:
-		growable: Optional<bool>
+		growable: opt<bool>
 	from:
 		elements: Iterable
-		growable: Optional<bool>
+		growable: opt<bool>
 	of:
 		elements: Iterable
-		growable: Optional<bool>
+		growable: opt<bool>
 	generate:
 		length: int
-		generator: unknown
-		growable: Optional<bool>
+		generator: func<int, unknown>
+		growable: opt<bool>
 	unmodifiable:
 		elements: Iterable
+
+abstract class BuildContext extends Object:
 
 class Color extends Object:
 	default:
@@ -96,8 +107,8 @@ class VisualDensity extends Object:
 		comfortable
 		compact
 	default:
-		horizontal: Optional<float>
-		vertical: Optional<float>
+		horizontal: opt<float>
+		vertical: opt<float>
 
 class ColorSwatch extends Color:
 	default:
@@ -146,69 +157,69 @@ class ColorScheme extends Object:
 		onError: Color
 		brightness: Brightness
 	light:
-		primary: Optional<Color>
-		primaryVariant: Optional<Color>
-		secondary: Optional<Color>
-		secondaryVariant: Optional<Color>
-		surface: Optional<Color>
-		background: Optional<Color>
-		error: Optional<Color>
-		onPrimary: Optional<Color>
-		onSecondary: Optional<Color>
-		onSurface: Optional<Color>
-		onBackground: Optional<Color>
-		onError: Optional<Color>
-		brightness: Optional<Brightness>
+		primary: opt<Color>
+		primaryVariant: opt<Color>
+		secondary: opt<Color>
+		secondaryVariant: opt<Color>
+		surface: opt<Color>
+		background: opt<Color>
+		error: opt<Color>
+		onPrimary: opt<Color>
+		onSecondary: opt<Color>
+		onSurface: opt<Color>
+		onBackground: opt<Color>
+		onError: opt<Color>
+		brightness: opt<Brightness>
 	dark:
-		primary: Optional<Color>
-		primaryVariant: Optional<Color>
-		secondary: Optional<Color>
-		secondaryVariant: Optional<Color>
-		surface: Optional<Color>
-		background: Optional<Color>
-		error: Optional<Color>
-		onPrimary: Optional<Color>
-		onSecondary: Optional<Color>
-		onSurface: Optional<Color>
-		onBackground: Optional<Color>
-		onError: Optional<Color>
-		brightness: Optional<Brightness>
+		primary: opt<Color>
+		primaryVariant: opt<Color>
+		secondary: opt<Color>
+		secondaryVariant: opt<Color>
+		surface: opt<Color>
+		background: opt<Color>
+		error: opt<Color>
+		onPrimary: opt<Color>
+		onSecondary: opt<Color>
+		onSurface: opt<Color>
+		onBackground: opt<Color>
+		onError: opt<Color>
+		brightness: opt<Brightness>
 	highContrastLight:
-		primary: Optional<Color>
-		primaryVariant: Optional<Color>
-		secondary: Optional<Color>
-		secondaryVariant: Optional<Color>
-		surface: Optional<Color>
-		background: Optional<Color>
-		error: Optional<Color>
-		onPrimary: Optional<Color>
-		onSecondary: Optional<Color>
-		onSurface: Optional<Color>
-		onBackground: Optional<Color>
-		onError: Optional<Color>
-		brightness: Optional<Brightness>
+		primary: opt<Color>
+		primaryVariant: opt<Color>
+		secondary: opt<Color>
+		secondaryVariant: opt<Color>
+		surface: opt<Color>
+		background: opt<Color>
+		error: opt<Color>
+		onPrimary: opt<Color>
+		onSecondary: opt<Color>
+		onSurface: opt<Color>
+		onBackground: opt<Color>
+		onError: opt<Color>
+		brightness: opt<Brightness>
 	highContrastDark:
-		primary: Optional<Color>
-		primaryVariant: Optional<Color>
-		secondary: Optional<Color>
-		secondaryVariant: Optional<Color>
-		surface: Optional<Color>
-		background: Optional<Color>
-		error: Optional<Color>
-		onPrimary: Optional<Color>
-		onSecondary: Optional<Color>
-		onSurface: Optional<Color>
-		onBackground: Optional<Color>
-		onError: Optional<Color>
-		brightness: Optional<Brightness>
+		primary: opt<Color>
+		primaryVariant: opt<Color>
+		secondary: opt<Color>
+		secondaryVariant: opt<Color>
+		surface: opt<Color>
+		background: opt<Color>
+		error: opt<Color>
+		onPrimary: opt<Color>
+		onSecondary: opt<Color>
+		onSurface: opt<Color>
+		onBackground: opt<Color>
+		onError: opt<Color>
+		brightness: opt<Brightness>
 	fromSwatch:
-		primarySwatch: Optional<MaterialColor>
-		primaryColorDark: Optional<Color>
-		accentColor: Optional<Color>
-		cardColor: Optional<Color>
-		backgroundColor: Optional<Color>
-		errorColor: Optional<Color>
-		brightness: Optional<Brightness>
+		primarySwatch: opt<MaterialColor>
+		primaryColorDark: opt<Color>
+		accentColor: opt<Color>
+		cardColor: opt<Color>
+		backgroundColor: opt<Color>
+		errorColor: opt<Color>
+		brightness: opt<Brightness>
 
 enum MaterialTapTargetSize:
 	index
@@ -218,21 +229,21 @@ enum MaterialTapTargetSize:
 
 class ButtonThemeData extends Object:
 	default:
-		textTheme: Optional<ButtonTextTheme>
-		minWidth: Optional<float>
-		height: Optional<float>
-		padding: Optional<EdgeInsetsGeometry>
-		shape: Optional<ShapeBorder>
-		layoutBehavior: Optional<ButtonBarLayoutBehavior>
-		alignedDropdown: Optional<bool>
-		buttonColor: Optional<Color>
-		disabledColor: Optional<Color>
-		focusColor: Optional<Color>
-		hoverColor: Optional<Color>
-		highlightColor: Optional<Color>
-		splashColor: Optional<Color>
-		colorScheme: Optional<ColorScheme>
-		materialTapTargetSize: Optional<MaterialTapTargetSize>
+		textTheme: opt<ButtonTextTheme>
+		minWidth: opt<float>
+		height: opt<float>
+		padding: opt<EdgeInsetsGeometry>
+		shape: opt<ShapeBorder>
+		layoutBehavior: opt<ButtonBarLayoutBehavior>
+		alignedDropdown: opt<bool>
+		buttonColor: opt<Color>
+		disabledColor: opt<Color>
+		focusColor: opt<Color>
+		hoverColor: opt<Color>
+		highlightColor: opt<Color>
+		splashColor: opt<Color>
+		colorScheme: opt<ColorScheme>
+		materialTapTargetSize: opt<MaterialTapTargetSize>
 
 class FontWeight extends Object:
 	static:
@@ -269,11 +280,11 @@ enum TextLeadingDistribution:
 class Locale extends Object:
 	default:
 		_languageCode: str
-		_countryCode: Optional<str>
+		_countryCode: opt<str>
 	fromSubtags:
-		languageCode: Optional<str>
-		scriptCode: Optional<str>
-		countryCode: Optional<str>
+		languageCode: opt<str>
+		scriptCode: opt<str>
+		countryCode: opt<str>
 
 class Paint extends Object:
 
@@ -305,31 +316,31 @@ enum TextOverflow:
 
 class TextStyle extends Object:
 	default:
-		inherit: Optional<bool>
-		color: Optional<Color>
-		backgroundColor: Optional<Color>
-		fontSize: Optional<float>
-		fontWeight: Optional<FontWeight>
-		fontStyle: Optional<FontStyle>
-		letterSpacing: Optional<float>
-		wordSpacing: Optional<float>
-		textBaseline: Optional<TextBaseline>
-		height: Optional<float>
-		leadingDistribution: Optional<TextLeadingDistribution>
-		locale: Optional<Locale>
-		foreground: Optional<Paint>
-		background: Optional<Paint>
-		shadows: Optional<List>
-		fontFeatures: Optional<List>
-		decoration: Optional<TextDecoration>
-		decorationColor: Optional<Color>
-		decorationStyle: Optional<TextDecorationStyle>
-		decorationThickness: Optional<float>
-		debugLabel: Optional<str>
-		fontFamily: Optional<str>
-		fontFamilyFallback: Optional<List>
-		package: Optional<str>
-		overflow: Optional<TextOverflow>
+		inherit: opt<bool>
+		color: opt<Color>
+		backgroundColor: opt<Color>
+		fontSize: opt<float>
+		fontWeight: opt<FontWeight>
+		fontStyle: opt<FontStyle>
+		letterSpacing: opt<float>
+		wordSpacing: opt<float>
+		textBaseline: opt<TextBaseline>
+		height: opt<float>
+		leadingDistribution: opt<TextLeadingDistribution>
+		locale: opt<Locale>
+		foreground: opt<Paint>
+		background: opt<Paint>
+		shadows: opt<List>
+		fontFeatures: opt<List>
+		decoration: opt<TextDecoration>
+		decorationColor: opt<Color>
+		decorationStyle: opt<TextDecorationStyle>
+		decorationThickness: opt<float>
+		debugLabel: opt<str>
+		fontFamily: opt<str>
+		fontFamilyFallback: opt<List>
+		package: opt<str>
+		overflow: opt<TextOverflow>
 
 abstract class Constraints extends Object:
 
@@ -358,23 +369,23 @@ class Size extends OffsetBase:
 
 class BoxConstraints extends Constraints:
 	default:
-		minWidth: Optional<float>
-		maxWidth: Optional<float>
-		minHeight: Optional<float>
-		maxHeight: Optional<float>
+		minWidth: opt<float>
+		maxWidth: opt<float>
+		minHeight: opt<float>
+		maxHeight: opt<float>
 	tight:
 		size: Size
 	tightFor:
-		width: Optional<float>
-		height: Optional<float>
+		width: opt<float>
+		height: opt<float>
 	tightForFinite:
-		width: Optional<float>
-		height: Optional<float>
+		width: opt<float>
+		height: opt<float>
 	loose:
 		size: Size
 	expand:
-		width: Optional<float>
-		height: Optional<float>
+		width: opt<float>
+		height: opt<float>
 
 abstract class BorderRadiusGeometry extends Object:
 
@@ -395,50 +406,50 @@ class BorderRadius extends BorderRadiusGeometry:
 	circular:
 		radius: float
 	vertical:
-		top: Optional<Radius>
-		bottom: Optional<Radius>
+		top: opt<Radius>
+		bottom: opt<Radius>
 	horizontal:
-		left: Optional<Radius>
-		right: Optional<Radius>
+		left: opt<Radius>
+		right: opt<Radius>
 	only:
-		topLeft: Optional<Radius>
-		topRight: Optional<Radius>
-		bottomLeft: Optional<Radius>
-		bottomRight: Optional<Radius>
+		topLeft: opt<Radius>
+		topRight: opt<Radius>
+		bottomLeft: opt<Radius>
+		bottomRight: opt<Radius>
 
 class ToggleButtonsThemeData extends Object:
 	default:
-		textStyle: Optional<TextStyle>
-		constraints: Optional<BoxConstraints>
-		color: Optional<Color>
-		selectedColor: Optional<Color>
-		disabledColor: Optional<Color>
-		fillColor: Optional<Color>
-		focusColor: Optional<Color>
-		highlightColor: Optional<Color>
-		hoverColor: Optional<Color>
-		splashColor: Optional<Color>
-		borderColor: Optional<Color>
-		selectedBorderColor: Optional<Color>
-		disabledBorderColor: Optional<Color>
-		borderRadius: Optional<BorderRadius>
-		borderWidth: Optional<float>
+		textStyle: opt<TextStyle>
+		constraints: opt<BoxConstraints>
+		color: opt<Color>
+		selectedColor: opt<Color>
+		disabledColor: opt<Color>
+		fillColor: opt<Color>
+		focusColor: opt<Color>
+		highlightColor: opt<Color>
+		hoverColor: opt<Color>
+		splashColor: opt<Color>
+		borderColor: opt<Color>
+		selectedBorderColor: opt<Color>
+		disabledBorderColor: opt<Color>
+		borderRadius: opt<BorderRadius>
+		borderWidth: opt<float>
 
 class TextTheme extends Object:
 	default:
-		headline1: Optional<TextStyle>
-		headline2: Optional<TextStyle>
-		headline3: Optional<TextStyle>
-		headline4: Optional<TextStyle>
-		headline5: Optional<TextStyle>
-		headline6: Optional<TextStyle>
-		subtitle1: Optional<TextStyle>
-		subtitle2: Optional<TextStyle>
-		bodyText1: Optional<TextStyle>
-		bodyText2: Optional<TextStyle>
-		caption: Optional<TextStyle>
-		button: Optional<TextStyle>
-		overline: Optional<TextStyle>
+		headline1: opt<TextStyle>
+		headline2: opt<TextStyle>
+		headline3: opt<TextStyle>
+		headline4: opt<TextStyle>
+		headline5: opt<TextStyle>
+		headline6: opt<TextStyle>
+		subtitle1: opt<TextStyle>
+		subtitle2: opt<TextStyle>
+		bodyText1: opt<TextStyle>
+		bodyText2: opt<TextStyle>
+		caption: opt<TextStyle>
+		button: opt<TextStyle>
+		overline: opt<TextStyle>
 
 enum FloatingLabelBehavior:
 	index
@@ -457,50 +468,50 @@ class BorderSide extends Object:
 	static:
 		none
 	default:
-		color: Optional<Color>
-		width: Optional<float>
-		style: Optional<BorderStyle>
+		color: opt<Color>
+		width: opt<float>
+		style: opt<BorderStyle>
 
 abstract class InputBorder extends ShapeBorder:
 	static:
 		none
 	default:
-		borderSide: Optional<BorderSide>
+		borderSide: opt<BorderSide>
 
 class InputDecorationTheme extends Object:
 	default:
-		labelStyle: Optional<TextStyle>
-		floatingLabelStyle: Optional<TextStyle>
-		helperStyle: Optional<TextStyle>
-		helperMaxLines: Optional<int>
-		hintStyle: Optional<TextStyle>
-		errorStyle: Optional<TextStyle>
-		errorMaxLines: Optional<int>
-		floatingLabelBehavior: Optional<FloatingLabelBehavior>
-		isDense: Optional<bool>
-		contentPadding: Optional<EdgeInsetsGeometry>
-		isCollapsed: Optional<bool>
-		prefixStyle: Optional<TextStyle>
-		suffixStyle: Optional<TextStyle>
-		counterStyle: Optional<TextStyle>
-		filled: Optional<bool>
-		fillColor: Optional<Color>
-		focusColor: Optional<Color>
-		hoverColor: Optional<Color>
-		errorBorder: Optional<InputBorder>
-		focusedBorder: Optional<InputBorder>
-		focusedErrorBorder: Optional<InputBorder>
-		disabledBorder: Optional<InputBorder>
-		enabledBorder: Optional<InputBorder>
-		border: Optional<InputBorder>
-		alignLabelWithHint: Optional<bool>
-		constraints: Optional<BoxConstraints>
+		labelStyle: opt<TextStyle>
+		floatingLabelStyle: opt<TextStyle>
+		helperStyle: opt<TextStyle>
+		helperMaxLines: opt<int>
+		hintStyle: opt<TextStyle>
+		errorStyle: opt<TextStyle>
+		errorMaxLines: opt<int>
+		floatingLabelBehavior: opt<FloatingLabelBehavior>
+		isDense: opt<bool>
+		contentPadding: opt<EdgeInsetsGeometry>
+		isCollapsed: opt<bool>
+		prefixStyle: opt<TextStyle>
+		suffixStyle: opt<TextStyle>
+		counterStyle: opt<TextStyle>
+		filled: opt<bool>
+		fillColor: opt<Color>
+		focusColor: opt<Color>
+		hoverColor: opt<Color>
+		errorBorder: opt<InputBorder>
+		focusedBorder: opt<InputBorder>
+		focusedErrorBorder: opt<InputBorder>
+		disabledBorder: opt<InputBorder>
+		enabledBorder: opt<InputBorder>
+		border: opt<InputBorder>
+		alignLabelWithHint: opt<bool>
+		constraints: opt<BoxConstraints>
 
 class IconThemeData extends Object:
 	default:
-		color: Optional<Color>
-		opacity: Optional<float>
-		size: Optional<float>
+		color: opt<Color>
+		opacity: opt<float>
+		size: opt<float>
 	fallback:
 
 abstract class SliderComponentShape extends Object:
@@ -525,35 +536,52 @@ enum ShowValueIndicator:
 	always
 	never
 
+enum TextDirection:
+	index
+	values
+	rtl
+	ltr
+
+class RangeValues extends Object:
+	default:
+		start: float
+		end: float
+
+enum Thumb:
+	index
+	values
+	start
+	end
+
 class SliderThemeData extends Object:
 	default:
-		trackHeight: Optional<float>
-		activeTrackColor: Optional<Color>
-		inactiveTrackColor: Optional<Color>
-		disabledActiveTrackColor: Optional<Color>
-		disabledInactiveTrackColor: Optional<Color>
-		activeTickMarkColor: Optional<Color>
-		inactiveTickMarkColor: Optional<Color>
-		disabledActiveTickMarkColor: Optional<Color>
-		disabledInactiveTickMarkColor: Optional<Color>
-		thumbColor: Optional<Color>
-		overlappingShapeStrokeColor: Optional<Color>
-		disabledThumbColor: Optional<Color>
-		overlayColor: Optional<Color>
-		valueIndicatorColor: Optional<Color>
-		overlayShape: Optional<SliderComponentShape>
-		tickMarkShape: Optional<SliderTickMarkShape>
-		thumbShape: Optional<SliderComponentShape>
-		trackShape: Optional<SliderTrackShape>
-		valueIndicatorShape: Optional<SliderComponentShape>
-		rangeTickMarkShape: Optional<RangeSliderTickMarkShape>
-		rangeThumbShape: Optional<RangeSliderThumbShape>
-		rangeTrackShape: Optional<RangeSliderTrackShape>
-		rangeValueIndicatorShape: Optional<RangeSliderValueIndicatorShape>
-		showValueIndicator: Optional<ShowValueIndicator>
-		valueIndicatorTextStyle: Optional<TextStyle>
-		minThumbSeparation: Optional<float>
-		thumbSelector: Optional<unknown>
+		trackHeight: opt<float>
+		activeTrackColor: opt<Color>
+		inactiveTrackColor: opt<Color>
+		disabledActiveTrackColor: opt<Color>
+		disabledInactiveTrackColor: opt<Color>
+		activeTickMarkColor: opt<Color>
+		inactiveTickMarkColor: opt<Color>
+		disabledActiveTickMarkColor: opt<Color>
+		disabledInactiveTickMarkColor: opt<Color>
+		thumbColor: opt<Color>
+		overlappingShapeStrokeColor: opt<Color>
+		disabledThumbColor: opt<Color>
+		overlayColor: opt<Color>
+		valueIndicatorColor: opt<Color>
+		overlayShape: opt<SliderComponentShape>
+		tickMarkShape: opt<SliderTickMarkShape>
+		thumbShape: opt<SliderComponentShape>
+		trackShape: opt<SliderTrackShape>
+		valueIndicatorShape: opt<SliderComponentShape>
+		rangeTickMarkShape: opt<RangeSliderTickMarkShape>
+		rangeThumbShape: opt<RangeSliderThumbShape>
+		rangeTrackShape: opt<RangeSliderTrackShape>
+		rangeValueIndicatorShape: opt<RangeSliderValueIndicatorShape>
+		showValueIndicator: opt<ShowValueIndicator>
+		valueIndicatorTextStyle: opt<TextStyle>
+		minThumbSeparation: opt<float>
+		thumbSelector: opt<func<TextDirection, RangeValues, float, Size, Size, float, Thumb>>
 	fromPrimaryColors:
 		primaryColor: Color
 		primaryColorDark: Color
@@ -570,13 +598,13 @@ enum TabBarIndicatorSize:
 
 class TabBarTheme extends Object:
 	default:
-		indicator: Optional<Decoration>
-		indicatorSize: Optional<TabBarIndicatorSize>
-		labelColor: Optional<Color>
-		labelPadding: Optional<EdgeInsetsGeometry>
-		labelStyle: Optional<TextStyle>
-		unselectedLabelColor: Optional<Color>
-		unselectedLabelStyle: Optional<TextStyle>
+		indicator: opt<Decoration>
+		indicatorSize: opt<TabBarIndicatorSize>
+		labelColor: opt<Color>
+		labelPadding: opt<EdgeInsetsGeometry>
+		labelStyle: opt<TextStyle>
+		unselectedLabelColor: opt<Color>
+		unselectedLabelStyle: opt<TextStyle>
 
 abstract class Comparable extends Object:
 
@@ -599,12 +627,12 @@ class Duration extends Object implements Comparable:
 		minutesPerDay
 		zero
 	default:
-		days: Optional<int>
-		hours: Optional<int>
-		minutes: Optional<int>
-		seconds: Optional<int>
-		milliseconds: Optional<int>
-		microseconds: Optional<int>
+		days: opt<int>
+		hours: opt<int>
+		minutes: opt<int>
+		seconds: opt<int>
+		milliseconds: opt<int>
+		microseconds: opt<int>
 
 enum TooltipTriggerMode:
 	index
@@ -615,18 +643,18 @@ enum TooltipTriggerMode:
 
 class TooltipThemeData extends Object:
 	default:
-		height: Optional<float>
-		padding: Optional<EdgeInsetsGeometry>
-		margin: Optional<EdgeInsetsGeometry>
-		verticalOffset: Optional<float>
-		preferBelow: Optional<bool>
-		excludeFromSemantics: Optional<bool>
-		decoration: Optional<Decoration>
-		textStyle: Optional<TextStyle>
-		waitDuration: Optional<Duration>
-		showDuration: Optional<Duration>
-		triggerMode: Optional<TooltipTriggerMode>
-		enableFeedback: Optional<bool>
+		height: opt<float>
+		padding: opt<EdgeInsetsGeometry>
+		margin: opt<EdgeInsetsGeometry>
+		verticalOffset: opt<float>
+		preferBelow: opt<bool>
+		excludeFromSemantics: opt<bool>
+		decoration: opt<Decoration>
+		textStyle: opt<TextStyle>
+		waitDuration: opt<Duration>
+		showDuration: opt<Duration>
+		triggerMode: opt<TooltipTriggerMode>
+		enableFeedback: opt<bool>
 
 enum Clip:
 	index
@@ -638,40 +666,40 @@ enum Clip:
 
 class CardTheme extends Object:
 	default:
-		clipBehavior: Optional<Clip>
-		color: Optional<Color>
-		shadowColor: Optional<Color>
-		elevation: Optional<float>
-		margin: Optional<EdgeInsetsGeometry>
-		shape: Optional<ShapeBorder>
+		clipBehavior: opt<Clip>
+		color: opt<Color>
+		shadowColor: opt<Color>
+		elevation: opt<float>
+		margin: opt<EdgeInsetsGeometry>
+		shape: opt<ShapeBorder>
 
 abstract class OutlinedBorder extends ShapeBorder:
 	default:
-		side: Optional<BorderSide>
+		side: opt<BorderSide>
 
 class ChipThemeData extends Object:
 	default:
 		backgroundColor: Color
-		deleteIconColor: Optional<Color>
+		deleteIconColor: opt<Color>
 		disabledColor: Color
 		selectedColor: Color
 		secondarySelectedColor: Color
-		shadowColor: Optional<Color>
-		selectedShadowColor: Optional<Color>
-		showCheckmark: Optional<bool>
-		checkmarkColor: Optional<Color>
-		labelPadding: Optional<EdgeInsetsGeometry>
+		shadowColor: opt<Color>
+		selectedShadowColor: opt<Color>
+		showCheckmark: opt<bool>
+		checkmarkColor: opt<Color>
+		labelPadding: opt<EdgeInsetsGeometry>
 		padding: EdgeInsetsGeometry
-		side: Optional<BorderSide>
-		shape: Optional<OutlinedBorder>
+		side: opt<BorderSide>
+		shape: opt<OutlinedBorder>
 		labelStyle: TextStyle
 		secondaryLabelStyle: TextStyle
 		brightness: Brightness
-		elevation: Optional<float>
-		pressElevation: Optional<float>
+		elevation: opt<float>
+		pressElevation: opt<float>
 	fromDefaults:
-		brightness: Optional<Brightness>
-		primaryColor: Optional<Color>
+		brightness: opt<Brightness>
+		primaryColor: opt<Color>
 		secondaryColor: Color
 		labelStyle: TextStyle
 
@@ -687,95 +715,95 @@ enum TargetPlatform:
 
 class PageTransitionsTheme extends Object:
 	default:
-		builders: Optional<Map>
+		builders: opt<Map>
 
 class SystemUiOverlayStyle extends Object:
 	static:
 		light
 		dark
 	default:
-		systemNavigationBarColor: Optional<Color>
-		systemNavigationBarDividerColor: Optional<Color>
-		systemNavigationBarIconBrightness: Optional<Brightness>
-		systemNavigationBarContrastEnforced: Optional<bool>
-		statusBarColor: Optional<Color>
-		statusBarBrightness: Optional<Brightness>
-		statusBarIconBrightness: Optional<Brightness>
-		systemStatusBarContrastEnforced: Optional<bool>
+		systemNavigationBarColor: opt<Color>
+		systemNavigationBarDividerColor: opt<Color>
+		systemNavigationBarIconBrightness: opt<Brightness>
+		systemNavigationBarContrastEnforced: opt<bool>
+		statusBarColor: opt<Color>
+		statusBarBrightness: opt<Brightness>
+		statusBarIconBrightness: opt<Brightness>
+		systemStatusBarContrastEnforced: opt<bool>
 
 class AppBarTheme extends Object:
 	default:
-		brightness: Optional<Brightness>
-		color: Optional<Color>
-		backgroundColor: Optional<Color>
-		foregroundColor: Optional<Color>
-		elevation: Optional<float>
-		shadowColor: Optional<Color>
-		shape: Optional<ShapeBorder>
-		iconTheme: Optional<IconThemeData>
-		actionsIconTheme: Optional<IconThemeData>
-		textTheme: Optional<TextTheme>
-		centerTitle: Optional<bool>
-		titleSpacing: Optional<float>
-		toolbarHeight: Optional<float>
-		toolbarTextStyle: Optional<TextStyle>
-		titleTextStyle: Optional<TextStyle>
-		systemOverlayStyle: Optional<SystemUiOverlayStyle>
-		backwardsCompatibility: Optional<bool>
+		brightness: opt<Brightness>
+		color: opt<Color>
+		backgroundColor: opt<Color>
+		foregroundColor: opt<Color>
+		elevation: opt<float>
+		shadowColor: opt<Color>
+		shape: opt<ShapeBorder>
+		iconTheme: opt<IconThemeData>
+		actionsIconTheme: opt<IconThemeData>
+		textTheme: opt<TextTheme>
+		centerTitle: opt<bool>
+		titleSpacing: opt<float>
+		toolbarHeight: opt<float>
+		toolbarTextStyle: opt<TextStyle>
+		titleTextStyle: opt<TextStyle>
+		systemOverlayStyle: opt<SystemUiOverlayStyle>
+		backwardsCompatibility: opt<bool>
 
 abstract class MaterialStateProperty extends Object:
 
 class ScrollbarThemeData extends Object:
 	default:
-		thickness: Optional<MaterialStateProperty>
-		showTrackOnHover: Optional<bool>
-		isAlwaysShown: Optional<bool>
-		radius: Optional<Radius>
-		thumbColor: Optional<MaterialStateProperty>
-		trackColor: Optional<MaterialStateProperty>
-		trackBorderColor: Optional<MaterialStateProperty>
-		crossAxisMargin: Optional<float>
-		mainAxisMargin: Optional<float>
-		minThumbLength: Optional<float>
-		interactive: Optional<bool>
+		thickness: opt<MaterialStateProperty>
+		showTrackOnHover: opt<bool>
+		isAlwaysShown: opt<bool>
+		radius: opt<Radius>
+		thumbColor: opt<MaterialStateProperty>
+		trackColor: opt<MaterialStateProperty>
+		trackBorderColor: opt<MaterialStateProperty>
+		crossAxisMargin: opt<float>
+		mainAxisMargin: opt<float>
+		minThumbLength: opt<float>
+		interactive: opt<bool>
 
 abstract class NotchedShape extends Object:
 
 class BottomAppBarTheme extends Object:
 	default:
-		color: Optional<Color>
-		elevation: Optional<float>
-		shape: Optional<NotchedShape>
+		color: opt<Color>
+		elevation: opt<float>
+		shape: opt<NotchedShape>
 
 class DialogTheme extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		elevation: Optional<float>
-		shape: Optional<ShapeBorder>
-		titleTextStyle: Optional<TextStyle>
-		contentTextStyle: Optional<TextStyle>
+		backgroundColor: opt<Color>
+		elevation: opt<float>
+		shape: opt<ShapeBorder>
+		titleTextStyle: opt<TextStyle>
+		contentTextStyle: opt<TextStyle>
 
 class FloatingActionButtonThemeData extends Object:
 	default:
-		foregroundColor: Optional<Color>
-		backgroundColor: Optional<Color>
-		focusColor: Optional<Color>
-		hoverColor: Optional<Color>
-		splashColor: Optional<Color>
-		elevation: Optional<float>
-		focusElevation: Optional<float>
-		hoverElevation: Optional<float>
-		disabledElevation: Optional<float>
-		highlightElevation: Optional<float>
-		shape: Optional<ShapeBorder>
-		enableFeedback: Optional<bool>
-		sizeConstraints: Optional<BoxConstraints>
-		smallSizeConstraints: Optional<BoxConstraints>
-		largeSizeConstraints: Optional<BoxConstraints>
-		extendedSizeConstraints: Optional<BoxConstraints>
-		extendedIconLabelSpacing: Optional<float>
-		extendedPadding: Optional<EdgeInsetsGeometry>
-		extendedTextStyle: Optional<TextStyle>
+		foregroundColor: opt<Color>
+		backgroundColor: opt<Color>
+		focusColor: opt<Color>
+		hoverColor: opt<Color>
+		splashColor: opt<Color>
+		elevation: opt<float>
+		focusElevation: opt<float>
+		hoverElevation: opt<float>
+		disabledElevation: opt<float>
+		highlightElevation: opt<float>
+		shape: opt<ShapeBorder>
+		enableFeedback: opt<bool>
+		sizeConstraints: opt<BoxConstraints>
+		smallSizeConstraints: opt<BoxConstraints>
+		largeSizeConstraints: opt<BoxConstraints>
+		extendedSizeConstraints: opt<BoxConstraints>
+		extendedIconLabelSpacing: opt<float>
+		extendedPadding: opt<EdgeInsetsGeometry>
+		extendedTextStyle: opt<TextStyle>
 
 enum NavigationRailLabelType:
 	index
@@ -786,14 +814,14 @@ enum NavigationRailLabelType:
 
 class NavigationRailThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		elevation: Optional<float>
-		unselectedLabelTextStyle: Optional<TextStyle>
-		selectedLabelTextStyle: Optional<TextStyle>
-		unselectedIconTheme: Optional<IconThemeData>
-		selectedIconTheme: Optional<IconThemeData>
-		groupAlignment: Optional<float>
-		labelType: Optional<NavigationRailLabelType>
+		backgroundColor: opt<Color>
+		elevation: opt<float>
+		unselectedLabelTextStyle: opt<TextStyle>
+		selectedLabelTextStyle: opt<TextStyle>
+		unselectedIconTheme: opt<IconThemeData>
+		selectedIconTheme: opt<IconThemeData>
+		groupAlignment: opt<float>
+		labelType: opt<NavigationRailLabelType>
 
 class Typography extends Object:
 	static:
@@ -814,47 +842,47 @@ class Typography extends Object:
 		tall2014
 		tall2018
 	default:
-		platform: Optional<TargetPlatform>
-		black: Optional<TextTheme>
-		white: Optional<TextTheme>
-		englishLike: Optional<TextTheme>
-		dense: Optional<TextTheme>
-		tall: Optional<TextTheme>
+		platform: opt<TargetPlatform>
+		black: opt<TextTheme>
+		white: opt<TextTheme>
+		englishLike: opt<TextTheme>
+		dense: opt<TextTheme>
+		tall: opt<TextTheme>
 	material2014:
-		platform: Optional<TargetPlatform>
-		black: Optional<TextTheme>
-		white: Optional<TextTheme>
-		englishLike: Optional<TextTheme>
-		dense: Optional<TextTheme>
-		tall: Optional<TextTheme>
+		platform: opt<TargetPlatform>
+		black: opt<TextTheme>
+		white: opt<TextTheme>
+		englishLike: opt<TextTheme>
+		dense: opt<TextTheme>
+		tall: opt<TextTheme>
 	material2018:
-		platform: Optional<TargetPlatform>
-		black: Optional<TextTheme>
-		white: Optional<TextTheme>
-		englishLike: Optional<TextTheme>
-		dense: Optional<TextTheme>
-		tall: Optional<TextTheme>
+		platform: opt<TargetPlatform>
+		black: opt<TextTheme>
+		white: opt<TextTheme>
+		englishLike: opt<TextTheme>
+		dense: opt<TextTheme>
+		tall: opt<TextTheme>
 
 class CupertinoTextThemeData extends Object:
 	default:
-		primaryColor: Optional<Color>
-		textStyle: Optional<TextStyle>
-		actionTextStyle: Optional<TextStyle>
-		tabLabelTextStyle: Optional<TextStyle>
-		navTitleTextStyle: Optional<TextStyle>
-		navLargeTitleTextStyle: Optional<TextStyle>
-		navActionTextStyle: Optional<TextStyle>
-		pickerTextStyle: Optional<TextStyle>
-		dateTimePickerTextStyle: Optional<TextStyle>
+		primaryColor: opt<Color>
+		textStyle: opt<TextStyle>
+		actionTextStyle: opt<TextStyle>
+		tabLabelTextStyle: opt<TextStyle>
+		navTitleTextStyle: opt<TextStyle>
+		navLargeTitleTextStyle: opt<TextStyle>
+		navActionTextStyle: opt<TextStyle>
+		pickerTextStyle: opt<TextStyle>
+		dateTimePickerTextStyle: opt<TextStyle>
 
 class NoDefaultCupertinoThemeData extends Object:
 	default:
-		brightness: Optional<Brightness>
-		primaryColor: Optional<Color>
-		primaryContrastingColor: Optional<Color>
-		textTheme: Optional<CupertinoTextThemeData>
-		barBackgroundColor: Optional<Color>
-		scaffoldBackgroundColor: Optional<Color>
+		brightness: opt<Brightness>
+		primaryColor: opt<Color>
+		primaryContrastingColor: opt<Color>
+		textTheme: opt<CupertinoTextThemeData>
+		barBackgroundColor: opt<Color>
+		scaffoldBackgroundColor: opt<Color>
 
 enum SnackBarBehavior:
 	index
@@ -864,46 +892,46 @@ enum SnackBarBehavior:
 
 class SnackBarThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		actionTextColor: Optional<Color>
-		disabledActionTextColor: Optional<Color>
-		contentTextStyle: Optional<TextStyle>
-		elevation: Optional<float>
-		shape: Optional<ShapeBorder>
-		behavior: Optional<SnackBarBehavior>
+		backgroundColor: opt<Color>
+		actionTextColor: opt<Color>
+		disabledActionTextColor: opt<Color>
+		contentTextStyle: opt<TextStyle>
+		elevation: opt<float>
+		shape: opt<ShapeBorder>
+		behavior: opt<SnackBarBehavior>
 
 class BottomSheetThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		elevation: Optional<float>
-		modalBackgroundColor: Optional<Color>
-		modalElevation: Optional<float>
-		shape: Optional<ShapeBorder>
-		clipBehavior: Optional<Clip>
-		constraints: Optional<BoxConstraints>
+		backgroundColor: opt<Color>
+		elevation: opt<float>
+		modalBackgroundColor: opt<Color>
+		modalElevation: opt<float>
+		shape: opt<ShapeBorder>
+		clipBehavior: opt<Clip>
+		constraints: opt<BoxConstraints>
 
 class PopupMenuThemeData extends Object:
 	default:
-		color: Optional<Color>
-		shape: Optional<ShapeBorder>
-		elevation: Optional<float>
-		textStyle: Optional<TextStyle>
-		enableFeedback: Optional<bool>
+		color: opt<Color>
+		shape: opt<ShapeBorder>
+		elevation: opt<float>
+		textStyle: opt<TextStyle>
+		enableFeedback: opt<bool>
 
 class MaterialBannerThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		contentTextStyle: Optional<TextStyle>
-		padding: Optional<EdgeInsetsGeometry>
-		leadingPadding: Optional<EdgeInsetsGeometry>
+		backgroundColor: opt<Color>
+		contentTextStyle: opt<TextStyle>
+		padding: opt<EdgeInsetsGeometry>
+		leadingPadding: opt<EdgeInsetsGeometry>
 
 class DividerThemeData extends Object:
 	default:
-		color: Optional<Color>
-		space: Optional<float>
-		thickness: Optional<float>
-		indent: Optional<float>
-		endIndent: Optional<float>
+		color: opt<Color>
+		space: opt<float>
+		thickness: opt<float>
+		indent: opt<float>
+		endIndent: opt<float>
 
 enum MainAxisAlignment:
 	index
@@ -929,15 +957,15 @@ enum VerticalDirection:
 
 class ButtonBarThemeData extends Object:
 	default:
-		alignment: Optional<MainAxisAlignment>
-		mainAxisSize: Optional<MainAxisSize>
-		buttonTextTheme: Optional<ButtonTextTheme>
-		buttonMinWidth: Optional<float>
-		buttonHeight: Optional<float>
-		buttonPadding: Optional<EdgeInsetsGeometry>
-		buttonAlignedDropdown: Optional<bool>
-		layoutBehavior: Optional<ButtonBarLayoutBehavior>
-		overflowDirection: Optional<VerticalDirection>
+		alignment: opt<MainAxisAlignment>
+		mainAxisSize: opt<MainAxisSize>
+		buttonTextTheme: opt<ButtonTextTheme>
+		buttonMinWidth: opt<float>
+		buttonHeight: opt<float>
+		buttonPadding: opt<EdgeInsetsGeometry>
+		buttonAlignedDropdown: opt<bool>
+		layoutBehavior: opt<ButtonBarLayoutBehavior>
+		overflowDirection: opt<VerticalDirection>
 
 enum BottomNavigationBarType:
 	index
@@ -954,217 +982,217 @@ enum BottomNavigationBarLandscapeLayout:
 
 class BottomNavigationBarThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		elevation: Optional<float>
-		selectedIconTheme: Optional<IconThemeData>
-		unselectedIconTheme: Optional<IconThemeData>
-		selectedItemColor: Optional<Color>
-		unselectedItemColor: Optional<Color>
-		selectedLabelStyle: Optional<TextStyle>
-		unselectedLabelStyle: Optional<TextStyle>
-		showSelectedLabels: Optional<bool>
-		showUnselectedLabels: Optional<bool>
-		type: Optional<BottomNavigationBarType>
-		enableFeedback: Optional<bool>
-		landscapeLayout: Optional<BottomNavigationBarLandscapeLayout>
+		backgroundColor: opt<Color>
+		elevation: opt<float>
+		selectedIconTheme: opt<IconThemeData>
+		unselectedIconTheme: opt<IconThemeData>
+		selectedItemColor: opt<Color>
+		unselectedItemColor: opt<Color>
+		selectedLabelStyle: opt<TextStyle>
+		unselectedLabelStyle: opt<TextStyle>
+		showSelectedLabels: opt<bool>
+		showUnselectedLabels: opt<bool>
+		type: opt<BottomNavigationBarType>
+		enableFeedback: opt<bool>
+		landscapeLayout: opt<BottomNavigationBarLandscapeLayout>
 
 class TimePickerThemeData extends Object:
 	default:
-		backgroundColor: Optional<Color>
-		hourMinuteTextColor: Optional<Color>
-		hourMinuteColor: Optional<Color>
-		dayPeriodTextColor: Optional<Color>
-		dayPeriodColor: Optional<Color>
-		dialHandColor: Optional<Color>
-		dialBackgroundColor: Optional<Color>
-		dialTextColor: Optional<Color>
-		entryModeIconColor: Optional<Color>
-		hourMinuteTextStyle: Optional<TextStyle>
-		dayPeriodTextStyle: Optional<TextStyle>
-		helpTextStyle: Optional<TextStyle>
-		shape: Optional<ShapeBorder>
-		hourMinuteShape: Optional<ShapeBorder>
-		dayPeriodShape: Optional<OutlinedBorder>
-		dayPeriodBorderSide: Optional<BorderSide>
-		inputDecorationTheme: Optional<InputDecorationTheme>
+		backgroundColor: opt<Color>
+		hourMinuteTextColor: opt<Color>
+		hourMinuteColor: opt<Color>
+		dayPeriodTextColor: opt<Color>
+		dayPeriodColor: opt<Color>
+		dialHandColor: opt<Color>
+		dialBackgroundColor: opt<Color>
+		dialTextColor: opt<Color>
+		entryModeIconColor: opt<Color>
+		hourMinuteTextStyle: opt<TextStyle>
+		dayPeriodTextStyle: opt<TextStyle>
+		helpTextStyle: opt<TextStyle>
+		shape: opt<ShapeBorder>
+		hourMinuteShape: opt<ShapeBorder>
+		dayPeriodShape: opt<OutlinedBorder>
+		dayPeriodBorderSide: opt<BorderSide>
+		inputDecorationTheme: opt<InputDecorationTheme>
 
 abstract class AlignmentGeometry extends Object:
 
 class ButtonStyle extends Object:
 	default:
-		textStyle: Optional<MaterialStateProperty>
-		backgroundColor: Optional<MaterialStateProperty>
-		foregroundColor: Optional<MaterialStateProperty>
-		overlayColor: Optional<MaterialStateProperty>
-		shadowColor: Optional<MaterialStateProperty>
-		elevation: Optional<MaterialStateProperty>
-		padding: Optional<MaterialStateProperty>
-		minimumSize: Optional<MaterialStateProperty>
-		fixedSize: Optional<MaterialStateProperty>
-		maximumSize: Optional<MaterialStateProperty>
-		side: Optional<MaterialStateProperty>
-		shape: Optional<MaterialStateProperty>
-		mouseCursor: Optional<MaterialStateProperty>
-		visualDensity: Optional<VisualDensity>
-		tapTargetSize: Optional<MaterialTapTargetSize>
-		animationDuration: Optional<Duration>
-		enableFeedback: Optional<bool>
-		alignment: Optional<AlignmentGeometry>
-		splashFactory: Optional<InteractiveInkFeatureFactory>
+		textStyle: opt<MaterialStateProperty>
+		backgroundColor: opt<MaterialStateProperty>
+		foregroundColor: opt<MaterialStateProperty>
+		overlayColor: opt<MaterialStateProperty>
+		shadowColor: opt<MaterialStateProperty>
+		elevation: opt<MaterialStateProperty>
+		padding: opt<MaterialStateProperty>
+		minimumSize: opt<MaterialStateProperty>
+		fixedSize: opt<MaterialStateProperty>
+		maximumSize: opt<MaterialStateProperty>
+		side: opt<MaterialStateProperty>
+		shape: opt<MaterialStateProperty>
+		mouseCursor: opt<MaterialStateProperty>
+		visualDensity: opt<VisualDensity>
+		tapTargetSize: opt<MaterialTapTargetSize>
+		animationDuration: opt<Duration>
+		enableFeedback: opt<bool>
+		alignment: opt<AlignmentGeometry>
+		splashFactory: opt<InteractiveInkFeatureFactory>
 
 class TextButtonThemeData extends Object:
 	default:
-		style: Optional<ButtonStyle>
+		style: opt<ButtonStyle>
 
 class ElevatedButtonThemeData extends Object:
 	default:
-		style: Optional<ButtonStyle>
+		style: opt<ButtonStyle>
 
 class OutlinedButtonThemeData extends Object:
 	default:
-		style: Optional<ButtonStyle>
+		style: opt<ButtonStyle>
 
 class TextSelectionThemeData extends Object:
 	default:
-		cursorColor: Optional<Color>
-		selectionColor: Optional<Color>
-		selectionHandleColor: Optional<Color>
+		cursorColor: opt<Color>
+		selectionColor: opt<Color>
+		selectionHandleColor: opt<Color>
 
 class DataTableThemeData extends Object:
 	default:
-		decoration: Optional<Decoration>
-		dataRowColor: Optional<MaterialStateProperty>
-		dataRowHeight: Optional<float>
-		dataTextStyle: Optional<TextStyle>
-		headingRowColor: Optional<MaterialStateProperty>
-		headingRowHeight: Optional<float>
-		headingTextStyle: Optional<TextStyle>
-		horizontalMargin: Optional<float>
-		columnSpacing: Optional<float>
-		dividerThickness: Optional<float>
-		checkboxHorizontalMargin: Optional<float>
+		decoration: opt<Decoration>
+		dataRowColor: opt<MaterialStateProperty>
+		dataRowHeight: opt<float>
+		dataTextStyle: opt<TextStyle>
+		headingRowColor: opt<MaterialStateProperty>
+		headingRowHeight: opt<float>
+		headingTextStyle: opt<TextStyle>
+		horizontalMargin: opt<float>
+		columnSpacing: opt<float>
+		dividerThickness: opt<float>
+		checkboxHorizontalMargin: opt<float>
 
 class CheckboxThemeData extends Object:
 	default:
-		mouseCursor: Optional<MaterialStateProperty>
-		fillColor: Optional<MaterialStateProperty>
-		checkColor: Optional<MaterialStateProperty>
-		overlayColor: Optional<MaterialStateProperty>
-		splashRadius: Optional<float>
-		materialTapTargetSize: Optional<MaterialTapTargetSize>
-		visualDensity: Optional<VisualDensity>
-		shape: Optional<OutlinedBorder>
-		side: Optional<BorderSide>
+		mouseCursor: opt<MaterialStateProperty>
+		fillColor: opt<MaterialStateProperty>
+		checkColor: opt<MaterialStateProperty>
+		overlayColor: opt<MaterialStateProperty>
+		splashRadius: opt<float>
+		materialTapTargetSize: opt<MaterialTapTargetSize>
+		visualDensity: opt<VisualDensity>
+		shape: opt<OutlinedBorder>
+		side: opt<BorderSide>
 
 class RadioThemeData extends Object:
 	default:
-		mouseCursor: Optional<MaterialStateProperty>
-		fillColor: Optional<MaterialStateProperty>
-		overlayColor: Optional<MaterialStateProperty>
-		splashRadius: Optional<float>
-		materialTapTargetSize: Optional<MaterialTapTargetSize>
-		visualDensity: Optional<VisualDensity>
+		mouseCursor: opt<MaterialStateProperty>
+		fillColor: opt<MaterialStateProperty>
+		overlayColor: opt<MaterialStateProperty>
+		splashRadius: opt<float>
+		materialTapTargetSize: opt<MaterialTapTargetSize>
+		visualDensity: opt<VisualDensity>
 
 class SwitchThemeData extends Object:
 	default:
-		thumbColor: Optional<MaterialStateProperty>
-		trackColor: Optional<MaterialStateProperty>
-		materialTapTargetSize: Optional<MaterialTapTargetSize>
-		mouseCursor: Optional<MaterialStateProperty>
-		overlayColor: Optional<MaterialStateProperty>
-		splashRadius: Optional<float>
+		thumbColor: opt<MaterialStateProperty>
+		trackColor: opt<MaterialStateProperty>
+		materialTapTargetSize: opt<MaterialTapTargetSize>
+		mouseCursor: opt<MaterialStateProperty>
+		overlayColor: opt<MaterialStateProperty>
+		splashRadius: opt<float>
 
 class ProgressIndicatorThemeData extends Object:
 	default:
-		color: Optional<Color>
-		linearTrackColor: Optional<Color>
-		linearMinHeight: Optional<float>
-		circularTrackColor: Optional<Color>
-		refreshBackgroundColor: Optional<Color>
+		color: opt<Color>
+		linearTrackColor: opt<Color>
+		linearMinHeight: opt<float>
+		circularTrackColor: opt<Color>
+		refreshBackgroundColor: opt<Color>
 
 class ThemeData extends Object:
 	default:
-		brightness: Optional<Brightness>
-		visualDensity: Optional<VisualDensity>
-		primarySwatch: Optional<MaterialColor>
-		primaryColor: Optional<Color>
-		primaryColorBrightness: Optional<Brightness>
-		primaryColorLight: Optional<Color>
-		primaryColorDark: Optional<Color>
-		accentColor: Optional<Color>
-		accentColorBrightness: Optional<Brightness>
-		canvasColor: Optional<Color>
-		shadowColor: Optional<Color>
-		scaffoldBackgroundColor: Optional<Color>
-		bottomAppBarColor: Optional<Color>
-		cardColor: Optional<Color>
-		dividerColor: Optional<Color>
-		focusColor: Optional<Color>
-		hoverColor: Optional<Color>
-		highlightColor: Optional<Color>
-		splashColor: Optional<Color>
-		splashFactory: Optional<InteractiveInkFeatureFactory>
-		selectedRowColor: Optional<Color>
-		unselectedWidgetColor: Optional<Color>
-		disabledColor: Optional<Color>
-		buttonColor: Optional<Color>
-		buttonTheme: Optional<ButtonThemeData>
-		toggleButtonsTheme: Optional<ToggleButtonsThemeData>
-		secondaryHeaderColor: Optional<Color>
-		textSelectionColor: Optional<Color>
-		cursorColor: Optional<Color>
-		textSelectionHandleColor: Optional<Color>
-		backgroundColor: Optional<Color>
-		dialogBackgroundColor: Optional<Color>
-		indicatorColor: Optional<Color>
-		hintColor: Optional<Color>
-		errorColor: Optional<Color>
-		toggleableActiveColor: Optional<Color>
-		fontFamily: Optional<str>
-		textTheme: Optional<TextTheme>
-		primaryTextTheme: Optional<TextTheme>
-		accentTextTheme: Optional<TextTheme>
-		inputDecorationTheme: Optional<InputDecorationTheme>
-		iconTheme: Optional<IconThemeData>
-		primaryIconTheme: Optional<IconThemeData>
-		accentIconTheme: Optional<IconThemeData>
-		sliderTheme: Optional<SliderThemeData>
-		tabBarTheme: Optional<TabBarTheme>
-		tooltipTheme: Optional<TooltipThemeData>
-		cardTheme: Optional<CardTheme>
-		chipTheme: Optional<ChipThemeData>
-		platform: Optional<TargetPlatform>
-		materialTapTargetSize: Optional<MaterialTapTargetSize>
-		applyElevationOverlayColor: Optional<bool>
-		pageTransitionsTheme: Optional<PageTransitionsTheme>
-		appBarTheme: Optional<AppBarTheme>
-		scrollbarTheme: Optional<ScrollbarThemeData>
-		bottomAppBarTheme: Optional<BottomAppBarTheme>
-		colorScheme: Optional<ColorScheme>
-		dialogTheme: Optional<DialogTheme>
-		floatingActionButtonTheme: Optional<FloatingActionButtonThemeData>
-		navigationRailTheme: Optional<NavigationRailThemeData>
-		typography: Optional<Typography>
-		cupertinoOverrideTheme: Optional<NoDefaultCupertinoThemeData>
-		snackBarTheme: Optional<SnackBarThemeData>
-		bottomSheetTheme: Optional<BottomSheetThemeData>
-		popupMenuTheme: Optional<PopupMenuThemeData>
-		bannerTheme: Optional<MaterialBannerThemeData>
-		dividerTheme: Optional<DividerThemeData>
-		buttonBarTheme: Optional<ButtonBarThemeData>
-		bottomNavigationBarTheme: Optional<BottomNavigationBarThemeData>
-		timePickerTheme: Optional<TimePickerThemeData>
-		textButtonTheme: Optional<TextButtonThemeData>
-		elevatedButtonTheme: Optional<ElevatedButtonThemeData>
-		outlinedButtonTheme: Optional<OutlinedButtonThemeData>
-		textSelectionTheme: Optional<TextSelectionThemeData>
-		dataTableTheme: Optional<DataTableThemeData>
-		checkboxTheme: Optional<CheckboxThemeData>
-		radioTheme: Optional<RadioThemeData>
-		switchTheme: Optional<SwitchThemeData>
-		progressIndicatorTheme: Optional<ProgressIndicatorThemeData>
-		fixTextFieldOutlineLabel: Optional<bool>
-		useTextSelectionTheme: Optional<bool>
+		brightness: opt<Brightness>
+		visualDensity: opt<VisualDensity>
+		primarySwatch: opt<MaterialColor>
+		primaryColor: opt<Color>
+		primaryColorBrightness: opt<Brightness>
+		primaryColorLight: opt<Color>
+		primaryColorDark: opt<Color>
+		accentColor: opt<Color>
+		accentColorBrightness: opt<Brightness>
+		canvasColor: opt<Color>
+		shadowColor: opt<Color>
+		scaffoldBackgroundColor: opt<Color>
+		bottomAppBarColor: opt<Color>
+		cardColor: opt<Color>
+		dividerColor: opt<Color>
+		focusColor: opt<Color>
+		hoverColor: opt<Color>
+		highlightColor: opt<Color>
+		splashColor: opt<Color>
+		splashFactory: opt<InteractiveInkFeatureFactory>
+		selectedRowColor: opt<Color>
+		unselectedWidgetColor: opt<Color>
+		disabledColor: opt<Color>
+		buttonColor: opt<Color>
+		buttonTheme: opt<ButtonThemeData>
+		toggleButtonsTheme: opt<ToggleButtonsThemeData>
+		secondaryHeaderColor: opt<Color>
+		textSelectionColor: opt<Color>
+		cursorColor: opt<Color>
+		textSelectionHandleColor: opt<Color>
+		backgroundColor: opt<Color>
+		dialogBackgroundColor: opt<Color>
+		indicatorColor: opt<Color>
+		hintColor: opt<Color>
+		errorColor: opt<Color>
+		toggleableActiveColor: opt<Color>
+		fontFamily: opt<str>
+		textTheme: opt<TextTheme>
+		primaryTextTheme: opt<TextTheme>
+		accentTextTheme: opt<TextTheme>
+		inputDecorationTheme: opt<InputDecorationTheme>
+		iconTheme: opt<IconThemeData>
+		primaryIconTheme: opt<IconThemeData>
+		accentIconTheme: opt<IconThemeData>
+		sliderTheme: opt<SliderThemeData>
+		tabBarTheme: opt<TabBarTheme>
+		tooltipTheme: opt<TooltipThemeData>
+		cardTheme: opt<CardTheme>
+		chipTheme: opt<ChipThemeData>
+		platform: opt<TargetPlatform>
+		materialTapTargetSize: opt<MaterialTapTargetSize>
+		applyElevationOverlayColor: opt<bool>
+		pageTransitionsTheme: opt<PageTransitionsTheme>
+		appBarTheme: opt<AppBarTheme>
+		scrollbarTheme: opt<ScrollbarThemeData>
+		bottomAppBarTheme: opt<BottomAppBarTheme>
+		colorScheme: opt<ColorScheme>
+		dialogTheme: opt<DialogTheme>
+		floatingActionButtonTheme: opt<FloatingActionButtonThemeData>
+		navigationRailTheme: opt<NavigationRailThemeData>
+		typography: opt<Typography>
+		cupertinoOverrideTheme: opt<NoDefaultCupertinoThemeData>
+		snackBarTheme: opt<SnackBarThemeData>
+		bottomSheetTheme: opt<BottomSheetThemeData>
+		popupMenuTheme: opt<PopupMenuThemeData>
+		bannerTheme: opt<MaterialBannerThemeData>
+		dividerTheme: opt<DividerThemeData>
+		buttonBarTheme: opt<ButtonBarThemeData>
+		bottomNavigationBarTheme: opt<BottomNavigationBarThemeData>
+		timePickerTheme: opt<TimePickerThemeData>
+		textButtonTheme: opt<TextButtonThemeData>
+		elevatedButtonTheme: opt<ElevatedButtonThemeData>
+		outlinedButtonTheme: opt<OutlinedButtonThemeData>
+		textSelectionTheme: opt<TextSelectionThemeData>
+		dataTableTheme: opt<DataTableThemeData>
+		checkboxTheme: opt<CheckboxThemeData>
+		radioTheme: opt<RadioThemeData>
+		switchTheme: opt<SwitchThemeData>
+		progressIndicatorTheme: opt<ProgressIndicatorThemeData>
+		fixTextFieldOutlineLabel: opt<bool>
+		useTextSelectionTheme: opt<bool>
 	raw:
 		visualDensity: VisualDensity
 		primaryColor: Color
@@ -1246,7 +1274,7 @@ class ThemeData extends Object:
 		useTextSelectionTheme: bool
 	from:
 		colorScheme: ColorScheme
-		textTheme: Optional<TextTheme>
+		textTheme: opt<TextTheme>
 	light:
 	dark:
 	fallback:
@@ -1278,88 +1306,850 @@ abstract class BackButtonDispatcher extends _CallbackHookProvider:
 
 class MaterialApp extends StatefulWidget:
 	default:
-		key: Optional<Key>
-		navigatorKey: Optional<GlobalKey>
-		scaffoldMessengerKey: Optional<GlobalKey>
-		home: Optional<Widget>
-		routes: Optional<Map>
-		initialRoute: Optional<str>
-		onGenerateRoute: Optional<unknown>
-		onGenerateInitialRoutes: Optional<unknown>
-		onUnknownRoute: Optional<unknown>
-		navigatorObservers: Optional<List>
-		builder: Optional<unknown>
-		title: Optional<str>
-		onGenerateTitle: Optional<unknown>
-		color: Optional<Color>
-		theme: Optional<ThemeData>
-		darkTheme: Optional<ThemeData>
-		highContrastTheme: Optional<ThemeData>
-		highContrastDarkTheme: Optional<ThemeData>
-		themeMode: Optional<ThemeMode>
-		locale: Optional<Locale>
-		localizationsDelegates: Optional<Iterable>
-		localeListResolutionCallback: Optional<unknown>
-		localeResolutionCallback: Optional<unknown>
-		supportedLocales: Optional<Iterable>
-		debugShowMaterialGrid: Optional<bool>
-		showPerformanceOverlay: Optional<bool>
-		checkerboardRasterCacheImages: Optional<bool>
-		checkerboardOffscreenLayers: Optional<bool>
-		showSemanticsDebugger: Optional<bool>
-		debugShowCheckedModeBanner: Optional<bool>
-		shortcuts: Optional<Map>
-		actions: Optional<Map>
-		restorationScopeId: Optional<str>
-		scrollBehavior: Optional<ScrollBehavior>
-		useInheritedMediaQuery: Optional<bool>
+		key: opt<Key>
+		navigatorKey: opt<GlobalKey>
+		scaffoldMessengerKey: opt<GlobalKey>
+		home: opt<Widget>
+		routes: opt<Map>
+		initialRoute: opt<str>
+		onGenerateRoute: opt<func<RouteSettings, Route>>
+		onGenerateInitialRoutes: opt<func<str, List>>
+		onUnknownRoute: opt<func<RouteSettings, Route>>
+		navigatorObservers: opt<List>
+		builder: opt<func<BuildContext, Widget, Widget>>
+		title: opt<str>
+		onGenerateTitle: opt<func<BuildContext, str>>
+		color: opt<Color>
+		theme: opt<ThemeData>
+		darkTheme: opt<ThemeData>
+		highContrastTheme: opt<ThemeData>
+		highContrastDarkTheme: opt<ThemeData>
+		themeMode: opt<ThemeMode>
+		locale: opt<Locale>
+		localizationsDelegates: opt<Iterable>
+		localeListResolutionCallback: opt<func<List, Iterable, Locale>>
+		localeResolutionCallback: opt<func<Locale, Iterable, Locale>>
+		supportedLocales: opt<Iterable>
+		debugShowMaterialGrid: opt<bool>
+		showPerformanceOverlay: opt<bool>
+		checkerboardRasterCacheImages: opt<bool>
+		checkerboardOffscreenLayers: opt<bool>
+		showSemanticsDebugger: opt<bool>
+		debugShowCheckedModeBanner: opt<bool>
+		shortcuts: opt<Map>
+		actions: opt<Map>
+		restorationScopeId: opt<str>
+		scrollBehavior: opt<ScrollBehavior>
+		useInheritedMediaQuery: opt<bool>
 	router:
-		key: Optional<Key>
-		scaffoldMessengerKey: Optional<GlobalKey>
-		routeInformationProvider: Optional<RouteInformationProvider>
+		key: opt<Key>
+		scaffoldMessengerKey: opt<GlobalKey>
+		routeInformationProvider: opt<RouteInformationProvider>
 		routeInformationParser: RouteInformationParser
 		routerDelegate: RouterDelegate
-		backButtonDispatcher: Optional<BackButtonDispatcher>
-		builder: Optional<unknown>
-		title: Optional<str>
-		onGenerateTitle: Optional<unknown>
-		color: Optional<Color>
-		theme: Optional<ThemeData>
-		darkTheme: Optional<ThemeData>
-		highContrastTheme: Optional<ThemeData>
-		highContrastDarkTheme: Optional<ThemeData>
-		themeMode: Optional<ThemeMode>
-		locale: Optional<Locale>
-		localizationsDelegates: Optional<Iterable>
-		localeListResolutionCallback: Optional<unknown>
-		localeResolutionCallback: Optional<unknown>
-		supportedLocales: Optional<Iterable>
-		debugShowMaterialGrid: Optional<bool>
-		showPerformanceOverlay: Optional<bool>
-		checkerboardRasterCacheImages: Optional<bool>
-		checkerboardOffscreenLayers: Optional<bool>
-		showSemanticsDebugger: Optional<bool>
-		debugShowCheckedModeBanner: Optional<bool>
-		shortcuts: Optional<Map>
-		actions: Optional<Map>
-		restorationScopeId: Optional<str>
-		scrollBehavior: Optional<ScrollBehavior>
-		useInheritedMediaQuery: Optional<bool>
+		backButtonDispatcher: opt<BackButtonDispatcher>
+		builder: opt<func<BuildContext, Widget, Widget>>
+		title: opt<str>
+		onGenerateTitle: opt<func<BuildContext, str>>
+		color: opt<Color>
+		theme: opt<ThemeData>
+		darkTheme: opt<ThemeData>
+		highContrastTheme: opt<ThemeData>
+		highContrastDarkTheme: opt<ThemeData>
+		themeMode: opt<ThemeMode>
+		locale: opt<Locale>
+		localizationsDelegates: opt<Iterable>
+		localeListResolutionCallback: opt<func<List, Iterable, Locale>>
+		localeResolutionCallback: opt<func<Locale, Iterable, Locale>>
+		supportedLocales: opt<Iterable>
+		debugShowMaterialGrid: opt<bool>
+		showPerformanceOverlay: opt<bool>
+		checkerboardRasterCacheImages: opt<bool>
+		checkerboardOffscreenLayers: opt<bool>
+		showSemanticsDebugger: opt<bool>
+		debugShowCheckedModeBanner: opt<bool>
+		shortcuts: opt<Map>
+		actions: opt<Map>
+		restorationScopeId: opt<str>
+		scrollBehavior: opt<ScrollBehavior>
+		useInheritedMediaQuery: opt<bool>
+
+abstract class RawKeyEventData extends Object:
+
+abstract class RawKeyEvent extends Object:
+	default:
+		data: RawKeyEventData
+		character: opt<str>
+	fromMessage:
+		message: Map
+
+enum KeyEventResult:
+	index
+	values
+	handled
+	ignored
+	skipRemainingHandlers
+
+abstract class KeyboardKey extends Object:
+
+class PhysicalKeyboardKey extends KeyboardKey:
+	static:
+		hyper
+		superKey
+		fn
+		fnLock
+		suspend
+		resume
+		turbo
+		privacyScreenToggle
+		sleep
+		wakeUp
+		displayToggleIntExt
+		gameButton1
+		gameButton2
+		gameButton3
+		gameButton4
+		gameButton5
+		gameButton6
+		gameButton7
+		gameButton8
+		gameButton9
+		gameButton10
+		gameButton11
+		gameButton12
+		gameButton13
+		gameButton14
+		gameButton15
+		gameButton16
+		gameButtonA
+		gameButtonB
+		gameButtonC
+		gameButtonLeft1
+		gameButtonLeft2
+		gameButtonMode
+		gameButtonRight1
+		gameButtonRight2
+		gameButtonSelect
+		gameButtonStart
+		gameButtonThumbLeft
+		gameButtonThumbRight
+		gameButtonX
+		gameButtonY
+		gameButtonZ
+		usbReserved
+		usbErrorRollOver
+		usbPostFail
+		usbErrorUndefined
+		keyA
+		keyB
+		keyC
+		keyD
+		keyE
+		keyF
+		keyG
+		keyH
+		keyI
+		keyJ
+		keyK
+		keyL
+		keyM
+		keyN
+		keyO
+		keyP
+		keyQ
+		keyR
+		keyS
+		keyT
+		keyU
+		keyV
+		keyW
+		keyX
+		keyY
+		keyZ
+		digit1
+		digit2
+		digit3
+		digit4
+		digit5
+		digit6
+		digit7
+		digit8
+		digit9
+		digit0
+		enter
+		escape
+		backspace
+		tab
+		space
+		minus
+		equal
+		bracketLeft
+		bracketRight
+		backslash
+		semicolon
+		quote
+		backquote
+		comma
+		period
+		slash
+		capsLock
+		f1
+		f2
+		f3
+		f4
+		f5
+		f6
+		f7
+		f8
+		f9
+		f10
+		f11
+		f12
+		printScreen
+		scrollLock
+		pause
+		insert
+		home
+		pageUp
+		delete
+		end
+		pageDown
+		arrowRight
+		arrowLeft
+		arrowDown
+		arrowUp
+		numLock
+		numpadDivide
+		numpadMultiply
+		numpadSubtract
+		numpadAdd
+		numpadEnter
+		numpad1
+		numpad2
+		numpad3
+		numpad4
+		numpad5
+		numpad6
+		numpad7
+		numpad8
+		numpad9
+		numpad0
+		numpadDecimal
+		intlBackslash
+		contextMenu
+		power
+		numpadEqual
+		f13
+		f14
+		f15
+		f16
+		f17
+		f18
+		f19
+		f20
+		f21
+		f22
+		f23
+		f24
+		open
+		help
+		select
+		again
+		undo
+		cut
+		copy
+		paste
+		find
+		audioVolumeMute
+		audioVolumeUp
+		audioVolumeDown
+		numpadComma
+		intlRo
+		kanaMode
+		intlYen
+		convert
+		nonConvert
+		lang1
+		lang2
+		lang3
+		lang4
+		lang5
+		abort
+		props
+		numpadParenLeft
+		numpadParenRight
+		numpadBackspace
+		numpadMemoryStore
+		numpadMemoryRecall
+		numpadMemoryClear
+		numpadMemoryAdd
+		numpadMemorySubtract
+		numpadSignChange
+		numpadClear
+		numpadClearEntry
+		controlLeft
+		shiftLeft
+		altLeft
+		metaLeft
+		controlRight
+		shiftRight
+		altRight
+		metaRight
+		info
+		closedCaptionToggle
+		brightnessUp
+		brightnessDown
+		brightnessToggle
+		brightnessMinimum
+		brightnessMaximum
+		brightnessAuto
+		kbdIllumUp
+		kbdIllumDown
+		mediaLast
+		launchPhone
+		programGuide
+		exit
+		channelUp
+		channelDown
+		mediaPlay
+		mediaPause
+		mediaRecord
+		mediaFastForward
+		mediaRewind
+		mediaTrackNext
+		mediaTrackPrevious
+		mediaStop
+		eject
+		mediaPlayPause
+		speechInputToggle
+		bassBoost
+		mediaSelect
+		launchWordProcessor
+		launchSpreadsheet
+		launchMail
+		launchContacts
+		launchCalendar
+		launchApp2
+		launchApp1
+		launchInternetBrowser
+		logOff
+		lockScreen
+		launchControlPanel
+		selectTask
+		launchDocuments
+		spellCheck
+		launchKeyboardLayout
+		launchScreenSaver
+		launchAudioBrowser
+		launchAssistant
+		newKey
+		close
+		save
+		print
+		browserSearch
+		browserHome
+		browserBack
+		browserForward
+		browserStop
+		browserRefresh
+		browserFavorites
+		zoomIn
+		zoomOut
+		zoomToggle
+		redo
+		mailReply
+		mailForward
+		mailSend
+		keyboardLayoutSelect
+		showAllWindows
+	default:
+		usbHidUsage: int
+
+class LogicalKeyboardKey extends KeyboardKey:
+	static:
+		valueMask
+		planeMask
+		unicodePlane
+		unprintablePlane
+		flutterPlane
+		startOfPlatformPlanes
+		androidPlane
+		fuchsiaPlane
+		iosPlane
+		macosPlane
+		gtkPlane
+		windowsPlane
+		webPlane
+		glfwPlane
+		space
+		exclamation
+		quote
+		numberSign
+		dollar
+		percent
+		ampersand
+		quoteSingle
+		parenthesisLeft
+		parenthesisRight
+		asterisk
+		add
+		comma
+		minus
+		period
+		slash
+		digit0
+		digit1
+		digit2
+		digit3
+		digit4
+		digit5
+		digit6
+		digit7
+		digit8
+		digit9
+		colon
+		semicolon
+		less
+		equal
+		greater
+		question
+		at
+		bracketLeft
+		backslash
+		bracketRight
+		caret
+		underscore
+		backquote
+		keyA
+		keyB
+		keyC
+		keyD
+		keyE
+		keyF
+		keyG
+		keyH
+		keyI
+		keyJ
+		keyK
+		keyL
+		keyM
+		keyN
+		keyO
+		keyP
+		keyQ
+		keyR
+		keyS
+		keyT
+		keyU
+		keyV
+		keyW
+		keyX
+		keyY
+		keyZ
+		braceLeft
+		bar
+		braceRight
+		tilde
+		unidentified
+		backspace
+		tab
+		enter
+		escape
+		delete
+		accel
+		altGraph
+		capsLock
+		fn
+		fnLock
+		hyper
+		numLock
+		scrollLock
+		superKey
+		symbol
+		symbolLock
+		shiftLevel5
+		arrowDown
+		arrowLeft
+		arrowRight
+		arrowUp
+		end
+		home
+		pageDown
+		pageUp
+		clear
+		copy
+		crSel
+		cut
+		eraseEof
+		exSel
+		insert
+		paste
+		redo
+		undo
+		accept
+		again
+		attn
+		cancel
+		contextMenu
+		execute
+		find
+		help
+		pause
+		play
+		props
+		select
+		zoomIn
+		zoomOut
+		brightnessDown
+		brightnessUp
+		camera
+		eject
+		logOff
+		power
+		powerOff
+		printScreen
+		hibernate
+		standby
+		wakeUp
+		allCandidates
+		alphanumeric
+		codeInput
+		compose
+		convert
+		finalMode
+		groupFirst
+		groupLast
+		groupNext
+		groupPrevious
+		modeChange
+		nextCandidate
+		nonConvert
+		previousCandidate
+		process
+		singleCandidate
+		hangulMode
+		hanjaMode
+		junjaMode
+		eisu
+		hankaku
+		hiragana
+		hiraganaKatakana
+		kanaMode
+		kanjiMode
+		katakana
+		romaji
+		zenkaku
+		zenkakuHankaku
+		f1
+		f2
+		f3
+		f4
+		f5
+		f6
+		f7
+		f8
+		f9
+		f10
+		f11
+		f12
+		f13
+		f14
+		f15
+		f16
+		f17
+		f18
+		f19
+		f20
+		f21
+		f22
+		f23
+		f24
+		soft1
+		soft2
+		soft3
+		soft4
+		soft5
+		soft6
+		soft7
+		soft8
+		close
+		mailForward
+		mailReply
+		mailSend
+		mediaPlayPause
+		mediaStop
+		mediaTrackNext
+		mediaTrackPrevious
+		newKey
+		open
+		print
+		save
+		spellCheck
+		audioVolumeDown
+		audioVolumeUp
+		audioVolumeMute
+		launchApplication2
+		launchCalendar
+		launchMail
+		launchMediaPlayer
+		launchMusicPlayer
+		launchApplication1
+		launchScreenSaver
+		launchSpreadsheet
+		launchWebBrowser
+		launchWebCam
+		launchWordProcessor
+		launchContacts
+		launchPhone
+		launchAssistant
+		launchControlPanel
+		browserBack
+		browserFavorites
+		browserForward
+		browserHome
+		browserRefresh
+		browserSearch
+		browserStop
+		audioBalanceLeft
+		audioBalanceRight
+		audioBassBoostDown
+		audioBassBoostUp
+		audioFaderFront
+		audioFaderRear
+		audioSurroundModeNext
+		avrInput
+		avrPower
+		channelDown
+		channelUp
+		colorF0Red
+		colorF1Green
+		colorF2Yellow
+		colorF3Blue
+		colorF4Grey
+		colorF5Brown
+		closedCaptionToggle
+		dimmer
+		displaySwap
+		exit
+		favoriteClear0
+		favoriteClear1
+		favoriteClear2
+		favoriteClear3
+		favoriteRecall0
+		favoriteRecall1
+		favoriteRecall2
+		favoriteRecall3
+		favoriteStore0
+		favoriteStore1
+		favoriteStore2
+		favoriteStore3
+		guide
+		guideNextDay
+		guidePreviousDay
+		info
+		instantReplay
+		link
+		listProgram
+		liveContent
+		lock
+		mediaApps
+		mediaFastForward
+		mediaLast
+		mediaPause
+		mediaPlay
+		mediaRecord
+		mediaRewind
+		mediaSkip
+		nextFavoriteChannel
+		nextUserProfile
+		onDemand
+		pInPDown
+		pInPMove
+		pInPToggle
+		pInPUp
+		playSpeedDown
+		playSpeedReset
+		playSpeedUp
+		randomToggle
+		rcLowBattery
+		recordSpeedNext
+		rfBypass
+		scanChannelsToggle
+		screenModeNext
+		settings
+		splitScreenToggle
+		stbInput
+		stbPower
+		subtitle
+		teletext
+		tv
+		tvInput
+		tvPower
+		videoModeNext
+		wink
+		zoomToggle
+		dvr
+		mediaAudioTrack
+		mediaSkipBackward
+		mediaSkipForward
+		mediaStepBackward
+		mediaStepForward
+		mediaTopMenu
+		navigateIn
+		navigateNext
+		navigateOut
+		navigatePrevious
+		pairing
+		mediaClose
+		audioBassBoostToggle
+		audioTrebleDown
+		audioTrebleUp
+		microphoneToggle
+		microphoneVolumeDown
+		microphoneVolumeUp
+		microphoneVolumeMute
+		speechCorrectionList
+		speechInputToggle
+		appSwitch
+		call
+		cameraFocus
+		endCall
+		goBack
+		goHome
+		headsetHook
+		lastNumberRedial
+		notification
+		mannerMode
+		voiceDial
+		tv3DMode
+		tvAntennaCable
+		tvAudioDescription
+		tvAudioDescriptionMixDown
+		tvAudioDescriptionMixUp
+		tvContentsMenu
+		tvDataService
+		tvInputComponent1
+		tvInputComponent2
+		tvInputComposite1
+		tvInputComposite2
+		tvInputHDMI1
+		tvInputHDMI2
+		tvInputHDMI3
+		tvInputHDMI4
+		tvInputVGA1
+		tvMediaContext
+		tvNetwork
+		tvNumberEntry
+		tvRadioService
+		tvSatellite
+		tvSatelliteBS
+		tvSatelliteCS
+		tvSatelliteToggle
+		tvTerrestrialAnalog
+		tvTerrestrialDigital
+		tvTimer
+		key11
+		key12
+		suspend
+		resume
+		sleep
+		abort
+		lang1
+		lang2
+		lang3
+		lang4
+		lang5
+		intlBackslash
+		intlRo
+		intlYen
+		controlLeft
+		controlRight
+		shiftLeft
+		shiftRight
+		altLeft
+		altRight
+		metaLeft
+		metaRight
+		control
+		shift
+		alt
+		meta
+		numpadEnter
+		numpadParenLeft
+		numpadParenRight
+		numpadMultiply
+		numpadAdd
+		numpadComma
+		numpadSubtract
+		numpadDecimal
+		numpadDivide
+		numpad0
+		numpad1
+		numpad2
+		numpad3
+		numpad4
+		numpad5
+		numpad6
+		numpad7
+		numpad8
+		numpad9
+		numpadEqual
+		gameButton1
+		gameButton2
+		gameButton3
+		gameButton4
+		gameButton5
+		gameButton6
+		gameButton7
+		gameButton8
+		gameButton9
+		gameButton10
+		gameButton11
+		gameButton12
+		gameButton13
+		gameButton14
+		gameButton15
+		gameButton16
+		gameButtonA
+		gameButtonB
+		gameButtonC
+		gameButtonLeft1
+		gameButtonLeft2
+		gameButtonMode
+		gameButtonRight1
+		gameButtonRight2
+		gameButtonSelect
+		gameButtonStart
+		gameButtonThumbLeft
+		gameButtonThumbRight
+		gameButtonX
+		gameButtonY
+		gameButtonZ
+	default:
+		keyId: int
+
+abstract class KeyEvent extends Object:
+	default:
+		physicalKey: PhysicalKeyboardKey
+		logicalKey: LogicalKeyboardKey
+		character: opt<str>
+		timeStamp: Duration
+		synthesized: opt<bool>
 
 class FocusNode extends Object:
 	default:
-		debugLabel: Optional<str>
-		onKey: Optional<unknown>
-		onKeyEvent: Optional<unknown>
-		skipTraversal: Optional<bool>
-		canRequestFocus: Optional<bool>
-		descendantsAreFocusable: Optional<bool>
+		debugLabel: opt<str>
+		onKey: opt<func<__PLACEHOLDER__, RawKeyEvent, KeyEventResult>>
+		onKeyEvent: opt<func<__PLACEHOLDER__, KeyEvent, KeyEventResult>>
+		skipTraversal: opt<bool>
+		canRequestFocus: opt<bool>
+		descendantsAreFocusable: opt<bool>
 
 abstract class ButtonStyleButton extends StatefulWidget:
 	default:
-		key: Optional<Key>
-		onPressed: unknown
-		onLongPress: unknown
+		key: opt<Key>
+		onPressed: func<void>
+		onLongPress: func<void>
 		style: ButtonStyle
 		focusNode: FocusNode
 		autofocus: bool
@@ -1368,22 +2158,22 @@ abstract class ButtonStyleButton extends StatefulWidget:
 
 class ElevatedButton extends ButtonStyleButton:
 	default:
-		key: Optional<Key>
-		onPressed: unknown
-		onLongPress: Optional<unknown>
-		style: Optional<ButtonStyle>
-		focusNode: Optional<FocusNode>
-		autofocus: Optional<bool>
-		clipBehavior: Optional<Clip>
+		key: opt<Key>
+		onPressed: func<void>
+		onLongPress: opt<func<void>>
+		style: opt<ButtonStyle>
+		focusNode: opt<FocusNode>
+		autofocus: opt<bool>
+		clipBehavior: opt<Clip>
 		child: Widget
 	icon:
-		key: Optional<Key>
-		onPressed: unknown
-		onLongPress: Optional<unknown>
-		style: Optional<ButtonStyle>
-		focusNode: Optional<FocusNode>
-		autofocus: Optional<bool>
-		clipBehavior: Optional<Clip>
+		key: opt<Key>
+		onPressed: func<void>
+		onLongPress: opt<func<void>>
+		style: opt<ButtonStyle>
+		focusNode: opt<FocusNode>
+		autofocus: opt<bool>
+		clipBehavior: opt<Clip>
 		icon: Widget
 		label: Widget
 
