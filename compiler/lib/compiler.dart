@@ -22,6 +22,12 @@ const libraryWhitelist = {
 const widgetWhitelist = {
   'MaterialApp',
   'ElevatedButton',
+  // 'Scaffold',
+  // 'AppBar',
+  // 'Text',
+  // 'ListView',
+  // 'ListTile',
+  // 'EdgeInsets',
 };
 
 const libNames = <String>[];
@@ -50,6 +56,136 @@ class Printer {
         ? _indent.substring(0, _indent.length - _tab.length)
         : _indent;
   }
+}
+
+class Emitter {
+  final _lines = <String>[];
+
+  void call(String s) => _lines.add(s);
+
+  @override
+  String toString() => _lines.join();
+}
+
+class IRConst {}
+
+class IRUndefined extends IRConst {}
+
+final undefined = IRUndefined();
+
+class IRBool extends IRConst {
+  final bool value;
+
+  IRBool(this.value);
+}
+
+class IRInt extends IRConst {
+  final int value;
+
+  IRInt(this.value);
+}
+
+class IRDouble extends IRConst {
+  final double value;
+
+  IRDouble(this.value);
+}
+
+class IRString extends IRConst {
+  final String value;
+
+  IRString(this.value);
+}
+
+class IRElement {
+  final String path;
+  final String name;
+
+  IRElement(this.path, this.name);
+
+  static final placeholder = IRElement('placeholder', 'placeholder');
+}
+
+class IREnum extends IRElement {
+  final List<String> values;
+  final ClassElement dartElement;
+
+  IREnum(String path, String name,
+      {required this.values, required this.dartElement})
+      : super(path, name);
+
+  @override
+  String toString() {
+    final p = Emitter();
+    p('$name\n');
+    for (final v in values) {
+      p('\t$v\n');
+    }
+    return p.toString();
+  }
+}
+
+class IRField {
+  final String name;
+  final IRType type;
+  final IRConst value;
+
+  IRField({
+    required this.name,
+    required this.type,
+    required this.value,
+  });
+}
+
+class IRConstructor {
+  final String name;
+  final List<IRField> fields;
+
+  IRConstructor(this.name, this.fields);
+}
+
+class IRType {
+  final String name;
+
+  IRType(this.name);
+
+  static final IRType unknown = IRType('unknown');
+  static final IRType bool = IRType('bool');
+  static final IRType int = IRType('int');
+  static final IRType float = IRType('float');
+  static final IRType str = IRType('str');
+  static final IRType any = IRType('any');
+  static final IRType callable = IRType('func');
+}
+
+class IRInterface extends IRType {
+  final List<IRType> types; // Parameters
+
+  IRInterface(String name, this.types) : super(name);
+}
+
+class IRClass extends IRElement {
+  final bool isAbstract;
+  final List<IRType> supertypes;
+  final List<IRType> interfaces;
+  final IRConstructor constructor;
+  final List<IRConstructor> constructors;
+  final List<IRField> fields;
+  final List<String> parameters;
+  final ClassElement dartElement;
+
+  IRClass(
+    String path,
+    String name, {
+    required this.isAbstract,
+    required this.supertypes,
+    required this.interfaces,
+    required this.constructor,
+    required this.constructors,
+    required this.fields,
+    required this.parameters,
+    required this.dartElement,
+  }) : super(path, name);
 }
 
 class PythonUnit {
@@ -162,6 +298,21 @@ String snakeCase(String name) => name
 String _titleCase(String name) =>
     name.replaceFirstMapped(RegExp(r'^[a-z]'), (m) => '${m[0]}'.toUpperCase());
 
+// TODO is there a simpler way to determine this?
+bool _hasInterface(DartType t, List<String> names) {
+  if (t is InterfaceType) {
+    final location = t.element.location;
+    if (location != null) {
+      final components = location.components;
+      for (final name in names) {
+        if (!components.contains(name)) return false;
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
 // From Python 3.9.5
 // >>> import keyword
 // >>> keyword.kwlist
@@ -207,6 +358,10 @@ final _reservedWords = {
 String _unreserved(String name) =>
     _reservedWords.contains(name) ? '${name}_' : name;
 
+bool _isPrivateSymbol(String name) {
+  return name.startsWith(r'_');
+}
+
 class PythonTranslator {
   final p = Printer('    ');
   final _units = <PythonUnit>[];
@@ -244,21 +399,6 @@ class PythonTranslator {
   void pushTrace() => _traceDepth += '\t';
 
   void popTrace() => _traceDepth = _traceDepth.substring(1);
-
-  // TODO is there a simpler way to determine this?
-  bool _hasInterface(DartType t, List<String> names) {
-    if (t is InterfaceType) {
-      final location = t.element.location;
-      if (location != null) {
-        final components = location.components;
-        for (final name in names) {
-          if (!components.contains(name)) return false;
-        }
-        return true;
-      }
-    }
-    return false;
-  }
 
   PythonType _toType(DartType t) {
     if (t.isDartCoreBool) return PythonType.bool;
@@ -365,7 +505,7 @@ class PythonTranslator {
 
   PythonEnum _toEnum(ClassElement e) {
     assert(e.isEnum);
-    final sourcePath = getRelativeSourcePath(e);
+    final sourcePath = _getRelativeSourcePath(e);
     trace('$e\t$sourcePath');
 
     return PythonEnum(
@@ -378,7 +518,7 @@ class PythonTranslator {
 
   PythonClass _toClass(ClassElement e) {
     assert(!e.isEnum);
-    final sourcePath = getRelativeSourcePath(e);
+    final sourcePath = _getRelativeSourcePath(e);
     trace('$e\t$sourcePath');
     // TODO special handling for mixins?
     // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
@@ -420,10 +560,6 @@ class PythonTranslator {
         variants: variants,
         staticFields: staticFields,
         typeParameters: typeParameters);
-  }
-
-  bool _isPrivateSymbol(String name) {
-    return name.startsWith(r'_');
   }
 
   void emitParameters(List<PythonField> fields, {isMethod = true}) {
@@ -651,14 +787,6 @@ class PythonTranslator {
     _declaredNames.add(e.name);
   }
 
-  String getRelativeSourcePath(ClassElement e) {
-    final absPath = e.source.fullName;
-    final libPath = 'flutter';
-    // TODO assumes SDK path doesn't contain ../flutter/../flutter/..
-    final pos = absPath.indexOf(libPath);
-    return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
-  }
-
   PythonUnit _toUnit(ClassElement e) {
     // XXX ctors with _arg not handled (e.g. Locale)
     if (_unitCache.containsKey(e)) {
@@ -704,10 +832,203 @@ class PythonTranslator {
   }
 }
 
+String _getRelativeSourcePath(ClassElement e) {
+  final absPath = e.source.fullName;
+  final libPath = 'flutter';
+  // TODO assumes SDK path doesn't contain ../flutter/../flutter/..
+  final pos = absPath.indexOf(libPath);
+  return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
+}
+
+class IRBuilder {
+  final _elements = <IRElement>[];
+  final _cache = <Element, IRElement>{};
+
+  IREnum _toEnum(ClassElement e) {
+    assert(e.isEnum);
+    final path = _getRelativeSourcePath(e);
+    return IREnum(path, e.name,
+        values: e.fields.map((f) => f.name).toList(), dartElement: e);
+  }
+
+  IRType _toType(DartType t) {
+    if (t.isDartCoreBool) return IRType.bool;
+    if (t.isDartCoreInt) return IRType.int;
+    if (t.isDartCoreDouble) return IRType.float;
+    if (t.isDartCoreString) return IRType.str;
+    if (t.isDynamic) return IRType.any;
+
+    if (t is InterfaceType) {
+      // XXX handle t.typeArguments
+      final e = _load(t.element);
+      return IRInterface(e.name, []);
+    }
+
+    return IRType.unknown;
+  }
+
+  IRField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
+    return IRField(
+      name: f.name,
+      type: _toType(f.type),
+      value: _toConst(f.computeConstantValue()),
+    );
+  }
+
+  IRConst _toConst(DartObject? o) {
+    if (o == null) return undefined;
+
+    final t = o.type;
+    if (t == null) return undefined;
+
+    if (t.isDartCoreBool) {
+      final v = o.toBoolValue();
+      if (v != null) return IRBool(v);
+    } else if (t.isDartCoreInt) {
+      final v = o.toIntValue();
+      if (v != null) return IRInt(v);
+    } else if (t.isDartCoreDouble) {
+      final v = o.toDoubleValue();
+      if (v != null) return IRDouble(v);
+    } else if (t.isDartCoreString) {
+      final v = o.toStringValue();
+      if (v != null) return IRString(v);
+    }
+
+    return undefined;
+  }
+
+  IRType _toOptional(IRType t) {
+    return IRInterface('Optional', [t]);
+  }
+
+  IRField _toField(ParameterElement e) {
+    final required = e.isRequiredNamed || e.isRequiredPositional;
+    final t = _toType(e.type);
+    return IRField(
+      name: e.name,
+      type: required ? t : _toOptional(t),
+      value: undefined,
+    );
+  }
+
+  List<IRField> _toFields(List<ParameterElement> params) =>
+      params.map(_toField).toList();
+
+  IRClass _toClass(ClassElement e) {
+    assert(!e.isEnum);
+    final path = _getRelativeSourcePath(e);
+
+    final supertype = e.supertype;
+    final supertypes = supertype != null ? [_toType(supertype)] : <IRType>[];
+    final interfaces = e.interfaces.map(_toType).toList();
+
+    final fields = e.fields
+        .where((f) => f.isStatic)
+        .whereType<ConstFieldElementImpl>()
+        .where((f) => !_isPrivateSymbol(f.name))
+        // Ignore FontWeight.values, etc.
+        .where((f) => !_hasInterface(f.type, ['dart:core', 'List']))
+        .map((f) => _toStaticField(e, f))
+        .toList();
+
+    final defaultConstructors = e.constructors.where((c) => c.name.isEmpty);
+    final defaultFields = _toFields(defaultConstructors.isEmpty
+        ? []
+        : defaultConstructors.first.parameters);
+
+    final constructors = e.constructors
+        .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
+        .map((c) => IRConstructor(c.name, _toFields(c.parameters)))
+        .toList();
+
+    return IRClass(path, e.name,
+        // XXX handle e.isMixin
+        isAbstract: e.isAbstract,
+        supertypes: supertypes,
+        interfaces: interfaces,
+        constructor: IRConstructor('', defaultFields),
+        constructors: constructors,
+        fields: fields,
+        parameters: [],
+        // XXX Handle type parameters
+        dartElement: e);
+  }
+
+  IRElement _load(ClassElement e) {
+    final ir0 = _cache[e];
+    if (ir0 != null) return ir0;
+
+    // prevent stack overflow caused by recursive type references.
+    _cache[e] = IRElement.placeholder;
+
+    final ir = e.isEnum ? _toEnum(e) : _toClass(e);
+    _cache[e] = ir;
+    _elements.add(ir);
+    return ir;
+  }
+
+  List<IRElement> load(Set<Element> elements) {
+    for (final e in elements) {
+      if (e is ClassElement && widgetWhitelist.contains(e.name)) {
+        _load(e);
+      }
+    }
+    return _elements;
+  }
+
+  static String _dumpType(IRType t) {
+    if (t is IRInterface) {
+      if (t.types.isNotEmpty) {
+        final params = t.types.map(_dumpType).join(', ');
+        return '${t.name}<$params>';
+      }
+    }
+
+    return t.name;
+  }
+
+  static String dump(List<IRElement> elements) {
+    final p = Printer('\t');
+    for (final e in elements) {
+      if (e is IREnum) {
+        p(e.name);
+      } else if (e is IRClass) {
+        final abstr = e.isAbstract ? 'abstract ' : '';
+        p('${abstr}class ${e.name}');
+        p.t(() {
+          if (e.fields.isNotEmpty) {
+            p('static:');
+            p.t(() {
+              for (final f in e.fields) {
+                p(f.name);
+              }
+            });
+          }
+          if (e.constructor.fields.isNotEmpty) {
+            p('fields:');
+            p.t(() {
+              for (final f in e.constructor.fields) {
+                p('${f.name}: ${_dumpType(f.type)}');
+              }
+            });
+          }
+        });
+      }
+      p('');
+    }
+    return p.lines.join();
+  }
+}
+
 void _postProcess(Set<Element> elements, String outputDir) {
-  final lines = PythonTranslator().translate(elements);
   _mkdirp(outputDir);
-  _write(path.join(outputDir, 'types.py'), lines);
+
+  // final lines = PythonTranslator().translate(elements);
+  // _write(path.join(outputDir, 'types.py'), lines);
+
+  final lines = IRBuilder.dump(IRBuilder().load(elements));
+  _write(path.join(outputDir, 'types.ir'), lines);
 }
 
 Future<Set<Element>> _analyze(String sourcePath) async {
