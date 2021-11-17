@@ -7,7 +7,7 @@ abstract class DiagnosticableTree extends Object:
 # packages/flutter/lib/src/foundation/key.dart
 abstract class Key extends Object:
 	default:
-		value: str
+		value: string
 	empty:
 
 # packages/flutter/lib/src/widgets/framework.dart
@@ -26,7 +26,7 @@ abstract class State<T extends StatefulWidget> extends Object:
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
 	default:
-		debugLabel: opt<str>
+		debugLabel: opt<string>
 	constructor:
 
 # bin/cache/pkg/sky_engine/lib/core/iterable.dart
@@ -65,7 +65,7 @@ abstract class List<E> extends Object implements EfficientLengthIterable<E>:
 # packages/flutter/lib/src/widgets/navigator.dart
 class RouteSettings extends Object:
 	default:
-		name: opt<str>
+		name: opt<string>
 		arguments: opt<Object>
 
 # packages/flutter/lib/src/foundation/key.dart
@@ -75,9 +75,9 @@ abstract class LocalKey extends Key:
 abstract class Page<T> extends RouteSettings:
 	default:
 		key: opt<LocalKey>
-		name: opt<str>
+		name: opt<string>
 		arguments: opt<Object>
-		restorationId: opt<str>
+		restorationId: opt<string>
 
 # packages/flutter/lib/src/widgets/navigator.dart
 abstract class Route<T> extends Object:
@@ -93,19 +93,19 @@ class NavigatorObserver extends Object:
 # packages/flutter/lib/src/widgets/navigator.dart
 class Navigator extends StatefulWidget:
 	static:
-		defaultRouteName: str = '/'
+		defaultRouteName: string = '/'
 	default:
 		key: opt<Key>
 		pages: opt<List<Page<any>>>
 		onPopPage: opt<func<Route<any>, any, bool>>
-		initialRoute: opt<str>
-		onGenerateInitialRoutes: opt<func<NavigatorState, str, List<Route<any>>>>
+		initialRoute: opt<string>
+		onGenerateInitialRoutes: opt<func<NavigatorState, string, List<Route<any>>>>
 		onGenerateRoute: opt<func<RouteSettings, Route<any>>>
 		onUnknownRoute: opt<func<RouteSettings, Route<any>>>
 		transitionDelegate: opt<TransitionDelegate<any>>
 		reportsRouteUpdateToEngine: opt<bool>
 		observers: opt<List<NavigatorObserver>>
-		restorationScopeId: opt<str>
+		restorationScopeId: opt<string>
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorState extends State<Navigator>:
@@ -351,12 +351,12 @@ enum TextLeadingDistribution:
 # bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
 class Locale extends Object:
 	default:
-		_languageCode: str
-		_countryCode: opt<str>
+		_languageCode: string
+		_countryCode: opt<string>
 	fromSubtags:
-		languageCode: opt<str>
-		scriptCode: opt<str>
-		countryCode: opt<str>
+		languageCode: opt<string>
+		scriptCode: opt<string>
+		countryCode: opt<string>
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint extends Object:
@@ -389,12 +389,12 @@ class Shadow extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature extends Object:
 	default:
-		feature: str
+		feature: string
 		value: opt<int>
 	enable:
-		feature: str
+		feature: string
 	disable:
-		feature: str
+		feature: string
 	alternative:
 		value: int
 	alternativeFractions:
@@ -475,10 +475,10 @@ class TextStyle extends Object:
 		decorationColor: opt<Color>
 		decorationStyle: opt<TextDecorationStyle>
 		decorationThickness: opt<double>
-		debugLabel: opt<str>
-		fontFamily: opt<str>
-		fontFamilyFallback: opt<List<str>>
-		package: opt<str>
+		debugLabel: opt<string>
+		fontFamily: opt<string>
+		fontFamilyFallback: opt<List<string>>
+		package: opt<string>
 		overflow: opt<TextOverflow>
 
 # packages/flutter/lib/src/rendering/object.dart
@@ -1337,7 +1337,7 @@ class ThemeData extends Object:
 		hintColor: opt<Color>
 		errorColor: opt<Color>
 		toggleableActiveColor: opt<Color>
-		fontFamily: opt<str>
+		fontFamily: opt<string>
 		textTheme: opt<TextTheme>
 		primaryTextTheme: opt<TextTheme>
 		accentTextTheme: opt<TextTheme>
@@ -1508,7 +1508,7 @@ abstract class ValueListenable<T> extends Listenable:
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformation extends Object:
 	default:
-		location: opt<str>
+		location: opt<string>
 		state: opt<Object>
 
 # packages/flutter/lib/src/widgets/router.dart
@@ -1529,14 +1529,14 @@ abstract class FutureOr<T> extends Object:
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
 class _StringStackTrace extends Object implements StackTrace:
 	default:
-		_stackTrace: str
+		_stackTrace: string
 
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
 abstract class StackTrace extends Object:
 	static:
 		empty: _StringStackTrace
 	fromString:
-		stackTraceString: str
+		stackTraceString: string
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
 abstract class Future<T> extends Object:
@@ -1565,15 +1565,15 @@ class MaterialApp extends StatefulWidget:
 		navigatorKey: opt<GlobalKey<NavigatorState>>
 		scaffoldMessengerKey: opt<GlobalKey<ScaffoldMessengerState>>
 		home: opt<Widget>
-		routes: opt<Map<str, func<BuildContext, Widget>>>
-		initialRoute: opt<str>
+		routes: opt<Map<string, func<BuildContext, Widget>>>
+		initialRoute: opt<string>
 		onGenerateRoute: opt<func<RouteSettings, Route<any>>>
-		onGenerateInitialRoutes: opt<func<str, List<Route<any>>>>
+		onGenerateInitialRoutes: opt<func<string, List<Route<any>>>>
 		onUnknownRoute: opt<func<RouteSettings, Route<any>>>
 		navigatorObservers: opt<List<NavigatorObserver>>
 		builder: opt<func<BuildContext, Widget, Widget>>
-		title: opt<str>
-		onGenerateTitle: opt<func<BuildContext, str>>
+		title: opt<string>
+		onGenerateTitle: opt<func<BuildContext, string>>
 		color: opt<Color>
 		theme: opt<ThemeData>
 		darkTheme: opt<ThemeData>
@@ -1593,7 +1593,7 @@ class MaterialApp extends StatefulWidget:
 		debugShowCheckedModeBanner: opt<bool>
 		shortcuts: opt<Map<ShortcutActivator, Intent>>
 		actions: opt<Map<Type, Action<Intent>>>
-		restorationScopeId: opt<str>
+		restorationScopeId: opt<string>
 		scrollBehavior: opt<ScrollBehavior>
 		useInheritedMediaQuery: opt<bool>
 	router:
@@ -1604,8 +1604,8 @@ class MaterialApp extends StatefulWidget:
 		routerDelegate: RouterDelegate<Object>
 		backButtonDispatcher: opt<BackButtonDispatcher>
 		builder: opt<func<BuildContext, Widget, Widget>>
-		title: opt<str>
-		onGenerateTitle: opt<func<BuildContext, str>>
+		title: opt<string>
+		onGenerateTitle: opt<func<BuildContext, string>>
 		color: opt<Color>
 		theme: opt<ThemeData>
 		darkTheme: opt<ThemeData>
@@ -1625,7 +1625,7 @@ class MaterialApp extends StatefulWidget:
 		debugShowCheckedModeBanner: opt<bool>
 		shortcuts: opt<Map<ShortcutActivator, Intent>>
 		actions: opt<Map<Type, Action<Intent>>>
-		restorationScopeId: opt<str>
+		restorationScopeId: opt<string>
 		scrollBehavior: opt<ScrollBehavior>
 		useInheritedMediaQuery: opt<bool>
 
@@ -1636,9 +1636,9 @@ abstract class RawKeyEventData extends Object:
 abstract class RawKeyEvent extends Object:
 	default:
 		data: RawKeyEventData
-		character: opt<str>
+		character: opt<string>
 	fromMessage:
-		message: Map<str, any>
+		message: Map<string, any>
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 enum KeyEventResult:
@@ -2392,14 +2392,14 @@ abstract class KeyEvent extends Object:
 	default:
 		physicalKey: PhysicalKeyboardKey
 		logicalKey: LogicalKeyboardKey
-		character: opt<str>
+		character: opt<string>
 		timeStamp: Duration
 		synthesized: opt<bool>
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode extends Object:
 	default:
-		debugLabel: opt<str>
+		debugLabel: opt<string>
 		onKey: opt<func<FocusNode, RawKeyEvent, KeyEventResult>>
 		onKeyEvent: opt<func<FocusNode, KeyEvent, KeyEventResult>>
 		skipTraversal: opt<bool>
