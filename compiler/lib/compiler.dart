@@ -10,7 +10,7 @@ import 'package:analyzer/src/dart/element/element.dart'
     show ConstFieldElementImpl;
 import 'package:path/path.dart' as path;
 import 'ir.dart';
-import 'python.dart';
+import 'python2.dart';
 import 'emit.dart';
 
 void compile(String loaderPath, String outputDir) {
