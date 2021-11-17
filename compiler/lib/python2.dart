@@ -87,12 +87,18 @@ class PythonTranslator {
   }
 
   void _emitClass(IRClass e) {
+    final abstracts = e.isAbstract ? ['ABC'] : <String>[];
     final parameters = e.parameters.isNotEmpty
         ? ['Generic[${comma(e.parameters.map(_toType))}]']
         : <String>[];
     final superTypes = e.supertypes.map(_toType);
     final interfaces = e.interfaces.map(_toType);
-    final inherits = [...parameters, ...superTypes, ...interfaces];
+    final inherits = [
+      ...abstracts,
+      ...parameters,
+      ...superTypes,
+      ...interfaces
+    ];
     final base = inherits.isNotEmpty ? '(${comma(inherits)})' : '';
 
     p('');
@@ -114,33 +120,38 @@ class PythonTranslator {
     });
   }
 
-  void _collectTypeVars(IRType t, Set<String> vars) {
+  void _collectTypeVars(IRType t, Set<String> typeVars) {
     if (t is IRParameterizedType) {
       for (final p in t.parameters) {
-        _collectTypeVars(p, vars);
+        _collectTypeVars(p, typeVars);
       }
     } else if (t is IRTypeParameter) {
-      vars.add(t.name);
+      typeVars.add(t.name);
     }
   }
 
-  String _emit(List<IRElement> elements) {
-    p('from enum import Enum');
-    p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
-    p('');
-
-    final vars = <String>{};
+  void _emitTypeVars(List<IRElement> elements) {
+    final typeVars = <String>{};
     for (final e in elements) {
       if (e is IRClass) {
         for (final t in [...e.parameters, ...e.supertypes, ...e.interfaces]) {
-          _collectTypeVars(t, vars);
+          _collectTypeVars(t, typeVars);
         }
       }
     }
 
-    for (final v in vars) {
-      p("$v = TypeVar('$v')");
+    for (final t in typeVars) {
+      p("$t = TypeVar('$t')");
     }
+  }
+
+  String _emit(List<IRElement> elements) {
+    p('from abc import ABC');
+    p('from enum import Enum');
+    p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
+    p('');
+
+    _emitTypeVars(elements);
 
     for (final e in elements) {
       if (e is IRClass) {
