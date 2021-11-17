@@ -1,4 +1,3 @@
-
 import 'emit.dart';
 import 'ir.dart';
 
@@ -125,26 +124,26 @@ class PythonTranslator {
       ...superTypes,
       ...interfaces
     ];
+    final klass = _n(e.name);
     final base = inherits.isNotEmpty ? '(${comma(inherits)})' : '';
 
     // Python doesn't handle recursive type definitions: static fields of the
     // same type as the containing class need to be assigned after the class
     // definition.
     final internalFields = e.fields.where((f) => !_typeRefersTo(f.type, e));
-    final primitiveInternalFields =
-        internalFields.where((f) => f.type.isPrimitive);
-    final complexInternalFields =
-        internalFields.where((f) => !f.type.isPrimitive);
+    final constFields = internalFields.where((f) => f.type.isPrimitive);
+    final nonConstFields = internalFields.where((f) => !f.type.isPrimitive);
     final externalFields = e.fields.where((f) => _typeRefersTo(f.type, e));
 
-    if (complexInternalFields.isNotEmpty) {
-      final ctors = Set.from(complexInternalFields.map((f) => _toType(f.type)));
-      for (final t in ctors) {
+    if (nonConstFields.isNotEmpty) {
+      final typeSet = Set.from(nonConstFields.map((f) => _toType(f.type)));
+      for (final t in typeSet) {
         p('');
         p('');
-        p('def _${_sc(e.name)}__${_sc(t)}(_k: str) -> $t:');
+        p('def _${_sc(klass)}__${_sc(t)}(_k: str) -> $t:');
         p.t(() {
           p('_o = $t(');
+          // XXX default ctor args
           p(')');
           p("_o.__ctor = (('${e.name}', _k),)");
           p('return _o');
@@ -154,14 +153,14 @@ class PythonTranslator {
 
     p('');
     p('');
-    p('class ${_n(e.name)}$base:');
+    p('class $klass$base:');
     p.t(() {
       // foo: float = 42.0
-      for (final f in primitiveInternalFields) {
+      for (final f in constFields) {
         p('${_sc(f.name)}: ${_toType(f.type)} = ${_toConst(f.value)}');
       }
       // a_foo_bar: FooBar = _container__foo_bar('aFooBar')
-      for (final f in complexInternalFields) {
+      for (final f in nonConstFields) {
         final t = _toType(f.type);
         p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
       }
@@ -202,6 +201,22 @@ class PythonTranslator {
         });
       }
     });
+
+    if (externalFields.isNotEmpty) {
+      p('');
+      p('');
+      for (final f in externalFields) {
+        // Foo.bar = Foo(
+        // )
+        // Foo.bar.__ctor = (('bar', ), ())
+        //
+        final attr = _sc(f.name);
+        p('$klass.$attr = $klass(');
+        // XXX default ctor args
+        p(')');
+        p("$klass.$attr.__ctor = (('${f.name}',),)");
+      }
+    }
   }
 
   void _emitEnum(IREnum e) {
