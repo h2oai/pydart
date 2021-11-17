@@ -67,9 +67,12 @@ class Emitter {
   String toString() => _lines.join();
 }
 
-class IRConst {}
+abstract class IRConst {}
 
-class IRUndefined extends IRConst {}
+class IRUndefined extends IRConst {
+  @override
+  String toString() => 'undefined';
+}
 
 final undefined = IRUndefined();
 
@@ -77,24 +80,36 @@ class IRBool extends IRConst {
   final bool value;
 
   IRBool(this.value);
+
+  @override
+  String toString() => '$value';
 }
 
 class IRInt extends IRConst {
   final int value;
 
   IRInt(this.value);
+
+  @override
+  String toString() => '$value';
 }
 
 class IRDouble extends IRConst {
   final double value;
 
   IRDouble(this.value);
+
+  @override
+  String toString() => '$value';
 }
 
 class IRString extends IRConst {
   final String value;
 
   IRString(this.value);
+
+  @override
+  String toString() => "'$value'";
 }
 
 class IRType {
@@ -1109,7 +1124,8 @@ class IRBuilder {
             p('static:');
             p.t(() {
               for (final f in e.fields) {
-                p('${f.name}: ${_dumpType(f.type)}');
+                final v = f.value is! IRUndefined ? ' = ${f.value}' : '';
+                p('${f.name}: ${_dumpType(f.type)}$v');
               }
             });
           }

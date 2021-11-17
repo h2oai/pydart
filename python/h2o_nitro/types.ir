@@ -93,7 +93,7 @@ class NavigatorObserver extends Object:
 # packages/flutter/lib/src/widgets/navigator.dart
 class Navigator extends StatefulWidget:
 	static:
-		defaultRouteName: str
+		defaultRouteName: str = '/'
 	default:
 		key: opt<Key>
 		pages: opt<List<Page<any>>>
@@ -170,8 +170,8 @@ enum Brightness:
 # packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity extends Object:
 	static:
-		minimumDensity: float
-		maximumDensity: float
+		minimumDensity: float = -4.0
+		maximumDensity: float = 4.0
 		standard: VisualDensity
 		comfortable: VisualDensity
 		compact: VisualDensity
@@ -763,21 +763,21 @@ abstract class Comparable<T> extends Object:
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration extends Object implements Comparable<Duration>:
 	static:
-		microsecondsPerMillisecond: int
-		millisecondsPerSecond: int
-		secondsPerMinute: int
-		minutesPerHour: int
-		hoursPerDay: int
-		microsecondsPerSecond: int
-		microsecondsPerMinute: int
-		microsecondsPerHour: int
-		microsecondsPerDay: int
-		millisecondsPerMinute: int
-		millisecondsPerHour: int
-		millisecondsPerDay: int
-		secondsPerHour: int
-		secondsPerDay: int
-		minutesPerDay: int
+		microsecondsPerMillisecond: int = 1000
+		millisecondsPerSecond: int = 1000
+		secondsPerMinute: int = 60
+		minutesPerHour: int = 60
+		hoursPerDay: int = 24
+		microsecondsPerSecond: int = 1000000
+		microsecondsPerMinute: int = 60000000
+		microsecondsPerHour: int = 3600000000
+		microsecondsPerDay: int = 86400000000
+		millisecondsPerMinute: int = 60000
+		millisecondsPerHour: int = 3600000
+		millisecondsPerDay: int = 86400000
+		secondsPerHour: int = 3600
+		secondsPerDay: int = 86400
+		minutesPerDay: int = 1440
 		zero: Duration
 	default:
 		days: opt<int>
@@ -1926,20 +1926,20 @@ class PhysicalKeyboardKey extends KeyboardKey:
 # packages/flutter/lib/src/services/keyboard_key.dart
 class LogicalKeyboardKey extends KeyboardKey:
 	static:
-		valueMask: int
-		planeMask: int
-		unicodePlane: int
-		unprintablePlane: int
-		flutterPlane: int
-		startOfPlatformPlanes: int
-		androidPlane: int
-		fuchsiaPlane: int
-		iosPlane: int
-		macosPlane: int
-		gtkPlane: int
-		windowsPlane: int
-		webPlane: int
-		glfwPlane: int
+		valueMask: int = 4294967295
+		planeMask: int = 1095216660480
+		unicodePlane: int = 0
+		unprintablePlane: int = 4294967296
+		flutterPlane: int = 8589934592
+		startOfPlatformPlanes: int = 73014444032
+		androidPlane: int = 73014444032
+		fuchsiaPlane: int = 77309411328
+		iosPlane: int = 81604378624
+		macosPlane: int = 85899345920
+		gtkPlane: int = 90194313216
+		windowsPlane: int = 94489280512
+		webPlane: int = 98784247808
+		glfwPlane: int = 103079215104
 		space: LogicalKeyboardKey
 		exclamation: LogicalKeyboardKey
 		quote: LogicalKeyboardKey
