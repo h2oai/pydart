@@ -182,8 +182,6 @@ final _reservedWords = {
 String _unreserved(String name) =>
     _reservedWords.contains(name) ? '${name}_' : name;
 
-String comma(Iterable<String> items) => items.join(', ');
-
 bool _isPrivateSymbol(String name) {
   return name.startsWith(r'_');
 }
