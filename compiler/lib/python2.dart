@@ -74,8 +74,12 @@ class PythonTranslator {
 
   String _toType(IRType t) {
     if (t is IRParameterizedType) {
+      final ps = t.parameters.map(_toType).toList();
       final params = t.parameters.isNotEmpty
-          ? '[${comma(t.parameters.map(_toType))}]'
+          ? (t.element == IRElement.func)
+              // 'Callable' must be used as 'Callable[[arg, ...], result]'
+              ? '[[${comma(ps.sublist(0, ps.length - 1))}], ${ps.last}]'
+              : '[${comma(ps)}]'
           : '';
       return '${_n(t.name)}$params';
     }
