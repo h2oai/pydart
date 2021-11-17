@@ -1,3 +1,5 @@
+String comma(Iterable<String> items) => items.join(', ');
+
 class Printer {
   final String _tab;
   String _indent = '';

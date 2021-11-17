@@ -38,11 +38,12 @@ const libNames = <String>[];
 void _postProcess(Set<Element> elements, String outputDir) {
   _mkdirp(outputDir);
 
-  final lines = PythonTranslator().translate(elements);
+  final ir = IRBuilder.load(elements);
+  _write(path.join(outputDir, 'types.ir'), IRBuilder.dump(ir));
+
+  final lines = PythonTranslator().translate(ir);
   _write(path.join(outputDir, 'types.py'), lines);
 
-  final lines2 = IRBuilder.dump(IRBuilder().load(elements));
-  _write(path.join(outputDir, 'types.ir'), lines2);
 }
 
 Future<Set<Element>> _analyze(String sourcePath) async {

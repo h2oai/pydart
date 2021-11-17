@@ -165,7 +165,6 @@ class IRClass extends IRElement {
   }) : super(path, name);
 }
 
-String comma(Iterable<String> items) => items.join(', ');
 
 bool _isPrivateSymbol(String name) {
   return name.startsWith(r'_');
@@ -221,7 +220,7 @@ class IRBuilder {
 
     if (t is InterfaceType) {
       return IRParameterizedType(
-          _load(t.element), t.typeArguments.map(_toType).toList());
+          _toElement(t.element), t.typeArguments.map(_toType).toList());
     }
 
     if (t is FunctionType) {
@@ -333,7 +332,7 @@ class IRBuilder {
     );
   }
 
-  IRElement _load(ClassElement e) {
+  IRElement _toElement(ClassElement e) {
     final ir0 = _cache[e];
     if (ir0 != null) return ir0;
 
@@ -389,10 +388,10 @@ class IRBuilder {
     return e;
   }
 
-  List<IRElement> load(Set<Element> elements) {
+  List<IRElement> _load(Set<Element> elements) {
     for (final e in elements) {
       if (e is ClassElement && widgetWhitelist.contains(e.name)) {
-        _load(e);
+        _toElement(e);
       }
     }
 
@@ -402,6 +401,9 @@ class IRBuilder {
 
     return _elements;
   }
+
+  static List<IRElement> load(Set<Element> elements) =>
+      IRBuilder()._load(elements);
 
   static String _dumpType(IRType t) {
     if (t is IRParameterizedType) {
