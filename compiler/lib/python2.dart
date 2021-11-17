@@ -1,7 +1,6 @@
-import 'package:analyzer/dart/element/type.dart';
 
-import 'ir.dart';
 import 'emit.dart';
+import 'ir.dart';
 
 // From Python 3.9.5
 // >>> import keyword
@@ -49,7 +48,7 @@ final _builtins = {
   'void': 'None',
   'bool': 'bool',
   'int': 'int',
-  'float': 'float',
+  'double': 'float',
   'str': 'str',
   'any': 'Any',
   'opt': 'Optional',
@@ -132,16 +131,43 @@ class PythonTranslator {
     // same type as the containing class need to be assigned after the class
     // definition.
     final internalFields = e.fields.where((f) => !_typeRefersTo(f.type, e));
+    final primitiveInternalFields =
+        internalFields.where((f) => f.type.isPrimitive);
+    final complexInternalFields =
+        internalFields.where((f) => !f.type.isPrimitive);
     final externalFields = e.fields.where((f) => _typeRefersTo(f.type, e));
+
+    if (complexInternalFields.isNotEmpty) {
+      final ctors = Set.from(complexInternalFields.map((f) => _toType(f.type)));
+      for (final t in ctors) {
+        p('');
+        p('');
+        p('def _${_sc(e.name)}__${_sc(t)}(_k: str) -> $t:');
+        p.t(() {
+          p('_o = $t(');
+          p(')');
+          p("_o.__ctor = (('${e.name}', _k),)");
+          p('return _o');
+        });
+      }
+    }
 
     p('');
     p('');
     p('class ${_n(e.name)}$base:');
     p.t(() {
-      for (final f in internalFields) {
+      // foo: float = 42.0
+      for (final f in primitiveInternalFields) {
         p('${_sc(f.name)}: ${_toType(f.type)} = ${_toConst(f.value)}');
       }
-      p('');
+      // a_foo_bar: FooBar = _container__foo_bar('aFooBar')
+      for (final f in complexInternalFields) {
+        final t = _toType(f.type);
+        p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
+      }
+      if (internalFields.isNotEmpty) {
+        p('');
+      }
 
       for (final c in [e.constructor, ...e.constructors]) {
         if (c.name.isNotEmpty) {
@@ -155,9 +181,11 @@ class PythonTranslator {
         final opt = c.fields.where((f) => _isOptional(f.type));
         p.t(() {
           p('self,');
+          // foo: Foo,
           for (final f in req) {
             p('${_sc(f.name)}: ${_toType(f.type)},');
           }
+          // foo: Optional[Foo] = None,
           for (final f in opt) {
             p('${_sc(f.name)}: ${_toType(f.type)} = None,');
           }
