@@ -90,6 +90,20 @@ class PythonTranslator {
     throw 'unknown type ${t.name}';
   }
 
+  bool _isOptional(IRType t) =>
+      t is IRParameterizedType && t.element == IRElement.optional;
+
+  void _emitParams(List<IRField> fields) {
+    final req = fields.where((f) => !_isOptional(f.type));
+    final opt = fields.where((f) => _isOptional(f.type));
+    for (final f in req) {
+      p('${_sc(f.name)}: ${_toType(f.type)},');
+    }
+    for (final f in opt) {
+      p('${_sc(f.name)}: ${_toType(f.type)} = None,');
+    }
+  }
+
   void _emitClass(IRClass e) {
     final abstracts = e.isAbstract ? ['ABC'] : <String>[];
     final parameters = e.parameters.isNotEmpty
@@ -109,7 +123,15 @@ class PythonTranslator {
     p('');
     p('class ${_n(e.name)}$base:');
     p.t(() {
-      p('pass');
+      p('def __init__(');
+      p.t(() {
+        p('self,');
+        _emitParams(e.constructor.fields);
+      });
+      p('):');
+      p.t(() {
+        p('pass');
+      });
     });
   }
 
