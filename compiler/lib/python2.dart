@@ -1,3 +1,5 @@
+import 'package:analyzer/dart/element/type.dart';
+
 import 'ir.dart';
 import 'emit.dart';
 
@@ -112,9 +114,33 @@ class PythonTranslator {
     });
   }
 
-  String translate(List<IRElement> elements) {
+  void _collectTypeVars(IRType t, Set<String> vars) {
+    if (t is IRParameterizedType) {
+      for (final p in t.parameters) {
+        _collectTypeVars(p, vars);
+      }
+    } else if (t is IRTypeParameter) {
+      vars.add(t.name);
+    }
+  }
+
+  String _emit(List<IRElement> elements) {
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
+    p('');
+
+    final vars = <String>{};
+    for (final e in elements) {
+      if (e is IRClass) {
+        for (final t in [...e.parameters, ...e.supertypes, ...e.interfaces]) {
+          _collectTypeVars(t, vars);
+        }
+      }
+    }
+
+    for (final v in vars) {
+      p("$v = TypeVar('$v')");
+    }
 
     for (final e in elements) {
       if (e is IRClass) {
@@ -126,4 +152,7 @@ class PythonTranslator {
 
     return p.lines.join();
   }
+
+  static String emit(List<IRElement> elements) =>
+      PythonTranslator()._emit(elements);
 }

@@ -41,7 +41,7 @@ void _postProcess(Set<Element> elements, String outputDir) {
   final ir = IRBuilder.load(elements);
   _write(path.join(outputDir, 'types.ir'), IRBuilder.dump(ir));
 
-  final lines = PythonTranslator().translate(ir);
+  final lines = PythonTranslator.emit(ir);
   _write(path.join(outputDir, 'types.py'), lines);
 
 }
