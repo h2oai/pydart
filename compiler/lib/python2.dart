@@ -61,7 +61,11 @@ String _snakeCase(String s) => s
         RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}'.toLowerCase())
     .toLowerCase();
 
-String _n(String s) => _reservedWords.contains(s) ? '${s}_' : s;
+String _n(String s) {
+  final b = _builtins[s];
+  if (b != null) return b;
+  return _reservedWords.contains(s) ? '${s}_' : s;
+}
 
 String _sc(String s) => _n(_snakeCase(s));
 
