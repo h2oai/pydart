@@ -48,7 +48,7 @@ final _builtins = {
   'bool': 'bool',
   'int': 'int',
   'double': 'float',
-  'str': 'str',
+  'string': 'str',
   'any': 'Any',
   'opt': 'Optional',
   'func': 'Callable',

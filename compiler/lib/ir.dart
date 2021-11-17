@@ -73,14 +73,14 @@ class IRType {
   static final bool = IRType('bool');
   static final int = IRType('int');
   static final double = IRType('double');
-  static final str = IRType('str');
+  static final string = IRType('string');
   static final any = IRType('any');
 
   get isPrimitive =>
       this == IRType.bool ||
       this == IRType.int ||
       this == IRType.double ||
-      this == IRType.str;
+      this == IRType.string;
 }
 
 class IRTypeParameter extends IRType {
@@ -223,7 +223,7 @@ class IRBuilder {
     if (t.isDartCoreBool) return IRType.bool;
     if (t.isDartCoreInt) return IRType.int;
     if (t.isDartCoreDouble) return IRType.double;
-    if (t.isDartCoreString) return IRType.str;
+    if (t.isDartCoreString) return IRType.string;
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
