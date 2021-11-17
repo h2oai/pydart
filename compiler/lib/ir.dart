@@ -1,14 +1,10 @@
-import 'dart:io';
-
-import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
-import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/element.dart'
     show ConstFieldElementImpl;
-import 'package:path/path.dart' as path;
+import 'package:quiver/core.dart';
+
 import 'emit.dart';
 
 const widgetWhitelist = {
@@ -105,6 +101,13 @@ class IRElement {
 
   static final optional = IRElement('', 'opt');
   static final func = IRElement('', 'func');
+
+  @override
+  bool operator ==(Object other) =>
+      other is IRElement && path == other.path && name == other.name;
+
+  @override
+  int get hashCode => hash2(path, name);
 }
 
 class IRPlaceholder extends IRElement {
@@ -164,7 +167,6 @@ class IRClass extends IRElement {
     required this.dartElement,
   }) : super(path, name);
 }
-
 
 bool _isPrivateSymbol(String name) {
   return name.startsWith(r'_');
@@ -346,13 +348,13 @@ class IRBuilder {
   }
 
   IRType _resolveType(IRType t) => (t is IRTypeParameter)
-      ? _resolveParameterType(t)
+      ? _resolveTypeParameter(t)
       : (t is IRParameterizedType)
           ? IRParameterizedType(_resolveElement(t.element),
               t.parameters.map(_resolveType).toList())
           : t;
 
-  IRTypeParameter _resolveParameterType(IRTypeParameter p) {
+  IRTypeParameter _resolveTypeParameter(IRTypeParameter p) {
     final b = p.bound;
     return b != null ? IRTypeParameter(p.name, _resolveType(b)) : p;
   }
@@ -374,7 +376,7 @@ class IRBuilder {
         e.path,
         e.name,
         isAbstract: e.isAbstract,
-        parameters: e.parameters.map(_resolveParameterType).toList(),
+        parameters: e.parameters.map(_resolveTypeParameter).toList(),
         supertypes: e.supertypes.map(_resolveType).toList(),
         interfaces: e.interfaces.map(_resolveType).toList(),
         constructor: _resolveConstructor(e.constructor),
