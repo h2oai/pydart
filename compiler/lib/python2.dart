@@ -97,9 +97,7 @@ class PythonTranslator {
   bool _isOptional(IRType t) =>
       t is IRParameterizedType && t.element == IRElement.optional;
 
-  void _emitParams(List<IRField> fields) {
-    final req = fields.where((f) => !_isOptional(f.type));
-    final opt = fields.where((f) => _isOptional(f.type));
+  void _emitParams(Iterable<IRField> req, Iterable<IRField> opt) {
     for (final f in req) {
       p('${_sc(f.name)}: ${_toType(f.type)},');
     }
@@ -128,13 +126,22 @@ class PythonTranslator {
     p('class ${_n(e.name)}$base:');
     p.t(() {
       p('def __init__(');
+      final fields = e.constructor.fields;
+      final req = fields.where((f) => !_isOptional(f.type));
+      final opt = fields.where((f) => _isOptional(f.type));
       p.t(() {
         p('self,');
-        _emitParams(e.constructor.fields);
+        _emitParams(req, opt);
       });
       p('):');
       p.t(() {
-        p('pass');
+        p("self.__ctor = (('',), (");
+        p.t(() {
+          for (final f in [...req, ...opt]) {
+            p("'${f.name}', ${_sc(f.name)},");
+          }
+        });
+        p('))');
       });
     });
   }
