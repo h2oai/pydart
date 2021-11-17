@@ -97,6 +97,37 @@ class IRString extends IRConst {
   IRString(this.value);
 }
 
+class IRType {
+  final String name;
+
+  IRType(this.name);
+
+  // XXX move to IRElement
+  static final IRType unknown = IRType('unknown');
+  static final IRType nothing = IRType('void');
+  static final IRType bool = IRType('bool');
+  static final IRType int = IRType('int');
+  static final IRType float = IRType('float');
+  static final IRType str = IRType('str');
+  static final IRType any = IRType('any');
+}
+
+class IRParameterType extends IRType {
+  final IRType? bound;
+
+  IRParameterType(String name, this.bound) : super(name);
+}
+
+class IRInterfaceType extends IRType {
+  final IRElement element;
+  final List<IRType> parameters;
+
+  IRInterfaceType(
+    this.element,
+    this.parameters,
+  ) : super(element.name);
+}
+
 class IRElement {
   final String path;
   final String name;
@@ -107,10 +138,10 @@ class IRElement {
   static final IRElement func = IRElement('', 'func');
 }
 
-class IRPlaceholderElement extends IRElement {
+class IRPlaceholder extends IRElement {
   final ClassElement dartElement;
 
-  IRPlaceholderElement(this.dartElement) : super('', '__PLACEHOLDER__');
+  IRPlaceholder(this.dartElement) : super('', '__PLACEHOLDER__');
 }
 
 class IREnum extends IRElement {
@@ -150,43 +181,6 @@ class IRConstructor {
 
   IRConstructor(this.name, this.fields);
 }
-
-class IRType {
-  final String name;
-
-  IRType(this.name);
-
-  static final IRType unknown = IRType('unknown');
-  static final IRType nothing = IRType('void');
-  static final IRType bool = IRType('bool');
-  static final IRType int = IRType('int');
-  static final IRType float = IRType('float');
-  static final IRType str = IRType('str');
-  static final IRType any = IRType('any');
-}
-
-class IRParameterType extends IRType {
-  final IRType? bound;
-
-  IRParameterType(String name, this.bound) : super(name);
-}
-
-class IRInterface extends IRType {
-  final IRElement element;
-  final List<IRType> types; // Parameters
-
-  IRInterface(
-    this.element,
-    this.types,
-  ) : super(element.name);
-}
-
-// class IRParameter {
-//   final String name;
-//   final IRType? bound;
-//
-//   IRParameter(this.name, this.bound);
-// }
 
 class IRClass extends IRElement {
   final bool isAbstract;
@@ -892,7 +886,7 @@ class IRBuilder {
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
-      return IRInterface(
+      return IRInterfaceType(
           _load(t.element), t.typeArguments.map(_toType).toList());
     }
 
@@ -903,7 +897,7 @@ class IRBuilder {
         return p.isOptional ? _toOptional(t) : t;
       }).toList();
       final returnType = _toType(t.returnType);
-      return IRInterface(IRElement.func, [...parameterTypes, returnType]);
+      return IRInterfaceType(IRElement.func, [...parameterTypes, returnType]);
     }
 
     if (t is TypeParameterType) {
@@ -945,7 +939,7 @@ class IRBuilder {
   }
 
   IRType _toOptional(IRType t) {
-    return IRInterface(IRElement.optional, [t]);
+    return IRInterfaceType(IRElement.optional, [t]);
   }
 
   IRField _toField(ParameterElement e) {
@@ -990,16 +984,18 @@ class IRBuilder {
 
     final parameters = e.typeParameters.map(_toParameterType).toList();
 
-    return IRClass(path, e.name,
-        // XXX handle e.isMixin
-        isAbstract: e.isAbstract,
-        parameters: parameters,
-        supertypes: supertypes,
-        interfaces: interfaces,
-        constructor: IRConstructor('', defaultFields),
-        constructors: constructors,
-        fields: fields,
-        dartElement: e);
+    return IRClass(
+      path, e.name,
+      // XXX handle e.isMixin
+      isAbstract: e.isAbstract,
+      parameters: parameters,
+      supertypes: supertypes,
+      interfaces: interfaces,
+      constructor: IRConstructor('', defaultFields),
+      constructors: constructors,
+      fields: fields,
+      dartElement: e,
+    );
   }
 
   IRElement _load(ClassElement e) {
@@ -1007,12 +1003,55 @@ class IRBuilder {
     if (ir0 != null) return ir0;
 
     // prevent stack overflow caused by recursive type references.
-    _cache[e] = IRPlaceholderElement(e);
+    _cache[e] = IRPlaceholder(e);
 
     final ir = e.isEnum ? _toEnum(e) : _toClass(e);
     _cache[e] = ir;
     _elements.add(ir);
     return ir;
+  }
+
+  IRType _resolveType(IRType t) => (t is IRParameterType)
+      ? _resolveParameterType(t)
+      : (t is IRInterfaceType)
+          ? IRInterfaceType(_resolveElement(t.element),
+              t.parameters.map(_resolveType).toList())
+          : t;
+
+  IRParameterType _resolveParameterType(IRParameterType p) {
+    final b = p.bound;
+    return b != null ? IRParameterType(p.name, _resolveType(b)) : p;
+  }
+
+  IRField _resolveField(IRField f) =>
+      IRField(name: f.name, type: _resolveType(f.type), value: f.value);
+
+  IRConstructor _resolveConstructor(IRConstructor c) =>
+      IRConstructor(c.name, c.fields.map(_resolveField).toList());
+
+  IRElement _resolveElement(IRElement e) {
+    if (e is IRPlaceholder) {
+      final ir = _cache[e.dartElement];
+      if (ir != null) return ir;
+      throw 'could not resolve ${e.dartElement.name}';
+    }
+    if (e is IRClass) {
+      final c = IRClass(
+        e.path,
+        e.name,
+        isAbstract: e.isAbstract,
+        parameters: e.parameters.map(_resolveParameterType).toList(),
+        supertypes: e.supertypes.map(_resolveType).toList(),
+        interfaces: e.interfaces.map(_resolveType).toList(),
+        constructor: _resolveConstructor(e.constructor),
+        constructors: e.constructors.map(_resolveConstructor).toList(),
+        fields: e.fields.map(_resolveField).toList(),
+        dartElement: e.dartElement,
+      );
+      _cache[c.dartElement] = c;
+      return c;
+    }
+    return e;
   }
 
   List<IRElement> load(Set<Element> elements) {
@@ -1022,38 +1061,17 @@ class IRBuilder {
       }
     }
 
-    // XXX replace placeholder elements
-    // for (var i = 0; i < _elements.length; i++) {
-    //   final e = _elements[i];
-    //   if (e is IRClass) {
-    //     final fs = e.constructor.fields;
-    //     for (var j = 0; j < fs.length; j++) {
-    //       final f =  fs[j];
-    //       final t = f.type;
-    //       if (t is IRInterface) {
-    //         final p = t.element;
-    //         if (p is IRPlaceholderElement) {
-    //             final ir = _cache[p.dartElement];
-    //             if (ir != null) {
-    //               fs[j] = IRField(name: f.name, type: IRInterface());
-    //             }
-    //         }
-    //       }
-    //     }
-    //     for (final c in e.constructors) {
-    //       for (final f in c.fields) {
-    //       }
-    //     }
-    //   }
-    // }
+    for (var i = 0; i < _elements.length; i++) {
+      _elements[i] = _resolveElement(_elements[i]);
+    }
 
     return _elements;
   }
 
   static String _dumpType(IRType t) {
-    if (t is IRInterface) {
-      if (t.types.isNotEmpty) {
-        final params = t.types.map(_dumpType).join(', ');
+    if (t is IRInterfaceType) {
+      if (t.parameters.isNotEmpty) {
+        final params = t.parameters.map(_dumpType).join(', ');
         return '${t.name}<$params>';
       }
     } else if (t is IRParameterType) {

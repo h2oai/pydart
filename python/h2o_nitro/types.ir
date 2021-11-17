@@ -99,7 +99,7 @@ class Navigator extends StatefulWidget:
 		pages: opt<List<Page<any>>>
 		onPopPage: opt<func<Route<any>, any, bool>>
 		initialRoute: opt<str>
-		onGenerateInitialRoutes: opt<func<__PLACEHOLDER__, str, List<Route<any>>>>
+		onGenerateInitialRoutes: opt<func<NavigatorState, str, List<Route<any>>>>
 		onGenerateRoute: opt<func<RouteSettings, Route<any>>>
 		onUnknownRoute: opt<func<RouteSettings, Route<any>>>
 		transitionDelegate: opt<TransitionDelegate<any>>
@@ -128,11 +128,11 @@ class MapEntry<K, V> extends Object:
 # bin/cache/pkg/sky_engine/lib/core/map.dart
 abstract class Map<K, V> extends Object:
 	from:
-		other: __PLACEHOLDER__<any, any>
+		other: Map<any, any>
 	of:
-		other: __PLACEHOLDER__<K, V>
+		other: Map<K, V>
 	unmodifiable:
-		other: __PLACEHOLDER__<any, any>
+		other: Map<any, any>
 	identity:
 	fromIterable:
 		iterable: Iterable<any>
@@ -172,9 +172,9 @@ class VisualDensity extends Object:
 	static:
 		minimumDensity: float
 		maximumDensity: float
-		standard: __PLACEHOLDER__
-		comfortable: __PLACEHOLDER__
-		compact: __PLACEHOLDER__
+		standard: VisualDensity
+		comfortable: VisualDensity
+		compact: VisualDensity
 	default:
 		horizontal: opt<float>
 		vertical: opt<float>
@@ -203,7 +203,7 @@ enum ButtonTextTheme:
 # packages/flutter/lib/src/painting/edge_insets.dart
 abstract class EdgeInsetsGeometry extends Object:
 	static:
-		infinity: __PLACEHOLDER__
+		infinity: EdgeInsetsGeometry
 
 # packages/flutter/lib/src/painting/borders.dart
 abstract class ShapeBorder extends Object:
@@ -321,17 +321,17 @@ class ButtonThemeData extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontWeight extends Object:
 	static:
-		w100: __PLACEHOLDER__
-		w200: __PLACEHOLDER__
-		w300: __PLACEHOLDER__
-		w400: __PLACEHOLDER__
-		w500: __PLACEHOLDER__
-		w600: __PLACEHOLDER__
-		w700: __PLACEHOLDER__
-		w800: __PLACEHOLDER__
-		w900: __PLACEHOLDER__
-		normal: __PLACEHOLDER__
-		bold: __PLACEHOLDER__
+		w100: FontWeight
+		w200: FontWeight
+		w300: FontWeight
+		w400: FontWeight
+		w500: FontWeight
+		w600: FontWeight
+		w700: FontWeight
+		w800: FontWeight
+		w900: FontWeight
+		normal: FontWeight
+		bold: FontWeight
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum FontStyle:
@@ -370,8 +370,8 @@ abstract class OffsetBase extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Offset extends OffsetBase:
 	static:
-		zero: __PLACEHOLDER__
-		infinite: __PLACEHOLDER__
+		zero: Offset
+		infinite: Offset
 	default:
 		dx: float
 		dy: float
@@ -430,12 +430,12 @@ class FontFeature extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class TextDecoration extends Object:
 	static:
-		none: __PLACEHOLDER__
-		underline: __PLACEHOLDER__
-		overline: __PLACEHOLDER__
-		lineThrough: __PLACEHOLDER__
+		none: TextDecoration
+		underline: TextDecoration
+		overline: TextDecoration
+		lineThrough: TextDecoration
 	combine:
-		decorations: List<__PLACEHOLDER__>
+		decorations: List<TextDecoration>
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 enum TextDecorationStyle:
@@ -487,13 +487,13 @@ abstract class Constraints extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size extends OffsetBase:
 	static:
-		zero: __PLACEHOLDER__
-		infinite: __PLACEHOLDER__
+		zero: Size
+		infinite: Size
 	default:
 		width: float
 		height: float
 	copy:
-		source: __PLACEHOLDER__
+		source: Size
 	square:
 		dimension: float
 	fromWidth:
@@ -530,7 +530,7 @@ abstract class BorderRadiusGeometry extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Radius extends Object:
 	static:
-		zero: __PLACEHOLDER__
+		zero: Radius
 	circular:
 		radius: float
 	elliptical:
@@ -540,7 +540,7 @@ class Radius extends Object:
 # packages/flutter/lib/src/painting/border_radius.dart
 class BorderRadius extends BorderRadiusGeometry:
 	static:
-		zero: __PLACEHOLDER__
+		zero: BorderRadius
 	all:
 		radius: Radius
 	circular:
@@ -607,7 +607,7 @@ enum BorderStyle:
 # packages/flutter/lib/src/painting/borders.dart
 class BorderSide extends Object:
 	static:
-		none: __PLACEHOLDER__
+		none: BorderSide
 	default:
 		color: opt<Color>
 		width: opt<float>
@@ -616,7 +616,7 @@ class BorderSide extends Object:
 # packages/flutter/lib/src/material/input_border.dart
 abstract class InputBorder extends ShapeBorder:
 	static:
-		none: __PLACEHOLDER__
+		none: InputBorder
 	default:
 		borderSide: opt<BorderSide>
 
@@ -761,7 +761,7 @@ class TabBarTheme extends Object:
 abstract class Comparable<T> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
-class Duration extends Object implements Comparable<__PLACEHOLDER__>:
+class Duration extends Object implements Comparable<Duration>:
 	static:
 		microsecondsPerMillisecond: int
 		millisecondsPerSecond: int
@@ -778,7 +778,7 @@ class Duration extends Object implements Comparable<__PLACEHOLDER__>:
 		secondsPerHour: int
 		secondsPerDay: int
 		minutesPerDay: int
-		zero: __PLACEHOLDER__
+		zero: Duration
 	default:
 		days: opt<int>
 		hours: opt<int>
@@ -878,8 +878,8 @@ class PageTransitionsTheme extends Object:
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle extends Object:
 	static:
-		light: __PLACEHOLDER__
-		dark: __PLACEHOLDER__
+		light: SystemUiOverlayStyle
+		dark: SystemUiOverlayStyle
 	default:
 		systemNavigationBarColor: opt<Color>
 		systemNavigationBarDividerColor: opt<Color>
@@ -1190,8 +1190,8 @@ class TimePickerThemeData extends Object:
 # packages/flutter/lib/src/services/mouse_cursor.dart
 abstract class MouseCursor extends Object:
 	static:
-		defer: __PLACEHOLDER__
-		uncontrolled: __PLACEHOLDER__
+		defer: MouseCursor
+		uncontrolled: MouseCursor
 
 # packages/flutter/lib/src/painting/alignment.dart
 abstract class AlignmentGeometry extends Object:
@@ -1481,7 +1481,7 @@ abstract class LocalizationsDelegate<T> extends Object:
 abstract class ShortcutActivator extends Object:
 
 # packages/flutter/lib/src/widgets/actions.dart
-class DoNothingIntent extends __PLACEHOLDER__:
+class DoNothingIntent extends Intent:
 
 # packages/flutter/lib/src/widgets/actions.dart
 abstract class Intent extends Object:
@@ -1500,7 +1500,7 @@ class ScrollBehavior extends Object:
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class Listenable extends Object:
 	merge:
-		listenables: List<__PLACEHOLDER__>
+		listenables: List<Listenable>
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class ValueListenable<T> extends Listenable:
@@ -1527,7 +1527,7 @@ class _CallbackHookProvider<T> extends Object:
 abstract class FutureOr<T> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
-class _StringStackTrace extends Object implements __PLACEHOLDER__:
+class _StringStackTrace extends Object implements StackTrace:
 	default:
 		_stackTrace: str
 
@@ -1652,274 +1652,274 @@ abstract class KeyboardKey extends Object:
 # packages/flutter/lib/src/services/keyboard_key.dart
 class PhysicalKeyboardKey extends KeyboardKey:
 	static:
-		hyper: __PLACEHOLDER__
-		superKey: __PLACEHOLDER__
-		fn: __PLACEHOLDER__
-		fnLock: __PLACEHOLDER__
-		suspend: __PLACEHOLDER__
-		resume: __PLACEHOLDER__
-		turbo: __PLACEHOLDER__
-		privacyScreenToggle: __PLACEHOLDER__
-		sleep: __PLACEHOLDER__
-		wakeUp: __PLACEHOLDER__
-		displayToggleIntExt: __PLACEHOLDER__
-		gameButton1: __PLACEHOLDER__
-		gameButton2: __PLACEHOLDER__
-		gameButton3: __PLACEHOLDER__
-		gameButton4: __PLACEHOLDER__
-		gameButton5: __PLACEHOLDER__
-		gameButton6: __PLACEHOLDER__
-		gameButton7: __PLACEHOLDER__
-		gameButton8: __PLACEHOLDER__
-		gameButton9: __PLACEHOLDER__
-		gameButton10: __PLACEHOLDER__
-		gameButton11: __PLACEHOLDER__
-		gameButton12: __PLACEHOLDER__
-		gameButton13: __PLACEHOLDER__
-		gameButton14: __PLACEHOLDER__
-		gameButton15: __PLACEHOLDER__
-		gameButton16: __PLACEHOLDER__
-		gameButtonA: __PLACEHOLDER__
-		gameButtonB: __PLACEHOLDER__
-		gameButtonC: __PLACEHOLDER__
-		gameButtonLeft1: __PLACEHOLDER__
-		gameButtonLeft2: __PLACEHOLDER__
-		gameButtonMode: __PLACEHOLDER__
-		gameButtonRight1: __PLACEHOLDER__
-		gameButtonRight2: __PLACEHOLDER__
-		gameButtonSelect: __PLACEHOLDER__
-		gameButtonStart: __PLACEHOLDER__
-		gameButtonThumbLeft: __PLACEHOLDER__
-		gameButtonThumbRight: __PLACEHOLDER__
-		gameButtonX: __PLACEHOLDER__
-		gameButtonY: __PLACEHOLDER__
-		gameButtonZ: __PLACEHOLDER__
-		usbReserved: __PLACEHOLDER__
-		usbErrorRollOver: __PLACEHOLDER__
-		usbPostFail: __PLACEHOLDER__
-		usbErrorUndefined: __PLACEHOLDER__
-		keyA: __PLACEHOLDER__
-		keyB: __PLACEHOLDER__
-		keyC: __PLACEHOLDER__
-		keyD: __PLACEHOLDER__
-		keyE: __PLACEHOLDER__
-		keyF: __PLACEHOLDER__
-		keyG: __PLACEHOLDER__
-		keyH: __PLACEHOLDER__
-		keyI: __PLACEHOLDER__
-		keyJ: __PLACEHOLDER__
-		keyK: __PLACEHOLDER__
-		keyL: __PLACEHOLDER__
-		keyM: __PLACEHOLDER__
-		keyN: __PLACEHOLDER__
-		keyO: __PLACEHOLDER__
-		keyP: __PLACEHOLDER__
-		keyQ: __PLACEHOLDER__
-		keyR: __PLACEHOLDER__
-		keyS: __PLACEHOLDER__
-		keyT: __PLACEHOLDER__
-		keyU: __PLACEHOLDER__
-		keyV: __PLACEHOLDER__
-		keyW: __PLACEHOLDER__
-		keyX: __PLACEHOLDER__
-		keyY: __PLACEHOLDER__
-		keyZ: __PLACEHOLDER__
-		digit1: __PLACEHOLDER__
-		digit2: __PLACEHOLDER__
-		digit3: __PLACEHOLDER__
-		digit4: __PLACEHOLDER__
-		digit5: __PLACEHOLDER__
-		digit6: __PLACEHOLDER__
-		digit7: __PLACEHOLDER__
-		digit8: __PLACEHOLDER__
-		digit9: __PLACEHOLDER__
-		digit0: __PLACEHOLDER__
-		enter: __PLACEHOLDER__
-		escape: __PLACEHOLDER__
-		backspace: __PLACEHOLDER__
-		tab: __PLACEHOLDER__
-		space: __PLACEHOLDER__
-		minus: __PLACEHOLDER__
-		equal: __PLACEHOLDER__
-		bracketLeft: __PLACEHOLDER__
-		bracketRight: __PLACEHOLDER__
-		backslash: __PLACEHOLDER__
-		semicolon: __PLACEHOLDER__
-		quote: __PLACEHOLDER__
-		backquote: __PLACEHOLDER__
-		comma: __PLACEHOLDER__
-		period: __PLACEHOLDER__
-		slash: __PLACEHOLDER__
-		capsLock: __PLACEHOLDER__
-		f1: __PLACEHOLDER__
-		f2: __PLACEHOLDER__
-		f3: __PLACEHOLDER__
-		f4: __PLACEHOLDER__
-		f5: __PLACEHOLDER__
-		f6: __PLACEHOLDER__
-		f7: __PLACEHOLDER__
-		f8: __PLACEHOLDER__
-		f9: __PLACEHOLDER__
-		f10: __PLACEHOLDER__
-		f11: __PLACEHOLDER__
-		f12: __PLACEHOLDER__
-		printScreen: __PLACEHOLDER__
-		scrollLock: __PLACEHOLDER__
-		pause: __PLACEHOLDER__
-		insert: __PLACEHOLDER__
-		home: __PLACEHOLDER__
-		pageUp: __PLACEHOLDER__
-		delete: __PLACEHOLDER__
-		end: __PLACEHOLDER__
-		pageDown: __PLACEHOLDER__
-		arrowRight: __PLACEHOLDER__
-		arrowLeft: __PLACEHOLDER__
-		arrowDown: __PLACEHOLDER__
-		arrowUp: __PLACEHOLDER__
-		numLock: __PLACEHOLDER__
-		numpadDivide: __PLACEHOLDER__
-		numpadMultiply: __PLACEHOLDER__
-		numpadSubtract: __PLACEHOLDER__
-		numpadAdd: __PLACEHOLDER__
-		numpadEnter: __PLACEHOLDER__
-		numpad1: __PLACEHOLDER__
-		numpad2: __PLACEHOLDER__
-		numpad3: __PLACEHOLDER__
-		numpad4: __PLACEHOLDER__
-		numpad5: __PLACEHOLDER__
-		numpad6: __PLACEHOLDER__
-		numpad7: __PLACEHOLDER__
-		numpad8: __PLACEHOLDER__
-		numpad9: __PLACEHOLDER__
-		numpad0: __PLACEHOLDER__
-		numpadDecimal: __PLACEHOLDER__
-		intlBackslash: __PLACEHOLDER__
-		contextMenu: __PLACEHOLDER__
-		power: __PLACEHOLDER__
-		numpadEqual: __PLACEHOLDER__
-		f13: __PLACEHOLDER__
-		f14: __PLACEHOLDER__
-		f15: __PLACEHOLDER__
-		f16: __PLACEHOLDER__
-		f17: __PLACEHOLDER__
-		f18: __PLACEHOLDER__
-		f19: __PLACEHOLDER__
-		f20: __PLACEHOLDER__
-		f21: __PLACEHOLDER__
-		f22: __PLACEHOLDER__
-		f23: __PLACEHOLDER__
-		f24: __PLACEHOLDER__
-		open: __PLACEHOLDER__
-		help: __PLACEHOLDER__
-		select: __PLACEHOLDER__
-		again: __PLACEHOLDER__
-		undo: __PLACEHOLDER__
-		cut: __PLACEHOLDER__
-		copy: __PLACEHOLDER__
-		paste: __PLACEHOLDER__
-		find: __PLACEHOLDER__
-		audioVolumeMute: __PLACEHOLDER__
-		audioVolumeUp: __PLACEHOLDER__
-		audioVolumeDown: __PLACEHOLDER__
-		numpadComma: __PLACEHOLDER__
-		intlRo: __PLACEHOLDER__
-		kanaMode: __PLACEHOLDER__
-		intlYen: __PLACEHOLDER__
-		convert: __PLACEHOLDER__
-		nonConvert: __PLACEHOLDER__
-		lang1: __PLACEHOLDER__
-		lang2: __PLACEHOLDER__
-		lang3: __PLACEHOLDER__
-		lang4: __PLACEHOLDER__
-		lang5: __PLACEHOLDER__
-		abort: __PLACEHOLDER__
-		props: __PLACEHOLDER__
-		numpadParenLeft: __PLACEHOLDER__
-		numpadParenRight: __PLACEHOLDER__
-		numpadBackspace: __PLACEHOLDER__
-		numpadMemoryStore: __PLACEHOLDER__
-		numpadMemoryRecall: __PLACEHOLDER__
-		numpadMemoryClear: __PLACEHOLDER__
-		numpadMemoryAdd: __PLACEHOLDER__
-		numpadMemorySubtract: __PLACEHOLDER__
-		numpadSignChange: __PLACEHOLDER__
-		numpadClear: __PLACEHOLDER__
-		numpadClearEntry: __PLACEHOLDER__
-		controlLeft: __PLACEHOLDER__
-		shiftLeft: __PLACEHOLDER__
-		altLeft: __PLACEHOLDER__
-		metaLeft: __PLACEHOLDER__
-		controlRight: __PLACEHOLDER__
-		shiftRight: __PLACEHOLDER__
-		altRight: __PLACEHOLDER__
-		metaRight: __PLACEHOLDER__
-		info: __PLACEHOLDER__
-		closedCaptionToggle: __PLACEHOLDER__
-		brightnessUp: __PLACEHOLDER__
-		brightnessDown: __PLACEHOLDER__
-		brightnessToggle: __PLACEHOLDER__
-		brightnessMinimum: __PLACEHOLDER__
-		brightnessMaximum: __PLACEHOLDER__
-		brightnessAuto: __PLACEHOLDER__
-		kbdIllumUp: __PLACEHOLDER__
-		kbdIllumDown: __PLACEHOLDER__
-		mediaLast: __PLACEHOLDER__
-		launchPhone: __PLACEHOLDER__
-		programGuide: __PLACEHOLDER__
-		exit: __PLACEHOLDER__
-		channelUp: __PLACEHOLDER__
-		channelDown: __PLACEHOLDER__
-		mediaPlay: __PLACEHOLDER__
-		mediaPause: __PLACEHOLDER__
-		mediaRecord: __PLACEHOLDER__
-		mediaFastForward: __PLACEHOLDER__
-		mediaRewind: __PLACEHOLDER__
-		mediaTrackNext: __PLACEHOLDER__
-		mediaTrackPrevious: __PLACEHOLDER__
-		mediaStop: __PLACEHOLDER__
-		eject: __PLACEHOLDER__
-		mediaPlayPause: __PLACEHOLDER__
-		speechInputToggle: __PLACEHOLDER__
-		bassBoost: __PLACEHOLDER__
-		mediaSelect: __PLACEHOLDER__
-		launchWordProcessor: __PLACEHOLDER__
-		launchSpreadsheet: __PLACEHOLDER__
-		launchMail: __PLACEHOLDER__
-		launchContacts: __PLACEHOLDER__
-		launchCalendar: __PLACEHOLDER__
-		launchApp2: __PLACEHOLDER__
-		launchApp1: __PLACEHOLDER__
-		launchInternetBrowser: __PLACEHOLDER__
-		logOff: __PLACEHOLDER__
-		lockScreen: __PLACEHOLDER__
-		launchControlPanel: __PLACEHOLDER__
-		selectTask: __PLACEHOLDER__
-		launchDocuments: __PLACEHOLDER__
-		spellCheck: __PLACEHOLDER__
-		launchKeyboardLayout: __PLACEHOLDER__
-		launchScreenSaver: __PLACEHOLDER__
-		launchAudioBrowser: __PLACEHOLDER__
-		launchAssistant: __PLACEHOLDER__
-		newKey: __PLACEHOLDER__
-		close: __PLACEHOLDER__
-		save: __PLACEHOLDER__
-		print: __PLACEHOLDER__
-		browserSearch: __PLACEHOLDER__
-		browserHome: __PLACEHOLDER__
-		browserBack: __PLACEHOLDER__
-		browserForward: __PLACEHOLDER__
-		browserStop: __PLACEHOLDER__
-		browserRefresh: __PLACEHOLDER__
-		browserFavorites: __PLACEHOLDER__
-		zoomIn: __PLACEHOLDER__
-		zoomOut: __PLACEHOLDER__
-		zoomToggle: __PLACEHOLDER__
-		redo: __PLACEHOLDER__
-		mailReply: __PLACEHOLDER__
-		mailForward: __PLACEHOLDER__
-		mailSend: __PLACEHOLDER__
-		keyboardLayoutSelect: __PLACEHOLDER__
-		showAllWindows: __PLACEHOLDER__
+		hyper: PhysicalKeyboardKey
+		superKey: PhysicalKeyboardKey
+		fn: PhysicalKeyboardKey
+		fnLock: PhysicalKeyboardKey
+		suspend: PhysicalKeyboardKey
+		resume: PhysicalKeyboardKey
+		turbo: PhysicalKeyboardKey
+		privacyScreenToggle: PhysicalKeyboardKey
+		sleep: PhysicalKeyboardKey
+		wakeUp: PhysicalKeyboardKey
+		displayToggleIntExt: PhysicalKeyboardKey
+		gameButton1: PhysicalKeyboardKey
+		gameButton2: PhysicalKeyboardKey
+		gameButton3: PhysicalKeyboardKey
+		gameButton4: PhysicalKeyboardKey
+		gameButton5: PhysicalKeyboardKey
+		gameButton6: PhysicalKeyboardKey
+		gameButton7: PhysicalKeyboardKey
+		gameButton8: PhysicalKeyboardKey
+		gameButton9: PhysicalKeyboardKey
+		gameButton10: PhysicalKeyboardKey
+		gameButton11: PhysicalKeyboardKey
+		gameButton12: PhysicalKeyboardKey
+		gameButton13: PhysicalKeyboardKey
+		gameButton14: PhysicalKeyboardKey
+		gameButton15: PhysicalKeyboardKey
+		gameButton16: PhysicalKeyboardKey
+		gameButtonA: PhysicalKeyboardKey
+		gameButtonB: PhysicalKeyboardKey
+		gameButtonC: PhysicalKeyboardKey
+		gameButtonLeft1: PhysicalKeyboardKey
+		gameButtonLeft2: PhysicalKeyboardKey
+		gameButtonMode: PhysicalKeyboardKey
+		gameButtonRight1: PhysicalKeyboardKey
+		gameButtonRight2: PhysicalKeyboardKey
+		gameButtonSelect: PhysicalKeyboardKey
+		gameButtonStart: PhysicalKeyboardKey
+		gameButtonThumbLeft: PhysicalKeyboardKey
+		gameButtonThumbRight: PhysicalKeyboardKey
+		gameButtonX: PhysicalKeyboardKey
+		gameButtonY: PhysicalKeyboardKey
+		gameButtonZ: PhysicalKeyboardKey
+		usbReserved: PhysicalKeyboardKey
+		usbErrorRollOver: PhysicalKeyboardKey
+		usbPostFail: PhysicalKeyboardKey
+		usbErrorUndefined: PhysicalKeyboardKey
+		keyA: PhysicalKeyboardKey
+		keyB: PhysicalKeyboardKey
+		keyC: PhysicalKeyboardKey
+		keyD: PhysicalKeyboardKey
+		keyE: PhysicalKeyboardKey
+		keyF: PhysicalKeyboardKey
+		keyG: PhysicalKeyboardKey
+		keyH: PhysicalKeyboardKey
+		keyI: PhysicalKeyboardKey
+		keyJ: PhysicalKeyboardKey
+		keyK: PhysicalKeyboardKey
+		keyL: PhysicalKeyboardKey
+		keyM: PhysicalKeyboardKey
+		keyN: PhysicalKeyboardKey
+		keyO: PhysicalKeyboardKey
+		keyP: PhysicalKeyboardKey
+		keyQ: PhysicalKeyboardKey
+		keyR: PhysicalKeyboardKey
+		keyS: PhysicalKeyboardKey
+		keyT: PhysicalKeyboardKey
+		keyU: PhysicalKeyboardKey
+		keyV: PhysicalKeyboardKey
+		keyW: PhysicalKeyboardKey
+		keyX: PhysicalKeyboardKey
+		keyY: PhysicalKeyboardKey
+		keyZ: PhysicalKeyboardKey
+		digit1: PhysicalKeyboardKey
+		digit2: PhysicalKeyboardKey
+		digit3: PhysicalKeyboardKey
+		digit4: PhysicalKeyboardKey
+		digit5: PhysicalKeyboardKey
+		digit6: PhysicalKeyboardKey
+		digit7: PhysicalKeyboardKey
+		digit8: PhysicalKeyboardKey
+		digit9: PhysicalKeyboardKey
+		digit0: PhysicalKeyboardKey
+		enter: PhysicalKeyboardKey
+		escape: PhysicalKeyboardKey
+		backspace: PhysicalKeyboardKey
+		tab: PhysicalKeyboardKey
+		space: PhysicalKeyboardKey
+		minus: PhysicalKeyboardKey
+		equal: PhysicalKeyboardKey
+		bracketLeft: PhysicalKeyboardKey
+		bracketRight: PhysicalKeyboardKey
+		backslash: PhysicalKeyboardKey
+		semicolon: PhysicalKeyboardKey
+		quote: PhysicalKeyboardKey
+		backquote: PhysicalKeyboardKey
+		comma: PhysicalKeyboardKey
+		period: PhysicalKeyboardKey
+		slash: PhysicalKeyboardKey
+		capsLock: PhysicalKeyboardKey
+		f1: PhysicalKeyboardKey
+		f2: PhysicalKeyboardKey
+		f3: PhysicalKeyboardKey
+		f4: PhysicalKeyboardKey
+		f5: PhysicalKeyboardKey
+		f6: PhysicalKeyboardKey
+		f7: PhysicalKeyboardKey
+		f8: PhysicalKeyboardKey
+		f9: PhysicalKeyboardKey
+		f10: PhysicalKeyboardKey
+		f11: PhysicalKeyboardKey
+		f12: PhysicalKeyboardKey
+		printScreen: PhysicalKeyboardKey
+		scrollLock: PhysicalKeyboardKey
+		pause: PhysicalKeyboardKey
+		insert: PhysicalKeyboardKey
+		home: PhysicalKeyboardKey
+		pageUp: PhysicalKeyboardKey
+		delete: PhysicalKeyboardKey
+		end: PhysicalKeyboardKey
+		pageDown: PhysicalKeyboardKey
+		arrowRight: PhysicalKeyboardKey
+		arrowLeft: PhysicalKeyboardKey
+		arrowDown: PhysicalKeyboardKey
+		arrowUp: PhysicalKeyboardKey
+		numLock: PhysicalKeyboardKey
+		numpadDivide: PhysicalKeyboardKey
+		numpadMultiply: PhysicalKeyboardKey
+		numpadSubtract: PhysicalKeyboardKey
+		numpadAdd: PhysicalKeyboardKey
+		numpadEnter: PhysicalKeyboardKey
+		numpad1: PhysicalKeyboardKey
+		numpad2: PhysicalKeyboardKey
+		numpad3: PhysicalKeyboardKey
+		numpad4: PhysicalKeyboardKey
+		numpad5: PhysicalKeyboardKey
+		numpad6: PhysicalKeyboardKey
+		numpad7: PhysicalKeyboardKey
+		numpad8: PhysicalKeyboardKey
+		numpad9: PhysicalKeyboardKey
+		numpad0: PhysicalKeyboardKey
+		numpadDecimal: PhysicalKeyboardKey
+		intlBackslash: PhysicalKeyboardKey
+		contextMenu: PhysicalKeyboardKey
+		power: PhysicalKeyboardKey
+		numpadEqual: PhysicalKeyboardKey
+		f13: PhysicalKeyboardKey
+		f14: PhysicalKeyboardKey
+		f15: PhysicalKeyboardKey
+		f16: PhysicalKeyboardKey
+		f17: PhysicalKeyboardKey
+		f18: PhysicalKeyboardKey
+		f19: PhysicalKeyboardKey
+		f20: PhysicalKeyboardKey
+		f21: PhysicalKeyboardKey
+		f22: PhysicalKeyboardKey
+		f23: PhysicalKeyboardKey
+		f24: PhysicalKeyboardKey
+		open: PhysicalKeyboardKey
+		help: PhysicalKeyboardKey
+		select: PhysicalKeyboardKey
+		again: PhysicalKeyboardKey
+		undo: PhysicalKeyboardKey
+		cut: PhysicalKeyboardKey
+		copy: PhysicalKeyboardKey
+		paste: PhysicalKeyboardKey
+		find: PhysicalKeyboardKey
+		audioVolumeMute: PhysicalKeyboardKey
+		audioVolumeUp: PhysicalKeyboardKey
+		audioVolumeDown: PhysicalKeyboardKey
+		numpadComma: PhysicalKeyboardKey
+		intlRo: PhysicalKeyboardKey
+		kanaMode: PhysicalKeyboardKey
+		intlYen: PhysicalKeyboardKey
+		convert: PhysicalKeyboardKey
+		nonConvert: PhysicalKeyboardKey
+		lang1: PhysicalKeyboardKey
+		lang2: PhysicalKeyboardKey
+		lang3: PhysicalKeyboardKey
+		lang4: PhysicalKeyboardKey
+		lang5: PhysicalKeyboardKey
+		abort: PhysicalKeyboardKey
+		props: PhysicalKeyboardKey
+		numpadParenLeft: PhysicalKeyboardKey
+		numpadParenRight: PhysicalKeyboardKey
+		numpadBackspace: PhysicalKeyboardKey
+		numpadMemoryStore: PhysicalKeyboardKey
+		numpadMemoryRecall: PhysicalKeyboardKey
+		numpadMemoryClear: PhysicalKeyboardKey
+		numpadMemoryAdd: PhysicalKeyboardKey
+		numpadMemorySubtract: PhysicalKeyboardKey
+		numpadSignChange: PhysicalKeyboardKey
+		numpadClear: PhysicalKeyboardKey
+		numpadClearEntry: PhysicalKeyboardKey
+		controlLeft: PhysicalKeyboardKey
+		shiftLeft: PhysicalKeyboardKey
+		altLeft: PhysicalKeyboardKey
+		metaLeft: PhysicalKeyboardKey
+		controlRight: PhysicalKeyboardKey
+		shiftRight: PhysicalKeyboardKey
+		altRight: PhysicalKeyboardKey
+		metaRight: PhysicalKeyboardKey
+		info: PhysicalKeyboardKey
+		closedCaptionToggle: PhysicalKeyboardKey
+		brightnessUp: PhysicalKeyboardKey
+		brightnessDown: PhysicalKeyboardKey
+		brightnessToggle: PhysicalKeyboardKey
+		brightnessMinimum: PhysicalKeyboardKey
+		brightnessMaximum: PhysicalKeyboardKey
+		brightnessAuto: PhysicalKeyboardKey
+		kbdIllumUp: PhysicalKeyboardKey
+		kbdIllumDown: PhysicalKeyboardKey
+		mediaLast: PhysicalKeyboardKey
+		launchPhone: PhysicalKeyboardKey
+		programGuide: PhysicalKeyboardKey
+		exit: PhysicalKeyboardKey
+		channelUp: PhysicalKeyboardKey
+		channelDown: PhysicalKeyboardKey
+		mediaPlay: PhysicalKeyboardKey
+		mediaPause: PhysicalKeyboardKey
+		mediaRecord: PhysicalKeyboardKey
+		mediaFastForward: PhysicalKeyboardKey
+		mediaRewind: PhysicalKeyboardKey
+		mediaTrackNext: PhysicalKeyboardKey
+		mediaTrackPrevious: PhysicalKeyboardKey
+		mediaStop: PhysicalKeyboardKey
+		eject: PhysicalKeyboardKey
+		mediaPlayPause: PhysicalKeyboardKey
+		speechInputToggle: PhysicalKeyboardKey
+		bassBoost: PhysicalKeyboardKey
+		mediaSelect: PhysicalKeyboardKey
+		launchWordProcessor: PhysicalKeyboardKey
+		launchSpreadsheet: PhysicalKeyboardKey
+		launchMail: PhysicalKeyboardKey
+		launchContacts: PhysicalKeyboardKey
+		launchCalendar: PhysicalKeyboardKey
+		launchApp2: PhysicalKeyboardKey
+		launchApp1: PhysicalKeyboardKey
+		launchInternetBrowser: PhysicalKeyboardKey
+		logOff: PhysicalKeyboardKey
+		lockScreen: PhysicalKeyboardKey
+		launchControlPanel: PhysicalKeyboardKey
+		selectTask: PhysicalKeyboardKey
+		launchDocuments: PhysicalKeyboardKey
+		spellCheck: PhysicalKeyboardKey
+		launchKeyboardLayout: PhysicalKeyboardKey
+		launchScreenSaver: PhysicalKeyboardKey
+		launchAudioBrowser: PhysicalKeyboardKey
+		launchAssistant: PhysicalKeyboardKey
+		newKey: PhysicalKeyboardKey
+		close: PhysicalKeyboardKey
+		save: PhysicalKeyboardKey
+		print: PhysicalKeyboardKey
+		browserSearch: PhysicalKeyboardKey
+		browserHome: PhysicalKeyboardKey
+		browserBack: PhysicalKeyboardKey
+		browserForward: PhysicalKeyboardKey
+		browserStop: PhysicalKeyboardKey
+		browserRefresh: PhysicalKeyboardKey
+		browserFavorites: PhysicalKeyboardKey
+		zoomIn: PhysicalKeyboardKey
+		zoomOut: PhysicalKeyboardKey
+		zoomToggle: PhysicalKeyboardKey
+		redo: PhysicalKeyboardKey
+		mailReply: PhysicalKeyboardKey
+		mailForward: PhysicalKeyboardKey
+		mailSend: PhysicalKeyboardKey
+		keyboardLayoutSelect: PhysicalKeyboardKey
+		showAllWindows: PhysicalKeyboardKey
 	default:
 		usbHidUsage: int
 
@@ -1940,450 +1940,450 @@ class LogicalKeyboardKey extends KeyboardKey:
 		windowsPlane: int
 		webPlane: int
 		glfwPlane: int
-		space: __PLACEHOLDER__
-		exclamation: __PLACEHOLDER__
-		quote: __PLACEHOLDER__
-		numberSign: __PLACEHOLDER__
-		dollar: __PLACEHOLDER__
-		percent: __PLACEHOLDER__
-		ampersand: __PLACEHOLDER__
-		quoteSingle: __PLACEHOLDER__
-		parenthesisLeft: __PLACEHOLDER__
-		parenthesisRight: __PLACEHOLDER__
-		asterisk: __PLACEHOLDER__
-		add: __PLACEHOLDER__
-		comma: __PLACEHOLDER__
-		minus: __PLACEHOLDER__
-		period: __PLACEHOLDER__
-		slash: __PLACEHOLDER__
-		digit0: __PLACEHOLDER__
-		digit1: __PLACEHOLDER__
-		digit2: __PLACEHOLDER__
-		digit3: __PLACEHOLDER__
-		digit4: __PLACEHOLDER__
-		digit5: __PLACEHOLDER__
-		digit6: __PLACEHOLDER__
-		digit7: __PLACEHOLDER__
-		digit8: __PLACEHOLDER__
-		digit9: __PLACEHOLDER__
-		colon: __PLACEHOLDER__
-		semicolon: __PLACEHOLDER__
-		less: __PLACEHOLDER__
-		equal: __PLACEHOLDER__
-		greater: __PLACEHOLDER__
-		question: __PLACEHOLDER__
-		at: __PLACEHOLDER__
-		bracketLeft: __PLACEHOLDER__
-		backslash: __PLACEHOLDER__
-		bracketRight: __PLACEHOLDER__
-		caret: __PLACEHOLDER__
-		underscore: __PLACEHOLDER__
-		backquote: __PLACEHOLDER__
-		keyA: __PLACEHOLDER__
-		keyB: __PLACEHOLDER__
-		keyC: __PLACEHOLDER__
-		keyD: __PLACEHOLDER__
-		keyE: __PLACEHOLDER__
-		keyF: __PLACEHOLDER__
-		keyG: __PLACEHOLDER__
-		keyH: __PLACEHOLDER__
-		keyI: __PLACEHOLDER__
-		keyJ: __PLACEHOLDER__
-		keyK: __PLACEHOLDER__
-		keyL: __PLACEHOLDER__
-		keyM: __PLACEHOLDER__
-		keyN: __PLACEHOLDER__
-		keyO: __PLACEHOLDER__
-		keyP: __PLACEHOLDER__
-		keyQ: __PLACEHOLDER__
-		keyR: __PLACEHOLDER__
-		keyS: __PLACEHOLDER__
-		keyT: __PLACEHOLDER__
-		keyU: __PLACEHOLDER__
-		keyV: __PLACEHOLDER__
-		keyW: __PLACEHOLDER__
-		keyX: __PLACEHOLDER__
-		keyY: __PLACEHOLDER__
-		keyZ: __PLACEHOLDER__
-		braceLeft: __PLACEHOLDER__
-		bar: __PLACEHOLDER__
-		braceRight: __PLACEHOLDER__
-		tilde: __PLACEHOLDER__
-		unidentified: __PLACEHOLDER__
-		backspace: __PLACEHOLDER__
-		tab: __PLACEHOLDER__
-		enter: __PLACEHOLDER__
-		escape: __PLACEHOLDER__
-		delete: __PLACEHOLDER__
-		accel: __PLACEHOLDER__
-		altGraph: __PLACEHOLDER__
-		capsLock: __PLACEHOLDER__
-		fn: __PLACEHOLDER__
-		fnLock: __PLACEHOLDER__
-		hyper: __PLACEHOLDER__
-		numLock: __PLACEHOLDER__
-		scrollLock: __PLACEHOLDER__
-		superKey: __PLACEHOLDER__
-		symbol: __PLACEHOLDER__
-		symbolLock: __PLACEHOLDER__
-		shiftLevel5: __PLACEHOLDER__
-		arrowDown: __PLACEHOLDER__
-		arrowLeft: __PLACEHOLDER__
-		arrowRight: __PLACEHOLDER__
-		arrowUp: __PLACEHOLDER__
-		end: __PLACEHOLDER__
-		home: __PLACEHOLDER__
-		pageDown: __PLACEHOLDER__
-		pageUp: __PLACEHOLDER__
-		clear: __PLACEHOLDER__
-		copy: __PLACEHOLDER__
-		crSel: __PLACEHOLDER__
-		cut: __PLACEHOLDER__
-		eraseEof: __PLACEHOLDER__
-		exSel: __PLACEHOLDER__
-		insert: __PLACEHOLDER__
-		paste: __PLACEHOLDER__
-		redo: __PLACEHOLDER__
-		undo: __PLACEHOLDER__
-		accept: __PLACEHOLDER__
-		again: __PLACEHOLDER__
-		attn: __PLACEHOLDER__
-		cancel: __PLACEHOLDER__
-		contextMenu: __PLACEHOLDER__
-		execute: __PLACEHOLDER__
-		find: __PLACEHOLDER__
-		help: __PLACEHOLDER__
-		pause: __PLACEHOLDER__
-		play: __PLACEHOLDER__
-		props: __PLACEHOLDER__
-		select: __PLACEHOLDER__
-		zoomIn: __PLACEHOLDER__
-		zoomOut: __PLACEHOLDER__
-		brightnessDown: __PLACEHOLDER__
-		brightnessUp: __PLACEHOLDER__
-		camera: __PLACEHOLDER__
-		eject: __PLACEHOLDER__
-		logOff: __PLACEHOLDER__
-		power: __PLACEHOLDER__
-		powerOff: __PLACEHOLDER__
-		printScreen: __PLACEHOLDER__
-		hibernate: __PLACEHOLDER__
-		standby: __PLACEHOLDER__
-		wakeUp: __PLACEHOLDER__
-		allCandidates: __PLACEHOLDER__
-		alphanumeric: __PLACEHOLDER__
-		codeInput: __PLACEHOLDER__
-		compose: __PLACEHOLDER__
-		convert: __PLACEHOLDER__
-		finalMode: __PLACEHOLDER__
-		groupFirst: __PLACEHOLDER__
-		groupLast: __PLACEHOLDER__
-		groupNext: __PLACEHOLDER__
-		groupPrevious: __PLACEHOLDER__
-		modeChange: __PLACEHOLDER__
-		nextCandidate: __PLACEHOLDER__
-		nonConvert: __PLACEHOLDER__
-		previousCandidate: __PLACEHOLDER__
-		process: __PLACEHOLDER__
-		singleCandidate: __PLACEHOLDER__
-		hangulMode: __PLACEHOLDER__
-		hanjaMode: __PLACEHOLDER__
-		junjaMode: __PLACEHOLDER__
-		eisu: __PLACEHOLDER__
-		hankaku: __PLACEHOLDER__
-		hiragana: __PLACEHOLDER__
-		hiraganaKatakana: __PLACEHOLDER__
-		kanaMode: __PLACEHOLDER__
-		kanjiMode: __PLACEHOLDER__
-		katakana: __PLACEHOLDER__
-		romaji: __PLACEHOLDER__
-		zenkaku: __PLACEHOLDER__
-		zenkakuHankaku: __PLACEHOLDER__
-		f1: __PLACEHOLDER__
-		f2: __PLACEHOLDER__
-		f3: __PLACEHOLDER__
-		f4: __PLACEHOLDER__
-		f5: __PLACEHOLDER__
-		f6: __PLACEHOLDER__
-		f7: __PLACEHOLDER__
-		f8: __PLACEHOLDER__
-		f9: __PLACEHOLDER__
-		f10: __PLACEHOLDER__
-		f11: __PLACEHOLDER__
-		f12: __PLACEHOLDER__
-		f13: __PLACEHOLDER__
-		f14: __PLACEHOLDER__
-		f15: __PLACEHOLDER__
-		f16: __PLACEHOLDER__
-		f17: __PLACEHOLDER__
-		f18: __PLACEHOLDER__
-		f19: __PLACEHOLDER__
-		f20: __PLACEHOLDER__
-		f21: __PLACEHOLDER__
-		f22: __PLACEHOLDER__
-		f23: __PLACEHOLDER__
-		f24: __PLACEHOLDER__
-		soft1: __PLACEHOLDER__
-		soft2: __PLACEHOLDER__
-		soft3: __PLACEHOLDER__
-		soft4: __PLACEHOLDER__
-		soft5: __PLACEHOLDER__
-		soft6: __PLACEHOLDER__
-		soft7: __PLACEHOLDER__
-		soft8: __PLACEHOLDER__
-		close: __PLACEHOLDER__
-		mailForward: __PLACEHOLDER__
-		mailReply: __PLACEHOLDER__
-		mailSend: __PLACEHOLDER__
-		mediaPlayPause: __PLACEHOLDER__
-		mediaStop: __PLACEHOLDER__
-		mediaTrackNext: __PLACEHOLDER__
-		mediaTrackPrevious: __PLACEHOLDER__
-		newKey: __PLACEHOLDER__
-		open: __PLACEHOLDER__
-		print: __PLACEHOLDER__
-		save: __PLACEHOLDER__
-		spellCheck: __PLACEHOLDER__
-		audioVolumeDown: __PLACEHOLDER__
-		audioVolumeUp: __PLACEHOLDER__
-		audioVolumeMute: __PLACEHOLDER__
-		launchApplication2: __PLACEHOLDER__
-		launchCalendar: __PLACEHOLDER__
-		launchMail: __PLACEHOLDER__
-		launchMediaPlayer: __PLACEHOLDER__
-		launchMusicPlayer: __PLACEHOLDER__
-		launchApplication1: __PLACEHOLDER__
-		launchScreenSaver: __PLACEHOLDER__
-		launchSpreadsheet: __PLACEHOLDER__
-		launchWebBrowser: __PLACEHOLDER__
-		launchWebCam: __PLACEHOLDER__
-		launchWordProcessor: __PLACEHOLDER__
-		launchContacts: __PLACEHOLDER__
-		launchPhone: __PLACEHOLDER__
-		launchAssistant: __PLACEHOLDER__
-		launchControlPanel: __PLACEHOLDER__
-		browserBack: __PLACEHOLDER__
-		browserFavorites: __PLACEHOLDER__
-		browserForward: __PLACEHOLDER__
-		browserHome: __PLACEHOLDER__
-		browserRefresh: __PLACEHOLDER__
-		browserSearch: __PLACEHOLDER__
-		browserStop: __PLACEHOLDER__
-		audioBalanceLeft: __PLACEHOLDER__
-		audioBalanceRight: __PLACEHOLDER__
-		audioBassBoostDown: __PLACEHOLDER__
-		audioBassBoostUp: __PLACEHOLDER__
-		audioFaderFront: __PLACEHOLDER__
-		audioFaderRear: __PLACEHOLDER__
-		audioSurroundModeNext: __PLACEHOLDER__
-		avrInput: __PLACEHOLDER__
-		avrPower: __PLACEHOLDER__
-		channelDown: __PLACEHOLDER__
-		channelUp: __PLACEHOLDER__
-		colorF0Red: __PLACEHOLDER__
-		colorF1Green: __PLACEHOLDER__
-		colorF2Yellow: __PLACEHOLDER__
-		colorF3Blue: __PLACEHOLDER__
-		colorF4Grey: __PLACEHOLDER__
-		colorF5Brown: __PLACEHOLDER__
-		closedCaptionToggle: __PLACEHOLDER__
-		dimmer: __PLACEHOLDER__
-		displaySwap: __PLACEHOLDER__
-		exit: __PLACEHOLDER__
-		favoriteClear0: __PLACEHOLDER__
-		favoriteClear1: __PLACEHOLDER__
-		favoriteClear2: __PLACEHOLDER__
-		favoriteClear3: __PLACEHOLDER__
-		favoriteRecall0: __PLACEHOLDER__
-		favoriteRecall1: __PLACEHOLDER__
-		favoriteRecall2: __PLACEHOLDER__
-		favoriteRecall3: __PLACEHOLDER__
-		favoriteStore0: __PLACEHOLDER__
-		favoriteStore1: __PLACEHOLDER__
-		favoriteStore2: __PLACEHOLDER__
-		favoriteStore3: __PLACEHOLDER__
-		guide: __PLACEHOLDER__
-		guideNextDay: __PLACEHOLDER__
-		guidePreviousDay: __PLACEHOLDER__
-		info: __PLACEHOLDER__
-		instantReplay: __PLACEHOLDER__
-		link: __PLACEHOLDER__
-		listProgram: __PLACEHOLDER__
-		liveContent: __PLACEHOLDER__
-		lock: __PLACEHOLDER__
-		mediaApps: __PLACEHOLDER__
-		mediaFastForward: __PLACEHOLDER__
-		mediaLast: __PLACEHOLDER__
-		mediaPause: __PLACEHOLDER__
-		mediaPlay: __PLACEHOLDER__
-		mediaRecord: __PLACEHOLDER__
-		mediaRewind: __PLACEHOLDER__
-		mediaSkip: __PLACEHOLDER__
-		nextFavoriteChannel: __PLACEHOLDER__
-		nextUserProfile: __PLACEHOLDER__
-		onDemand: __PLACEHOLDER__
-		pInPDown: __PLACEHOLDER__
-		pInPMove: __PLACEHOLDER__
-		pInPToggle: __PLACEHOLDER__
-		pInPUp: __PLACEHOLDER__
-		playSpeedDown: __PLACEHOLDER__
-		playSpeedReset: __PLACEHOLDER__
-		playSpeedUp: __PLACEHOLDER__
-		randomToggle: __PLACEHOLDER__
-		rcLowBattery: __PLACEHOLDER__
-		recordSpeedNext: __PLACEHOLDER__
-		rfBypass: __PLACEHOLDER__
-		scanChannelsToggle: __PLACEHOLDER__
-		screenModeNext: __PLACEHOLDER__
-		settings: __PLACEHOLDER__
-		splitScreenToggle: __PLACEHOLDER__
-		stbInput: __PLACEHOLDER__
-		stbPower: __PLACEHOLDER__
-		subtitle: __PLACEHOLDER__
-		teletext: __PLACEHOLDER__
-		tv: __PLACEHOLDER__
-		tvInput: __PLACEHOLDER__
-		tvPower: __PLACEHOLDER__
-		videoModeNext: __PLACEHOLDER__
-		wink: __PLACEHOLDER__
-		zoomToggle: __PLACEHOLDER__
-		dvr: __PLACEHOLDER__
-		mediaAudioTrack: __PLACEHOLDER__
-		mediaSkipBackward: __PLACEHOLDER__
-		mediaSkipForward: __PLACEHOLDER__
-		mediaStepBackward: __PLACEHOLDER__
-		mediaStepForward: __PLACEHOLDER__
-		mediaTopMenu: __PLACEHOLDER__
-		navigateIn: __PLACEHOLDER__
-		navigateNext: __PLACEHOLDER__
-		navigateOut: __PLACEHOLDER__
-		navigatePrevious: __PLACEHOLDER__
-		pairing: __PLACEHOLDER__
-		mediaClose: __PLACEHOLDER__
-		audioBassBoostToggle: __PLACEHOLDER__
-		audioTrebleDown: __PLACEHOLDER__
-		audioTrebleUp: __PLACEHOLDER__
-		microphoneToggle: __PLACEHOLDER__
-		microphoneVolumeDown: __PLACEHOLDER__
-		microphoneVolumeUp: __PLACEHOLDER__
-		microphoneVolumeMute: __PLACEHOLDER__
-		speechCorrectionList: __PLACEHOLDER__
-		speechInputToggle: __PLACEHOLDER__
-		appSwitch: __PLACEHOLDER__
-		call: __PLACEHOLDER__
-		cameraFocus: __PLACEHOLDER__
-		endCall: __PLACEHOLDER__
-		goBack: __PLACEHOLDER__
-		goHome: __PLACEHOLDER__
-		headsetHook: __PLACEHOLDER__
-		lastNumberRedial: __PLACEHOLDER__
-		notification: __PLACEHOLDER__
-		mannerMode: __PLACEHOLDER__
-		voiceDial: __PLACEHOLDER__
-		tv3DMode: __PLACEHOLDER__
-		tvAntennaCable: __PLACEHOLDER__
-		tvAudioDescription: __PLACEHOLDER__
-		tvAudioDescriptionMixDown: __PLACEHOLDER__
-		tvAudioDescriptionMixUp: __PLACEHOLDER__
-		tvContentsMenu: __PLACEHOLDER__
-		tvDataService: __PLACEHOLDER__
-		tvInputComponent1: __PLACEHOLDER__
-		tvInputComponent2: __PLACEHOLDER__
-		tvInputComposite1: __PLACEHOLDER__
-		tvInputComposite2: __PLACEHOLDER__
-		tvInputHDMI1: __PLACEHOLDER__
-		tvInputHDMI2: __PLACEHOLDER__
-		tvInputHDMI3: __PLACEHOLDER__
-		tvInputHDMI4: __PLACEHOLDER__
-		tvInputVGA1: __PLACEHOLDER__
-		tvMediaContext: __PLACEHOLDER__
-		tvNetwork: __PLACEHOLDER__
-		tvNumberEntry: __PLACEHOLDER__
-		tvRadioService: __PLACEHOLDER__
-		tvSatellite: __PLACEHOLDER__
-		tvSatelliteBS: __PLACEHOLDER__
-		tvSatelliteCS: __PLACEHOLDER__
-		tvSatelliteToggle: __PLACEHOLDER__
-		tvTerrestrialAnalog: __PLACEHOLDER__
-		tvTerrestrialDigital: __PLACEHOLDER__
-		tvTimer: __PLACEHOLDER__
-		key11: __PLACEHOLDER__
-		key12: __PLACEHOLDER__
-		suspend: __PLACEHOLDER__
-		resume: __PLACEHOLDER__
-		sleep: __PLACEHOLDER__
-		abort: __PLACEHOLDER__
-		lang1: __PLACEHOLDER__
-		lang2: __PLACEHOLDER__
-		lang3: __PLACEHOLDER__
-		lang4: __PLACEHOLDER__
-		lang5: __PLACEHOLDER__
-		intlBackslash: __PLACEHOLDER__
-		intlRo: __PLACEHOLDER__
-		intlYen: __PLACEHOLDER__
-		controlLeft: __PLACEHOLDER__
-		controlRight: __PLACEHOLDER__
-		shiftLeft: __PLACEHOLDER__
-		shiftRight: __PLACEHOLDER__
-		altLeft: __PLACEHOLDER__
-		altRight: __PLACEHOLDER__
-		metaLeft: __PLACEHOLDER__
-		metaRight: __PLACEHOLDER__
-		control: __PLACEHOLDER__
-		shift: __PLACEHOLDER__
-		alt: __PLACEHOLDER__
-		meta: __PLACEHOLDER__
-		numpadEnter: __PLACEHOLDER__
-		numpadParenLeft: __PLACEHOLDER__
-		numpadParenRight: __PLACEHOLDER__
-		numpadMultiply: __PLACEHOLDER__
-		numpadAdd: __PLACEHOLDER__
-		numpadComma: __PLACEHOLDER__
-		numpadSubtract: __PLACEHOLDER__
-		numpadDecimal: __PLACEHOLDER__
-		numpadDivide: __PLACEHOLDER__
-		numpad0: __PLACEHOLDER__
-		numpad1: __PLACEHOLDER__
-		numpad2: __PLACEHOLDER__
-		numpad3: __PLACEHOLDER__
-		numpad4: __PLACEHOLDER__
-		numpad5: __PLACEHOLDER__
-		numpad6: __PLACEHOLDER__
-		numpad7: __PLACEHOLDER__
-		numpad8: __PLACEHOLDER__
-		numpad9: __PLACEHOLDER__
-		numpadEqual: __PLACEHOLDER__
-		gameButton1: __PLACEHOLDER__
-		gameButton2: __PLACEHOLDER__
-		gameButton3: __PLACEHOLDER__
-		gameButton4: __PLACEHOLDER__
-		gameButton5: __PLACEHOLDER__
-		gameButton6: __PLACEHOLDER__
-		gameButton7: __PLACEHOLDER__
-		gameButton8: __PLACEHOLDER__
-		gameButton9: __PLACEHOLDER__
-		gameButton10: __PLACEHOLDER__
-		gameButton11: __PLACEHOLDER__
-		gameButton12: __PLACEHOLDER__
-		gameButton13: __PLACEHOLDER__
-		gameButton14: __PLACEHOLDER__
-		gameButton15: __PLACEHOLDER__
-		gameButton16: __PLACEHOLDER__
-		gameButtonA: __PLACEHOLDER__
-		gameButtonB: __PLACEHOLDER__
-		gameButtonC: __PLACEHOLDER__
-		gameButtonLeft1: __PLACEHOLDER__
-		gameButtonLeft2: __PLACEHOLDER__
-		gameButtonMode: __PLACEHOLDER__
-		gameButtonRight1: __PLACEHOLDER__
-		gameButtonRight2: __PLACEHOLDER__
-		gameButtonSelect: __PLACEHOLDER__
-		gameButtonStart: __PLACEHOLDER__
-		gameButtonThumbLeft: __PLACEHOLDER__
-		gameButtonThumbRight: __PLACEHOLDER__
-		gameButtonX: __PLACEHOLDER__
-		gameButtonY: __PLACEHOLDER__
-		gameButtonZ: __PLACEHOLDER__
+		space: LogicalKeyboardKey
+		exclamation: LogicalKeyboardKey
+		quote: LogicalKeyboardKey
+		numberSign: LogicalKeyboardKey
+		dollar: LogicalKeyboardKey
+		percent: LogicalKeyboardKey
+		ampersand: LogicalKeyboardKey
+		quoteSingle: LogicalKeyboardKey
+		parenthesisLeft: LogicalKeyboardKey
+		parenthesisRight: LogicalKeyboardKey
+		asterisk: LogicalKeyboardKey
+		add: LogicalKeyboardKey
+		comma: LogicalKeyboardKey
+		minus: LogicalKeyboardKey
+		period: LogicalKeyboardKey
+		slash: LogicalKeyboardKey
+		digit0: LogicalKeyboardKey
+		digit1: LogicalKeyboardKey
+		digit2: LogicalKeyboardKey
+		digit3: LogicalKeyboardKey
+		digit4: LogicalKeyboardKey
+		digit5: LogicalKeyboardKey
+		digit6: LogicalKeyboardKey
+		digit7: LogicalKeyboardKey
+		digit8: LogicalKeyboardKey
+		digit9: LogicalKeyboardKey
+		colon: LogicalKeyboardKey
+		semicolon: LogicalKeyboardKey
+		less: LogicalKeyboardKey
+		equal: LogicalKeyboardKey
+		greater: LogicalKeyboardKey
+		question: LogicalKeyboardKey
+		at: LogicalKeyboardKey
+		bracketLeft: LogicalKeyboardKey
+		backslash: LogicalKeyboardKey
+		bracketRight: LogicalKeyboardKey
+		caret: LogicalKeyboardKey
+		underscore: LogicalKeyboardKey
+		backquote: LogicalKeyboardKey
+		keyA: LogicalKeyboardKey
+		keyB: LogicalKeyboardKey
+		keyC: LogicalKeyboardKey
+		keyD: LogicalKeyboardKey
+		keyE: LogicalKeyboardKey
+		keyF: LogicalKeyboardKey
+		keyG: LogicalKeyboardKey
+		keyH: LogicalKeyboardKey
+		keyI: LogicalKeyboardKey
+		keyJ: LogicalKeyboardKey
+		keyK: LogicalKeyboardKey
+		keyL: LogicalKeyboardKey
+		keyM: LogicalKeyboardKey
+		keyN: LogicalKeyboardKey
+		keyO: LogicalKeyboardKey
+		keyP: LogicalKeyboardKey
+		keyQ: LogicalKeyboardKey
+		keyR: LogicalKeyboardKey
+		keyS: LogicalKeyboardKey
+		keyT: LogicalKeyboardKey
+		keyU: LogicalKeyboardKey
+		keyV: LogicalKeyboardKey
+		keyW: LogicalKeyboardKey
+		keyX: LogicalKeyboardKey
+		keyY: LogicalKeyboardKey
+		keyZ: LogicalKeyboardKey
+		braceLeft: LogicalKeyboardKey
+		bar: LogicalKeyboardKey
+		braceRight: LogicalKeyboardKey
+		tilde: LogicalKeyboardKey
+		unidentified: LogicalKeyboardKey
+		backspace: LogicalKeyboardKey
+		tab: LogicalKeyboardKey
+		enter: LogicalKeyboardKey
+		escape: LogicalKeyboardKey
+		delete: LogicalKeyboardKey
+		accel: LogicalKeyboardKey
+		altGraph: LogicalKeyboardKey
+		capsLock: LogicalKeyboardKey
+		fn: LogicalKeyboardKey
+		fnLock: LogicalKeyboardKey
+		hyper: LogicalKeyboardKey
+		numLock: LogicalKeyboardKey
+		scrollLock: LogicalKeyboardKey
+		superKey: LogicalKeyboardKey
+		symbol: LogicalKeyboardKey
+		symbolLock: LogicalKeyboardKey
+		shiftLevel5: LogicalKeyboardKey
+		arrowDown: LogicalKeyboardKey
+		arrowLeft: LogicalKeyboardKey
+		arrowRight: LogicalKeyboardKey
+		arrowUp: LogicalKeyboardKey
+		end: LogicalKeyboardKey
+		home: LogicalKeyboardKey
+		pageDown: LogicalKeyboardKey
+		pageUp: LogicalKeyboardKey
+		clear: LogicalKeyboardKey
+		copy: LogicalKeyboardKey
+		crSel: LogicalKeyboardKey
+		cut: LogicalKeyboardKey
+		eraseEof: LogicalKeyboardKey
+		exSel: LogicalKeyboardKey
+		insert: LogicalKeyboardKey
+		paste: LogicalKeyboardKey
+		redo: LogicalKeyboardKey
+		undo: LogicalKeyboardKey
+		accept: LogicalKeyboardKey
+		again: LogicalKeyboardKey
+		attn: LogicalKeyboardKey
+		cancel: LogicalKeyboardKey
+		contextMenu: LogicalKeyboardKey
+		execute: LogicalKeyboardKey
+		find: LogicalKeyboardKey
+		help: LogicalKeyboardKey
+		pause: LogicalKeyboardKey
+		play: LogicalKeyboardKey
+		props: LogicalKeyboardKey
+		select: LogicalKeyboardKey
+		zoomIn: LogicalKeyboardKey
+		zoomOut: LogicalKeyboardKey
+		brightnessDown: LogicalKeyboardKey
+		brightnessUp: LogicalKeyboardKey
+		camera: LogicalKeyboardKey
+		eject: LogicalKeyboardKey
+		logOff: LogicalKeyboardKey
+		power: LogicalKeyboardKey
+		powerOff: LogicalKeyboardKey
+		printScreen: LogicalKeyboardKey
+		hibernate: LogicalKeyboardKey
+		standby: LogicalKeyboardKey
+		wakeUp: LogicalKeyboardKey
+		allCandidates: LogicalKeyboardKey
+		alphanumeric: LogicalKeyboardKey
+		codeInput: LogicalKeyboardKey
+		compose: LogicalKeyboardKey
+		convert: LogicalKeyboardKey
+		finalMode: LogicalKeyboardKey
+		groupFirst: LogicalKeyboardKey
+		groupLast: LogicalKeyboardKey
+		groupNext: LogicalKeyboardKey
+		groupPrevious: LogicalKeyboardKey
+		modeChange: LogicalKeyboardKey
+		nextCandidate: LogicalKeyboardKey
+		nonConvert: LogicalKeyboardKey
+		previousCandidate: LogicalKeyboardKey
+		process: LogicalKeyboardKey
+		singleCandidate: LogicalKeyboardKey
+		hangulMode: LogicalKeyboardKey
+		hanjaMode: LogicalKeyboardKey
+		junjaMode: LogicalKeyboardKey
+		eisu: LogicalKeyboardKey
+		hankaku: LogicalKeyboardKey
+		hiragana: LogicalKeyboardKey
+		hiraganaKatakana: LogicalKeyboardKey
+		kanaMode: LogicalKeyboardKey
+		kanjiMode: LogicalKeyboardKey
+		katakana: LogicalKeyboardKey
+		romaji: LogicalKeyboardKey
+		zenkaku: LogicalKeyboardKey
+		zenkakuHankaku: LogicalKeyboardKey
+		f1: LogicalKeyboardKey
+		f2: LogicalKeyboardKey
+		f3: LogicalKeyboardKey
+		f4: LogicalKeyboardKey
+		f5: LogicalKeyboardKey
+		f6: LogicalKeyboardKey
+		f7: LogicalKeyboardKey
+		f8: LogicalKeyboardKey
+		f9: LogicalKeyboardKey
+		f10: LogicalKeyboardKey
+		f11: LogicalKeyboardKey
+		f12: LogicalKeyboardKey
+		f13: LogicalKeyboardKey
+		f14: LogicalKeyboardKey
+		f15: LogicalKeyboardKey
+		f16: LogicalKeyboardKey
+		f17: LogicalKeyboardKey
+		f18: LogicalKeyboardKey
+		f19: LogicalKeyboardKey
+		f20: LogicalKeyboardKey
+		f21: LogicalKeyboardKey
+		f22: LogicalKeyboardKey
+		f23: LogicalKeyboardKey
+		f24: LogicalKeyboardKey
+		soft1: LogicalKeyboardKey
+		soft2: LogicalKeyboardKey
+		soft3: LogicalKeyboardKey
+		soft4: LogicalKeyboardKey
+		soft5: LogicalKeyboardKey
+		soft6: LogicalKeyboardKey
+		soft7: LogicalKeyboardKey
+		soft8: LogicalKeyboardKey
+		close: LogicalKeyboardKey
+		mailForward: LogicalKeyboardKey
+		mailReply: LogicalKeyboardKey
+		mailSend: LogicalKeyboardKey
+		mediaPlayPause: LogicalKeyboardKey
+		mediaStop: LogicalKeyboardKey
+		mediaTrackNext: LogicalKeyboardKey
+		mediaTrackPrevious: LogicalKeyboardKey
+		newKey: LogicalKeyboardKey
+		open: LogicalKeyboardKey
+		print: LogicalKeyboardKey
+		save: LogicalKeyboardKey
+		spellCheck: LogicalKeyboardKey
+		audioVolumeDown: LogicalKeyboardKey
+		audioVolumeUp: LogicalKeyboardKey
+		audioVolumeMute: LogicalKeyboardKey
+		launchApplication2: LogicalKeyboardKey
+		launchCalendar: LogicalKeyboardKey
+		launchMail: LogicalKeyboardKey
+		launchMediaPlayer: LogicalKeyboardKey
+		launchMusicPlayer: LogicalKeyboardKey
+		launchApplication1: LogicalKeyboardKey
+		launchScreenSaver: LogicalKeyboardKey
+		launchSpreadsheet: LogicalKeyboardKey
+		launchWebBrowser: LogicalKeyboardKey
+		launchWebCam: LogicalKeyboardKey
+		launchWordProcessor: LogicalKeyboardKey
+		launchContacts: LogicalKeyboardKey
+		launchPhone: LogicalKeyboardKey
+		launchAssistant: LogicalKeyboardKey
+		launchControlPanel: LogicalKeyboardKey
+		browserBack: LogicalKeyboardKey
+		browserFavorites: LogicalKeyboardKey
+		browserForward: LogicalKeyboardKey
+		browserHome: LogicalKeyboardKey
+		browserRefresh: LogicalKeyboardKey
+		browserSearch: LogicalKeyboardKey
+		browserStop: LogicalKeyboardKey
+		audioBalanceLeft: LogicalKeyboardKey
+		audioBalanceRight: LogicalKeyboardKey
+		audioBassBoostDown: LogicalKeyboardKey
+		audioBassBoostUp: LogicalKeyboardKey
+		audioFaderFront: LogicalKeyboardKey
+		audioFaderRear: LogicalKeyboardKey
+		audioSurroundModeNext: LogicalKeyboardKey
+		avrInput: LogicalKeyboardKey
+		avrPower: LogicalKeyboardKey
+		channelDown: LogicalKeyboardKey
+		channelUp: LogicalKeyboardKey
+		colorF0Red: LogicalKeyboardKey
+		colorF1Green: LogicalKeyboardKey
+		colorF2Yellow: LogicalKeyboardKey
+		colorF3Blue: LogicalKeyboardKey
+		colorF4Grey: LogicalKeyboardKey
+		colorF5Brown: LogicalKeyboardKey
+		closedCaptionToggle: LogicalKeyboardKey
+		dimmer: LogicalKeyboardKey
+		displaySwap: LogicalKeyboardKey
+		exit: LogicalKeyboardKey
+		favoriteClear0: LogicalKeyboardKey
+		favoriteClear1: LogicalKeyboardKey
+		favoriteClear2: LogicalKeyboardKey
+		favoriteClear3: LogicalKeyboardKey
+		favoriteRecall0: LogicalKeyboardKey
+		favoriteRecall1: LogicalKeyboardKey
+		favoriteRecall2: LogicalKeyboardKey
+		favoriteRecall3: LogicalKeyboardKey
+		favoriteStore0: LogicalKeyboardKey
+		favoriteStore1: LogicalKeyboardKey
+		favoriteStore2: LogicalKeyboardKey
+		favoriteStore3: LogicalKeyboardKey
+		guide: LogicalKeyboardKey
+		guideNextDay: LogicalKeyboardKey
+		guidePreviousDay: LogicalKeyboardKey
+		info: LogicalKeyboardKey
+		instantReplay: LogicalKeyboardKey
+		link: LogicalKeyboardKey
+		listProgram: LogicalKeyboardKey
+		liveContent: LogicalKeyboardKey
+		lock: LogicalKeyboardKey
+		mediaApps: LogicalKeyboardKey
+		mediaFastForward: LogicalKeyboardKey
+		mediaLast: LogicalKeyboardKey
+		mediaPause: LogicalKeyboardKey
+		mediaPlay: LogicalKeyboardKey
+		mediaRecord: LogicalKeyboardKey
+		mediaRewind: LogicalKeyboardKey
+		mediaSkip: LogicalKeyboardKey
+		nextFavoriteChannel: LogicalKeyboardKey
+		nextUserProfile: LogicalKeyboardKey
+		onDemand: LogicalKeyboardKey
+		pInPDown: LogicalKeyboardKey
+		pInPMove: LogicalKeyboardKey
+		pInPToggle: LogicalKeyboardKey
+		pInPUp: LogicalKeyboardKey
+		playSpeedDown: LogicalKeyboardKey
+		playSpeedReset: LogicalKeyboardKey
+		playSpeedUp: LogicalKeyboardKey
+		randomToggle: LogicalKeyboardKey
+		rcLowBattery: LogicalKeyboardKey
+		recordSpeedNext: LogicalKeyboardKey
+		rfBypass: LogicalKeyboardKey
+		scanChannelsToggle: LogicalKeyboardKey
+		screenModeNext: LogicalKeyboardKey
+		settings: LogicalKeyboardKey
+		splitScreenToggle: LogicalKeyboardKey
+		stbInput: LogicalKeyboardKey
+		stbPower: LogicalKeyboardKey
+		subtitle: LogicalKeyboardKey
+		teletext: LogicalKeyboardKey
+		tv: LogicalKeyboardKey
+		tvInput: LogicalKeyboardKey
+		tvPower: LogicalKeyboardKey
+		videoModeNext: LogicalKeyboardKey
+		wink: LogicalKeyboardKey
+		zoomToggle: LogicalKeyboardKey
+		dvr: LogicalKeyboardKey
+		mediaAudioTrack: LogicalKeyboardKey
+		mediaSkipBackward: LogicalKeyboardKey
+		mediaSkipForward: LogicalKeyboardKey
+		mediaStepBackward: LogicalKeyboardKey
+		mediaStepForward: LogicalKeyboardKey
+		mediaTopMenu: LogicalKeyboardKey
+		navigateIn: LogicalKeyboardKey
+		navigateNext: LogicalKeyboardKey
+		navigateOut: LogicalKeyboardKey
+		navigatePrevious: LogicalKeyboardKey
+		pairing: LogicalKeyboardKey
+		mediaClose: LogicalKeyboardKey
+		audioBassBoostToggle: LogicalKeyboardKey
+		audioTrebleDown: LogicalKeyboardKey
+		audioTrebleUp: LogicalKeyboardKey
+		microphoneToggle: LogicalKeyboardKey
+		microphoneVolumeDown: LogicalKeyboardKey
+		microphoneVolumeUp: LogicalKeyboardKey
+		microphoneVolumeMute: LogicalKeyboardKey
+		speechCorrectionList: LogicalKeyboardKey
+		speechInputToggle: LogicalKeyboardKey
+		appSwitch: LogicalKeyboardKey
+		call: LogicalKeyboardKey
+		cameraFocus: LogicalKeyboardKey
+		endCall: LogicalKeyboardKey
+		goBack: LogicalKeyboardKey
+		goHome: LogicalKeyboardKey
+		headsetHook: LogicalKeyboardKey
+		lastNumberRedial: LogicalKeyboardKey
+		notification: LogicalKeyboardKey
+		mannerMode: LogicalKeyboardKey
+		voiceDial: LogicalKeyboardKey
+		tv3DMode: LogicalKeyboardKey
+		tvAntennaCable: LogicalKeyboardKey
+		tvAudioDescription: LogicalKeyboardKey
+		tvAudioDescriptionMixDown: LogicalKeyboardKey
+		tvAudioDescriptionMixUp: LogicalKeyboardKey
+		tvContentsMenu: LogicalKeyboardKey
+		tvDataService: LogicalKeyboardKey
+		tvInputComponent1: LogicalKeyboardKey
+		tvInputComponent2: LogicalKeyboardKey
+		tvInputComposite1: LogicalKeyboardKey
+		tvInputComposite2: LogicalKeyboardKey
+		tvInputHDMI1: LogicalKeyboardKey
+		tvInputHDMI2: LogicalKeyboardKey
+		tvInputHDMI3: LogicalKeyboardKey
+		tvInputHDMI4: LogicalKeyboardKey
+		tvInputVGA1: LogicalKeyboardKey
+		tvMediaContext: LogicalKeyboardKey
+		tvNetwork: LogicalKeyboardKey
+		tvNumberEntry: LogicalKeyboardKey
+		tvRadioService: LogicalKeyboardKey
+		tvSatellite: LogicalKeyboardKey
+		tvSatelliteBS: LogicalKeyboardKey
+		tvSatelliteCS: LogicalKeyboardKey
+		tvSatelliteToggle: LogicalKeyboardKey
+		tvTerrestrialAnalog: LogicalKeyboardKey
+		tvTerrestrialDigital: LogicalKeyboardKey
+		tvTimer: LogicalKeyboardKey
+		key11: LogicalKeyboardKey
+		key12: LogicalKeyboardKey
+		suspend: LogicalKeyboardKey
+		resume: LogicalKeyboardKey
+		sleep: LogicalKeyboardKey
+		abort: LogicalKeyboardKey
+		lang1: LogicalKeyboardKey
+		lang2: LogicalKeyboardKey
+		lang3: LogicalKeyboardKey
+		lang4: LogicalKeyboardKey
+		lang5: LogicalKeyboardKey
+		intlBackslash: LogicalKeyboardKey
+		intlRo: LogicalKeyboardKey
+		intlYen: LogicalKeyboardKey
+		controlLeft: LogicalKeyboardKey
+		controlRight: LogicalKeyboardKey
+		shiftLeft: LogicalKeyboardKey
+		shiftRight: LogicalKeyboardKey
+		altLeft: LogicalKeyboardKey
+		altRight: LogicalKeyboardKey
+		metaLeft: LogicalKeyboardKey
+		metaRight: LogicalKeyboardKey
+		control: LogicalKeyboardKey
+		shift: LogicalKeyboardKey
+		alt: LogicalKeyboardKey
+		meta: LogicalKeyboardKey
+		numpadEnter: LogicalKeyboardKey
+		numpadParenLeft: LogicalKeyboardKey
+		numpadParenRight: LogicalKeyboardKey
+		numpadMultiply: LogicalKeyboardKey
+		numpadAdd: LogicalKeyboardKey
+		numpadComma: LogicalKeyboardKey
+		numpadSubtract: LogicalKeyboardKey
+		numpadDecimal: LogicalKeyboardKey
+		numpadDivide: LogicalKeyboardKey
+		numpad0: LogicalKeyboardKey
+		numpad1: LogicalKeyboardKey
+		numpad2: LogicalKeyboardKey
+		numpad3: LogicalKeyboardKey
+		numpad4: LogicalKeyboardKey
+		numpad5: LogicalKeyboardKey
+		numpad6: LogicalKeyboardKey
+		numpad7: LogicalKeyboardKey
+		numpad8: LogicalKeyboardKey
+		numpad9: LogicalKeyboardKey
+		numpadEqual: LogicalKeyboardKey
+		gameButton1: LogicalKeyboardKey
+		gameButton2: LogicalKeyboardKey
+		gameButton3: LogicalKeyboardKey
+		gameButton4: LogicalKeyboardKey
+		gameButton5: LogicalKeyboardKey
+		gameButton6: LogicalKeyboardKey
+		gameButton7: LogicalKeyboardKey
+		gameButton8: LogicalKeyboardKey
+		gameButton9: LogicalKeyboardKey
+		gameButton10: LogicalKeyboardKey
+		gameButton11: LogicalKeyboardKey
+		gameButton12: LogicalKeyboardKey
+		gameButton13: LogicalKeyboardKey
+		gameButton14: LogicalKeyboardKey
+		gameButton15: LogicalKeyboardKey
+		gameButton16: LogicalKeyboardKey
+		gameButtonA: LogicalKeyboardKey
+		gameButtonB: LogicalKeyboardKey
+		gameButtonC: LogicalKeyboardKey
+		gameButtonLeft1: LogicalKeyboardKey
+		gameButtonLeft2: LogicalKeyboardKey
+		gameButtonMode: LogicalKeyboardKey
+		gameButtonRight1: LogicalKeyboardKey
+		gameButtonRight2: LogicalKeyboardKey
+		gameButtonSelect: LogicalKeyboardKey
+		gameButtonStart: LogicalKeyboardKey
+		gameButtonThumbLeft: LogicalKeyboardKey
+		gameButtonThumbRight: LogicalKeyboardKey
+		gameButtonX: LogicalKeyboardKey
+		gameButtonY: LogicalKeyboardKey
+		gameButtonZ: LogicalKeyboardKey
 	default:
 		keyId: int
 
@@ -2400,8 +2400,8 @@ abstract class KeyEvent extends Object:
 class FocusNode extends Object:
 	default:
 		debugLabel: opt<str>
-		onKey: opt<func<__PLACEHOLDER__, RawKeyEvent, KeyEventResult>>
-		onKeyEvent: opt<func<__PLACEHOLDER__, KeyEvent, KeyEventResult>>
+		onKey: opt<func<FocusNode, RawKeyEvent, KeyEventResult>>
+		onKeyEvent: opt<func<FocusNode, KeyEvent, KeyEventResult>>
 		skipTraversal: opt<bool>
 		canRequestFocus: opt<bool>
 		descendantsAreFocusable: opt<bool>
