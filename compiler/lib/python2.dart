@@ -72,6 +72,19 @@ String _sc(String s) => _n(_snakeCase(s));
 class PythonTranslator {
   final p = Printer('    ');
 
+  String _toConst(IRConst c) {
+    if (c is IRInt) {
+      return '${c.value}';
+    } else if (c is IRDouble) {
+      return '${c.value}';
+    } else if (c is IRBool) {
+      return c.value ? 'True' : 'False';
+    } else if (c is IRString) {
+      return "'${c.value}'"; // TODO escape properly
+    }
+    return 'UNDEFINED';
+  }
+
   String _toType(IRType t) {
     if (t is IRParameterizedType) {
       final ps = t.parameters.map(_toType).toList();
@@ -97,6 +110,9 @@ class PythonTranslator {
   bool _isOptional(IRType t) =>
       t is IRParameterizedType && t.element == IRElement.optional;
 
+  bool _typeRefersTo(IRType t, IRElement e) =>
+      t is IRParameterizedType && t.element == e;
+
   void _emitClass(IRClass e) {
     final abstracts = e.isAbstract ? ['ABC'] : <String>[];
     final parameters = e.parameters.isNotEmpty
@@ -112,10 +128,21 @@ class PythonTranslator {
     ];
     final base = inherits.isNotEmpty ? '(${comma(inherits)})' : '';
 
+    // Python doesn't handle recursive type definitions: static fields of the
+    // same type as the containing class need to be assigned after the class
+    // definition.
+    final internalFields = e.fields.where((f) => !_typeRefersTo(f.type, e));
+    final externalFields = e.fields.where((f) => _typeRefersTo(f.type, e));
+
     p('');
     p('');
     p('class ${_n(e.name)}$base:');
     p.t(() {
+      for (final f in internalFields) {
+        p('${_sc(f.name)}: ${_toType(f.type)} = ${_toConst(f.value)}');
+      }
+      p('');
+
       for (final c in [e.constructor, ...e.constructors]) {
         if (c.name.isNotEmpty) {
           p('');
@@ -123,6 +150,7 @@ class PythonTranslator {
         }
         final name = c.name.isEmpty ? '__init__' : _sc(c.name);
         p('def $name(');
+        // Non-default params must precede default params, so separate them.
         final req = c.fields.where((f) => !_isOptional(f.type));
         final opt = c.fields.where((f) => _isOptional(f.type));
         p.t(() {
