@@ -97,15 +97,6 @@ class PythonTranslator {
   bool _isOptional(IRType t) =>
       t is IRParameterizedType && t.element == IRElement.optional;
 
-  void _emitParams(Iterable<IRField> req, Iterable<IRField> opt) {
-    for (final f in req) {
-      p('${_sc(f.name)}: ${_toType(f.type)},');
-    }
-    for (final f in opt) {
-      p('${_sc(f.name)}: ${_toType(f.type)} = None,');
-    }
-  }
-
   void _emitClass(IRClass e) {
     final abstracts = e.isAbstract ? ['ABC'] : <String>[];
     final parameters = e.parameters.isNotEmpty
@@ -125,24 +116,35 @@ class PythonTranslator {
     p('');
     p('class ${_n(e.name)}$base:');
     p.t(() {
-      p('def __init__(');
-      final fields = e.constructor.fields;
-      final req = fields.where((f) => !_isOptional(f.type));
-      final opt = fields.where((f) => _isOptional(f.type));
-      p.t(() {
-        p('self,');
-        _emitParams(req, opt);
-      });
-      p('):');
-      p.t(() {
-        p("self.__ctor = (('',), (");
+      for (final c in [e.constructor, ...e.constructors]) {
+        if (c.name.isNotEmpty) {
+          p('');
+          p('@staticmethod');
+        }
+        final name = c.name.isEmpty ? '__init__' : _sc(c.name);
+        p('def $name(');
+        final req = c.fields.where((f) => !_isOptional(f.type));
+        final opt = c.fields.where((f) => _isOptional(f.type));
         p.t(() {
-          for (final f in [...req, ...opt]) {
-            p("'${f.name}', ${_sc(f.name)},");
+          p('self,');
+          for (final f in req) {
+            p('${_sc(f.name)}: ${_toType(f.type)},');
+          }
+          for (final f in opt) {
+            p('${_sc(f.name)}: ${_toType(f.type)} = None,');
           }
         });
-        p('))');
-      });
+        p('):');
+        p.t(() {
+          p("self.__ctor = (('${c.name}',), (");
+          p.t(() {
+            for (final f in [...req, ...opt]) {
+              p("'${f.name}', ${_sc(f.name)},");
+            }
+          });
+          p('))');
+        });
+      }
     });
   }
 
