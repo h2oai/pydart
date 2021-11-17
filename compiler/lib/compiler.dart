@@ -102,27 +102,26 @@ class IRType {
 
   IRType(this.name);
 
-  // XXX move to IRElement
-  static final IRType unknown = IRType('unknown');
-  static final IRType nothing = IRType('void');
-  static final IRType bool = IRType('bool');
-  static final IRType int = IRType('int');
-  static final IRType float = IRType('float');
-  static final IRType str = IRType('str');
-  static final IRType any = IRType('any');
+  static final unknown = IRType('unknown');
+  static final nothing = IRType('void');
+  static final bool = IRType('bool');
+  static final int = IRType('int');
+  static final float = IRType('float');
+  static final str = IRType('str');
+  static final any = IRType('any');
 }
 
-class IRParameterType extends IRType {
+class IRTypeParameter extends IRType {
   final IRType? bound;
 
-  IRParameterType(String name, this.bound) : super(name);
+  IRTypeParameter(String name, this.bound) : super(name);
 }
 
-class IRInterfaceType extends IRType {
+class IRParameterizedType extends IRType {
   final IRElement element;
   final List<IRType> parameters;
 
-  IRInterfaceType(
+  IRParameterizedType(
     this.element,
     this.parameters,
   ) : super(element.name);
@@ -134,8 +133,8 @@ class IRElement {
 
   IRElement(this.path, this.name);
 
-  static final IRElement optional = IRElement('', 'opt');
-  static final IRElement func = IRElement('', 'func');
+  static final optional = IRElement('', 'opt');
+  static final func = IRElement('', 'func');
 }
 
 class IRPlaceholder extends IRElement {
@@ -184,7 +183,7 @@ class IRConstructor {
 
 class IRClass extends IRElement {
   final bool isAbstract;
-  final List<IRParameterType> parameters;
+  final List<IRTypeParameter> parameters;
   final List<IRType> supertypes;
   final List<IRType> interfaces;
   final IRConstructor constructor;
@@ -212,7 +211,7 @@ class PythonUnit {
 
   PythonUnit(this.path, this.name);
 
-  static final PythonUnit placeholder = PythonUnit('NA', 'NA');
+  static final placeholder = PythonUnit('NA', 'NA');
 }
 
 class PythonEnum extends PythonUnit {
@@ -300,12 +299,12 @@ class PythonType {
 
   PythonType(this.name, {this.types, this.unit});
 
-  static final PythonType bool = PythonType('bool');
-  static final PythonType int = PythonType('int');
-  static final PythonType float = PythonType('float');
-  static final PythonType str = PythonType('str');
-  static final PythonType any = PythonType('Any');
-  static final PythonType callable = PythonType('Callable');
+  static final bool = PythonType('bool');
+  static final int = PythonType('int');
+  static final float = PythonType('float');
+  static final str = PythonType('str');
+  static final any = PythonType('Any');
+  static final callable = PythonType('Callable');
 }
 
 String snakeCase(String name) => name
@@ -872,9 +871,9 @@ class IRBuilder {
     return IREnum(path, e.name, values: values, dartElement: e);
   }
 
-  IRParameterType _toParameterType(TypeParameterElement p) {
+  IRTypeParameter _toParameterType(TypeParameterElement p) {
     final bound = p.bound;
-    return IRParameterType(p.name, bound != null ? _toType(bound) : null);
+    return IRTypeParameter(p.name, bound != null ? _toType(bound) : null);
   }
 
   IRType _toType(DartType t) {
@@ -886,7 +885,7 @@ class IRBuilder {
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
-      return IRInterfaceType(
+      return IRParameterizedType(
           _load(t.element), t.typeArguments.map(_toType).toList());
     }
 
@@ -897,7 +896,8 @@ class IRBuilder {
         return p.isOptional ? _toOptional(t) : t;
       }).toList();
       final returnType = _toType(t.returnType);
-      return IRInterfaceType(IRElement.func, [...parameterTypes, returnType]);
+      return IRParameterizedType(
+          IRElement.func, [...parameterTypes, returnType]);
     }
 
     if (t is TypeParameterType) {
@@ -939,7 +939,7 @@ class IRBuilder {
   }
 
   IRType _toOptional(IRType t) {
-    return IRInterfaceType(IRElement.optional, [t]);
+    return IRParameterizedType(IRElement.optional, [t]);
   }
 
   IRField _toField(ParameterElement e) {
@@ -1011,16 +1011,16 @@ class IRBuilder {
     return ir;
   }
 
-  IRType _resolveType(IRType t) => (t is IRParameterType)
+  IRType _resolveType(IRType t) => (t is IRTypeParameter)
       ? _resolveParameterType(t)
-      : (t is IRInterfaceType)
-          ? IRInterfaceType(_resolveElement(t.element),
+      : (t is IRParameterizedType)
+          ? IRParameterizedType(_resolveElement(t.element),
               t.parameters.map(_resolveType).toList())
           : t;
 
-  IRParameterType _resolveParameterType(IRParameterType p) {
+  IRTypeParameter _resolveParameterType(IRTypeParameter p) {
     final b = p.bound;
-    return b != null ? IRParameterType(p.name, _resolveType(b)) : p;
+    return b != null ? IRTypeParameter(p.name, _resolveType(b)) : p;
   }
 
   IRField _resolveField(IRField f) =>
@@ -1069,12 +1069,12 @@ class IRBuilder {
   }
 
   static String _dumpType(IRType t) {
-    if (t is IRInterfaceType) {
+    if (t is IRParameterizedType) {
       if (t.parameters.isNotEmpty) {
         final params = t.parameters.map(_dumpType).join(', ');
         return '${t.name}<$params>';
       }
-    } else if (t is IRParameterType) {
+    } else if (t is IRTypeParameter) {
       final b = t.bound;
       return t.name + (b != null ? ' extends ${_dumpType(b)}' : '');
     }
