@@ -105,11 +105,29 @@ class PythonTranslator {
     throw 'unknown type ${t.name}';
   }
 
+  String _defaultValueOf(IRType t) {
+    if (t == IRType.bool) return 'false';
+    if (t == IRType.int) return '0';
+    if (t == IRType.double) return '0.0';
+    if (t == IRType.string) return "''";
+
+    throw 'cannot compute default value of ${t.name}';
+  }
+
   bool _isOptional(IRType t) =>
       t is IRParameterizedType && t.element == IRElement.optional;
 
   bool _typeRefersTo(IRType t, IRElement e) =>
       t is IRParameterizedType && t.element == e;
+
+  void _emitDefaultArgs(IRClass c) {
+    p.t(() {
+      final req = c.constructor.fields.where((f) => !_isOptional(f.type));
+      for (final f in req) {
+        p('${_sc(f.name)}=${_defaultValueOf(f.type)},');
+      }
+    });
+  }
 
   void _emitClass(IRClass e) {
     final abstracts = e.isAbstract ? ['ABC'] : <String>[];
@@ -136,19 +154,27 @@ class PythonTranslator {
     final externalFields = e.fields.where((f) => _typeRefersTo(f.type, e));
 
     if (nonConstFields.isNotEmpty) {
-      final typeSet = Set.from(nonConstFields.map((f) => _toType(f.type)));
-      for (final t in typeSet) {
-        p('');
-        p('');
-        p('def _${_sc(klass)}__${_sc(t)}(_k: str) -> $t:');
-        p.t(() {
-          p('_o = $t(');
-          // XXX default ctor args
-          p(')');
-          p("_o.__ctor = (('${e.name}', _k),)");
-          p('return _o');
-        });
+      final types = <String, IRType>{};
+      for (final f in nonConstFields) {
+        types[_toType(f.type)] = f.type;
       }
+      types.forEach((t, v) {
+        if (v is IRParameterizedType) {
+          final element = v.element;
+          if (element is IRClass) {
+            p('');
+            p('');
+            p('def _${_sc(klass)}__${_sc(t)}(_k: str) -> $t:');
+            p.t(() {
+              p('_o = $t(');
+              _emitDefaultArgs(element);
+              p(')');
+              p("_o.__ctor = (('${e.name}', _k),)");
+              p('return _o');
+            });
+          }
+        }
+      });
     }
 
     p('');
@@ -212,7 +238,7 @@ class PythonTranslator {
         //
         final attr = _sc(f.name);
         p('$klass.$attr = $klass(');
-        // XXX default ctor args
+        _emitDefaultArgs(e);
         p(')');
         p("$klass.$attr.__ctor = (('${f.name}',),)");
       }
