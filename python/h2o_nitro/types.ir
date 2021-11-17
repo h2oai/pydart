@@ -160,7 +160,7 @@ class Color extends Object:
 		r: int
 		g: int
 		b: int
-		opacity: float
+		opacity: double
 
 # bin/cache/pkg/sky_engine/lib/ui/window.dart
 enum Brightness:
@@ -170,14 +170,14 @@ enum Brightness:
 # packages/flutter/lib/src/material/theme_data.dart
 class VisualDensity extends Object:
 	static:
-		minimumDensity: float = -4.0
-		maximumDensity: float = 4.0
+		minimumDensity: double = -4.0
+		maximumDensity: double = 4.0
 		standard: VisualDensity
 		comfortable: VisualDensity
 		compact: VisualDensity
 	default:
-		horizontal: opt<float>
-		vertical: opt<float>
+		horizontal: opt<double>
+		vertical: opt<double>
 
 # packages/flutter/lib/src/painting/colors.dart
 class ColorSwatch<T> extends Color:
@@ -303,8 +303,8 @@ enum MaterialTapTargetSize:
 class ButtonThemeData extends Object:
 	default:
 		textTheme: opt<ButtonTextTheme>
-		minWidth: opt<float>
-		height: opt<float>
+		minWidth: opt<double>
+		height: opt<double>
 		padding: opt<EdgeInsetsGeometry>
 		shape: opt<ShapeBorder>
 		layoutBehavior: opt<ButtonBarLayoutBehavior>
@@ -364,8 +364,8 @@ class Paint extends Object:
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 abstract class OffsetBase extends Object:
 	default:
-		_dx: float
-		_dy: float
+		_dx: double
+		_dy: double
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Offset extends OffsetBase:
@@ -373,18 +373,18 @@ class Offset extends OffsetBase:
 		zero: Offset
 		infinite: Offset
 	default:
-		dx: float
-		dy: float
+		dx: double
+		dy: double
 	fromDirection:
-		direction: float
-		distance: opt<float>
+		direction: double
+		distance: opt<double>
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Shadow extends Object:
 	default:
 		color: opt<Color>
 		offset: opt<Offset>
-		blurRadius: opt<float>
+		blurRadius: opt<double>
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature extends Object:
@@ -458,13 +458,13 @@ class TextStyle extends Object:
 		inherit: opt<bool>
 		color: opt<Color>
 		backgroundColor: opt<Color>
-		fontSize: opt<float>
+		fontSize: opt<double>
 		fontWeight: opt<FontWeight>
 		fontStyle: opt<FontStyle>
-		letterSpacing: opt<float>
-		wordSpacing: opt<float>
+		letterSpacing: opt<double>
+		wordSpacing: opt<double>
 		textBaseline: opt<TextBaseline>
-		height: opt<float>
+		height: opt<double>
 		leadingDistribution: opt<TextLeadingDistribution>
 		locale: opt<Locale>
 		foreground: opt<Paint>
@@ -474,7 +474,7 @@ class TextStyle extends Object:
 		decoration: opt<TextDecoration>
 		decorationColor: opt<Color>
 		decorationStyle: opt<TextDecorationStyle>
-		decorationThickness: opt<float>
+		decorationThickness: opt<double>
 		debugLabel: opt<str>
 		fontFamily: opt<str>
 		fontFamilyFallback: opt<List<str>>
@@ -490,39 +490,39 @@ class Size extends OffsetBase:
 		zero: Size
 		infinite: Size
 	default:
-		width: float
-		height: float
+		width: double
+		height: double
 	copy:
 		source: Size
 	square:
-		dimension: float
+		dimension: double
 	fromWidth:
-		width: float
+		width: double
 	fromHeight:
-		height: float
+		height: double
 	fromRadius:
-		radius: float
+		radius: double
 
 # packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints extends Constraints:
 	default:
-		minWidth: opt<float>
-		maxWidth: opt<float>
-		minHeight: opt<float>
-		maxHeight: opt<float>
+		minWidth: opt<double>
+		maxWidth: opt<double>
+		minHeight: opt<double>
+		maxHeight: opt<double>
 	tight:
 		size: Size
 	tightFor:
-		width: opt<float>
-		height: opt<float>
+		width: opt<double>
+		height: opt<double>
 	tightForFinite:
-		width: opt<float>
-		height: opt<float>
+		width: opt<double>
+		height: opt<double>
 	loose:
 		size: Size
 	expand:
-		width: opt<float>
-		height: opt<float>
+		width: opt<double>
+		height: opt<double>
 
 # packages/flutter/lib/src/painting/border_radius.dart
 abstract class BorderRadiusGeometry extends Object:
@@ -532,10 +532,10 @@ class Radius extends Object:
 	static:
 		zero: Radius
 	circular:
-		radius: float
+		radius: double
 	elliptical:
-		x: float
-		y: float
+		x: double
+		y: double
 
 # packages/flutter/lib/src/painting/border_radius.dart
 class BorderRadius extends BorderRadiusGeometry:
@@ -544,7 +544,7 @@ class BorderRadius extends BorderRadiusGeometry:
 	all:
 		radius: Radius
 	circular:
-		radius: float
+		radius: double
 	vertical:
 		top: opt<Radius>
 		bottom: opt<Radius>
@@ -574,7 +574,7 @@ class ToggleButtonsThemeData extends Object:
 		selectedBorderColor: opt<Color>
 		disabledBorderColor: opt<Color>
 		borderRadius: opt<BorderRadius>
-		borderWidth: opt<float>
+		borderWidth: opt<double>
 
 # packages/flutter/lib/src/material/text_theme.dart
 class TextTheme extends Object:
@@ -610,7 +610,7 @@ class BorderSide extends Object:
 		none: BorderSide
 	default:
 		color: opt<Color>
-		width: opt<float>
+		width: opt<double>
 		style: opt<BorderStyle>
 
 # packages/flutter/lib/src/material/input_border.dart
@@ -654,8 +654,8 @@ class InputDecorationTheme extends Object:
 class IconThemeData extends Object:
 	default:
 		color: opt<Color>
-		opacity: opt<float>
-		size: opt<float>
+		opacity: opt<double>
+		size: opt<double>
 	fallback:
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -694,8 +694,8 @@ enum TextDirection:
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeValues extends Object:
 	default:
-		start: float
-		end: float
+		start: double
+		end: double
 
 # packages/flutter/lib/src/material/slider_theme.dart
 enum Thumb:
@@ -705,7 +705,7 @@ enum Thumb:
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderThemeData extends Object:
 	default:
-		trackHeight: opt<float>
+		trackHeight: opt<double>
 		activeTrackColor: opt<Color>
 		inactiveTrackColor: opt<Color>
 		disabledActiveTrackColor: opt<Color>
@@ -730,8 +730,8 @@ class SliderThemeData extends Object:
 		rangeValueIndicatorShape: opt<RangeSliderValueIndicatorShape>
 		showValueIndicator: opt<ShowValueIndicator>
 		valueIndicatorTextStyle: opt<TextStyle>
-		minThumbSeparation: opt<float>
-		thumbSelector: opt<func<TextDirection, RangeValues, float, Size, Size, float, Thumb>>
+		minThumbSeparation: opt<double>
+		thumbSelector: opt<func<TextDirection, RangeValues, double, Size, Size, double, Thumb>>
 	fromPrimaryColors:
 		primaryColor: Color
 		primaryColorDark: Color
@@ -796,10 +796,10 @@ enum TooltipTriggerMode:
 # packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipThemeData extends Object:
 	default:
-		height: opt<float>
+		height: opt<double>
 		padding: opt<EdgeInsetsGeometry>
 		margin: opt<EdgeInsetsGeometry>
-		verticalOffset: opt<float>
+		verticalOffset: opt<double>
 		preferBelow: opt<bool>
 		excludeFromSemantics: opt<bool>
 		decoration: opt<Decoration>
@@ -822,7 +822,7 @@ class CardTheme extends Object:
 		clipBehavior: opt<Clip>
 		color: opt<Color>
 		shadowColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		margin: opt<EdgeInsetsGeometry>
 		shape: opt<ShapeBorder>
 
@@ -850,8 +850,8 @@ class ChipThemeData extends Object:
 		labelStyle: TextStyle
 		secondaryLabelStyle: TextStyle
 		brightness: Brightness
-		elevation: opt<float>
-		pressElevation: opt<float>
+		elevation: opt<double>
+		pressElevation: opt<double>
 	fromDefaults:
 		brightness: opt<Brightness>
 		primaryColor: opt<Color>
@@ -897,15 +897,15 @@ class AppBarTheme extends Object:
 		color: opt<Color>
 		backgroundColor: opt<Color>
 		foregroundColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		shadowColor: opt<Color>
 		shape: opt<ShapeBorder>
 		iconTheme: opt<IconThemeData>
 		actionsIconTheme: opt<IconThemeData>
 		textTheme: opt<TextTheme>
 		centerTitle: opt<bool>
-		titleSpacing: opt<float>
-		toolbarHeight: opt<float>
+		titleSpacing: opt<double>
+		toolbarHeight: opt<double>
 		toolbarTextStyle: opt<TextStyle>
 		titleTextStyle: opt<TextStyle>
 		systemOverlayStyle: opt<SystemUiOverlayStyle>
@@ -917,16 +917,16 @@ abstract class MaterialStateProperty<T> extends Object:
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData extends Object:
 	default:
-		thickness: opt<MaterialStateProperty<float>>
+		thickness: opt<MaterialStateProperty<double>>
 		showTrackOnHover: opt<bool>
 		isAlwaysShown: opt<bool>
 		radius: opt<Radius>
 		thumbColor: opt<MaterialStateProperty<Color>>
 		trackColor: opt<MaterialStateProperty<Color>>
 		trackBorderColor: opt<MaterialStateProperty<Color>>
-		crossAxisMargin: opt<float>
-		mainAxisMargin: opt<float>
-		minThumbLength: opt<float>
+		crossAxisMargin: opt<double>
+		mainAxisMargin: opt<double>
+		minThumbLength: opt<double>
 		interactive: opt<bool>
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
@@ -936,14 +936,14 @@ abstract class NotchedShape extends Object:
 class BottomAppBarTheme extends Object:
 	default:
 		color: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		shape: opt<NotchedShape>
 
 # packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme extends Object:
 	default:
 		backgroundColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		shape: opt<ShapeBorder>
 		titleTextStyle: opt<TextStyle>
 		contentTextStyle: opt<TextStyle>
@@ -956,18 +956,18 @@ class FloatingActionButtonThemeData extends Object:
 		focusColor: opt<Color>
 		hoverColor: opt<Color>
 		splashColor: opt<Color>
-		elevation: opt<float>
-		focusElevation: opt<float>
-		hoverElevation: opt<float>
-		disabledElevation: opt<float>
-		highlightElevation: opt<float>
+		elevation: opt<double>
+		focusElevation: opt<double>
+		hoverElevation: opt<double>
+		disabledElevation: opt<double>
+		highlightElevation: opt<double>
 		shape: opt<ShapeBorder>
 		enableFeedback: opt<bool>
 		sizeConstraints: opt<BoxConstraints>
 		smallSizeConstraints: opt<BoxConstraints>
 		largeSizeConstraints: opt<BoxConstraints>
 		extendedSizeConstraints: opt<BoxConstraints>
-		extendedIconLabelSpacing: opt<float>
+		extendedIconLabelSpacing: opt<double>
 		extendedPadding: opt<EdgeInsetsGeometry>
 		extendedTextStyle: opt<TextStyle>
 
@@ -981,12 +981,12 @@ enum NavigationRailLabelType:
 class NavigationRailThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		unselectedLabelTextStyle: opt<TextStyle>
 		selectedLabelTextStyle: opt<TextStyle>
 		unselectedIconTheme: opt<IconThemeData>
 		selectedIconTheme: opt<IconThemeData>
-		groupAlignment: opt<float>
+		groupAlignment: opt<double>
 		labelType: opt<NavigationRailLabelType>
 
 # packages/flutter/lib/src/material/typography.dart
@@ -1065,7 +1065,7 @@ class SnackBarThemeData extends Object:
 		actionTextColor: opt<Color>
 		disabledActionTextColor: opt<Color>
 		contentTextStyle: opt<TextStyle>
-		elevation: opt<float>
+		elevation: opt<double>
 		shape: opt<ShapeBorder>
 		behavior: opt<SnackBarBehavior>
 
@@ -1073,9 +1073,9 @@ class SnackBarThemeData extends Object:
 class BottomSheetThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		modalBackgroundColor: opt<Color>
-		modalElevation: opt<float>
+		modalElevation: opt<double>
 		shape: opt<ShapeBorder>
 		clipBehavior: opt<Clip>
 		constraints: opt<BoxConstraints>
@@ -1085,7 +1085,7 @@ class PopupMenuThemeData extends Object:
 	default:
 		color: opt<Color>
 		shape: opt<ShapeBorder>
-		elevation: opt<float>
+		elevation: opt<double>
 		textStyle: opt<TextStyle>
 		enableFeedback: opt<bool>
 
@@ -1101,10 +1101,10 @@ class MaterialBannerThemeData extends Object:
 class DividerThemeData extends Object:
 	default:
 		color: opt<Color>
-		space: opt<float>
-		thickness: opt<float>
-		indent: opt<float>
-		endIndent: opt<float>
+		space: opt<double>
+		thickness: opt<double>
+		indent: opt<double>
+		endIndent: opt<double>
 
 # packages/flutter/lib/src/rendering/flex.dart
 enum MainAxisAlignment:
@@ -1131,8 +1131,8 @@ class ButtonBarThemeData extends Object:
 		alignment: opt<MainAxisAlignment>
 		mainAxisSize: opt<MainAxisSize>
 		buttonTextTheme: opt<ButtonTextTheme>
-		buttonMinWidth: opt<float>
-		buttonHeight: opt<float>
+		buttonMinWidth: opt<double>
+		buttonHeight: opt<double>
 		buttonPadding: opt<EdgeInsetsGeometry>
 		buttonAlignedDropdown: opt<bool>
 		layoutBehavior: opt<ButtonBarLayoutBehavior>
@@ -1153,7 +1153,7 @@ enum BottomNavigationBarLandscapeLayout:
 class BottomNavigationBarThemeData extends Object:
 	default:
 		backgroundColor: opt<Color>
-		elevation: opt<float>
+		elevation: opt<double>
 		selectedIconTheme: opt<IconThemeData>
 		unselectedIconTheme: opt<IconThemeData>
 		selectedItemColor: opt<Color>
@@ -1204,7 +1204,7 @@ class ButtonStyle extends Object:
 		foregroundColor: opt<MaterialStateProperty<Color>>
 		overlayColor: opt<MaterialStateProperty<Color>>
 		shadowColor: opt<MaterialStateProperty<Color>>
-		elevation: opt<MaterialStateProperty<float>>
+		elevation: opt<MaterialStateProperty<double>>
 		padding: opt<MaterialStateProperty<EdgeInsetsGeometry>>
 		minimumSize: opt<MaterialStateProperty<Size>>
 		fixedSize: opt<MaterialStateProperty<Size>>
@@ -1246,15 +1246,15 @@ class DataTableThemeData extends Object:
 	default:
 		decoration: opt<Decoration>
 		dataRowColor: opt<MaterialStateProperty<Color>>
-		dataRowHeight: opt<float>
+		dataRowHeight: opt<double>
 		dataTextStyle: opt<TextStyle>
 		headingRowColor: opt<MaterialStateProperty<Color>>
-		headingRowHeight: opt<float>
+		headingRowHeight: opt<double>
 		headingTextStyle: opt<TextStyle>
-		horizontalMargin: opt<float>
-		columnSpacing: opt<float>
-		dividerThickness: opt<float>
-		checkboxHorizontalMargin: opt<float>
+		horizontalMargin: opt<double>
+		columnSpacing: opt<double>
+		dividerThickness: opt<double>
+		checkboxHorizontalMargin: opt<double>
 
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData extends Object:
@@ -1263,7 +1263,7 @@ class CheckboxThemeData extends Object:
 		fillColor: opt<MaterialStateProperty<Color>>
 		checkColor: opt<MaterialStateProperty<Color>>
 		overlayColor: opt<MaterialStateProperty<Color>>
-		splashRadius: opt<float>
+		splashRadius: opt<double>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		visualDensity: opt<VisualDensity>
 		shape: opt<OutlinedBorder>
@@ -1275,7 +1275,7 @@ class RadioThemeData extends Object:
 		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
 		fillColor: opt<MaterialStateProperty<Color>>
 		overlayColor: opt<MaterialStateProperty<Color>>
-		splashRadius: opt<float>
+		splashRadius: opt<double>
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		visualDensity: opt<VisualDensity>
 
@@ -1287,14 +1287,14 @@ class SwitchThemeData extends Object:
 		materialTapTargetSize: opt<MaterialTapTargetSize>
 		mouseCursor: opt<MaterialStateProperty<MouseCursor>>
 		overlayColor: opt<MaterialStateProperty<Color>>
-		splashRadius: opt<float>
+		splashRadius: opt<double>
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData extends Object:
 	default:
 		color: opt<Color>
 		linearTrackColor: opt<Color>
-		linearMinHeight: opt<float>
+		linearMinHeight: opt<double>
 		circularTrackColor: opt<Color>
 		refreshBackgroundColor: opt<Color>
 
