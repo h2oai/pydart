@@ -94,8 +94,8 @@ class PythonTranslator {
               : '[${comma(ps)}]'
           : '';
       final name = _n(t.name);
-      final quotedName = _declaredNames.contains(name) ? name : "'$name'";
-      return '$quotedName$params';
+      final sig = '$name$params';
+      return _declaredNames.contains(name) ? sig : "'$sig'";
     }
     if (t is IRTypeParameter) {
       // XXX handle bound
