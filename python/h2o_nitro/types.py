@@ -17,6 +17,7 @@ class DiagnosticableTree(ABC, Object):
 
 # packages/flutter/lib/src/foundation/key.dart
 class Key(ABC, Object):
+
     def __init__(
         self,
         value: str,
@@ -35,6 +36,7 @@ class Key(ABC, Object):
 
 # packages/flutter/lib/src/widgets/framework.dart
 class Widget(ABC, DiagnosticableTree):
+
     def __init__(
         self,
         key: Optional[Key] = None,
@@ -46,6 +48,7 @@ class Widget(ABC, DiagnosticableTree):
 
 # packages/flutter/lib/src/widgets/framework.dart
 class StatefulWidget(ABC, Widget):
+
     def __init__(
         self,
         key: Optional[Key] = None,
@@ -62,6 +65,7 @@ class State(ABC, Generic[T], Object):
 
 # packages/flutter/lib/src/widgets/framework.dart
 class GlobalKey(ABC, Generic[T], Key):
+
     def __init__(
         self,
         debug_label: Optional[str] = None,
@@ -85,6 +89,7 @@ class EfficientLengthIterable(ABC, Generic[T], Iterable[T]):
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class RouteSettings(Object):
+
     def __init__(
         self,
         name: Optional[str] = None,
@@ -103,6 +108,7 @@ class LocalKey(ABC, Key):
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class Page(ABC, Generic[T], RouteSettings):
+
     def __init__(
         self,
         key: Optional[LocalKey] = None,
@@ -120,6 +126,7 @@ class Page(ABC, Generic[T], RouteSettings):
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class Route(ABC, Generic[T], Object):
+
     def __init__(
         self,
         settings: Optional[RouteSettings] = None,
@@ -179,6 +186,7 @@ class NavigatorState(State[Navigator]):
 
 # packages/flutter/lib/src/material/scaffold.dart
 class ScaffoldMessenger(StatefulWidget):
+
     def __init__(
         self,
         child: Widget,
@@ -202,6 +210,7 @@ class BuildContext(ABC, Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Color(Object):
+
     def __init__(
         self,
         value: int,
@@ -276,6 +285,7 @@ VisualDensity.compact.__ctor = (('compact',),)
 
 # packages/flutter/lib/src/painting/colors.dart
 class ColorSwatch(Generic[T], Color):
+
     def __init__(
         self,
         primary: int,
@@ -289,6 +299,7 @@ class ColorSwatch(Generic[T], Color):
 
 # packages/flutter/lib/src/material/colors.dart
 class MaterialColor(ColorSwatch[int]):
+
     def __init__(
         self,
         primary: int,
@@ -335,6 +346,7 @@ class ButtonBarLayoutBehavior(Enum):
 
 # packages/flutter/lib/src/material/color_scheme.dart
 class ColorScheme(Object):
+
     def __init__(
         self,
         primary: Color,
@@ -529,6 +541,7 @@ class MaterialTapTargetSize(Enum):
 
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonThemeData(Object):
+
     def __init__(
         self,
         text_theme: Optional[ButtonTextTheme] = None,
@@ -626,6 +639,7 @@ class TextLeadingDistribution(Enum):
 
 # bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
 class Locale(Object):
+
     def __init__(
         self,
         _language_code: str,
@@ -657,6 +671,7 @@ class Paint(Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class OffsetBase(ABC, Object):
+
     def __init__(
         self,
         _dx: float,
@@ -670,6 +685,7 @@ class OffsetBase(ABC, Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Offset(OffsetBase):
+
     def __init__(
         self,
         dx: float,
@@ -706,6 +722,7 @@ Offset.infinite.__ctor = (('infinite',),)
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Shadow(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -721,6 +738,7 @@ class Shadow(Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature(Object):
+
     def __init__(
         self,
         feature: str,
@@ -983,6 +1001,7 @@ class TextOverflow(Enum):
 
 # packages/flutter/lib/src/painting/text_style.dart
 class TextStyle(Object):
+
     def __init__(
         self,
         inherit: Optional[bool] = None,
@@ -1047,6 +1066,7 @@ class Constraints(ABC, Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size(OffsetBase):
+
     def __init__(
         self,
         width: float,
@@ -1117,6 +1137,7 @@ Size.infinite.__ctor = (('infinite',),)
 
 # packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints(Constraints):
+
     def __init__(
         self,
         min_width: Optional[float] = None,
@@ -1283,6 +1304,7 @@ BorderRadius.zero.__ctor = (('zero',),)
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
 class ToggleButtonsThemeData(Object):
+
     def __init__(
         self,
         text_style: Optional[TextStyle] = None,
@@ -1322,6 +1344,7 @@ class ToggleButtonsThemeData(Object):
 
 # packages/flutter/lib/src/material/text_theme.dart
 class TextTheme(Object):
+
     def __init__(
         self,
         headline1: Optional[TextStyle] = None,
@@ -1370,6 +1393,7 @@ class BorderStyle(Enum):
 
 # packages/flutter/lib/src/painting/borders.dart
 class BorderSide(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -1390,6 +1414,7 @@ BorderSide.none.__ctor = (('none',),)
 
 # packages/flutter/lib/src/material/input_border.dart
 class InputBorder(ABC, ShapeBorder):
+
     def __init__(
         self,
         border_side: Optional[BorderSide] = None,
@@ -1406,6 +1431,7 @@ InputBorder.none.__ctor = (('none',),)
 
 # packages/flutter/lib/src/material/input_decorator.dart
 class InputDecorationTheme(Object):
+
     def __init__(
         self,
         label_style: Optional[TextStyle] = None,
@@ -1467,6 +1493,7 @@ class InputDecorationTheme(Object):
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
 class IconThemeData(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -1538,6 +1565,7 @@ class TextDirection(Enum):
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeValues(Object):
+
     def __init__(
         self,
         start: float,
@@ -1557,6 +1585,7 @@ class Thumb(Enum):
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderThemeData(Object):
+
     def __init__(
         self,
         track_height: Optional[float] = None,
@@ -1646,6 +1675,7 @@ class TabBarIndicatorSize(Enum):
 
 # packages/flutter/lib/src/material/tab_bar_theme.dart
 class TabBarTheme(Object):
+
     def __init__(
         self,
         indicator: Optional[Decoration] = None,
@@ -1723,6 +1753,7 @@ class TooltipTriggerMode(Enum):
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipThemeData(Object):
+
     def __init__(
         self,
         height: Optional[float] = None,
@@ -1764,6 +1795,7 @@ class Clip(Enum):
 
 # packages/flutter/lib/src/material/card_theme.dart
 class CardTheme(Object):
+
     def __init__(
         self,
         clip_behavior: Optional[Clip] = None,
@@ -1785,6 +1817,7 @@ class CardTheme(Object):
 
 # packages/flutter/lib/src/painting/borders.dart
 class OutlinedBorder(ABC, ShapeBorder):
+
     def __init__(
         self,
         side: Optional[BorderSide] = None,
@@ -1796,6 +1829,7 @@ class OutlinedBorder(ABC, ShapeBorder):
 
 # packages/flutter/lib/src/material/chip_theme.dart
 class ChipThemeData(Object):
+
     def __init__(
         self,
         background_color: Color,
@@ -1871,6 +1905,7 @@ class PageTransitionsBuilder(ABC, Object):
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsTheme(Object):
+
     def __init__(
         self,
         builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
@@ -1882,6 +1917,7 @@ class PageTransitionsTheme(Object):
 
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle(Object):
+
     def __init__(
         self,
         system_navigation_bar_color: Optional[Color] = None,
@@ -1915,6 +1951,7 @@ SystemUiOverlayStyle.dark.__ctor = (('dark',),)
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
 class AppBarTheme(Object):
+
     def __init__(
         self,
         brightness: Optional[Brightness] = None,
@@ -1963,6 +2000,7 @@ class MaterialStateProperty(ABC, Generic[T], Object):
 
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData(Object):
+
     def __init__(
         self,
         thickness: Optional[MaterialStateProperty[float]] = None,
@@ -1999,6 +2037,7 @@ class NotchedShape(ABC, Object):
 
 # packages/flutter/lib/src/material/bottom_app_bar_theme.dart
 class BottomAppBarTheme(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -2014,6 +2053,7 @@ class BottomAppBarTheme(Object):
 
 # packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2033,6 +2073,7 @@ class DialogTheme(Object):
 
 # packages/flutter/lib/src/material/floating_action_button_theme.dart
 class FloatingActionButtonThemeData(Object):
+
     def __init__(
         self,
         foreground_color: Optional[Color] = None,
@@ -2087,6 +2128,7 @@ class NavigationRailLabelType(Enum):
 
 # packages/flutter/lib/src/material/navigation_rail_theme.dart
 class NavigationRailThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2195,6 +2237,7 @@ class Typography(Object):
 
 # packages/flutter/lib/src/cupertino/text_theme.dart
 class CupertinoTextThemeData(Object):
+
     def __init__(
         self,
         primary_color: Optional[Color] = None,
@@ -2222,6 +2265,7 @@ class CupertinoTextThemeData(Object):
 
 # packages/flutter/lib/src/cupertino/theme.dart
 class NoDefaultCupertinoThemeData(Object):
+
     def __init__(
         self,
         brightness: Optional[Brightness] = None,
@@ -2249,6 +2293,7 @@ class SnackBarBehavior(Enum):
 
 # packages/flutter/lib/src/material/snack_bar_theme.dart
 class SnackBarThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2272,6 +2317,7 @@ class SnackBarThemeData(Object):
 
 # packages/flutter/lib/src/material/bottom_sheet_theme.dart
 class BottomSheetThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2295,6 +2341,7 @@ class BottomSheetThemeData(Object):
 
 # packages/flutter/lib/src/material/popup_menu_theme.dart
 class PopupMenuThemeData(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -2314,6 +2361,7 @@ class PopupMenuThemeData(Object):
 
 # packages/flutter/lib/src/material/banner_theme.dart
 class MaterialBannerThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2331,6 +2379,7 @@ class MaterialBannerThemeData(Object):
 
 # packages/flutter/lib/src/material/divider_theme.dart
 class DividerThemeData(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -2372,6 +2421,7 @@ class VerticalDirection(Enum):
 
 # packages/flutter/lib/src/material/button_bar_theme.dart
 class ButtonBarThemeData(Object):
+
     def __init__(
         self,
         alignment: Optional[MainAxisAlignment] = None,
@@ -2412,6 +2462,7 @@ class BottomNavigationBarLandscapeLayout(Enum):
 
 # packages/flutter/lib/src/material/bottom_navigation_bar_theme.dart
 class BottomNavigationBarThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2447,6 +2498,7 @@ class BottomNavigationBarThemeData(Object):
 
 # packages/flutter/lib/src/material/time_picker_theme.dart
 class TimePickerThemeData(Object):
+
     def __init__(
         self,
         background_color: Optional[Color] = None,
@@ -2508,6 +2560,7 @@ class AlignmentGeometry(ABC, Object):
 
 # packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle(Object):
+
     def __init__(
         self,
         text_style: Optional[MaterialStateProperty[TextStyle]] = None,
@@ -2555,6 +2608,7 @@ class ButtonStyle(Object):
 
 # packages/flutter/lib/src/material/text_button_theme.dart
 class TextButtonThemeData(Object):
+
     def __init__(
         self,
         style: Optional[ButtonStyle] = None,
@@ -2566,6 +2620,7 @@ class TextButtonThemeData(Object):
 
 # packages/flutter/lib/src/material/elevated_button_theme.dart
 class ElevatedButtonThemeData(Object):
+
     def __init__(
         self,
         style: Optional[ButtonStyle] = None,
@@ -2577,6 +2632,7 @@ class ElevatedButtonThemeData(Object):
 
 # packages/flutter/lib/src/material/outlined_button_theme.dart
 class OutlinedButtonThemeData(Object):
+
     def __init__(
         self,
         style: Optional[ButtonStyle] = None,
@@ -2588,6 +2644,7 @@ class OutlinedButtonThemeData(Object):
 
 # packages/flutter/lib/src/material/text_selection_theme.dart
 class TextSelectionThemeData(Object):
+
     def __init__(
         self,
         cursor_color: Optional[Color] = None,
@@ -2603,6 +2660,7 @@ class TextSelectionThemeData(Object):
 
 # packages/flutter/lib/src/material/data_table_theme.dart
 class DataTableThemeData(Object):
+
     def __init__(
         self,
         decoration: Optional[Decoration] = None,
@@ -2634,6 +2692,7 @@ class DataTableThemeData(Object):
 
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData(Object):
+
     def __init__(
         self,
         mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -2661,6 +2720,7 @@ class CheckboxThemeData(Object):
 
 # packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData(Object):
+
     def __init__(
         self,
         mouse_cursor: Optional[MaterialStateProperty[MouseCursor]] = None,
@@ -2682,6 +2742,7 @@ class RadioThemeData(Object):
 
 # packages/flutter/lib/src/material/switch_theme.dart
 class SwitchThemeData(Object):
+
     def __init__(
         self,
         thumb_color: Optional[MaterialStateProperty[Color]] = None,
@@ -2703,6 +2764,7 @@ class SwitchThemeData(Object):
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData(Object):
+
     def __init__(
         self,
         color: Optional[Color] = None,
@@ -2722,6 +2784,7 @@ class ProgressIndicatorThemeData(Object):
 
 # packages/flutter/lib/src/material/theme_data.dart
 class ThemeData(Object):
+
     def __init__(
         self,
         brightness: Optional[Brightness] = None,
@@ -3120,7 +3183,6 @@ class Intent(ABC, Object):
     do_nothing: DoNothingIntent = _intent__do_nothing_intent('doNothing')
 
 
-
 # bin/cache/pkg/sky_engine/lib/core/type.dart
 class Type(ABC, Object):
     pass
@@ -3156,6 +3218,7 @@ class ValueListenable(ABC, Generic[T], Listenable):
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformation(Object):
+
     def __init__(
         self,
         location: Optional[str] = None,
@@ -3194,6 +3257,7 @@ class FutureOr(ABC, Generic[T], Object):
 
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
 class _StringStackTrace(Object, 'StackTrace'):
+
     def __init__(
         self,
         _stack_trace: str,
@@ -3215,7 +3279,6 @@ def _stack_trace___string_stack_trace(_k: str) -> _StringStackTrace:
 class StackTrace(ABC, Object):
     empty: _StringStackTrace = _stack_trace___string_stack_trace('empty')
 
-
     @staticmethod
     def from_string(
         self,
@@ -3228,6 +3291,7 @@ class StackTrace(ABC, Object):
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
 class Future(ABC, Generic[T], Object):
+
     def __init__(
         self,
         computation: Callable[[], FutureOr[T]],
@@ -3293,6 +3357,7 @@ class BackButtonDispatcher(ABC, _CallbackHookProvider[Future[bool]]):
 
 # packages/flutter/lib/src/material/app.dart
 class MaterialApp(StatefulWidget):
+
     def __init__(
         self,
         key: Optional[Key] = None,
@@ -3446,6 +3511,7 @@ class RawKeyEventData(ABC, Object):
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 class RawKeyEvent(ABC, Object):
+
     def __init__(
         self,
         data: RawKeyEventData,
@@ -3480,6 +3546,7 @@ class KeyboardKey(ABC, Object):
 
 # packages/flutter/lib/src/services/keyboard_key.dart
 class PhysicalKeyboardKey(KeyboardKey):
+
     def __init__(
         self,
         usb_hid_usage: int,
@@ -6369,6 +6436,7 @@ LogicalKeyboardKey.game_button_z.__ctor = (('gameButtonZ',),)
 
 # packages/flutter/lib/src/services/hardware_keyboard.dart
 class KeyEvent(ABC, Object):
+
     def __init__(
         self,
         physical_key: PhysicalKeyboardKey,
@@ -6388,6 +6456,7 @@ class KeyEvent(ABC, Object):
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode(Object):
+
     def __init__(
         self,
         debug_label: Optional[str] = None,
@@ -6409,6 +6478,7 @@ class FocusNode(Object):
 
 # packages/flutter/lib/src/material/button_style_button.dart
 class ButtonStyleButton(ABC, StatefulWidget):
+
     def __init__(
         self,
         on_pressed: Callable[[], None],
@@ -6434,6 +6504,7 @@ class ButtonStyleButton(ABC, StatefulWidget):
 
 # packages/flutter/lib/src/material/elevated_button.dart
 class ElevatedButton(ButtonStyleButton):
+
     def __init__(
         self,
         on_pressed: Callable[[], None],

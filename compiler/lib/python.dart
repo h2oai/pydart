@@ -199,16 +199,12 @@ class PythonTranslator {
         p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
       }
 
-      if (internalFields.isNotEmpty) {
-        p('');
-      }
-
       for (final c in [e.constructor, ...e.constructors]) {
         // Don't emit default constructor if empty
         if (c.name.isEmpty && c.fields.isEmpty) continue;
 
+        p('');
         if (c.name.isNotEmpty) {
-          p('');
           p('@staticmethod');
         }
         final name = c.name.isEmpty ? '__init__' : _sc(c.name);
