@@ -56,6 +56,8 @@ final _builtins = {
 };
 
 // Symbols already available via Python's typing.*:
+// FIXME don't emit elements referenced only by blacklisted types
+// e.g. EfficientLengthIterable
 final _blacklist = {'Iterable', 'List', 'Map', 'MapEntry'};
 
 String _snakeCase(String s) => s
@@ -247,7 +249,7 @@ class PythonTranslator {
         if (isDefault && c.fields.isEmpty) continue;
 
         p('');
-        if (c.name.isNotEmpty) {
+        if (!isDefault) {
           p('@staticmethod');
         }
         final name = isDefault ? '__init__' : _sc(c.name);
@@ -256,7 +258,9 @@ class PythonTranslator {
         final req = c.fields.where((f) => !_isOptional(f.type));
         final opt = c.fields.where((f) => _isOptional(f.type));
         p.t(() {
-          p('self,');
+          if (isDefault) {
+            p('self,');
+          }
           // foo: Foo,
           for (final f in req) {
             p('${_sc(f.name)}: ${_toType(f.type)},');
@@ -268,16 +272,26 @@ class PythonTranslator {
         });
         p('):');
         p.t(() {
+          final self = isDefault ? 'self' : '_o';
           if (isDefault) {
             _emitSuperCall(e);
+          } else {
+            p('$self = $klass(');
+            _emitDefaultArgs(e);
+            p(')');
           }
-          p("self.__ctor = (('${c.name}',), (");
+
+          p("$self.__ctor = (('${c.name}',), (");
           p.t(() {
             for (final f in [...req, ...opt]) {
               p("'${f.name}', ${_sc(f.name)},");
             }
           });
           p('))');
+
+          if (!isDefault) {
+            p('return $self');
+          }
         });
       }
 
