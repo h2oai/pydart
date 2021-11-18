@@ -1,141 +1,5 @@
-import 'dart:io';
-
-import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
-import 'package:analyzer/dart/analysis/results.dart';
-import 'package:analyzer/dart/constant/value.dart';
-import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:analyzer/src/dart/element/element.dart'
-    show ConstFieldElementImpl;
-import 'package:path/path.dart' as path;
-import 'ir.dart';
 import 'emit.dart';
-
-class PythonUnit {
-  final String path;
-  final String name;
-
-  PythonUnit(this.path, this.name);
-
-  static final placeholder = PythonUnit('NA', 'NA');
-}
-
-class PythonEnum extends PythonUnit {
-  final List<PythonEnumEntry> entries;
-
-  PythonEnum(String path, String name, this.entries) : super(path, name);
-}
-
-class PythonEnumEntry {
-  final String name;
-  final String value;
-
-  PythonEnumEntry(this.name, this.value);
-}
-
-List<PythonField> sortNonDefaultFields(List<PythonField> fields) {
-  return [
-    ...fields.where((f) => !f.isOptional),
-    ...fields.where((f) => f.isOptional),
-  ];
-}
-
-class PythonClass extends PythonUnit {
-  final List<PythonClass> supertypes;
-  final List<PythonClass> interfaces;
-  final List<PythonField> fields;
-  final List<PythonStaticField> staticFields;
-  final List<PythonVariant> variants;
-  late List<PythonField> sortedFields;
-  final List<String> typeParameters;
-
-  PythonClass(String path, String name,
-      {required this.supertypes,
-      required this.interfaces,
-      required this.fields,
-      required this.variants,
-      required this.staticFields,
-      required this.typeParameters})
-      : super(path, name) {
-    // Non-default params must precede default params in Python
-    sortedFields = sortNonDefaultFields(fields);
-  }
-
-  Iterable<PythonField> get requiredFields {
-    return sortedFields.where((f) => !f.isOptional);
-  }
-}
-
-class PythonVariant {
-  final String name;
-  final String dartName;
-  final List<PythonField> fields;
-  late List<PythonField> sortedFields;
-
-  PythonVariant(this.name, this.dartName, this.fields) {
-    // Non-default params must precede default params in Python
-    sortedFields = sortNonDefaultFields(fields);
-  }
-}
-
-class PythonStaticField {
-  final String name;
-  final String dartName;
-  final PythonType type;
-  final String value;
-  final bool isEnumLike;
-
-  PythonStaticField(
-      this.name, this.dartName, this.type, this.value, this.isEnumLike);
-}
-
-class PythonField {
-  final String name;
-  final String dartName;
-  final PythonType type;
-  final bool isOptional;
-
-  PythonField(this.name, this.dartName, this.type, this.isOptional);
-}
-
-class PythonType {
-  final String name;
-  final List<PythonType>? types;
-  final PythonUnit? unit;
-
-  PythonType(this.name, {this.types, this.unit});
-
-  static final bool = PythonType('bool');
-  static final int = PythonType('int');
-  static final float = PythonType('float');
-  static final str = PythonType('str');
-  static final any = PythonType('Any');
-  static final callable = PythonType('Callable');
-}
-
-String snakeCase(String name) => name
-    .replaceAllMapped(
-        RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}'.toLowerCase())
-    .toLowerCase();
-
-String _titleCase(String name) =>
-    name.replaceFirstMapped(RegExp(r'^[a-z]'), (m) => '${m[0]}'.toUpperCase());
-
-// TODO is there a simpler way to determine this?
-bool _hasInterface(DartType t, List<String> names) {
-  if (t is InterfaceType) {
-    final location = t.element.location;
-    if (location != null) {
-      final components = location.components;
-      for (final name in names) {
-        if (!components.contains(name)) return false;
-      }
-      return true;
-    }
-  }
-  return false;
-}
+import 'ir.dart';
 
 // From Python 3.9.5
 // >>> import keyword
@@ -179,487 +43,283 @@ final _reservedWords = {
   'yield'
 };
 
-String _unreserved(String name) =>
-    _reservedWords.contains(name) ? '${name}_' : name;
+final _builtins = {
+  'void': 'None',
+  'bool': 'bool',
+  'int': 'int',
+  'double': 'float',
+  'string': 'str',
+  'any': 'Any',
+  'opt': 'Optional',
+  'func': 'Callable',
+};
 
-bool _isPrivateSymbol(String name) {
-  return name.startsWith(r'_');
+String _snakeCase(String s) => s
+    .replaceAllMapped(
+        RegExp(r'([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}'.toLowerCase())
+    .toLowerCase();
+
+String _n(String s) {
+  final b = _builtins[s];
+  if (b != null) return b;
+  return _reservedWords.contains(s) ? '${s}_' : s;
 }
+
+String _sc(String s) => _n(_snakeCase(s));
 
 class PythonTranslator {
   final p = Printer('    ');
-  final _units = <PythonUnit>[];
-  final _unitCache = <Element, PythonUnit>{};
-  final _declaredNames = <String>{
-    'bool',
-    'int',
-    'float',
-    'str',
-    'Any',
-    'Callable',
-    'Optional',
-    'Iterable',
-    'List',
-    'Dict',
-  };
-  final _knownTypeParameters = <String>{};
-  String _traceDepth = '';
+  final _declaredNames = Set.from(_builtins.values);
 
-  String quote(String name) => _declaredNames.contains(name) ? name : "'$name'";
-
-  void trace(Object? o) {
-    print('$_traceDepth$o');
+  String _toConst(IRConst c) {
+    if (c is IRInt) {
+      return '${c.value}';
+    } else if (c is IRDouble) {
+      return '${c.value}';
+    } else if (c is IRBool) {
+      return c.value ? 'True' : 'False';
+    } else if (c is IRString) {
+      return "'${c.value}'"; // TODO escape properly
+    }
+    return 'UNDEFINED';
   }
 
-  String stringifyField(PythonField f) {
-    return '${f.name}: ${stringifyType(f.type)}';
-  }
-
-  String stringifyType(PythonType t) {
-    final args = (t.types ?? []).map((e) => stringifyType(e)).join(', ');
-    return args.isEmpty ? quote(t.name) : '${t.name}[$args]';
-  }
-
-  void pushTrace() => _traceDepth += '\t';
-
-  void popTrace() => _traceDepth = _traceDepth.substring(1);
-
-  PythonType _toType(DartType t) {
-    if (t.isDartCoreBool) return PythonType.bool;
-    if (t.isDartCoreInt) return PythonType.int;
-    if (t.isDartCoreDouble) return PythonType.float;
-    if (t.isDartCoreString) return PythonType.str;
-    if (t.isDynamic) return PythonType.any;
-
-    if (t is FunctionType) {
-      return PythonType.callable; // XXX handle delegates
+  String _toType(IRType t) {
+    if (t is IRParameterizedType) {
+      final ps = t.parameters.map(_toType).toList();
+      final params = t.parameters.isNotEmpty
+          ? (t.element == IRElement.func)
+              // 'Callable' must be used as 'Callable[[arg, ...], result]'
+              ? '[[${comma(ps.sublist(0, ps.length - 1))}], ${ps.last}]'
+              : '[${comma(ps)}]'
+          : '';
+      final name = _n(t.name);
+      final sig = '$name$params';
+      return _declaredNames.contains(name) ? sig : "'$sig'";
+    }
+    if (t is IRTypeParameter) {
+      // XXX handle bound
+      return t.name;
     }
 
-    if (t is InterfaceType) {
-      final typeArgs = t.typeArguments;
-      if (typeArgs.isEmpty) {
-        // recurse: Python requires forward declaration
-        pushTrace();
-        final unit = _toUnit(t.element);
-        popTrace();
-        return PythonType(t.element.name, unit: unit);
-      } else {
-        final types = typeArgs.map(_toType).toList(); // recurse
-        if (_hasInterface(t, ['dart:core', 'Iterable'])) {
-          return PythonType('Iterable', types: types);
-        } else if (_hasInterface(t, ['dart:core', 'List'])) {
-          return PythonType('List', types: types);
-        } else if (_hasInterface(t, ['dart:core', 'Map'])) {
-          return PythonType('Dict', types: types);
-        }
-        // recurse: Python requires forward declaration
-        pushTrace();
-        final unit = _toUnit(t.element);
-        popTrace();
-        return PythonType(t.element.name, types: types, unit: unit);
-      }
-    }
+    final builtin = _builtins[t.name];
+    if (builtin != null) return builtin;
 
-    if (t is TypeParameterType) {
-      // Treat X<T extends Y> as X<Y>
-      // .isDynamic is false if the type parameter has bounds.
-      final type =
-          t.bound.isDynamic ? PythonType(t.element.name) : _toType(t.bound);
-      return t.nullabilitySuffix == NullabilitySuffix.question
-          ? _toOptional(type)
-          : type;
-    }
-
-    throw 'cannot translate $t';
+    throw 'unknown type ${t.name}';
   }
 
-  PythonType _toOptional(PythonType t) => PythonType('Optional', types: [t]);
+  String _defaultValueOf(IRType t) {
+    if (t == IRType.bool) return 'false';
+    if (t == IRType.int) return '0';
+    if (t == IRType.double) return '0.0';
+    if (t == IRType.string) return "''";
 
-  PythonField _toField(ParameterElement param) {
-    trace('\t$param');
-    final type = _toType(param.type);
-    final required = param.isRequiredNamed || param.isRequiredPositional;
-    return PythonField(_unreserved(snakeCase(param.name)), param.name,
-        required ? type : _toOptional(type), !required);
+    throw 'cannot compute default value of ${t.name}';
   }
 
-  static const unknown = 'UNKNOWN';
+  bool _isOptional(IRType t) =>
+      t is IRParameterizedType && t.element == IRElement.optional;
 
-  String _toConst(DartObject? o) {
-    if (o == null) return unknown;
+  bool _typeRefersTo(IRType t, IRElement e) =>
+      t is IRParameterizedType && t.element == e;
 
-    final t = o.type;
-    if (t == null) return unknown;
-
-    if (t.isDartCoreBool) {
-      final v = o.toBoolValue();
-      if (v != null) return v ? 'True' : 'False';
-    } else if (t.isDartCoreInt) {
-      final v = o.toIntValue();
-      if (v != null) return '$v';
-    } else if (t.isDartCoreDouble) {
-      final v = o.toDoubleValue();
-      if (v != null) return '$v';
-    } else if (t.isDartCoreString) {
-      final v = o.toStringValue();
-      if (v != null) return "'$v'"; // XXX quote string
-    } else if (t.isDartCoreList) {
-      final l = o.toListValue();
-      if (l != null) {
-        final vs = l.map(_toConst).join(', ');
-        return '[$vs]';
-      }
-    }
-
-    return unknown;
-  }
-
-  PythonStaticField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
-    trace('\t$f');
-    final type = _toType(f.type);
-    final value = _toConst(f.computeConstantValue());
-    final isEnumLike = f.type.element == e;
-    // XXX handle !isEnumLike && value == unknown
-    return PythonStaticField(
-        snakeCase(f.name), f.name, type, value, isEnumLike);
-  }
-
-  List<PythonField> _toFields(List<ParameterElement> params) =>
-      params.map(_toField).toList();
-
-  PythonEnum _toEnum(ClassElement e) {
-    assert(e.isEnum);
-    final sourcePath = _getRelativeSourcePath(e);
-    trace('$e\t$sourcePath');
-
-    return PythonEnum(
-        sourcePath,
-        e.name,
-        e.fields
-            .map((f) => PythonEnumEntry(snakeCase(f.name), f.name))
-            .toList());
-  }
-
-  PythonClass _toClass(ClassElement e) {
-    assert(!e.isEnum);
-    final sourcePath = _getRelativeSourcePath(e);
-    trace('$e\t$sourcePath');
-    // TODO special handling for mixins?
-    // XXX turn abstract classes into Union[] (e.g. SliderComponentShape)
-    // XXX find and include implementers; recurse before adding abstract class
-
-    final supertype = e.supertype;
-    final supertypeUnit = supertype != null ? _toUnit(supertype.element) : null;
-
-    final interfaces = e.interfaces.map((i) => _toUnit(i.element));
-
-    final staticFields = e.fields
-        .where((f) => f.isStatic)
-        .whereType<ConstFieldElementImpl>()
-        .where((f) => !_isPrivateSymbol(f.name))
-        // Ignore FontWeight.values, etc.
-        .where((f) => !_hasInterface(f.type, ['dart:core', 'List']))
-        .map((f) => _toStaticField(e, f))
-        .toList();
-
-    final defaultConstructor = e.constructors.where((c) => c.name.isEmpty);
-
-    final variants = e.constructors
-        .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
-        .map((c) => PythonVariant(
-            _unreserved(snakeCase(c.name)), c.name, _toFields(c.parameters)))
-        .toList();
-
-    final fields = _toFields(defaultConstructor.isNotEmpty
-        ? defaultConstructor.first.parameters
-        : []);
-
-    final typeParameters = e.typeParameters.map((t) => t.name).toList();
-    _knownTypeParameters.addAll(typeParameters);
-
-    return PythonClass(sourcePath, e.name,
-        supertypes: supertypeUnit is PythonClass ? [supertypeUnit] : [],
-        interfaces: interfaces.whereType<PythonClass>().toList(),
-        fields: fields,
-        variants: variants,
-        staticFields: staticFields,
-        typeParameters: typeParameters);
-  }
-
-  void emitParameters(List<PythonField> fields, {isMethod = true}) {
+  void _emitDefaultArgs(IRClass c) {
     p.t(() {
-      p.t(() {
-        if (isMethod) {
-          p('self,');
-        }
-        // Non-default params must precede default params
-        fields
-            .where((f) => !f.isOptional)
-            .forEach((f) => p('${stringifyField(f)},'));
-        fields
-            .where((f) => f.isOptional)
-            .forEach((f) => p('${stringifyField(f)} = None,'));
-      });
+      final req = c.constructor.fields.where((f) => !_isOptional(f.type));
+      for (final f in req) {
+        p('${_sc(f.name)}=${_defaultValueOf(f.type)},');
+      }
     });
   }
 
-  void emitInitialization(List<PythonField> fields) {
-    if (fields.isEmpty) {
-      return p('pass');
-    }
-    for (final f in fields) {
-      p('self.${f.name} = ${f.name}');
-    }
-  }
-
-  String _defaultValueOf(PythonType t) {
-    switch (t.name) {
-      case 'bool':
-        return 'False';
-      case 'int':
-        return '0';
-      case 'float':
-        return '0.0';
-      case 'str':
-        return "''";
-      case 'List':
-        return '[]';
-      case 'Dict':
-        return '{}';
-      case 'Optional':
-        return 'None';
-      case 'Callable':
-        return 'None'; // XXX pass noop
-    }
-    final u = t.unit;
-    if (u != null) {
-      if (u is PythonClass) {
-        final args =
-            u.requiredFields.map((f) => _defaultValueOf(f.type)).join(', ');
-        return '${u.name}($args)';
-      } else if (u is PythonEnum) {
-        return '${u.name}.${u.entries.first.name}';
-      }
-    }
-
-    throw 'could not determine default value for ${t.name}';
-  }
-
-  String _toStaticFieldInitializerName(String className, String type) {
-    final ctorExtn = type
-        .replaceAll(RegExp(r'[\]]'), '')
-        .replaceAll(RegExp(r'[\[]'), '_of_');
-    return snakeCase("_${className}__$ctorExtn");
-  }
-
-  void _emitClass(PythonClass klass) {
-    final supertypes = <String>[];
-    if (klass.typeParameters.isNotEmpty) {
-      final typeVars = klass.typeParameters.join(', ');
-      supertypes.add('Generic[$typeVars]');
-    }
-    for (final st in klass.supertypes) {
-      // TODO flag abstract/interface supertypes accordingly
-      // TODO ensure supertype is already emitted
-      // TODO might conflict with Generic[T] type annotation or trip type-checker
-      // TODO don't emit Object if already in hierarchy (e.g. class PreferredSizeWidget(Object, Widget))
-      supertypes.add(st.name);
-    }
-    for (final i in klass.interfaces) {
-      supertypes.add(i.name);
-    }
-    final base = supertypes.isEmpty ? '' : "(${supertypes.join(', ')})";
-
-    final internalStaticFields = klass.staticFields.where((f) => !f.isEnumLike);
-    final externalStaticFields = klass.staticFields.where((f) => f.isEnumLike);
-
-    final constBuilders = <String, PythonStaticField>{};
-    for (final f in internalStaticFields) {
-      final unit = f.type.unit;
-      if (unit != null && unit is PythonClass) {
-        constBuilders[stringifyType(f.type)] = f;
-      }
-    }
-
-    for (final entry in constBuilders.entries) {
-      final type = entry.key;
-      final f = entry.value;
-      final unit = f.type.unit;
-      if (unit != null && unit is PythonClass) {
-        p('');
-        p('');
-        final name = _toStaticFieldInitializerName(klass.name, type);
-        p('def $name(_k: str) -> $type:');
-        p.t(() {
-          p('_o = $type(');
-          _emitDefaultCtorArgs(unit);
-          p(')');
-          p("_o.__ctor = (('${klass.name}', _k),)");
-          p('return _o');
-        });
-      }
-    }
-
-    p('');
-    p('');
-    p('# ${klass.path}');
-    p('class ${klass.name}$base:');
-
-    p.t(() {
-      // TODO class doc
-      // TODO ctor doc
-      if (internalStaticFields.isNotEmpty) {
-        for (final f in internalStaticFields) {
-          final unit = f.type.unit;
-          final type = stringifyType(f.type);
-          if (unit != null) {
-            final name = _toStaticFieldInitializerName(klass.name, type);
-            p("${f.name}: $type = $name('${f.dartName}')");
-          } else {
-            p('${f.name}: $type = ${f.value}');
-          }
-        }
-        if (klass.fields.isNotEmpty) {
-          p('');
-        }
-      }
-
-      if (klass.fields.isNotEmpty) {
-        p('def __init__(');
-        emitParameters(klass.sortedFields);
-        p('):');
-        p.t(() {
-          // printInitialization(klass.sortedFields);
-          p("self.__ctor = (('',), (");
-          p.t(() {
-            for (final f in klass.fields) {
-              p("'${f.dartName}', ${f.name},");
-            }
-          });
-          p('))');
-        });
-      }
-
-      for (final variant in klass.variants) {
-        p('');
-        p('@staticmethod');
-        p('def ${variant.name}(');
-        emitParameters(variant.sortedFields, isMethod: false);
-        p(') -> ${quote(klass.name)}:');
-        p.t(() {
-          p('_o = ${klass.name}(');
-          _emitDefaultCtorArgs(klass);
-          p(')');
-          p("_o.__ctor = (('${variant.dartName}',), (");
-          p.t(() {
-            for (final f in variant.fields) {
-              p("'${f.dartName}', ${f.name},");
-            }
-          });
-          p('))');
-          p('return _o');
-        });
-      }
-
-      if (klass.fields.isEmpty &&
-          klass.fields.isEmpty &&
-          klass.variants.isEmpty &&
-          internalStaticFields.isEmpty) {
-        p('pass');
-      }
-    });
-
-    _declaredNames.add(klass.name);
+  void _emitClass(IRClass e) {
+    final abstracts = e.isAbstract ? ['ABC'] : <String>[];
+    final parameters = e.parameters.isNotEmpty
+        ? ['Generic[${comma(e.parameters.map(_toType))}]']
+        : <String>[];
+    final superTypes = e.supertypes.map(_toType);
+    final interfaces = e.interfaces.map(_toType);
+    final inherits = [
+      ...abstracts,
+      ...parameters,
+      ...superTypes,
+      ...interfaces
+    ];
+    final klass = _n(e.name);
+    final base = inherits.isNotEmpty ? '(${comma(inherits)})' : '';
 
     // Python doesn't handle recursive type definitions: static fields of the
     // same type as the containing class need to be assigned after the class
     // definition.
-    if (externalStaticFields.isNotEmpty) {
-      p('');
-      p('');
-      for (final f in externalStaticFields) {
-        if (f.isEnumLike) {
-          p('${stringifyType(f.type)}.${f.name} = ${stringifyType(f.type)}(');
-          _emitDefaultCtorArgs(klass);
-          p(')');
-          p("${stringifyType(f.type)}.${f.name}.__ctor = ('${f.name}', )");
+    final internalFields = e.fields.where((f) => !_typeRefersTo(f.type, e));
+    final constFields = internalFields.where((f) => f.type.isPrimitive);
+    final nonConstFields = internalFields.where((f) => !f.type.isPrimitive);
+    final externalFields = e.fields.where((f) => _typeRefersTo(f.type, e));
+
+    if (nonConstFields.isNotEmpty) {
+      final types = <String, IRType>{};
+      for (final f in nonConstFields) {
+        types[_toType(f.type)] = f.type;
+      }
+      types.forEach((t, v) {
+        if (v is IRParameterizedType) {
+          final element = v.element;
+          if (element is IRClass) {
+            p('');
+            p('');
+            p('def _${_sc(klass)}__${_sc(t)}(_k: str) -> $t:');
+            p.t(() {
+              p('_o = $t(');
+              _emitDefaultArgs(element);
+              p(')');
+              p("_o.__ctor = (('${e.name}', _k),)");
+              p('return _o');
+            });
+          }
         }
-      }
+      });
     }
-  }
 
-  void _emitDefaultCtorArgs(PythonClass klass) {
-    p.t(() {
-      for (final f in klass.requiredFields) {
-        // XXX use analyzer to eval original values?
-        p('${f.name}=${_defaultValueOf(f.type)},');
-      }
-    });
-  }
-
-  void _emitEnum(PythonEnum e) {
     p('');
     p('');
     p('# ${e.path}');
-    p('class ${e.name}(Enum):');
+    p('class $klass$base:');
     p.t(() {
-      for (final v in e.entries) {
-        p("${v.name} = '${v.value}'");
+      // foo: float = 42.0
+      for (final f in constFields) {
+        p('${_sc(f.name)}: ${_toType(f.type)} = ${_toConst(f.value)}');
+      }
+      // a_foo_bar: FooBar = _container__foo_bar('aFooBar')
+      for (final f in nonConstFields) {
+        final t = _toType(f.type);
+        p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
+      }
+
+      if (internalFields.isNotEmpty) {
+        p('');
+      }
+
+      for (final c in [e.constructor, ...e.constructors]) {
+        // Don't emit default constructor if empty
+        if (c.name.isEmpty && c.fields.isEmpty) continue;
+
+        if (c.name.isNotEmpty) {
+          p('');
+          p('@staticmethod');
+        }
+        final name = c.name.isEmpty ? '__init__' : _sc(c.name);
+        p('def $name(');
+        // Non-default params must precede default params, so separate them.
+        final req = c.fields.where((f) => !_isOptional(f.type));
+        final opt = c.fields.where((f) => _isOptional(f.type));
+        p.t(() {
+          p('self,');
+          // foo: Foo,
+          for (final f in req) {
+            p('${_sc(f.name)}: ${_toType(f.type)},');
+          }
+          // foo: Optional[Foo] = None,
+          for (final f in opt) {
+            p('${_sc(f.name)}: ${_toType(f.type)} = None,');
+          }
+        });
+        p('):');
+        p.t(() {
+          p("self.__ctor = (('${c.name}',), (");
+          p.t(() {
+            for (final f in [...req, ...opt]) {
+              p("'${f.name}', ${_sc(f.name)},");
+            }
+          });
+          p('))');
+        });
+      }
+
+      if (internalFields.isEmpty &&
+          e.constructor.fields.isEmpty &&
+          e.constructors.isEmpty) {
+        p('pass');
       }
     });
 
-    _declaredNames.add(e.name);
-  }
-
-  PythonUnit _toUnit(ClassElement e) {
-    // XXX ctors with _arg not handled (e.g. Locale)
-    if (_unitCache.containsKey(e)) {
-      final unit = _unitCache[e];
-      if (unit != null) return unit;
-      throw 'type not found in cache'; // XXX ugly
+    if (externalFields.isNotEmpty) {
+      p('');
+      p('');
+      for (final f in externalFields) {
+        // Foo.bar = Foo(
+        // )
+        // Foo.bar.__ctor = (('bar', ), ())
+        //
+        final attr = _sc(f.name);
+        p('$klass.$attr = $klass(');
+        _emitDefaultArgs(e);
+        p(')');
+        p("$klass.$attr.__ctor = (('${f.name}',),)");
+      }
     }
-    _unitCache[e] = PythonUnit.placeholder;
 
-    final unit = e.isEnum ? _toEnum(e) : _toClass(e);
-    _units.add(unit);
-    _unitCache[e] = unit;
-    return unit;
+    _declaredNames.add(klass);
   }
 
-  String _emitAll() {
+  void _emitEnum(IREnum e) {
+    final name = _n(e.name);
+    p('');
+    p('');
+    p('# ${e.path}');
+    p('class $name(Enum):');
+    p.t(() {
+      for (final v in e.values) {
+        p("${_sc(v)} = '$v'");
+      }
+    });
+
+    _declaredNames.add(name);
+  }
+
+  void _collectTypeVars(IRType t, Set<String> typeVars) {
+    if (t is IRParameterizedType) {
+      for (final p in t.parameters) {
+        _collectTypeVars(p, typeVars);
+      }
+    } else if (t is IRTypeParameter) {
+      typeVars.add(t.name);
+    }
+  }
+
+  void _emitTypeVars(List<IRElement> elements) {
+    final typeVars = <String>{};
+    for (final e in elements) {
+      if (e is IRClass) {
+        for (final t in [...e.parameters, ...e.supertypes, ...e.interfaces]) {
+          _collectTypeVars(t, typeVars);
+        }
+      }
+    }
+
+    for (final t in typeVars) {
+      p("$t = TypeVar('$t')");
+    }
+  }
+
+  String _emit(List<IRElement> elements) {
+    p('from abc import ABC');
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
     p('');
-    for (final t in _knownTypeParameters) {
-      p("$t = TypeVar('$t')");
-    }
 
-    for (final unit in _units) {
-      if (unit is PythonClass) {
-        _emitClass(unit);
-      } else if (unit is PythonEnum) {
-        _emitEnum(unit);
+    _emitTypeVars(elements);
+
+    for (final e in elements) {
+      if (e is IRClass) {
+        _emitClass(e);
+      } else if (e is IREnum) {
+        _emitEnum(e);
       }
     }
 
     return p.lines.join();
   }
 
-  String translate(Set<Element> elements) {
-    for (final e in elements) {
-      if (e is! ClassElement) continue;
-      if (!widgetWhitelist.contains(e.name)) continue;
-      _toUnit(e);
-    }
-
-    return _emitAll();
-  }
-}
-
-String _getRelativeSourcePath(ClassElement e) {
-  final absPath = e.source.fullName;
-  final libPath = 'flutter';
-  // TODO assumes SDK path doesn't contain ../flutter/../flutter/..
-  final pos = absPath.indexOf(libPath);
-  return pos < 0 ? "" : absPath.substring(pos + libPath.length + 1);
+  static String emit(List<IRElement> elements) =>
+      PythonTranslator()._emit(elements);
 }
