@@ -3,9 +3,6 @@ from enum import Enum
 from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict
 
 T = TypeVar('T')
-E = TypeVar('E')
-K = TypeVar('K')
-V = TypeVar('V')
 
 
 # bin/cache/pkg/sky_engine/lib/core/object.dart
@@ -81,108 +78,9 @@ class GlobalKey(ABC, Generic[T], Key):
         ))
 
 
-# bin/cache/pkg/sky_engine/lib/core/iterable.dart
-class Iterable(ABC, Generic[E], Object):
-
-    @staticmethod
-    def generate(
-        self,
-        count: int,
-        generator: Optional[Callable[[int], E]] = None,
-    ):
-        self.__ctor = (('generate',), (
-            'count', count,
-            'generator', generator,
-        ))
-
-    @staticmethod
-    def empty(
-        self,
-    ):
-        self.__ctor = (('empty',), (
-        ))
-
-
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
 class EfficientLengthIterable(ABC, Generic[T], Iterable[T]):
     pass
-
-
-# bin/cache/pkg/sky_engine/lib/core/list.dart
-class List(ABC, Generic[E], Object, EfficientLengthIterable[E]):
-    def __init__(
-        self,
-        length: Optional[int] = None,
-    ):
-        self.__ctor = (('',), (
-            'length', length,
-        ))
-
-    @staticmethod
-    def filled(
-        self,
-        length: int,
-        fill: E,
-        growable: Optional[bool] = None,
-    ):
-        self.__ctor = (('filled',), (
-            'length', length,
-            'fill', fill,
-            'growable', growable,
-        ))
-
-    @staticmethod
-    def empty(
-        self,
-        growable: Optional[bool] = None,
-    ):
-        self.__ctor = (('empty',), (
-            'growable', growable,
-        ))
-
-    @staticmethod
-    def from_(
-        self,
-        elements: Iterable[Any],
-        growable: Optional[bool] = None,
-    ):
-        self.__ctor = (('from',), (
-            'elements', elements,
-            'growable', growable,
-        ))
-
-    @staticmethod
-    def of(
-        self,
-        elements: Iterable[E],
-        growable: Optional[bool] = None,
-    ):
-        self.__ctor = (('of',), (
-            'elements', elements,
-            'growable', growable,
-        ))
-
-    @staticmethod
-    def generate(
-        self,
-        length: int,
-        generator: Callable[[int], E],
-        growable: Optional[bool] = None,
-    ):
-        self.__ctor = (('generate',), (
-            'length', length,
-            'generator', generator,
-            'growable', growable,
-        ))
-
-    @staticmethod
-    def unmodifiable(
-        self,
-        elements: Iterable[Any],
-    ):
-        self.__ctor = (('unmodifiable',), (
-            'elements', elements,
-        ))
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -297,90 +195,6 @@ class ScaffoldMessengerState(State[ScaffoldMessenger]):
     pass
 
 
-# bin/cache/pkg/sky_engine/lib/core/map.dart
-class MapEntry(Generic[K, V], Object):
-    def __init__(
-        self,
-        key: K,
-        value: V,
-    ):
-        self.__ctor = (('',), (
-            'key', key,
-            'value', value,
-        ))
-
-
-# bin/cache/pkg/sky_engine/lib/core/map.dart
-class Map(ABC, Generic[K, V], Object):
-
-    @staticmethod
-    def from_(
-        self,
-        other: 'Map[Any, Any]',
-    ):
-        self.__ctor = (('from',), (
-            'other', other,
-        ))
-
-    @staticmethod
-    def of(
-        self,
-        other: 'Map[K, V]',
-    ):
-        self.__ctor = (('of',), (
-            'other', other,
-        ))
-
-    @staticmethod
-    def unmodifiable(
-        self,
-        other: 'Map[Any, Any]',
-    ):
-        self.__ctor = (('unmodifiable',), (
-            'other', other,
-        ))
-
-    @staticmethod
-    def identity(
-        self,
-    ):
-        self.__ctor = (('identity',), (
-        ))
-
-    @staticmethod
-    def from_iterable(
-        self,
-        iterable: Iterable[Any],
-        key: Optional[Callable[[Any], K]] = None,
-        value: Optional[Callable[[Any], V]] = None,
-    ):
-        self.__ctor = (('fromIterable',), (
-            'iterable', iterable,
-            'key', key,
-            'value', value,
-        ))
-
-    @staticmethod
-    def from_iterables(
-        self,
-        keys: Iterable[K],
-        values: Iterable[V],
-    ):
-        self.__ctor = (('fromIterables',), (
-            'keys', keys,
-            'values', values,
-        ))
-
-    @staticmethod
-    def from_entries(
-        self,
-        entries: Iterable[MapEntry[K, V]],
-    ):
-        self.__ctor = (('fromEntries',), (
-            'entries', entries,
-        ))
-
-
 # packages/flutter/lib/src/widgets/framework.dart
 class BuildContext(ABC, Object):
     pass
@@ -465,7 +279,7 @@ class ColorSwatch(Generic[T], Color):
     def __init__(
         self,
         primary: int,
-        _swatch: Map[T, Color],
+        _swatch: Dict[T, Color],
     ):
         self.__ctor = (('',), (
             'primary', primary,
@@ -478,7 +292,7 @@ class MaterialColor(ColorSwatch[int]):
     def __init__(
         self,
         primary: int,
-        swatch: Map[int, Color],
+        swatch: Dict[int, Color],
     ):
         self.__ctor = (('',), (
             'primary', primary,
@@ -2059,7 +1873,7 @@ class PageTransitionsBuilder(ABC, Object):
 class PageTransitionsTheme(Object):
     def __init__(
         self,
-        builders: Optional[Map[TargetPlatform, PageTransitionsBuilder]] = None,
+        builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
     ):
         self.__ctor = (('',), (
             'builders', builders,
@@ -3485,7 +3299,7 @@ class MaterialApp(StatefulWidget):
         navigator_key: Optional[GlobalKey[NavigatorState]] = None,
         scaffold_messenger_key: Optional[GlobalKey[ScaffoldMessengerState]] = None,
         home: Optional[Widget] = None,
-        routes: Optional[Map[str, Callable[[BuildContext], Widget]]] = None,
+        routes: Optional[Dict[str, Callable[[BuildContext], Widget]]] = None,
         initial_route: Optional[str] = None,
         on_generate_route: Optional[Callable[[RouteSettings], Route[Any]]] = None,
         on_generate_initial_routes: Optional[Callable[[str], List[Route[Any]]]] = None,
@@ -3511,8 +3325,8 @@ class MaterialApp(StatefulWidget):
         checkerboard_offscreen_layers: Optional[bool] = None,
         show_semantics_debugger: Optional[bool] = None,
         debug_show_checked_mode_banner: Optional[bool] = None,
-        shortcuts: Optional[Map[ShortcutActivator, Intent]] = None,
-        actions: Optional[Map[Type, Action[Intent]]] = None,
+        shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
+        actions: Optional[Dict[Type, Action[Intent]]] = None,
         restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
         use_inherited_media_query: Optional[bool] = None,
@@ -3584,8 +3398,8 @@ class MaterialApp(StatefulWidget):
         checkerboard_offscreen_layers: Optional[bool] = None,
         show_semantics_debugger: Optional[bool] = None,
         debug_show_checked_mode_banner: Optional[bool] = None,
-        shortcuts: Optional[Map[ShortcutActivator, Intent]] = None,
-        actions: Optional[Map[Type, Action[Intent]]] = None,
+        shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
+        actions: Optional[Dict[Type, Action[Intent]]] = None,
         restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
         use_inherited_media_query: Optional[bool] = None,
@@ -3645,7 +3459,7 @@ class RawKeyEvent(ABC, Object):
     @staticmethod
     def from_message(
         self,
-        message: Map[str, Any],
+        message: Dict[str, Any],
     ):
         self.__ctor = (('fromMessage',), (
             'message', message,

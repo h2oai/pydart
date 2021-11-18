@@ -52,7 +52,11 @@ final _builtins = {
   'any': 'Any',
   'opt': 'Optional',
   'func': 'Callable',
+  'Map': 'Dict',
 };
+
+// Symbols already available via Python's typing.*:
+final _blacklist = {'Iterable', 'List', 'Map', 'MapEntry'};
 
 String _snakeCase(String s) => s
     .replaceAllMapped(
@@ -69,7 +73,7 @@ String _sc(String s) => _n(_snakeCase(s));
 
 class PythonTranslator {
   final p = Printer('    ');
-  final _declaredNames = Set.from(_builtins.values);
+  final _declaredNames = {..._builtins.values, ..._blacklist};
 
   String _toConst(IRConst c) {
     if (c is IRInt) {
@@ -286,7 +290,7 @@ class PythonTranslator {
     }
   }
 
-  void _emitTypeVars(List<IRElement> elements) {
+  void _emitTypeVars(Iterable<IRElement> elements) {
     final typeVars = <String>{};
     for (final e in elements) {
       if (e is IRClass) {
@@ -301,7 +305,7 @@ class PythonTranslator {
     }
   }
 
-  String _emit(List<IRElement> elements) {
+  String _emit(Iterable<IRElement> elements) {
     p('from abc import ABC');
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
@@ -320,6 +324,6 @@ class PythonTranslator {
     return p.lines.join();
   }
 
-  static String emit(List<IRElement> elements) =>
-      PythonTranslator()._emit(elements);
+  static String emit(List<IRElement> elements) => PythonTranslator()
+      ._emit(elements.where((e) => !_blacklist.contains(e.name)));
 }
