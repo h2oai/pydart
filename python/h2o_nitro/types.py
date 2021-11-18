@@ -33,10 +33,13 @@ class Key(ABC, Object):
 
     @staticmethod
     def empty(
-        self,
     ):
-        self.__ctor = (('empty',), (
+        _o = Key(
+            value='',
+        )
+        _o.__ctor = (('empty',), (
         ))
+        return _o
 
 
 # packages/flutter/lib/src/widgets/framework.dart
@@ -86,10 +89,12 @@ class GlobalKey(ABC, Generic[T], Key):
 
     @staticmethod
     def constructor(
-        self,
     ):
-        self.__ctor = (('constructor',), (
+        _o = GlobalKey(
+        )
+        _o.__ctor = (('constructor',), (
         ))
+        return _o
 
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
@@ -237,33 +242,39 @@ class Color(Object):
 
     @staticmethod
     def from_argb(
-        self,
         a: int,
         r: int,
         g: int,
         b: int,
     ):
-        self.__ctor = (('fromARGB',), (
+        _o = Color(
+            value=0,
+        )
+        _o.__ctor = (('fromARGB',), (
             'a', a,
             'r', r,
             'g', g,
             'b', b,
         ))
+        return _o
 
     @staticmethod
     def from_rgbo(
-        self,
         r: int,
         g: int,
         b: int,
         opacity: float,
     ):
-        self.__ctor = (('fromRGBO',), (
+        _o = Color(
+            value=0,
+        )
+        _o.__ctor = (('fromRGBO',), (
             'r', r,
             'g', g,
             'b', b,
             'opacity', opacity,
         ))
+        return _o
 
 
 # bin/cache/pkg/sky_engine/lib/ui/window.dart
@@ -404,7 +415,6 @@ class ColorScheme(Object):
 
     @staticmethod
     def light(
-        self,
         primary: Optional[Color] = None,
         primary_variant: Optional[Color] = None,
         secondary: Optional[Color] = None,
@@ -419,7 +429,22 @@ class ColorScheme(Object):
         on_error: Optional[Color] = None,
         brightness: Optional[Brightness] = None,
     ):
-        self.__ctor = (('light',), (
+        _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('light',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -434,10 +459,10 @@ class ColorScheme(Object):
             'onError', on_error,
             'brightness', brightness,
         ))
+        return _o
 
     @staticmethod
     def dark(
-        self,
         primary: Optional[Color] = None,
         primary_variant: Optional[Color] = None,
         secondary: Optional[Color] = None,
@@ -452,7 +477,22 @@ class ColorScheme(Object):
         on_error: Optional[Color] = None,
         brightness: Optional[Brightness] = None,
     ):
-        self.__ctor = (('dark',), (
+        _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('dark',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -467,10 +507,10 @@ class ColorScheme(Object):
             'onError', on_error,
             'brightness', brightness,
         ))
+        return _o
 
     @staticmethod
     def high_contrast_light(
-        self,
         primary: Optional[Color] = None,
         primary_variant: Optional[Color] = None,
         secondary: Optional[Color] = None,
@@ -485,7 +525,22 @@ class ColorScheme(Object):
         on_error: Optional[Color] = None,
         brightness: Optional[Brightness] = None,
     ):
-        self.__ctor = (('highContrastLight',), (
+        _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('highContrastLight',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -500,10 +555,10 @@ class ColorScheme(Object):
             'onError', on_error,
             'brightness', brightness,
         ))
+        return _o
 
     @staticmethod
     def high_contrast_dark(
-        self,
         primary: Optional[Color] = None,
         primary_variant: Optional[Color] = None,
         secondary: Optional[Color] = None,
@@ -518,7 +573,22 @@ class ColorScheme(Object):
         on_error: Optional[Color] = None,
         brightness: Optional[Brightness] = None,
     ):
-        self.__ctor = (('highContrastDark',), (
+        _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('highContrastDark',), (
             'primary', primary,
             'primaryVariant', primary_variant,
             'secondary', secondary,
@@ -533,10 +603,10 @@ class ColorScheme(Object):
             'onError', on_error,
             'brightness', brightness,
         ))
+        return _o
 
     @staticmethod
     def from_swatch(
-        self,
         primary_swatch: Optional[MaterialColor] = None,
         primary_color_dark: Optional[Color] = None,
         accent_color: Optional[Color] = None,
@@ -545,7 +615,22 @@ class ColorScheme(Object):
         error_color: Optional[Color] = None,
         brightness: Optional[Brightness] = None,
     ):
-        self.__ctor = (('fromSwatch',), (
+        _o = ColorScheme(
+            primary=Color(0),
+            primary_variant=Color(0),
+            secondary=Color(0),
+            secondary_variant=Color(0),
+            surface=Color(0),
+            background=Color(0),
+            error=Color(0),
+            on_primary=Color(0),
+            on_secondary=Color(0),
+            on_surface=Color(0),
+            on_background=Color(0),
+            on_error=Color(0),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('fromSwatch',), (
             'primarySwatch', primary_swatch,
             'primaryColorDark', primary_color_dark,
             'accentColor', accent_color,
@@ -554,6 +639,7 @@ class ColorScheme(Object):
             'errorColor', error_color,
             'brightness', brightness,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/material/theme_data.dart
@@ -675,16 +761,19 @@ class Locale(Object):
 
     @staticmethod
     def from_subtags(
-        self,
         language_code: Optional[str] = None,
         script_code: Optional[str] = None,
         country_code: Optional[str] = None,
     ):
-        self.__ctor = (('fromSubtags',), (
+        _o = Locale(
+            _language_code='',
+        )
+        _o.__ctor = (('fromSubtags',), (
             'languageCode', language_code,
             'scriptCode', script_code,
             'countryCode', country_code,
         ))
+        return _o
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -725,14 +814,18 @@ class Offset(OffsetBase):
 
     @staticmethod
     def from_direction(
-        self,
         direction: float,
         distance: Optional[float] = None,
     ):
-        self.__ctor = (('fromDirection',), (
+        _o = Offset(
+            dx=0.0,
+            dy=0.0,
+        )
+        _o.__ctor = (('fromDirection',), (
             'direction', direction,
             'distance', distance,
         ))
+        return _o
 
 
 Offset.zero = Offset(
@@ -778,208 +871,289 @@ class FontFeature(Object):
 
     @staticmethod
     def enable(
-        self,
         feature: str,
     ):
-        self.__ctor = (('enable',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('enable',), (
             'feature', feature,
         ))
+        return _o
 
     @staticmethod
     def disable(
-        self,
         feature: str,
     ):
-        self.__ctor = (('disable',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('disable',), (
             'feature', feature,
         ))
+        return _o
 
     @staticmethod
     def alternative(
-        self,
         value: int,
     ):
-        self.__ctor = (('alternative',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('alternative',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def alternative_fractions(
-        self,
     ):
-        self.__ctor = (('alternativeFractions',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('alternativeFractions',), (
         ))
+        return _o
 
     @staticmethod
     def contextual_alternates(
-        self,
     ):
-        self.__ctor = (('contextualAlternates',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('contextualAlternates',), (
         ))
+        return _o
 
     @staticmethod
     def case_sensitive_forms(
-        self,
     ):
-        self.__ctor = (('caseSensitiveForms',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('caseSensitiveForms',), (
         ))
+        return _o
 
     @staticmethod
     def character_variant(
-        self,
         value: int,
     ):
-        self.__ctor = (('characterVariant',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('characterVariant',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def denominator(
-        self,
     ):
-        self.__ctor = (('denominator',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('denominator',), (
         ))
+        return _o
 
     @staticmethod
     def fractions(
-        self,
     ):
-        self.__ctor = (('fractions',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('fractions',), (
         ))
+        return _o
 
     @staticmethod
     def historical_forms(
-        self,
     ):
-        self.__ctor = (('historicalForms',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('historicalForms',), (
         ))
+        return _o
 
     @staticmethod
     def historical_ligatures(
-        self,
     ):
-        self.__ctor = (('historicalLigatures',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('historicalLigatures',), (
         ))
+        return _o
 
     @staticmethod
     def lining_figures(
-        self,
     ):
-        self.__ctor = (('liningFigures',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('liningFigures',), (
         ))
+        return _o
 
     @staticmethod
     def locale_aware(
-        self,
         enable: Optional[bool] = None,
     ):
-        self.__ctor = (('localeAware',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('localeAware',), (
             'enable', enable,
         ))
+        return _o
 
     @staticmethod
     def notational_forms(
-        self,
         value: Optional[int] = None,
     ):
-        self.__ctor = (('notationalForms',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('notationalForms',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def numerators(
-        self,
     ):
-        self.__ctor = (('numerators',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('numerators',), (
         ))
+        return _o
 
     @staticmethod
     def oldstyle_figures(
-        self,
     ):
-        self.__ctor = (('oldstyleFigures',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('oldstyleFigures',), (
         ))
+        return _o
 
     @staticmethod
     def ordinal_forms(
-        self,
     ):
-        self.__ctor = (('ordinalForms',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('ordinalForms',), (
         ))
+        return _o
 
     @staticmethod
     def proportional_figures(
-        self,
     ):
-        self.__ctor = (('proportionalFigures',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('proportionalFigures',), (
         ))
+        return _o
 
     @staticmethod
     def randomize(
-        self,
     ):
-        self.__ctor = (('randomize',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('randomize',), (
         ))
+        return _o
 
     @staticmethod
     def stylistic_alternates(
-        self,
     ):
-        self.__ctor = (('stylisticAlternates',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('stylisticAlternates',), (
         ))
+        return _o
 
     @staticmethod
     def scientific_inferiors(
-        self,
     ):
-        self.__ctor = (('scientificInferiors',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('scientificInferiors',), (
         ))
+        return _o
 
     @staticmethod
     def stylistic_set(
-        self,
         value: int,
     ):
-        self.__ctor = (('stylisticSet',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('stylisticSet',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def subscripts(
-        self,
     ):
-        self.__ctor = (('subscripts',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('subscripts',), (
         ))
+        return _o
 
     @staticmethod
     def superscripts(
-        self,
     ):
-        self.__ctor = (('superscripts',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('superscripts',), (
         ))
+        return _o
 
     @staticmethod
     def swash(
-        self,
         value: Optional[int] = None,
     ):
-        self.__ctor = (('swash',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('swash',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def tabular_figures(
-        self,
     ):
-        self.__ctor = (('tabularFigures',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('tabularFigures',), (
         ))
+        return _o
 
     @staticmethod
     def slashed_zero(
-        self,
     ):
-        self.__ctor = (('slashedZero',), (
+        _o = FontFeature(
+            feature='',
+        )
+        _o.__ctor = (('slashedZero',), (
         ))
+        return _o
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -987,12 +1161,14 @@ class TextDecoration(Object):
 
     @staticmethod
     def combine(
-        self,
         decorations: List['TextDecoration'],
     ):
-        self.__ctor = (('combine',), (
+        _o = TextDecoration(
+        )
+        _o.__ctor = (('combine',), (
             'decorations', decorations,
         ))
+        return _o
 
 
 TextDecoration.none = TextDecoration(
@@ -1110,48 +1286,68 @@ class Size(OffsetBase):
 
     @staticmethod
     def copy(
-        self,
         source: 'Size',
     ):
-        self.__ctor = (('copy',), (
+        _o = Size(
+            width=0.0,
+            height=0.0,
+        )
+        _o.__ctor = (('copy',), (
             'source', source,
         ))
+        return _o
 
     @staticmethod
     def square(
-        self,
         dimension: float,
     ):
-        self.__ctor = (('square',), (
+        _o = Size(
+            width=0.0,
+            height=0.0,
+        )
+        _o.__ctor = (('square',), (
             'dimension', dimension,
         ))
+        return _o
 
     @staticmethod
     def from_width(
-        self,
         width: float,
     ):
-        self.__ctor = (('fromWidth',), (
+        _o = Size(
+            width=0.0,
+            height=0.0,
+        )
+        _o.__ctor = (('fromWidth',), (
             'width', width,
         ))
+        return _o
 
     @staticmethod
     def from_height(
-        self,
         height: float,
     ):
-        self.__ctor = (('fromHeight',), (
+        _o = Size(
+            width=0.0,
+            height=0.0,
+        )
+        _o.__ctor = (('fromHeight',), (
             'height', height,
         ))
+        return _o
 
     @staticmethod
     def from_radius(
-        self,
         radius: float,
     ):
-        self.__ctor = (('fromRadius',), (
+        _o = Size(
+            width=0.0,
+            height=0.0,
+        )
+        _o.__ctor = (('fromRadius',), (
             'radius', radius,
         ))
+        return _o
 
 
 Size.zero = Size(
@@ -1185,54 +1381,64 @@ class BoxConstraints(Constraints):
 
     @staticmethod
     def tight(
-        self,
         size: Size,
     ):
-        self.__ctor = (('tight',), (
+        _o = BoxConstraints(
+        )
+        _o.__ctor = (('tight',), (
             'size', size,
         ))
+        return _o
 
     @staticmethod
     def tight_for(
-        self,
         width: Optional[float] = None,
         height: Optional[float] = None,
     ):
-        self.__ctor = (('tightFor',), (
+        _o = BoxConstraints(
+        )
+        _o.__ctor = (('tightFor',), (
             'width', width,
             'height', height,
         ))
+        return _o
 
     @staticmethod
     def tight_for_finite(
-        self,
         width: Optional[float] = None,
         height: Optional[float] = None,
     ):
-        self.__ctor = (('tightForFinite',), (
+        _o = BoxConstraints(
+        )
+        _o.__ctor = (('tightForFinite',), (
             'width', width,
             'height', height,
         ))
+        return _o
 
     @staticmethod
     def loose(
-        self,
         size: Size,
     ):
-        self.__ctor = (('loose',), (
+        _o = BoxConstraints(
+        )
+        _o.__ctor = (('loose',), (
             'size', size,
         ))
+        return _o
 
     @staticmethod
     def expand(
-        self,
         width: Optional[float] = None,
         height: Optional[float] = None,
     ):
-        self.__ctor = (('expand',), (
+        _o = BoxConstraints(
+        )
+        _o.__ctor = (('expand',), (
             'width', width,
             'height', height,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/painting/border_radius.dart
@@ -1245,23 +1451,27 @@ class Radius(Object):
 
     @staticmethod
     def circular(
-        self,
         radius: float,
     ):
-        self.__ctor = (('circular',), (
+        _o = Radius(
+        )
+        _o.__ctor = (('circular',), (
             'radius', radius,
         ))
+        return _o
 
     @staticmethod
     def elliptical(
-        self,
         x: float,
         y: float,
     ):
-        self.__ctor = (('elliptical',), (
+        _o = Radius(
+        )
+        _o.__ctor = (('elliptical',), (
             'x', x,
             'y', y,
         ))
+        return _o
 
 
 Radius.zero = Radius(
@@ -1274,58 +1484,68 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def all(
-        self,
         radius: Radius,
     ):
-        self.__ctor = (('all',), (
+        _o = BorderRadius(
+        )
+        _o.__ctor = (('all',), (
             'radius', radius,
         ))
+        return _o
 
     @staticmethod
     def circular(
-        self,
         radius: float,
     ):
-        self.__ctor = (('circular',), (
+        _o = BorderRadius(
+        )
+        _o.__ctor = (('circular',), (
             'radius', radius,
         ))
+        return _o
 
     @staticmethod
     def vertical(
-        self,
         top: Optional[Radius] = None,
         bottom: Optional[Radius] = None,
     ):
-        self.__ctor = (('vertical',), (
+        _o = BorderRadius(
+        )
+        _o.__ctor = (('vertical',), (
             'top', top,
             'bottom', bottom,
         ))
+        return _o
 
     @staticmethod
     def horizontal(
-        self,
         left: Optional[Radius] = None,
         right: Optional[Radius] = None,
     ):
-        self.__ctor = (('horizontal',), (
+        _o = BorderRadius(
+        )
+        _o.__ctor = (('horizontal',), (
             'left', left,
             'right', right,
         ))
+        return _o
 
     @staticmethod
     def only(
-        self,
         top_left: Optional[Radius] = None,
         top_right: Optional[Radius] = None,
         bottom_left: Optional[Radius] = None,
         bottom_right: Optional[Radius] = None,
     ):
-        self.__ctor = (('only',), (
+        _o = BorderRadius(
+        )
+        _o.__ctor = (('only',), (
             'topLeft', top_left,
             'topRight', top_right,
             'bottomLeft', bottom_left,
             'bottomRight', bottom_right,
         ))
+        return _o
 
 
 BorderRadius.zero = BorderRadius(
@@ -1539,10 +1759,12 @@ class IconThemeData(Object):
 
     @staticmethod
     def fallback(
-        self,
     ):
-        self.__ctor = (('fallback',), (
+        _o = IconThemeData(
+        )
+        _o.__ctor = (('fallback',), (
         ))
+        return _o
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -1679,18 +1901,20 @@ class SliderThemeData(Object):
 
     @staticmethod
     def from_primary_colors(
-        self,
         primary_color: Color,
         primary_color_dark: Color,
         primary_color_light: Color,
         value_indicator_text_style: TextStyle,
     ):
-        self.__ctor = (('fromPrimaryColors',), (
+        _o = SliderThemeData(
+        )
+        _o.__ctor = (('fromPrimaryColors',), (
             'primaryColor', primary_color,
             'primaryColorDark', primary_color_dark,
             'primaryColorLight', primary_color_light,
             'valueIndicatorTextStyle', value_indicator_text_style,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/painting/decoration.dart
@@ -1905,18 +2129,28 @@ class ChipThemeData(Object):
 
     @staticmethod
     def from_defaults(
-        self,
         secondary_color: Color,
         label_style: TextStyle,
         brightness: Optional[Brightness] = None,
         primary_color: Optional[Color] = None,
     ):
-        self.__ctor = (('fromDefaults',), (
+        _o = ChipThemeData(
+            background_color=Color(0),
+            disabled_color=Color(0),
+            selected_color=Color(0),
+            secondary_selected_color=Color(0),
+            padding=EdgeInsetsGeometry(),
+            label_style=TextStyle(),
+            secondary_label_style=TextStyle(),
+            brightness=Brightness.dark,
+        )
+        _o.__ctor = (('fromDefaults',), (
             'secondaryColor', secondary_color,
             'labelStyle', label_style,
             'brightness', brightness,
             'primaryColor', primary_color,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/foundation/platform.dart
@@ -2229,7 +2463,6 @@ class Typography(Object):
 
     @staticmethod
     def material2014(
-        self,
         platform: Optional[TargetPlatform] = None,
         black: Optional[TextTheme] = None,
         white: Optional[TextTheme] = None,
@@ -2237,7 +2470,9 @@ class Typography(Object):
         dense: Optional[TextTheme] = None,
         tall: Optional[TextTheme] = None,
     ):
-        self.__ctor = (('material2014',), (
+        _o = Typography(
+        )
+        _o.__ctor = (('material2014',), (
             'platform', platform,
             'black', black,
             'white', white,
@@ -2245,10 +2480,10 @@ class Typography(Object):
             'dense', dense,
             'tall', tall,
         ))
+        return _o
 
     @staticmethod
     def material2018(
-        self,
         platform: Optional[TargetPlatform] = None,
         black: Optional[TextTheme] = None,
         white: Optional[TextTheme] = None,
@@ -2256,7 +2491,9 @@ class Typography(Object):
         dense: Optional[TextTheme] = None,
         tall: Optional[TextTheme] = None,
     ):
-        self.__ctor = (('material2018',), (
+        _o = Typography(
+        )
+        _o.__ctor = (('material2018',), (
             'platform', platform,
             'black', black,
             'white', white,
@@ -2264,6 +2501,7 @@ class Typography(Object):
             'dense', dense,
             'tall', tall,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/cupertino/text_theme.dart
@@ -2986,7 +3224,6 @@ class ThemeData(Object):
 
     @staticmethod
     def raw(
-        self,
         visual_density: VisualDensity,
         primary_color: Color,
         primary_color_brightness: Brightness,
@@ -3066,7 +3303,9 @@ class ThemeData(Object):
         fix_text_field_outline_label: bool,
         use_text_selection_theme: bool,
     ):
-        self.__ctor = (('raw',), (
+        _o = ThemeData(
+        )
+        _o.__ctor = (('raw',), (
             'visualDensity', visual_density,
             'primaryColor', primary_color,
             'primaryColorBrightness', primary_color_brightness,
@@ -3146,38 +3385,47 @@ class ThemeData(Object):
             'fixTextFieldOutlineLabel', fix_text_field_outline_label,
             'useTextSelectionTheme', use_text_selection_theme,
         ))
+        return _o
 
     @staticmethod
     def from_(
-        self,
         color_scheme: ColorScheme,
         text_theme: Optional[TextTheme] = None,
     ):
-        self.__ctor = (('from',), (
+        _o = ThemeData(
+        )
+        _o.__ctor = (('from',), (
             'colorScheme', color_scheme,
             'textTheme', text_theme,
         ))
+        return _o
 
     @staticmethod
     def light(
-        self,
     ):
-        self.__ctor = (('light',), (
+        _o = ThemeData(
+        )
+        _o.__ctor = (('light',), (
         ))
+        return _o
 
     @staticmethod
     def dark(
-        self,
     ):
-        self.__ctor = (('dark',), (
+        _o = ThemeData(
+        )
+        _o.__ctor = (('dark',), (
         ))
+        return _o
 
     @staticmethod
     def fallback(
-        self,
     ):
-        self.__ctor = (('fallback',), (
+        _o = ThemeData(
+        )
+        _o.__ctor = (('fallback',), (
         ))
+        return _o
 
 
 # packages/flutter/lib/src/material/app.dart
@@ -3234,12 +3482,14 @@ class Listenable(ABC, Object):
 
     @staticmethod
     def merge(
-        self,
         listenables: List['Listenable'],
     ):
-        self.__ctor = (('merge',), (
+        _o = Listenable(
+        )
+        _o.__ctor = (('merge',), (
             'listenables', listenables,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
@@ -3312,12 +3562,14 @@ class StackTrace(ABC, Object):
 
     @staticmethod
     def from_string(
-        self,
         stack_trace_string: str,
     ):
-        self.__ctor = (('fromString',), (
+        _o = StackTrace(
+        )
+        _o.__ctor = (('fromString',), (
             'stackTraceString', stack_trace_string,
         ))
+        return _o
 
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
@@ -3333,52 +3585,67 @@ class Future(ABC, Generic[T], Object):
 
     @staticmethod
     def microtask(
-        self,
         computation: Callable[[], FutureOr[T]],
     ):
-        self.__ctor = (('microtask',), (
+        _o = Future(
+            computation=_noop,
+        )
+        _o.__ctor = (('microtask',), (
             'computation', computation,
         ))
+        return _o
 
     @staticmethod
     def sync(
-        self,
         computation: Callable[[], FutureOr[T]],
     ):
-        self.__ctor = (('sync',), (
+        _o = Future(
+            computation=_noop,
+        )
+        _o.__ctor = (('sync',), (
             'computation', computation,
         ))
+        return _o
 
     @staticmethod
     def value(
-        self,
         value: Optional[FutureOr[T]] = None,
     ):
-        self.__ctor = (('value',), (
+        _o = Future(
+            computation=_noop,
+        )
+        _o.__ctor = (('value',), (
             'value', value,
         ))
+        return _o
 
     @staticmethod
     def error(
-        self,
         error: Object,
         stack_trace: Optional[StackTrace] = None,
     ):
-        self.__ctor = (('error',), (
+        _o = Future(
+            computation=_noop,
+        )
+        _o.__ctor = (('error',), (
             'error', error,
             'stackTrace', stack_trace,
         ))
+        return _o
 
     @staticmethod
     def delayed(
-        self,
         duration: Duration,
         computation: Optional[Callable[[], FutureOr[T]]] = None,
     ):
-        self.__ctor = (('delayed',), (
+        _o = Future(
+            computation=_noop,
+        )
+        _o.__ctor = (('delayed',), (
             'duration', duration,
             'computation', computation,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/widgets/router.dart
@@ -3469,7 +3736,6 @@ class MaterialApp(StatefulWidget):
 
     @staticmethod
     def router(
-        self,
         route_information_parser: RouteInformationParser[Object],
         router_delegate: RouterDelegate[Object],
         key: Optional[Key] = None,
@@ -3502,7 +3768,9 @@ class MaterialApp(StatefulWidget):
         scroll_behavior: Optional[ScrollBehavior] = None,
         use_inherited_media_query: Optional[bool] = None,
     ):
-        self.__ctor = (('router',), (
+        _o = MaterialApp(
+        )
+        _o.__ctor = (('router',), (
             'routeInformationParser', route_information_parser,
             'routerDelegate', router_delegate,
             'key', key,
@@ -3535,6 +3803,7 @@ class MaterialApp(StatefulWidget):
             'scrollBehavior', scroll_behavior,
             'useInheritedMediaQuery', use_inherited_media_query,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
@@ -3557,12 +3826,15 @@ class RawKeyEvent(ABC, Object):
 
     @staticmethod
     def from_message(
-        self,
         message: Dict[str, Any],
     ):
-        self.__ctor = (('fromMessage',), (
+        _o = RawKeyEvent(
+            data=RawKeyEventData(),
+        )
+        _o.__ctor = (('fromMessage',), (
             'message', message,
         ))
+        return _o
 
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
@@ -6573,7 +6845,6 @@ class ElevatedButton(ButtonStyleButton):
 
     @staticmethod
     def icon(
-        self,
         on_pressed: Callable[[], None],
         icon: Widget,
         label: Widget,
@@ -6584,7 +6855,11 @@ class ElevatedButton(ButtonStyleButton):
         autofocus: Optional[bool] = None,
         clip_behavior: Optional[Clip] = None,
     ):
-        self.__ctor = (('icon',), (
+        _o = ElevatedButton(
+            on_pressed=_noop,
+            child=Widget(),
+        )
+        _o.__ctor = (('icon',), (
             'onPressed', on_pressed,
             'icon', icon,
             'label', label,
@@ -6595,3 +6870,4 @@ class ElevatedButton(ButtonStyleButton):
             'autofocus', autofocus,
             'clipBehavior', clip_behavior,
         ))
+        return _o
