@@ -3,8 +3,8 @@ from enum import Enum
 from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict
 
 
-def _noop(*args, **kwargs):
-    pass
+def _noop(*args, **kwargs) -> Any:
+    raise f'_noop({args}, {kwargs})'
 
 
 T = TypeVar('T')

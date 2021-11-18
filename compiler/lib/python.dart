@@ -367,8 +367,8 @@ class PythonTranslator {
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
     p('');
     p('');
-    p('def _noop(*args, **kwargs):');
-    p('    pass');
+    p('def _noop(*args, **kwargs) -> Any:');
+    p("    raise f'_noop({args}, {kwargs})'");
     p('');
     p('');
 
