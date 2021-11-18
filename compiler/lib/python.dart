@@ -113,10 +113,36 @@ class PythonTranslator {
   }
 
   String _defaultValueOf(IRType t) {
-    if (t == IRType.bool) return 'false';
+    if (t == IRType.bool) return 'False';
     if (t == IRType.int) return '0';
     if (t == IRType.double) return '0.0';
     if (t == IRType.string) return "''";
+
+    if (t is IRParameterizedType) {
+      final e = t.element;
+      switch (e.name) {
+        case 'opt':
+          return 'None';
+        case 'List':
+          return '[]';
+        case 'Set':
+          return 'set()';
+        case 'Map':
+          return '{}';
+        case 'func':
+          return '_noop';
+      }
+
+      if (e is IRClass) {
+        final args = e.constructor.fields
+            .where((f) => !_isOptional(f.type))
+            .map((f) => _defaultValueOf(f.type))
+            .join(', ');
+        return '${_n(e.name)}($args)';
+      } else if (e is IREnum) {
+        return '${_n(e.name)}.${_sc(e.values.first)}';
+      }
+    }
 
     throw 'cannot compute default value of ${t.name}';
   }
@@ -126,6 +152,22 @@ class PythonTranslator {
 
   bool _typeRefersTo(IRType t, IRElement e) =>
       t is IRParameterizedType && t.element == e;
+
+  void _emitSuperCall(IRClass c) {
+    for (final s in c.supertypes) {
+      if (s is IRParameterizedType) {
+        final e = s.element;
+        // Emit a super() call even if the base class constructor has only
+        // optional args, otherwise PyCharm's type checker will complain.
+        if (e is IRClass && e.constructor.fields.isNotEmpty) {
+          p('super().__init__(');
+          _emitDefaultArgs(e);
+          p(')');
+          return;
+        }
+      }
+    }
+  }
 
   void _emitDefaultArgs(IRClass c) {
     p.t(() {
@@ -200,14 +242,15 @@ class PythonTranslator {
       }
 
       for (final c in [e.constructor, ...e.constructors]) {
+        final isDefault = c.name.isEmpty;
         // Don't emit default constructor if empty
-        if (c.name.isEmpty && c.fields.isEmpty) continue;
+        if (isDefault && c.fields.isEmpty) continue;
 
         p('');
         if (c.name.isNotEmpty) {
           p('@staticmethod');
         }
-        final name = c.name.isEmpty ? '__init__' : _sc(c.name);
+        final name = isDefault ? '__init__' : _sc(c.name);
         p('def $name(');
         // Non-default params must precede default params, so separate them.
         final req = c.fields.where((f) => !_isOptional(f.type));
@@ -225,6 +268,9 @@ class PythonTranslator {
         });
         p('):');
         p.t(() {
+          if (isDefault) {
+            _emitSuperCall(e);
+          }
           p("self.__ctor = (('${c.name}',), (");
           p.t(() {
             for (final f in [...req, ...opt]) {
@@ -305,6 +351,11 @@ class PythonTranslator {
     p('from abc import ABC');
     p('from enum import Enum');
     p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
+    p('');
+    p('');
+    p('def _noop(*args, **kwargs):');
+    p('    pass');
+    p('');
     p('');
 
     _emitTypeVars(elements);

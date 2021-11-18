@@ -2,6 +2,11 @@ from abc import ABC
 from enum import Enum
 from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict
 
+
+def _noop(*args, **kwargs):
+    pass
+
+
 T = TypeVar('T')
 
 
@@ -53,6 +58,8 @@ class StatefulWidget(ABC, Widget):
         self,
         key: Optional[Key] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'key', key,
         ))
@@ -70,6 +77,9 @@ class GlobalKey(ABC, Generic[T], Key):
         self,
         debug_label: Optional[str] = None,
     ):
+        super().__init__(
+            value='',
+        )
         self.__ctor = (('',), (
             'debugLabel', debug_label,
         ))
@@ -116,6 +126,8 @@ class Page(ABC, Generic[T], RouteSettings):
         arguments: Optional[Object] = None,
         restoration_id: Optional[str] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'key', key,
             'name', name,
@@ -164,6 +176,8 @@ class Navigator(StatefulWidget):
         observers: Optional[List[NavigatorObserver]] = None,
         restoration_scope_id: Optional[str] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'key', key,
             'pages', pages,
@@ -192,6 +206,8 @@ class ScaffoldMessenger(StatefulWidget):
         child: Widget,
         key: Optional[Key] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'child', child,
             'key', key,
@@ -291,6 +307,9 @@ class ColorSwatch(Generic[T], Color):
         primary: int,
         _swatch: Dict[T, Color],
     ):
+        super().__init__(
+            value=0,
+        )
         self.__ctor = (('',), (
             'primary', primary,
             '_swatch', _swatch,
@@ -305,6 +324,10 @@ class MaterialColor(ColorSwatch[int]):
         primary: int,
         swatch: Dict[int, Color],
     ):
+        super().__init__(
+            primary=0,
+            _swatch={},
+        )
         self.__ctor = (('',), (
             'primary', primary,
             'swatch', swatch,
@@ -691,6 +714,10 @@ class Offset(OffsetBase):
         dx: float,
         dy: float,
     ):
+        super().__init__(
+            _dx=0.0,
+            _dy=0.0,
+        )
         self.__ctor = (('',), (
             'dx', dx,
             'dy', dy,
@@ -1072,6 +1099,10 @@ class Size(OffsetBase):
         width: float,
         height: float,
     ):
+        super().__init__(
+            _dx=0.0,
+            _dy=0.0,
+        )
         self.__ctor = (('',), (
             'width', width,
             'height', height,
@@ -3396,6 +3427,8 @@ class MaterialApp(StatefulWidget):
         scroll_behavior: Optional[ScrollBehavior] = None,
         use_inherited_media_query: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'key', key,
             'navigatorKey', navigator_key,
@@ -6490,6 +6523,8 @@ class ButtonStyleButton(ABC, StatefulWidget):
         child: Widget,
         key: Optional[Key] = None,
     ):
+        super().__init__(
+        )
         self.__ctor = (('',), (
             'onPressed', on_pressed,
             'onLongPress', on_long_press,
@@ -6516,6 +6551,15 @@ class ElevatedButton(ButtonStyleButton):
         autofocus: Optional[bool] = None,
         clip_behavior: Optional[Clip] = None,
     ):
+        super().__init__(
+            on_pressed=_noop,
+            on_long_press=_noop,
+            style=ButtonStyle(),
+            focus_node=FocusNode(),
+            autofocus=False,
+            clip_behavior=Clip.none,
+            child=Widget(),
+        )
         self.__ctor = (('',), (
             'onPressed', on_pressed,
             'child', child,
