@@ -3,9 +3,7 @@ import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/element/element.dart';
 
 Future<Set<Element>> load(
-    {required String sourcePath,
-    required Set<String> libraryWhitelist,
-    required Set<String> widgetWhitelist}) async {
+    {required String sourcePath, required Set<String> libraryWhitelist}) async {
   // Important: The analyzer resolves symbols correctly only if the file
   // .dart_tool/package_config.json is found inside the source project.
 
@@ -35,7 +33,6 @@ Future<Set<Element>> load(
   // of the `analysis_options.yaml` files, is what determines how many analysis
   // contexts get created in the collection.
   // ---
-
   final analysis = AnalysisContextCollection(includedPaths: [sourcePath]);
   final elements = <Element>{};
   for (final ctx in analysis.contexts) {

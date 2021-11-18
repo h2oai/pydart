@@ -27,15 +27,14 @@ const libNames = <String>[];
 void compile(String loaderPath, String outputDir) {
   load(
           sourcePath: path.normalize(File(loaderPath).absolute.path),
-          libraryWhitelist: libraryWhitelist,
-          widgetWhitelist: widgetWhitelist)
+          libraryWhitelist: libraryWhitelist)
       .then((es) => _postProcess(es, outputDir));
 }
 
 void _postProcess(Set<Element> elements, String outputDir) {
   _mkdirp(outputDir);
 
-  final ir = IRBuilder.load(elements);
+  final ir = IRBuilder.load(elements, widgetWhitelist);
   _write(path.join(outputDir, 'types.ir'), IRBuilder.dump(ir));
 
   final lines = PythonTranslator.emit(ir);

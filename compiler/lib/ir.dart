@@ -7,17 +7,6 @@ import 'package:quiver/core.dart';
 
 import 'emit.dart';
 
-const widgetWhitelist = {
-  'MaterialApp',
-  'ElevatedButton',
-  // 'Scaffold',
-  // 'AppBar',
-  // 'Text',
-  // 'ListView',
-  // 'ListTile',
-  // 'EdgeInsets',
-};
-
 abstract class IRConst {}
 
 class IRUndefined extends IRConst {
@@ -396,7 +385,7 @@ class IRBuilder {
     return e;
   }
 
-  List<IRElement> _load(Set<Element> elements) {
+  List<IRElement> _load(Set<Element> elements, Set<String> widgetWhitelist) {
     for (final e in elements) {
       if (e is ClassElement && widgetWhitelist.contains(e.name)) {
         _toElement(e);
@@ -410,8 +399,9 @@ class IRBuilder {
     return _elements;
   }
 
-  static List<IRElement> load(Set<Element> elements) =>
-      IRBuilder()._load(elements);
+  static List<IRElement> load(
+          Set<Element> elements, Set<String> widgetWhitelist) =>
+      IRBuilder()._load(elements, widgetWhitelist);
 
   static String _dumpType(IRType t) {
     if (t is IRParameterizedType) {
