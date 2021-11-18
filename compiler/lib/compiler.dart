@@ -2,16 +2,11 @@ import 'dart:io';
 
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
-import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
-import 'package:analyzer/src/dart/element/element.dart'
-    show ConstFieldElementImpl;
 import 'package:path/path.dart' as path;
+
 import 'ir.dart';
-import 'python2.dart';
-import 'emit.dart';
+import 'python.dart';
 
 void compile(String loaderPath, String outputDir) {
   _analyze(path.normalize(File(loaderPath).absolute.path))
@@ -43,7 +38,6 @@ void _postProcess(Set<Element> elements, String outputDir) {
 
   final lines = PythonTranslator.emit(ir);
   _write(path.join(outputDir, 'types.py'), lines);
-
 }
 
 Future<Set<Element>> _analyze(String sourcePath) async {
