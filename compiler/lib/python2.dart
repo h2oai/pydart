@@ -69,6 +69,7 @@ String _sc(String s) => _n(_snakeCase(s));
 
 class PythonTranslator {
   final p = Printer('    ');
+  final _declaredNames = Set.from(_builtins.values);
 
   String _toConst(IRConst c) {
     if (c is IRInt) {
@@ -92,7 +93,9 @@ class PythonTranslator {
               ? '[[${comma(ps.sublist(0, ps.length - 1))}], ${ps.last}]'
               : '[${comma(ps)}]'
           : '';
-      return '${_n(t.name)}$params';
+      final name = _n(t.name);
+      final quotedName = _declaredNames.contains(name) ? name : "'$name'";
+      return '$quotedName$params';
     }
     if (t is IRTypeParameter) {
       // XXX handle bound
@@ -179,6 +182,7 @@ class PythonTranslator {
 
     p('');
     p('');
+    p('# ${e.path}');
     p('class $klass$base:');
     p.t(() {
       // foo: float = 42.0
@@ -243,17 +247,23 @@ class PythonTranslator {
         p("$klass.$attr.__ctor = (('${f.name}',),)");
       }
     }
+
+    _declaredNames.add(klass);
   }
 
   void _emitEnum(IREnum e) {
+    final name = _n(e.name);
     p('');
     p('');
-    p('class ${_n(e.name)}(Enum):');
+    p('# ${e.path}');
+    p('class $name(Enum):');
     p.t(() {
       for (final v in e.values) {
         p("${_sc(v)} = '$v'");
       }
     });
+
+    _declaredNames.add(name);
   }
 
   void _collectTypeVars(IRType t, Set<String> typeVars) {
