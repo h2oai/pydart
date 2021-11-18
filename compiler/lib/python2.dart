@@ -194,11 +194,15 @@ class PythonTranslator {
         final t = _toType(f.type);
         p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
       }
+
       if (internalFields.isNotEmpty) {
         p('');
       }
 
       for (final c in [e.constructor, ...e.constructors]) {
+        // Don't emit default constructor if empty
+        if (c.name.isEmpty && c.fields.isEmpty) continue;
+
         if (c.name.isNotEmpty) {
           p('');
           p('@staticmethod');
@@ -229,6 +233,12 @@ class PythonTranslator {
           });
           p('))');
         });
+      }
+
+      if (internalFields.isEmpty &&
+          e.constructor.fields.isEmpty &&
+          e.constructors.isEmpty) {
+        p('pass');
       }
     });
 
