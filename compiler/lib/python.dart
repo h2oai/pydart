@@ -104,7 +104,7 @@ class PythonTranslator {
       return _declaredNames.contains(name) ? sig : "'$sig'";
     }
     if (t is IRTypeParameter) {
-      // XXX handle bound
+      // TODO handle bound?
       return t.name;
     }
 
@@ -188,10 +188,10 @@ class PythonTranslator {
     final superTypes = e.supertypes.map(_toType);
     final interfaces = e.interfaces.map(_toType);
     final inherits = [
+      ...interfaces,
+      ...superTypes,
       ...abstracts,
       ...parameters,
-      ...superTypes,
-      ...interfaces
     ];
     final klass = _n(e.name);
     final base = inherits.isNotEmpty ? '(${comma(inherits)})' : '';
