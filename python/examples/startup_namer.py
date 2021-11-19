@@ -36,23 +36,16 @@ def build():
     )
 
 
-_ui_lookup = {}
-
-
-async def handle(client_key: Any, request: str) -> str:
-    ui = _ui_lookup.get(client_key)
-    if ui is None:
-        ui = build()
-        _ui_lookup[client_key] = ui
-    return marshal(ui)
+async def handle(ui: UI):
+    ui[''] = build()
+    await ui.save()
 
 
 async def websocket_endpoint(websocket: starlette.websockets.WebSocket):
     await websocket.accept()
     while True:
         request = await websocket.receive_text()
-        response = await handle(websocket, request)
-        await websocket.send_text(response)
+        await handle(UI(request, websocket.send_text))
 
 
 app: Any = Starlette(debug=True, routes=[
