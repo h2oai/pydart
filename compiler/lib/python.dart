@@ -55,10 +55,38 @@ final _builtins = {
   'Map': 'Dict',
 };
 
+class Pair<T1, T2> {
+  final T1 a;
+  final T2 b;
+
+  Pair(this.a, this.b);
+}
+
 // Symbols already available via Python's typing.*:
 // FIXME don't emit elements referenced only by blacklisted types
 // e.g. EfficientLengthIterable
-final _blacklist = {'Iterable', 'List', 'Map', 'MapEntry'};
+final _blacklist = {
+  'Iterable',
+  'List',
+  'Map',
+  'MapEntry',
+  'DoNothingIntent',
+  '_StringStackTrace'
+};
+
+// Recursive references like this confuse Python:
+// |
+// | class DoNothingIntent(Intent):
+// |     pass
+// |
+// | class Intent(Object):
+// |     do_nothing: DoNothingIntent = DoNothingIntent(...)
+// |
+// Fix: Blacklist class DoNothingIntent and change type of doNothing to Intent.
+final _refactorings = [
+  Pair('Intent', 'doNothing'),
+  Pair('StackTrace', 'empty')
+];
 
 String _snakeCase(String s) => s
     .replaceAllMapped(
@@ -90,7 +118,7 @@ class PythonTranslator {
     return 'UNDEFINED';
   }
 
-  String _toType(IRType t) {
+  String _toType(IRType t, {failIfNotDeclared = false}) {
     if (t is IRParameterizedType) {
       final ps = t.parameters.map(_toType).toList();
       final params = t.parameters.isNotEmpty
@@ -101,7 +129,9 @@ class PythonTranslator {
           : '';
       final name = _n(t.name);
       final sig = '$name$params';
-      return _declaredNames.contains(name) ? sig : "'$sig'";
+      if (_declaredNames.contains(name)) return sig;
+      if (failIfNotDeclared) throw 'undeclared symbol $sig';
+      return "'$sig'";
     }
     if (t is IRTypeParameter) {
       // TODO handle bound?
@@ -113,6 +143,8 @@ class PythonTranslator {
 
     throw 'unknown type ${t.name}';
   }
+
+  String _toDeclaredType(IRType t) => _toType(t, failIfNotDeclared: true);
 
   String _defaultValueOf(IRType t) {
     if (t == IRType.bool) return 'False';
@@ -185,8 +217,8 @@ class PythonTranslator {
     final parameters = e.parameters.isNotEmpty
         ? ['Generic[${comma(e.parameters.map(_toType))}]']
         : <String>[];
-    final superTypes = e.supertypes.map(_toType);
-    final interfaces = e.interfaces.map(_toType);
+    final superTypes = e.supertypes.map(_toDeclaredType);
+    final interfaces = e.interfaces.map(_toDeclaredType);
     final inherits = [
       ...interfaces,
       ...superTypes,
@@ -385,6 +417,37 @@ class PythonTranslator {
     return p.lines.join();
   }
 
-  static String emit(List<IRElement> elements) => PythonTranslator()
-      ._emit(elements.where((e) => !_blacklist.contains(e.name)));
+  static IRElement _refactor(IRElement e) {
+    for (final refactoring in _refactorings) {
+      final targetClass = refactoring.a;
+      final targetField = refactoring.b;
+      if (e is IRClass && e.name == targetClass) {
+        final fields = e.fields.map((f) {
+          if (f.name == targetField) {
+            return IRField(
+                name: f.name, type: IRParameterizedType(e, []), value: f.value);
+          }
+          return f;
+        }).toList();
+
+        return IRClass(
+          e.path,
+          e.name,
+          isAbstract: e.isAbstract,
+          parameters: e.parameters,
+          supertypes: e.supertypes,
+          interfaces: e.interfaces,
+          constructor: e.constructor,
+          constructors: e.constructors,
+          fields: fields,
+          dartElement: e.dartElement,
+        );
+      }
+    }
+
+    return e;
+  }
+
+  static String emit(List<IRElement> elements) => PythonTranslator()._emit(
+      elements.where((e) => !_blacklist.contains(e.name)).map(_refactor));
 }

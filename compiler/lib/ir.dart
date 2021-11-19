@@ -221,7 +221,6 @@ class IRBuilder {
     }
 
     if (t is FunctionType) {
-      // XXX handle t.typeArguments
       final parameterTypes = t.parameters.map((p) {
         final t = _toType(p.type);
         return p.isOptional ? _toOptional(t) : t;
@@ -317,7 +316,7 @@ class IRBuilder {
 
     return IRClass(
       path, e.name,
-      // XXX handle e.isMixin
+      // TODO handle e.isMixin
       isAbstract: e.isAbstract,
       parameters: parameters,
       supertypes: supertypes,
