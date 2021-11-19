@@ -23,11 +23,6 @@ MaterialApp _hydrateMaterialApp(Map<String, dynamic> state) {
   return MaterialApp(key: key);
 }
 
-typedef Unmarshal = dynamic Function(Map<String, dynamic> state);
-
-final _hydrators = <String, Unmarshal>{
-  "MaterialApp.": _hydrateMaterialApp,
-};
 
 String? _typeOf(Map<String, dynamic> state) {
   final t = state['#t'];

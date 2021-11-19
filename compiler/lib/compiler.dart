@@ -5,6 +5,7 @@ import 'package:path/path.dart' as path;
 
 import 'ir.dart';
 import 'load.dart';
+import 'client.dart';
 import 'python.dart';
 
 const libraryWhitelist = {
@@ -24,21 +25,20 @@ const widgetWhitelist = {
 
 const libNames = <String>[];
 
-void compile(String loaderPath, String outputDir) {
+void compile({
+  required String loaderPath,
+  required String clientOutputDir,
+  required String pythonOutputDir,
+}) {
   load(
           sourcePath: path.normalize(File(loaderPath).absolute.path),
           libraryWhitelist: libraryWhitelist)
-      .then((es) => _postProcess(es, outputDir));
-}
-
-void _postProcess(Set<Element> elements, String outputDir) {
-  _mkdirp(outputDir);
-
-  final ir = IRBuilder.load(elements, widgetWhitelist);
-  _write(path.join(outputDir, 'types.ir'), IRBuilder.dump(ir));
-
-  final lines = PythonTranslator.emit(ir);
-  _write(path.join(outputDir, 'types.py'), lines);
+      .then((elements) {
+    final ir = IRBuilder.load(elements, widgetWhitelist);
+    _write(path.join(clientOutputDir, 'types.dart'), ClientTranslator.emit(ir));
+    _write(path.join(pythonOutputDir, 'types.ir'), IRBuilder.dump(ir));
+    _write(path.join(pythonOutputDir, 'types.py'), PythonTranslator.emit(ir));
+  });
 }
 
 void _write(String path, String text) => File(path).writeAsStringSync(text);
