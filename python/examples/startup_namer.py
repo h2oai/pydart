@@ -1,7 +1,8 @@
 import random
 
 import starlette.routing
-import starlette.staticfiles
+import starlette.middleware
+import starlette.middleware.cors
 import starlette.websockets
 import uvicorn
 from starlette.applications import Starlette
@@ -36,7 +37,7 @@ def build():
     )
 
 
-async def handle(ui: UI):
+async def serve(ui: UI):
     ui[''] = build()
     await ui.save()
 
@@ -45,13 +46,14 @@ async def websocket_endpoint(websocket: starlette.websockets.WebSocket):
     await websocket.accept()
     while True:
         request = await websocket.receive_text()
-        await handle(UI(request, websocket.send_text))
+        await serve(UI(request, websocket.send_text))
 
 
-app: Any = Starlette(debug=True, routes=[
-    starlette.routing.Mount('/', starlette.staticfiles.StaticFiles(directory="../../client/web", html=True)),
-    starlette.routing.WebSocketRoute('/nitro', websocket_endpoint),
-])
+app: Any = Starlette(
+    debug=True,
+    routes=[starlette.routing.WebSocketRoute('/nitro', websocket_endpoint)],
+    middleware=[starlette.middleware.Middleware(starlette.middleware.cors.CORSMiddleware, allow_origins=['*'])]
+)
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8000)
+    uvicorn.run(app, port=11111)
