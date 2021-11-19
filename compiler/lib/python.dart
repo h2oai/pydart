@@ -252,7 +252,7 @@ class PythonTranslator {
               p('_o = $t(');
               _emitDefaultArgs(element);
               p(')');
-              p("_o.__ctor = (('${e.name}', _k),)");
+              p("_o._nx_ = {'#t': ('${e.name}', _k)}");
               p('return _o');
             });
           }
@@ -313,13 +313,14 @@ class PythonTranslator {
             p(')');
           }
 
-          p("$self.__ctor = (('${c.name}',), (");
+          p("$self._nx_ = {");
           p.t(() {
+            p("'#t': ('${e.name}', '${c.name}'),");
             for (final f in [...req, ...opt]) {
-              p("'${f.name}', ${_sc(f.name)},");
+              p("'${f.name}': ${_sc(f.name)},");
             }
           });
-          p('))');
+          p('}');
 
           if (!isDefault) {
             p('return $self');
@@ -340,13 +341,13 @@ class PythonTranslator {
       for (final f in externalFields) {
         // Foo.bar = Foo(
         // )
-        // Foo.bar.__ctor = (('bar', ), ())
+        // Foo.bar._nx_ = {'#t': ('Foo', 'bar')}
         //
         final attr = _sc(f.name);
         p('$klass.$attr = $klass(');
         _emitDefaultArgs(e);
         p(')');
-        p("$klass.$attr.__ctor = (('${f.name}',),)");
+        p("$klass.$attr._nx_ = {'#t': ('${e.name}', '${f.name}')}");
       }
     }
 
