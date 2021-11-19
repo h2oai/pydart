@@ -16,20 +16,21 @@ class Object:
 
 
 # packages/flutter/lib/src/foundation/diagnostics.dart
-class DiagnosticableTree(ABC, Object):
+class DiagnosticableTree(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/foundation/key.dart
-class Key(ABC, Object):
+class Key(Object, ABC):
 
     def __init__(
         self,
         value: str,
     ):
-        self.__ctor = (('',), (
-            'value', value,
-        ))
+        self._nx_ = {
+            '#t': ('Key', ''),
+            'value': value,
+        }
 
     @staticmethod
     def empty(
@@ -37,25 +38,27 @@ class Key(ABC, Object):
         _o = Key(
             value='',
         )
-        _o.__ctor = (('empty',), (
-        ))
+        _o._nx_ = {
+            '#t': ('Key', 'empty'),
+        }
         return _o
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class Widget(ABC, DiagnosticableTree):
+class Widget(DiagnosticableTree, ABC):
 
     def __init__(
         self,
         key: Optional[Key] = None,
     ):
-        self.__ctor = (('',), (
-            'key', key,
-        ))
+        self._nx_ = {
+            '#t': ('Widget', ''),
+            'key': key,
+        }
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class StatefulWidget(ABC, Widget):
+class StatefulWidget(Widget, ABC):
 
     def __init__(
         self,
@@ -63,18 +66,19 @@ class StatefulWidget(ABC, Widget):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'key', key,
-        ))
+        self._nx_ = {
+            '#t': ('StatefulWidget', ''),
+            'key': key,
+        }
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class State(ABC, Generic[T], Object):
+class State(Object, ABC, Generic[T]):
     pass
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class GlobalKey(ABC, Generic[T], Key):
+class GlobalKey(Key, ABC, Generic[T]):
 
     def __init__(
         self,
@@ -83,22 +87,24 @@ class GlobalKey(ABC, Generic[T], Key):
         super().__init__(
             value='',
         )
-        self.__ctor = (('',), (
-            'debugLabel', debug_label,
-        ))
+        self._nx_ = {
+            '#t': ('GlobalKey', ''),
+            'debugLabel': debug_label,
+        }
 
     @staticmethod
     def constructor(
     ):
         _o = GlobalKey(
         )
-        _o.__ctor = (('constructor',), (
-        ))
+        _o._nx_ = {
+            '#t': ('GlobalKey', 'constructor'),
+        }
         return _o
 
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
-class EfficientLengthIterable(ABC, Generic[T], Iterable[T]):
+class EfficientLengthIterable(Iterable[T], ABC, Generic[T]):
     pass
 
 
@@ -110,19 +116,20 @@ class RouteSettings(Object):
         name: Optional[str] = None,
         arguments: Optional[Object] = None,
     ):
-        self.__ctor = (('',), (
-            'name', name,
-            'arguments', arguments,
-        ))
+        self._nx_ = {
+            '#t': ('RouteSettings', ''),
+            'name': name,
+            'arguments': arguments,
+        }
 
 
 # packages/flutter/lib/src/foundation/key.dart
-class LocalKey(ABC, Key):
+class LocalKey(Key, ABC):
     pass
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
-class Page(ABC, Generic[T], RouteSettings):
+class Page(RouteSettings, ABC, Generic[T]):
 
     def __init__(
         self,
@@ -133,28 +140,30 @@ class Page(ABC, Generic[T], RouteSettings):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'key', key,
-            'name', name,
-            'arguments', arguments,
-            'restorationId', restoration_id,
-        ))
+        self._nx_ = {
+            '#t': ('Page', ''),
+            'key': key,
+            'name': name,
+            'arguments': arguments,
+            'restorationId': restoration_id,
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
-class Route(ABC, Generic[T], Object):
+class Route(Object, ABC, Generic[T]):
 
     def __init__(
         self,
         settings: Optional[RouteSettings] = None,
     ):
-        self.__ctor = (('',), (
-            'settings', settings,
-        ))
+        self._nx_ = {
+            '#t': ('Route', ''),
+            'settings': settings,
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
-class TransitionDelegate(ABC, Generic[T], Object):
+class TransitionDelegate(Object, ABC, Generic[T]):
     pass
 
 
@@ -183,19 +192,20 @@ class Navigator(StatefulWidget):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'key', key,
-            'pages', pages,
-            'onPopPage', on_pop_page,
-            'initialRoute', initial_route,
-            'onGenerateInitialRoutes', on_generate_initial_routes,
-            'onGenerateRoute', on_generate_route,
-            'onUnknownRoute', on_unknown_route,
-            'transitionDelegate', transition_delegate,
-            'reportsRouteUpdateToEngine', reports_route_update_to_engine,
-            'observers', observers,
-            'restorationScopeId', restoration_scope_id,
-        ))
+        self._nx_ = {
+            '#t': ('Navigator', ''),
+            'key': key,
+            'pages': pages,
+            'onPopPage': on_pop_page,
+            'initialRoute': initial_route,
+            'onGenerateInitialRoutes': on_generate_initial_routes,
+            'onGenerateRoute': on_generate_route,
+            'onUnknownRoute': on_unknown_route,
+            'transitionDelegate': transition_delegate,
+            'reportsRouteUpdateToEngine': reports_route_update_to_engine,
+            'observers': observers,
+            'restorationScopeId': restoration_scope_id,
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -213,10 +223,11 @@ class ScaffoldMessenger(StatefulWidget):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'child', child,
-            'key', key,
-        ))
+        self._nx_ = {
+            '#t': ('ScaffoldMessenger', ''),
+            'child': child,
+            'key': key,
+        }
 
 
 # packages/flutter/lib/src/material/scaffold.dart
@@ -225,7 +236,7 @@ class ScaffoldMessengerState(State[ScaffoldMessenger]):
 
 
 # packages/flutter/lib/src/widgets/framework.dart
-class BuildContext(ABC, Object):
+class BuildContext(Object, ABC):
     pass
 
 
@@ -236,9 +247,10 @@ class Color(Object):
         self,
         value: int,
     ):
-        self.__ctor = (('',), (
-            'value', value,
-        ))
+        self._nx_ = {
+            '#t': ('Color', ''),
+            'value': value,
+        }
 
     @staticmethod
     def from_argb(
@@ -250,12 +262,13 @@ class Color(Object):
         _o = Color(
             value=0,
         )
-        _o.__ctor = (('fromARGB',), (
-            'a', a,
-            'r', r,
-            'g', g,
-            'b', b,
-        ))
+        _o._nx_ = {
+            '#t': ('Color', 'fromARGB'),
+            'a': a,
+            'r': r,
+            'g': g,
+            'b': b,
+        }
         return _o
 
     @staticmethod
@@ -268,12 +281,13 @@ class Color(Object):
         _o = Color(
             value=0,
         )
-        _o.__ctor = (('fromRGBO',), (
-            'r', r,
-            'g', g,
-            'b', b,
-            'opacity', opacity,
-        ))
+        _o._nx_ = {
+            '#t': ('Color', 'fromRGBO'),
+            'r': r,
+            'g': g,
+            'b': b,
+            'opacity': opacity,
+        }
         return _o
 
 
@@ -293,25 +307,26 @@ class VisualDensity(Object):
         horizontal: Optional[float] = None,
         vertical: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'horizontal', horizontal,
-            'vertical', vertical,
-        ))
+        self._nx_ = {
+            '#t': ('VisualDensity', ''),
+            'horizontal': horizontal,
+            'vertical': vertical,
+        }
 
 
 VisualDensity.standard = VisualDensity(
 )
-VisualDensity.standard.__ctor = (('standard',),)
+VisualDensity.standard._nx_ = {'#t': ('VisualDensity', 'standard')}
 VisualDensity.comfortable = VisualDensity(
 )
-VisualDensity.comfortable.__ctor = (('comfortable',),)
+VisualDensity.comfortable._nx_ = {'#t': ('VisualDensity', 'comfortable')}
 VisualDensity.compact = VisualDensity(
 )
-VisualDensity.compact.__ctor = (('compact',),)
+VisualDensity.compact._nx_ = {'#t': ('VisualDensity', 'compact')}
 
 
 # packages/flutter/lib/src/painting/colors.dart
-class ColorSwatch(Generic[T], Color):
+class ColorSwatch(Color, Generic[T]):
 
     def __init__(
         self,
@@ -321,10 +336,11 @@ class ColorSwatch(Generic[T], Color):
         super().__init__(
             value=0,
         )
-        self.__ctor = (('',), (
-            'primary', primary,
-            '_swatch', _swatch,
-        ))
+        self._nx_ = {
+            '#t': ('ColorSwatch', ''),
+            'primary': primary,
+            '_swatch': _swatch,
+        }
 
 
 # packages/flutter/lib/src/material/colors.dart
@@ -339,14 +355,15 @@ class MaterialColor(ColorSwatch[int]):
             primary=0,
             _swatch={},
         )
-        self.__ctor = (('',), (
-            'primary', primary,
-            'swatch', swatch,
-        ))
+        self._nx_ = {
+            '#t': ('MaterialColor', ''),
+            'primary': primary,
+            'swatch': swatch,
+        }
 
 
 # packages/flutter/lib/src/material/ink_well.dart
-class InteractiveInkFeatureFactory(ABC, Object):
+class InteractiveInkFeatureFactory(Object, ABC):
     pass
 
 
@@ -358,17 +375,17 @@ class ButtonTextTheme(Enum):
 
 
 # packages/flutter/lib/src/painting/edge_insets.dart
-class EdgeInsetsGeometry(ABC, Object):
+class EdgeInsetsGeometry(Object, ABC):
     pass
 
 
 EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(
 )
-EdgeInsetsGeometry.infinity.__ctor = (('infinity',),)
+EdgeInsetsGeometry.infinity._nx_ = {'#t': ('EdgeInsetsGeometry', 'infinity')}
 
 
 # packages/flutter/lib/src/painting/borders.dart
-class ShapeBorder(ABC, Object):
+class ShapeBorder(Object, ABC):
     pass
 
 
@@ -397,21 +414,22 @@ class ColorScheme(Object):
         on_error: Color,
         brightness: Brightness,
     ):
-        self.__ctor = (('',), (
-            'primary', primary,
-            'primaryVariant', primary_variant,
-            'secondary', secondary,
-            'secondaryVariant', secondary_variant,
-            'surface', surface,
-            'background', background,
-            'error', error,
-            'onPrimary', on_primary,
-            'onSecondary', on_secondary,
-            'onSurface', on_surface,
-            'onBackground', on_background,
-            'onError', on_error,
-            'brightness', brightness,
-        ))
+        self._nx_ = {
+            '#t': ('ColorScheme', ''),
+            'primary': primary,
+            'primaryVariant': primary_variant,
+            'secondary': secondary,
+            'secondaryVariant': secondary_variant,
+            'surface': surface,
+            'background': background,
+            'error': error,
+            'onPrimary': on_primary,
+            'onSecondary': on_secondary,
+            'onSurface': on_surface,
+            'onBackground': on_background,
+            'onError': on_error,
+            'brightness': brightness,
+        }
 
     @staticmethod
     def light(
@@ -444,21 +462,22 @@ class ColorScheme(Object):
             on_error=Color(0),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('light',), (
-            'primary', primary,
-            'primaryVariant', primary_variant,
-            'secondary', secondary,
-            'secondaryVariant', secondary_variant,
-            'surface', surface,
-            'background', background,
-            'error', error,
-            'onPrimary', on_primary,
-            'onSecondary', on_secondary,
-            'onSurface', on_surface,
-            'onBackground', on_background,
-            'onError', on_error,
-            'brightness', brightness,
-        ))
+        _o._nx_ = {
+            '#t': ('ColorScheme', 'light'),
+            'primary': primary,
+            'primaryVariant': primary_variant,
+            'secondary': secondary,
+            'secondaryVariant': secondary_variant,
+            'surface': surface,
+            'background': background,
+            'error': error,
+            'onPrimary': on_primary,
+            'onSecondary': on_secondary,
+            'onSurface': on_surface,
+            'onBackground': on_background,
+            'onError': on_error,
+            'brightness': brightness,
+        }
         return _o
 
     @staticmethod
@@ -492,21 +511,22 @@ class ColorScheme(Object):
             on_error=Color(0),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('dark',), (
-            'primary', primary,
-            'primaryVariant', primary_variant,
-            'secondary', secondary,
-            'secondaryVariant', secondary_variant,
-            'surface', surface,
-            'background', background,
-            'error', error,
-            'onPrimary', on_primary,
-            'onSecondary', on_secondary,
-            'onSurface', on_surface,
-            'onBackground', on_background,
-            'onError', on_error,
-            'brightness', brightness,
-        ))
+        _o._nx_ = {
+            '#t': ('ColorScheme', 'dark'),
+            'primary': primary,
+            'primaryVariant': primary_variant,
+            'secondary': secondary,
+            'secondaryVariant': secondary_variant,
+            'surface': surface,
+            'background': background,
+            'error': error,
+            'onPrimary': on_primary,
+            'onSecondary': on_secondary,
+            'onSurface': on_surface,
+            'onBackground': on_background,
+            'onError': on_error,
+            'brightness': brightness,
+        }
         return _o
 
     @staticmethod
@@ -540,21 +560,22 @@ class ColorScheme(Object):
             on_error=Color(0),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('highContrastLight',), (
-            'primary', primary,
-            'primaryVariant', primary_variant,
-            'secondary', secondary,
-            'secondaryVariant', secondary_variant,
-            'surface', surface,
-            'background', background,
-            'error', error,
-            'onPrimary', on_primary,
-            'onSecondary', on_secondary,
-            'onSurface', on_surface,
-            'onBackground', on_background,
-            'onError', on_error,
-            'brightness', brightness,
-        ))
+        _o._nx_ = {
+            '#t': ('ColorScheme', 'highContrastLight'),
+            'primary': primary,
+            'primaryVariant': primary_variant,
+            'secondary': secondary,
+            'secondaryVariant': secondary_variant,
+            'surface': surface,
+            'background': background,
+            'error': error,
+            'onPrimary': on_primary,
+            'onSecondary': on_secondary,
+            'onSurface': on_surface,
+            'onBackground': on_background,
+            'onError': on_error,
+            'brightness': brightness,
+        }
         return _o
 
     @staticmethod
@@ -588,21 +609,22 @@ class ColorScheme(Object):
             on_error=Color(0),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('highContrastDark',), (
-            'primary', primary,
-            'primaryVariant', primary_variant,
-            'secondary', secondary,
-            'secondaryVariant', secondary_variant,
-            'surface', surface,
-            'background', background,
-            'error', error,
-            'onPrimary', on_primary,
-            'onSecondary', on_secondary,
-            'onSurface', on_surface,
-            'onBackground', on_background,
-            'onError', on_error,
-            'brightness', brightness,
-        ))
+        _o._nx_ = {
+            '#t': ('ColorScheme', 'highContrastDark'),
+            'primary': primary,
+            'primaryVariant': primary_variant,
+            'secondary': secondary,
+            'secondaryVariant': secondary_variant,
+            'surface': surface,
+            'background': background,
+            'error': error,
+            'onPrimary': on_primary,
+            'onSecondary': on_secondary,
+            'onSurface': on_surface,
+            'onBackground': on_background,
+            'onError': on_error,
+            'brightness': brightness,
+        }
         return _o
 
     @staticmethod
@@ -630,15 +652,16 @@ class ColorScheme(Object):
             on_error=Color(0),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('fromSwatch',), (
-            'primarySwatch', primary_swatch,
-            'primaryColorDark', primary_color_dark,
-            'accentColor', accent_color,
-            'cardColor', card_color,
-            'backgroundColor', background_color,
-            'errorColor', error_color,
-            'brightness', brightness,
-        ))
+        _o._nx_ = {
+            '#t': ('ColorScheme', 'fromSwatch'),
+            'primarySwatch': primary_swatch,
+            'primaryColorDark': primary_color_dark,
+            'accentColor': accent_color,
+            'cardColor': card_color,
+            'backgroundColor': background_color,
+            'errorColor': error_color,
+            'brightness': brightness,
+        }
         return _o
 
 
@@ -669,23 +692,24 @@ class ButtonThemeData(Object):
         color_scheme: Optional[ColorScheme] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
     ):
-        self.__ctor = (('',), (
-            'textTheme', text_theme,
-            'minWidth', min_width,
-            'height', height,
-            'padding', padding,
-            'shape', shape,
-            'layoutBehavior', layout_behavior,
-            'alignedDropdown', aligned_dropdown,
-            'buttonColor', button_color,
-            'disabledColor', disabled_color,
-            'focusColor', focus_color,
-            'hoverColor', hover_color,
-            'highlightColor', highlight_color,
-            'splashColor', splash_color,
-            'colorScheme', color_scheme,
-            'materialTapTargetSize', material_tap_target_size,
-        ))
+        self._nx_ = {
+            '#t': ('ButtonThemeData', ''),
+            'textTheme': text_theme,
+            'minWidth': min_width,
+            'height': height,
+            'padding': padding,
+            'shape': shape,
+            'layoutBehavior': layout_behavior,
+            'alignedDropdown': aligned_dropdown,
+            'buttonColor': button_color,
+            'disabledColor': disabled_color,
+            'focusColor': focus_color,
+            'hoverColor': hover_color,
+            'highlightColor': highlight_color,
+            'splashColor': splash_color,
+            'colorScheme': color_scheme,
+            'materialTapTargetSize': material_tap_target_size,
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -695,37 +719,37 @@ class FontWeight(Object):
 
 FontWeight.w100 = FontWeight(
 )
-FontWeight.w100.__ctor = (('w100',),)
+FontWeight.w100._nx_ = {'#t': ('FontWeight', 'w100')}
 FontWeight.w200 = FontWeight(
 )
-FontWeight.w200.__ctor = (('w200',),)
+FontWeight.w200._nx_ = {'#t': ('FontWeight', 'w200')}
 FontWeight.w300 = FontWeight(
 )
-FontWeight.w300.__ctor = (('w300',),)
+FontWeight.w300._nx_ = {'#t': ('FontWeight', 'w300')}
 FontWeight.w400 = FontWeight(
 )
-FontWeight.w400.__ctor = (('w400',),)
+FontWeight.w400._nx_ = {'#t': ('FontWeight', 'w400')}
 FontWeight.w500 = FontWeight(
 )
-FontWeight.w500.__ctor = (('w500',),)
+FontWeight.w500._nx_ = {'#t': ('FontWeight', 'w500')}
 FontWeight.w600 = FontWeight(
 )
-FontWeight.w600.__ctor = (('w600',),)
+FontWeight.w600._nx_ = {'#t': ('FontWeight', 'w600')}
 FontWeight.w700 = FontWeight(
 )
-FontWeight.w700.__ctor = (('w700',),)
+FontWeight.w700._nx_ = {'#t': ('FontWeight', 'w700')}
 FontWeight.w800 = FontWeight(
 )
-FontWeight.w800.__ctor = (('w800',),)
+FontWeight.w800._nx_ = {'#t': ('FontWeight', 'w800')}
 FontWeight.w900 = FontWeight(
 )
-FontWeight.w900.__ctor = (('w900',),)
+FontWeight.w900._nx_ = {'#t': ('FontWeight', 'w900')}
 FontWeight.normal = FontWeight(
 )
-FontWeight.normal.__ctor = (('normal',),)
+FontWeight.normal._nx_ = {'#t': ('FontWeight', 'normal')}
 FontWeight.bold = FontWeight(
 )
-FontWeight.bold.__ctor = (('bold',),)
+FontWeight.bold._nx_ = {'#t': ('FontWeight', 'bold')}
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -754,10 +778,11 @@ class Locale(Object):
         _language_code: str,
         _country_code: Optional[str] = None,
     ):
-        self.__ctor = (('',), (
-            '_languageCode', _language_code,
-            '_countryCode', _country_code,
-        ))
+        self._nx_ = {
+            '#t': ('Locale', ''),
+            '_languageCode': _language_code,
+            '_countryCode': _country_code,
+        }
 
     @staticmethod
     def from_subtags(
@@ -768,11 +793,12 @@ class Locale(Object):
         _o = Locale(
             _language_code='',
         )
-        _o.__ctor = (('fromSubtags',), (
-            'languageCode', language_code,
-            'scriptCode', script_code,
-            'countryCode', country_code,
-        ))
+        _o._nx_ = {
+            '#t': ('Locale', 'fromSubtags'),
+            'languageCode': language_code,
+            'scriptCode': script_code,
+            'countryCode': country_code,
+        }
         return _o
 
 
@@ -782,17 +808,18 @@ class Paint(Object):
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
-class OffsetBase(ABC, Object):
+class OffsetBase(Object, ABC):
 
     def __init__(
         self,
         _dx: float,
         _dy: float,
     ):
-        self.__ctor = (('',), (
-            '_dx', _dx,
-            '_dy', _dy,
-        ))
+        self._nx_ = {
+            '#t': ('OffsetBase', ''),
+            '_dx': _dx,
+            '_dy': _dy,
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -807,10 +834,11 @@ class Offset(OffsetBase):
             _dx=0.0,
             _dy=0.0,
         )
-        self.__ctor = (('',), (
-            'dx', dx,
-            'dy', dy,
-        ))
+        self._nx_ = {
+            '#t': ('Offset', ''),
+            'dx': dx,
+            'dy': dy,
+        }
 
     @staticmethod
     def from_direction(
@@ -821,10 +849,11 @@ class Offset(OffsetBase):
             dx=0.0,
             dy=0.0,
         )
-        _o.__ctor = (('fromDirection',), (
-            'direction', direction,
-            'distance', distance,
-        ))
+        _o._nx_ = {
+            '#t': ('Offset', 'fromDirection'),
+            'direction': direction,
+            'distance': distance,
+        }
         return _o
 
 
@@ -832,12 +861,12 @@ Offset.zero = Offset(
     dx=0.0,
     dy=0.0,
 )
-Offset.zero.__ctor = (('zero',),)
+Offset.zero._nx_ = {'#t': ('Offset', 'zero')}
 Offset.infinite = Offset(
     dx=0.0,
     dy=0.0,
 )
-Offset.infinite.__ctor = (('infinite',),)
+Offset.infinite._nx_ = {'#t': ('Offset', 'infinite')}
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -849,11 +878,12 @@ class Shadow(Object):
         offset: Optional[Offset] = None,
         blur_radius: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'offset', offset,
-            'blurRadius', blur_radius,
-        ))
+        self._nx_ = {
+            '#t': ('Shadow', ''),
+            'color': color,
+            'offset': offset,
+            'blurRadius': blur_radius,
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -864,10 +894,11 @@ class FontFeature(Object):
         feature: str,
         value: Optional[int] = None,
     ):
-        self.__ctor = (('',), (
-            'feature', feature,
-            'value', value,
-        ))
+        self._nx_ = {
+            '#t': ('FontFeature', ''),
+            'feature': feature,
+            'value': value,
+        }
 
     @staticmethod
     def enable(
@@ -876,9 +907,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('enable',), (
-            'feature', feature,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'enable'),
+            'feature': feature,
+        }
         return _o
 
     @staticmethod
@@ -888,9 +920,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('disable',), (
-            'feature', feature,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'disable'),
+            'feature': feature,
+        }
         return _o
 
     @staticmethod
@@ -900,9 +933,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('alternative',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'alternative'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -911,8 +945,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('alternativeFractions',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'alternativeFractions'),
+        }
         return _o
 
     @staticmethod
@@ -921,8 +956,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('contextualAlternates',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'contextualAlternates'),
+        }
         return _o
 
     @staticmethod
@@ -931,8 +967,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('caseSensitiveForms',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'caseSensitiveForms'),
+        }
         return _o
 
     @staticmethod
@@ -942,9 +979,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('characterVariant',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'characterVariant'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -953,8 +991,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('denominator',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'denominator'),
+        }
         return _o
 
     @staticmethod
@@ -963,8 +1002,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('fractions',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'fractions'),
+        }
         return _o
 
     @staticmethod
@@ -973,8 +1013,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('historicalForms',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'historicalForms'),
+        }
         return _o
 
     @staticmethod
@@ -983,8 +1024,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('historicalLigatures',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'historicalLigatures'),
+        }
         return _o
 
     @staticmethod
@@ -993,8 +1035,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('liningFigures',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'liningFigures'),
+        }
         return _o
 
     @staticmethod
@@ -1004,9 +1047,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('localeAware',), (
-            'enable', enable,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'localeAware'),
+            'enable': enable,
+        }
         return _o
 
     @staticmethod
@@ -1016,9 +1060,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('notationalForms',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'notationalForms'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -1027,8 +1072,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('numerators',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'numerators'),
+        }
         return _o
 
     @staticmethod
@@ -1037,8 +1083,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('oldstyleFigures',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'oldstyleFigures'),
+        }
         return _o
 
     @staticmethod
@@ -1047,8 +1094,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('ordinalForms',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'ordinalForms'),
+        }
         return _o
 
     @staticmethod
@@ -1057,8 +1105,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('proportionalFigures',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'proportionalFigures'),
+        }
         return _o
 
     @staticmethod
@@ -1067,8 +1116,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('randomize',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'randomize'),
+        }
         return _o
 
     @staticmethod
@@ -1077,8 +1127,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('stylisticAlternates',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'stylisticAlternates'),
+        }
         return _o
 
     @staticmethod
@@ -1087,8 +1138,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('scientificInferiors',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'scientificInferiors'),
+        }
         return _o
 
     @staticmethod
@@ -1098,9 +1150,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('stylisticSet',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'stylisticSet'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -1109,8 +1162,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('subscripts',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'subscripts'),
+        }
         return _o
 
     @staticmethod
@@ -1119,8 +1173,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('superscripts',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'superscripts'),
+        }
         return _o
 
     @staticmethod
@@ -1130,9 +1185,10 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('swash',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'swash'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -1141,8 +1197,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('tabularFigures',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'tabularFigures'),
+        }
         return _o
 
     @staticmethod
@@ -1151,8 +1208,9 @@ class FontFeature(Object):
         _o = FontFeature(
             feature='',
         )
-        _o.__ctor = (('slashedZero',), (
-        ))
+        _o._nx_ = {
+            '#t': ('FontFeature', 'slashedZero'),
+        }
         return _o
 
 
@@ -1165,24 +1223,25 @@ class TextDecoration(Object):
     ):
         _o = TextDecoration(
         )
-        _o.__ctor = (('combine',), (
-            'decorations', decorations,
-        ))
+        _o._nx_ = {
+            '#t': ('TextDecoration', 'combine'),
+            'decorations': decorations,
+        }
         return _o
 
 
 TextDecoration.none = TextDecoration(
 )
-TextDecoration.none.__ctor = (('none',),)
+TextDecoration.none._nx_ = {'#t': ('TextDecoration', 'none')}
 TextDecoration.underline = TextDecoration(
 )
-TextDecoration.underline.__ctor = (('underline',),)
+TextDecoration.underline._nx_ = {'#t': ('TextDecoration', 'underline')}
 TextDecoration.overline = TextDecoration(
 )
-TextDecoration.overline.__ctor = (('overline',),)
+TextDecoration.overline._nx_ = {'#t': ('TextDecoration', 'overline')}
 TextDecoration.line_through = TextDecoration(
 )
-TextDecoration.line_through.__ctor = (('lineThrough',),)
+TextDecoration.line_through._nx_ = {'#t': ('TextDecoration', 'lineThrough')}
 
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
@@ -1233,37 +1292,38 @@ class TextStyle(Object):
         package: Optional[str] = None,
         overflow: Optional[TextOverflow] = None,
     ):
-        self.__ctor = (('',), (
-            'inherit', inherit,
-            'color', color,
-            'backgroundColor', background_color,
-            'fontSize', font_size,
-            'fontWeight', font_weight,
-            'fontStyle', font_style,
-            'letterSpacing', letter_spacing,
-            'wordSpacing', word_spacing,
-            'textBaseline', text_baseline,
-            'height', height,
-            'leadingDistribution', leading_distribution,
-            'locale', locale,
-            'foreground', foreground,
-            'background', background,
-            'shadows', shadows,
-            'fontFeatures', font_features,
-            'decoration', decoration,
-            'decorationColor', decoration_color,
-            'decorationStyle', decoration_style,
-            'decorationThickness', decoration_thickness,
-            'debugLabel', debug_label,
-            'fontFamily', font_family,
-            'fontFamilyFallback', font_family_fallback,
-            'package', package,
-            'overflow', overflow,
-        ))
+        self._nx_ = {
+            '#t': ('TextStyle', ''),
+            'inherit': inherit,
+            'color': color,
+            'backgroundColor': background_color,
+            'fontSize': font_size,
+            'fontWeight': font_weight,
+            'fontStyle': font_style,
+            'letterSpacing': letter_spacing,
+            'wordSpacing': word_spacing,
+            'textBaseline': text_baseline,
+            'height': height,
+            'leadingDistribution': leading_distribution,
+            'locale': locale,
+            'foreground': foreground,
+            'background': background,
+            'shadows': shadows,
+            'fontFeatures': font_features,
+            'decoration': decoration,
+            'decorationColor': decoration_color,
+            'decorationStyle': decoration_style,
+            'decorationThickness': decoration_thickness,
+            'debugLabel': debug_label,
+            'fontFamily': font_family,
+            'fontFamilyFallback': font_family_fallback,
+            'package': package,
+            'overflow': overflow,
+        }
 
 
 # packages/flutter/lib/src/rendering/object.dart
-class Constraints(ABC, Object):
+class Constraints(Object, ABC):
     pass
 
 
@@ -1279,10 +1339,11 @@ class Size(OffsetBase):
             _dx=0.0,
             _dy=0.0,
         )
-        self.__ctor = (('',), (
-            'width', width,
-            'height', height,
-        ))
+        self._nx_ = {
+            '#t': ('Size', ''),
+            'width': width,
+            'height': height,
+        }
 
     @staticmethod
     def copy(
@@ -1292,9 +1353,10 @@ class Size(OffsetBase):
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = (('copy',), (
-            'source', source,
-        ))
+        _o._nx_ = {
+            '#t': ('Size', 'copy'),
+            'source': source,
+        }
         return _o
 
     @staticmethod
@@ -1305,9 +1367,10 @@ class Size(OffsetBase):
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = (('square',), (
-            'dimension', dimension,
-        ))
+        _o._nx_ = {
+            '#t': ('Size', 'square'),
+            'dimension': dimension,
+        }
         return _o
 
     @staticmethod
@@ -1318,9 +1381,10 @@ class Size(OffsetBase):
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = (('fromWidth',), (
-            'width', width,
-        ))
+        _o._nx_ = {
+            '#t': ('Size', 'fromWidth'),
+            'width': width,
+        }
         return _o
 
     @staticmethod
@@ -1331,9 +1395,10 @@ class Size(OffsetBase):
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = (('fromHeight',), (
-            'height', height,
-        ))
+        _o._nx_ = {
+            '#t': ('Size', 'fromHeight'),
+            'height': height,
+        }
         return _o
 
     @staticmethod
@@ -1344,9 +1409,10 @@ class Size(OffsetBase):
             width=0.0,
             height=0.0,
         )
-        _o.__ctor = (('fromRadius',), (
-            'radius', radius,
-        ))
+        _o._nx_ = {
+            '#t': ('Size', 'fromRadius'),
+            'radius': radius,
+        }
         return _o
 
 
@@ -1354,12 +1420,12 @@ Size.zero = Size(
     width=0.0,
     height=0.0,
 )
-Size.zero.__ctor = (('zero',),)
+Size.zero._nx_ = {'#t': ('Size', 'zero')}
 Size.infinite = Size(
     width=0.0,
     height=0.0,
 )
-Size.infinite.__ctor = (('infinite',),)
+Size.infinite._nx_ = {'#t': ('Size', 'infinite')}
 
 
 # packages/flutter/lib/src/rendering/box.dart
@@ -1372,12 +1438,13 @@ class BoxConstraints(Constraints):
         min_height: Optional[float] = None,
         max_height: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'minWidth', min_width,
-            'maxWidth', max_width,
-            'minHeight', min_height,
-            'maxHeight', max_height,
-        ))
+        self._nx_ = {
+            '#t': ('BoxConstraints', ''),
+            'minWidth': min_width,
+            'maxWidth': max_width,
+            'minHeight': min_height,
+            'maxHeight': max_height,
+        }
 
     @staticmethod
     def tight(
@@ -1385,9 +1452,10 @@ class BoxConstraints(Constraints):
     ):
         _o = BoxConstraints(
         )
-        _o.__ctor = (('tight',), (
-            'size', size,
-        ))
+        _o._nx_ = {
+            '#t': ('BoxConstraints', 'tight'),
+            'size': size,
+        }
         return _o
 
     @staticmethod
@@ -1397,10 +1465,11 @@ class BoxConstraints(Constraints):
     ):
         _o = BoxConstraints(
         )
-        _o.__ctor = (('tightFor',), (
-            'width', width,
-            'height', height,
-        ))
+        _o._nx_ = {
+            '#t': ('BoxConstraints', 'tightFor'),
+            'width': width,
+            'height': height,
+        }
         return _o
 
     @staticmethod
@@ -1410,10 +1479,11 @@ class BoxConstraints(Constraints):
     ):
         _o = BoxConstraints(
         )
-        _o.__ctor = (('tightForFinite',), (
-            'width', width,
-            'height', height,
-        ))
+        _o._nx_ = {
+            '#t': ('BoxConstraints', 'tightForFinite'),
+            'width': width,
+            'height': height,
+        }
         return _o
 
     @staticmethod
@@ -1422,9 +1492,10 @@ class BoxConstraints(Constraints):
     ):
         _o = BoxConstraints(
         )
-        _o.__ctor = (('loose',), (
-            'size', size,
-        ))
+        _o._nx_ = {
+            '#t': ('BoxConstraints', 'loose'),
+            'size': size,
+        }
         return _o
 
     @staticmethod
@@ -1434,15 +1505,16 @@ class BoxConstraints(Constraints):
     ):
         _o = BoxConstraints(
         )
-        _o.__ctor = (('expand',), (
-            'width', width,
-            'height', height,
-        ))
+        _o._nx_ = {
+            '#t': ('BoxConstraints', 'expand'),
+            'width': width,
+            'height': height,
+        }
         return _o
 
 
 # packages/flutter/lib/src/painting/border_radius.dart
-class BorderRadiusGeometry(ABC, Object):
+class BorderRadiusGeometry(Object, ABC):
     pass
 
 
@@ -1455,9 +1527,10 @@ class Radius(Object):
     ):
         _o = Radius(
         )
-        _o.__ctor = (('circular',), (
-            'radius', radius,
-        ))
+        _o._nx_ = {
+            '#t': ('Radius', 'circular'),
+            'radius': radius,
+        }
         return _o
 
     @staticmethod
@@ -1467,16 +1540,17 @@ class Radius(Object):
     ):
         _o = Radius(
         )
-        _o.__ctor = (('elliptical',), (
-            'x', x,
-            'y', y,
-        ))
+        _o._nx_ = {
+            '#t': ('Radius', 'elliptical'),
+            'x': x,
+            'y': y,
+        }
         return _o
 
 
 Radius.zero = Radius(
 )
-Radius.zero.__ctor = (('zero',),)
+Radius.zero._nx_ = {'#t': ('Radius', 'zero')}
 
 
 # packages/flutter/lib/src/painting/border_radius.dart
@@ -1488,9 +1562,10 @@ class BorderRadius(BorderRadiusGeometry):
     ):
         _o = BorderRadius(
         )
-        _o.__ctor = (('all',), (
-            'radius', radius,
-        ))
+        _o._nx_ = {
+            '#t': ('BorderRadius', 'all'),
+            'radius': radius,
+        }
         return _o
 
     @staticmethod
@@ -1499,9 +1574,10 @@ class BorderRadius(BorderRadiusGeometry):
     ):
         _o = BorderRadius(
         )
-        _o.__ctor = (('circular',), (
-            'radius', radius,
-        ))
+        _o._nx_ = {
+            '#t': ('BorderRadius', 'circular'),
+            'radius': radius,
+        }
         return _o
 
     @staticmethod
@@ -1511,10 +1587,11 @@ class BorderRadius(BorderRadiusGeometry):
     ):
         _o = BorderRadius(
         )
-        _o.__ctor = (('vertical',), (
-            'top', top,
-            'bottom', bottom,
-        ))
+        _o._nx_ = {
+            '#t': ('BorderRadius', 'vertical'),
+            'top': top,
+            'bottom': bottom,
+        }
         return _o
 
     @staticmethod
@@ -1524,10 +1601,11 @@ class BorderRadius(BorderRadiusGeometry):
     ):
         _o = BorderRadius(
         )
-        _o.__ctor = (('horizontal',), (
-            'left', left,
-            'right', right,
-        ))
+        _o._nx_ = {
+            '#t': ('BorderRadius', 'horizontal'),
+            'left': left,
+            'right': right,
+        }
         return _o
 
     @staticmethod
@@ -1539,18 +1617,19 @@ class BorderRadius(BorderRadiusGeometry):
     ):
         _o = BorderRadius(
         )
-        _o.__ctor = (('only',), (
-            'topLeft', top_left,
-            'topRight', top_right,
-            'bottomLeft', bottom_left,
-            'bottomRight', bottom_right,
-        ))
+        _o._nx_ = {
+            '#t': ('BorderRadius', 'only'),
+            'topLeft': top_left,
+            'topRight': top_right,
+            'bottomLeft': bottom_left,
+            'bottomRight': bottom_right,
+        }
         return _o
 
 
 BorderRadius.zero = BorderRadius(
 )
-BorderRadius.zero.__ctor = (('zero',),)
+BorderRadius.zero._nx_ = {'#t': ('BorderRadius', 'zero')}
 
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
@@ -1574,23 +1653,24 @@ class ToggleButtonsThemeData(Object):
         border_radius: Optional[BorderRadius] = None,
         border_width: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'textStyle', text_style,
-            'constraints', constraints,
-            'color', color,
-            'selectedColor', selected_color,
-            'disabledColor', disabled_color,
-            'fillColor', fill_color,
-            'focusColor', focus_color,
-            'highlightColor', highlight_color,
-            'hoverColor', hover_color,
-            'splashColor', splash_color,
-            'borderColor', border_color,
-            'selectedBorderColor', selected_border_color,
-            'disabledBorderColor', disabled_border_color,
-            'borderRadius', border_radius,
-            'borderWidth', border_width,
-        ))
+        self._nx_ = {
+            '#t': ('ToggleButtonsThemeData', ''),
+            'textStyle': text_style,
+            'constraints': constraints,
+            'color': color,
+            'selectedColor': selected_color,
+            'disabledColor': disabled_color,
+            'fillColor': fill_color,
+            'focusColor': focus_color,
+            'highlightColor': highlight_color,
+            'hoverColor': hover_color,
+            'splashColor': splash_color,
+            'borderColor': border_color,
+            'selectedBorderColor': selected_border_color,
+            'disabledBorderColor': disabled_border_color,
+            'borderRadius': border_radius,
+            'borderWidth': border_width,
+        }
 
 
 # packages/flutter/lib/src/material/text_theme.dart
@@ -1612,21 +1692,22 @@ class TextTheme(Object):
         button: Optional[TextStyle] = None,
         overline: Optional[TextStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'headline1', headline1,
-            'headline2', headline2,
-            'headline3', headline3,
-            'headline4', headline4,
-            'headline5', headline5,
-            'headline6', headline6,
-            'subtitle1', subtitle1,
-            'subtitle2', subtitle2,
-            'bodyText1', body_text1,
-            'bodyText2', body_text2,
-            'caption', caption,
-            'button', button,
-            'overline', overline,
-        ))
+        self._nx_ = {
+            '#t': ('TextTheme', ''),
+            'headline1': headline1,
+            'headline2': headline2,
+            'headline3': headline3,
+            'headline4': headline4,
+            'headline5': headline5,
+            'headline6': headline6,
+            'subtitle1': subtitle1,
+            'subtitle2': subtitle2,
+            'bodyText1': body_text1,
+            'bodyText2': body_text2,
+            'caption': caption,
+            'button': button,
+            'overline': overline,
+        }
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
@@ -1651,33 +1732,35 @@ class BorderSide(Object):
         width: Optional[float] = None,
         style: Optional[BorderStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'width', width,
-            'style', style,
-        ))
+        self._nx_ = {
+            '#t': ('BorderSide', ''),
+            'color': color,
+            'width': width,
+            'style': style,
+        }
 
 
 BorderSide.none = BorderSide(
 )
-BorderSide.none.__ctor = (('none',),)
+BorderSide.none._nx_ = {'#t': ('BorderSide', 'none')}
 
 
 # packages/flutter/lib/src/material/input_border.dart
-class InputBorder(ABC, ShapeBorder):
+class InputBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
         border_side: Optional[BorderSide] = None,
     ):
-        self.__ctor = (('',), (
-            'borderSide', border_side,
-        ))
+        self._nx_ = {
+            '#t': ('InputBorder', ''),
+            'borderSide': border_side,
+        }
 
 
 InputBorder.none = InputBorder(
 )
-InputBorder.none.__ctor = (('none',),)
+InputBorder.none._nx_ = {'#t': ('InputBorder', 'none')}
 
 
 # packages/flutter/lib/src/material/input_decorator.dart
@@ -1712,34 +1795,35 @@ class InputDecorationTheme(Object):
         align_label_with_hint: Optional[bool] = None,
         constraints: Optional[BoxConstraints] = None,
     ):
-        self.__ctor = (('',), (
-            'labelStyle', label_style,
-            'floatingLabelStyle', floating_label_style,
-            'helperStyle', helper_style,
-            'helperMaxLines', helper_max_lines,
-            'hintStyle', hint_style,
-            'errorStyle', error_style,
-            'errorMaxLines', error_max_lines,
-            'floatingLabelBehavior', floating_label_behavior,
-            'isDense', is_dense,
-            'contentPadding', content_padding,
-            'isCollapsed', is_collapsed,
-            'prefixStyle', prefix_style,
-            'suffixStyle', suffix_style,
-            'counterStyle', counter_style,
-            'filled', filled,
-            'fillColor', fill_color,
-            'focusColor', focus_color,
-            'hoverColor', hover_color,
-            'errorBorder', error_border,
-            'focusedBorder', focused_border,
-            'focusedErrorBorder', focused_error_border,
-            'disabledBorder', disabled_border,
-            'enabledBorder', enabled_border,
-            'border', border,
-            'alignLabelWithHint', align_label_with_hint,
-            'constraints', constraints,
-        ))
+        self._nx_ = {
+            '#t': ('InputDecorationTheme', ''),
+            'labelStyle': label_style,
+            'floatingLabelStyle': floating_label_style,
+            'helperStyle': helper_style,
+            'helperMaxLines': helper_max_lines,
+            'hintStyle': hint_style,
+            'errorStyle': error_style,
+            'errorMaxLines': error_max_lines,
+            'floatingLabelBehavior': floating_label_behavior,
+            'isDense': is_dense,
+            'contentPadding': content_padding,
+            'isCollapsed': is_collapsed,
+            'prefixStyle': prefix_style,
+            'suffixStyle': suffix_style,
+            'counterStyle': counter_style,
+            'filled': filled,
+            'fillColor': fill_color,
+            'focusColor': focus_color,
+            'hoverColor': hover_color,
+            'errorBorder': error_border,
+            'focusedBorder': focused_border,
+            'focusedErrorBorder': focused_error_border,
+            'disabledBorder': disabled_border,
+            'enabledBorder': enabled_border,
+            'border': border,
+            'alignLabelWithHint': align_label_with_hint,
+            'constraints': constraints,
+        }
 
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
@@ -1751,54 +1835,56 @@ class IconThemeData(Object):
         opacity: Optional[float] = None,
         size: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'opacity', opacity,
-            'size', size,
-        ))
+        self._nx_ = {
+            '#t': ('IconThemeData', ''),
+            'color': color,
+            'opacity': opacity,
+            'size': size,
+        }
 
     @staticmethod
     def fallback(
     ):
         _o = IconThemeData(
         )
-        _o.__ctor = (('fallback',), (
-        ))
+        _o._nx_ = {
+            '#t': ('IconThemeData', 'fallback'),
+        }
         return _o
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderComponentShape(ABC, Object):
+class SliderComponentShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderTickMarkShape(ABC, Object):
+class SliderTickMarkShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class SliderTrackShape(ABC, Object):
+class SliderTrackShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderTickMarkShape(ABC, Object):
+class RangeSliderTickMarkShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderThumbShape(ABC, Object):
+class RangeSliderThumbShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderTrackShape(ABC, Object):
+class RangeSliderTrackShape(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
-class RangeSliderValueIndicatorShape(ABC, Object):
+class RangeSliderValueIndicatorShape(Object, ABC):
     pass
 
 
@@ -1824,10 +1910,11 @@ class RangeValues(Object):
         start: float,
         end: float,
     ):
-        self.__ctor = (('',), (
-            'start', start,
-            'end', end,
-        ))
+        self._nx_ = {
+            '#t': ('RangeValues', ''),
+            'start': start,
+            'end': end,
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -1869,35 +1956,36 @@ class SliderThemeData(Object):
         min_thumb_separation: Optional[float] = None,
         thumb_selector: Optional[Callable[[TextDirection, RangeValues, float, Size, Size, float], Thumb]] = None,
     ):
-        self.__ctor = (('',), (
-            'trackHeight', track_height,
-            'activeTrackColor', active_track_color,
-            'inactiveTrackColor', inactive_track_color,
-            'disabledActiveTrackColor', disabled_active_track_color,
-            'disabledInactiveTrackColor', disabled_inactive_track_color,
-            'activeTickMarkColor', active_tick_mark_color,
-            'inactiveTickMarkColor', inactive_tick_mark_color,
-            'disabledActiveTickMarkColor', disabled_active_tick_mark_color,
-            'disabledInactiveTickMarkColor', disabled_inactive_tick_mark_color,
-            'thumbColor', thumb_color,
-            'overlappingShapeStrokeColor', overlapping_shape_stroke_color,
-            'disabledThumbColor', disabled_thumb_color,
-            'overlayColor', overlay_color,
-            'valueIndicatorColor', value_indicator_color,
-            'overlayShape', overlay_shape,
-            'tickMarkShape', tick_mark_shape,
-            'thumbShape', thumb_shape,
-            'trackShape', track_shape,
-            'valueIndicatorShape', value_indicator_shape,
-            'rangeTickMarkShape', range_tick_mark_shape,
-            'rangeThumbShape', range_thumb_shape,
-            'rangeTrackShape', range_track_shape,
-            'rangeValueIndicatorShape', range_value_indicator_shape,
-            'showValueIndicator', show_value_indicator,
-            'valueIndicatorTextStyle', value_indicator_text_style,
-            'minThumbSeparation', min_thumb_separation,
-            'thumbSelector', thumb_selector,
-        ))
+        self._nx_ = {
+            '#t': ('SliderThemeData', ''),
+            'trackHeight': track_height,
+            'activeTrackColor': active_track_color,
+            'inactiveTrackColor': inactive_track_color,
+            'disabledActiveTrackColor': disabled_active_track_color,
+            'disabledInactiveTrackColor': disabled_inactive_track_color,
+            'activeTickMarkColor': active_tick_mark_color,
+            'inactiveTickMarkColor': inactive_tick_mark_color,
+            'disabledActiveTickMarkColor': disabled_active_tick_mark_color,
+            'disabledInactiveTickMarkColor': disabled_inactive_tick_mark_color,
+            'thumbColor': thumb_color,
+            'overlappingShapeStrokeColor': overlapping_shape_stroke_color,
+            'disabledThumbColor': disabled_thumb_color,
+            'overlayColor': overlay_color,
+            'valueIndicatorColor': value_indicator_color,
+            'overlayShape': overlay_shape,
+            'tickMarkShape': tick_mark_shape,
+            'thumbShape': thumb_shape,
+            'trackShape': track_shape,
+            'valueIndicatorShape': value_indicator_shape,
+            'rangeTickMarkShape': range_tick_mark_shape,
+            'rangeThumbShape': range_thumb_shape,
+            'rangeTrackShape': range_track_shape,
+            'rangeValueIndicatorShape': range_value_indicator_shape,
+            'showValueIndicator': show_value_indicator,
+            'valueIndicatorTextStyle': value_indicator_text_style,
+            'minThumbSeparation': min_thumb_separation,
+            'thumbSelector': thumb_selector,
+        }
 
     @staticmethod
     def from_primary_colors(
@@ -1908,17 +1996,18 @@ class SliderThemeData(Object):
     ):
         _o = SliderThemeData(
         )
-        _o.__ctor = (('fromPrimaryColors',), (
-            'primaryColor', primary_color,
-            'primaryColorDark', primary_color_dark,
-            'primaryColorLight', primary_color_light,
-            'valueIndicatorTextStyle', value_indicator_text_style,
-        ))
+        _o._nx_ = {
+            '#t': ('SliderThemeData', 'fromPrimaryColors'),
+            'primaryColor': primary_color,
+            'primaryColorDark': primary_color_dark,
+            'primaryColorLight': primary_color_light,
+            'valueIndicatorTextStyle': value_indicator_text_style,
+        }
         return _o
 
 
 # packages/flutter/lib/src/painting/decoration.dart
-class Decoration(ABC, Object):
+class Decoration(Object, ABC):
     pass
 
 
@@ -1941,24 +2030,25 @@ class TabBarTheme(Object):
         unselected_label_color: Optional[Color] = None,
         unselected_label_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'indicator', indicator,
-            'indicatorSize', indicator_size,
-            'labelColor', label_color,
-            'labelPadding', label_padding,
-            'labelStyle', label_style,
-            'unselectedLabelColor', unselected_label_color,
-            'unselectedLabelStyle', unselected_label_style,
-        ))
+        self._nx_ = {
+            '#t': ('TabBarTheme', ''),
+            'indicator': indicator,
+            'indicatorSize': indicator_size,
+            'labelColor': label_color,
+            'labelPadding': label_padding,
+            'labelStyle': label_style,
+            'unselectedLabelColor': unselected_label_color,
+            'unselectedLabelStyle': unselected_label_style,
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/core/comparable.dart
-class Comparable(ABC, Generic[T], Object):
+class Comparable(Object, ABC, Generic[T]):
     pass
 
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
-class Duration(Object, Comparable['Duration']):
+class Duration(Comparable['Duration'], Object):
     microseconds_per_millisecond: int = 1000
     milliseconds_per_second: int = 1000
     seconds_per_minute: int = 60
@@ -1984,19 +2074,20 @@ class Duration(Object, Comparable['Duration']):
         milliseconds: Optional[int] = None,
         microseconds: Optional[int] = None,
     ):
-        self.__ctor = (('',), (
-            'days', days,
-            'hours', hours,
-            'minutes', minutes,
-            'seconds', seconds,
-            'milliseconds', milliseconds,
-            'microseconds', microseconds,
-        ))
+        self._nx_ = {
+            '#t': ('Duration', ''),
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds,
+            'milliseconds': milliseconds,
+            'microseconds': microseconds,
+        }
 
 
 Duration.zero = Duration(
 )
-Duration.zero.__ctor = (('zero',),)
+Duration.zero._nx_ = {'#t': ('Duration', 'zero')}
 
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
@@ -2024,20 +2115,21 @@ class TooltipThemeData(Object):
         trigger_mode: Optional[TooltipTriggerMode] = None,
         enable_feedback: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'height', height,
-            'padding', padding,
-            'margin', margin,
-            'verticalOffset', vertical_offset,
-            'preferBelow', prefer_below,
-            'excludeFromSemantics', exclude_from_semantics,
-            'decoration', decoration,
-            'textStyle', text_style,
-            'waitDuration', wait_duration,
-            'showDuration', show_duration,
-            'triggerMode', trigger_mode,
-            'enableFeedback', enable_feedback,
-        ))
+        self._nx_ = {
+            '#t': ('TooltipThemeData', ''),
+            'height': height,
+            'padding': padding,
+            'margin': margin,
+            'verticalOffset': vertical_offset,
+            'preferBelow': prefer_below,
+            'excludeFromSemantics': exclude_from_semantics,
+            'decoration': decoration,
+            'textStyle': text_style,
+            'waitDuration': wait_duration,
+            'showDuration': show_duration,
+            'triggerMode': trigger_mode,
+            'enableFeedback': enable_feedback,
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -2060,26 +2152,28 @@ class CardTheme(Object):
         margin: Optional[EdgeInsetsGeometry] = None,
         shape: Optional[ShapeBorder] = None,
     ):
-        self.__ctor = (('',), (
-            'clipBehavior', clip_behavior,
-            'color', color,
-            'shadowColor', shadow_color,
-            'elevation', elevation,
-            'margin', margin,
-            'shape', shape,
-        ))
+        self._nx_ = {
+            '#t': ('CardTheme', ''),
+            'clipBehavior': clip_behavior,
+            'color': color,
+            'shadowColor': shadow_color,
+            'elevation': elevation,
+            'margin': margin,
+            'shape': shape,
+        }
 
 
 # packages/flutter/lib/src/painting/borders.dart
-class OutlinedBorder(ABC, ShapeBorder):
+class OutlinedBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
         side: Optional[BorderSide] = None,
     ):
-        self.__ctor = (('',), (
-            'side', side,
-        ))
+        self._nx_ = {
+            '#t': ('OutlinedBorder', ''),
+            'side': side,
+        }
 
 
 # packages/flutter/lib/src/material/chip_theme.dart
@@ -2106,26 +2200,27 @@ class ChipThemeData(Object):
         elevation: Optional[float] = None,
         press_elevation: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'disabledColor', disabled_color,
-            'selectedColor', selected_color,
-            'secondarySelectedColor', secondary_selected_color,
-            'padding', padding,
-            'labelStyle', label_style,
-            'secondaryLabelStyle', secondary_label_style,
-            'brightness', brightness,
-            'deleteIconColor', delete_icon_color,
-            'shadowColor', shadow_color,
-            'selectedShadowColor', selected_shadow_color,
-            'showCheckmark', show_checkmark,
-            'checkmarkColor', checkmark_color,
-            'labelPadding', label_padding,
-            'side', side,
-            'shape', shape,
-            'elevation', elevation,
-            'pressElevation', press_elevation,
-        ))
+        self._nx_ = {
+            '#t': ('ChipThemeData', ''),
+            'backgroundColor': background_color,
+            'disabledColor': disabled_color,
+            'selectedColor': selected_color,
+            'secondarySelectedColor': secondary_selected_color,
+            'padding': padding,
+            'labelStyle': label_style,
+            'secondaryLabelStyle': secondary_label_style,
+            'brightness': brightness,
+            'deleteIconColor': delete_icon_color,
+            'shadowColor': shadow_color,
+            'selectedShadowColor': selected_shadow_color,
+            'showCheckmark': show_checkmark,
+            'checkmarkColor': checkmark_color,
+            'labelPadding': label_padding,
+            'side': side,
+            'shape': shape,
+            'elevation': elevation,
+            'pressElevation': press_elevation,
+        }
 
     @staticmethod
     def from_defaults(
@@ -2144,12 +2239,13 @@ class ChipThemeData(Object):
             secondary_label_style=TextStyle(),
             brightness=Brightness.dark,
         )
-        _o.__ctor = (('fromDefaults',), (
-            'secondaryColor', secondary_color,
-            'labelStyle', label_style,
-            'brightness', brightness,
-            'primaryColor', primary_color,
-        ))
+        _o._nx_ = {
+            '#t': ('ChipThemeData', 'fromDefaults'),
+            'secondaryColor': secondary_color,
+            'labelStyle': label_style,
+            'brightness': brightness,
+            'primaryColor': primary_color,
+        }
         return _o
 
 
@@ -2164,7 +2260,7 @@ class TargetPlatform(Enum):
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
-class PageTransitionsBuilder(ABC, Object):
+class PageTransitionsBuilder(Object, ABC):
     pass
 
 
@@ -2175,9 +2271,10 @@ class PageTransitionsTheme(Object):
         self,
         builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
     ):
-        self.__ctor = (('',), (
-            'builders', builders,
-        ))
+        self._nx_ = {
+            '#t': ('PageTransitionsTheme', ''),
+            'builders': builders,
+        }
 
 
 # packages/flutter/lib/src/services/system_chrome.dart
@@ -2194,24 +2291,25 @@ class SystemUiOverlayStyle(Object):
         status_bar_icon_brightness: Optional[Brightness] = None,
         system_status_bar_contrast_enforced: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'systemNavigationBarColor', system_navigation_bar_color,
-            'systemNavigationBarDividerColor', system_navigation_bar_divider_color,
-            'systemNavigationBarIconBrightness', system_navigation_bar_icon_brightness,
-            'systemNavigationBarContrastEnforced', system_navigation_bar_contrast_enforced,
-            'statusBarColor', status_bar_color,
-            'statusBarBrightness', status_bar_brightness,
-            'statusBarIconBrightness', status_bar_icon_brightness,
-            'systemStatusBarContrastEnforced', system_status_bar_contrast_enforced,
-        ))
+        self._nx_ = {
+            '#t': ('SystemUiOverlayStyle', ''),
+            'systemNavigationBarColor': system_navigation_bar_color,
+            'systemNavigationBarDividerColor': system_navigation_bar_divider_color,
+            'systemNavigationBarIconBrightness': system_navigation_bar_icon_brightness,
+            'systemNavigationBarContrastEnforced': system_navigation_bar_contrast_enforced,
+            'statusBarColor': status_bar_color,
+            'statusBarBrightness': status_bar_brightness,
+            'statusBarIconBrightness': status_bar_icon_brightness,
+            'systemStatusBarContrastEnforced': system_status_bar_contrast_enforced,
+        }
 
 
 SystemUiOverlayStyle.light = SystemUiOverlayStyle(
 )
-SystemUiOverlayStyle.light.__ctor = (('light',),)
+SystemUiOverlayStyle.light._nx_ = {'#t': ('SystemUiOverlayStyle', 'light')}
 SystemUiOverlayStyle.dark = SystemUiOverlayStyle(
 )
-SystemUiOverlayStyle.dark.__ctor = (('dark',),)
+SystemUiOverlayStyle.dark._nx_ = {'#t': ('SystemUiOverlayStyle', 'dark')}
 
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
@@ -2237,29 +2335,30 @@ class AppBarTheme(Object):
         system_overlay_style: Optional[SystemUiOverlayStyle] = None,
         backwards_compatibility: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'brightness', brightness,
-            'color', color,
-            'backgroundColor', background_color,
-            'foregroundColor', foreground_color,
-            'elevation', elevation,
-            'shadowColor', shadow_color,
-            'shape', shape,
-            'iconTheme', icon_theme,
-            'actionsIconTheme', actions_icon_theme,
-            'textTheme', text_theme,
-            'centerTitle', center_title,
-            'titleSpacing', title_spacing,
-            'toolbarHeight', toolbar_height,
-            'toolbarTextStyle', toolbar_text_style,
-            'titleTextStyle', title_text_style,
-            'systemOverlayStyle', system_overlay_style,
-            'backwardsCompatibility', backwards_compatibility,
-        ))
+        self._nx_ = {
+            '#t': ('AppBarTheme', ''),
+            'brightness': brightness,
+            'color': color,
+            'backgroundColor': background_color,
+            'foregroundColor': foreground_color,
+            'elevation': elevation,
+            'shadowColor': shadow_color,
+            'shape': shape,
+            'iconTheme': icon_theme,
+            'actionsIconTheme': actions_icon_theme,
+            'textTheme': text_theme,
+            'centerTitle': center_title,
+            'titleSpacing': title_spacing,
+            'toolbarHeight': toolbar_height,
+            'toolbarTextStyle': toolbar_text_style,
+            'titleTextStyle': title_text_style,
+            'systemOverlayStyle': system_overlay_style,
+            'backwardsCompatibility': backwards_compatibility,
+        }
 
 
 # packages/flutter/lib/src/material/material_state.dart
-class MaterialStateProperty(ABC, Generic[T], Object):
+class MaterialStateProperty(Object, ABC, Generic[T]):
     pass
 
 
@@ -2280,23 +2379,24 @@ class ScrollbarThemeData(Object):
         min_thumb_length: Optional[float] = None,
         interactive: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'thickness', thickness,
-            'showTrackOnHover', show_track_on_hover,
-            'isAlwaysShown', is_always_shown,
-            'radius', radius,
-            'thumbColor', thumb_color,
-            'trackColor', track_color,
-            'trackBorderColor', track_border_color,
-            'crossAxisMargin', cross_axis_margin,
-            'mainAxisMargin', main_axis_margin,
-            'minThumbLength', min_thumb_length,
-            'interactive', interactive,
-        ))
+        self._nx_ = {
+            '#t': ('ScrollbarThemeData', ''),
+            'thickness': thickness,
+            'showTrackOnHover': show_track_on_hover,
+            'isAlwaysShown': is_always_shown,
+            'radius': radius,
+            'thumbColor': thumb_color,
+            'trackColor': track_color,
+            'trackBorderColor': track_border_color,
+            'crossAxisMargin': cross_axis_margin,
+            'mainAxisMargin': main_axis_margin,
+            'minThumbLength': min_thumb_length,
+            'interactive': interactive,
+        }
 
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
-class NotchedShape(ABC, Object):
+class NotchedShape(Object, ABC):
     pass
 
 
@@ -2309,11 +2409,12 @@ class BottomAppBarTheme(Object):
         elevation: Optional[float] = None,
         shape: Optional[NotchedShape] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'elevation', elevation,
-            'shape', shape,
-        ))
+        self._nx_ = {
+            '#t': ('BottomAppBarTheme', ''),
+            'color': color,
+            'elevation': elevation,
+            'shape': shape,
+        }
 
 
 # packages/flutter/lib/src/material/dialog_theme.dart
@@ -2327,13 +2428,14 @@ class DialogTheme(Object):
         title_text_style: Optional[TextStyle] = None,
         content_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'elevation', elevation,
-            'shape', shape,
-            'titleTextStyle', title_text_style,
-            'contentTextStyle', content_text_style,
-        ))
+        self._nx_ = {
+            '#t': ('DialogTheme', ''),
+            'backgroundColor': background_color,
+            'elevation': elevation,
+            'shape': shape,
+            'titleTextStyle': title_text_style,
+            'contentTextStyle': content_text_style,
+        }
 
 
 # packages/flutter/lib/src/material/floating_action_button_theme.dart
@@ -2361,27 +2463,28 @@ class FloatingActionButtonThemeData(Object):
         extended_padding: Optional[EdgeInsetsGeometry] = None,
         extended_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'foregroundColor', foreground_color,
-            'backgroundColor', background_color,
-            'focusColor', focus_color,
-            'hoverColor', hover_color,
-            'splashColor', splash_color,
-            'elevation', elevation,
-            'focusElevation', focus_elevation,
-            'hoverElevation', hover_elevation,
-            'disabledElevation', disabled_elevation,
-            'highlightElevation', highlight_elevation,
-            'shape', shape,
-            'enableFeedback', enable_feedback,
-            'sizeConstraints', size_constraints,
-            'smallSizeConstraints', small_size_constraints,
-            'largeSizeConstraints', large_size_constraints,
-            'extendedSizeConstraints', extended_size_constraints,
-            'extendedIconLabelSpacing', extended_icon_label_spacing,
-            'extendedPadding', extended_padding,
-            'extendedTextStyle', extended_text_style,
-        ))
+        self._nx_ = {
+            '#t': ('FloatingActionButtonThemeData', ''),
+            'foregroundColor': foreground_color,
+            'backgroundColor': background_color,
+            'focusColor': focus_color,
+            'hoverColor': hover_color,
+            'splashColor': splash_color,
+            'elevation': elevation,
+            'focusElevation': focus_elevation,
+            'hoverElevation': hover_elevation,
+            'disabledElevation': disabled_elevation,
+            'highlightElevation': highlight_elevation,
+            'shape': shape,
+            'enableFeedback': enable_feedback,
+            'sizeConstraints': size_constraints,
+            'smallSizeConstraints': small_size_constraints,
+            'largeSizeConstraints': large_size_constraints,
+            'extendedSizeConstraints': extended_size_constraints,
+            'extendedIconLabelSpacing': extended_icon_label_spacing,
+            'extendedPadding': extended_padding,
+            'extendedTextStyle': extended_text_style,
+        }
 
 
 # packages/flutter/lib/src/material/navigation_rail.dart
@@ -2405,22 +2508,23 @@ class NavigationRailThemeData(Object):
         group_alignment: Optional[float] = None,
         label_type: Optional[NavigationRailLabelType] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'elevation', elevation,
-            'unselectedLabelTextStyle', unselected_label_text_style,
-            'selectedLabelTextStyle', selected_label_text_style,
-            'unselectedIconTheme', unselected_icon_theme,
-            'selectedIconTheme', selected_icon_theme,
-            'groupAlignment', group_alignment,
-            'labelType', label_type,
-        ))
+        self._nx_ = {
+            '#t': ('NavigationRailThemeData', ''),
+            'backgroundColor': background_color,
+            'elevation': elevation,
+            'unselectedLabelTextStyle': unselected_label_text_style,
+            'selectedLabelTextStyle': selected_label_text_style,
+            'unselectedIconTheme': unselected_icon_theme,
+            'selectedIconTheme': selected_icon_theme,
+            'groupAlignment': group_alignment,
+            'labelType': label_type,
+        }
 
 
 def _typography__text_theme(_k: str) -> TextTheme:
     _o = TextTheme(
     )
-    _o.__ctor = (('Typography', _k),)
+    _o._nx_ = {'#t': ('Typography', _k)}
     return _o
 
 
@@ -2452,14 +2556,15 @@ class Typography(Object):
         dense: Optional[TextTheme] = None,
         tall: Optional[TextTheme] = None,
     ):
-        self.__ctor = (('',), (
-            'platform', platform,
-            'black', black,
-            'white', white,
-            'englishLike', english_like,
-            'dense', dense,
-            'tall', tall,
-        ))
+        self._nx_ = {
+            '#t': ('Typography', ''),
+            'platform': platform,
+            'black': black,
+            'white': white,
+            'englishLike': english_like,
+            'dense': dense,
+            'tall': tall,
+        }
 
     @staticmethod
     def material2014(
@@ -2472,14 +2577,15 @@ class Typography(Object):
     ):
         _o = Typography(
         )
-        _o.__ctor = (('material2014',), (
-            'platform', platform,
-            'black', black,
-            'white', white,
-            'englishLike', english_like,
-            'dense', dense,
-            'tall', tall,
-        ))
+        _o._nx_ = {
+            '#t': ('Typography', 'material2014'),
+            'platform': platform,
+            'black': black,
+            'white': white,
+            'englishLike': english_like,
+            'dense': dense,
+            'tall': tall,
+        }
         return _o
 
     @staticmethod
@@ -2493,14 +2599,15 @@ class Typography(Object):
     ):
         _o = Typography(
         )
-        _o.__ctor = (('material2018',), (
-            'platform', platform,
-            'black', black,
-            'white', white,
-            'englishLike', english_like,
-            'dense', dense,
-            'tall', tall,
-        ))
+        _o._nx_ = {
+            '#t': ('Typography', 'material2018'),
+            'platform': platform,
+            'black': black,
+            'white': white,
+            'englishLike': english_like,
+            'dense': dense,
+            'tall': tall,
+        }
         return _o
 
 
@@ -2519,17 +2626,18 @@ class CupertinoTextThemeData(Object):
         picker_text_style: Optional[TextStyle] = None,
         date_time_picker_text_style: Optional[TextStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'primaryColor', primary_color,
-            'textStyle', text_style,
-            'actionTextStyle', action_text_style,
-            'tabLabelTextStyle', tab_label_text_style,
-            'navTitleTextStyle', nav_title_text_style,
-            'navLargeTitleTextStyle', nav_large_title_text_style,
-            'navActionTextStyle', nav_action_text_style,
-            'pickerTextStyle', picker_text_style,
-            'dateTimePickerTextStyle', date_time_picker_text_style,
-        ))
+        self._nx_ = {
+            '#t': ('CupertinoTextThemeData', ''),
+            'primaryColor': primary_color,
+            'textStyle': text_style,
+            'actionTextStyle': action_text_style,
+            'tabLabelTextStyle': tab_label_text_style,
+            'navTitleTextStyle': nav_title_text_style,
+            'navLargeTitleTextStyle': nav_large_title_text_style,
+            'navActionTextStyle': nav_action_text_style,
+            'pickerTextStyle': picker_text_style,
+            'dateTimePickerTextStyle': date_time_picker_text_style,
+        }
 
 
 # packages/flutter/lib/src/cupertino/theme.dart
@@ -2544,14 +2652,15 @@ class NoDefaultCupertinoThemeData(Object):
         bar_background_color: Optional[Color] = None,
         scaffold_background_color: Optional[Color] = None,
     ):
-        self.__ctor = (('',), (
-            'brightness', brightness,
-            'primaryColor', primary_color,
-            'primaryContrastingColor', primary_contrasting_color,
-            'textTheme', text_theme,
-            'barBackgroundColor', bar_background_color,
-            'scaffoldBackgroundColor', scaffold_background_color,
-        ))
+        self._nx_ = {
+            '#t': ('NoDefaultCupertinoThemeData', ''),
+            'brightness': brightness,
+            'primaryColor': primary_color,
+            'primaryContrastingColor': primary_contrasting_color,
+            'textTheme': text_theme,
+            'barBackgroundColor': bar_background_color,
+            'scaffoldBackgroundColor': scaffold_background_color,
+        }
 
 
 # packages/flutter/lib/src/material/snack_bar_theme.dart
@@ -2573,15 +2682,16 @@ class SnackBarThemeData(Object):
         shape: Optional[ShapeBorder] = None,
         behavior: Optional[SnackBarBehavior] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'actionTextColor', action_text_color,
-            'disabledActionTextColor', disabled_action_text_color,
-            'contentTextStyle', content_text_style,
-            'elevation', elevation,
-            'shape', shape,
-            'behavior', behavior,
-        ))
+        self._nx_ = {
+            '#t': ('SnackBarThemeData', ''),
+            'backgroundColor': background_color,
+            'actionTextColor': action_text_color,
+            'disabledActionTextColor': disabled_action_text_color,
+            'contentTextStyle': content_text_style,
+            'elevation': elevation,
+            'shape': shape,
+            'behavior': behavior,
+        }
 
 
 # packages/flutter/lib/src/material/bottom_sheet_theme.dart
@@ -2597,15 +2707,16 @@ class BottomSheetThemeData(Object):
         clip_behavior: Optional[Clip] = None,
         constraints: Optional[BoxConstraints] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'elevation', elevation,
-            'modalBackgroundColor', modal_background_color,
-            'modalElevation', modal_elevation,
-            'shape', shape,
-            'clipBehavior', clip_behavior,
-            'constraints', constraints,
-        ))
+        self._nx_ = {
+            '#t': ('BottomSheetThemeData', ''),
+            'backgroundColor': background_color,
+            'elevation': elevation,
+            'modalBackgroundColor': modal_background_color,
+            'modalElevation': modal_elevation,
+            'shape': shape,
+            'clipBehavior': clip_behavior,
+            'constraints': constraints,
+        }
 
 
 # packages/flutter/lib/src/material/popup_menu_theme.dart
@@ -2619,13 +2730,14 @@ class PopupMenuThemeData(Object):
         text_style: Optional[TextStyle] = None,
         enable_feedback: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'shape', shape,
-            'elevation', elevation,
-            'textStyle', text_style,
-            'enableFeedback', enable_feedback,
-        ))
+        self._nx_ = {
+            '#t': ('PopupMenuThemeData', ''),
+            'color': color,
+            'shape': shape,
+            'elevation': elevation,
+            'textStyle': text_style,
+            'enableFeedback': enable_feedback,
+        }
 
 
 # packages/flutter/lib/src/material/banner_theme.dart
@@ -2638,12 +2750,13 @@ class MaterialBannerThemeData(Object):
         padding: Optional[EdgeInsetsGeometry] = None,
         leading_padding: Optional[EdgeInsetsGeometry] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'contentTextStyle', content_text_style,
-            'padding', padding,
-            'leadingPadding', leading_padding,
-        ))
+        self._nx_ = {
+            '#t': ('MaterialBannerThemeData', ''),
+            'backgroundColor': background_color,
+            'contentTextStyle': content_text_style,
+            'padding': padding,
+            'leadingPadding': leading_padding,
+        }
 
 
 # packages/flutter/lib/src/material/divider_theme.dart
@@ -2657,13 +2770,14 @@ class DividerThemeData(Object):
         indent: Optional[float] = None,
         end_indent: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'space', space,
-            'thickness', thickness,
-            'indent', indent,
-            'endIndent', end_indent,
-        ))
+        self._nx_ = {
+            '#t': ('DividerThemeData', ''),
+            'color': color,
+            'space': space,
+            'thickness': thickness,
+            'indent': indent,
+            'endIndent': end_indent,
+        }
 
 
 # packages/flutter/lib/src/rendering/flex.dart
@@ -2703,17 +2817,18 @@ class ButtonBarThemeData(Object):
         layout_behavior: Optional[ButtonBarLayoutBehavior] = None,
         overflow_direction: Optional[VerticalDirection] = None,
     ):
-        self.__ctor = (('',), (
-            'alignment', alignment,
-            'mainAxisSize', main_axis_size,
-            'buttonTextTheme', button_text_theme,
-            'buttonMinWidth', button_min_width,
-            'buttonHeight', button_height,
-            'buttonPadding', button_padding,
-            'buttonAlignedDropdown', button_aligned_dropdown,
-            'layoutBehavior', layout_behavior,
-            'overflowDirection', overflow_direction,
-        ))
+        self._nx_ = {
+            '#t': ('ButtonBarThemeData', ''),
+            'alignment': alignment,
+            'mainAxisSize': main_axis_size,
+            'buttonTextTheme': button_text_theme,
+            'buttonMinWidth': button_min_width,
+            'buttonHeight': button_height,
+            'buttonPadding': button_padding,
+            'buttonAlignedDropdown': button_aligned_dropdown,
+            'layoutBehavior': layout_behavior,
+            'overflowDirection': overflow_direction,
+        }
 
 
 # packages/flutter/lib/src/material/bottom_navigation_bar.dart
@@ -2748,21 +2863,22 @@ class BottomNavigationBarThemeData(Object):
         enable_feedback: Optional[bool] = None,
         landscape_layout: Optional[BottomNavigationBarLandscapeLayout] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'elevation', elevation,
-            'selectedIconTheme', selected_icon_theme,
-            'unselectedIconTheme', unselected_icon_theme,
-            'selectedItemColor', selected_item_color,
-            'unselectedItemColor', unselected_item_color,
-            'selectedLabelStyle', selected_label_style,
-            'unselectedLabelStyle', unselected_label_style,
-            'showSelectedLabels', show_selected_labels,
-            'showUnselectedLabels', show_unselected_labels,
-            'type', type,
-            'enableFeedback', enable_feedback,
-            'landscapeLayout', landscape_layout,
-        ))
+        self._nx_ = {
+            '#t': ('BottomNavigationBarThemeData', ''),
+            'backgroundColor': background_color,
+            'elevation': elevation,
+            'selectedIconTheme': selected_icon_theme,
+            'unselectedIconTheme': unselected_icon_theme,
+            'selectedItemColor': selected_item_color,
+            'unselectedItemColor': unselected_item_color,
+            'selectedLabelStyle': selected_label_style,
+            'unselectedLabelStyle': unselected_label_style,
+            'showSelectedLabels': show_selected_labels,
+            'showUnselectedLabels': show_unselected_labels,
+            'type': type,
+            'enableFeedback': enable_feedback,
+            'landscapeLayout': landscape_layout,
+        }
 
 
 # packages/flutter/lib/src/material/time_picker_theme.dart
@@ -2788,42 +2904,43 @@ class TimePickerThemeData(Object):
         day_period_border_side: Optional[BorderSide] = None,
         input_decoration_theme: Optional[InputDecorationTheme] = None,
     ):
-        self.__ctor = (('',), (
-            'backgroundColor', background_color,
-            'hourMinuteTextColor', hour_minute_text_color,
-            'hourMinuteColor', hour_minute_color,
-            'dayPeriodTextColor', day_period_text_color,
-            'dayPeriodColor', day_period_color,
-            'dialHandColor', dial_hand_color,
-            'dialBackgroundColor', dial_background_color,
-            'dialTextColor', dial_text_color,
-            'entryModeIconColor', entry_mode_icon_color,
-            'hourMinuteTextStyle', hour_minute_text_style,
-            'dayPeriodTextStyle', day_period_text_style,
-            'helpTextStyle', help_text_style,
-            'shape', shape,
-            'hourMinuteShape', hour_minute_shape,
-            'dayPeriodShape', day_period_shape,
-            'dayPeriodBorderSide', day_period_border_side,
-            'inputDecorationTheme', input_decoration_theme,
-        ))
+        self._nx_ = {
+            '#t': ('TimePickerThemeData', ''),
+            'backgroundColor': background_color,
+            'hourMinuteTextColor': hour_minute_text_color,
+            'hourMinuteColor': hour_minute_color,
+            'dayPeriodTextColor': day_period_text_color,
+            'dayPeriodColor': day_period_color,
+            'dialHandColor': dial_hand_color,
+            'dialBackgroundColor': dial_background_color,
+            'dialTextColor': dial_text_color,
+            'entryModeIconColor': entry_mode_icon_color,
+            'hourMinuteTextStyle': hour_minute_text_style,
+            'dayPeriodTextStyle': day_period_text_style,
+            'helpTextStyle': help_text_style,
+            'shape': shape,
+            'hourMinuteShape': hour_minute_shape,
+            'dayPeriodShape': day_period_shape,
+            'dayPeriodBorderSide': day_period_border_side,
+            'inputDecorationTheme': input_decoration_theme,
+        }
 
 
 # packages/flutter/lib/src/services/mouse_cursor.dart
-class MouseCursor(ABC, Object):
+class MouseCursor(Object, ABC):
     pass
 
 
 MouseCursor.defer = MouseCursor(
 )
-MouseCursor.defer.__ctor = (('defer',),)
+MouseCursor.defer._nx_ = {'#t': ('MouseCursor', 'defer')}
 MouseCursor.uncontrolled = MouseCursor(
 )
-MouseCursor.uncontrolled.__ctor = (('uncontrolled',),)
+MouseCursor.uncontrolled._nx_ = {'#t': ('MouseCursor', 'uncontrolled')}
 
 
 # packages/flutter/lib/src/painting/alignment.dart
-class AlignmentGeometry(ABC, Object):
+class AlignmentGeometry(Object, ABC):
     pass
 
 
@@ -2852,27 +2969,28 @@ class ButtonStyle(Object):
         alignment: Optional[AlignmentGeometry] = None,
         splash_factory: Optional[InteractiveInkFeatureFactory] = None,
     ):
-        self.__ctor = (('',), (
-            'textStyle', text_style,
-            'backgroundColor', background_color,
-            'foregroundColor', foreground_color,
-            'overlayColor', overlay_color,
-            'shadowColor', shadow_color,
-            'elevation', elevation,
-            'padding', padding,
-            'minimumSize', minimum_size,
-            'fixedSize', fixed_size,
-            'maximumSize', maximum_size,
-            'side', side,
-            'shape', shape,
-            'mouseCursor', mouse_cursor,
-            'visualDensity', visual_density,
-            'tapTargetSize', tap_target_size,
-            'animationDuration', animation_duration,
-            'enableFeedback', enable_feedback,
-            'alignment', alignment,
-            'splashFactory', splash_factory,
-        ))
+        self._nx_ = {
+            '#t': ('ButtonStyle', ''),
+            'textStyle': text_style,
+            'backgroundColor': background_color,
+            'foregroundColor': foreground_color,
+            'overlayColor': overlay_color,
+            'shadowColor': shadow_color,
+            'elevation': elevation,
+            'padding': padding,
+            'minimumSize': minimum_size,
+            'fixedSize': fixed_size,
+            'maximumSize': maximum_size,
+            'side': side,
+            'shape': shape,
+            'mouseCursor': mouse_cursor,
+            'visualDensity': visual_density,
+            'tapTargetSize': tap_target_size,
+            'animationDuration': animation_duration,
+            'enableFeedback': enable_feedback,
+            'alignment': alignment,
+            'splashFactory': splash_factory,
+        }
 
 
 # packages/flutter/lib/src/material/text_button_theme.dart
@@ -2882,9 +3000,10 @@ class TextButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'style', style,
-        ))
+        self._nx_ = {
+            '#t': ('TextButtonThemeData', ''),
+            'style': style,
+        }
 
 
 # packages/flutter/lib/src/material/elevated_button_theme.dart
@@ -2894,9 +3013,10 @@ class ElevatedButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'style', style,
-        ))
+        self._nx_ = {
+            '#t': ('ElevatedButtonThemeData', ''),
+            'style': style,
+        }
 
 
 # packages/flutter/lib/src/material/outlined_button_theme.dart
@@ -2906,9 +3026,10 @@ class OutlinedButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
-        self.__ctor = (('',), (
-            'style', style,
-        ))
+        self._nx_ = {
+            '#t': ('OutlinedButtonThemeData', ''),
+            'style': style,
+        }
 
 
 # packages/flutter/lib/src/material/text_selection_theme.dart
@@ -2920,11 +3041,12 @@ class TextSelectionThemeData(Object):
         selection_color: Optional[Color] = None,
         selection_handle_color: Optional[Color] = None,
     ):
-        self.__ctor = (('',), (
-            'cursorColor', cursor_color,
-            'selectionColor', selection_color,
-            'selectionHandleColor', selection_handle_color,
-        ))
+        self._nx_ = {
+            '#t': ('TextSelectionThemeData', ''),
+            'cursorColor': cursor_color,
+            'selectionColor': selection_color,
+            'selectionHandleColor': selection_handle_color,
+        }
 
 
 # packages/flutter/lib/src/material/data_table_theme.dart
@@ -2944,19 +3066,20 @@ class DataTableThemeData(Object):
         divider_thickness: Optional[float] = None,
         checkbox_horizontal_margin: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'decoration', decoration,
-            'dataRowColor', data_row_color,
-            'dataRowHeight', data_row_height,
-            'dataTextStyle', data_text_style,
-            'headingRowColor', heading_row_color,
-            'headingRowHeight', heading_row_height,
-            'headingTextStyle', heading_text_style,
-            'horizontalMargin', horizontal_margin,
-            'columnSpacing', column_spacing,
-            'dividerThickness', divider_thickness,
-            'checkboxHorizontalMargin', checkbox_horizontal_margin,
-        ))
+        self._nx_ = {
+            '#t': ('DataTableThemeData', ''),
+            'decoration': decoration,
+            'dataRowColor': data_row_color,
+            'dataRowHeight': data_row_height,
+            'dataTextStyle': data_text_style,
+            'headingRowColor': heading_row_color,
+            'headingRowHeight': heading_row_height,
+            'headingTextStyle': heading_text_style,
+            'horizontalMargin': horizontal_margin,
+            'columnSpacing': column_spacing,
+            'dividerThickness': divider_thickness,
+            'checkboxHorizontalMargin': checkbox_horizontal_margin,
+        }
 
 
 # packages/flutter/lib/src/material/checkbox_theme.dart
@@ -2974,17 +3097,18 @@ class CheckboxThemeData(Object):
         shape: Optional[OutlinedBorder] = None,
         side: Optional[BorderSide] = None,
     ):
-        self.__ctor = (('',), (
-            'mouseCursor', mouse_cursor,
-            'fillColor', fill_color,
-            'checkColor', check_color,
-            'overlayColor', overlay_color,
-            'splashRadius', splash_radius,
-            'materialTapTargetSize', material_tap_target_size,
-            'visualDensity', visual_density,
-            'shape', shape,
-            'side', side,
-        ))
+        self._nx_ = {
+            '#t': ('CheckboxThemeData', ''),
+            'mouseCursor': mouse_cursor,
+            'fillColor': fill_color,
+            'checkColor': check_color,
+            'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
+            'materialTapTargetSize': material_tap_target_size,
+            'visualDensity': visual_density,
+            'shape': shape,
+            'side': side,
+        }
 
 
 # packages/flutter/lib/src/material/radio_theme.dart
@@ -2999,14 +3123,15 @@ class RadioThemeData(Object):
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
         visual_density: Optional[VisualDensity] = None,
     ):
-        self.__ctor = (('',), (
-            'mouseCursor', mouse_cursor,
-            'fillColor', fill_color,
-            'overlayColor', overlay_color,
-            'splashRadius', splash_radius,
-            'materialTapTargetSize', material_tap_target_size,
-            'visualDensity', visual_density,
-        ))
+        self._nx_ = {
+            '#t': ('RadioThemeData', ''),
+            'mouseCursor': mouse_cursor,
+            'fillColor': fill_color,
+            'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
+            'materialTapTargetSize': material_tap_target_size,
+            'visualDensity': visual_density,
+        }
 
 
 # packages/flutter/lib/src/material/switch_theme.dart
@@ -3021,14 +3146,15 @@ class SwitchThemeData(Object):
         overlay_color: Optional[MaterialStateProperty[Color]] = None,
         splash_radius: Optional[float] = None,
     ):
-        self.__ctor = (('',), (
-            'thumbColor', thumb_color,
-            'trackColor', track_color,
-            'materialTapTargetSize', material_tap_target_size,
-            'mouseCursor', mouse_cursor,
-            'overlayColor', overlay_color,
-            'splashRadius', splash_radius,
-        ))
+        self._nx_ = {
+            '#t': ('SwitchThemeData', ''),
+            'thumbColor': thumb_color,
+            'trackColor': track_color,
+            'materialTapTargetSize': material_tap_target_size,
+            'mouseCursor': mouse_cursor,
+            'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
+        }
 
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
@@ -3042,13 +3168,14 @@ class ProgressIndicatorThemeData(Object):
         circular_track_color: Optional[Color] = None,
         refresh_background_color: Optional[Color] = None,
     ):
-        self.__ctor = (('',), (
-            'color', color,
-            'linearTrackColor', linear_track_color,
-            'linearMinHeight', linear_min_height,
-            'circularTrackColor', circular_track_color,
-            'refreshBackgroundColor', refresh_background_color,
-        ))
+        self._nx_ = {
+            '#t': ('ProgressIndicatorThemeData', ''),
+            'color': color,
+            'linearTrackColor': linear_track_color,
+            'linearMinHeight': linear_min_height,
+            'circularTrackColor': circular_track_color,
+            'refreshBackgroundColor': refresh_background_color,
+        }
 
 
 # packages/flutter/lib/src/material/theme_data.dart
@@ -3138,89 +3265,90 @@ class ThemeData(Object):
         fix_text_field_outline_label: Optional[bool] = None,
         use_text_selection_theme: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'brightness', brightness,
-            'visualDensity', visual_density,
-            'primarySwatch', primary_swatch,
-            'primaryColor', primary_color,
-            'primaryColorBrightness', primary_color_brightness,
-            'primaryColorLight', primary_color_light,
-            'primaryColorDark', primary_color_dark,
-            'accentColor', accent_color,
-            'accentColorBrightness', accent_color_brightness,
-            'canvasColor', canvas_color,
-            'shadowColor', shadow_color,
-            'scaffoldBackgroundColor', scaffold_background_color,
-            'bottomAppBarColor', bottom_app_bar_color,
-            'cardColor', card_color,
-            'dividerColor', divider_color,
-            'focusColor', focus_color,
-            'hoverColor', hover_color,
-            'highlightColor', highlight_color,
-            'splashColor', splash_color,
-            'splashFactory', splash_factory,
-            'selectedRowColor', selected_row_color,
-            'unselectedWidgetColor', unselected_widget_color,
-            'disabledColor', disabled_color,
-            'buttonColor', button_color,
-            'buttonTheme', button_theme,
-            'toggleButtonsTheme', toggle_buttons_theme,
-            'secondaryHeaderColor', secondary_header_color,
-            'textSelectionColor', text_selection_color,
-            'cursorColor', cursor_color,
-            'textSelectionHandleColor', text_selection_handle_color,
-            'backgroundColor', background_color,
-            'dialogBackgroundColor', dialog_background_color,
-            'indicatorColor', indicator_color,
-            'hintColor', hint_color,
-            'errorColor', error_color,
-            'toggleableActiveColor', toggleable_active_color,
-            'fontFamily', font_family,
-            'textTheme', text_theme,
-            'primaryTextTheme', primary_text_theme,
-            'accentTextTheme', accent_text_theme,
-            'inputDecorationTheme', input_decoration_theme,
-            'iconTheme', icon_theme,
-            'primaryIconTheme', primary_icon_theme,
-            'accentIconTheme', accent_icon_theme,
-            'sliderTheme', slider_theme,
-            'tabBarTheme', tab_bar_theme,
-            'tooltipTheme', tooltip_theme,
-            'cardTheme', card_theme,
-            'chipTheme', chip_theme,
-            'platform', platform,
-            'materialTapTargetSize', material_tap_target_size,
-            'applyElevationOverlayColor', apply_elevation_overlay_color,
-            'pageTransitionsTheme', page_transitions_theme,
-            'appBarTheme', app_bar_theme,
-            'scrollbarTheme', scrollbar_theme,
-            'bottomAppBarTheme', bottom_app_bar_theme,
-            'colorScheme', color_scheme,
-            'dialogTheme', dialog_theme,
-            'floatingActionButtonTheme', floating_action_button_theme,
-            'navigationRailTheme', navigation_rail_theme,
-            'typography', typography,
-            'cupertinoOverrideTheme', cupertino_override_theme,
-            'snackBarTheme', snack_bar_theme,
-            'bottomSheetTheme', bottom_sheet_theme,
-            'popupMenuTheme', popup_menu_theme,
-            'bannerTheme', banner_theme,
-            'dividerTheme', divider_theme,
-            'buttonBarTheme', button_bar_theme,
-            'bottomNavigationBarTheme', bottom_navigation_bar_theme,
-            'timePickerTheme', time_picker_theme,
-            'textButtonTheme', text_button_theme,
-            'elevatedButtonTheme', elevated_button_theme,
-            'outlinedButtonTheme', outlined_button_theme,
-            'textSelectionTheme', text_selection_theme,
-            'dataTableTheme', data_table_theme,
-            'checkboxTheme', checkbox_theme,
-            'radioTheme', radio_theme,
-            'switchTheme', switch_theme,
-            'progressIndicatorTheme', progress_indicator_theme,
-            'fixTextFieldOutlineLabel', fix_text_field_outline_label,
-            'useTextSelectionTheme', use_text_selection_theme,
-        ))
+        self._nx_ = {
+            '#t': ('ThemeData', ''),
+            'brightness': brightness,
+            'visualDensity': visual_density,
+            'primarySwatch': primary_swatch,
+            'primaryColor': primary_color,
+            'primaryColorBrightness': primary_color_brightness,
+            'primaryColorLight': primary_color_light,
+            'primaryColorDark': primary_color_dark,
+            'accentColor': accent_color,
+            'accentColorBrightness': accent_color_brightness,
+            'canvasColor': canvas_color,
+            'shadowColor': shadow_color,
+            'scaffoldBackgroundColor': scaffold_background_color,
+            'bottomAppBarColor': bottom_app_bar_color,
+            'cardColor': card_color,
+            'dividerColor': divider_color,
+            'focusColor': focus_color,
+            'hoverColor': hover_color,
+            'highlightColor': highlight_color,
+            'splashColor': splash_color,
+            'splashFactory': splash_factory,
+            'selectedRowColor': selected_row_color,
+            'unselectedWidgetColor': unselected_widget_color,
+            'disabledColor': disabled_color,
+            'buttonColor': button_color,
+            'buttonTheme': button_theme,
+            'toggleButtonsTheme': toggle_buttons_theme,
+            'secondaryHeaderColor': secondary_header_color,
+            'textSelectionColor': text_selection_color,
+            'cursorColor': cursor_color,
+            'textSelectionHandleColor': text_selection_handle_color,
+            'backgroundColor': background_color,
+            'dialogBackgroundColor': dialog_background_color,
+            'indicatorColor': indicator_color,
+            'hintColor': hint_color,
+            'errorColor': error_color,
+            'toggleableActiveColor': toggleable_active_color,
+            'fontFamily': font_family,
+            'textTheme': text_theme,
+            'primaryTextTheme': primary_text_theme,
+            'accentTextTheme': accent_text_theme,
+            'inputDecorationTheme': input_decoration_theme,
+            'iconTheme': icon_theme,
+            'primaryIconTheme': primary_icon_theme,
+            'accentIconTheme': accent_icon_theme,
+            'sliderTheme': slider_theme,
+            'tabBarTheme': tab_bar_theme,
+            'tooltipTheme': tooltip_theme,
+            'cardTheme': card_theme,
+            'chipTheme': chip_theme,
+            'platform': platform,
+            'materialTapTargetSize': material_tap_target_size,
+            'applyElevationOverlayColor': apply_elevation_overlay_color,
+            'pageTransitionsTheme': page_transitions_theme,
+            'appBarTheme': app_bar_theme,
+            'scrollbarTheme': scrollbar_theme,
+            'bottomAppBarTheme': bottom_app_bar_theme,
+            'colorScheme': color_scheme,
+            'dialogTheme': dialog_theme,
+            'floatingActionButtonTheme': floating_action_button_theme,
+            'navigationRailTheme': navigation_rail_theme,
+            'typography': typography,
+            'cupertinoOverrideTheme': cupertino_override_theme,
+            'snackBarTheme': snack_bar_theme,
+            'bottomSheetTheme': bottom_sheet_theme,
+            'popupMenuTheme': popup_menu_theme,
+            'bannerTheme': banner_theme,
+            'dividerTheme': divider_theme,
+            'buttonBarTheme': button_bar_theme,
+            'bottomNavigationBarTheme': bottom_navigation_bar_theme,
+            'timePickerTheme': time_picker_theme,
+            'textButtonTheme': text_button_theme,
+            'elevatedButtonTheme': elevated_button_theme,
+            'outlinedButtonTheme': outlined_button_theme,
+            'textSelectionTheme': text_selection_theme,
+            'dataTableTheme': data_table_theme,
+            'checkboxTheme': checkbox_theme,
+            'radioTheme': radio_theme,
+            'switchTheme': switch_theme,
+            'progressIndicatorTheme': progress_indicator_theme,
+            'fixTextFieldOutlineLabel': fix_text_field_outline_label,
+            'useTextSelectionTheme': use_text_selection_theme,
+        }
 
     @staticmethod
     def raw(
@@ -3305,86 +3433,87 @@ class ThemeData(Object):
     ):
         _o = ThemeData(
         )
-        _o.__ctor = (('raw',), (
-            'visualDensity', visual_density,
-            'primaryColor', primary_color,
-            'primaryColorBrightness', primary_color_brightness,
-            'primaryColorLight', primary_color_light,
-            'primaryColorDark', primary_color_dark,
-            'canvasColor', canvas_color,
-            'shadowColor', shadow_color,
-            'accentColor', accent_color,
-            'accentColorBrightness', accent_color_brightness,
-            'scaffoldBackgroundColor', scaffold_background_color,
-            'bottomAppBarColor', bottom_app_bar_color,
-            'cardColor', card_color,
-            'dividerColor', divider_color,
-            'focusColor', focus_color,
-            'hoverColor', hover_color,
-            'highlightColor', highlight_color,
-            'splashColor', splash_color,
-            'splashFactory', splash_factory,
-            'selectedRowColor', selected_row_color,
-            'unselectedWidgetColor', unselected_widget_color,
-            'disabledColor', disabled_color,
-            'buttonTheme', button_theme,
-            'buttonColor', button_color,
-            'toggleButtonsTheme', toggle_buttons_theme,
-            'secondaryHeaderColor', secondary_header_color,
-            'textSelectionColor', text_selection_color,
-            'cursorColor', cursor_color,
-            'textSelectionHandleColor', text_selection_handle_color,
-            'backgroundColor', background_color,
-            'dialogBackgroundColor', dialog_background_color,
-            'indicatorColor', indicator_color,
-            'hintColor', hint_color,
-            'errorColor', error_color,
-            'toggleableActiveColor', toggleable_active_color,
-            'textTheme', text_theme,
-            'primaryTextTheme', primary_text_theme,
-            'accentTextTheme', accent_text_theme,
-            'inputDecorationTheme', input_decoration_theme,
-            'iconTheme', icon_theme,
-            'primaryIconTheme', primary_icon_theme,
-            'accentIconTheme', accent_icon_theme,
-            'sliderTheme', slider_theme,
-            'tabBarTheme', tab_bar_theme,
-            'tooltipTheme', tooltip_theme,
-            'cardTheme', card_theme,
-            'chipTheme', chip_theme,
-            'platform', platform,
-            'materialTapTargetSize', material_tap_target_size,
-            'applyElevationOverlayColor', apply_elevation_overlay_color,
-            'pageTransitionsTheme', page_transitions_theme,
-            'appBarTheme', app_bar_theme,
-            'scrollbarTheme', scrollbar_theme,
-            'bottomAppBarTheme', bottom_app_bar_theme,
-            'colorScheme', color_scheme,
-            'dialogTheme', dialog_theme,
-            'floatingActionButtonTheme', floating_action_button_theme,
-            'navigationRailTheme', navigation_rail_theme,
-            'typography', typography,
-            'cupertinoOverrideTheme', cupertino_override_theme,
-            'snackBarTheme', snack_bar_theme,
-            'bottomSheetTheme', bottom_sheet_theme,
-            'popupMenuTheme', popup_menu_theme,
-            'bannerTheme', banner_theme,
-            'dividerTheme', divider_theme,
-            'buttonBarTheme', button_bar_theme,
-            'bottomNavigationBarTheme', bottom_navigation_bar_theme,
-            'timePickerTheme', time_picker_theme,
-            'textButtonTheme', text_button_theme,
-            'elevatedButtonTheme', elevated_button_theme,
-            'outlinedButtonTheme', outlined_button_theme,
-            'textSelectionTheme', text_selection_theme,
-            'dataTableTheme', data_table_theme,
-            'checkboxTheme', checkbox_theme,
-            'radioTheme', radio_theme,
-            'switchTheme', switch_theme,
-            'progressIndicatorTheme', progress_indicator_theme,
-            'fixTextFieldOutlineLabel', fix_text_field_outline_label,
-            'useTextSelectionTheme', use_text_selection_theme,
-        ))
+        _o._nx_ = {
+            '#t': ('ThemeData', 'raw'),
+            'visualDensity': visual_density,
+            'primaryColor': primary_color,
+            'primaryColorBrightness': primary_color_brightness,
+            'primaryColorLight': primary_color_light,
+            'primaryColorDark': primary_color_dark,
+            'canvasColor': canvas_color,
+            'shadowColor': shadow_color,
+            'accentColor': accent_color,
+            'accentColorBrightness': accent_color_brightness,
+            'scaffoldBackgroundColor': scaffold_background_color,
+            'bottomAppBarColor': bottom_app_bar_color,
+            'cardColor': card_color,
+            'dividerColor': divider_color,
+            'focusColor': focus_color,
+            'hoverColor': hover_color,
+            'highlightColor': highlight_color,
+            'splashColor': splash_color,
+            'splashFactory': splash_factory,
+            'selectedRowColor': selected_row_color,
+            'unselectedWidgetColor': unselected_widget_color,
+            'disabledColor': disabled_color,
+            'buttonTheme': button_theme,
+            'buttonColor': button_color,
+            'toggleButtonsTheme': toggle_buttons_theme,
+            'secondaryHeaderColor': secondary_header_color,
+            'textSelectionColor': text_selection_color,
+            'cursorColor': cursor_color,
+            'textSelectionHandleColor': text_selection_handle_color,
+            'backgroundColor': background_color,
+            'dialogBackgroundColor': dialog_background_color,
+            'indicatorColor': indicator_color,
+            'hintColor': hint_color,
+            'errorColor': error_color,
+            'toggleableActiveColor': toggleable_active_color,
+            'textTheme': text_theme,
+            'primaryTextTheme': primary_text_theme,
+            'accentTextTheme': accent_text_theme,
+            'inputDecorationTheme': input_decoration_theme,
+            'iconTheme': icon_theme,
+            'primaryIconTheme': primary_icon_theme,
+            'accentIconTheme': accent_icon_theme,
+            'sliderTheme': slider_theme,
+            'tabBarTheme': tab_bar_theme,
+            'tooltipTheme': tooltip_theme,
+            'cardTheme': card_theme,
+            'chipTheme': chip_theme,
+            'platform': platform,
+            'materialTapTargetSize': material_tap_target_size,
+            'applyElevationOverlayColor': apply_elevation_overlay_color,
+            'pageTransitionsTheme': page_transitions_theme,
+            'appBarTheme': app_bar_theme,
+            'scrollbarTheme': scrollbar_theme,
+            'bottomAppBarTheme': bottom_app_bar_theme,
+            'colorScheme': color_scheme,
+            'dialogTheme': dialog_theme,
+            'floatingActionButtonTheme': floating_action_button_theme,
+            'navigationRailTheme': navigation_rail_theme,
+            'typography': typography,
+            'cupertinoOverrideTheme': cupertino_override_theme,
+            'snackBarTheme': snack_bar_theme,
+            'bottomSheetTheme': bottom_sheet_theme,
+            'popupMenuTheme': popup_menu_theme,
+            'bannerTheme': banner_theme,
+            'dividerTheme': divider_theme,
+            'buttonBarTheme': button_bar_theme,
+            'bottomNavigationBarTheme': bottom_navigation_bar_theme,
+            'timePickerTheme': time_picker_theme,
+            'textButtonTheme': text_button_theme,
+            'elevatedButtonTheme': elevated_button_theme,
+            'outlinedButtonTheme': outlined_button_theme,
+            'textSelectionTheme': text_selection_theme,
+            'dataTableTheme': data_table_theme,
+            'checkboxTheme': checkbox_theme,
+            'radioTheme': radio_theme,
+            'switchTheme': switch_theme,
+            'progressIndicatorTheme': progress_indicator_theme,
+            'fixTextFieldOutlineLabel': fix_text_field_outline_label,
+            'useTextSelectionTheme': use_text_selection_theme,
+        }
         return _o
 
     @staticmethod
@@ -3394,10 +3523,11 @@ class ThemeData(Object):
     ):
         _o = ThemeData(
         )
-        _o.__ctor = (('from',), (
-            'colorScheme', color_scheme,
-            'textTheme', text_theme,
-        ))
+        _o._nx_ = {
+            '#t': ('ThemeData', 'from'),
+            'colorScheme': color_scheme,
+            'textTheme': text_theme,
+        }
         return _o
 
     @staticmethod
@@ -3405,8 +3535,9 @@ class ThemeData(Object):
     ):
         _o = ThemeData(
         )
-        _o.__ctor = (('light',), (
-        ))
+        _o._nx_ = {
+            '#t': ('ThemeData', 'light'),
+        }
         return _o
 
     @staticmethod
@@ -3414,8 +3545,9 @@ class ThemeData(Object):
     ):
         _o = ThemeData(
         )
-        _o.__ctor = (('dark',), (
-        ))
+        _o._nx_ = {
+            '#t': ('ThemeData', 'dark'),
+        }
         return _o
 
     @staticmethod
@@ -3423,8 +3555,9 @@ class ThemeData(Object):
     ):
         _o = ThemeData(
         )
-        _o.__ctor = (('fallback',), (
-        ))
+        _o._nx_ = {
+            '#t': ('ThemeData', 'fallback'),
+        }
         return _o
 
 
@@ -3436,39 +3569,32 @@ class ThemeMode(Enum):
 
 
 # packages/flutter/lib/src/widgets/localizations.dart
-class LocalizationsDelegate(ABC, Generic[T], Object):
+class LocalizationsDelegate(Object, ABC, Generic[T]):
     pass
 
 
 # packages/flutter/lib/src/widgets/shortcuts.dart
-class ShortcutActivator(ABC, Object):
+class ShortcutActivator(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class DoNothingIntent('Intent'):
+class Intent(Object, ABC):
     pass
 
 
-def _intent__do_nothing_intent(_k: str) -> DoNothingIntent:
-    _o = DoNothingIntent(
-    )
-    _o.__ctor = (('Intent', _k),)
-    return _o
-
-
-# packages/flutter/lib/src/widgets/actions.dart
-class Intent(ABC, Object):
-    do_nothing: DoNothingIntent = _intent__do_nothing_intent('doNothing')
+Intent.do_nothing = Intent(
+)
+Intent.do_nothing._nx_ = {'#t': ('Intent', 'doNothing')}
 
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
-class Type(ABC, Object):
+class Type(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/widgets/actions.dart
-class Action(ABC, Generic[T], Object):
+class Action(Object, ABC, Generic[T]):
     pass
 
 
@@ -3478,7 +3604,7 @@ class ScrollBehavior(Object):
 
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
-class Listenable(ABC, Object):
+class Listenable(Object, ABC):
 
     @staticmethod
     def merge(
@@ -3486,14 +3612,15 @@ class Listenable(ABC, Object):
     ):
         _o = Listenable(
         )
-        _o.__ctor = (('merge',), (
-            'listenables', listenables,
-        ))
+        _o._nx_ = {
+            '#t': ('Listenable', 'merge'),
+            'listenables': listenables,
+        }
         return _o
 
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
-class ValueListenable(ABC, Generic[T], Listenable):
+class ValueListenable(Listenable, ABC, Generic[T]):
     pass
 
 
@@ -3505,60 +3632,40 @@ class RouteInformation(Object):
         location: Optional[str] = None,
         state: Optional[Object] = None,
     ):
-        self.__ctor = (('',), (
-            'location', location,
-            'state', state,
-        ))
+        self._nx_ = {
+            '#t': ('RouteInformation', ''),
+            'location': location,
+            'state': state,
+        }
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouteInformationProvider(ABC, ValueListenable[RouteInformation]):
+class RouteInformationProvider(ValueListenable[RouteInformation], ABC):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouteInformationParser(ABC, Generic[T], Object):
+class RouteInformationParser(Object, ABC, Generic[T]):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class RouterDelegate(ABC, Generic[T], Listenable):
+class RouterDelegate(Listenable, ABC, Generic[T]):
     pass
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class _CallbackHookProvider(Generic[T], Object):
+class _CallbackHookProvider(Object, Generic[T]):
     pass
 
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
-class FutureOr(ABC, Generic[T], Object):
+class FutureOr(Object, ABC, Generic[T]):
     pass
 
 
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
-class _StringStackTrace(Object, 'StackTrace'):
-
-    def __init__(
-        self,
-        _stack_trace: str,
-    ):
-        self.__ctor = (('',), (
-            '_stackTrace', _stack_trace,
-        ))
-
-
-def _stack_trace___string_stack_trace(_k: str) -> _StringStackTrace:
-    _o = _StringStackTrace(
-        _stack_trace='',
-    )
-    _o.__ctor = (('StackTrace', _k),)
-    return _o
-
-
-# bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
-class StackTrace(ABC, Object):
-    empty: _StringStackTrace = _stack_trace___string_stack_trace('empty')
+class StackTrace(Object, ABC):
 
     @staticmethod
     def from_string(
@@ -3566,22 +3673,29 @@ class StackTrace(ABC, Object):
     ):
         _o = StackTrace(
         )
-        _o.__ctor = (('fromString',), (
-            'stackTraceString', stack_trace_string,
-        ))
+        _o._nx_ = {
+            '#t': ('StackTrace', 'fromString'),
+            'stackTraceString': stack_trace_string,
+        }
         return _o
 
 
+StackTrace.empty = StackTrace(
+)
+StackTrace.empty._nx_ = {'#t': ('StackTrace', 'empty')}
+
+
 # bin/cache/pkg/sky_engine/lib/async/future.dart
-class Future(ABC, Generic[T], Object):
+class Future(Object, ABC, Generic[T]):
 
     def __init__(
         self,
         computation: Callable[[], FutureOr[T]],
     ):
-        self.__ctor = (('',), (
-            'computation', computation,
-        ))
+        self._nx_ = {
+            '#t': ('Future', ''),
+            'computation': computation,
+        }
 
     @staticmethod
     def microtask(
@@ -3590,9 +3704,10 @@ class Future(ABC, Generic[T], Object):
         _o = Future(
             computation=_noop,
         )
-        _o.__ctor = (('microtask',), (
-            'computation', computation,
-        ))
+        _o._nx_ = {
+            '#t': ('Future', 'microtask'),
+            'computation': computation,
+        }
         return _o
 
     @staticmethod
@@ -3602,9 +3717,10 @@ class Future(ABC, Generic[T], Object):
         _o = Future(
             computation=_noop,
         )
-        _o.__ctor = (('sync',), (
-            'computation', computation,
-        ))
+        _o._nx_ = {
+            '#t': ('Future', 'sync'),
+            'computation': computation,
+        }
         return _o
 
     @staticmethod
@@ -3614,9 +3730,10 @@ class Future(ABC, Generic[T], Object):
         _o = Future(
             computation=_noop,
         )
-        _o.__ctor = (('value',), (
-            'value', value,
-        ))
+        _o._nx_ = {
+            '#t': ('Future', 'value'),
+            'value': value,
+        }
         return _o
 
     @staticmethod
@@ -3627,10 +3744,11 @@ class Future(ABC, Generic[T], Object):
         _o = Future(
             computation=_noop,
         )
-        _o.__ctor = (('error',), (
-            'error', error,
-            'stackTrace', stack_trace,
-        ))
+        _o._nx_ = {
+            '#t': ('Future', 'error'),
+            'error': error,
+            'stackTrace': stack_trace,
+        }
         return _o
 
     @staticmethod
@@ -3641,15 +3759,16 @@ class Future(ABC, Generic[T], Object):
         _o = Future(
             computation=_noop,
         )
-        _o.__ctor = (('delayed',), (
-            'duration', duration,
-            'computation', computation,
-        ))
+        _o._nx_ = {
+            '#t': ('Future', 'delayed'),
+            'duration': duration,
+            'computation': computation,
+        }
         return _o
 
 
 # packages/flutter/lib/src/widgets/router.dart
-class BackButtonDispatcher(ABC, _CallbackHookProvider[Future[bool]]):
+class BackButtonDispatcher(_CallbackHookProvider[Future[bool]], ABC):
     pass
 
 
@@ -3696,43 +3815,44 @@ class MaterialApp(StatefulWidget):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'key', key,
-            'navigatorKey', navigator_key,
-            'scaffoldMessengerKey', scaffold_messenger_key,
-            'home', home,
-            'routes', routes,
-            'initialRoute', initial_route,
-            'onGenerateRoute', on_generate_route,
-            'onGenerateInitialRoutes', on_generate_initial_routes,
-            'onUnknownRoute', on_unknown_route,
-            'navigatorObservers', navigator_observers,
-            'builder', builder,
-            'title', title,
-            'onGenerateTitle', on_generate_title,
-            'color', color,
-            'theme', theme,
-            'darkTheme', dark_theme,
-            'highContrastTheme', high_contrast_theme,
-            'highContrastDarkTheme', high_contrast_dark_theme,
-            'themeMode', theme_mode,
-            'locale', locale,
-            'localizationsDelegates', localizations_delegates,
-            'localeListResolutionCallback', locale_list_resolution_callback,
-            'localeResolutionCallback', locale_resolution_callback,
-            'supportedLocales', supported_locales,
-            'debugShowMaterialGrid', debug_show_material_grid,
-            'showPerformanceOverlay', show_performance_overlay,
-            'checkerboardRasterCacheImages', checkerboard_raster_cache_images,
-            'checkerboardOffscreenLayers', checkerboard_offscreen_layers,
-            'showSemanticsDebugger', show_semantics_debugger,
-            'debugShowCheckedModeBanner', debug_show_checked_mode_banner,
-            'shortcuts', shortcuts,
-            'actions', actions,
-            'restorationScopeId', restoration_scope_id,
-            'scrollBehavior', scroll_behavior,
-            'useInheritedMediaQuery', use_inherited_media_query,
-        ))
+        self._nx_ = {
+            '#t': ('MaterialApp', ''),
+            'key': key,
+            'navigatorKey': navigator_key,
+            'scaffoldMessengerKey': scaffold_messenger_key,
+            'home': home,
+            'routes': routes,
+            'initialRoute': initial_route,
+            'onGenerateRoute': on_generate_route,
+            'onGenerateInitialRoutes': on_generate_initial_routes,
+            'onUnknownRoute': on_unknown_route,
+            'navigatorObservers': navigator_observers,
+            'builder': builder,
+            'title': title,
+            'onGenerateTitle': on_generate_title,
+            'color': color,
+            'theme': theme,
+            'darkTheme': dark_theme,
+            'highContrastTheme': high_contrast_theme,
+            'highContrastDarkTheme': high_contrast_dark_theme,
+            'themeMode': theme_mode,
+            'locale': locale,
+            'localizationsDelegates': localizations_delegates,
+            'localeListResolutionCallback': locale_list_resolution_callback,
+            'localeResolutionCallback': locale_resolution_callback,
+            'supportedLocales': supported_locales,
+            'debugShowMaterialGrid': debug_show_material_grid,
+            'showPerformanceOverlay': show_performance_overlay,
+            'checkerboardRasterCacheImages': checkerboard_raster_cache_images,
+            'checkerboardOffscreenLayers': checkerboard_offscreen_layers,
+            'showSemanticsDebugger': show_semantics_debugger,
+            'debugShowCheckedModeBanner': debug_show_checked_mode_banner,
+            'shortcuts': shortcuts,
+            'actions': actions,
+            'restorationScopeId': restoration_scope_id,
+            'scrollBehavior': scroll_behavior,
+            'useInheritedMediaQuery': use_inherited_media_query,
+        }
 
     @staticmethod
     def router(
@@ -3770,59 +3890,61 @@ class MaterialApp(StatefulWidget):
     ):
         _o = MaterialApp(
         )
-        _o.__ctor = (('router',), (
-            'routeInformationParser', route_information_parser,
-            'routerDelegate', router_delegate,
-            'key', key,
-            'scaffoldMessengerKey', scaffold_messenger_key,
-            'routeInformationProvider', route_information_provider,
-            'backButtonDispatcher', back_button_dispatcher,
-            'builder', builder,
-            'title', title,
-            'onGenerateTitle', on_generate_title,
-            'color', color,
-            'theme', theme,
-            'darkTheme', dark_theme,
-            'highContrastTheme', high_contrast_theme,
-            'highContrastDarkTheme', high_contrast_dark_theme,
-            'themeMode', theme_mode,
-            'locale', locale,
-            'localizationsDelegates', localizations_delegates,
-            'localeListResolutionCallback', locale_list_resolution_callback,
-            'localeResolutionCallback', locale_resolution_callback,
-            'supportedLocales', supported_locales,
-            'debugShowMaterialGrid', debug_show_material_grid,
-            'showPerformanceOverlay', show_performance_overlay,
-            'checkerboardRasterCacheImages', checkerboard_raster_cache_images,
-            'checkerboardOffscreenLayers', checkerboard_offscreen_layers,
-            'showSemanticsDebugger', show_semantics_debugger,
-            'debugShowCheckedModeBanner', debug_show_checked_mode_banner,
-            'shortcuts', shortcuts,
-            'actions', actions,
-            'restorationScopeId', restoration_scope_id,
-            'scrollBehavior', scroll_behavior,
-            'useInheritedMediaQuery', use_inherited_media_query,
-        ))
+        _o._nx_ = {
+            '#t': ('MaterialApp', 'router'),
+            'routeInformationParser': route_information_parser,
+            'routerDelegate': router_delegate,
+            'key': key,
+            'scaffoldMessengerKey': scaffold_messenger_key,
+            'routeInformationProvider': route_information_provider,
+            'backButtonDispatcher': back_button_dispatcher,
+            'builder': builder,
+            'title': title,
+            'onGenerateTitle': on_generate_title,
+            'color': color,
+            'theme': theme,
+            'darkTheme': dark_theme,
+            'highContrastTheme': high_contrast_theme,
+            'highContrastDarkTheme': high_contrast_dark_theme,
+            'themeMode': theme_mode,
+            'locale': locale,
+            'localizationsDelegates': localizations_delegates,
+            'localeListResolutionCallback': locale_list_resolution_callback,
+            'localeResolutionCallback': locale_resolution_callback,
+            'supportedLocales': supported_locales,
+            'debugShowMaterialGrid': debug_show_material_grid,
+            'showPerformanceOverlay': show_performance_overlay,
+            'checkerboardRasterCacheImages': checkerboard_raster_cache_images,
+            'checkerboardOffscreenLayers': checkerboard_offscreen_layers,
+            'showSemanticsDebugger': show_semantics_debugger,
+            'debugShowCheckedModeBanner': debug_show_checked_mode_banner,
+            'shortcuts': shortcuts,
+            'actions': actions,
+            'restorationScopeId': restoration_scope_id,
+            'scrollBehavior': scroll_behavior,
+            'useInheritedMediaQuery': use_inherited_media_query,
+        }
         return _o
 
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
-class RawKeyEventData(ABC, Object):
+class RawKeyEventData(Object, ABC):
     pass
 
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
-class RawKeyEvent(ABC, Object):
+class RawKeyEvent(Object, ABC):
 
     def __init__(
         self,
         data: RawKeyEventData,
         character: Optional[str] = None,
     ):
-        self.__ctor = (('',), (
-            'data', data,
-            'character', character,
-        ))
+        self._nx_ = {
+            '#t': ('RawKeyEvent', ''),
+            'data': data,
+            'character': character,
+        }
 
     @staticmethod
     def from_message(
@@ -3831,9 +3953,10 @@ class RawKeyEvent(ABC, Object):
         _o = RawKeyEvent(
             data=RawKeyEventData(),
         )
-        _o.__ctor = (('fromMessage',), (
-            'message', message,
-        ))
+        _o._nx_ = {
+            '#t': ('RawKeyEvent', 'fromMessage'),
+            'message': message,
+        }
         return _o
 
 
@@ -3845,7 +3968,7 @@ class KeyEventResult(Enum):
 
 
 # packages/flutter/lib/src/services/keyboard_key.dart
-class KeyboardKey(ABC, Object):
+class KeyboardKey(Object, ABC):
     pass
 
 
@@ -3856,1083 +3979,1084 @@ class PhysicalKeyboardKey(KeyboardKey):
         self,
         usb_hid_usage: int,
     ):
-        self.__ctor = (('',), (
-            'usbHidUsage', usb_hid_usage,
-        ))
+        self._nx_ = {
+            '#t': ('PhysicalKeyboardKey', ''),
+            'usbHidUsage': usb_hid_usage,
+        }
 
 
 PhysicalKeyboardKey.hyper = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.hyper.__ctor = (('hyper',),)
+PhysicalKeyboardKey.hyper._nx_ = {'#t': ('PhysicalKeyboardKey', 'hyper')}
 PhysicalKeyboardKey.super_key = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.super_key.__ctor = (('superKey',),)
+PhysicalKeyboardKey.super_key._nx_ = {'#t': ('PhysicalKeyboardKey', 'superKey')}
 PhysicalKeyboardKey.fn = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.fn.__ctor = (('fn',),)
+PhysicalKeyboardKey.fn._nx_ = {'#t': ('PhysicalKeyboardKey', 'fn')}
 PhysicalKeyboardKey.fn_lock = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.fn_lock.__ctor = (('fnLock',),)
+PhysicalKeyboardKey.fn_lock._nx_ = {'#t': ('PhysicalKeyboardKey', 'fnLock')}
 PhysicalKeyboardKey.suspend = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.suspend.__ctor = (('suspend',),)
+PhysicalKeyboardKey.suspend._nx_ = {'#t': ('PhysicalKeyboardKey', 'suspend')}
 PhysicalKeyboardKey.resume = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.resume.__ctor = (('resume',),)
+PhysicalKeyboardKey.resume._nx_ = {'#t': ('PhysicalKeyboardKey', 'resume')}
 PhysicalKeyboardKey.turbo = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.turbo.__ctor = (('turbo',),)
+PhysicalKeyboardKey.turbo._nx_ = {'#t': ('PhysicalKeyboardKey', 'turbo')}
 PhysicalKeyboardKey.privacy_screen_toggle = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.privacy_screen_toggle.__ctor = (('privacyScreenToggle',),)
+PhysicalKeyboardKey.privacy_screen_toggle._nx_ = {'#t': ('PhysicalKeyboardKey', 'privacyScreenToggle')}
 PhysicalKeyboardKey.sleep = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.sleep.__ctor = (('sleep',),)
+PhysicalKeyboardKey.sleep._nx_ = {'#t': ('PhysicalKeyboardKey', 'sleep')}
 PhysicalKeyboardKey.wake_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.wake_up.__ctor = (('wakeUp',),)
+PhysicalKeyboardKey.wake_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'wakeUp')}
 PhysicalKeyboardKey.display_toggle_int_ext = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.display_toggle_int_ext.__ctor = (('displayToggleIntExt',),)
+PhysicalKeyboardKey.display_toggle_int_ext._nx_ = {'#t': ('PhysicalKeyboardKey', 'displayToggleIntExt')}
 PhysicalKeyboardKey.game_button1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button1.__ctor = (('gameButton1',),)
+PhysicalKeyboardKey.game_button1._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton1')}
 PhysicalKeyboardKey.game_button2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button2.__ctor = (('gameButton2',),)
+PhysicalKeyboardKey.game_button2._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton2')}
 PhysicalKeyboardKey.game_button3 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button3.__ctor = (('gameButton3',),)
+PhysicalKeyboardKey.game_button3._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton3')}
 PhysicalKeyboardKey.game_button4 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button4.__ctor = (('gameButton4',),)
+PhysicalKeyboardKey.game_button4._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton4')}
 PhysicalKeyboardKey.game_button5 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button5.__ctor = (('gameButton5',),)
+PhysicalKeyboardKey.game_button5._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton5')}
 PhysicalKeyboardKey.game_button6 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button6.__ctor = (('gameButton6',),)
+PhysicalKeyboardKey.game_button6._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton6')}
 PhysicalKeyboardKey.game_button7 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button7.__ctor = (('gameButton7',),)
+PhysicalKeyboardKey.game_button7._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton7')}
 PhysicalKeyboardKey.game_button8 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button8.__ctor = (('gameButton8',),)
+PhysicalKeyboardKey.game_button8._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton8')}
 PhysicalKeyboardKey.game_button9 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button9.__ctor = (('gameButton9',),)
+PhysicalKeyboardKey.game_button9._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton9')}
 PhysicalKeyboardKey.game_button10 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button10.__ctor = (('gameButton10',),)
+PhysicalKeyboardKey.game_button10._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton10')}
 PhysicalKeyboardKey.game_button11 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button11.__ctor = (('gameButton11',),)
+PhysicalKeyboardKey.game_button11._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton11')}
 PhysicalKeyboardKey.game_button12 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button12.__ctor = (('gameButton12',),)
+PhysicalKeyboardKey.game_button12._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton12')}
 PhysicalKeyboardKey.game_button13 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button13.__ctor = (('gameButton13',),)
+PhysicalKeyboardKey.game_button13._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton13')}
 PhysicalKeyboardKey.game_button14 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button14.__ctor = (('gameButton14',),)
+PhysicalKeyboardKey.game_button14._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton14')}
 PhysicalKeyboardKey.game_button15 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button15.__ctor = (('gameButton15',),)
+PhysicalKeyboardKey.game_button15._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton15')}
 PhysicalKeyboardKey.game_button16 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button16.__ctor = (('gameButton16',),)
+PhysicalKeyboardKey.game_button16._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButton16')}
 PhysicalKeyboardKey.game_button_a = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_a.__ctor = (('gameButtonA',),)
+PhysicalKeyboardKey.game_button_a._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonA')}
 PhysicalKeyboardKey.game_button_b = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_b.__ctor = (('gameButtonB',),)
+PhysicalKeyboardKey.game_button_b._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonB')}
 PhysicalKeyboardKey.game_button_c = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_c.__ctor = (('gameButtonC',),)
+PhysicalKeyboardKey.game_button_c._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonC')}
 PhysicalKeyboardKey.game_button_left1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_left1.__ctor = (('gameButtonLeft1',),)
+PhysicalKeyboardKey.game_button_left1._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonLeft1')}
 PhysicalKeyboardKey.game_button_left2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_left2.__ctor = (('gameButtonLeft2',),)
+PhysicalKeyboardKey.game_button_left2._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonLeft2')}
 PhysicalKeyboardKey.game_button_mode = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_mode.__ctor = (('gameButtonMode',),)
+PhysicalKeyboardKey.game_button_mode._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonMode')}
 PhysicalKeyboardKey.game_button_right1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_right1.__ctor = (('gameButtonRight1',),)
+PhysicalKeyboardKey.game_button_right1._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonRight1')}
 PhysicalKeyboardKey.game_button_right2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_right2.__ctor = (('gameButtonRight2',),)
+PhysicalKeyboardKey.game_button_right2._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonRight2')}
 PhysicalKeyboardKey.game_button_select = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_select.__ctor = (('gameButtonSelect',),)
+PhysicalKeyboardKey.game_button_select._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonSelect')}
 PhysicalKeyboardKey.game_button_start = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_start.__ctor = (('gameButtonStart',),)
+PhysicalKeyboardKey.game_button_start._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonStart')}
 PhysicalKeyboardKey.game_button_thumb_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_thumb_left.__ctor = (('gameButtonThumbLeft',),)
+PhysicalKeyboardKey.game_button_thumb_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonThumbLeft')}
 PhysicalKeyboardKey.game_button_thumb_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_thumb_right.__ctor = (('gameButtonThumbRight',),)
+PhysicalKeyboardKey.game_button_thumb_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonThumbRight')}
 PhysicalKeyboardKey.game_button_x = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_x.__ctor = (('gameButtonX',),)
+PhysicalKeyboardKey.game_button_x._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonX')}
 PhysicalKeyboardKey.game_button_y = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_y.__ctor = (('gameButtonY',),)
+PhysicalKeyboardKey.game_button_y._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonY')}
 PhysicalKeyboardKey.game_button_z = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.game_button_z.__ctor = (('gameButtonZ',),)
+PhysicalKeyboardKey.game_button_z._nx_ = {'#t': ('PhysicalKeyboardKey', 'gameButtonZ')}
 PhysicalKeyboardKey.usb_reserved = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.usb_reserved.__ctor = (('usbReserved',),)
+PhysicalKeyboardKey.usb_reserved._nx_ = {'#t': ('PhysicalKeyboardKey', 'usbReserved')}
 PhysicalKeyboardKey.usb_error_roll_over = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.usb_error_roll_over.__ctor = (('usbErrorRollOver',),)
+PhysicalKeyboardKey.usb_error_roll_over._nx_ = {'#t': ('PhysicalKeyboardKey', 'usbErrorRollOver')}
 PhysicalKeyboardKey.usb_post_fail = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.usb_post_fail.__ctor = (('usbPostFail',),)
+PhysicalKeyboardKey.usb_post_fail._nx_ = {'#t': ('PhysicalKeyboardKey', 'usbPostFail')}
 PhysicalKeyboardKey.usb_error_undefined = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.usb_error_undefined.__ctor = (('usbErrorUndefined',),)
+PhysicalKeyboardKey.usb_error_undefined._nx_ = {'#t': ('PhysicalKeyboardKey', 'usbErrorUndefined')}
 PhysicalKeyboardKey.key_a = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_a.__ctor = (('keyA',),)
+PhysicalKeyboardKey.key_a._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyA')}
 PhysicalKeyboardKey.key_b = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_b.__ctor = (('keyB',),)
+PhysicalKeyboardKey.key_b._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyB')}
 PhysicalKeyboardKey.key_c = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_c.__ctor = (('keyC',),)
+PhysicalKeyboardKey.key_c._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyC')}
 PhysicalKeyboardKey.key_d = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_d.__ctor = (('keyD',),)
+PhysicalKeyboardKey.key_d._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyD')}
 PhysicalKeyboardKey.key_e = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_e.__ctor = (('keyE',),)
+PhysicalKeyboardKey.key_e._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyE')}
 PhysicalKeyboardKey.key_f = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_f.__ctor = (('keyF',),)
+PhysicalKeyboardKey.key_f._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyF')}
 PhysicalKeyboardKey.key_g = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_g.__ctor = (('keyG',),)
+PhysicalKeyboardKey.key_g._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyG')}
 PhysicalKeyboardKey.key_h = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_h.__ctor = (('keyH',),)
+PhysicalKeyboardKey.key_h._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyH')}
 PhysicalKeyboardKey.key_i = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_i.__ctor = (('keyI',),)
+PhysicalKeyboardKey.key_i._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyI')}
 PhysicalKeyboardKey.key_j = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_j.__ctor = (('keyJ',),)
+PhysicalKeyboardKey.key_j._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyJ')}
 PhysicalKeyboardKey.key_k = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_k.__ctor = (('keyK',),)
+PhysicalKeyboardKey.key_k._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyK')}
 PhysicalKeyboardKey.key_l = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_l.__ctor = (('keyL',),)
+PhysicalKeyboardKey.key_l._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyL')}
 PhysicalKeyboardKey.key_m = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_m.__ctor = (('keyM',),)
+PhysicalKeyboardKey.key_m._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyM')}
 PhysicalKeyboardKey.key_n = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_n.__ctor = (('keyN',),)
+PhysicalKeyboardKey.key_n._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyN')}
 PhysicalKeyboardKey.key_o = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_o.__ctor = (('keyO',),)
+PhysicalKeyboardKey.key_o._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyO')}
 PhysicalKeyboardKey.key_p = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_p.__ctor = (('keyP',),)
+PhysicalKeyboardKey.key_p._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyP')}
 PhysicalKeyboardKey.key_q = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_q.__ctor = (('keyQ',),)
+PhysicalKeyboardKey.key_q._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyQ')}
 PhysicalKeyboardKey.key_r = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_r.__ctor = (('keyR',),)
+PhysicalKeyboardKey.key_r._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyR')}
 PhysicalKeyboardKey.key_s = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_s.__ctor = (('keyS',),)
+PhysicalKeyboardKey.key_s._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyS')}
 PhysicalKeyboardKey.key_t = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_t.__ctor = (('keyT',),)
+PhysicalKeyboardKey.key_t._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyT')}
 PhysicalKeyboardKey.key_u = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_u.__ctor = (('keyU',),)
+PhysicalKeyboardKey.key_u._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyU')}
 PhysicalKeyboardKey.key_v = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_v.__ctor = (('keyV',),)
+PhysicalKeyboardKey.key_v._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyV')}
 PhysicalKeyboardKey.key_w = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_w.__ctor = (('keyW',),)
+PhysicalKeyboardKey.key_w._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyW')}
 PhysicalKeyboardKey.key_x = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_x.__ctor = (('keyX',),)
+PhysicalKeyboardKey.key_x._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyX')}
 PhysicalKeyboardKey.key_y = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_y.__ctor = (('keyY',),)
+PhysicalKeyboardKey.key_y._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyY')}
 PhysicalKeyboardKey.key_z = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.key_z.__ctor = (('keyZ',),)
+PhysicalKeyboardKey.key_z._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyZ')}
 PhysicalKeyboardKey.digit1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit1.__ctor = (('digit1',),)
+PhysicalKeyboardKey.digit1._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit1')}
 PhysicalKeyboardKey.digit2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit2.__ctor = (('digit2',),)
+PhysicalKeyboardKey.digit2._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit2')}
 PhysicalKeyboardKey.digit3 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit3.__ctor = (('digit3',),)
+PhysicalKeyboardKey.digit3._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit3')}
 PhysicalKeyboardKey.digit4 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit4.__ctor = (('digit4',),)
+PhysicalKeyboardKey.digit4._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit4')}
 PhysicalKeyboardKey.digit5 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit5.__ctor = (('digit5',),)
+PhysicalKeyboardKey.digit5._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit5')}
 PhysicalKeyboardKey.digit6 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit6.__ctor = (('digit6',),)
+PhysicalKeyboardKey.digit6._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit6')}
 PhysicalKeyboardKey.digit7 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit7.__ctor = (('digit7',),)
+PhysicalKeyboardKey.digit7._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit7')}
 PhysicalKeyboardKey.digit8 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit8.__ctor = (('digit8',),)
+PhysicalKeyboardKey.digit8._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit8')}
 PhysicalKeyboardKey.digit9 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit9.__ctor = (('digit9',),)
+PhysicalKeyboardKey.digit9._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit9')}
 PhysicalKeyboardKey.digit0 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.digit0.__ctor = (('digit0',),)
+PhysicalKeyboardKey.digit0._nx_ = {'#t': ('PhysicalKeyboardKey', 'digit0')}
 PhysicalKeyboardKey.enter = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.enter.__ctor = (('enter',),)
+PhysicalKeyboardKey.enter._nx_ = {'#t': ('PhysicalKeyboardKey', 'enter')}
 PhysicalKeyboardKey.escape = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.escape.__ctor = (('escape',),)
+PhysicalKeyboardKey.escape._nx_ = {'#t': ('PhysicalKeyboardKey', 'escape')}
 PhysicalKeyboardKey.backspace = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.backspace.__ctor = (('backspace',),)
+PhysicalKeyboardKey.backspace._nx_ = {'#t': ('PhysicalKeyboardKey', 'backspace')}
 PhysicalKeyboardKey.tab = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.tab.__ctor = (('tab',),)
+PhysicalKeyboardKey.tab._nx_ = {'#t': ('PhysicalKeyboardKey', 'tab')}
 PhysicalKeyboardKey.space = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.space.__ctor = (('space',),)
+PhysicalKeyboardKey.space._nx_ = {'#t': ('PhysicalKeyboardKey', 'space')}
 PhysicalKeyboardKey.minus = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.minus.__ctor = (('minus',),)
+PhysicalKeyboardKey.minus._nx_ = {'#t': ('PhysicalKeyboardKey', 'minus')}
 PhysicalKeyboardKey.equal = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.equal.__ctor = (('equal',),)
+PhysicalKeyboardKey.equal._nx_ = {'#t': ('PhysicalKeyboardKey', 'equal')}
 PhysicalKeyboardKey.bracket_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.bracket_left.__ctor = (('bracketLeft',),)
+PhysicalKeyboardKey.bracket_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'bracketLeft')}
 PhysicalKeyboardKey.bracket_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.bracket_right.__ctor = (('bracketRight',),)
+PhysicalKeyboardKey.bracket_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'bracketRight')}
 PhysicalKeyboardKey.backslash = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.backslash.__ctor = (('backslash',),)
+PhysicalKeyboardKey.backslash._nx_ = {'#t': ('PhysicalKeyboardKey', 'backslash')}
 PhysicalKeyboardKey.semicolon = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.semicolon.__ctor = (('semicolon',),)
+PhysicalKeyboardKey.semicolon._nx_ = {'#t': ('PhysicalKeyboardKey', 'semicolon')}
 PhysicalKeyboardKey.quote = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.quote.__ctor = (('quote',),)
+PhysicalKeyboardKey.quote._nx_ = {'#t': ('PhysicalKeyboardKey', 'quote')}
 PhysicalKeyboardKey.backquote = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.backquote.__ctor = (('backquote',),)
+PhysicalKeyboardKey.backquote._nx_ = {'#t': ('PhysicalKeyboardKey', 'backquote')}
 PhysicalKeyboardKey.comma = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.comma.__ctor = (('comma',),)
+PhysicalKeyboardKey.comma._nx_ = {'#t': ('PhysicalKeyboardKey', 'comma')}
 PhysicalKeyboardKey.period = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.period.__ctor = (('period',),)
+PhysicalKeyboardKey.period._nx_ = {'#t': ('PhysicalKeyboardKey', 'period')}
 PhysicalKeyboardKey.slash = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.slash.__ctor = (('slash',),)
+PhysicalKeyboardKey.slash._nx_ = {'#t': ('PhysicalKeyboardKey', 'slash')}
 PhysicalKeyboardKey.caps_lock = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.caps_lock.__ctor = (('capsLock',),)
+PhysicalKeyboardKey.caps_lock._nx_ = {'#t': ('PhysicalKeyboardKey', 'capsLock')}
 PhysicalKeyboardKey.f1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f1.__ctor = (('f1',),)
+PhysicalKeyboardKey.f1._nx_ = {'#t': ('PhysicalKeyboardKey', 'f1')}
 PhysicalKeyboardKey.f2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f2.__ctor = (('f2',),)
+PhysicalKeyboardKey.f2._nx_ = {'#t': ('PhysicalKeyboardKey', 'f2')}
 PhysicalKeyboardKey.f3 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f3.__ctor = (('f3',),)
+PhysicalKeyboardKey.f3._nx_ = {'#t': ('PhysicalKeyboardKey', 'f3')}
 PhysicalKeyboardKey.f4 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f4.__ctor = (('f4',),)
+PhysicalKeyboardKey.f4._nx_ = {'#t': ('PhysicalKeyboardKey', 'f4')}
 PhysicalKeyboardKey.f5 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f5.__ctor = (('f5',),)
+PhysicalKeyboardKey.f5._nx_ = {'#t': ('PhysicalKeyboardKey', 'f5')}
 PhysicalKeyboardKey.f6 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f6.__ctor = (('f6',),)
+PhysicalKeyboardKey.f6._nx_ = {'#t': ('PhysicalKeyboardKey', 'f6')}
 PhysicalKeyboardKey.f7 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f7.__ctor = (('f7',),)
+PhysicalKeyboardKey.f7._nx_ = {'#t': ('PhysicalKeyboardKey', 'f7')}
 PhysicalKeyboardKey.f8 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f8.__ctor = (('f8',),)
+PhysicalKeyboardKey.f8._nx_ = {'#t': ('PhysicalKeyboardKey', 'f8')}
 PhysicalKeyboardKey.f9 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f9.__ctor = (('f9',),)
+PhysicalKeyboardKey.f9._nx_ = {'#t': ('PhysicalKeyboardKey', 'f9')}
 PhysicalKeyboardKey.f10 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f10.__ctor = (('f10',),)
+PhysicalKeyboardKey.f10._nx_ = {'#t': ('PhysicalKeyboardKey', 'f10')}
 PhysicalKeyboardKey.f11 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f11.__ctor = (('f11',),)
+PhysicalKeyboardKey.f11._nx_ = {'#t': ('PhysicalKeyboardKey', 'f11')}
 PhysicalKeyboardKey.f12 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f12.__ctor = (('f12',),)
+PhysicalKeyboardKey.f12._nx_ = {'#t': ('PhysicalKeyboardKey', 'f12')}
 PhysicalKeyboardKey.print_screen = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.print_screen.__ctor = (('printScreen',),)
+PhysicalKeyboardKey.print_screen._nx_ = {'#t': ('PhysicalKeyboardKey', 'printScreen')}
 PhysicalKeyboardKey.scroll_lock = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.scroll_lock.__ctor = (('scrollLock',),)
+PhysicalKeyboardKey.scroll_lock._nx_ = {'#t': ('PhysicalKeyboardKey', 'scrollLock')}
 PhysicalKeyboardKey.pause = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.pause.__ctor = (('pause',),)
+PhysicalKeyboardKey.pause._nx_ = {'#t': ('PhysicalKeyboardKey', 'pause')}
 PhysicalKeyboardKey.insert = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.insert.__ctor = (('insert',),)
+PhysicalKeyboardKey.insert._nx_ = {'#t': ('PhysicalKeyboardKey', 'insert')}
 PhysicalKeyboardKey.home = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.home.__ctor = (('home',),)
+PhysicalKeyboardKey.home._nx_ = {'#t': ('PhysicalKeyboardKey', 'home')}
 PhysicalKeyboardKey.page_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.page_up.__ctor = (('pageUp',),)
+PhysicalKeyboardKey.page_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'pageUp')}
 PhysicalKeyboardKey.delete = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.delete.__ctor = (('delete',),)
+PhysicalKeyboardKey.delete._nx_ = {'#t': ('PhysicalKeyboardKey', 'delete')}
 PhysicalKeyboardKey.end = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.end.__ctor = (('end',),)
+PhysicalKeyboardKey.end._nx_ = {'#t': ('PhysicalKeyboardKey', 'end')}
 PhysicalKeyboardKey.page_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.page_down.__ctor = (('pageDown',),)
+PhysicalKeyboardKey.page_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'pageDown')}
 PhysicalKeyboardKey.arrow_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.arrow_right.__ctor = (('arrowRight',),)
+PhysicalKeyboardKey.arrow_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'arrowRight')}
 PhysicalKeyboardKey.arrow_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.arrow_left.__ctor = (('arrowLeft',),)
+PhysicalKeyboardKey.arrow_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'arrowLeft')}
 PhysicalKeyboardKey.arrow_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.arrow_down.__ctor = (('arrowDown',),)
+PhysicalKeyboardKey.arrow_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'arrowDown')}
 PhysicalKeyboardKey.arrow_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.arrow_up.__ctor = (('arrowUp',),)
+PhysicalKeyboardKey.arrow_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'arrowUp')}
 PhysicalKeyboardKey.num_lock = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.num_lock.__ctor = (('numLock',),)
+PhysicalKeyboardKey.num_lock._nx_ = {'#t': ('PhysicalKeyboardKey', 'numLock')}
 PhysicalKeyboardKey.numpad_divide = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_divide.__ctor = (('numpadDivide',),)
+PhysicalKeyboardKey.numpad_divide._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadDivide')}
 PhysicalKeyboardKey.numpad_multiply = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_multiply.__ctor = (('numpadMultiply',),)
+PhysicalKeyboardKey.numpad_multiply._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMultiply')}
 PhysicalKeyboardKey.numpad_subtract = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_subtract.__ctor = (('numpadSubtract',),)
+PhysicalKeyboardKey.numpad_subtract._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadSubtract')}
 PhysicalKeyboardKey.numpad_add = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_add.__ctor = (('numpadAdd',),)
+PhysicalKeyboardKey.numpad_add._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadAdd')}
 PhysicalKeyboardKey.numpad_enter = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_enter.__ctor = (('numpadEnter',),)
+PhysicalKeyboardKey.numpad_enter._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadEnter')}
 PhysicalKeyboardKey.numpad1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad1.__ctor = (('numpad1',),)
+PhysicalKeyboardKey.numpad1._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad1')}
 PhysicalKeyboardKey.numpad2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad2.__ctor = (('numpad2',),)
+PhysicalKeyboardKey.numpad2._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad2')}
 PhysicalKeyboardKey.numpad3 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad3.__ctor = (('numpad3',),)
+PhysicalKeyboardKey.numpad3._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad3')}
 PhysicalKeyboardKey.numpad4 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad4.__ctor = (('numpad4',),)
+PhysicalKeyboardKey.numpad4._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad4')}
 PhysicalKeyboardKey.numpad5 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad5.__ctor = (('numpad5',),)
+PhysicalKeyboardKey.numpad5._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad5')}
 PhysicalKeyboardKey.numpad6 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad6.__ctor = (('numpad6',),)
+PhysicalKeyboardKey.numpad6._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad6')}
 PhysicalKeyboardKey.numpad7 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad7.__ctor = (('numpad7',),)
+PhysicalKeyboardKey.numpad7._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad7')}
 PhysicalKeyboardKey.numpad8 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad8.__ctor = (('numpad8',),)
+PhysicalKeyboardKey.numpad8._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad8')}
 PhysicalKeyboardKey.numpad9 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad9.__ctor = (('numpad9',),)
+PhysicalKeyboardKey.numpad9._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad9')}
 PhysicalKeyboardKey.numpad0 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad0.__ctor = (('numpad0',),)
+PhysicalKeyboardKey.numpad0._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpad0')}
 PhysicalKeyboardKey.numpad_decimal = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_decimal.__ctor = (('numpadDecimal',),)
+PhysicalKeyboardKey.numpad_decimal._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadDecimal')}
 PhysicalKeyboardKey.intl_backslash = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.intl_backslash.__ctor = (('intlBackslash',),)
+PhysicalKeyboardKey.intl_backslash._nx_ = {'#t': ('PhysicalKeyboardKey', 'intlBackslash')}
 PhysicalKeyboardKey.context_menu = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.context_menu.__ctor = (('contextMenu',),)
+PhysicalKeyboardKey.context_menu._nx_ = {'#t': ('PhysicalKeyboardKey', 'contextMenu')}
 PhysicalKeyboardKey.power = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.power.__ctor = (('power',),)
+PhysicalKeyboardKey.power._nx_ = {'#t': ('PhysicalKeyboardKey', 'power')}
 PhysicalKeyboardKey.numpad_equal = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_equal.__ctor = (('numpadEqual',),)
+PhysicalKeyboardKey.numpad_equal._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadEqual')}
 PhysicalKeyboardKey.f13 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f13.__ctor = (('f13',),)
+PhysicalKeyboardKey.f13._nx_ = {'#t': ('PhysicalKeyboardKey', 'f13')}
 PhysicalKeyboardKey.f14 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f14.__ctor = (('f14',),)
+PhysicalKeyboardKey.f14._nx_ = {'#t': ('PhysicalKeyboardKey', 'f14')}
 PhysicalKeyboardKey.f15 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f15.__ctor = (('f15',),)
+PhysicalKeyboardKey.f15._nx_ = {'#t': ('PhysicalKeyboardKey', 'f15')}
 PhysicalKeyboardKey.f16 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f16.__ctor = (('f16',),)
+PhysicalKeyboardKey.f16._nx_ = {'#t': ('PhysicalKeyboardKey', 'f16')}
 PhysicalKeyboardKey.f17 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f17.__ctor = (('f17',),)
+PhysicalKeyboardKey.f17._nx_ = {'#t': ('PhysicalKeyboardKey', 'f17')}
 PhysicalKeyboardKey.f18 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f18.__ctor = (('f18',),)
+PhysicalKeyboardKey.f18._nx_ = {'#t': ('PhysicalKeyboardKey', 'f18')}
 PhysicalKeyboardKey.f19 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f19.__ctor = (('f19',),)
+PhysicalKeyboardKey.f19._nx_ = {'#t': ('PhysicalKeyboardKey', 'f19')}
 PhysicalKeyboardKey.f20 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f20.__ctor = (('f20',),)
+PhysicalKeyboardKey.f20._nx_ = {'#t': ('PhysicalKeyboardKey', 'f20')}
 PhysicalKeyboardKey.f21 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f21.__ctor = (('f21',),)
+PhysicalKeyboardKey.f21._nx_ = {'#t': ('PhysicalKeyboardKey', 'f21')}
 PhysicalKeyboardKey.f22 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f22.__ctor = (('f22',),)
+PhysicalKeyboardKey.f22._nx_ = {'#t': ('PhysicalKeyboardKey', 'f22')}
 PhysicalKeyboardKey.f23 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f23.__ctor = (('f23',),)
+PhysicalKeyboardKey.f23._nx_ = {'#t': ('PhysicalKeyboardKey', 'f23')}
 PhysicalKeyboardKey.f24 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.f24.__ctor = (('f24',),)
+PhysicalKeyboardKey.f24._nx_ = {'#t': ('PhysicalKeyboardKey', 'f24')}
 PhysicalKeyboardKey.open = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.open.__ctor = (('open',),)
+PhysicalKeyboardKey.open._nx_ = {'#t': ('PhysicalKeyboardKey', 'open')}
 PhysicalKeyboardKey.help = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.help.__ctor = (('help',),)
+PhysicalKeyboardKey.help._nx_ = {'#t': ('PhysicalKeyboardKey', 'help')}
 PhysicalKeyboardKey.select = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.select.__ctor = (('select',),)
+PhysicalKeyboardKey.select._nx_ = {'#t': ('PhysicalKeyboardKey', 'select')}
 PhysicalKeyboardKey.again = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.again.__ctor = (('again',),)
+PhysicalKeyboardKey.again._nx_ = {'#t': ('PhysicalKeyboardKey', 'again')}
 PhysicalKeyboardKey.undo = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.undo.__ctor = (('undo',),)
+PhysicalKeyboardKey.undo._nx_ = {'#t': ('PhysicalKeyboardKey', 'undo')}
 PhysicalKeyboardKey.cut = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.cut.__ctor = (('cut',),)
+PhysicalKeyboardKey.cut._nx_ = {'#t': ('PhysicalKeyboardKey', 'cut')}
 PhysicalKeyboardKey.copy = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.copy.__ctor = (('copy',),)
+PhysicalKeyboardKey.copy._nx_ = {'#t': ('PhysicalKeyboardKey', 'copy')}
 PhysicalKeyboardKey.paste = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.paste.__ctor = (('paste',),)
+PhysicalKeyboardKey.paste._nx_ = {'#t': ('PhysicalKeyboardKey', 'paste')}
 PhysicalKeyboardKey.find = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.find.__ctor = (('find',),)
+PhysicalKeyboardKey.find._nx_ = {'#t': ('PhysicalKeyboardKey', 'find')}
 PhysicalKeyboardKey.audio_volume_mute = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.audio_volume_mute.__ctor = (('audioVolumeMute',),)
+PhysicalKeyboardKey.audio_volume_mute._nx_ = {'#t': ('PhysicalKeyboardKey', 'audioVolumeMute')}
 PhysicalKeyboardKey.audio_volume_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.audio_volume_up.__ctor = (('audioVolumeUp',),)
+PhysicalKeyboardKey.audio_volume_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'audioVolumeUp')}
 PhysicalKeyboardKey.audio_volume_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.audio_volume_down.__ctor = (('audioVolumeDown',),)
+PhysicalKeyboardKey.audio_volume_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'audioVolumeDown')}
 PhysicalKeyboardKey.numpad_comma = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_comma.__ctor = (('numpadComma',),)
+PhysicalKeyboardKey.numpad_comma._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadComma')}
 PhysicalKeyboardKey.intl_ro = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.intl_ro.__ctor = (('intlRo',),)
+PhysicalKeyboardKey.intl_ro._nx_ = {'#t': ('PhysicalKeyboardKey', 'intlRo')}
 PhysicalKeyboardKey.kana_mode = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.kana_mode.__ctor = (('kanaMode',),)
+PhysicalKeyboardKey.kana_mode._nx_ = {'#t': ('PhysicalKeyboardKey', 'kanaMode')}
 PhysicalKeyboardKey.intl_yen = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.intl_yen.__ctor = (('intlYen',),)
+PhysicalKeyboardKey.intl_yen._nx_ = {'#t': ('PhysicalKeyboardKey', 'intlYen')}
 PhysicalKeyboardKey.convert = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.convert.__ctor = (('convert',),)
+PhysicalKeyboardKey.convert._nx_ = {'#t': ('PhysicalKeyboardKey', 'convert')}
 PhysicalKeyboardKey.non_convert = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.non_convert.__ctor = (('nonConvert',),)
+PhysicalKeyboardKey.non_convert._nx_ = {'#t': ('PhysicalKeyboardKey', 'nonConvert')}
 PhysicalKeyboardKey.lang1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lang1.__ctor = (('lang1',),)
+PhysicalKeyboardKey.lang1._nx_ = {'#t': ('PhysicalKeyboardKey', 'lang1')}
 PhysicalKeyboardKey.lang2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lang2.__ctor = (('lang2',),)
+PhysicalKeyboardKey.lang2._nx_ = {'#t': ('PhysicalKeyboardKey', 'lang2')}
 PhysicalKeyboardKey.lang3 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lang3.__ctor = (('lang3',),)
+PhysicalKeyboardKey.lang3._nx_ = {'#t': ('PhysicalKeyboardKey', 'lang3')}
 PhysicalKeyboardKey.lang4 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lang4.__ctor = (('lang4',),)
+PhysicalKeyboardKey.lang4._nx_ = {'#t': ('PhysicalKeyboardKey', 'lang4')}
 PhysicalKeyboardKey.lang5 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lang5.__ctor = (('lang5',),)
+PhysicalKeyboardKey.lang5._nx_ = {'#t': ('PhysicalKeyboardKey', 'lang5')}
 PhysicalKeyboardKey.abort = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.abort.__ctor = (('abort',),)
+PhysicalKeyboardKey.abort._nx_ = {'#t': ('PhysicalKeyboardKey', 'abort')}
 PhysicalKeyboardKey.props = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.props.__ctor = (('props',),)
+PhysicalKeyboardKey.props._nx_ = {'#t': ('PhysicalKeyboardKey', 'props')}
 PhysicalKeyboardKey.numpad_paren_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_paren_left.__ctor = (('numpadParenLeft',),)
+PhysicalKeyboardKey.numpad_paren_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadParenLeft')}
 PhysicalKeyboardKey.numpad_paren_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_paren_right.__ctor = (('numpadParenRight',),)
+PhysicalKeyboardKey.numpad_paren_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadParenRight')}
 PhysicalKeyboardKey.numpad_backspace = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_backspace.__ctor = (('numpadBackspace',),)
+PhysicalKeyboardKey.numpad_backspace._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadBackspace')}
 PhysicalKeyboardKey.numpad_memory_store = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_memory_store.__ctor = (('numpadMemoryStore',),)
+PhysicalKeyboardKey.numpad_memory_store._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMemoryStore')}
 PhysicalKeyboardKey.numpad_memory_recall = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_memory_recall.__ctor = (('numpadMemoryRecall',),)
+PhysicalKeyboardKey.numpad_memory_recall._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMemoryRecall')}
 PhysicalKeyboardKey.numpad_memory_clear = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_memory_clear.__ctor = (('numpadMemoryClear',),)
+PhysicalKeyboardKey.numpad_memory_clear._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMemoryClear')}
 PhysicalKeyboardKey.numpad_memory_add = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_memory_add.__ctor = (('numpadMemoryAdd',),)
+PhysicalKeyboardKey.numpad_memory_add._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMemoryAdd')}
 PhysicalKeyboardKey.numpad_memory_subtract = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_memory_subtract.__ctor = (('numpadMemorySubtract',),)
+PhysicalKeyboardKey.numpad_memory_subtract._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadMemorySubtract')}
 PhysicalKeyboardKey.numpad_sign_change = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_sign_change.__ctor = (('numpadSignChange',),)
+PhysicalKeyboardKey.numpad_sign_change._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadSignChange')}
 PhysicalKeyboardKey.numpad_clear = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_clear.__ctor = (('numpadClear',),)
+PhysicalKeyboardKey.numpad_clear._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadClear')}
 PhysicalKeyboardKey.numpad_clear_entry = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.numpad_clear_entry.__ctor = (('numpadClearEntry',),)
+PhysicalKeyboardKey.numpad_clear_entry._nx_ = {'#t': ('PhysicalKeyboardKey', 'numpadClearEntry')}
 PhysicalKeyboardKey.control_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.control_left.__ctor = (('controlLeft',),)
+PhysicalKeyboardKey.control_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'controlLeft')}
 PhysicalKeyboardKey.shift_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.shift_left.__ctor = (('shiftLeft',),)
+PhysicalKeyboardKey.shift_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'shiftLeft')}
 PhysicalKeyboardKey.alt_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.alt_left.__ctor = (('altLeft',),)
+PhysicalKeyboardKey.alt_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'altLeft')}
 PhysicalKeyboardKey.meta_left = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.meta_left.__ctor = (('metaLeft',),)
+PhysicalKeyboardKey.meta_left._nx_ = {'#t': ('PhysicalKeyboardKey', 'metaLeft')}
 PhysicalKeyboardKey.control_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.control_right.__ctor = (('controlRight',),)
+PhysicalKeyboardKey.control_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'controlRight')}
 PhysicalKeyboardKey.shift_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.shift_right.__ctor = (('shiftRight',),)
+PhysicalKeyboardKey.shift_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'shiftRight')}
 PhysicalKeyboardKey.alt_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.alt_right.__ctor = (('altRight',),)
+PhysicalKeyboardKey.alt_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'altRight')}
 PhysicalKeyboardKey.meta_right = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.meta_right.__ctor = (('metaRight',),)
+PhysicalKeyboardKey.meta_right._nx_ = {'#t': ('PhysicalKeyboardKey', 'metaRight')}
 PhysicalKeyboardKey.info = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.info.__ctor = (('info',),)
+PhysicalKeyboardKey.info._nx_ = {'#t': ('PhysicalKeyboardKey', 'info')}
 PhysicalKeyboardKey.closed_caption_toggle = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.closed_caption_toggle.__ctor = (('closedCaptionToggle',),)
+PhysicalKeyboardKey.closed_caption_toggle._nx_ = {'#t': ('PhysicalKeyboardKey', 'closedCaptionToggle')}
 PhysicalKeyboardKey.brightness_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_up.__ctor = (('brightnessUp',),)
+PhysicalKeyboardKey.brightness_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessUp')}
 PhysicalKeyboardKey.brightness_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_down.__ctor = (('brightnessDown',),)
+PhysicalKeyboardKey.brightness_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessDown')}
 PhysicalKeyboardKey.brightness_toggle = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_toggle.__ctor = (('brightnessToggle',),)
+PhysicalKeyboardKey.brightness_toggle._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessToggle')}
 PhysicalKeyboardKey.brightness_minimum = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_minimum.__ctor = (('brightnessMinimum',),)
+PhysicalKeyboardKey.brightness_minimum._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessMinimum')}
 PhysicalKeyboardKey.brightness_maximum = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_maximum.__ctor = (('brightnessMaximum',),)
+PhysicalKeyboardKey.brightness_maximum._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessMaximum')}
 PhysicalKeyboardKey.brightness_auto = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.brightness_auto.__ctor = (('brightnessAuto',),)
+PhysicalKeyboardKey.brightness_auto._nx_ = {'#t': ('PhysicalKeyboardKey', 'brightnessAuto')}
 PhysicalKeyboardKey.kbd_illum_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.kbd_illum_up.__ctor = (('kbdIllumUp',),)
+PhysicalKeyboardKey.kbd_illum_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'kbdIllumUp')}
 PhysicalKeyboardKey.kbd_illum_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.kbd_illum_down.__ctor = (('kbdIllumDown',),)
+PhysicalKeyboardKey.kbd_illum_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'kbdIllumDown')}
 PhysicalKeyboardKey.media_last = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_last.__ctor = (('mediaLast',),)
+PhysicalKeyboardKey.media_last._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaLast')}
 PhysicalKeyboardKey.launch_phone = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_phone.__ctor = (('launchPhone',),)
+PhysicalKeyboardKey.launch_phone._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchPhone')}
 PhysicalKeyboardKey.program_guide = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.program_guide.__ctor = (('programGuide',),)
+PhysicalKeyboardKey.program_guide._nx_ = {'#t': ('PhysicalKeyboardKey', 'programGuide')}
 PhysicalKeyboardKey.exit = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.exit.__ctor = (('exit',),)
+PhysicalKeyboardKey.exit._nx_ = {'#t': ('PhysicalKeyboardKey', 'exit')}
 PhysicalKeyboardKey.channel_up = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.channel_up.__ctor = (('channelUp',),)
+PhysicalKeyboardKey.channel_up._nx_ = {'#t': ('PhysicalKeyboardKey', 'channelUp')}
 PhysicalKeyboardKey.channel_down = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.channel_down.__ctor = (('channelDown',),)
+PhysicalKeyboardKey.channel_down._nx_ = {'#t': ('PhysicalKeyboardKey', 'channelDown')}
 PhysicalKeyboardKey.media_play = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_play.__ctor = (('mediaPlay',),)
+PhysicalKeyboardKey.media_play._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaPlay')}
 PhysicalKeyboardKey.media_pause = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_pause.__ctor = (('mediaPause',),)
+PhysicalKeyboardKey.media_pause._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaPause')}
 PhysicalKeyboardKey.media_record = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_record.__ctor = (('mediaRecord',),)
+PhysicalKeyboardKey.media_record._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaRecord')}
 PhysicalKeyboardKey.media_fast_forward = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_fast_forward.__ctor = (('mediaFastForward',),)
+PhysicalKeyboardKey.media_fast_forward._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaFastForward')}
 PhysicalKeyboardKey.media_rewind = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_rewind.__ctor = (('mediaRewind',),)
+PhysicalKeyboardKey.media_rewind._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaRewind')}
 PhysicalKeyboardKey.media_track_next = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_track_next.__ctor = (('mediaTrackNext',),)
+PhysicalKeyboardKey.media_track_next._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaTrackNext')}
 PhysicalKeyboardKey.media_track_previous = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_track_previous.__ctor = (('mediaTrackPrevious',),)
+PhysicalKeyboardKey.media_track_previous._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaTrackPrevious')}
 PhysicalKeyboardKey.media_stop = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_stop.__ctor = (('mediaStop',),)
+PhysicalKeyboardKey.media_stop._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaStop')}
 PhysicalKeyboardKey.eject = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.eject.__ctor = (('eject',),)
+PhysicalKeyboardKey.eject._nx_ = {'#t': ('PhysicalKeyboardKey', 'eject')}
 PhysicalKeyboardKey.media_play_pause = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_play_pause.__ctor = (('mediaPlayPause',),)
+PhysicalKeyboardKey.media_play_pause._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaPlayPause')}
 PhysicalKeyboardKey.speech_input_toggle = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.speech_input_toggle.__ctor = (('speechInputToggle',),)
+PhysicalKeyboardKey.speech_input_toggle._nx_ = {'#t': ('PhysicalKeyboardKey', 'speechInputToggle')}
 PhysicalKeyboardKey.bass_boost = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.bass_boost.__ctor = (('bassBoost',),)
+PhysicalKeyboardKey.bass_boost._nx_ = {'#t': ('PhysicalKeyboardKey', 'bassBoost')}
 PhysicalKeyboardKey.media_select = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.media_select.__ctor = (('mediaSelect',),)
+PhysicalKeyboardKey.media_select._nx_ = {'#t': ('PhysicalKeyboardKey', 'mediaSelect')}
 PhysicalKeyboardKey.launch_word_processor = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_word_processor.__ctor = (('launchWordProcessor',),)
+PhysicalKeyboardKey.launch_word_processor._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchWordProcessor')}
 PhysicalKeyboardKey.launch_spreadsheet = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_spreadsheet.__ctor = (('launchSpreadsheet',),)
+PhysicalKeyboardKey.launch_spreadsheet._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchSpreadsheet')}
 PhysicalKeyboardKey.launch_mail = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_mail.__ctor = (('launchMail',),)
+PhysicalKeyboardKey.launch_mail._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchMail')}
 PhysicalKeyboardKey.launch_contacts = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_contacts.__ctor = (('launchContacts',),)
+PhysicalKeyboardKey.launch_contacts._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchContacts')}
 PhysicalKeyboardKey.launch_calendar = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_calendar.__ctor = (('launchCalendar',),)
+PhysicalKeyboardKey.launch_calendar._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchCalendar')}
 PhysicalKeyboardKey.launch_app2 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_app2.__ctor = (('launchApp2',),)
+PhysicalKeyboardKey.launch_app2._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchApp2')}
 PhysicalKeyboardKey.launch_app1 = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_app1.__ctor = (('launchApp1',),)
+PhysicalKeyboardKey.launch_app1._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchApp1')}
 PhysicalKeyboardKey.launch_internet_browser = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_internet_browser.__ctor = (('launchInternetBrowser',),)
+PhysicalKeyboardKey.launch_internet_browser._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchInternetBrowser')}
 PhysicalKeyboardKey.log_off = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.log_off.__ctor = (('logOff',),)
+PhysicalKeyboardKey.log_off._nx_ = {'#t': ('PhysicalKeyboardKey', 'logOff')}
 PhysicalKeyboardKey.lock_screen = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.lock_screen.__ctor = (('lockScreen',),)
+PhysicalKeyboardKey.lock_screen._nx_ = {'#t': ('PhysicalKeyboardKey', 'lockScreen')}
 PhysicalKeyboardKey.launch_control_panel = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_control_panel.__ctor = (('launchControlPanel',),)
+PhysicalKeyboardKey.launch_control_panel._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchControlPanel')}
 PhysicalKeyboardKey.select_task = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.select_task.__ctor = (('selectTask',),)
+PhysicalKeyboardKey.select_task._nx_ = {'#t': ('PhysicalKeyboardKey', 'selectTask')}
 PhysicalKeyboardKey.launch_documents = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_documents.__ctor = (('launchDocuments',),)
+PhysicalKeyboardKey.launch_documents._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchDocuments')}
 PhysicalKeyboardKey.spell_check = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.spell_check.__ctor = (('spellCheck',),)
+PhysicalKeyboardKey.spell_check._nx_ = {'#t': ('PhysicalKeyboardKey', 'spellCheck')}
 PhysicalKeyboardKey.launch_keyboard_layout = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_keyboard_layout.__ctor = (('launchKeyboardLayout',),)
+PhysicalKeyboardKey.launch_keyboard_layout._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchKeyboardLayout')}
 PhysicalKeyboardKey.launch_screen_saver = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_screen_saver.__ctor = (('launchScreenSaver',),)
+PhysicalKeyboardKey.launch_screen_saver._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchScreenSaver')}
 PhysicalKeyboardKey.launch_audio_browser = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_audio_browser.__ctor = (('launchAudioBrowser',),)
+PhysicalKeyboardKey.launch_audio_browser._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchAudioBrowser')}
 PhysicalKeyboardKey.launch_assistant = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.launch_assistant.__ctor = (('launchAssistant',),)
+PhysicalKeyboardKey.launch_assistant._nx_ = {'#t': ('PhysicalKeyboardKey', 'launchAssistant')}
 PhysicalKeyboardKey.new_key = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.new_key.__ctor = (('newKey',),)
+PhysicalKeyboardKey.new_key._nx_ = {'#t': ('PhysicalKeyboardKey', 'newKey')}
 PhysicalKeyboardKey.close = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.close.__ctor = (('close',),)
+PhysicalKeyboardKey.close._nx_ = {'#t': ('PhysicalKeyboardKey', 'close')}
 PhysicalKeyboardKey.save = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.save.__ctor = (('save',),)
+PhysicalKeyboardKey.save._nx_ = {'#t': ('PhysicalKeyboardKey', 'save')}
 PhysicalKeyboardKey.print = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.print.__ctor = (('print',),)
+PhysicalKeyboardKey.print._nx_ = {'#t': ('PhysicalKeyboardKey', 'print')}
 PhysicalKeyboardKey.browser_search = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_search.__ctor = (('browserSearch',),)
+PhysicalKeyboardKey.browser_search._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserSearch')}
 PhysicalKeyboardKey.browser_home = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_home.__ctor = (('browserHome',),)
+PhysicalKeyboardKey.browser_home._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserHome')}
 PhysicalKeyboardKey.browser_back = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_back.__ctor = (('browserBack',),)
+PhysicalKeyboardKey.browser_back._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserBack')}
 PhysicalKeyboardKey.browser_forward = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_forward.__ctor = (('browserForward',),)
+PhysicalKeyboardKey.browser_forward._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserForward')}
 PhysicalKeyboardKey.browser_stop = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_stop.__ctor = (('browserStop',),)
+PhysicalKeyboardKey.browser_stop._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserStop')}
 PhysicalKeyboardKey.browser_refresh = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_refresh.__ctor = (('browserRefresh',),)
+PhysicalKeyboardKey.browser_refresh._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserRefresh')}
 PhysicalKeyboardKey.browser_favorites = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.browser_favorites.__ctor = (('browserFavorites',),)
+PhysicalKeyboardKey.browser_favorites._nx_ = {'#t': ('PhysicalKeyboardKey', 'browserFavorites')}
 PhysicalKeyboardKey.zoom_in = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.zoom_in.__ctor = (('zoomIn',),)
+PhysicalKeyboardKey.zoom_in._nx_ = {'#t': ('PhysicalKeyboardKey', 'zoomIn')}
 PhysicalKeyboardKey.zoom_out = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.zoom_out.__ctor = (('zoomOut',),)
+PhysicalKeyboardKey.zoom_out._nx_ = {'#t': ('PhysicalKeyboardKey', 'zoomOut')}
 PhysicalKeyboardKey.zoom_toggle = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.zoom_toggle.__ctor = (('zoomToggle',),)
+PhysicalKeyboardKey.zoom_toggle._nx_ = {'#t': ('PhysicalKeyboardKey', 'zoomToggle')}
 PhysicalKeyboardKey.redo = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.redo.__ctor = (('redo',),)
+PhysicalKeyboardKey.redo._nx_ = {'#t': ('PhysicalKeyboardKey', 'redo')}
 PhysicalKeyboardKey.mail_reply = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.mail_reply.__ctor = (('mailReply',),)
+PhysicalKeyboardKey.mail_reply._nx_ = {'#t': ('PhysicalKeyboardKey', 'mailReply')}
 PhysicalKeyboardKey.mail_forward = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.mail_forward.__ctor = (('mailForward',),)
+PhysicalKeyboardKey.mail_forward._nx_ = {'#t': ('PhysicalKeyboardKey', 'mailForward')}
 PhysicalKeyboardKey.mail_send = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.mail_send.__ctor = (('mailSend',),)
+PhysicalKeyboardKey.mail_send._nx_ = {'#t': ('PhysicalKeyboardKey', 'mailSend')}
 PhysicalKeyboardKey.keyboard_layout_select = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.keyboard_layout_select.__ctor = (('keyboardLayoutSelect',),)
+PhysicalKeyboardKey.keyboard_layout_select._nx_ = {'#t': ('PhysicalKeyboardKey', 'keyboardLayoutSelect')}
 PhysicalKeyboardKey.show_all_windows = PhysicalKeyboardKey(
     usb_hid_usage=0,
 )
-PhysicalKeyboardKey.show_all_windows.__ctor = (('showAllWindows',),)
+PhysicalKeyboardKey.show_all_windows._nx_ = {'#t': ('PhysicalKeyboardKey', 'showAllWindows')}
 
 
 # packages/flutter/lib/src/services/keyboard_key.dart
@@ -4956,1791 +5080,1792 @@ class LogicalKeyboardKey(KeyboardKey):
         self,
         key_id: int,
     ):
-        self.__ctor = (('',), (
-            'keyId', key_id,
-        ))
+        self._nx_ = {
+            '#t': ('LogicalKeyboardKey', ''),
+            'keyId': key_id,
+        }
 
 
 LogicalKeyboardKey.space = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.space.__ctor = (('space',),)
+LogicalKeyboardKey.space._nx_ = {'#t': ('LogicalKeyboardKey', 'space')}
 LogicalKeyboardKey.exclamation = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.exclamation.__ctor = (('exclamation',),)
+LogicalKeyboardKey.exclamation._nx_ = {'#t': ('LogicalKeyboardKey', 'exclamation')}
 LogicalKeyboardKey.quote = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.quote.__ctor = (('quote',),)
+LogicalKeyboardKey.quote._nx_ = {'#t': ('LogicalKeyboardKey', 'quote')}
 LogicalKeyboardKey.number_sign = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.number_sign.__ctor = (('numberSign',),)
+LogicalKeyboardKey.number_sign._nx_ = {'#t': ('LogicalKeyboardKey', 'numberSign')}
 LogicalKeyboardKey.dollar = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.dollar.__ctor = (('dollar',),)
+LogicalKeyboardKey.dollar._nx_ = {'#t': ('LogicalKeyboardKey', 'dollar')}
 LogicalKeyboardKey.percent = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.percent.__ctor = (('percent',),)
+LogicalKeyboardKey.percent._nx_ = {'#t': ('LogicalKeyboardKey', 'percent')}
 LogicalKeyboardKey.ampersand = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.ampersand.__ctor = (('ampersand',),)
+LogicalKeyboardKey.ampersand._nx_ = {'#t': ('LogicalKeyboardKey', 'ampersand')}
 LogicalKeyboardKey.quote_single = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.quote_single.__ctor = (('quoteSingle',),)
+LogicalKeyboardKey.quote_single._nx_ = {'#t': ('LogicalKeyboardKey', 'quoteSingle')}
 LogicalKeyboardKey.parenthesis_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.parenthesis_left.__ctor = (('parenthesisLeft',),)
+LogicalKeyboardKey.parenthesis_left._nx_ = {'#t': ('LogicalKeyboardKey', 'parenthesisLeft')}
 LogicalKeyboardKey.parenthesis_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.parenthesis_right.__ctor = (('parenthesisRight',),)
+LogicalKeyboardKey.parenthesis_right._nx_ = {'#t': ('LogicalKeyboardKey', 'parenthesisRight')}
 LogicalKeyboardKey.asterisk = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.asterisk.__ctor = (('asterisk',),)
+LogicalKeyboardKey.asterisk._nx_ = {'#t': ('LogicalKeyboardKey', 'asterisk')}
 LogicalKeyboardKey.add = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.add.__ctor = (('add',),)
+LogicalKeyboardKey.add._nx_ = {'#t': ('LogicalKeyboardKey', 'add')}
 LogicalKeyboardKey.comma = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.comma.__ctor = (('comma',),)
+LogicalKeyboardKey.comma._nx_ = {'#t': ('LogicalKeyboardKey', 'comma')}
 LogicalKeyboardKey.minus = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.minus.__ctor = (('minus',),)
+LogicalKeyboardKey.minus._nx_ = {'#t': ('LogicalKeyboardKey', 'minus')}
 LogicalKeyboardKey.period = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.period.__ctor = (('period',),)
+LogicalKeyboardKey.period._nx_ = {'#t': ('LogicalKeyboardKey', 'period')}
 LogicalKeyboardKey.slash = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.slash.__ctor = (('slash',),)
+LogicalKeyboardKey.slash._nx_ = {'#t': ('LogicalKeyboardKey', 'slash')}
 LogicalKeyboardKey.digit0 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit0.__ctor = (('digit0',),)
+LogicalKeyboardKey.digit0._nx_ = {'#t': ('LogicalKeyboardKey', 'digit0')}
 LogicalKeyboardKey.digit1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit1.__ctor = (('digit1',),)
+LogicalKeyboardKey.digit1._nx_ = {'#t': ('LogicalKeyboardKey', 'digit1')}
 LogicalKeyboardKey.digit2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit2.__ctor = (('digit2',),)
+LogicalKeyboardKey.digit2._nx_ = {'#t': ('LogicalKeyboardKey', 'digit2')}
 LogicalKeyboardKey.digit3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit3.__ctor = (('digit3',),)
+LogicalKeyboardKey.digit3._nx_ = {'#t': ('LogicalKeyboardKey', 'digit3')}
 LogicalKeyboardKey.digit4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit4.__ctor = (('digit4',),)
+LogicalKeyboardKey.digit4._nx_ = {'#t': ('LogicalKeyboardKey', 'digit4')}
 LogicalKeyboardKey.digit5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit5.__ctor = (('digit5',),)
+LogicalKeyboardKey.digit5._nx_ = {'#t': ('LogicalKeyboardKey', 'digit5')}
 LogicalKeyboardKey.digit6 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit6.__ctor = (('digit6',),)
+LogicalKeyboardKey.digit6._nx_ = {'#t': ('LogicalKeyboardKey', 'digit6')}
 LogicalKeyboardKey.digit7 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit7.__ctor = (('digit7',),)
+LogicalKeyboardKey.digit7._nx_ = {'#t': ('LogicalKeyboardKey', 'digit7')}
 LogicalKeyboardKey.digit8 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit8.__ctor = (('digit8',),)
+LogicalKeyboardKey.digit8._nx_ = {'#t': ('LogicalKeyboardKey', 'digit8')}
 LogicalKeyboardKey.digit9 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.digit9.__ctor = (('digit9',),)
+LogicalKeyboardKey.digit9._nx_ = {'#t': ('LogicalKeyboardKey', 'digit9')}
 LogicalKeyboardKey.colon = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.colon.__ctor = (('colon',),)
+LogicalKeyboardKey.colon._nx_ = {'#t': ('LogicalKeyboardKey', 'colon')}
 LogicalKeyboardKey.semicolon = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.semicolon.__ctor = (('semicolon',),)
+LogicalKeyboardKey.semicolon._nx_ = {'#t': ('LogicalKeyboardKey', 'semicolon')}
 LogicalKeyboardKey.less = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.less.__ctor = (('less',),)
+LogicalKeyboardKey.less._nx_ = {'#t': ('LogicalKeyboardKey', 'less')}
 LogicalKeyboardKey.equal = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.equal.__ctor = (('equal',),)
+LogicalKeyboardKey.equal._nx_ = {'#t': ('LogicalKeyboardKey', 'equal')}
 LogicalKeyboardKey.greater = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.greater.__ctor = (('greater',),)
+LogicalKeyboardKey.greater._nx_ = {'#t': ('LogicalKeyboardKey', 'greater')}
 LogicalKeyboardKey.question = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.question.__ctor = (('question',),)
+LogicalKeyboardKey.question._nx_ = {'#t': ('LogicalKeyboardKey', 'question')}
 LogicalKeyboardKey.at = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.at.__ctor = (('at',),)
+LogicalKeyboardKey.at._nx_ = {'#t': ('LogicalKeyboardKey', 'at')}
 LogicalKeyboardKey.bracket_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.bracket_left.__ctor = (('bracketLeft',),)
+LogicalKeyboardKey.bracket_left._nx_ = {'#t': ('LogicalKeyboardKey', 'bracketLeft')}
 LogicalKeyboardKey.backslash = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.backslash.__ctor = (('backslash',),)
+LogicalKeyboardKey.backslash._nx_ = {'#t': ('LogicalKeyboardKey', 'backslash')}
 LogicalKeyboardKey.bracket_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.bracket_right.__ctor = (('bracketRight',),)
+LogicalKeyboardKey.bracket_right._nx_ = {'#t': ('LogicalKeyboardKey', 'bracketRight')}
 LogicalKeyboardKey.caret = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.caret.__ctor = (('caret',),)
+LogicalKeyboardKey.caret._nx_ = {'#t': ('LogicalKeyboardKey', 'caret')}
 LogicalKeyboardKey.underscore = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.underscore.__ctor = (('underscore',),)
+LogicalKeyboardKey.underscore._nx_ = {'#t': ('LogicalKeyboardKey', 'underscore')}
 LogicalKeyboardKey.backquote = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.backquote.__ctor = (('backquote',),)
+LogicalKeyboardKey.backquote._nx_ = {'#t': ('LogicalKeyboardKey', 'backquote')}
 LogicalKeyboardKey.key_a = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_a.__ctor = (('keyA',),)
+LogicalKeyboardKey.key_a._nx_ = {'#t': ('LogicalKeyboardKey', 'keyA')}
 LogicalKeyboardKey.key_b = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_b.__ctor = (('keyB',),)
+LogicalKeyboardKey.key_b._nx_ = {'#t': ('LogicalKeyboardKey', 'keyB')}
 LogicalKeyboardKey.key_c = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_c.__ctor = (('keyC',),)
+LogicalKeyboardKey.key_c._nx_ = {'#t': ('LogicalKeyboardKey', 'keyC')}
 LogicalKeyboardKey.key_d = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_d.__ctor = (('keyD',),)
+LogicalKeyboardKey.key_d._nx_ = {'#t': ('LogicalKeyboardKey', 'keyD')}
 LogicalKeyboardKey.key_e = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_e.__ctor = (('keyE',),)
+LogicalKeyboardKey.key_e._nx_ = {'#t': ('LogicalKeyboardKey', 'keyE')}
 LogicalKeyboardKey.key_f = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_f.__ctor = (('keyF',),)
+LogicalKeyboardKey.key_f._nx_ = {'#t': ('LogicalKeyboardKey', 'keyF')}
 LogicalKeyboardKey.key_g = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_g.__ctor = (('keyG',),)
+LogicalKeyboardKey.key_g._nx_ = {'#t': ('LogicalKeyboardKey', 'keyG')}
 LogicalKeyboardKey.key_h = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_h.__ctor = (('keyH',),)
+LogicalKeyboardKey.key_h._nx_ = {'#t': ('LogicalKeyboardKey', 'keyH')}
 LogicalKeyboardKey.key_i = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_i.__ctor = (('keyI',),)
+LogicalKeyboardKey.key_i._nx_ = {'#t': ('LogicalKeyboardKey', 'keyI')}
 LogicalKeyboardKey.key_j = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_j.__ctor = (('keyJ',),)
+LogicalKeyboardKey.key_j._nx_ = {'#t': ('LogicalKeyboardKey', 'keyJ')}
 LogicalKeyboardKey.key_k = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_k.__ctor = (('keyK',),)
+LogicalKeyboardKey.key_k._nx_ = {'#t': ('LogicalKeyboardKey', 'keyK')}
 LogicalKeyboardKey.key_l = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_l.__ctor = (('keyL',),)
+LogicalKeyboardKey.key_l._nx_ = {'#t': ('LogicalKeyboardKey', 'keyL')}
 LogicalKeyboardKey.key_m = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_m.__ctor = (('keyM',),)
+LogicalKeyboardKey.key_m._nx_ = {'#t': ('LogicalKeyboardKey', 'keyM')}
 LogicalKeyboardKey.key_n = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_n.__ctor = (('keyN',),)
+LogicalKeyboardKey.key_n._nx_ = {'#t': ('LogicalKeyboardKey', 'keyN')}
 LogicalKeyboardKey.key_o = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_o.__ctor = (('keyO',),)
+LogicalKeyboardKey.key_o._nx_ = {'#t': ('LogicalKeyboardKey', 'keyO')}
 LogicalKeyboardKey.key_p = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_p.__ctor = (('keyP',),)
+LogicalKeyboardKey.key_p._nx_ = {'#t': ('LogicalKeyboardKey', 'keyP')}
 LogicalKeyboardKey.key_q = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_q.__ctor = (('keyQ',),)
+LogicalKeyboardKey.key_q._nx_ = {'#t': ('LogicalKeyboardKey', 'keyQ')}
 LogicalKeyboardKey.key_r = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_r.__ctor = (('keyR',),)
+LogicalKeyboardKey.key_r._nx_ = {'#t': ('LogicalKeyboardKey', 'keyR')}
 LogicalKeyboardKey.key_s = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_s.__ctor = (('keyS',),)
+LogicalKeyboardKey.key_s._nx_ = {'#t': ('LogicalKeyboardKey', 'keyS')}
 LogicalKeyboardKey.key_t = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_t.__ctor = (('keyT',),)
+LogicalKeyboardKey.key_t._nx_ = {'#t': ('LogicalKeyboardKey', 'keyT')}
 LogicalKeyboardKey.key_u = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_u.__ctor = (('keyU',),)
+LogicalKeyboardKey.key_u._nx_ = {'#t': ('LogicalKeyboardKey', 'keyU')}
 LogicalKeyboardKey.key_v = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_v.__ctor = (('keyV',),)
+LogicalKeyboardKey.key_v._nx_ = {'#t': ('LogicalKeyboardKey', 'keyV')}
 LogicalKeyboardKey.key_w = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_w.__ctor = (('keyW',),)
+LogicalKeyboardKey.key_w._nx_ = {'#t': ('LogicalKeyboardKey', 'keyW')}
 LogicalKeyboardKey.key_x = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_x.__ctor = (('keyX',),)
+LogicalKeyboardKey.key_x._nx_ = {'#t': ('LogicalKeyboardKey', 'keyX')}
 LogicalKeyboardKey.key_y = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_y.__ctor = (('keyY',),)
+LogicalKeyboardKey.key_y._nx_ = {'#t': ('LogicalKeyboardKey', 'keyY')}
 LogicalKeyboardKey.key_z = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key_z.__ctor = (('keyZ',),)
+LogicalKeyboardKey.key_z._nx_ = {'#t': ('LogicalKeyboardKey', 'keyZ')}
 LogicalKeyboardKey.brace_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.brace_left.__ctor = (('braceLeft',),)
+LogicalKeyboardKey.brace_left._nx_ = {'#t': ('LogicalKeyboardKey', 'braceLeft')}
 LogicalKeyboardKey.bar = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.bar.__ctor = (('bar',),)
+LogicalKeyboardKey.bar._nx_ = {'#t': ('LogicalKeyboardKey', 'bar')}
 LogicalKeyboardKey.brace_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.brace_right.__ctor = (('braceRight',),)
+LogicalKeyboardKey.brace_right._nx_ = {'#t': ('LogicalKeyboardKey', 'braceRight')}
 LogicalKeyboardKey.tilde = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tilde.__ctor = (('tilde',),)
+LogicalKeyboardKey.tilde._nx_ = {'#t': ('LogicalKeyboardKey', 'tilde')}
 LogicalKeyboardKey.unidentified = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.unidentified.__ctor = (('unidentified',),)
+LogicalKeyboardKey.unidentified._nx_ = {'#t': ('LogicalKeyboardKey', 'unidentified')}
 LogicalKeyboardKey.backspace = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.backspace.__ctor = (('backspace',),)
+LogicalKeyboardKey.backspace._nx_ = {'#t': ('LogicalKeyboardKey', 'backspace')}
 LogicalKeyboardKey.tab = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tab.__ctor = (('tab',),)
+LogicalKeyboardKey.tab._nx_ = {'#t': ('LogicalKeyboardKey', 'tab')}
 LogicalKeyboardKey.enter = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.enter.__ctor = (('enter',),)
+LogicalKeyboardKey.enter._nx_ = {'#t': ('LogicalKeyboardKey', 'enter')}
 LogicalKeyboardKey.escape = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.escape.__ctor = (('escape',),)
+LogicalKeyboardKey.escape._nx_ = {'#t': ('LogicalKeyboardKey', 'escape')}
 LogicalKeyboardKey.delete = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.delete.__ctor = (('delete',),)
+LogicalKeyboardKey.delete._nx_ = {'#t': ('LogicalKeyboardKey', 'delete')}
 LogicalKeyboardKey.accel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.accel.__ctor = (('accel',),)
+LogicalKeyboardKey.accel._nx_ = {'#t': ('LogicalKeyboardKey', 'accel')}
 LogicalKeyboardKey.alt_graph = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.alt_graph.__ctor = (('altGraph',),)
+LogicalKeyboardKey.alt_graph._nx_ = {'#t': ('LogicalKeyboardKey', 'altGraph')}
 LogicalKeyboardKey.caps_lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.caps_lock.__ctor = (('capsLock',),)
+LogicalKeyboardKey.caps_lock._nx_ = {'#t': ('LogicalKeyboardKey', 'capsLock')}
 LogicalKeyboardKey.fn = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.fn.__ctor = (('fn',),)
+LogicalKeyboardKey.fn._nx_ = {'#t': ('LogicalKeyboardKey', 'fn')}
 LogicalKeyboardKey.fn_lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.fn_lock.__ctor = (('fnLock',),)
+LogicalKeyboardKey.fn_lock._nx_ = {'#t': ('LogicalKeyboardKey', 'fnLock')}
 LogicalKeyboardKey.hyper = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hyper.__ctor = (('hyper',),)
+LogicalKeyboardKey.hyper._nx_ = {'#t': ('LogicalKeyboardKey', 'hyper')}
 LogicalKeyboardKey.num_lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.num_lock.__ctor = (('numLock',),)
+LogicalKeyboardKey.num_lock._nx_ = {'#t': ('LogicalKeyboardKey', 'numLock')}
 LogicalKeyboardKey.scroll_lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.scroll_lock.__ctor = (('scrollLock',),)
+LogicalKeyboardKey.scroll_lock._nx_ = {'#t': ('LogicalKeyboardKey', 'scrollLock')}
 LogicalKeyboardKey.super_key = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.super_key.__ctor = (('superKey',),)
+LogicalKeyboardKey.super_key._nx_ = {'#t': ('LogicalKeyboardKey', 'superKey')}
 LogicalKeyboardKey.symbol = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.symbol.__ctor = (('symbol',),)
+LogicalKeyboardKey.symbol._nx_ = {'#t': ('LogicalKeyboardKey', 'symbol')}
 LogicalKeyboardKey.symbol_lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.symbol_lock.__ctor = (('symbolLock',),)
+LogicalKeyboardKey.symbol_lock._nx_ = {'#t': ('LogicalKeyboardKey', 'symbolLock')}
 LogicalKeyboardKey.shift_level5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.shift_level5.__ctor = (('shiftLevel5',),)
+LogicalKeyboardKey.shift_level5._nx_ = {'#t': ('LogicalKeyboardKey', 'shiftLevel5')}
 LogicalKeyboardKey.arrow_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.arrow_down.__ctor = (('arrowDown',),)
+LogicalKeyboardKey.arrow_down._nx_ = {'#t': ('LogicalKeyboardKey', 'arrowDown')}
 LogicalKeyboardKey.arrow_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.arrow_left.__ctor = (('arrowLeft',),)
+LogicalKeyboardKey.arrow_left._nx_ = {'#t': ('LogicalKeyboardKey', 'arrowLeft')}
 LogicalKeyboardKey.arrow_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.arrow_right.__ctor = (('arrowRight',),)
+LogicalKeyboardKey.arrow_right._nx_ = {'#t': ('LogicalKeyboardKey', 'arrowRight')}
 LogicalKeyboardKey.arrow_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.arrow_up.__ctor = (('arrowUp',),)
+LogicalKeyboardKey.arrow_up._nx_ = {'#t': ('LogicalKeyboardKey', 'arrowUp')}
 LogicalKeyboardKey.end = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.end.__ctor = (('end',),)
+LogicalKeyboardKey.end._nx_ = {'#t': ('LogicalKeyboardKey', 'end')}
 LogicalKeyboardKey.home = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.home.__ctor = (('home',),)
+LogicalKeyboardKey.home._nx_ = {'#t': ('LogicalKeyboardKey', 'home')}
 LogicalKeyboardKey.page_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.page_down.__ctor = (('pageDown',),)
+LogicalKeyboardKey.page_down._nx_ = {'#t': ('LogicalKeyboardKey', 'pageDown')}
 LogicalKeyboardKey.page_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.page_up.__ctor = (('pageUp',),)
+LogicalKeyboardKey.page_up._nx_ = {'#t': ('LogicalKeyboardKey', 'pageUp')}
 LogicalKeyboardKey.clear = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.clear.__ctor = (('clear',),)
+LogicalKeyboardKey.clear._nx_ = {'#t': ('LogicalKeyboardKey', 'clear')}
 LogicalKeyboardKey.copy = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.copy.__ctor = (('copy',),)
+LogicalKeyboardKey.copy._nx_ = {'#t': ('LogicalKeyboardKey', 'copy')}
 LogicalKeyboardKey.cr_sel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.cr_sel.__ctor = (('crSel',),)
+LogicalKeyboardKey.cr_sel._nx_ = {'#t': ('LogicalKeyboardKey', 'crSel')}
 LogicalKeyboardKey.cut = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.cut.__ctor = (('cut',),)
+LogicalKeyboardKey.cut._nx_ = {'#t': ('LogicalKeyboardKey', 'cut')}
 LogicalKeyboardKey.erase_eof = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.erase_eof.__ctor = (('eraseEof',),)
+LogicalKeyboardKey.erase_eof._nx_ = {'#t': ('LogicalKeyboardKey', 'eraseEof')}
 LogicalKeyboardKey.ex_sel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.ex_sel.__ctor = (('exSel',),)
+LogicalKeyboardKey.ex_sel._nx_ = {'#t': ('LogicalKeyboardKey', 'exSel')}
 LogicalKeyboardKey.insert = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.insert.__ctor = (('insert',),)
+LogicalKeyboardKey.insert._nx_ = {'#t': ('LogicalKeyboardKey', 'insert')}
 LogicalKeyboardKey.paste = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.paste.__ctor = (('paste',),)
+LogicalKeyboardKey.paste._nx_ = {'#t': ('LogicalKeyboardKey', 'paste')}
 LogicalKeyboardKey.redo = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.redo.__ctor = (('redo',),)
+LogicalKeyboardKey.redo._nx_ = {'#t': ('LogicalKeyboardKey', 'redo')}
 LogicalKeyboardKey.undo = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.undo.__ctor = (('undo',),)
+LogicalKeyboardKey.undo._nx_ = {'#t': ('LogicalKeyboardKey', 'undo')}
 LogicalKeyboardKey.accept = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.accept.__ctor = (('accept',),)
+LogicalKeyboardKey.accept._nx_ = {'#t': ('LogicalKeyboardKey', 'accept')}
 LogicalKeyboardKey.again = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.again.__ctor = (('again',),)
+LogicalKeyboardKey.again._nx_ = {'#t': ('LogicalKeyboardKey', 'again')}
 LogicalKeyboardKey.attn = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.attn.__ctor = (('attn',),)
+LogicalKeyboardKey.attn._nx_ = {'#t': ('LogicalKeyboardKey', 'attn')}
 LogicalKeyboardKey.cancel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.cancel.__ctor = (('cancel',),)
+LogicalKeyboardKey.cancel._nx_ = {'#t': ('LogicalKeyboardKey', 'cancel')}
 LogicalKeyboardKey.context_menu = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.context_menu.__ctor = (('contextMenu',),)
+LogicalKeyboardKey.context_menu._nx_ = {'#t': ('LogicalKeyboardKey', 'contextMenu')}
 LogicalKeyboardKey.execute = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.execute.__ctor = (('execute',),)
+LogicalKeyboardKey.execute._nx_ = {'#t': ('LogicalKeyboardKey', 'execute')}
 LogicalKeyboardKey.find = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.find.__ctor = (('find',),)
+LogicalKeyboardKey.find._nx_ = {'#t': ('LogicalKeyboardKey', 'find')}
 LogicalKeyboardKey.help = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.help.__ctor = (('help',),)
+LogicalKeyboardKey.help._nx_ = {'#t': ('LogicalKeyboardKey', 'help')}
 LogicalKeyboardKey.pause = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.pause.__ctor = (('pause',),)
+LogicalKeyboardKey.pause._nx_ = {'#t': ('LogicalKeyboardKey', 'pause')}
 LogicalKeyboardKey.play = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.play.__ctor = (('play',),)
+LogicalKeyboardKey.play._nx_ = {'#t': ('LogicalKeyboardKey', 'play')}
 LogicalKeyboardKey.props = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.props.__ctor = (('props',),)
+LogicalKeyboardKey.props._nx_ = {'#t': ('LogicalKeyboardKey', 'props')}
 LogicalKeyboardKey.select = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.select.__ctor = (('select',),)
+LogicalKeyboardKey.select._nx_ = {'#t': ('LogicalKeyboardKey', 'select')}
 LogicalKeyboardKey.zoom_in = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.zoom_in.__ctor = (('zoomIn',),)
+LogicalKeyboardKey.zoom_in._nx_ = {'#t': ('LogicalKeyboardKey', 'zoomIn')}
 LogicalKeyboardKey.zoom_out = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.zoom_out.__ctor = (('zoomOut',),)
+LogicalKeyboardKey.zoom_out._nx_ = {'#t': ('LogicalKeyboardKey', 'zoomOut')}
 LogicalKeyboardKey.brightness_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.brightness_down.__ctor = (('brightnessDown',),)
+LogicalKeyboardKey.brightness_down._nx_ = {'#t': ('LogicalKeyboardKey', 'brightnessDown')}
 LogicalKeyboardKey.brightness_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.brightness_up.__ctor = (('brightnessUp',),)
+LogicalKeyboardKey.brightness_up._nx_ = {'#t': ('LogicalKeyboardKey', 'brightnessUp')}
 LogicalKeyboardKey.camera = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.camera.__ctor = (('camera',),)
+LogicalKeyboardKey.camera._nx_ = {'#t': ('LogicalKeyboardKey', 'camera')}
 LogicalKeyboardKey.eject = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.eject.__ctor = (('eject',),)
+LogicalKeyboardKey.eject._nx_ = {'#t': ('LogicalKeyboardKey', 'eject')}
 LogicalKeyboardKey.log_off = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.log_off.__ctor = (('logOff',),)
+LogicalKeyboardKey.log_off._nx_ = {'#t': ('LogicalKeyboardKey', 'logOff')}
 LogicalKeyboardKey.power = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.power.__ctor = (('power',),)
+LogicalKeyboardKey.power._nx_ = {'#t': ('LogicalKeyboardKey', 'power')}
 LogicalKeyboardKey.power_off = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.power_off.__ctor = (('powerOff',),)
+LogicalKeyboardKey.power_off._nx_ = {'#t': ('LogicalKeyboardKey', 'powerOff')}
 LogicalKeyboardKey.print_screen = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.print_screen.__ctor = (('printScreen',),)
+LogicalKeyboardKey.print_screen._nx_ = {'#t': ('LogicalKeyboardKey', 'printScreen')}
 LogicalKeyboardKey.hibernate = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hibernate.__ctor = (('hibernate',),)
+LogicalKeyboardKey.hibernate._nx_ = {'#t': ('LogicalKeyboardKey', 'hibernate')}
 LogicalKeyboardKey.standby = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.standby.__ctor = (('standby',),)
+LogicalKeyboardKey.standby._nx_ = {'#t': ('LogicalKeyboardKey', 'standby')}
 LogicalKeyboardKey.wake_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.wake_up.__ctor = (('wakeUp',),)
+LogicalKeyboardKey.wake_up._nx_ = {'#t': ('LogicalKeyboardKey', 'wakeUp')}
 LogicalKeyboardKey.all_candidates = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.all_candidates.__ctor = (('allCandidates',),)
+LogicalKeyboardKey.all_candidates._nx_ = {'#t': ('LogicalKeyboardKey', 'allCandidates')}
 LogicalKeyboardKey.alphanumeric = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.alphanumeric.__ctor = (('alphanumeric',),)
+LogicalKeyboardKey.alphanumeric._nx_ = {'#t': ('LogicalKeyboardKey', 'alphanumeric')}
 LogicalKeyboardKey.code_input = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.code_input.__ctor = (('codeInput',),)
+LogicalKeyboardKey.code_input._nx_ = {'#t': ('LogicalKeyboardKey', 'codeInput')}
 LogicalKeyboardKey.compose = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.compose.__ctor = (('compose',),)
+LogicalKeyboardKey.compose._nx_ = {'#t': ('LogicalKeyboardKey', 'compose')}
 LogicalKeyboardKey.convert = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.convert.__ctor = (('convert',),)
+LogicalKeyboardKey.convert._nx_ = {'#t': ('LogicalKeyboardKey', 'convert')}
 LogicalKeyboardKey.final_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.final_mode.__ctor = (('finalMode',),)
+LogicalKeyboardKey.final_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'finalMode')}
 LogicalKeyboardKey.group_first = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.group_first.__ctor = (('groupFirst',),)
+LogicalKeyboardKey.group_first._nx_ = {'#t': ('LogicalKeyboardKey', 'groupFirst')}
 LogicalKeyboardKey.group_last = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.group_last.__ctor = (('groupLast',),)
+LogicalKeyboardKey.group_last._nx_ = {'#t': ('LogicalKeyboardKey', 'groupLast')}
 LogicalKeyboardKey.group_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.group_next.__ctor = (('groupNext',),)
+LogicalKeyboardKey.group_next._nx_ = {'#t': ('LogicalKeyboardKey', 'groupNext')}
 LogicalKeyboardKey.group_previous = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.group_previous.__ctor = (('groupPrevious',),)
+LogicalKeyboardKey.group_previous._nx_ = {'#t': ('LogicalKeyboardKey', 'groupPrevious')}
 LogicalKeyboardKey.mode_change = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.mode_change.__ctor = (('modeChange',),)
+LogicalKeyboardKey.mode_change._nx_ = {'#t': ('LogicalKeyboardKey', 'modeChange')}
 LogicalKeyboardKey.next_candidate = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.next_candidate.__ctor = (('nextCandidate',),)
+LogicalKeyboardKey.next_candidate._nx_ = {'#t': ('LogicalKeyboardKey', 'nextCandidate')}
 LogicalKeyboardKey.non_convert = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.non_convert.__ctor = (('nonConvert',),)
+LogicalKeyboardKey.non_convert._nx_ = {'#t': ('LogicalKeyboardKey', 'nonConvert')}
 LogicalKeyboardKey.previous_candidate = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.previous_candidate.__ctor = (('previousCandidate',),)
+LogicalKeyboardKey.previous_candidate._nx_ = {'#t': ('LogicalKeyboardKey', 'previousCandidate')}
 LogicalKeyboardKey.process = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.process.__ctor = (('process',),)
+LogicalKeyboardKey.process._nx_ = {'#t': ('LogicalKeyboardKey', 'process')}
 LogicalKeyboardKey.single_candidate = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.single_candidate.__ctor = (('singleCandidate',),)
+LogicalKeyboardKey.single_candidate._nx_ = {'#t': ('LogicalKeyboardKey', 'singleCandidate')}
 LogicalKeyboardKey.hangul_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hangul_mode.__ctor = (('hangulMode',),)
+LogicalKeyboardKey.hangul_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'hangulMode')}
 LogicalKeyboardKey.hanja_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hanja_mode.__ctor = (('hanjaMode',),)
+LogicalKeyboardKey.hanja_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'hanjaMode')}
 LogicalKeyboardKey.junja_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.junja_mode.__ctor = (('junjaMode',),)
+LogicalKeyboardKey.junja_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'junjaMode')}
 LogicalKeyboardKey.eisu = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.eisu.__ctor = (('eisu',),)
+LogicalKeyboardKey.eisu._nx_ = {'#t': ('LogicalKeyboardKey', 'eisu')}
 LogicalKeyboardKey.hankaku = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hankaku.__ctor = (('hankaku',),)
+LogicalKeyboardKey.hankaku._nx_ = {'#t': ('LogicalKeyboardKey', 'hankaku')}
 LogicalKeyboardKey.hiragana = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hiragana.__ctor = (('hiragana',),)
+LogicalKeyboardKey.hiragana._nx_ = {'#t': ('LogicalKeyboardKey', 'hiragana')}
 LogicalKeyboardKey.hiragana_katakana = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.hiragana_katakana.__ctor = (('hiraganaKatakana',),)
+LogicalKeyboardKey.hiragana_katakana._nx_ = {'#t': ('LogicalKeyboardKey', 'hiraganaKatakana')}
 LogicalKeyboardKey.kana_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.kana_mode.__ctor = (('kanaMode',),)
+LogicalKeyboardKey.kana_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'kanaMode')}
 LogicalKeyboardKey.kanji_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.kanji_mode.__ctor = (('kanjiMode',),)
+LogicalKeyboardKey.kanji_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'kanjiMode')}
 LogicalKeyboardKey.katakana = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.katakana.__ctor = (('katakana',),)
+LogicalKeyboardKey.katakana._nx_ = {'#t': ('LogicalKeyboardKey', 'katakana')}
 LogicalKeyboardKey.romaji = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.romaji.__ctor = (('romaji',),)
+LogicalKeyboardKey.romaji._nx_ = {'#t': ('LogicalKeyboardKey', 'romaji')}
 LogicalKeyboardKey.zenkaku = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.zenkaku.__ctor = (('zenkaku',),)
+LogicalKeyboardKey.zenkaku._nx_ = {'#t': ('LogicalKeyboardKey', 'zenkaku')}
 LogicalKeyboardKey.zenkaku_hankaku = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.zenkaku_hankaku.__ctor = (('zenkakuHankaku',),)
+LogicalKeyboardKey.zenkaku_hankaku._nx_ = {'#t': ('LogicalKeyboardKey', 'zenkakuHankaku')}
 LogicalKeyboardKey.f1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f1.__ctor = (('f1',),)
+LogicalKeyboardKey.f1._nx_ = {'#t': ('LogicalKeyboardKey', 'f1')}
 LogicalKeyboardKey.f2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f2.__ctor = (('f2',),)
+LogicalKeyboardKey.f2._nx_ = {'#t': ('LogicalKeyboardKey', 'f2')}
 LogicalKeyboardKey.f3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f3.__ctor = (('f3',),)
+LogicalKeyboardKey.f3._nx_ = {'#t': ('LogicalKeyboardKey', 'f3')}
 LogicalKeyboardKey.f4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f4.__ctor = (('f4',),)
+LogicalKeyboardKey.f4._nx_ = {'#t': ('LogicalKeyboardKey', 'f4')}
 LogicalKeyboardKey.f5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f5.__ctor = (('f5',),)
+LogicalKeyboardKey.f5._nx_ = {'#t': ('LogicalKeyboardKey', 'f5')}
 LogicalKeyboardKey.f6 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f6.__ctor = (('f6',),)
+LogicalKeyboardKey.f6._nx_ = {'#t': ('LogicalKeyboardKey', 'f6')}
 LogicalKeyboardKey.f7 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f7.__ctor = (('f7',),)
+LogicalKeyboardKey.f7._nx_ = {'#t': ('LogicalKeyboardKey', 'f7')}
 LogicalKeyboardKey.f8 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f8.__ctor = (('f8',),)
+LogicalKeyboardKey.f8._nx_ = {'#t': ('LogicalKeyboardKey', 'f8')}
 LogicalKeyboardKey.f9 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f9.__ctor = (('f9',),)
+LogicalKeyboardKey.f9._nx_ = {'#t': ('LogicalKeyboardKey', 'f9')}
 LogicalKeyboardKey.f10 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f10.__ctor = (('f10',),)
+LogicalKeyboardKey.f10._nx_ = {'#t': ('LogicalKeyboardKey', 'f10')}
 LogicalKeyboardKey.f11 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f11.__ctor = (('f11',),)
+LogicalKeyboardKey.f11._nx_ = {'#t': ('LogicalKeyboardKey', 'f11')}
 LogicalKeyboardKey.f12 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f12.__ctor = (('f12',),)
+LogicalKeyboardKey.f12._nx_ = {'#t': ('LogicalKeyboardKey', 'f12')}
 LogicalKeyboardKey.f13 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f13.__ctor = (('f13',),)
+LogicalKeyboardKey.f13._nx_ = {'#t': ('LogicalKeyboardKey', 'f13')}
 LogicalKeyboardKey.f14 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f14.__ctor = (('f14',),)
+LogicalKeyboardKey.f14._nx_ = {'#t': ('LogicalKeyboardKey', 'f14')}
 LogicalKeyboardKey.f15 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f15.__ctor = (('f15',),)
+LogicalKeyboardKey.f15._nx_ = {'#t': ('LogicalKeyboardKey', 'f15')}
 LogicalKeyboardKey.f16 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f16.__ctor = (('f16',),)
+LogicalKeyboardKey.f16._nx_ = {'#t': ('LogicalKeyboardKey', 'f16')}
 LogicalKeyboardKey.f17 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f17.__ctor = (('f17',),)
+LogicalKeyboardKey.f17._nx_ = {'#t': ('LogicalKeyboardKey', 'f17')}
 LogicalKeyboardKey.f18 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f18.__ctor = (('f18',),)
+LogicalKeyboardKey.f18._nx_ = {'#t': ('LogicalKeyboardKey', 'f18')}
 LogicalKeyboardKey.f19 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f19.__ctor = (('f19',),)
+LogicalKeyboardKey.f19._nx_ = {'#t': ('LogicalKeyboardKey', 'f19')}
 LogicalKeyboardKey.f20 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f20.__ctor = (('f20',),)
+LogicalKeyboardKey.f20._nx_ = {'#t': ('LogicalKeyboardKey', 'f20')}
 LogicalKeyboardKey.f21 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f21.__ctor = (('f21',),)
+LogicalKeyboardKey.f21._nx_ = {'#t': ('LogicalKeyboardKey', 'f21')}
 LogicalKeyboardKey.f22 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f22.__ctor = (('f22',),)
+LogicalKeyboardKey.f22._nx_ = {'#t': ('LogicalKeyboardKey', 'f22')}
 LogicalKeyboardKey.f23 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f23.__ctor = (('f23',),)
+LogicalKeyboardKey.f23._nx_ = {'#t': ('LogicalKeyboardKey', 'f23')}
 LogicalKeyboardKey.f24 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.f24.__ctor = (('f24',),)
+LogicalKeyboardKey.f24._nx_ = {'#t': ('LogicalKeyboardKey', 'f24')}
 LogicalKeyboardKey.soft1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft1.__ctor = (('soft1',),)
+LogicalKeyboardKey.soft1._nx_ = {'#t': ('LogicalKeyboardKey', 'soft1')}
 LogicalKeyboardKey.soft2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft2.__ctor = (('soft2',),)
+LogicalKeyboardKey.soft2._nx_ = {'#t': ('LogicalKeyboardKey', 'soft2')}
 LogicalKeyboardKey.soft3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft3.__ctor = (('soft3',),)
+LogicalKeyboardKey.soft3._nx_ = {'#t': ('LogicalKeyboardKey', 'soft3')}
 LogicalKeyboardKey.soft4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft4.__ctor = (('soft4',),)
+LogicalKeyboardKey.soft4._nx_ = {'#t': ('LogicalKeyboardKey', 'soft4')}
 LogicalKeyboardKey.soft5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft5.__ctor = (('soft5',),)
+LogicalKeyboardKey.soft5._nx_ = {'#t': ('LogicalKeyboardKey', 'soft5')}
 LogicalKeyboardKey.soft6 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft6.__ctor = (('soft6',),)
+LogicalKeyboardKey.soft6._nx_ = {'#t': ('LogicalKeyboardKey', 'soft6')}
 LogicalKeyboardKey.soft7 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft7.__ctor = (('soft7',),)
+LogicalKeyboardKey.soft7._nx_ = {'#t': ('LogicalKeyboardKey', 'soft7')}
 LogicalKeyboardKey.soft8 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.soft8.__ctor = (('soft8',),)
+LogicalKeyboardKey.soft8._nx_ = {'#t': ('LogicalKeyboardKey', 'soft8')}
 LogicalKeyboardKey.close = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.close.__ctor = (('close',),)
+LogicalKeyboardKey.close._nx_ = {'#t': ('LogicalKeyboardKey', 'close')}
 LogicalKeyboardKey.mail_forward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.mail_forward.__ctor = (('mailForward',),)
+LogicalKeyboardKey.mail_forward._nx_ = {'#t': ('LogicalKeyboardKey', 'mailForward')}
 LogicalKeyboardKey.mail_reply = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.mail_reply.__ctor = (('mailReply',),)
+LogicalKeyboardKey.mail_reply._nx_ = {'#t': ('LogicalKeyboardKey', 'mailReply')}
 LogicalKeyboardKey.mail_send = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.mail_send.__ctor = (('mailSend',),)
+LogicalKeyboardKey.mail_send._nx_ = {'#t': ('LogicalKeyboardKey', 'mailSend')}
 LogicalKeyboardKey.media_play_pause = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_play_pause.__ctor = (('mediaPlayPause',),)
+LogicalKeyboardKey.media_play_pause._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaPlayPause')}
 LogicalKeyboardKey.media_stop = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_stop.__ctor = (('mediaStop',),)
+LogicalKeyboardKey.media_stop._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaStop')}
 LogicalKeyboardKey.media_track_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_track_next.__ctor = (('mediaTrackNext',),)
+LogicalKeyboardKey.media_track_next._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaTrackNext')}
 LogicalKeyboardKey.media_track_previous = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_track_previous.__ctor = (('mediaTrackPrevious',),)
+LogicalKeyboardKey.media_track_previous._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaTrackPrevious')}
 LogicalKeyboardKey.new_key = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.new_key.__ctor = (('newKey',),)
+LogicalKeyboardKey.new_key._nx_ = {'#t': ('LogicalKeyboardKey', 'newKey')}
 LogicalKeyboardKey.open = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.open.__ctor = (('open',),)
+LogicalKeyboardKey.open._nx_ = {'#t': ('LogicalKeyboardKey', 'open')}
 LogicalKeyboardKey.print = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.print.__ctor = (('print',),)
+LogicalKeyboardKey.print._nx_ = {'#t': ('LogicalKeyboardKey', 'print')}
 LogicalKeyboardKey.save = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.save.__ctor = (('save',),)
+LogicalKeyboardKey.save._nx_ = {'#t': ('LogicalKeyboardKey', 'save')}
 LogicalKeyboardKey.spell_check = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.spell_check.__ctor = (('spellCheck',),)
+LogicalKeyboardKey.spell_check._nx_ = {'#t': ('LogicalKeyboardKey', 'spellCheck')}
 LogicalKeyboardKey.audio_volume_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_volume_down.__ctor = (('audioVolumeDown',),)
+LogicalKeyboardKey.audio_volume_down._nx_ = {'#t': ('LogicalKeyboardKey', 'audioVolumeDown')}
 LogicalKeyboardKey.audio_volume_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_volume_up.__ctor = (('audioVolumeUp',),)
+LogicalKeyboardKey.audio_volume_up._nx_ = {'#t': ('LogicalKeyboardKey', 'audioVolumeUp')}
 LogicalKeyboardKey.audio_volume_mute = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_volume_mute.__ctor = (('audioVolumeMute',),)
+LogicalKeyboardKey.audio_volume_mute._nx_ = {'#t': ('LogicalKeyboardKey', 'audioVolumeMute')}
 LogicalKeyboardKey.launch_application2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_application2.__ctor = (('launchApplication2',),)
+LogicalKeyboardKey.launch_application2._nx_ = {'#t': ('LogicalKeyboardKey', 'launchApplication2')}
 LogicalKeyboardKey.launch_calendar = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_calendar.__ctor = (('launchCalendar',),)
+LogicalKeyboardKey.launch_calendar._nx_ = {'#t': ('LogicalKeyboardKey', 'launchCalendar')}
 LogicalKeyboardKey.launch_mail = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_mail.__ctor = (('launchMail',),)
+LogicalKeyboardKey.launch_mail._nx_ = {'#t': ('LogicalKeyboardKey', 'launchMail')}
 LogicalKeyboardKey.launch_media_player = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_media_player.__ctor = (('launchMediaPlayer',),)
+LogicalKeyboardKey.launch_media_player._nx_ = {'#t': ('LogicalKeyboardKey', 'launchMediaPlayer')}
 LogicalKeyboardKey.launch_music_player = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_music_player.__ctor = (('launchMusicPlayer',),)
+LogicalKeyboardKey.launch_music_player._nx_ = {'#t': ('LogicalKeyboardKey', 'launchMusicPlayer')}
 LogicalKeyboardKey.launch_application1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_application1.__ctor = (('launchApplication1',),)
+LogicalKeyboardKey.launch_application1._nx_ = {'#t': ('LogicalKeyboardKey', 'launchApplication1')}
 LogicalKeyboardKey.launch_screen_saver = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_screen_saver.__ctor = (('launchScreenSaver',),)
+LogicalKeyboardKey.launch_screen_saver._nx_ = {'#t': ('LogicalKeyboardKey', 'launchScreenSaver')}
 LogicalKeyboardKey.launch_spreadsheet = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_spreadsheet.__ctor = (('launchSpreadsheet',),)
+LogicalKeyboardKey.launch_spreadsheet._nx_ = {'#t': ('LogicalKeyboardKey', 'launchSpreadsheet')}
 LogicalKeyboardKey.launch_web_browser = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_web_browser.__ctor = (('launchWebBrowser',),)
+LogicalKeyboardKey.launch_web_browser._nx_ = {'#t': ('LogicalKeyboardKey', 'launchWebBrowser')}
 LogicalKeyboardKey.launch_web_cam = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_web_cam.__ctor = (('launchWebCam',),)
+LogicalKeyboardKey.launch_web_cam._nx_ = {'#t': ('LogicalKeyboardKey', 'launchWebCam')}
 LogicalKeyboardKey.launch_word_processor = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_word_processor.__ctor = (('launchWordProcessor',),)
+LogicalKeyboardKey.launch_word_processor._nx_ = {'#t': ('LogicalKeyboardKey', 'launchWordProcessor')}
 LogicalKeyboardKey.launch_contacts = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_contacts.__ctor = (('launchContacts',),)
+LogicalKeyboardKey.launch_contacts._nx_ = {'#t': ('LogicalKeyboardKey', 'launchContacts')}
 LogicalKeyboardKey.launch_phone = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_phone.__ctor = (('launchPhone',),)
+LogicalKeyboardKey.launch_phone._nx_ = {'#t': ('LogicalKeyboardKey', 'launchPhone')}
 LogicalKeyboardKey.launch_assistant = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_assistant.__ctor = (('launchAssistant',),)
+LogicalKeyboardKey.launch_assistant._nx_ = {'#t': ('LogicalKeyboardKey', 'launchAssistant')}
 LogicalKeyboardKey.launch_control_panel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.launch_control_panel.__ctor = (('launchControlPanel',),)
+LogicalKeyboardKey.launch_control_panel._nx_ = {'#t': ('LogicalKeyboardKey', 'launchControlPanel')}
 LogicalKeyboardKey.browser_back = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_back.__ctor = (('browserBack',),)
+LogicalKeyboardKey.browser_back._nx_ = {'#t': ('LogicalKeyboardKey', 'browserBack')}
 LogicalKeyboardKey.browser_favorites = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_favorites.__ctor = (('browserFavorites',),)
+LogicalKeyboardKey.browser_favorites._nx_ = {'#t': ('LogicalKeyboardKey', 'browserFavorites')}
 LogicalKeyboardKey.browser_forward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_forward.__ctor = (('browserForward',),)
+LogicalKeyboardKey.browser_forward._nx_ = {'#t': ('LogicalKeyboardKey', 'browserForward')}
 LogicalKeyboardKey.browser_home = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_home.__ctor = (('browserHome',),)
+LogicalKeyboardKey.browser_home._nx_ = {'#t': ('LogicalKeyboardKey', 'browserHome')}
 LogicalKeyboardKey.browser_refresh = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_refresh.__ctor = (('browserRefresh',),)
+LogicalKeyboardKey.browser_refresh._nx_ = {'#t': ('LogicalKeyboardKey', 'browserRefresh')}
 LogicalKeyboardKey.browser_search = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_search.__ctor = (('browserSearch',),)
+LogicalKeyboardKey.browser_search._nx_ = {'#t': ('LogicalKeyboardKey', 'browserSearch')}
 LogicalKeyboardKey.browser_stop = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.browser_stop.__ctor = (('browserStop',),)
+LogicalKeyboardKey.browser_stop._nx_ = {'#t': ('LogicalKeyboardKey', 'browserStop')}
 LogicalKeyboardKey.audio_balance_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_balance_left.__ctor = (('audioBalanceLeft',),)
+LogicalKeyboardKey.audio_balance_left._nx_ = {'#t': ('LogicalKeyboardKey', 'audioBalanceLeft')}
 LogicalKeyboardKey.audio_balance_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_balance_right.__ctor = (('audioBalanceRight',),)
+LogicalKeyboardKey.audio_balance_right._nx_ = {'#t': ('LogicalKeyboardKey', 'audioBalanceRight')}
 LogicalKeyboardKey.audio_bass_boost_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_bass_boost_down.__ctor = (('audioBassBoostDown',),)
+LogicalKeyboardKey.audio_bass_boost_down._nx_ = {'#t': ('LogicalKeyboardKey', 'audioBassBoostDown')}
 LogicalKeyboardKey.audio_bass_boost_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_bass_boost_up.__ctor = (('audioBassBoostUp',),)
+LogicalKeyboardKey.audio_bass_boost_up._nx_ = {'#t': ('LogicalKeyboardKey', 'audioBassBoostUp')}
 LogicalKeyboardKey.audio_fader_front = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_fader_front.__ctor = (('audioFaderFront',),)
+LogicalKeyboardKey.audio_fader_front._nx_ = {'#t': ('LogicalKeyboardKey', 'audioFaderFront')}
 LogicalKeyboardKey.audio_fader_rear = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_fader_rear.__ctor = (('audioFaderRear',),)
+LogicalKeyboardKey.audio_fader_rear._nx_ = {'#t': ('LogicalKeyboardKey', 'audioFaderRear')}
 LogicalKeyboardKey.audio_surround_mode_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_surround_mode_next.__ctor = (('audioSurroundModeNext',),)
+LogicalKeyboardKey.audio_surround_mode_next._nx_ = {'#t': ('LogicalKeyboardKey', 'audioSurroundModeNext')}
 LogicalKeyboardKey.avr_input = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.avr_input.__ctor = (('avrInput',),)
+LogicalKeyboardKey.avr_input._nx_ = {'#t': ('LogicalKeyboardKey', 'avrInput')}
 LogicalKeyboardKey.avr_power = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.avr_power.__ctor = (('avrPower',),)
+LogicalKeyboardKey.avr_power._nx_ = {'#t': ('LogicalKeyboardKey', 'avrPower')}
 LogicalKeyboardKey.channel_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.channel_down.__ctor = (('channelDown',),)
+LogicalKeyboardKey.channel_down._nx_ = {'#t': ('LogicalKeyboardKey', 'channelDown')}
 LogicalKeyboardKey.channel_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.channel_up.__ctor = (('channelUp',),)
+LogicalKeyboardKey.channel_up._nx_ = {'#t': ('LogicalKeyboardKey', 'channelUp')}
 LogicalKeyboardKey.color_f0_red = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f0_red.__ctor = (('colorF0Red',),)
+LogicalKeyboardKey.color_f0_red._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF0Red')}
 LogicalKeyboardKey.color_f1_green = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f1_green.__ctor = (('colorF1Green',),)
+LogicalKeyboardKey.color_f1_green._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF1Green')}
 LogicalKeyboardKey.color_f2_yellow = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f2_yellow.__ctor = (('colorF2Yellow',),)
+LogicalKeyboardKey.color_f2_yellow._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF2Yellow')}
 LogicalKeyboardKey.color_f3_blue = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f3_blue.__ctor = (('colorF3Blue',),)
+LogicalKeyboardKey.color_f3_blue._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF3Blue')}
 LogicalKeyboardKey.color_f4_grey = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f4_grey.__ctor = (('colorF4Grey',),)
+LogicalKeyboardKey.color_f4_grey._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF4Grey')}
 LogicalKeyboardKey.color_f5_brown = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.color_f5_brown.__ctor = (('colorF5Brown',),)
+LogicalKeyboardKey.color_f5_brown._nx_ = {'#t': ('LogicalKeyboardKey', 'colorF5Brown')}
 LogicalKeyboardKey.closed_caption_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.closed_caption_toggle.__ctor = (('closedCaptionToggle',),)
+LogicalKeyboardKey.closed_caption_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'closedCaptionToggle')}
 LogicalKeyboardKey.dimmer = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.dimmer.__ctor = (('dimmer',),)
+LogicalKeyboardKey.dimmer._nx_ = {'#t': ('LogicalKeyboardKey', 'dimmer')}
 LogicalKeyboardKey.display_swap = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.display_swap.__ctor = (('displaySwap',),)
+LogicalKeyboardKey.display_swap._nx_ = {'#t': ('LogicalKeyboardKey', 'displaySwap')}
 LogicalKeyboardKey.exit = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.exit.__ctor = (('exit',),)
+LogicalKeyboardKey.exit._nx_ = {'#t': ('LogicalKeyboardKey', 'exit')}
 LogicalKeyboardKey.favorite_clear0 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_clear0.__ctor = (('favoriteClear0',),)
+LogicalKeyboardKey.favorite_clear0._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteClear0')}
 LogicalKeyboardKey.favorite_clear1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_clear1.__ctor = (('favoriteClear1',),)
+LogicalKeyboardKey.favorite_clear1._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteClear1')}
 LogicalKeyboardKey.favorite_clear2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_clear2.__ctor = (('favoriteClear2',),)
+LogicalKeyboardKey.favorite_clear2._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteClear2')}
 LogicalKeyboardKey.favorite_clear3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_clear3.__ctor = (('favoriteClear3',),)
+LogicalKeyboardKey.favorite_clear3._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteClear3')}
 LogicalKeyboardKey.favorite_recall0 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_recall0.__ctor = (('favoriteRecall0',),)
+LogicalKeyboardKey.favorite_recall0._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteRecall0')}
 LogicalKeyboardKey.favorite_recall1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_recall1.__ctor = (('favoriteRecall1',),)
+LogicalKeyboardKey.favorite_recall1._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteRecall1')}
 LogicalKeyboardKey.favorite_recall2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_recall2.__ctor = (('favoriteRecall2',),)
+LogicalKeyboardKey.favorite_recall2._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteRecall2')}
 LogicalKeyboardKey.favorite_recall3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_recall3.__ctor = (('favoriteRecall3',),)
+LogicalKeyboardKey.favorite_recall3._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteRecall3')}
 LogicalKeyboardKey.favorite_store0 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_store0.__ctor = (('favoriteStore0',),)
+LogicalKeyboardKey.favorite_store0._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteStore0')}
 LogicalKeyboardKey.favorite_store1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_store1.__ctor = (('favoriteStore1',),)
+LogicalKeyboardKey.favorite_store1._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteStore1')}
 LogicalKeyboardKey.favorite_store2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_store2.__ctor = (('favoriteStore2',),)
+LogicalKeyboardKey.favorite_store2._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteStore2')}
 LogicalKeyboardKey.favorite_store3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.favorite_store3.__ctor = (('favoriteStore3',),)
+LogicalKeyboardKey.favorite_store3._nx_ = {'#t': ('LogicalKeyboardKey', 'favoriteStore3')}
 LogicalKeyboardKey.guide = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.guide.__ctor = (('guide',),)
+LogicalKeyboardKey.guide._nx_ = {'#t': ('LogicalKeyboardKey', 'guide')}
 LogicalKeyboardKey.guide_next_day = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.guide_next_day.__ctor = (('guideNextDay',),)
+LogicalKeyboardKey.guide_next_day._nx_ = {'#t': ('LogicalKeyboardKey', 'guideNextDay')}
 LogicalKeyboardKey.guide_previous_day = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.guide_previous_day.__ctor = (('guidePreviousDay',),)
+LogicalKeyboardKey.guide_previous_day._nx_ = {'#t': ('LogicalKeyboardKey', 'guidePreviousDay')}
 LogicalKeyboardKey.info = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.info.__ctor = (('info',),)
+LogicalKeyboardKey.info._nx_ = {'#t': ('LogicalKeyboardKey', 'info')}
 LogicalKeyboardKey.instant_replay = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.instant_replay.__ctor = (('instantReplay',),)
+LogicalKeyboardKey.instant_replay._nx_ = {'#t': ('LogicalKeyboardKey', 'instantReplay')}
 LogicalKeyboardKey.link = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.link.__ctor = (('link',),)
+LogicalKeyboardKey.link._nx_ = {'#t': ('LogicalKeyboardKey', 'link')}
 LogicalKeyboardKey.list_program = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.list_program.__ctor = (('listProgram',),)
+LogicalKeyboardKey.list_program._nx_ = {'#t': ('LogicalKeyboardKey', 'listProgram')}
 LogicalKeyboardKey.live_content = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.live_content.__ctor = (('liveContent',),)
+LogicalKeyboardKey.live_content._nx_ = {'#t': ('LogicalKeyboardKey', 'liveContent')}
 LogicalKeyboardKey.lock = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lock.__ctor = (('lock',),)
+LogicalKeyboardKey.lock._nx_ = {'#t': ('LogicalKeyboardKey', 'lock')}
 LogicalKeyboardKey.media_apps = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_apps.__ctor = (('mediaApps',),)
+LogicalKeyboardKey.media_apps._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaApps')}
 LogicalKeyboardKey.media_fast_forward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_fast_forward.__ctor = (('mediaFastForward',),)
+LogicalKeyboardKey.media_fast_forward._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaFastForward')}
 LogicalKeyboardKey.media_last = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_last.__ctor = (('mediaLast',),)
+LogicalKeyboardKey.media_last._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaLast')}
 LogicalKeyboardKey.media_pause = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_pause.__ctor = (('mediaPause',),)
+LogicalKeyboardKey.media_pause._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaPause')}
 LogicalKeyboardKey.media_play = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_play.__ctor = (('mediaPlay',),)
+LogicalKeyboardKey.media_play._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaPlay')}
 LogicalKeyboardKey.media_record = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_record.__ctor = (('mediaRecord',),)
+LogicalKeyboardKey.media_record._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaRecord')}
 LogicalKeyboardKey.media_rewind = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_rewind.__ctor = (('mediaRewind',),)
+LogicalKeyboardKey.media_rewind._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaRewind')}
 LogicalKeyboardKey.media_skip = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_skip.__ctor = (('mediaSkip',),)
+LogicalKeyboardKey.media_skip._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaSkip')}
 LogicalKeyboardKey.next_favorite_channel = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.next_favorite_channel.__ctor = (('nextFavoriteChannel',),)
+LogicalKeyboardKey.next_favorite_channel._nx_ = {'#t': ('LogicalKeyboardKey', 'nextFavoriteChannel')}
 LogicalKeyboardKey.next_user_profile = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.next_user_profile.__ctor = (('nextUserProfile',),)
+LogicalKeyboardKey.next_user_profile._nx_ = {'#t': ('LogicalKeyboardKey', 'nextUserProfile')}
 LogicalKeyboardKey.on_demand = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.on_demand.__ctor = (('onDemand',),)
+LogicalKeyboardKey.on_demand._nx_ = {'#t': ('LogicalKeyboardKey', 'onDemand')}
 LogicalKeyboardKey.p_in_pdown = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.p_in_pdown.__ctor = (('pInPDown',),)
+LogicalKeyboardKey.p_in_pdown._nx_ = {'#t': ('LogicalKeyboardKey', 'pInPDown')}
 LogicalKeyboardKey.p_in_pmove = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.p_in_pmove.__ctor = (('pInPMove',),)
+LogicalKeyboardKey.p_in_pmove._nx_ = {'#t': ('LogicalKeyboardKey', 'pInPMove')}
 LogicalKeyboardKey.p_in_ptoggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.p_in_ptoggle.__ctor = (('pInPToggle',),)
+LogicalKeyboardKey.p_in_ptoggle._nx_ = {'#t': ('LogicalKeyboardKey', 'pInPToggle')}
 LogicalKeyboardKey.p_in_pup = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.p_in_pup.__ctor = (('pInPUp',),)
+LogicalKeyboardKey.p_in_pup._nx_ = {'#t': ('LogicalKeyboardKey', 'pInPUp')}
 LogicalKeyboardKey.play_speed_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.play_speed_down.__ctor = (('playSpeedDown',),)
+LogicalKeyboardKey.play_speed_down._nx_ = {'#t': ('LogicalKeyboardKey', 'playSpeedDown')}
 LogicalKeyboardKey.play_speed_reset = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.play_speed_reset.__ctor = (('playSpeedReset',),)
+LogicalKeyboardKey.play_speed_reset._nx_ = {'#t': ('LogicalKeyboardKey', 'playSpeedReset')}
 LogicalKeyboardKey.play_speed_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.play_speed_up.__ctor = (('playSpeedUp',),)
+LogicalKeyboardKey.play_speed_up._nx_ = {'#t': ('LogicalKeyboardKey', 'playSpeedUp')}
 LogicalKeyboardKey.random_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.random_toggle.__ctor = (('randomToggle',),)
+LogicalKeyboardKey.random_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'randomToggle')}
 LogicalKeyboardKey.rc_low_battery = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.rc_low_battery.__ctor = (('rcLowBattery',),)
+LogicalKeyboardKey.rc_low_battery._nx_ = {'#t': ('LogicalKeyboardKey', 'rcLowBattery')}
 LogicalKeyboardKey.record_speed_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.record_speed_next.__ctor = (('recordSpeedNext',),)
+LogicalKeyboardKey.record_speed_next._nx_ = {'#t': ('LogicalKeyboardKey', 'recordSpeedNext')}
 LogicalKeyboardKey.rf_bypass = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.rf_bypass.__ctor = (('rfBypass',),)
+LogicalKeyboardKey.rf_bypass._nx_ = {'#t': ('LogicalKeyboardKey', 'rfBypass')}
 LogicalKeyboardKey.scan_channels_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.scan_channels_toggle.__ctor = (('scanChannelsToggle',),)
+LogicalKeyboardKey.scan_channels_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'scanChannelsToggle')}
 LogicalKeyboardKey.screen_mode_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.screen_mode_next.__ctor = (('screenModeNext',),)
+LogicalKeyboardKey.screen_mode_next._nx_ = {'#t': ('LogicalKeyboardKey', 'screenModeNext')}
 LogicalKeyboardKey.settings = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.settings.__ctor = (('settings',),)
+LogicalKeyboardKey.settings._nx_ = {'#t': ('LogicalKeyboardKey', 'settings')}
 LogicalKeyboardKey.split_screen_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.split_screen_toggle.__ctor = (('splitScreenToggle',),)
+LogicalKeyboardKey.split_screen_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'splitScreenToggle')}
 LogicalKeyboardKey.stb_input = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.stb_input.__ctor = (('stbInput',),)
+LogicalKeyboardKey.stb_input._nx_ = {'#t': ('LogicalKeyboardKey', 'stbInput')}
 LogicalKeyboardKey.stb_power = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.stb_power.__ctor = (('stbPower',),)
+LogicalKeyboardKey.stb_power._nx_ = {'#t': ('LogicalKeyboardKey', 'stbPower')}
 LogicalKeyboardKey.subtitle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.subtitle.__ctor = (('subtitle',),)
+LogicalKeyboardKey.subtitle._nx_ = {'#t': ('LogicalKeyboardKey', 'subtitle')}
 LogicalKeyboardKey.teletext = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.teletext.__ctor = (('teletext',),)
+LogicalKeyboardKey.teletext._nx_ = {'#t': ('LogicalKeyboardKey', 'teletext')}
 LogicalKeyboardKey.tv = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv.__ctor = (('tv',),)
+LogicalKeyboardKey.tv._nx_ = {'#t': ('LogicalKeyboardKey', 'tv')}
 LogicalKeyboardKey.tv_input = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input.__ctor = (('tvInput',),)
+LogicalKeyboardKey.tv_input._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInput')}
 LogicalKeyboardKey.tv_power = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_power.__ctor = (('tvPower',),)
+LogicalKeyboardKey.tv_power._nx_ = {'#t': ('LogicalKeyboardKey', 'tvPower')}
 LogicalKeyboardKey.video_mode_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.video_mode_next.__ctor = (('videoModeNext',),)
+LogicalKeyboardKey.video_mode_next._nx_ = {'#t': ('LogicalKeyboardKey', 'videoModeNext')}
 LogicalKeyboardKey.wink = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.wink.__ctor = (('wink',),)
+LogicalKeyboardKey.wink._nx_ = {'#t': ('LogicalKeyboardKey', 'wink')}
 LogicalKeyboardKey.zoom_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.zoom_toggle.__ctor = (('zoomToggle',),)
+LogicalKeyboardKey.zoom_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'zoomToggle')}
 LogicalKeyboardKey.dvr = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.dvr.__ctor = (('dvr',),)
+LogicalKeyboardKey.dvr._nx_ = {'#t': ('LogicalKeyboardKey', 'dvr')}
 LogicalKeyboardKey.media_audio_track = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_audio_track.__ctor = (('mediaAudioTrack',),)
+LogicalKeyboardKey.media_audio_track._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaAudioTrack')}
 LogicalKeyboardKey.media_skip_backward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_skip_backward.__ctor = (('mediaSkipBackward',),)
+LogicalKeyboardKey.media_skip_backward._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaSkipBackward')}
 LogicalKeyboardKey.media_skip_forward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_skip_forward.__ctor = (('mediaSkipForward',),)
+LogicalKeyboardKey.media_skip_forward._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaSkipForward')}
 LogicalKeyboardKey.media_step_backward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_step_backward.__ctor = (('mediaStepBackward',),)
+LogicalKeyboardKey.media_step_backward._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaStepBackward')}
 LogicalKeyboardKey.media_step_forward = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_step_forward.__ctor = (('mediaStepForward',),)
+LogicalKeyboardKey.media_step_forward._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaStepForward')}
 LogicalKeyboardKey.media_top_menu = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_top_menu.__ctor = (('mediaTopMenu',),)
+LogicalKeyboardKey.media_top_menu._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaTopMenu')}
 LogicalKeyboardKey.navigate_in = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.navigate_in.__ctor = (('navigateIn',),)
+LogicalKeyboardKey.navigate_in._nx_ = {'#t': ('LogicalKeyboardKey', 'navigateIn')}
 LogicalKeyboardKey.navigate_next = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.navigate_next.__ctor = (('navigateNext',),)
+LogicalKeyboardKey.navigate_next._nx_ = {'#t': ('LogicalKeyboardKey', 'navigateNext')}
 LogicalKeyboardKey.navigate_out = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.navigate_out.__ctor = (('navigateOut',),)
+LogicalKeyboardKey.navigate_out._nx_ = {'#t': ('LogicalKeyboardKey', 'navigateOut')}
 LogicalKeyboardKey.navigate_previous = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.navigate_previous.__ctor = (('navigatePrevious',),)
+LogicalKeyboardKey.navigate_previous._nx_ = {'#t': ('LogicalKeyboardKey', 'navigatePrevious')}
 LogicalKeyboardKey.pairing = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.pairing.__ctor = (('pairing',),)
+LogicalKeyboardKey.pairing._nx_ = {'#t': ('LogicalKeyboardKey', 'pairing')}
 LogicalKeyboardKey.media_close = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.media_close.__ctor = (('mediaClose',),)
+LogicalKeyboardKey.media_close._nx_ = {'#t': ('LogicalKeyboardKey', 'mediaClose')}
 LogicalKeyboardKey.audio_bass_boost_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_bass_boost_toggle.__ctor = (('audioBassBoostToggle',),)
+LogicalKeyboardKey.audio_bass_boost_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'audioBassBoostToggle')}
 LogicalKeyboardKey.audio_treble_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_treble_down.__ctor = (('audioTrebleDown',),)
+LogicalKeyboardKey.audio_treble_down._nx_ = {'#t': ('LogicalKeyboardKey', 'audioTrebleDown')}
 LogicalKeyboardKey.audio_treble_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.audio_treble_up.__ctor = (('audioTrebleUp',),)
+LogicalKeyboardKey.audio_treble_up._nx_ = {'#t': ('LogicalKeyboardKey', 'audioTrebleUp')}
 LogicalKeyboardKey.microphone_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.microphone_toggle.__ctor = (('microphoneToggle',),)
+LogicalKeyboardKey.microphone_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'microphoneToggle')}
 LogicalKeyboardKey.microphone_volume_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.microphone_volume_down.__ctor = (('microphoneVolumeDown',),)
+LogicalKeyboardKey.microphone_volume_down._nx_ = {'#t': ('LogicalKeyboardKey', 'microphoneVolumeDown')}
 LogicalKeyboardKey.microphone_volume_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.microphone_volume_up.__ctor = (('microphoneVolumeUp',),)
+LogicalKeyboardKey.microphone_volume_up._nx_ = {'#t': ('LogicalKeyboardKey', 'microphoneVolumeUp')}
 LogicalKeyboardKey.microphone_volume_mute = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.microphone_volume_mute.__ctor = (('microphoneVolumeMute',),)
+LogicalKeyboardKey.microphone_volume_mute._nx_ = {'#t': ('LogicalKeyboardKey', 'microphoneVolumeMute')}
 LogicalKeyboardKey.speech_correction_list = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.speech_correction_list.__ctor = (('speechCorrectionList',),)
+LogicalKeyboardKey.speech_correction_list._nx_ = {'#t': ('LogicalKeyboardKey', 'speechCorrectionList')}
 LogicalKeyboardKey.speech_input_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.speech_input_toggle.__ctor = (('speechInputToggle',),)
+LogicalKeyboardKey.speech_input_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'speechInputToggle')}
 LogicalKeyboardKey.app_switch = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.app_switch.__ctor = (('appSwitch',),)
+LogicalKeyboardKey.app_switch._nx_ = {'#t': ('LogicalKeyboardKey', 'appSwitch')}
 LogicalKeyboardKey.call = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.call.__ctor = (('call',),)
+LogicalKeyboardKey.call._nx_ = {'#t': ('LogicalKeyboardKey', 'call')}
 LogicalKeyboardKey.camera_focus = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.camera_focus.__ctor = (('cameraFocus',),)
+LogicalKeyboardKey.camera_focus._nx_ = {'#t': ('LogicalKeyboardKey', 'cameraFocus')}
 LogicalKeyboardKey.end_call = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.end_call.__ctor = (('endCall',),)
+LogicalKeyboardKey.end_call._nx_ = {'#t': ('LogicalKeyboardKey', 'endCall')}
 LogicalKeyboardKey.go_back = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.go_back.__ctor = (('goBack',),)
+LogicalKeyboardKey.go_back._nx_ = {'#t': ('LogicalKeyboardKey', 'goBack')}
 LogicalKeyboardKey.go_home = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.go_home.__ctor = (('goHome',),)
+LogicalKeyboardKey.go_home._nx_ = {'#t': ('LogicalKeyboardKey', 'goHome')}
 LogicalKeyboardKey.headset_hook = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.headset_hook.__ctor = (('headsetHook',),)
+LogicalKeyboardKey.headset_hook._nx_ = {'#t': ('LogicalKeyboardKey', 'headsetHook')}
 LogicalKeyboardKey.last_number_redial = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.last_number_redial.__ctor = (('lastNumberRedial',),)
+LogicalKeyboardKey.last_number_redial._nx_ = {'#t': ('LogicalKeyboardKey', 'lastNumberRedial')}
 LogicalKeyboardKey.notification = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.notification.__ctor = (('notification',),)
+LogicalKeyboardKey.notification._nx_ = {'#t': ('LogicalKeyboardKey', 'notification')}
 LogicalKeyboardKey.manner_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.manner_mode.__ctor = (('mannerMode',),)
+LogicalKeyboardKey.manner_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'mannerMode')}
 LogicalKeyboardKey.voice_dial = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.voice_dial.__ctor = (('voiceDial',),)
+LogicalKeyboardKey.voice_dial._nx_ = {'#t': ('LogicalKeyboardKey', 'voiceDial')}
 LogicalKeyboardKey.tv3_dmode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv3_dmode.__ctor = (('tv3DMode',),)
+LogicalKeyboardKey.tv3_dmode._nx_ = {'#t': ('LogicalKeyboardKey', 'tv3DMode')}
 LogicalKeyboardKey.tv_antenna_cable = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_antenna_cable.__ctor = (('tvAntennaCable',),)
+LogicalKeyboardKey.tv_antenna_cable._nx_ = {'#t': ('LogicalKeyboardKey', 'tvAntennaCable')}
 LogicalKeyboardKey.tv_audio_description = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_audio_description.__ctor = (('tvAudioDescription',),)
+LogicalKeyboardKey.tv_audio_description._nx_ = {'#t': ('LogicalKeyboardKey', 'tvAudioDescription')}
 LogicalKeyboardKey.tv_audio_description_mix_down = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_audio_description_mix_down.__ctor = (('tvAudioDescriptionMixDown',),)
+LogicalKeyboardKey.tv_audio_description_mix_down._nx_ = {'#t': ('LogicalKeyboardKey', 'tvAudioDescriptionMixDown')}
 LogicalKeyboardKey.tv_audio_description_mix_up = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_audio_description_mix_up.__ctor = (('tvAudioDescriptionMixUp',),)
+LogicalKeyboardKey.tv_audio_description_mix_up._nx_ = {'#t': ('LogicalKeyboardKey', 'tvAudioDescriptionMixUp')}
 LogicalKeyboardKey.tv_contents_menu = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_contents_menu.__ctor = (('tvContentsMenu',),)
+LogicalKeyboardKey.tv_contents_menu._nx_ = {'#t': ('LogicalKeyboardKey', 'tvContentsMenu')}
 LogicalKeyboardKey.tv_data_service = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_data_service.__ctor = (('tvDataService',),)
+LogicalKeyboardKey.tv_data_service._nx_ = {'#t': ('LogicalKeyboardKey', 'tvDataService')}
 LogicalKeyboardKey.tv_input_component1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_component1.__ctor = (('tvInputComponent1',),)
+LogicalKeyboardKey.tv_input_component1._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputComponent1')}
 LogicalKeyboardKey.tv_input_component2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_component2.__ctor = (('tvInputComponent2',),)
+LogicalKeyboardKey.tv_input_component2._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputComponent2')}
 LogicalKeyboardKey.tv_input_composite1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_composite1.__ctor = (('tvInputComposite1',),)
+LogicalKeyboardKey.tv_input_composite1._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputComposite1')}
 LogicalKeyboardKey.tv_input_composite2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_composite2.__ctor = (('tvInputComposite2',),)
+LogicalKeyboardKey.tv_input_composite2._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputComposite2')}
 LogicalKeyboardKey.tv_input_hdmi1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_hdmi1.__ctor = (('tvInputHDMI1',),)
+LogicalKeyboardKey.tv_input_hdmi1._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputHDMI1')}
 LogicalKeyboardKey.tv_input_hdmi2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_hdmi2.__ctor = (('tvInputHDMI2',),)
+LogicalKeyboardKey.tv_input_hdmi2._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputHDMI2')}
 LogicalKeyboardKey.tv_input_hdmi3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_hdmi3.__ctor = (('tvInputHDMI3',),)
+LogicalKeyboardKey.tv_input_hdmi3._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputHDMI3')}
 LogicalKeyboardKey.tv_input_hdmi4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_hdmi4.__ctor = (('tvInputHDMI4',),)
+LogicalKeyboardKey.tv_input_hdmi4._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputHDMI4')}
 LogicalKeyboardKey.tv_input_vga1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_input_vga1.__ctor = (('tvInputVGA1',),)
+LogicalKeyboardKey.tv_input_vga1._nx_ = {'#t': ('LogicalKeyboardKey', 'tvInputVGA1')}
 LogicalKeyboardKey.tv_media_context = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_media_context.__ctor = (('tvMediaContext',),)
+LogicalKeyboardKey.tv_media_context._nx_ = {'#t': ('LogicalKeyboardKey', 'tvMediaContext')}
 LogicalKeyboardKey.tv_network = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_network.__ctor = (('tvNetwork',),)
+LogicalKeyboardKey.tv_network._nx_ = {'#t': ('LogicalKeyboardKey', 'tvNetwork')}
 LogicalKeyboardKey.tv_number_entry = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_number_entry.__ctor = (('tvNumberEntry',),)
+LogicalKeyboardKey.tv_number_entry._nx_ = {'#t': ('LogicalKeyboardKey', 'tvNumberEntry')}
 LogicalKeyboardKey.tv_radio_service = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_radio_service.__ctor = (('tvRadioService',),)
+LogicalKeyboardKey.tv_radio_service._nx_ = {'#t': ('LogicalKeyboardKey', 'tvRadioService')}
 LogicalKeyboardKey.tv_satellite = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_satellite.__ctor = (('tvSatellite',),)
+LogicalKeyboardKey.tv_satellite._nx_ = {'#t': ('LogicalKeyboardKey', 'tvSatellite')}
 LogicalKeyboardKey.tv_satellite_bs = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_satellite_bs.__ctor = (('tvSatelliteBS',),)
+LogicalKeyboardKey.tv_satellite_bs._nx_ = {'#t': ('LogicalKeyboardKey', 'tvSatelliteBS')}
 LogicalKeyboardKey.tv_satellite_cs = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_satellite_cs.__ctor = (('tvSatelliteCS',),)
+LogicalKeyboardKey.tv_satellite_cs._nx_ = {'#t': ('LogicalKeyboardKey', 'tvSatelliteCS')}
 LogicalKeyboardKey.tv_satellite_toggle = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_satellite_toggle.__ctor = (('tvSatelliteToggle',),)
+LogicalKeyboardKey.tv_satellite_toggle._nx_ = {'#t': ('LogicalKeyboardKey', 'tvSatelliteToggle')}
 LogicalKeyboardKey.tv_terrestrial_analog = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_terrestrial_analog.__ctor = (('tvTerrestrialAnalog',),)
+LogicalKeyboardKey.tv_terrestrial_analog._nx_ = {'#t': ('LogicalKeyboardKey', 'tvTerrestrialAnalog')}
 LogicalKeyboardKey.tv_terrestrial_digital = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_terrestrial_digital.__ctor = (('tvTerrestrialDigital',),)
+LogicalKeyboardKey.tv_terrestrial_digital._nx_ = {'#t': ('LogicalKeyboardKey', 'tvTerrestrialDigital')}
 LogicalKeyboardKey.tv_timer = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.tv_timer.__ctor = (('tvTimer',),)
+LogicalKeyboardKey.tv_timer._nx_ = {'#t': ('LogicalKeyboardKey', 'tvTimer')}
 LogicalKeyboardKey.key11 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key11.__ctor = (('key11',),)
+LogicalKeyboardKey.key11._nx_ = {'#t': ('LogicalKeyboardKey', 'key11')}
 LogicalKeyboardKey.key12 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.key12.__ctor = (('key12',),)
+LogicalKeyboardKey.key12._nx_ = {'#t': ('LogicalKeyboardKey', 'key12')}
 LogicalKeyboardKey.suspend = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.suspend.__ctor = (('suspend',),)
+LogicalKeyboardKey.suspend._nx_ = {'#t': ('LogicalKeyboardKey', 'suspend')}
 LogicalKeyboardKey.resume = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.resume.__ctor = (('resume',),)
+LogicalKeyboardKey.resume._nx_ = {'#t': ('LogicalKeyboardKey', 'resume')}
 LogicalKeyboardKey.sleep = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.sleep.__ctor = (('sleep',),)
+LogicalKeyboardKey.sleep._nx_ = {'#t': ('LogicalKeyboardKey', 'sleep')}
 LogicalKeyboardKey.abort = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.abort.__ctor = (('abort',),)
+LogicalKeyboardKey.abort._nx_ = {'#t': ('LogicalKeyboardKey', 'abort')}
 LogicalKeyboardKey.lang1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lang1.__ctor = (('lang1',),)
+LogicalKeyboardKey.lang1._nx_ = {'#t': ('LogicalKeyboardKey', 'lang1')}
 LogicalKeyboardKey.lang2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lang2.__ctor = (('lang2',),)
+LogicalKeyboardKey.lang2._nx_ = {'#t': ('LogicalKeyboardKey', 'lang2')}
 LogicalKeyboardKey.lang3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lang3.__ctor = (('lang3',),)
+LogicalKeyboardKey.lang3._nx_ = {'#t': ('LogicalKeyboardKey', 'lang3')}
 LogicalKeyboardKey.lang4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lang4.__ctor = (('lang4',),)
+LogicalKeyboardKey.lang4._nx_ = {'#t': ('LogicalKeyboardKey', 'lang4')}
 LogicalKeyboardKey.lang5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.lang5.__ctor = (('lang5',),)
+LogicalKeyboardKey.lang5._nx_ = {'#t': ('LogicalKeyboardKey', 'lang5')}
 LogicalKeyboardKey.intl_backslash = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.intl_backslash.__ctor = (('intlBackslash',),)
+LogicalKeyboardKey.intl_backslash._nx_ = {'#t': ('LogicalKeyboardKey', 'intlBackslash')}
 LogicalKeyboardKey.intl_ro = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.intl_ro.__ctor = (('intlRo',),)
+LogicalKeyboardKey.intl_ro._nx_ = {'#t': ('LogicalKeyboardKey', 'intlRo')}
 LogicalKeyboardKey.intl_yen = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.intl_yen.__ctor = (('intlYen',),)
+LogicalKeyboardKey.intl_yen._nx_ = {'#t': ('LogicalKeyboardKey', 'intlYen')}
 LogicalKeyboardKey.control_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.control_left.__ctor = (('controlLeft',),)
+LogicalKeyboardKey.control_left._nx_ = {'#t': ('LogicalKeyboardKey', 'controlLeft')}
 LogicalKeyboardKey.control_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.control_right.__ctor = (('controlRight',),)
+LogicalKeyboardKey.control_right._nx_ = {'#t': ('LogicalKeyboardKey', 'controlRight')}
 LogicalKeyboardKey.shift_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.shift_left.__ctor = (('shiftLeft',),)
+LogicalKeyboardKey.shift_left._nx_ = {'#t': ('LogicalKeyboardKey', 'shiftLeft')}
 LogicalKeyboardKey.shift_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.shift_right.__ctor = (('shiftRight',),)
+LogicalKeyboardKey.shift_right._nx_ = {'#t': ('LogicalKeyboardKey', 'shiftRight')}
 LogicalKeyboardKey.alt_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.alt_left.__ctor = (('altLeft',),)
+LogicalKeyboardKey.alt_left._nx_ = {'#t': ('LogicalKeyboardKey', 'altLeft')}
 LogicalKeyboardKey.alt_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.alt_right.__ctor = (('altRight',),)
+LogicalKeyboardKey.alt_right._nx_ = {'#t': ('LogicalKeyboardKey', 'altRight')}
 LogicalKeyboardKey.meta_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.meta_left.__ctor = (('metaLeft',),)
+LogicalKeyboardKey.meta_left._nx_ = {'#t': ('LogicalKeyboardKey', 'metaLeft')}
 LogicalKeyboardKey.meta_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.meta_right.__ctor = (('metaRight',),)
+LogicalKeyboardKey.meta_right._nx_ = {'#t': ('LogicalKeyboardKey', 'metaRight')}
 LogicalKeyboardKey.control = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.control.__ctor = (('control',),)
+LogicalKeyboardKey.control._nx_ = {'#t': ('LogicalKeyboardKey', 'control')}
 LogicalKeyboardKey.shift = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.shift.__ctor = (('shift',),)
+LogicalKeyboardKey.shift._nx_ = {'#t': ('LogicalKeyboardKey', 'shift')}
 LogicalKeyboardKey.alt = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.alt.__ctor = (('alt',),)
+LogicalKeyboardKey.alt._nx_ = {'#t': ('LogicalKeyboardKey', 'alt')}
 LogicalKeyboardKey.meta = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.meta.__ctor = (('meta',),)
+LogicalKeyboardKey.meta._nx_ = {'#t': ('LogicalKeyboardKey', 'meta')}
 LogicalKeyboardKey.numpad_enter = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_enter.__ctor = (('numpadEnter',),)
+LogicalKeyboardKey.numpad_enter._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadEnter')}
 LogicalKeyboardKey.numpad_paren_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_paren_left.__ctor = (('numpadParenLeft',),)
+LogicalKeyboardKey.numpad_paren_left._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadParenLeft')}
 LogicalKeyboardKey.numpad_paren_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_paren_right.__ctor = (('numpadParenRight',),)
+LogicalKeyboardKey.numpad_paren_right._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadParenRight')}
 LogicalKeyboardKey.numpad_multiply = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_multiply.__ctor = (('numpadMultiply',),)
+LogicalKeyboardKey.numpad_multiply._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadMultiply')}
 LogicalKeyboardKey.numpad_add = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_add.__ctor = (('numpadAdd',),)
+LogicalKeyboardKey.numpad_add._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadAdd')}
 LogicalKeyboardKey.numpad_comma = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_comma.__ctor = (('numpadComma',),)
+LogicalKeyboardKey.numpad_comma._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadComma')}
 LogicalKeyboardKey.numpad_subtract = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_subtract.__ctor = (('numpadSubtract',),)
+LogicalKeyboardKey.numpad_subtract._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadSubtract')}
 LogicalKeyboardKey.numpad_decimal = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_decimal.__ctor = (('numpadDecimal',),)
+LogicalKeyboardKey.numpad_decimal._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadDecimal')}
 LogicalKeyboardKey.numpad_divide = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_divide.__ctor = (('numpadDivide',),)
+LogicalKeyboardKey.numpad_divide._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadDivide')}
 LogicalKeyboardKey.numpad0 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad0.__ctor = (('numpad0',),)
+LogicalKeyboardKey.numpad0._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad0')}
 LogicalKeyboardKey.numpad1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad1.__ctor = (('numpad1',),)
+LogicalKeyboardKey.numpad1._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad1')}
 LogicalKeyboardKey.numpad2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad2.__ctor = (('numpad2',),)
+LogicalKeyboardKey.numpad2._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad2')}
 LogicalKeyboardKey.numpad3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad3.__ctor = (('numpad3',),)
+LogicalKeyboardKey.numpad3._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad3')}
 LogicalKeyboardKey.numpad4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad4.__ctor = (('numpad4',),)
+LogicalKeyboardKey.numpad4._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad4')}
 LogicalKeyboardKey.numpad5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad5.__ctor = (('numpad5',),)
+LogicalKeyboardKey.numpad5._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad5')}
 LogicalKeyboardKey.numpad6 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad6.__ctor = (('numpad6',),)
+LogicalKeyboardKey.numpad6._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad6')}
 LogicalKeyboardKey.numpad7 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad7.__ctor = (('numpad7',),)
+LogicalKeyboardKey.numpad7._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad7')}
 LogicalKeyboardKey.numpad8 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad8.__ctor = (('numpad8',),)
+LogicalKeyboardKey.numpad8._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad8')}
 LogicalKeyboardKey.numpad9 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad9.__ctor = (('numpad9',),)
+LogicalKeyboardKey.numpad9._nx_ = {'#t': ('LogicalKeyboardKey', 'numpad9')}
 LogicalKeyboardKey.numpad_equal = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.numpad_equal.__ctor = (('numpadEqual',),)
+LogicalKeyboardKey.numpad_equal._nx_ = {'#t': ('LogicalKeyboardKey', 'numpadEqual')}
 LogicalKeyboardKey.game_button1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button1.__ctor = (('gameButton1',),)
+LogicalKeyboardKey.game_button1._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton1')}
 LogicalKeyboardKey.game_button2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button2.__ctor = (('gameButton2',),)
+LogicalKeyboardKey.game_button2._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton2')}
 LogicalKeyboardKey.game_button3 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button3.__ctor = (('gameButton3',),)
+LogicalKeyboardKey.game_button3._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton3')}
 LogicalKeyboardKey.game_button4 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button4.__ctor = (('gameButton4',),)
+LogicalKeyboardKey.game_button4._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton4')}
 LogicalKeyboardKey.game_button5 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button5.__ctor = (('gameButton5',),)
+LogicalKeyboardKey.game_button5._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton5')}
 LogicalKeyboardKey.game_button6 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button6.__ctor = (('gameButton6',),)
+LogicalKeyboardKey.game_button6._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton6')}
 LogicalKeyboardKey.game_button7 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button7.__ctor = (('gameButton7',),)
+LogicalKeyboardKey.game_button7._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton7')}
 LogicalKeyboardKey.game_button8 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button8.__ctor = (('gameButton8',),)
+LogicalKeyboardKey.game_button8._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton8')}
 LogicalKeyboardKey.game_button9 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button9.__ctor = (('gameButton9',),)
+LogicalKeyboardKey.game_button9._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton9')}
 LogicalKeyboardKey.game_button10 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button10.__ctor = (('gameButton10',),)
+LogicalKeyboardKey.game_button10._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton10')}
 LogicalKeyboardKey.game_button11 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button11.__ctor = (('gameButton11',),)
+LogicalKeyboardKey.game_button11._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton11')}
 LogicalKeyboardKey.game_button12 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button12.__ctor = (('gameButton12',),)
+LogicalKeyboardKey.game_button12._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton12')}
 LogicalKeyboardKey.game_button13 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button13.__ctor = (('gameButton13',),)
+LogicalKeyboardKey.game_button13._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton13')}
 LogicalKeyboardKey.game_button14 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button14.__ctor = (('gameButton14',),)
+LogicalKeyboardKey.game_button14._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton14')}
 LogicalKeyboardKey.game_button15 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button15.__ctor = (('gameButton15',),)
+LogicalKeyboardKey.game_button15._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton15')}
 LogicalKeyboardKey.game_button16 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button16.__ctor = (('gameButton16',),)
+LogicalKeyboardKey.game_button16._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButton16')}
 LogicalKeyboardKey.game_button_a = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_a.__ctor = (('gameButtonA',),)
+LogicalKeyboardKey.game_button_a._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonA')}
 LogicalKeyboardKey.game_button_b = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_b.__ctor = (('gameButtonB',),)
+LogicalKeyboardKey.game_button_b._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonB')}
 LogicalKeyboardKey.game_button_c = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_c.__ctor = (('gameButtonC',),)
+LogicalKeyboardKey.game_button_c._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonC')}
 LogicalKeyboardKey.game_button_left1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_left1.__ctor = (('gameButtonLeft1',),)
+LogicalKeyboardKey.game_button_left1._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonLeft1')}
 LogicalKeyboardKey.game_button_left2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_left2.__ctor = (('gameButtonLeft2',),)
+LogicalKeyboardKey.game_button_left2._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonLeft2')}
 LogicalKeyboardKey.game_button_mode = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_mode.__ctor = (('gameButtonMode',),)
+LogicalKeyboardKey.game_button_mode._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonMode')}
 LogicalKeyboardKey.game_button_right1 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_right1.__ctor = (('gameButtonRight1',),)
+LogicalKeyboardKey.game_button_right1._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonRight1')}
 LogicalKeyboardKey.game_button_right2 = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_right2.__ctor = (('gameButtonRight2',),)
+LogicalKeyboardKey.game_button_right2._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonRight2')}
 LogicalKeyboardKey.game_button_select = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_select.__ctor = (('gameButtonSelect',),)
+LogicalKeyboardKey.game_button_select._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonSelect')}
 LogicalKeyboardKey.game_button_start = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_start.__ctor = (('gameButtonStart',),)
+LogicalKeyboardKey.game_button_start._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonStart')}
 LogicalKeyboardKey.game_button_thumb_left = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_thumb_left.__ctor = (('gameButtonThumbLeft',),)
+LogicalKeyboardKey.game_button_thumb_left._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonThumbLeft')}
 LogicalKeyboardKey.game_button_thumb_right = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_thumb_right.__ctor = (('gameButtonThumbRight',),)
+LogicalKeyboardKey.game_button_thumb_right._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonThumbRight')}
 LogicalKeyboardKey.game_button_x = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_x.__ctor = (('gameButtonX',),)
+LogicalKeyboardKey.game_button_x._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonX')}
 LogicalKeyboardKey.game_button_y = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_y.__ctor = (('gameButtonY',),)
+LogicalKeyboardKey.game_button_y._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonY')}
 LogicalKeyboardKey.game_button_z = LogicalKeyboardKey(
     key_id=0,
 )
-LogicalKeyboardKey.game_button_z.__ctor = (('gameButtonZ',),)
+LogicalKeyboardKey.game_button_z._nx_ = {'#t': ('LogicalKeyboardKey', 'gameButtonZ')}
 
 
 # packages/flutter/lib/src/services/hardware_keyboard.dart
-class KeyEvent(ABC, Object):
+class KeyEvent(Object, ABC):
 
     def __init__(
         self,
@@ -6750,13 +6875,14 @@ class KeyEvent(ABC, Object):
         character: Optional[str] = None,
         synthesized: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'physicalKey', physical_key,
-            'logicalKey', logical_key,
-            'timeStamp', time_stamp,
-            'character', character,
-            'synthesized', synthesized,
-        ))
+        self._nx_ = {
+            '#t': ('KeyEvent', ''),
+            'physicalKey': physical_key,
+            'logicalKey': logical_key,
+            'timeStamp': time_stamp,
+            'character': character,
+            'synthesized': synthesized,
+        }
 
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
@@ -6771,18 +6897,19 @@ class FocusNode(Object):
         can_request_focus: Optional[bool] = None,
         descendants_are_focusable: Optional[bool] = None,
     ):
-        self.__ctor = (('',), (
-            'debugLabel', debug_label,
-            'onKey', on_key,
-            'onKeyEvent', on_key_event,
-            'skipTraversal', skip_traversal,
-            'canRequestFocus', can_request_focus,
-            'descendantsAreFocusable', descendants_are_focusable,
-        ))
+        self._nx_ = {
+            '#t': ('FocusNode', ''),
+            'debugLabel': debug_label,
+            'onKey': on_key,
+            'onKeyEvent': on_key_event,
+            'skipTraversal': skip_traversal,
+            'canRequestFocus': can_request_focus,
+            'descendantsAreFocusable': descendants_are_focusable,
+        }
 
 
 # packages/flutter/lib/src/material/button_style_button.dart
-class ButtonStyleButton(ABC, StatefulWidget):
+class ButtonStyleButton(StatefulWidget, ABC):
 
     def __init__(
         self,
@@ -6797,16 +6924,17 @@ class ButtonStyleButton(ABC, StatefulWidget):
     ):
         super().__init__(
         )
-        self.__ctor = (('',), (
-            'onPressed', on_pressed,
-            'onLongPress', on_long_press,
-            'style', style,
-            'focusNode', focus_node,
-            'autofocus', autofocus,
-            'clipBehavior', clip_behavior,
-            'child', child,
-            'key', key,
-        ))
+        self._nx_ = {
+            '#t': ('ButtonStyleButton', ''),
+            'onPressed': on_pressed,
+            'onLongPress': on_long_press,
+            'style': style,
+            'focusNode': focus_node,
+            'autofocus': autofocus,
+            'clipBehavior': clip_behavior,
+            'child': child,
+            'key': key,
+        }
 
 
 # packages/flutter/lib/src/material/elevated_button.dart
@@ -6832,16 +6960,17 @@ class ElevatedButton(ButtonStyleButton):
             clip_behavior=Clip.none,
             child=Widget(),
         )
-        self.__ctor = (('',), (
-            'onPressed', on_pressed,
-            'child', child,
-            'key', key,
-            'onLongPress', on_long_press,
-            'style', style,
-            'focusNode', focus_node,
-            'autofocus', autofocus,
-            'clipBehavior', clip_behavior,
-        ))
+        self._nx_ = {
+            '#t': ('ElevatedButton', ''),
+            'onPressed': on_pressed,
+            'child': child,
+            'key': key,
+            'onLongPress': on_long_press,
+            'style': style,
+            'focusNode': focus_node,
+            'autofocus': autofocus,
+            'clipBehavior': clip_behavior,
+        }
 
     @staticmethod
     def icon(
@@ -6859,15 +6988,16 @@ class ElevatedButton(ButtonStyleButton):
             on_pressed=_noop,
             child=Widget(),
         )
-        _o.__ctor = (('icon',), (
-            'onPressed', on_pressed,
-            'icon', icon,
-            'label', label,
-            'key', key,
-            'onLongPress', on_long_press,
-            'style', style,
-            'focusNode', focus_node,
-            'autofocus', autofocus,
-            'clipBehavior', clip_behavior,
-        ))
+        _o._nx_ = {
+            '#t': ('ElevatedButton', 'icon'),
+            'onPressed': on_pressed,
+            'icon': icon,
+            'label': label,
+            'key': key,
+            'onLongPress': on_long_press,
+            'style': style,
+            'focusNode': focus_node,
+            'autofocus': autofocus,
+            'clipBehavior': clip_behavior,
+        }
         return _o
