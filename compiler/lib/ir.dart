@@ -124,11 +124,13 @@ class IRField {
   final String name;
   final IRType type;
   final IRConst value;
+  final bool isPositional;
 
   IRField({
     required this.name,
     required this.type,
     required this.value,
+    required this.isPositional,
   });
 }
 
@@ -242,6 +244,7 @@ class IRBuilder {
       name: f.name,
       type: _toType(f.type),
       value: _toConst(f.computeConstantValue()),
+      isPositional: false,
     );
   }
 
@@ -279,6 +282,7 @@ class IRBuilder {
       name: e.name,
       type: required ? t : _toOptional(t),
       value: undefined,
+      isPositional: e.isPositional,
     );
   }
 
@@ -353,8 +357,12 @@ class IRBuilder {
     return b != null ? IRTypeParameter(p.name, _resolveType(b)) : p;
   }
 
-  IRField _resolveField(IRField f) =>
-      IRField(name: f.name, type: _resolveType(f.type), value: f.value);
+  IRField _resolveField(IRField f) => IRField(
+        name: f.name,
+        type: _resolveType(f.type),
+        value: f.value,
+        isPositional: f.isPositional,
+      );
 
   IRConstructor _resolveConstructor(IRConstructor c) =>
       IRConstructor(c.name, c.fields.map(_resolveField).toList());

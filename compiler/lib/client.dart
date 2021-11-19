@@ -3,14 +3,31 @@ import 'package:analyzer/dart/element/element.dart';
 import 'emit.dart';
 import 'ir.dart';
 
+bool _isOptional(IRType t) =>
+    t is IRParameterizedType && t.element == IRElement.optional;
+
 class ClientTranslator {
   final p = Printer('  ');
 
   void _emitClass(IRClass e) {
+    final m = '__m';
     for (final c in [e.constructor, ...e.constructors]) {
       p('');
-      p('${e.name} _u${c.name}${e.name}(Map<String, dynamic> __m) {');
-      p("  throw 'not implemented';");
+      p('${e.name} _u${c.name}${e.name}(Map<String, dynamic> $m) {');
+      p.t(() {
+        for (final f in c.fields) {
+          final t = f.type;
+          p("final ${f.name} = $m['${f.name}'];");
+        }
+        final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
+        p('return ${e.name}$ctor(');
+        p.t(() {
+          for (final f in c.fields) {
+            p(f.isPositional ? '${f.name},' : '${f.name}: ${f.name},');
+          }
+        });
+        p(');');
+      });
       p('}');
     }
   }
@@ -30,8 +47,11 @@ class ClientTranslator {
 
   String _emit(List<IRElement> elements) {
     // TODO generate imports automatically
+    p("import 'dart:ui';");
+    p("import 'package:flutter/cupertino.dart';");
     p("import 'package:flutter/material.dart';");
     p("import 'package:flutter/gestures.dart';");
+    p("import 'package:flutter/services.dart';");
     for (final e in elements) {
       if (e is IRClass && !e.isAbstract) {
         _emitClass(e);

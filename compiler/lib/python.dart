@@ -426,7 +426,11 @@ class PythonTranslator {
         final fields = e.fields.map((f) {
           if (f.name == targetField) {
             return IRField(
-                name: f.name, type: IRParameterizedType(e, []), value: f.value);
+              name: f.name,
+              type: IRParameterizedType(e, []),
+              value: f.value,
+              isPositional: f.isPositional,
+            );
           }
           return f;
         }).toList();
