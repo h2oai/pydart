@@ -27,10 +27,10 @@ class UI:
         self._changes = []
 
     def __setitem__(self, key: str, value: Any):
-        self._changes.append((key, _dump(value)))
+        self._changes.append(('=', key, _dump(value)))
 
     def __delitem__(self, key: str):
-        self._changes.append((key,))
+        self._changes.append(('~', key))
 
     async def save(self):
         data = _marshal(self._changes)

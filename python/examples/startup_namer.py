@@ -44,9 +44,9 @@ async def serve(ui: UI):
 
 async def websocket_endpoint(websocket: starlette.websockets.WebSocket):
     await websocket.accept()
+    await serve(UI('', websocket.send_text))
     while True:
-        request = await websocket.receive_text()
-        await serve(UI(request, websocket.send_text))
+        await serve(UI(await websocket.receive_text(), websocket.send_text))
 
 
 app: Any = Starlette(
