@@ -11,7 +11,7 @@ class ClientTranslator {
 
   void _emitClass(IRClass e) {
     final m = '__m';
-    for (final c in [e.constructor, ...e.constructors]) {
+    for (final c in e.constructors) {
       p('');
       p('${e.name} _u${c.name}${e.name}(Map<String, dynamic> $m) {');
       p.t(() {
@@ -66,7 +66,7 @@ class ClientTranslator {
     p('final loaders = <String, Unmarshal>{');
     for (final e in elements.whereType<IRClass>()) {
       if (!e.isAbstract) {
-        for (final c in [e.constructor, ...e.constructors]) {
+        for (final c in e.constructors) {
           p("  '${e.name}.${c.name}': _u${c.name}${e.name},");
         }
       }

@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'types.dart';
 
 void main() {
   runApp(const NitroApp());
@@ -17,12 +18,6 @@ String _getWebSocketEndpoint(String path) {
   }
   throw 'unhandled: get ws endpoint for non-web';
 }
-
-MaterialApp _hydrateMaterialApp(Map<String, dynamic> state) {
-  final key = state['key'];
-  return MaterialApp(key: key);
-}
-
 
 String? _typeOf(Map<String, dynamic> state) {
   final t = state['#t'];
@@ -39,7 +34,7 @@ String? _typeOf(Map<String, dynamic> state) {
 dynamic _unmarshal(Map<String, dynamic> state) {
   final t = _typeOf(state);
   if (t != null) {
-    final unmarshal = _hydrators[t];
+    final unmarshal = loaders[t];
     if (unmarshal != null) {
       return unmarshal(state);
     }

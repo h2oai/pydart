@@ -389,11 +389,6 @@ ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
   );
 }
 
-FontWeight _uFontWeight(Map<String, dynamic> __m) {
-  return FontWeight(
-  );
-}
-
 FontStyle _uFontStyle(String v) {
   switch(v) {
     case 'normal':
@@ -638,11 +633,6 @@ FontFeature _uslashedZeroFontFeature(Map<String, dynamic> __m) {
   );
 }
 
-TextDecoration _uTextDecoration(Map<String, dynamic> __m) {
-  return TextDecoration(
-  );
-}
-
 TextDecoration _ucombineTextDecoration(Map<String, dynamic> __m) {
   final decorations = __m['decorations'];
   return TextDecoration.combine(
@@ -833,11 +823,6 @@ BoxConstraints _uexpandBoxConstraints(Map<String, dynamic> __m) {
   );
 }
 
-Radius _uRadius(Map<String, dynamic> __m) {
-  return Radius(
-  );
-}
-
 Radius _ucircularRadius(Map<String, dynamic> __m) {
   final radius = __m['radius'];
   return Radius.circular(
@@ -851,11 +836,6 @@ Radius _uellipticalRadius(Map<String, dynamic> __m) {
   return Radius.elliptical(
     x,
     y,
-  );
-}
-
-BorderRadius _uBorderRadius(Map<String, dynamic> __m) {
-  return BorderRadius(
   );
 }
 
@@ -2623,67 +2603,6 @@ MaterialApp _urouterMaterialApp(Map<String, dynamic> __m) {
   );
 }
 
-AppBar _uAppBar(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final leading = __m['leading'];
-  final automaticallyImplyLeading = __m['automaticallyImplyLeading'];
-  final title = __m['title'];
-  final actions = __m['actions'];
-  final flexibleSpace = __m['flexibleSpace'];
-  final bottom = __m['bottom'];
-  final elevation = __m['elevation'];
-  final shadowColor = __m['shadowColor'];
-  final shape = __m['shape'];
-  final backgroundColor = __m['backgroundColor'];
-  final foregroundColor = __m['foregroundColor'];
-  final brightness = __m['brightness'];
-  final iconTheme = __m['iconTheme'];
-  final actionsIconTheme = __m['actionsIconTheme'];
-  final textTheme = __m['textTheme'];
-  final primary = __m['primary'];
-  final centerTitle = __m['centerTitle'];
-  final excludeHeaderSemantics = __m['excludeHeaderSemantics'];
-  final titleSpacing = __m['titleSpacing'];
-  final toolbarOpacity = __m['toolbarOpacity'];
-  final bottomOpacity = __m['bottomOpacity'];
-  final toolbarHeight = __m['toolbarHeight'];
-  final leadingWidth = __m['leadingWidth'];
-  final backwardsCompatibility = __m['backwardsCompatibility'];
-  final toolbarTextStyle = __m['toolbarTextStyle'];
-  final titleTextStyle = __m['titleTextStyle'];
-  final systemOverlayStyle = __m['systemOverlayStyle'];
-  return AppBar(
-    key: key,
-    leading: leading,
-    automaticallyImplyLeading: automaticallyImplyLeading,
-    title: title,
-    actions: actions,
-    flexibleSpace: flexibleSpace,
-    bottom: bottom,
-    elevation: elevation,
-    shadowColor: shadowColor,
-    shape: shape,
-    backgroundColor: backgroundColor,
-    foregroundColor: foregroundColor,
-    brightness: brightness,
-    iconTheme: iconTheme,
-    actionsIconTheme: actionsIconTheme,
-    textTheme: textTheme,
-    primary: primary,
-    centerTitle: centerTitle,
-    excludeHeaderSemantics: excludeHeaderSemantics,
-    titleSpacing: titleSpacing,
-    toolbarOpacity: toolbarOpacity,
-    bottomOpacity: bottomOpacity,
-    toolbarHeight: toolbarHeight,
-    leadingWidth: leadingWidth,
-    backwardsCompatibility: backwardsCompatibility,
-    toolbarTextStyle: toolbarTextStyle,
-    titleTextStyle: titleTextStyle,
-    systemOverlayStyle: systemOverlayStyle,
-  );
-}
-
 KeyEventResult _uKeyEventResult(String v) {
   switch(v) {
     case 'handled':
@@ -2771,563 +2690,6 @@ ElevatedButton _uiconElevatedButton(Map<String, dynamic> __m) {
   );
 }
 
-ListTile _uListTile(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final leading = __m['leading'];
-  final title = __m['title'];
-  final subtitle = __m['subtitle'];
-  final trailing = __m['trailing'];
-  final isThreeLine = __m['isThreeLine'];
-  final dense = __m['dense'];
-  final visualDensity = __m['visualDensity'];
-  final shape = __m['shape'];
-  final contentPadding = __m['contentPadding'];
-  final enabled = __m['enabled'];
-  final onTap = __m['onTap'];
-  final onLongPress = __m['onLongPress'];
-  final mouseCursor = __m['mouseCursor'];
-  final selected = __m['selected'];
-  final focusColor = __m['focusColor'];
-  final hoverColor = __m['hoverColor'];
-  final focusNode = __m['focusNode'];
-  final autofocus = __m['autofocus'];
-  final tileColor = __m['tileColor'];
-  final selectedTileColor = __m['selectedTileColor'];
-  final enableFeedback = __m['enableFeedback'];
-  final horizontalTitleGap = __m['horizontalTitleGap'];
-  final minVerticalPadding = __m['minVerticalPadding'];
-  final minLeadingWidth = __m['minLeadingWidth'];
-  return ListTile(
-    key: key,
-    leading: leading,
-    title: title,
-    subtitle: subtitle,
-    trailing: trailing,
-    isThreeLine: isThreeLine,
-    dense: dense,
-    visualDensity: visualDensity,
-    shape: shape,
-    contentPadding: contentPadding,
-    enabled: enabled,
-    onTap: onTap,
-    onLongPress: onLongPress,
-    mouseCursor: mouseCursor,
-    selected: selected,
-    focusColor: focusColor,
-    hoverColor: hoverColor,
-    focusNode: focusNode,
-    autofocus: autofocus,
-    tileColor: tileColor,
-    selectedTileColor: selectedTileColor,
-    enableFeedback: enableFeedback,
-    horizontalTitleGap: horizontalTitleGap,
-    minVerticalPadding: minVerticalPadding,
-    minLeadingWidth: minLeadingWidth,
-  );
-}
-
-DragStartBehavior _uDragStartBehavior(String v) {
-  switch(v) {
-    case 'down':
-      return DragStartBehavior.down;
-    case 'start':
-      return DragStartBehavior.start;
-  }
-  throw 'illegal enum value $v';
-}
-
-Scaffold _uScaffold(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final appBar = __m['appBar'];
-  final body = __m['body'];
-  final floatingActionButton = __m['floatingActionButton'];
-  final floatingActionButtonLocation = __m['floatingActionButtonLocation'];
-  final floatingActionButtonAnimator = __m['floatingActionButtonAnimator'];
-  final persistentFooterButtons = __m['persistentFooterButtons'];
-  final drawer = __m['drawer'];
-  final onDrawerChanged = __m['onDrawerChanged'];
-  final endDrawer = __m['endDrawer'];
-  final onEndDrawerChanged = __m['onEndDrawerChanged'];
-  final bottomNavigationBar = __m['bottomNavigationBar'];
-  final bottomSheet = __m['bottomSheet'];
-  final backgroundColor = __m['backgroundColor'];
-  final resizeToAvoidBottomInset = __m['resizeToAvoidBottomInset'];
-  final primary = __m['primary'];
-  final drawerDragStartBehavior = __m['drawerDragStartBehavior'];
-  final extendBody = __m['extendBody'];
-  final extendBodyBehindAppBar = __m['extendBodyBehindAppBar'];
-  final drawerScrimColor = __m['drawerScrimColor'];
-  final drawerEdgeDragWidth = __m['drawerEdgeDragWidth'];
-  final drawerEnableOpenDragGesture = __m['drawerEnableOpenDragGesture'];
-  final endDrawerEnableOpenDragGesture = __m['endDrawerEnableOpenDragGesture'];
-  final restorationId = __m['restorationId'];
-  return Scaffold(
-    key: key,
-    appBar: appBar,
-    body: body,
-    floatingActionButton: floatingActionButton,
-    floatingActionButtonLocation: floatingActionButtonLocation,
-    floatingActionButtonAnimator: floatingActionButtonAnimator,
-    persistentFooterButtons: persistentFooterButtons,
-    drawer: drawer,
-    onDrawerChanged: onDrawerChanged,
-    endDrawer: endDrawer,
-    onEndDrawerChanged: onEndDrawerChanged,
-    bottomNavigationBar: bottomNavigationBar,
-    bottomSheet: bottomSheet,
-    backgroundColor: backgroundColor,
-    resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-    primary: primary,
-    drawerDragStartBehavior: drawerDragStartBehavior,
-    extendBody: extendBody,
-    extendBodyBehindAppBar: extendBodyBehindAppBar,
-    drawerScrimColor: drawerScrimColor,
-    drawerEdgeDragWidth: drawerEdgeDragWidth,
-    drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
-    endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
-    restorationId: restorationId,
-  );
-}
-
-WindowPadding _uWindowPadding(Map<String, dynamic> __m) {
-  return WindowPadding(
-  );
-}
-
-EdgeInsets _uEdgeInsets(Map<String, dynamic> __m) {
-  return EdgeInsets(
-  );
-}
-
-EdgeInsets _ufromLTRBEdgeInsets(Map<String, dynamic> __m) {
-  final left = __m['left'];
-  final top = __m['top'];
-  final right = __m['right'];
-  final bottom = __m['bottom'];
-  return EdgeInsets.fromLTRB(
-    left,
-    top,
-    right,
-    bottom,
-  );
-}
-
-EdgeInsets _uallEdgeInsets(Map<String, dynamic> __m) {
-  final value = __m['value'];
-  return EdgeInsets.all(
-    value,
-  );
-}
-
-EdgeInsets _uonlyEdgeInsets(Map<String, dynamic> __m) {
-  final left = __m['left'];
-  final top = __m['top'];
-  final right = __m['right'];
-  final bottom = __m['bottom'];
-  return EdgeInsets.only(
-    left: left,
-    top: top,
-    right: right,
-    bottom: bottom,
-  );
-}
-
-EdgeInsets _usymmetricEdgeInsets(Map<String, dynamic> __m) {
-  final vertical = __m['vertical'];
-  final horizontal = __m['horizontal'];
-  return EdgeInsets.symmetric(
-    vertical: vertical,
-    horizontal: horizontal,
-  );
-}
-
-EdgeInsets _ufromWindowPaddingEdgeInsets(Map<String, dynamic> __m) {
-  final padding = __m['padding'];
-  final devicePixelRatio = __m['devicePixelRatio'];
-  return EdgeInsets.fromWindowPadding(
-    padding,
-    devicePixelRatio,
-  );
-}
-
-Axis _uAxis(String v) {
-  switch(v) {
-    case 'horizontal':
-      return Axis.horizontal;
-    case 'vertical':
-      return Axis.vertical;
-  }
-  throw 'illegal enum value $v';
-}
-
-ChangeNotifier _uChangeNotifier(Map<String, dynamic> __m) {
-  return ChangeNotifier(
-  );
-}
-
-ScrollController _uScrollController(Map<String, dynamic> __m) {
-  final initialScrollOffset = __m['initialScrollOffset'];
-  final keepScrollOffset = __m['keepScrollOffset'];
-  final debugLabel = __m['debugLabel'];
-  return ScrollController(
-    initialScrollOffset: initialScrollOffset,
-    keepScrollOffset: keepScrollOffset,
-    debugLabel: debugLabel,
-  );
-}
-
-ScrollPhysics _uScrollPhysics(Map<String, dynamic> __m) {
-  final parent = __m['parent'];
-  return ScrollPhysics(
-    parent: parent,
-  );
-}
-
-ScrollViewKeyboardDismissBehavior _uScrollViewKeyboardDismissBehavior(String v) {
-  switch(v) {
-    case 'manual':
-      return ScrollViewKeyboardDismissBehavior.manual;
-    case 'onDrag':
-      return ScrollViewKeyboardDismissBehavior.onDrag;
-  }
-  throw 'illegal enum value $v';
-}
-
-ListView _uListView(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final scrollDirection = __m['scrollDirection'];
-  final reverse = __m['reverse'];
-  final controller = __m['controller'];
-  final primary = __m['primary'];
-  final physics = __m['physics'];
-  final shrinkWrap = __m['shrinkWrap'];
-  final padding = __m['padding'];
-  final itemExtent = __m['itemExtent'];
-  final prototypeItem = __m['prototypeItem'];
-  final addAutomaticKeepAlives = __m['addAutomaticKeepAlives'];
-  final addRepaintBoundaries = __m['addRepaintBoundaries'];
-  final addSemanticIndexes = __m['addSemanticIndexes'];
-  final cacheExtent = __m['cacheExtent'];
-  final children = __m['children'];
-  final semanticChildCount = __m['semanticChildCount'];
-  final dragStartBehavior = __m['dragStartBehavior'];
-  final keyboardDismissBehavior = __m['keyboardDismissBehavior'];
-  final restorationId = __m['restorationId'];
-  final clipBehavior = __m['clipBehavior'];
-  return ListView(
-    key: key,
-    scrollDirection: scrollDirection,
-    reverse: reverse,
-    controller: controller,
-    primary: primary,
-    physics: physics,
-    shrinkWrap: shrinkWrap,
-    padding: padding,
-    itemExtent: itemExtent,
-    prototypeItem: prototypeItem,
-    addAutomaticKeepAlives: addAutomaticKeepAlives,
-    addRepaintBoundaries: addRepaintBoundaries,
-    addSemanticIndexes: addSemanticIndexes,
-    cacheExtent: cacheExtent,
-    children: children,
-    semanticChildCount: semanticChildCount,
-    dragStartBehavior: dragStartBehavior,
-    keyboardDismissBehavior: keyboardDismissBehavior,
-    restorationId: restorationId,
-    clipBehavior: clipBehavior,
-  );
-}
-
-ListView _ubuilderListView(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final scrollDirection = __m['scrollDirection'];
-  final reverse = __m['reverse'];
-  final controller = __m['controller'];
-  final primary = __m['primary'];
-  final physics = __m['physics'];
-  final shrinkWrap = __m['shrinkWrap'];
-  final padding = __m['padding'];
-  final itemExtent = __m['itemExtent'];
-  final prototypeItem = __m['prototypeItem'];
-  final itemBuilder = __m['itemBuilder'];
-  final itemCount = __m['itemCount'];
-  final addAutomaticKeepAlives = __m['addAutomaticKeepAlives'];
-  final addRepaintBoundaries = __m['addRepaintBoundaries'];
-  final addSemanticIndexes = __m['addSemanticIndexes'];
-  final cacheExtent = __m['cacheExtent'];
-  final semanticChildCount = __m['semanticChildCount'];
-  final dragStartBehavior = __m['dragStartBehavior'];
-  final keyboardDismissBehavior = __m['keyboardDismissBehavior'];
-  final restorationId = __m['restorationId'];
-  final clipBehavior = __m['clipBehavior'];
-  return ListView.builder(
-    key: key,
-    scrollDirection: scrollDirection,
-    reverse: reverse,
-    controller: controller,
-    primary: primary,
-    physics: physics,
-    shrinkWrap: shrinkWrap,
-    padding: padding,
-    itemExtent: itemExtent,
-    prototypeItem: prototypeItem,
-    itemBuilder: itemBuilder,
-    itemCount: itemCount,
-    addAutomaticKeepAlives: addAutomaticKeepAlives,
-    addRepaintBoundaries: addRepaintBoundaries,
-    addSemanticIndexes: addSemanticIndexes,
-    cacheExtent: cacheExtent,
-    semanticChildCount: semanticChildCount,
-    dragStartBehavior: dragStartBehavior,
-    keyboardDismissBehavior: keyboardDismissBehavior,
-    restorationId: restorationId,
-    clipBehavior: clipBehavior,
-  );
-}
-
-ListView _useparatedListView(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final scrollDirection = __m['scrollDirection'];
-  final reverse = __m['reverse'];
-  final controller = __m['controller'];
-  final primary = __m['primary'];
-  final physics = __m['physics'];
-  final shrinkWrap = __m['shrinkWrap'];
-  final padding = __m['padding'];
-  final itemBuilder = __m['itemBuilder'];
-  final separatorBuilder = __m['separatorBuilder'];
-  final itemCount = __m['itemCount'];
-  final addAutomaticKeepAlives = __m['addAutomaticKeepAlives'];
-  final addRepaintBoundaries = __m['addRepaintBoundaries'];
-  final addSemanticIndexes = __m['addSemanticIndexes'];
-  final cacheExtent = __m['cacheExtent'];
-  final dragStartBehavior = __m['dragStartBehavior'];
-  final keyboardDismissBehavior = __m['keyboardDismissBehavior'];
-  final restorationId = __m['restorationId'];
-  final clipBehavior = __m['clipBehavior'];
-  return ListView.separated(
-    key: key,
-    scrollDirection: scrollDirection,
-    reverse: reverse,
-    controller: controller,
-    primary: primary,
-    physics: physics,
-    shrinkWrap: shrinkWrap,
-    padding: padding,
-    itemBuilder: itemBuilder,
-    separatorBuilder: separatorBuilder,
-    itemCount: itemCount,
-    addAutomaticKeepAlives: addAutomaticKeepAlives,
-    addRepaintBoundaries: addRepaintBoundaries,
-    addSemanticIndexes: addSemanticIndexes,
-    cacheExtent: cacheExtent,
-    dragStartBehavior: dragStartBehavior,
-    keyboardDismissBehavior: keyboardDismissBehavior,
-    restorationId: restorationId,
-    clipBehavior: clipBehavior,
-  );
-}
-
-ListView _ucustomListView(Map<String, dynamic> __m) {
-  final key = __m['key'];
-  final scrollDirection = __m['scrollDirection'];
-  final reverse = __m['reverse'];
-  final controller = __m['controller'];
-  final primary = __m['primary'];
-  final physics = __m['physics'];
-  final shrinkWrap = __m['shrinkWrap'];
-  final padding = __m['padding'];
-  final itemExtent = __m['itemExtent'];
-  final prototypeItem = __m['prototypeItem'];
-  final childrenDelegate = __m['childrenDelegate'];
-  final cacheExtent = __m['cacheExtent'];
-  final semanticChildCount = __m['semanticChildCount'];
-  final dragStartBehavior = __m['dragStartBehavior'];
-  final keyboardDismissBehavior = __m['keyboardDismissBehavior'];
-  final restorationId = __m['restorationId'];
-  final clipBehavior = __m['clipBehavior'];
-  return ListView.custom(
-    key: key,
-    scrollDirection: scrollDirection,
-    reverse: reverse,
-    controller: controller,
-    primary: primary,
-    physics: physics,
-    shrinkWrap: shrinkWrap,
-    padding: padding,
-    itemExtent: itemExtent,
-    prototypeItem: prototypeItem,
-    childrenDelegate: childrenDelegate,
-    cacheExtent: cacheExtent,
-    semanticChildCount: semanticChildCount,
-    dragStartBehavior: dragStartBehavior,
-    keyboardDismissBehavior: keyboardDismissBehavior,
-    restorationId: restorationId,
-    clipBehavior: clipBehavior,
-  );
-}
-
-StrutStyle _uStrutStyle(Map<String, dynamic> __m) {
-  final fontFamily = __m['fontFamily'];
-  final fontFamilyFallback = __m['fontFamilyFallback'];
-  final fontSize = __m['fontSize'];
-  final height = __m['height'];
-  final leadingDistribution = __m['leadingDistribution'];
-  final leading = __m['leading'];
-  final fontWeight = __m['fontWeight'];
-  final fontStyle = __m['fontStyle'];
-  final forceStrutHeight = __m['forceStrutHeight'];
-  final debugLabel = __m['debugLabel'];
-  final package = __m['package'];
-  return StrutStyle(
-    fontFamily: fontFamily,
-    fontFamilyFallback: fontFamilyFallback,
-    fontSize: fontSize,
-    height: height,
-    leadingDistribution: leadingDistribution,
-    leading: leading,
-    fontWeight: fontWeight,
-    fontStyle: fontStyle,
-    forceStrutHeight: forceStrutHeight,
-    debugLabel: debugLabel,
-    package: package,
-  );
-}
-
-StrutStyle _ufromTextStyleStrutStyle(Map<String, dynamic> __m) {
-  final textStyle = __m['textStyle'];
-  final fontFamily = __m['fontFamily'];
-  final fontFamilyFallback = __m['fontFamilyFallback'];
-  final fontSize = __m['fontSize'];
-  final height = __m['height'];
-  final leadingDistribution = __m['leadingDistribution'];
-  final leading = __m['leading'];
-  final fontWeight = __m['fontWeight'];
-  final fontStyle = __m['fontStyle'];
-  final forceStrutHeight = __m['forceStrutHeight'];
-  final debugLabel = __m['debugLabel'];
-  final package = __m['package'];
-  return StrutStyle.fromTextStyle(
-    textStyle,
-    fontFamily: fontFamily,
-    fontFamilyFallback: fontFamilyFallback,
-    fontSize: fontSize,
-    height: height,
-    leadingDistribution: leadingDistribution,
-    leading: leading,
-    fontWeight: fontWeight,
-    fontStyle: fontStyle,
-    forceStrutHeight: forceStrutHeight,
-    debugLabel: debugLabel,
-    package: package,
-  );
-}
-
-TextAlign _uTextAlign(String v) {
-  switch(v) {
-    case 'left':
-      return TextAlign.left;
-    case 'right':
-      return TextAlign.right;
-    case 'center':
-      return TextAlign.center;
-    case 'justify':
-      return TextAlign.justify;
-    case 'start':
-      return TextAlign.start;
-    case 'end':
-      return TextAlign.end;
-  }
-  throw 'illegal enum value $v';
-}
-
-TextWidthBasis _uTextWidthBasis(String v) {
-  switch(v) {
-    case 'parent':
-      return TextWidthBasis.parent;
-    case 'longestLine':
-      return TextWidthBasis.longestLine;
-  }
-  throw 'illegal enum value $v';
-}
-
-TextHeightBehavior _uTextHeightBehavior(Map<String, dynamic> __m) {
-  final applyHeightToFirstAscent = __m['applyHeightToFirstAscent'];
-  final applyHeightToLastDescent = __m['applyHeightToLastDescent'];
-  final leadingDistribution = __m['leadingDistribution'];
-  return TextHeightBehavior(
-    applyHeightToFirstAscent: applyHeightToFirstAscent,
-    applyHeightToLastDescent: applyHeightToLastDescent,
-    leadingDistribution: leadingDistribution,
-  );
-}
-
-Text _uText(Map<String, dynamic> __m) {
-  final data = __m['data'];
-  final key = __m['key'];
-  final style = __m['style'];
-  final strutStyle = __m['strutStyle'];
-  final textAlign = __m['textAlign'];
-  final textDirection = __m['textDirection'];
-  final locale = __m['locale'];
-  final softWrap = __m['softWrap'];
-  final overflow = __m['overflow'];
-  final textScaleFactor = __m['textScaleFactor'];
-  final maxLines = __m['maxLines'];
-  final semanticsLabel = __m['semanticsLabel'];
-  final textWidthBasis = __m['textWidthBasis'];
-  final textHeightBehavior = __m['textHeightBehavior'];
-  return Text(
-    data,
-    key: key,
-    style: style,
-    strutStyle: strutStyle,
-    textAlign: textAlign,
-    textDirection: textDirection,
-    locale: locale,
-    softWrap: softWrap,
-    overflow: overflow,
-    textScaleFactor: textScaleFactor,
-    maxLines: maxLines,
-    semanticsLabel: semanticsLabel,
-    textWidthBasis: textWidthBasis,
-    textHeightBehavior: textHeightBehavior,
-  );
-}
-
-Text _urichText(Map<String, dynamic> __m) {
-  final textSpan = __m['textSpan'];
-  final key = __m['key'];
-  final style = __m['style'];
-  final strutStyle = __m['strutStyle'];
-  final textAlign = __m['textAlign'];
-  final textDirection = __m['textDirection'];
-  final locale = __m['locale'];
-  final softWrap = __m['softWrap'];
-  final overflow = __m['overflow'];
-  final textScaleFactor = __m['textScaleFactor'];
-  final maxLines = __m['maxLines'];
-  final semanticsLabel = __m['semanticsLabel'];
-  final textWidthBasis = __m['textWidthBasis'];
-  final textHeightBehavior = __m['textHeightBehavior'];
-  return Text.rich(
-    textSpan,
-    key: key,
-    style: style,
-    strutStyle: strutStyle,
-    textAlign: textAlign,
-    textDirection: textDirection,
-    locale: locale,
-    softWrap: softWrap,
-    overflow: overflow,
-    textScaleFactor: textScaleFactor,
-    maxLines: maxLines,
-    semanticsLabel: semanticsLabel,
-    textWidthBasis: textWidthBasis,
-    textHeightBehavior: textHeightBehavior,
-  );
-}
-
 typedef Unmarshal = dynamic Function(Map<String, dynamic> state);
 
 final loaders = <String, Unmarshal>{
@@ -3352,7 +2714,6 @@ final loaders = <String, Unmarshal>{
   'ColorScheme.highContrastDark': _uhighContrastDarkColorScheme,
   'ColorScheme.fromSwatch': _ufromSwatchColorScheme,
   'ButtonThemeData.': _uButtonThemeData,
-  'FontWeight.': _uFontWeight,
   'Locale.': _uLocale,
   'Locale.fromSubtags': _ufromSubtagsLocale,
   'Paint.': _uPaint,
@@ -3387,7 +2748,6 @@ final loaders = <String, Unmarshal>{
   'FontFeature.swash': _uswashFontFeature,
   'FontFeature.tabularFigures': _utabularFiguresFontFeature,
   'FontFeature.slashedZero': _uslashedZeroFontFeature,
-  'TextDecoration.': _uTextDecoration,
   'TextDecoration.combine': _ucombineTextDecoration,
   'TextStyle.': _uTextStyle,
   'Size.': _uSize,
@@ -3402,10 +2762,8 @@ final loaders = <String, Unmarshal>{
   'BoxConstraints.tightForFinite': _utightForFiniteBoxConstraints,
   'BoxConstraints.loose': _ulooseBoxConstraints,
   'BoxConstraints.expand': _uexpandBoxConstraints,
-  'Radius.': _uRadius,
   'Radius.circular': _ucircularRadius,
   'Radius.elliptical': _uellipticalRadius,
-  'BorderRadius.': _uBorderRadius,
   'BorderRadius.all': _uallBorderRadius,
   'BorderRadius.circular': _ucircularBorderRadius,
   'BorderRadius.vertical': _uverticalBorderRadius,
@@ -3470,31 +2828,9 @@ final loaders = <String, Unmarshal>{
   '_StringStackTrace.': _u_StringStackTrace,
   'MaterialApp.': _uMaterialApp,
   'MaterialApp.router': _urouterMaterialApp,
-  'AppBar.': _uAppBar,
   'PhysicalKeyboardKey.': _uPhysicalKeyboardKey,
   'LogicalKeyboardKey.': _uLogicalKeyboardKey,
   'FocusNode.': _uFocusNode,
   'ElevatedButton.': _uElevatedButton,
   'ElevatedButton.icon': _uiconElevatedButton,
-  'ListTile.': _uListTile,
-  'Scaffold.': _uScaffold,
-  'WindowPadding.': _uWindowPadding,
-  'EdgeInsets.': _uEdgeInsets,
-  'EdgeInsets.fromLTRB': _ufromLTRBEdgeInsets,
-  'EdgeInsets.all': _uallEdgeInsets,
-  'EdgeInsets.only': _uonlyEdgeInsets,
-  'EdgeInsets.symmetric': _usymmetricEdgeInsets,
-  'EdgeInsets.fromWindowPadding': _ufromWindowPaddingEdgeInsets,
-  'ChangeNotifier.': _uChangeNotifier,
-  'ScrollController.': _uScrollController,
-  'ScrollPhysics.': _uScrollPhysics,
-  'ListView.': _uListView,
-  'ListView.builder': _ubuilderListView,
-  'ListView.separated': _useparatedListView,
-  'ListView.custom': _ucustomListView,
-  'StrutStyle.': _uStrutStyle,
-  'StrutStyle.fromTextStyle': _ufromTextStyleStrutStyle,
-  'TextHeightBehavior.': _uTextHeightBehavior,
-  'Text.': _uText,
-  'Text.rich': _urichText,
 };

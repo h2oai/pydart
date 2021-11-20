@@ -168,7 +168,7 @@ class PythonTranslator {
       }
 
       if (e is IRClass) {
-        final args = e.constructor.fields
+        final args = _getDefaultConstructorFields(e)
             .where((f) => !_isOptional(f.type))
             .map((f) => _defaultValueOf(f.type))
             .join(', ');
@@ -193,19 +193,28 @@ class PythonTranslator {
         final e = s.element;
         // Emit a super() call even if the base class constructor has only
         // optional args, otherwise PyCharm's type checker will complain.
-        if (e is IRClass && e.constructor.fields.isNotEmpty) {
-          p('super().__init__(');
-          _emitDefaultArgs(e);
-          p(')');
-          return;
+        if (e is IRClass) {
+          final fs = _getDefaultConstructorFields(e);
+          if (fs.isNotEmpty) {
+            p('super().__init__(');
+            _emitDefaultArgs(e);
+            p(')');
+            return;
+          }
         }
       }
     }
   }
 
-  void _emitDefaultArgs(IRClass c) {
+  Iterable<IRField> _getDefaultConstructorFields(IRClass e) {
+    final cs = e.constructors.where((c) => c.name.isEmpty);
+    return cs.isNotEmpty ? cs.first.fields : [];
+  }
+
+  void _emitDefaultArgs(IRClass e) {
     p.t(() {
-      final req = c.constructor.fields.where((f) => !_isOptional(f.type));
+      final req =
+          _getDefaultConstructorFields(e).where((f) => !_isOptional(f.type));
       for (final f in req) {
         p('${_sc(f.name)}=${_defaultValueOf(f.type)},');
       }
@@ -275,7 +284,7 @@ class PythonTranslator {
         p("${_sc(f.name)}: $t = _${_sc(e.name)}__${_sc(t)}('${f.name}')");
       }
 
-      for (final c in [e.constructor, ...e.constructors]) {
+      for (final c in e.constructors) {
         final isDefault = c.name.isEmpty;
         // Don't emit default constructor if empty
         if (isDefault && c.fields.isEmpty) continue;
@@ -328,9 +337,11 @@ class PythonTranslator {
         });
       }
 
+      // No fields/constructors or default param-less constructor only
       if (internalFields.isEmpty &&
-          e.constructor.fields.isEmpty &&
-          e.constructors.isEmpty) {
+          (e.constructors.isEmpty ||
+              e.constructors.length == 1 &&
+                  e.constructors.first.fields.isEmpty)) {
         p('pass');
       }
     });
@@ -442,7 +453,6 @@ class PythonTranslator {
           parameters: e.parameters,
           supertypes: e.supertypes,
           interfaces: e.interfaces,
-          constructor: e.constructor,
           constructors: e.constructors,
           fields: fields,
           dartElement: e.dartElement,

@@ -146,7 +146,6 @@ class IRClass extends IRElement {
   final List<IRTypeParameter> parameters;
   final List<IRType> supertypes;
   final List<IRType> interfaces;
-  final IRConstructor constructor;
   final List<IRConstructor> constructors;
   final List<IRField> fields;
   final ClassElement dartElement;
@@ -158,7 +157,6 @@ class IRClass extends IRElement {
     required this.parameters,
     required this.supertypes,
     required this.interfaces,
-    required this.constructor,
     required this.constructors,
     required this.fields,
     required this.dartElement,
@@ -306,13 +304,8 @@ class IRBuilder {
         .map((f) => _toStaticField(e, f))
         .toList();
 
-    final defaultConstructors = e.constructors.where((c) => c.name.isEmpty);
-    final defaultFields = _toFields(defaultConstructors.isEmpty
-        ? []
-        : defaultConstructors.first.parameters);
-
     final constructors = e.constructors
-        .where((c) => c.name.isNotEmpty && !_isPrivateSymbol(c.name))
+        .where((c) => !_isPrivateSymbol(c.name))
         .map((c) => IRConstructor(c.name, _toFields(c.parameters)))
         .toList();
 
@@ -325,7 +318,6 @@ class IRBuilder {
       parameters: parameters,
       supertypes: supertypes,
       interfaces: interfaces,
-      constructor: IRConstructor('', defaultFields),
       constructors: constructors,
       fields: fields,
       dartElement: e,
@@ -381,7 +373,6 @@ class IRBuilder {
         parameters: e.parameters.map(_resolveTypeParameter).toList(),
         supertypes: e.supertypes.map(_resolveType).toList(),
         interfaces: e.interfaces.map(_resolveType).toList(),
-        constructor: _resolveConstructor(e.constructor),
         constructors: e.constructors.map(_resolveConstructor).toList(),
         fields: e.fields.map(_resolveField).toList(),
         dartElement: e.dartElement,
@@ -456,16 +447,8 @@ class IRBuilder {
               }
             });
           }
-          if (e.constructor.fields.isNotEmpty) {
-            p('default:');
-            p.t(() {
-              for (final f in e.constructor.fields) {
-                p('${f.name}: ${_dumpType(f.type)}');
-              }
-            });
-          }
           for (final c in e.constructors) {
-            p('${c.name}:');
+            p(c.name.isNotEmpty ? '${c.name}:': 'default:');
             p.t(() {
               for (final f in c.fields) {
                 p('${f.name}: ${_dumpType(f.type)}');

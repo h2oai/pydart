@@ -1,8 +1,10 @@
 # bin/cache/pkg/sky_engine/lib/core/object.dart
 class Object:
+	default:
 
 # packages/flutter/lib/src/foundation/diagnostics.dart
 abstract class DiagnosticableTree extends Object:
+	default:
 
 # packages/flutter/lib/src/foundation/key.dart
 abstract class Key extends Object:
@@ -22,6 +24,7 @@ abstract class StatefulWidget extends Widget:
 
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class State<T extends StatefulWidget> extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
@@ -31,6 +34,7 @@ abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
 
 # bin/cache/pkg/sky_engine/lib/core/iterable.dart
 abstract class Iterable<E> extends Object:
+	default:
 	generate:
 		count: int
 		generator: opt<func<int, E>>
@@ -38,6 +42,7 @@ abstract class Iterable<E> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
 abstract class EfficientLengthIterable<T> extends Iterable<T>:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/core/list.dart
 abstract class List<E> extends Object implements EfficientLengthIterable<E>:
@@ -70,6 +75,7 @@ class RouteSettings extends Object:
 
 # packages/flutter/lib/src/foundation/key.dart
 abstract class LocalKey extends Key:
+	default:
 
 # packages/flutter/lib/src/widgets/navigator.dart
 abstract class Page<T> extends RouteSettings:
@@ -86,9 +92,11 @@ abstract class Route<T> extends Object:
 
 # packages/flutter/lib/src/widgets/navigator.dart
 abstract class TransitionDelegate<T> extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorObserver extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class Navigator extends StatefulWidget:
@@ -109,6 +117,7 @@ class Navigator extends StatefulWidget:
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorState extends State<Navigator>:
+	default:
 
 # packages/flutter/lib/src/material/scaffold.dart
 class ScaffoldMessenger extends StatefulWidget:
@@ -118,6 +127,7 @@ class ScaffoldMessenger extends StatefulWidget:
 
 # packages/flutter/lib/src/material/scaffold.dart
 class ScaffoldMessengerState extends State<ScaffoldMessenger>:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/core/map.dart
 class MapEntry<K, V> extends Object:
@@ -127,6 +137,7 @@ class MapEntry<K, V> extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/map.dart
 abstract class Map<K, V> extends Object:
+	default:
 	from:
 		other: Map<any, any>
 	of:
@@ -146,6 +157,7 @@ abstract class Map<K, V> extends Object:
 
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class BuildContext extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Color extends Object:
@@ -193,6 +205,7 @@ class MaterialColor extends ColorSwatch<int>:
 
 # packages/flutter/lib/src/material/ink_well.dart
 abstract class InteractiveInkFeatureFactory extends Object:
+	default:
 
 # packages/flutter/lib/src/material/button_theme.dart
 enum ButtonTextTheme:
@@ -204,9 +217,11 @@ enum ButtonTextTheme:
 abstract class EdgeInsetsGeometry extends Object:
 	static:
 		infinity: EdgeInsetsGeometry
+	default:
 
 # packages/flutter/lib/src/painting/borders.dart
 abstract class ShapeBorder extends Object:
+	default:
 
 # packages/flutter/lib/src/material/button_theme.dart
 enum ButtonBarLayoutBehavior:
@@ -360,6 +375,7 @@ class Locale extends Object:
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 abstract class OffsetBase extends Object:
@@ -483,6 +499,7 @@ class TextStyle extends Object:
 
 # packages/flutter/lib/src/rendering/object.dart
 abstract class Constraints extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Size extends OffsetBase:
@@ -526,6 +543,7 @@ class BoxConstraints extends Constraints:
 
 # packages/flutter/lib/src/painting/border_radius.dart
 abstract class BorderRadiusGeometry extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
 class Radius extends Object:
@@ -660,24 +678,31 @@ class IconThemeData extends Object:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderComponentShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderTickMarkShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class SliderTrackShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderTickMarkShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderThumbShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderTrackShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 abstract class RangeSliderValueIndicatorShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/slider_theme.dart
 enum ShowValueIndicator:
@@ -740,6 +765,7 @@ class SliderThemeData extends Object:
 
 # packages/flutter/lib/src/painting/decoration.dart
 abstract class Decoration extends Object:
+	default:
 
 # packages/flutter/lib/src/material/tabs.dart
 enum TabBarIndicatorSize:
@@ -759,6 +785,7 @@ class TabBarTheme extends Object:
 
 # bin/cache/pkg/sky_engine/lib/core/comparable.dart
 abstract class Comparable<T> extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
 class Duration extends Object implements Comparable<Duration>:
@@ -869,6 +896,7 @@ enum TargetPlatform:
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 abstract class PageTransitionsBuilder extends Object:
+	default:
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsTheme extends Object:
@@ -913,6 +941,7 @@ class AppBarTheme extends Object:
 
 # packages/flutter/lib/src/material/material_state.dart
 abstract class MaterialStateProperty<T> extends Object:
+	default:
 
 # packages/flutter/lib/src/material/scrollbar_theme.dart
 class ScrollbarThemeData extends Object:
@@ -931,6 +960,7 @@ class ScrollbarThemeData extends Object:
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
 abstract class NotchedShape extends Object:
+	default:
 
 # packages/flutter/lib/src/material/bottom_app_bar_theme.dart
 class BottomAppBarTheme extends Object:
@@ -1192,9 +1222,11 @@ abstract class MouseCursor extends Object:
 	static:
 		defer: MouseCursor
 		uncontrolled: MouseCursor
+	default:
 
 # packages/flutter/lib/src/painting/alignment.dart
 abstract class AlignmentGeometry extends Object:
+	default:
 
 # packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle extends Object:
@@ -1476,34 +1508,43 @@ enum ThemeMode:
 
 # packages/flutter/lib/src/widgets/localizations.dart
 abstract class LocalizationsDelegate<T> extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/shortcuts.dart
 abstract class ShortcutActivator extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/actions.dart
 class DoNothingIntent extends Intent:
+	default:
 
 # packages/flutter/lib/src/widgets/actions.dart
 abstract class Intent extends Object:
 	static:
 		doNothing: DoNothingIntent
+	default:
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
 abstract class Type extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/actions.dart
 abstract class Action<T extends Intent> extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/scroll_configuration.dart
 class ScrollBehavior extends Object:
+	default:
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class Listenable extends Object:
+	default:
 	merge:
 		listenables: List<Listenable>
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class ValueListenable<T> extends Listenable:
+	default:
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformation extends Object:
@@ -1513,15 +1554,19 @@ class RouteInformation extends Object:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationProvider extends ValueListenable<RouteInformation>:
+	default:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class RouteInformationParser<T> extends Object:
+	default:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class RouterDelegate<T> extends Listenable:
+	default:
 
 # packages/flutter/lib/src/widgets/router.dart
 class _CallbackHookProvider<T> extends Object:
+	default:
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
 abstract class FutureOr<T> extends Object:
@@ -1535,6 +1580,7 @@ class _StringStackTrace extends Object implements StackTrace:
 abstract class StackTrace extends Object:
 	static:
 		empty: _StringStackTrace
+	default:
 	fromString:
 		stackTraceString: string
 
@@ -1557,6 +1603,7 @@ abstract class Future<T> extends Object:
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider<Future<bool>>:
+	default:
 
 # packages/flutter/lib/src/material/app.dart
 class MaterialApp extends StatefulWidget:
@@ -1631,6 +1678,7 @@ class MaterialApp extends StatefulWidget:
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEventData extends Object:
+	default:
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEvent extends Object:
@@ -1648,6 +1696,7 @@ enum KeyEventResult:
 
 # packages/flutter/lib/src/services/keyboard_key.dart
 abstract class KeyboardKey extends Object:
+	default:
 
 # packages/flutter/lib/src/services/keyboard_key.dart
 class PhysicalKeyboardKey extends KeyboardKey:
