@@ -34,12 +34,14 @@ class ClientTranslator {
 
   void _emitEnum(IREnum e) {
     p('');
-    p('${e.name} _u${e.name}(String v) {');
-    p('  switch(v) {');
+    p('${e.name} _u${e.name}(dynamic v) {');
+    p('  if (v is String) {');
+    p('    switch(v) {');
     for (final v in e.values) {
-      p("    case '$v':");
-      p('      return ${e.name}.$v;');
+      p("      case '$v':");
+      p('        return ${e.name}.$v;');
     }
+    p('    }');
     p('  }');
     p("  throw 'illegal enum value \$v';");
     p('}');
