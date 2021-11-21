@@ -17,7 +17,7 @@ class ClientTranslator {
       p.t(() {
         for (final f in c.fields) {
           final t = f.type;
-          p("final ${f.name} = $m['${f.name}'];");
+          p("final ${dumpType(f.type)} ${f.name} = $m['${f.name}'];");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
         p('return ${e.name}$ctor(');

@@ -62,8 +62,8 @@ class IRType {
   static final bool = IRType('bool');
   static final int = IRType('int');
   static final double = IRType('double');
-  static final string = IRType('string');
-  static final any = IRType('any');
+  static final string = IRType('String');
+  static final any = IRType('dynamic');
 
   get isPrimitive =>
       this == IRType.bool ||
@@ -188,6 +188,23 @@ bool _hasInterface(DartType t, List<String> names) {
     }
   }
   return false;
+}
+
+String dumpType(IRType t) {
+  if (t is IRParameterizedType) {
+    if (t.parameters.isNotEmpty) {
+      final params = t.parameters.map(dumpType).join(', ');
+      if (t.element == IRElement.optional) {
+        return '$params?';
+      }
+      // FIXME handle func<>
+      return '${t.name}<$params>';
+    }
+  } else if (t is IRTypeParameter) {
+    final b = t.bound;
+    return t.name + (b != null ? ' extends ${dumpType(b)}' : '');
+  }
+  return t.name;
 }
 
 class IRBuilder {
@@ -401,19 +418,6 @@ class IRBuilder {
           Set<Element> elements, Set<String> widgetWhitelist) =>
       IRBuilder()._load(elements, widgetWhitelist);
 
-  static String _dumpType(IRType t) {
-    if (t is IRParameterizedType) {
-      if (t.parameters.isNotEmpty) {
-        final params = t.parameters.map(_dumpType).join(', ');
-        return '${t.name}<$params>';
-      }
-    } else if (t is IRTypeParameter) {
-      final b = t.bound;
-      return t.name + (b != null ? ' extends ${_dumpType(b)}' : '');
-    }
-    return t.name;
-  }
-
   static String dump(List<IRElement> elements) {
     final p = Printer('\t');
     for (final e in elements) {
@@ -428,13 +432,13 @@ class IRBuilder {
       } else if (e is IRClass) {
         final abs = e.isAbstract ? 'abstract ' : '';
         final params = e.parameters.isNotEmpty
-            ? '<${comma(e.parameters.map(_dumpType))}>'
+            ? '<${comma(e.parameters.map(dumpType))}>'
             : '';
         final ext = e.supertypes.isNotEmpty
-            ? ' extends ' + comma(e.supertypes.map(_dumpType))
+            ? ' extends ' + comma(e.supertypes.map(dumpType))
             : '';
         final impl = e.interfaces.isNotEmpty
-            ? ' implements ' + comma(e.interfaces.map(_dumpType))
+            ? ' implements ' + comma(e.interfaces.map(dumpType))
             : '';
         p('${abs}class ${e.name}$params$ext$impl:');
         p.t(() {
@@ -443,15 +447,15 @@ class IRBuilder {
             p.t(() {
               for (final f in e.fields) {
                 final v = f.value is! IRUndefined ? ' = ${f.value}' : '';
-                p('${f.name}: ${_dumpType(f.type)}$v');
+                p('${f.name}: ${dumpType(f.type)}$v');
               }
             });
           }
           for (final c in e.constructors) {
-            p(c.name.isNotEmpty ? '${c.name}:': 'default:');
+            p(c.name.isNotEmpty ? '${c.name}:' : 'default:');
             p.t(() {
               for (final f in c.fields) {
-                p('${f.name}: ${_dumpType(f.type)}');
+                p('${f.name}: ${dumpType(f.type)}');
               }
             });
           }
