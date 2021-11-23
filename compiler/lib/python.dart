@@ -51,7 +51,7 @@ final _builtins = {
   'String': 'str',
   'dynamic': 'Any',
   'opt': 'Optional',
-  'func': 'Callable',
+  'Function': 'Callable',
   'Map': 'Dict',
 };
 
@@ -154,17 +154,15 @@ class PythonTranslator {
 
     if (t is IRParameterizedType) {
       final e = t.element;
+      if (e == IRElement.func) return '_noop';
+      if (e == IRElement.optional) return 'None';
       switch (e.name) {
-        case 'opt':
-          return 'None';
         case 'List':
           return '[]';
         case 'Set':
           return 'set()';
         case 'Map':
           return '{}';
-        case 'func':
-          return '_noop';
       }
 
       if (e is IRClass) {

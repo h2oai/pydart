@@ -37,7 +37,7 @@ abstract class Iterable<E> extends Object:
 	default:
 	generate:
 		count: int
-		generator: func<int, E>?
+		generator: E Function(int)?
 	empty:
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
@@ -62,7 +62,7 @@ abstract class List<E> extends Object implements EfficientLengthIterable<E>:
 		growable: bool?
 	generate:
 		length: int
-		generator: func<int, E>
+		generator: E Function(int)
 		growable: bool?
 	unmodifiable:
 		elements: Iterable<dynamic>
@@ -105,11 +105,11 @@ class Navigator extends StatefulWidget:
 	default:
 		key: Key?
 		pages: List<Page<dynamic>>?
-		onPopPage: func<Route<dynamic>, dynamic, bool>?
+		onPopPage: bool Function(Route<dynamic>, dynamic)?
 		initialRoute: String?
-		onGenerateInitialRoutes: func<NavigatorState, String, List<Route<dynamic>>>?
-		onGenerateRoute: func<RouteSettings, Route<dynamic>>?
-		onUnknownRoute: func<RouteSettings, Route<dynamic>>?
+		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String)?
+		onGenerateRoute: Route<dynamic> Function(RouteSettings)?
+		onUnknownRoute: Route<dynamic> Function(RouteSettings)?
 		transitionDelegate: TransitionDelegate<dynamic>?
 		reportsRouteUpdateToEngine: bool?
 		observers: List<NavigatorObserver>?
@@ -147,8 +147,8 @@ abstract class Map<K, V> extends Object:
 	identity:
 	fromIterable:
 		iterable: Iterable<dynamic>
-		key: func<dynamic, K>?
-		value: func<dynamic, V>?
+		key: K Function(dynamic)?
+		value: V Function(dynamic)?
 	fromIterables:
 		keys: Iterable<K>
 		values: Iterable<V>
@@ -756,7 +756,7 @@ class SliderThemeData extends Object:
 		showValueIndicator: ShowValueIndicator?
 		valueIndicatorTextStyle: TextStyle?
 		minThumbSeparation: double?
-		thumbSelector: func<TextDirection, RangeValues, double, Size, Size, double, Thumb>?
+		thumbSelector: Thumb Function(TextDirection, RangeValues, double, Size, Size, double)?
 	fromPrimaryColors:
 		primaryColor: Color
 		primaryColorDark: Color
@@ -1587,11 +1587,11 @@ abstract class StackTrace extends Object:
 # bin/cache/pkg/sky_engine/lib/async/future.dart
 abstract class Future<T> extends Object:
 	default:
-		computation: func<FutureOr<T>>
+		computation: FutureOr<T> Function()
 	microtask:
-		computation: func<FutureOr<T>>
+		computation: FutureOr<T> Function()
 	sync:
-		computation: func<FutureOr<T>>
+		computation: FutureOr<T> Function()
 	value:
 		value: FutureOr<T>?
 	error:
@@ -1599,7 +1599,7 @@ abstract class Future<T> extends Object:
 		stackTrace: StackTrace?
 	delayed:
 		duration: Duration
-		computation: func<FutureOr<T>>?
+		computation: FutureOr<T> Function()?
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider<Future<bool>>:
@@ -1612,15 +1612,15 @@ class MaterialApp extends StatefulWidget:
 		navigatorKey: GlobalKey<NavigatorState>?
 		scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>?
 		home: Widget?
-		routes: Map<String, func<BuildContext, Widget>>?
+		routes: Map<String, Widget Function(BuildContext)>?
 		initialRoute: String?
-		onGenerateRoute: func<RouteSettings, Route<dynamic>>?
-		onGenerateInitialRoutes: func<String, List<Route<dynamic>>>?
-		onUnknownRoute: func<RouteSettings, Route<dynamic>>?
+		onGenerateRoute: Route<dynamic> Function(RouteSettings)?
+		onGenerateInitialRoutes: List<Route<dynamic>> Function(String)?
+		onUnknownRoute: Route<dynamic> Function(RouteSettings)?
 		navigatorObservers: List<NavigatorObserver>?
-		builder: func<BuildContext, Widget, Widget>?
+		builder: Widget Function(BuildContext, Widget)?
 		title: String?
-		onGenerateTitle: func<BuildContext, String>?
+		onGenerateTitle: String Function(BuildContext)?
 		color: Color?
 		theme: ThemeData?
 		darkTheme: ThemeData?
@@ -1629,8 +1629,8 @@ class MaterialApp extends StatefulWidget:
 		themeMode: ThemeMode?
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
-		localeListResolutionCallback: func<List<Locale>, Iterable<Locale>, Locale>?
-		localeResolutionCallback: func<Locale, Iterable<Locale>, Locale>?
+		localeListResolutionCallback: Locale Function(List<Locale>, Iterable<Locale>)?
+		localeResolutionCallback: Locale Function(Locale, Iterable<Locale>)?
 		supportedLocales: Iterable<Locale>?
 		debugShowMaterialGrid: bool?
 		showPerformanceOverlay: bool?
@@ -1650,9 +1650,9 @@ class MaterialApp extends StatefulWidget:
 		routeInformationParser: RouteInformationParser<Object>
 		routerDelegate: RouterDelegate<Object>
 		backButtonDispatcher: BackButtonDispatcher?
-		builder: func<BuildContext, Widget, Widget>?
+		builder: Widget Function(BuildContext, Widget)?
 		title: String?
-		onGenerateTitle: func<BuildContext, String>?
+		onGenerateTitle: String Function(BuildContext)?
 		color: Color?
 		theme: ThemeData?
 		darkTheme: ThemeData?
@@ -1661,8 +1661,8 @@ class MaterialApp extends StatefulWidget:
 		themeMode: ThemeMode?
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
-		localeListResolutionCallback: func<List<Locale>, Iterable<Locale>, Locale>?
-		localeResolutionCallback: func<Locale, Iterable<Locale>, Locale>?
+		localeListResolutionCallback: Locale Function(List<Locale>, Iterable<Locale>)?
+		localeResolutionCallback: Locale Function(Locale, Iterable<Locale>)?
 		supportedLocales: Iterable<Locale>?
 		debugShowMaterialGrid: bool?
 		showPerformanceOverlay: bool?
@@ -1675,6 +1675,42 @@ class MaterialApp extends StatefulWidget:
 		restorationScopeId: String?
 		scrollBehavior: ScrollBehavior?
 		useInheritedMediaQuery: bool?
+
+# packages/flutter/lib/src/widgets/preferred_size.dart
+abstract class PreferredSizeWidget extends Object implements Widget:
+	default:
+
+# packages/flutter/lib/src/material/app_bar.dart
+class AppBar extends StatefulWidget implements PreferredSizeWidget:
+	default:
+		key: Key?
+		leading: Widget?
+		automaticallyImplyLeading: bool?
+		title: Widget?
+		actions: List<Widget>?
+		flexibleSpace: Widget?
+		bottom: PreferredSizeWidget?
+		elevation: double?
+		shadowColor: Color?
+		shape: ShapeBorder?
+		backgroundColor: Color?
+		foregroundColor: Color?
+		brightness: Brightness?
+		iconTheme: IconThemeData?
+		actionsIconTheme: IconThemeData?
+		textTheme: TextTheme?
+		primary: bool?
+		centerTitle: bool?
+		excludeHeaderSemantics: bool?
+		titleSpacing: double?
+		toolbarOpacity: double?
+		bottomOpacity: double?
+		toolbarHeight: double?
+		leadingWidth: double?
+		backwardsCompatibility: bool?
+		toolbarTextStyle: TextStyle?
+		titleTextStyle: TextStyle?
+		systemOverlayStyle: SystemUiOverlayStyle?
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEventData extends Object:
@@ -2449,8 +2485,8 @@ abstract class KeyEvent extends Object:
 class FocusNode extends Object:
 	default:
 		debugLabel: String?
-		onKey: func<FocusNode, RawKeyEvent, KeyEventResult>?
-		onKeyEvent: func<FocusNode, KeyEvent, KeyEventResult>?
+		onKey: KeyEventResult Function(FocusNode, RawKeyEvent)?
+		onKeyEvent: KeyEventResult Function(FocusNode, KeyEvent)?
 		skipTraversal: bool?
 		canRequestFocus: bool?
 		descendantsAreFocusable: bool?
@@ -2459,8 +2495,8 @@ class FocusNode extends Object:
 abstract class ButtonStyleButton extends StatefulWidget:
 	default:
 		key: Key?
-		onPressed: func<void>
-		onLongPress: func<void>
+		onPressed: void Function()
+		onLongPress: void Function()
 		style: ButtonStyle
 		focusNode: FocusNode
 		autofocus: bool
@@ -2471,8 +2507,8 @@ abstract class ButtonStyleButton extends StatefulWidget:
 class ElevatedButton extends ButtonStyleButton:
 	default:
 		key: Key?
-		onPressed: func<void>
-		onLongPress: func<void>?
+		onPressed: void Function()
+		onLongPress: void Function()?
 		style: ButtonStyle?
 		focusNode: FocusNode?
 		autofocus: bool?
@@ -2480,12 +2516,377 @@ class ElevatedButton extends ButtonStyleButton:
 		child: Widget
 	icon:
 		key: Key?
-		onPressed: func<void>
-		onLongPress: func<void>?
+		onPressed: void Function()
+		onLongPress: void Function()?
 		style: ButtonStyle?
 		focusNode: FocusNode?
 		autofocus: bool?
 		clipBehavior: Clip?
 		icon: Widget
 		label: Widget
+
+# packages/flutter/lib/src/widgets/framework.dart
+abstract class StatelessWidget extends Widget:
+	default:
+		key: Key?
+
+# packages/flutter/lib/src/material/list_tile.dart
+class ListTile extends StatelessWidget:
+	default:
+		key: Key?
+		leading: Widget?
+		title: Widget?
+		subtitle: Widget?
+		trailing: Widget?
+		isThreeLine: bool?
+		dense: bool?
+		visualDensity: VisualDensity?
+		shape: ShapeBorder?
+		contentPadding: EdgeInsetsGeometry?
+		enabled: bool?
+		onTap: void Function()?
+		onLongPress: void Function()?
+		mouseCursor: MouseCursor?
+		selected: bool?
+		focusColor: Color?
+		hoverColor: Color?
+		focusNode: FocusNode?
+		autofocus: bool?
+		tileColor: Color?
+		selectedTileColor: Color?
+		enableFeedback: bool?
+		horizontalTitleGap: double?
+		minVerticalPadding: double?
+		minLeadingWidth: double?
+
+# packages/flutter/lib/src/material/floating_action_button_location.dart
+abstract class FloatingActionButtonLocation extends Object:
+	static:
+		startTop: FloatingActionButtonLocation
+		miniStartTop: FloatingActionButtonLocation
+		centerTop: FloatingActionButtonLocation
+		miniCenterTop: FloatingActionButtonLocation
+		endTop: FloatingActionButtonLocation
+		miniEndTop: FloatingActionButtonLocation
+		startFloat: FloatingActionButtonLocation
+		miniStartFloat: FloatingActionButtonLocation
+		centerFloat: FloatingActionButtonLocation
+		miniCenterFloat: FloatingActionButtonLocation
+		endFloat: FloatingActionButtonLocation
+		miniEndFloat: FloatingActionButtonLocation
+		startDocked: FloatingActionButtonLocation
+		miniStartDocked: FloatingActionButtonLocation
+		centerDocked: FloatingActionButtonLocation
+		miniCenterDocked: FloatingActionButtonLocation
+		endDocked: FloatingActionButtonLocation
+		miniEndDocked: FloatingActionButtonLocation
+	default:
+
+# packages/flutter/lib/src/material/floating_action_button_location.dart
+abstract class FloatingActionButtonAnimator extends Object:
+	static:
+		scaling: FloatingActionButtonAnimator
+	default:
+
+# packages/flutter/lib/src/gestures/recognizer.dart
+enum DragStartBehavior:
+	down
+	start
+
+# packages/flutter/lib/src/material/scaffold.dart
+class Scaffold extends StatefulWidget:
+	default:
+		key: Key?
+		appBar: PreferredSizeWidget?
+		body: Widget?
+		floatingActionButton: Widget?
+		floatingActionButtonLocation: FloatingActionButtonLocation?
+		floatingActionButtonAnimator: FloatingActionButtonAnimator?
+		persistentFooterButtons: List<Widget>?
+		drawer: Widget?
+		onDrawerChanged: void Function(bool)?
+		endDrawer: Widget?
+		onEndDrawerChanged: void Function(bool)?
+		bottomNavigationBar: Widget?
+		bottomSheet: Widget?
+		backgroundColor: Color?
+		resizeToAvoidBottomInset: bool?
+		primary: bool?
+		drawerDragStartBehavior: DragStartBehavior?
+		extendBody: bool?
+		extendBodyBehindAppBar: bool?
+		drawerScrimColor: Color?
+		drawerEdgeDragWidth: double?
+		drawerEnableOpenDragGesture: bool?
+		endDrawerEnableOpenDragGesture: bool?
+		restorationId: String?
+
+# bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
+class WindowPadding extends Object:
+	static:
+		zero: WindowPadding
+
+# packages/flutter/lib/src/painting/edge_insets.dart
+class EdgeInsets extends EdgeInsetsGeometry:
+	static:
+		zero: EdgeInsets
+	fromLTRB:
+		left: double
+		top: double
+		right: double
+		bottom: double
+	all:
+		value: double
+	only:
+		left: double?
+		top: double?
+		right: double?
+		bottom: double?
+	symmetric:
+		vertical: double?
+		horizontal: double?
+	fromWindowPadding:
+		padding: WindowPadding
+		devicePixelRatio: double
+
+# packages/flutter/lib/src/painting/basic_types.dart
+enum Axis:
+	horizontal
+	vertical
+
+# packages/flutter/lib/src/foundation/change_notifier.dart
+class ChangeNotifier extends Object implements Listenable:
+	default:
+
+# packages/flutter/lib/src/widgets/scroll_controller.dart
+class ScrollController extends ChangeNotifier:
+	default:
+		initialScrollOffset: double?
+		keepScrollOffset: bool?
+		debugLabel: String?
+
+# packages/flutter/lib/src/widgets/scroll_physics.dart
+class ScrollPhysics extends Object:
+	default:
+		parent: ScrollPhysics?
+
+# packages/flutter/lib/src/widgets/scroll_view.dart
+enum ScrollViewKeyboardDismissBehavior:
+	manual
+	onDrag
+
+# packages/flutter/lib/src/widgets/scroll_view.dart
+abstract class ScrollView extends StatelessWidget:
+	default:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		scrollBehavior: ScrollBehavior?
+		shrinkWrap: bool?
+		center: Key?
+		anchor: double?
+		cacheExtent: double?
+		semanticChildCount: int?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+
+# packages/flutter/lib/src/widgets/scroll_view.dart
+abstract class BoxScrollView extends ScrollView:
+	default:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		shrinkWrap: bool?
+		padding: EdgeInsetsGeometry?
+		cacheExtent: double?
+		semanticChildCount: int?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+
+# packages/flutter/lib/src/widgets/sliver.dart
+abstract class SliverChildDelegate extends Object:
+	default:
+
+# packages/flutter/lib/src/widgets/scroll_view.dart
+class ListView extends BoxScrollView:
+	default:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		shrinkWrap: bool?
+		padding: EdgeInsetsGeometry?
+		itemExtent: double?
+		prototypeItem: Widget?
+		addAutomaticKeepAlives: bool?
+		addRepaintBoundaries: bool?
+		addSemanticIndexes: bool?
+		cacheExtent: double?
+		children: List<Widget>?
+		semanticChildCount: int?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+	builder:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		shrinkWrap: bool?
+		padding: EdgeInsetsGeometry?
+		itemExtent: double?
+		prototypeItem: Widget?
+		itemBuilder: Widget Function(BuildContext, int)
+		itemCount: int?
+		addAutomaticKeepAlives: bool?
+		addRepaintBoundaries: bool?
+		addSemanticIndexes: bool?
+		cacheExtent: double?
+		semanticChildCount: int?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+	separated:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		shrinkWrap: bool?
+		padding: EdgeInsetsGeometry?
+		itemBuilder: Widget Function(BuildContext, int)
+		separatorBuilder: Widget Function(BuildContext, int)
+		itemCount: int
+		addAutomaticKeepAlives: bool?
+		addRepaintBoundaries: bool?
+		addSemanticIndexes: bool?
+		cacheExtent: double?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+	custom:
+		key: Key?
+		scrollDirection: Axis?
+		reverse: bool?
+		controller: ScrollController?
+		primary: bool?
+		physics: ScrollPhysics?
+		shrinkWrap: bool?
+		padding: EdgeInsetsGeometry?
+		itemExtent: double?
+		prototypeItem: Widget?
+		childrenDelegate: SliverChildDelegate
+		cacheExtent: double?
+		semanticChildCount: int?
+		dragStartBehavior: DragStartBehavior?
+		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
+		restorationId: String?
+		clipBehavior: Clip?
+
+# packages/flutter/lib/src/painting/strut_style.dart
+class StrutStyle extends Object:
+	static:
+		disabled: StrutStyle
+	default:
+		fontFamily: String?
+		fontFamilyFallback: List<String>?
+		fontSize: double?
+		height: double?
+		leadingDistribution: TextLeadingDistribution?
+		leading: double?
+		fontWeight: FontWeight?
+		fontStyle: FontStyle?
+		forceStrutHeight: bool?
+		debugLabel: String?
+		package: String?
+	fromTextStyle:
+		textStyle: TextStyle
+		fontFamily: String?
+		fontFamilyFallback: List<String>?
+		fontSize: double?
+		height: double?
+		leadingDistribution: TextLeadingDistribution?
+		leading: double?
+		fontWeight: FontWeight?
+		fontStyle: FontStyle?
+		forceStrutHeight: bool?
+		debugLabel: String?
+		package: String?
+
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
+enum TextAlign:
+	left
+	right
+	center
+	justify
+	start
+	end
+
+# packages/flutter/lib/src/painting/text_painter.dart
+enum TextWidthBasis:
+	parent
+	longestLine
+
+# bin/cache/pkg/sky_engine/lib/ui/text.dart
+class TextHeightBehavior extends Object:
+	default:
+		applyHeightToFirstAscent: bool?
+		applyHeightToLastDescent: bool?
+		leadingDistribution: TextLeadingDistribution?
+
+# packages/flutter/lib/src/painting/inline_span.dart
+abstract class InlineSpan extends DiagnosticableTree:
+	default:
+		style: TextStyle?
+
+# packages/flutter/lib/src/widgets/text.dart
+class Text extends StatelessWidget:
+	default:
+		data: String
+		key: Key?
+		style: TextStyle?
+		strutStyle: StrutStyle?
+		textAlign: TextAlign?
+		textDirection: TextDirection?
+		locale: Locale?
+		softWrap: bool?
+		overflow: TextOverflow?
+		textScaleFactor: double?
+		maxLines: int?
+		semanticsLabel: String?
+		textWidthBasis: TextWidthBasis?
+		textHeightBehavior: TextHeightBehavior?
+	rich:
+		textSpan: InlineSpan
+		key: Key?
+		style: TextStyle?
+		strutStyle: StrutStyle?
+		textAlign: TextAlign?
+		textDirection: TextDirection?
+		locale: Locale?
+		softWrap: bool?
+		overflow: TextOverflow?
+		textScaleFactor: double?
+		maxLines: int?
+		semanticsLabel: String?
+		textWidthBasis: TextWidthBasis?
+		textHeightBehavior: TextHeightBehavior?
 

@@ -95,7 +95,7 @@ class IRElement {
   IRElement(this.path, this.name);
 
   static final optional = IRElement('', 'opt');
-  static final func = IRElement('', 'func');
+  static final func = IRElement('', 'Function');
 
   @override
   bool operator ==(Object other) =>
@@ -193,11 +193,16 @@ bool _hasInterface(DartType t, List<String> names) {
 String dumpType(IRType t) {
   if (t is IRParameterizedType) {
     if (t.parameters.isNotEmpty) {
-      final params = t.parameters.map(dumpType).join(', ');
+      final types = t.parameters.map(dumpType).toList();
+      if (t.element == IRElement.func) {
+        final params = types.sublist(0, types.length-1).join(', ');
+        final returnType = types.last;
+        return '$returnType Function($params)';
+      }
+      final params = types.join(', ');
       if (t.element == IRElement.optional) {
         return '$params?';
       }
-      // FIXME handle func<>
       return '${t.name}<$params>';
     }
   } else if (t is IRTypeParameter) {
