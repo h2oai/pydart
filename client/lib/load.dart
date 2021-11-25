@@ -18,16 +18,16 @@ String? _typeOf(Map<String, dynamic> state) {
 }
 
 dynamic unmarshal(dynamic v) {
-  if (v == null) throw 'cannot unmarshal null';
   if (v is Map<String, dynamic>) {
     final t = _typeOf(v);
     if (t != null) {
-      final unmarshal = _loaders[t];
-      if (unmarshal != null) return unmarshal(v);
+      final u = _loaders[t];
+      if (u != null) return u(v);
       throw 'unmarshal failed: no loader found for $t';
     }
+    throw 'unmarshal failed: no type name found on object';
   }
-  return v;
+  throw 'unmarshal failed: not an object';
 }
 
 bool uBool(dynamic v) {
