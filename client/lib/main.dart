@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'load.dart';
 import 'types.dart';
 
 void main() {
@@ -17,29 +18,6 @@ String _getWebSocketEndpoint(String path) {
     return '$protocol://${location.host}$path';
   }
   throw 'unhandled: get ws endpoint for non-web';
-}
-
-String? _typeOf(Map<String, dynamic> state) {
-  final t = state['#t'];
-  if (t != null && t is List<dynamic> && t.length == 2) {
-    final klass = t[0];
-    final constructor = t[1];
-    if (klass is String && constructor is String) {
-      return '$klass.$constructor';
-    }
-  }
-  return null;
-}
-
-dynamic _unmarshal(Map<String, dynamic> state) {
-  final t = _typeOf(state);
-  if (t != null) {
-    final unmarshal = loaders[t];
-    if (unmarshal != null) {
-      return unmarshal(state);
-    }
-  }
-  throw 'unmarshal failed';
 }
 
 class NitroApp extends StatefulWidget {
@@ -67,7 +45,7 @@ class _NitroAppState extends State<NitroApp> {
                   final query = command[1];
                   final state = command[2];
                   if (query is String && state is Map<String, dynamic>) {
-                    final widget = _unmarshal(state);
+                    final widget = unmarshal(loaders, state);
                     return widget;
                   }
                 }
