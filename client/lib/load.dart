@@ -1,5 +1,10 @@
 typedef Unmarshal = dynamic Function(Map<String, dynamic> state);
 
+Map<String, Unmarshal> _loaders = {};
+
+void registerLoaders(Map<String, Unmarshal> loaders) =>
+    _loaders.addAll(loaders);
+
 String? _typeOf(Map<String, dynamic> state) {
   final t = state['#t'];
   if (t != null && t is List<dynamic> && t.length == 2) {
@@ -12,17 +17,17 @@ String? _typeOf(Map<String, dynamic> state) {
   return null;
 }
 
-dynamic unmarshal(Map<String, Unmarshal> loaders, dynamic state) {
-  if (state == null) throw 'cannot unmarshal null';
-  if (state is Map<String, dynamic>) {
-    final t = _typeOf(state);
+dynamic unmarshal(dynamic v) {
+  if (v == null) throw 'cannot unmarshal null';
+  if (v is Map<String, dynamic>) {
+    final t = _typeOf(v);
     if (t != null) {
-      final unmarshal = loaders[t];
-      if (unmarshal != null) return unmarshal(state);
+      final unmarshal = _loaders[t];
+      if (unmarshal != null) return unmarshal(v);
       throw 'unmarshal failed: no loader found for $t';
     }
   }
-  return state;
+  return v;
 }
 
 bool uBool(dynamic v) {
@@ -30,25 +35,29 @@ bool uBool(dynamic v) {
   throw 'unmarshal failed: not a bool';
 }
 
-bool? unBool(dynamic v) => v == null ? v : uBool(v);
-
 int uInt(dynamic v) {
   if (v is int) return v;
   throw 'unmarshal failed: not a int';
 }
-
-int? unInt(dynamic v) => v == null ? v : uInt(v);
 
 double uDouble(dynamic v) {
   if (v is double) return v;
   throw 'unmarshal failed: not a double';
 }
 
-double? unDouble(dynamic v) => v == null ? v : uDouble(v);
-
 String uString(dynamic v) {
   if (v is String) return v;
   throw 'unmarshal failed: not a string';
 }
 
-String? unString(dynamic v) => v == null ? v : uString(v);
+T uClass<T>(dynamic v) => unmarshal(v);
+
+T? Function(dynamic) uNull<T>(T Function(dynamic) u) =>
+    (dynamic v) => v == null ? v : u(v);
+
+List<T> Function(dynamic) uList<T>(T Function(dynamic) u) {
+  return (dynamic v) {
+    if (v is List<dynamic>) return v.map(u).toList(growable: false);
+    throw 'unmarshal failed: not a list';
+  };
+}

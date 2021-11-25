@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'load.dart';
-import 'types.dart';
 
 void main() {
   runApp(const NitroApp());
@@ -45,7 +44,7 @@ class _NitroAppState extends State<NitroApp> {
                   final query = command[1];
                   final state = command[2];
                   if (query is String && state is Map<String, dynamic>) {
-                    final widget = unmarshal(loaders, state);
+                    final widget = unmarshal(state);
                     return widget;
                   }
                 }

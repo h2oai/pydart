@@ -15,17 +15,32 @@ String capitalize(String s) {
 String _unmarshalerNameOf(String className, String ctorName) =>
     '_u$className' + capitalize(ctorName);
 
-String _unmarshalerOf(IRType t, bool isOptional) {
-  if (t.isPrimitive) return (isOptional ? 'un' : 'u') + capitalize(t.name);
+String _unmarshalerOf(IRType t) {
+  if (t.isPrimitive) return 'u' + capitalize(t.name);
+
+  // uNull(uList(uBool))(v)
 
   if (t is IRParameterizedType) {
     final e = t.element;
-    // FIXME handle List and Map
     if (e == IRElement.optional) {
-      return _unmarshalerOf(t.parameters.first, true);
+      final p = t.parameters.first;
+      return 'uNull<${dumpType(p)}>(${_unmarshalerOf(p)})';
     }
-    if (e is IREnum) return (isOptional ? '_un' : '_u') + e.name;
-    if (e is IRClass) return isOptional ? '_unClass' : '_uClass';
+    if (e.name == 'List') {
+      final p = t.parameters.first;
+      return 'uList<${dumpType(p)}>(${_unmarshalerOf(p)})';
+    }
+
+    // FIXME Handle Map<K, V>
+
+    if (e is IREnum) return "_u${e.name}";
+
+    // TODO constructor-tearoffs
+    // Ideally this would be passed as uClass<T>, but causes the compiler to
+    //  complain with "This requires the 'constructor-tearoffs' language
+    //  feature to be enabled."
+    // https://github.com/dart-lang/language/blob/master/accepted/future-releases/constructor-tearoffs/feature-specification.md
+    if (e is IRClass) return 'uClass';
   }
   return '';
 }
@@ -41,9 +56,8 @@ class ClientTranslator {
       p.t(() {
         for (final f in c.fields) {
           final lookup = "$m['${f.name}']";
-          final unmarshaler = _unmarshalerOf(f.type, false);
-          final call = unmarshaler.isEmpty ? lookup : '$unmarshaler($lookup)';
-          p("final ${dumpType(f.type)} ${f.name} = $call;");
+          final unmarshal = _unmarshalerOf(f.type);
+          p("final ${dumpType(f.type)} ${f.name} = $unmarshal($lookup);");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
         p('return ${e.name}$ctor(');
@@ -94,7 +108,7 @@ class ClientTranslator {
     p('');
     p('typedef Unmarshal = dynamic Function(Map<String, dynamic> state);');
     p('');
-    p('final loaders = <String, Unmarshal>{');
+    p('registerLoaders(<String, Unmarshal>{');
     for (final e in elements.whereType<IRClass>()) {
       if (!e.isAbstract) {
         for (final c in e.constructors) {
@@ -102,9 +116,7 @@ class ClientTranslator {
         }
       }
     }
-    p('};');
-    p('dynamic _uClass(dynamic m) => unmarshal(loaders, m);');
-    p('dynamic _unClass(dynamic m) => m == null ? m : unmarshal(loaders, m);');
+    p('});');
     return p.lines.join();
   }
 
