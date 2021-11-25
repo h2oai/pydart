@@ -29,7 +29,7 @@ abstract class State<T extends StatefulWidget> extends Object:
 # packages/flutter/lib/src/widgets/framework.dart
 abstract class GlobalKey<T extends State<StatefulWidget>> extends Key:
 	default:
-		debugLabel: String?
+		debugLabel: String
 	constructor:
 
 # bin/cache/pkg/sky_engine/lib/core/iterable.dart
@@ -37,7 +37,7 @@ abstract class Iterable<E> extends Object:
 	default:
 	generate:
 		count: int
-		generator: E Function(int)?
+		generator: E Function(int)
 	empty:
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
@@ -47,30 +47,30 @@ abstract class EfficientLengthIterable<T> extends Iterable<T>:
 # bin/cache/pkg/sky_engine/lib/core/list.dart
 abstract class List<E> extends Object implements EfficientLengthIterable<E>:
 	default:
-		length: int?
+		length: int
 	filled:
 		length: int
 		fill: E
-		growable: bool?
+		growable: bool
 	empty:
-		growable: bool?
+		growable: bool
 	from:
 		elements: Iterable<dynamic>
-		growable: bool?
+		growable: bool
 	of:
 		elements: Iterable<E>
-		growable: bool?
+		growable: bool
 	generate:
 		length: int
 		generator: E Function(int)
-		growable: bool?
+		growable: bool
 	unmodifiable:
 		elements: Iterable<dynamic>
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class RouteSettings extends Object:
 	default:
-		name: String?
+		name: String
 		arguments: Object?
 
 # packages/flutter/lib/src/foundation/key.dart
@@ -81,9 +81,9 @@ abstract class LocalKey extends Key:
 abstract class Page<T> extends RouteSettings:
 	default:
 		key: LocalKey?
-		name: String?
+		name: String
 		arguments: Object?
-		restorationId: String?
+		restorationId: String
 
 # packages/flutter/lib/src/widgets/navigator.dart
 abstract class Route<T> extends Object:
@@ -104,16 +104,16 @@ class Navigator extends StatefulWidget:
 		defaultRouteName: String = '/'
 	default:
 		key: Key?
-		pages: List<Page<dynamic>>?
-		onPopPage: bool Function(Route<dynamic>, dynamic)?
-		initialRoute: String?
-		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String)?
-		onGenerateRoute: Route<dynamic> Function(RouteSettings)?
-		onUnknownRoute: Route<dynamic> Function(RouteSettings)?
-		transitionDelegate: TransitionDelegate<dynamic>?
-		reportsRouteUpdateToEngine: bool?
-		observers: List<NavigatorObserver>?
-		restorationScopeId: String?
+		pages: List<Page<dynamic>>
+		onPopPage: bool Function(Route<dynamic>, dynamic)
+		initialRoute: String
+		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String)
+		onGenerateRoute: Route<dynamic>? Function(RouteSettings)
+		onUnknownRoute: Route<dynamic>? Function(RouteSettings)
+		transitionDelegate: TransitionDelegate<dynamic>
+		reportsRouteUpdateToEngine: bool
+		observers: List<NavigatorObserver>
+		restorationScopeId: String
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorState extends State<Navigator>:
@@ -147,8 +147,8 @@ abstract class Map<K, V> extends Object:
 	identity:
 	fromIterable:
 		iterable: Iterable<dynamic>
-		key: K Function(dynamic)?
-		value: V Function(dynamic)?
+		key: K Function(dynamic)
+		value: V Function(dynamic)
 	fromIterables:
 		keys: Iterable<K>
 		values: Iterable<V>
@@ -188,8 +188,8 @@ class VisualDensity extends Object:
 		comfortable: VisualDensity
 		compact: VisualDensity
 	default:
-		horizontal: double?
-		vertical: double?
+		horizontal: double
+		vertical: double
 
 # packages/flutter/lib/src/painting/colors.dart
 class ColorSwatch<T> extends Color:
@@ -245,69 +245,69 @@ class ColorScheme extends Object:
 		onError: Color
 		brightness: Brightness
 	light:
-		primary: Color?
-		primaryVariant: Color?
-		secondary: Color?
-		secondaryVariant: Color?
-		surface: Color?
-		background: Color?
-		error: Color?
-		onPrimary: Color?
-		onSecondary: Color?
-		onSurface: Color?
-		onBackground: Color?
-		onError: Color?
-		brightness: Brightness?
+		primary: Color
+		primaryVariant: Color
+		secondary: Color
+		secondaryVariant: Color
+		surface: Color
+		background: Color
+		error: Color
+		onPrimary: Color
+		onSecondary: Color
+		onSurface: Color
+		onBackground: Color
+		onError: Color
+		brightness: Brightness
 	dark:
-		primary: Color?
-		primaryVariant: Color?
-		secondary: Color?
-		secondaryVariant: Color?
-		surface: Color?
-		background: Color?
-		error: Color?
-		onPrimary: Color?
-		onSecondary: Color?
-		onSurface: Color?
-		onBackground: Color?
-		onError: Color?
-		brightness: Brightness?
+		primary: Color
+		primaryVariant: Color
+		secondary: Color
+		secondaryVariant: Color
+		surface: Color
+		background: Color
+		error: Color
+		onPrimary: Color
+		onSecondary: Color
+		onSurface: Color
+		onBackground: Color
+		onError: Color
+		brightness: Brightness
 	highContrastLight:
-		primary: Color?
-		primaryVariant: Color?
-		secondary: Color?
-		secondaryVariant: Color?
-		surface: Color?
-		background: Color?
-		error: Color?
-		onPrimary: Color?
-		onSecondary: Color?
-		onSurface: Color?
-		onBackground: Color?
-		onError: Color?
-		brightness: Brightness?
+		primary: Color
+		primaryVariant: Color
+		secondary: Color
+		secondaryVariant: Color
+		surface: Color
+		background: Color
+		error: Color
+		onPrimary: Color
+		onSecondary: Color
+		onSurface: Color
+		onBackground: Color
+		onError: Color
+		brightness: Brightness
 	highContrastDark:
-		primary: Color?
-		primaryVariant: Color?
-		secondary: Color?
-		secondaryVariant: Color?
-		surface: Color?
-		background: Color?
-		error: Color?
-		onPrimary: Color?
-		onSecondary: Color?
-		onSurface: Color?
-		onBackground: Color?
-		onError: Color?
-		brightness: Brightness?
+		primary: Color
+		primaryVariant: Color
+		secondary: Color
+		secondaryVariant: Color
+		surface: Color
+		background: Color
+		error: Color
+		onPrimary: Color
+		onSecondary: Color
+		onSurface: Color
+		onBackground: Color
+		onError: Color
+		brightness: Brightness
 	fromSwatch:
-		primarySwatch: MaterialColor?
+		primarySwatch: MaterialColor
 		primaryColorDark: Color?
 		accentColor: Color?
 		cardColor: Color?
 		backgroundColor: Color?
 		errorColor: Color?
-		brightness: Brightness?
+		brightness: Brightness
 
 # packages/flutter/lib/src/material/theme_data.dart
 enum MaterialTapTargetSize:
@@ -317,13 +317,13 @@ enum MaterialTapTargetSize:
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonThemeData extends Object:
 	default:
-		textTheme: ButtonTextTheme?
-		minWidth: double?
-		height: double?
+		textTheme: ButtonTextTheme
+		minWidth: double
+		height: double
 		padding: EdgeInsetsGeometry?
 		shape: ShapeBorder?
-		layoutBehavior: ButtonBarLayoutBehavior?
-		alignedDropdown: bool?
+		layoutBehavior: ButtonBarLayoutBehavior
+		alignedDropdown: bool
 		buttonColor: Color?
 		disabledColor: Color?
 		focusColor: Color?
@@ -367,11 +367,11 @@ enum TextLeadingDistribution:
 class Locale extends Object:
 	default:
 		_languageCode: String
-		_countryCode: String?
+		_countryCode: String
 	fromSubtags:
-		languageCode: String?
-		scriptCode: String?
-		countryCode: String?
+		languageCode: String
+		scriptCode: String
+		countryCode: String
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint extends Object:
@@ -393,20 +393,20 @@ class Offset extends OffsetBase:
 		dy: double
 	fromDirection:
 		direction: double
-		distance: double?
+		distance: double
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Shadow extends Object:
 	default:
-		color: Color?
-		offset: Offset?
-		blurRadius: double?
+		color: Color
+		offset: Offset
+		blurRadius: double
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature extends Object:
 	default:
 		feature: String
-		value: int?
+		value: int
 	enable:
 		feature: String
 	disable:
@@ -424,9 +424,9 @@ class FontFeature extends Object:
 	historicalLigatures:
 	liningFigures:
 	localeAware:
-		enable: bool?
+		enable: bool
 	notationalForms:
-		value: int?
+		value: int
 	numerators:
 	oldstyleFigures:
 	ordinalForms:
@@ -439,7 +439,7 @@ class FontFeature extends Object:
 	subscripts:
 	superscripts:
 	swash:
-		value: int?
+		value: int
 	tabularFigures:
 	slashedZero:
 
@@ -471,16 +471,16 @@ enum TextOverflow:
 # packages/flutter/lib/src/painting/text_style.dart
 class TextStyle extends Object:
 	default:
-		inherit: bool?
+		inherit: bool
 		color: Color?
 		backgroundColor: Color?
-		fontSize: double?
+		fontSize: double
 		fontWeight: FontWeight?
 		fontStyle: FontStyle?
-		letterSpacing: double?
-		wordSpacing: double?
+		letterSpacing: double
+		wordSpacing: double
 		textBaseline: TextBaseline?
-		height: double?
+		height: double
 		leadingDistribution: TextLeadingDistribution?
 		locale: Locale?
 		foreground: Paint?
@@ -490,11 +490,11 @@ class TextStyle extends Object:
 		decoration: TextDecoration?
 		decorationColor: Color?
 		decorationStyle: TextDecorationStyle?
-		decorationThickness: double?
-		debugLabel: String?
-		fontFamily: String?
+		decorationThickness: double
+		debugLabel: String
+		fontFamily: String
 		fontFamilyFallback: List<String>?
-		package: String?
+		package: String
 		overflow: TextOverflow?
 
 # packages/flutter/lib/src/rendering/object.dart
@@ -523,23 +523,23 @@ class Size extends OffsetBase:
 # packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints extends Constraints:
 	default:
-		minWidth: double?
-		maxWidth: double?
-		minHeight: double?
-		maxHeight: double?
+		minWidth: double
+		maxWidth: double
+		minHeight: double
+		maxHeight: double
 	tight:
 		size: Size
 	tightFor:
-		width: double?
-		height: double?
+		width: double
+		height: double
 	tightForFinite:
-		width: double?
-		height: double?
+		width: double
+		height: double
 	loose:
 		size: Size
 	expand:
-		width: double?
-		height: double?
+		width: double
+		height: double
 
 # packages/flutter/lib/src/painting/border_radius.dart
 abstract class BorderRadiusGeometry extends Object:
@@ -564,16 +564,16 @@ class BorderRadius extends BorderRadiusGeometry:
 	circular:
 		radius: double
 	vertical:
-		top: Radius?
-		bottom: Radius?
+		top: Radius
+		bottom: Radius
 	horizontal:
-		left: Radius?
-		right: Radius?
+		left: Radius
+		right: Radius
 	only:
-		topLeft: Radius?
-		topRight: Radius?
-		bottomLeft: Radius?
-		bottomRight: Radius?
+		topLeft: Radius
+		topRight: Radius
+		bottomLeft: Radius
+		bottomRight: Radius
 
 # packages/flutter/lib/src/material/toggle_buttons_theme.dart
 class ToggleButtonsThemeData extends Object:
@@ -592,7 +592,7 @@ class ToggleButtonsThemeData extends Object:
 		selectedBorderColor: Color?
 		disabledBorderColor: Color?
 		borderRadius: BorderRadius?
-		borderWidth: double?
+		borderWidth: double
 
 # packages/flutter/lib/src/material/text_theme.dart
 class TextTheme extends Object:
@@ -627,16 +627,16 @@ class BorderSide extends Object:
 	static:
 		none: BorderSide
 	default:
-		color: Color?
-		width: double?
-		style: BorderStyle?
+		color: Color
+		width: double
+		style: BorderStyle
 
 # packages/flutter/lib/src/material/input_border.dart
 abstract class InputBorder extends ShapeBorder:
 	static:
 		none: InputBorder
 	default:
-		borderSide: BorderSide?
+		borderSide: BorderSide
 
 # packages/flutter/lib/src/material/input_decorator.dart
 class InputDecorationTheme extends Object:
@@ -644,18 +644,18 @@ class InputDecorationTheme extends Object:
 		labelStyle: TextStyle?
 		floatingLabelStyle: TextStyle?
 		helperStyle: TextStyle?
-		helperMaxLines: int?
+		helperMaxLines: int
 		hintStyle: TextStyle?
 		errorStyle: TextStyle?
-		errorMaxLines: int?
-		floatingLabelBehavior: FloatingLabelBehavior?
-		isDense: bool?
+		errorMaxLines: int
+		floatingLabelBehavior: FloatingLabelBehavior
+		isDense: bool
 		contentPadding: EdgeInsetsGeometry?
-		isCollapsed: bool?
+		isCollapsed: bool
 		prefixStyle: TextStyle?
 		suffixStyle: TextStyle?
 		counterStyle: TextStyle?
-		filled: bool?
+		filled: bool
 		fillColor: Color?
 		focusColor: Color?
 		hoverColor: Color?
@@ -665,15 +665,15 @@ class InputDecorationTheme extends Object:
 		disabledBorder: InputBorder?
 		enabledBorder: InputBorder?
 		border: InputBorder?
-		alignLabelWithHint: bool?
+		alignLabelWithHint: bool
 		constraints: BoxConstraints?
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
 class IconThemeData extends Object:
 	default:
 		color: Color?
-		opacity: double?
-		size: double?
+		opacity: double
+		size: double
 	fallback:
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -730,7 +730,7 @@ enum Thumb:
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderThemeData extends Object:
 	default:
-		trackHeight: double?
+		trackHeight: double
 		activeTrackColor: Color?
 		inactiveTrackColor: Color?
 		disabledActiveTrackColor: Color?
@@ -755,8 +755,8 @@ class SliderThemeData extends Object:
 		rangeValueIndicatorShape: RangeSliderValueIndicatorShape?
 		showValueIndicator: ShowValueIndicator?
 		valueIndicatorTextStyle: TextStyle?
-		minThumbSeparation: double?
-		thumbSelector: Thumb Function(TextDirection, RangeValues, double, Size, Size, double)?
+		minThumbSeparation: double
+		thumbSelector: Thumb? Function(TextDirection, RangeValues, double, Size, Size, double)
 	fromPrimaryColors:
 		primaryColor: Color
 		primaryColorDark: Color
@@ -807,12 +807,12 @@ class Duration extends Object implements Comparable<Duration>:
 		minutesPerDay: int = 1440
 		zero: Duration
 	default:
-		days: int?
-		hours: int?
-		minutes: int?
-		seconds: int?
-		milliseconds: int?
-		microseconds: int?
+		days: int
+		hours: int
+		minutes: int
+		seconds: int
+		milliseconds: int
+		microseconds: int
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
 enum TooltipTriggerMode:
@@ -823,18 +823,18 @@ enum TooltipTriggerMode:
 # packages/flutter/lib/src/material/tooltip_theme.dart
 class TooltipThemeData extends Object:
 	default:
-		height: double?
+		height: double
 		padding: EdgeInsetsGeometry?
 		margin: EdgeInsetsGeometry?
-		verticalOffset: double?
-		preferBelow: bool?
-		excludeFromSemantics: bool?
+		verticalOffset: double
+		preferBelow: bool
+		excludeFromSemantics: bool
 		decoration: Decoration?
 		textStyle: TextStyle?
 		waitDuration: Duration?
 		showDuration: Duration?
 		triggerMode: TooltipTriggerMode?
-		enableFeedback: bool?
+		enableFeedback: bool
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 enum Clip:
@@ -849,14 +849,14 @@ class CardTheme extends Object:
 		clipBehavior: Clip?
 		color: Color?
 		shadowColor: Color?
-		elevation: double?
+		elevation: double
 		margin: EdgeInsetsGeometry?
 		shape: ShapeBorder?
 
 # packages/flutter/lib/src/painting/borders.dart
 abstract class OutlinedBorder extends ShapeBorder:
 	default:
-		side: BorderSide?
+		side: BorderSide
 
 # packages/flutter/lib/src/material/chip_theme.dart
 class ChipThemeData extends Object:
@@ -868,7 +868,7 @@ class ChipThemeData extends Object:
 		secondarySelectedColor: Color
 		shadowColor: Color?
 		selectedShadowColor: Color?
-		showCheckmark: bool?
+		showCheckmark: bool
 		checkmarkColor: Color?
 		labelPadding: EdgeInsetsGeometry?
 		padding: EdgeInsetsGeometry
@@ -877,8 +877,8 @@ class ChipThemeData extends Object:
 		labelStyle: TextStyle
 		secondaryLabelStyle: TextStyle
 		brightness: Brightness
-		elevation: double?
-		pressElevation: double?
+		elevation: double
+		pressElevation: double
 	fromDefaults:
 		brightness: Brightness?
 		primaryColor: Color?
@@ -901,7 +901,7 @@ abstract class PageTransitionsBuilder extends Object:
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsTheme extends Object:
 	default:
-		builders: Map<TargetPlatform, PageTransitionsBuilder>?
+		builders: Map<TargetPlatform, PageTransitionsBuilder>
 
 # packages/flutter/lib/src/services/system_chrome.dart
 class SystemUiOverlayStyle extends Object:
@@ -912,11 +912,11 @@ class SystemUiOverlayStyle extends Object:
 		systemNavigationBarColor: Color?
 		systemNavigationBarDividerColor: Color?
 		systemNavigationBarIconBrightness: Brightness?
-		systemNavigationBarContrastEnforced: bool?
+		systemNavigationBarContrastEnforced: bool
 		statusBarColor: Color?
 		statusBarBrightness: Brightness?
 		statusBarIconBrightness: Brightness?
-		systemStatusBarContrastEnforced: bool?
+		systemStatusBarContrastEnforced: bool
 
 # packages/flutter/lib/src/material/app_bar_theme.dart
 class AppBarTheme extends Object:
@@ -925,19 +925,19 @@ class AppBarTheme extends Object:
 		color: Color?
 		backgroundColor: Color?
 		foregroundColor: Color?
-		elevation: double?
+		elevation: double
 		shadowColor: Color?
 		shape: ShapeBorder?
 		iconTheme: IconThemeData?
 		actionsIconTheme: IconThemeData?
 		textTheme: TextTheme?
-		centerTitle: bool?
-		titleSpacing: double?
-		toolbarHeight: double?
+		centerTitle: bool
+		titleSpacing: double
+		toolbarHeight: double
 		toolbarTextStyle: TextStyle?
 		titleTextStyle: TextStyle?
 		systemOverlayStyle: SystemUiOverlayStyle?
-		backwardsCompatibility: bool?
+		backwardsCompatibility: bool
 
 # packages/flutter/lib/src/material/material_state.dart
 abstract class MaterialStateProperty<T> extends Object:
@@ -947,16 +947,16 @@ abstract class MaterialStateProperty<T> extends Object:
 class ScrollbarThemeData extends Object:
 	default:
 		thickness: MaterialStateProperty<double>?
-		showTrackOnHover: bool?
-		isAlwaysShown: bool?
+		showTrackOnHover: bool
+		isAlwaysShown: bool
 		radius: Radius?
-		thumbColor: MaterialStateProperty<Color>?
-		trackColor: MaterialStateProperty<Color>?
-		trackBorderColor: MaterialStateProperty<Color>?
-		crossAxisMargin: double?
-		mainAxisMargin: double?
-		minThumbLength: double?
-		interactive: bool?
+		thumbColor: MaterialStateProperty<Color?>?
+		trackColor: MaterialStateProperty<Color?>?
+		trackBorderColor: MaterialStateProperty<Color?>?
+		crossAxisMargin: double
+		mainAxisMargin: double
+		minThumbLength: double
+		interactive: bool
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
 abstract class NotchedShape extends Object:
@@ -966,14 +966,14 @@ abstract class NotchedShape extends Object:
 class BottomAppBarTheme extends Object:
 	default:
 		color: Color?
-		elevation: double?
+		elevation: double
 		shape: NotchedShape?
 
 # packages/flutter/lib/src/material/dialog_theme.dart
 class DialogTheme extends Object:
 	default:
 		backgroundColor: Color?
-		elevation: double?
+		elevation: double
 		shape: ShapeBorder?
 		titleTextStyle: TextStyle?
 		contentTextStyle: TextStyle?
@@ -986,18 +986,18 @@ class FloatingActionButtonThemeData extends Object:
 		focusColor: Color?
 		hoverColor: Color?
 		splashColor: Color?
-		elevation: double?
-		focusElevation: double?
-		hoverElevation: double?
-		disabledElevation: double?
-		highlightElevation: double?
+		elevation: double
+		focusElevation: double
+		hoverElevation: double
+		disabledElevation: double
+		highlightElevation: double
 		shape: ShapeBorder?
-		enableFeedback: bool?
+		enableFeedback: bool
 		sizeConstraints: BoxConstraints?
 		smallSizeConstraints: BoxConstraints?
 		largeSizeConstraints: BoxConstraints?
 		extendedSizeConstraints: BoxConstraints?
-		extendedIconLabelSpacing: double?
+		extendedIconLabelSpacing: double
 		extendedPadding: EdgeInsetsGeometry?
 		extendedTextStyle: TextStyle?
 
@@ -1011,12 +1011,12 @@ enum NavigationRailLabelType:
 class NavigationRailThemeData extends Object:
 	default:
 		backgroundColor: Color?
-		elevation: double?
+		elevation: double
 		unselectedLabelTextStyle: TextStyle?
 		selectedLabelTextStyle: TextStyle?
 		unselectedIconTheme: IconThemeData?
 		selectedIconTheme: IconThemeData?
-		groupAlignment: double?
+		groupAlignment: double
 		labelType: NavigationRailLabelType?
 
 # packages/flutter/lib/src/material/typography.dart
@@ -1063,7 +1063,7 @@ class Typography extends Object:
 # packages/flutter/lib/src/cupertino/text_theme.dart
 class CupertinoTextThemeData extends Object:
 	default:
-		primaryColor: Color?
+		primaryColor: Color
 		textStyle: TextStyle?
 		actionTextStyle: TextStyle?
 		tabLabelTextStyle: TextStyle?
@@ -1095,7 +1095,7 @@ class SnackBarThemeData extends Object:
 		actionTextColor: Color?
 		disabledActionTextColor: Color?
 		contentTextStyle: TextStyle?
-		elevation: double?
+		elevation: double
 		shape: ShapeBorder?
 		behavior: SnackBarBehavior?
 
@@ -1103,9 +1103,9 @@ class SnackBarThemeData extends Object:
 class BottomSheetThemeData extends Object:
 	default:
 		backgroundColor: Color?
-		elevation: double?
+		elevation: double
 		modalBackgroundColor: Color?
-		modalElevation: double?
+		modalElevation: double
 		shape: ShapeBorder?
 		clipBehavior: Clip?
 		constraints: BoxConstraints?
@@ -1115,9 +1115,9 @@ class PopupMenuThemeData extends Object:
 	default:
 		color: Color?
 		shape: ShapeBorder?
-		elevation: double?
+		elevation: double
 		textStyle: TextStyle?
-		enableFeedback: bool?
+		enableFeedback: bool
 
 # packages/flutter/lib/src/material/banner_theme.dart
 class MaterialBannerThemeData extends Object:
@@ -1131,10 +1131,10 @@ class MaterialBannerThemeData extends Object:
 class DividerThemeData extends Object:
 	default:
 		color: Color?
-		space: double?
-		thickness: double?
-		indent: double?
-		endIndent: double?
+		space: double
+		thickness: double
+		indent: double
+		endIndent: double
 
 # packages/flutter/lib/src/rendering/flex.dart
 enum MainAxisAlignment:
@@ -1161,10 +1161,10 @@ class ButtonBarThemeData extends Object:
 		alignment: MainAxisAlignment?
 		mainAxisSize: MainAxisSize?
 		buttonTextTheme: ButtonTextTheme?
-		buttonMinWidth: double?
-		buttonHeight: double?
+		buttonMinWidth: double
+		buttonHeight: double
 		buttonPadding: EdgeInsetsGeometry?
-		buttonAlignedDropdown: bool?
+		buttonAlignedDropdown: bool
 		layoutBehavior: ButtonBarLayoutBehavior?
 		overflowDirection: VerticalDirection?
 
@@ -1183,17 +1183,17 @@ enum BottomNavigationBarLandscapeLayout:
 class BottomNavigationBarThemeData extends Object:
 	default:
 		backgroundColor: Color?
-		elevation: double?
+		elevation: double
 		selectedIconTheme: IconThemeData?
 		unselectedIconTheme: IconThemeData?
 		selectedItemColor: Color?
 		unselectedItemColor: Color?
 		selectedLabelStyle: TextStyle?
 		unselectedLabelStyle: TextStyle?
-		showSelectedLabels: bool?
-		showUnselectedLabels: bool?
+		showSelectedLabels: bool
+		showUnselectedLabels: bool
 		type: BottomNavigationBarType?
-		enableFeedback: bool?
+		enableFeedback: bool
 		landscapeLayout: BottomNavigationBarLandscapeLayout?
 
 # packages/flutter/lib/src/material/time_picker_theme.dart
@@ -1231,23 +1231,23 @@ abstract class AlignmentGeometry extends Object:
 # packages/flutter/lib/src/material/button_style.dart
 class ButtonStyle extends Object:
 	default:
-		textStyle: MaterialStateProperty<TextStyle>?
-		backgroundColor: MaterialStateProperty<Color>?
-		foregroundColor: MaterialStateProperty<Color>?
-		overlayColor: MaterialStateProperty<Color>?
-		shadowColor: MaterialStateProperty<Color>?
+		textStyle: MaterialStateProperty<TextStyle?>?
+		backgroundColor: MaterialStateProperty<Color?>?
+		foregroundColor: MaterialStateProperty<Color?>?
+		overlayColor: MaterialStateProperty<Color?>?
+		shadowColor: MaterialStateProperty<Color?>?
 		elevation: MaterialStateProperty<double>?
-		padding: MaterialStateProperty<EdgeInsetsGeometry>?
-		minimumSize: MaterialStateProperty<Size>?
-		fixedSize: MaterialStateProperty<Size>?
-		maximumSize: MaterialStateProperty<Size>?
-		side: MaterialStateProperty<BorderSide>?
-		shape: MaterialStateProperty<OutlinedBorder>?
-		mouseCursor: MaterialStateProperty<MouseCursor>?
+		padding: MaterialStateProperty<EdgeInsetsGeometry?>?
+		minimumSize: MaterialStateProperty<Size?>?
+		fixedSize: MaterialStateProperty<Size?>?
+		maximumSize: MaterialStateProperty<Size?>?
+		side: MaterialStateProperty<BorderSide?>?
+		shape: MaterialStateProperty<OutlinedBorder?>?
+		mouseCursor: MaterialStateProperty<MouseCursor?>?
 		visualDensity: VisualDensity?
 		tapTargetSize: MaterialTapTargetSize?
 		animationDuration: Duration?
-		enableFeedback: bool?
+		enableFeedback: bool
 		alignment: AlignmentGeometry?
 		splashFactory: InteractiveInkFeatureFactory?
 
@@ -1277,25 +1277,25 @@ class TextSelectionThemeData extends Object:
 class DataTableThemeData extends Object:
 	default:
 		decoration: Decoration?
-		dataRowColor: MaterialStateProperty<Color>?
-		dataRowHeight: double?
+		dataRowColor: MaterialStateProperty<Color?>?
+		dataRowHeight: double
 		dataTextStyle: TextStyle?
-		headingRowColor: MaterialStateProperty<Color>?
-		headingRowHeight: double?
+		headingRowColor: MaterialStateProperty<Color?>?
+		headingRowHeight: double
 		headingTextStyle: TextStyle?
-		horizontalMargin: double?
-		columnSpacing: double?
-		dividerThickness: double?
-		checkboxHorizontalMargin: double?
+		horizontalMargin: double
+		columnSpacing: double
+		dividerThickness: double
+		checkboxHorizontalMargin: double
 
 # packages/flutter/lib/src/material/checkbox_theme.dart
 class CheckboxThemeData extends Object:
 	default:
-		mouseCursor: MaterialStateProperty<MouseCursor>?
-		fillColor: MaterialStateProperty<Color>?
-		checkColor: MaterialStateProperty<Color>?
-		overlayColor: MaterialStateProperty<Color>?
-		splashRadius: double?
+		mouseCursor: MaterialStateProperty<MouseCursor?>?
+		fillColor: MaterialStateProperty<Color?>?
+		checkColor: MaterialStateProperty<Color?>?
+		overlayColor: MaterialStateProperty<Color?>?
+		splashRadius: double
 		materialTapTargetSize: MaterialTapTargetSize?
 		visualDensity: VisualDensity?
 		shape: OutlinedBorder?
@@ -1304,29 +1304,29 @@ class CheckboxThemeData extends Object:
 # packages/flutter/lib/src/material/radio_theme.dart
 class RadioThemeData extends Object:
 	default:
-		mouseCursor: MaterialStateProperty<MouseCursor>?
-		fillColor: MaterialStateProperty<Color>?
-		overlayColor: MaterialStateProperty<Color>?
-		splashRadius: double?
+		mouseCursor: MaterialStateProperty<MouseCursor?>?
+		fillColor: MaterialStateProperty<Color?>?
+		overlayColor: MaterialStateProperty<Color?>?
+		splashRadius: double
 		materialTapTargetSize: MaterialTapTargetSize?
 		visualDensity: VisualDensity?
 
 # packages/flutter/lib/src/material/switch_theme.dart
 class SwitchThemeData extends Object:
 	default:
-		thumbColor: MaterialStateProperty<Color>?
-		trackColor: MaterialStateProperty<Color>?
+		thumbColor: MaterialStateProperty<Color?>?
+		trackColor: MaterialStateProperty<Color?>?
 		materialTapTargetSize: MaterialTapTargetSize?
-		mouseCursor: MaterialStateProperty<MouseCursor>?
-		overlayColor: MaterialStateProperty<Color>?
-		splashRadius: double?
+		mouseCursor: MaterialStateProperty<MouseCursor?>?
+		overlayColor: MaterialStateProperty<Color?>?
+		splashRadius: double
 
 # packages/flutter/lib/src/material/progress_indicator_theme.dart
 class ProgressIndicatorThemeData extends Object:
 	default:
 		color: Color?
 		linearTrackColor: Color?
-		linearMinHeight: double?
+		linearMinHeight: double
 		circularTrackColor: Color?
 		refreshBackgroundColor: Color?
 
@@ -1369,7 +1369,7 @@ class ThemeData extends Object:
 		hintColor: Color?
 		errorColor: Color?
 		toggleableActiveColor: Color?
-		fontFamily: String?
+		fontFamily: String
 		textTheme: TextTheme?
 		primaryTextTheme: TextTheme?
 		accentTextTheme: TextTheme?
@@ -1384,7 +1384,7 @@ class ThemeData extends Object:
 		chipTheme: ChipThemeData?
 		platform: TargetPlatform?
 		materialTapTargetSize: MaterialTapTargetSize?
-		applyElevationOverlayColor: bool?
+		applyElevationOverlayColor: bool
 		pageTransitionsTheme: PageTransitionsTheme?
 		appBarTheme: AppBarTheme?
 		scrollbarTheme: ScrollbarThemeData?
@@ -1412,8 +1412,8 @@ class ThemeData extends Object:
 		radioTheme: RadioThemeData?
 		switchTheme: SwitchThemeData?
 		progressIndicatorTheme: ProgressIndicatorThemeData?
-		fixTextFieldOutlineLabel: bool?
-		useTextSelectionTheme: bool?
+		fixTextFieldOutlineLabel: bool
+		useTextSelectionTheme: bool
 	raw:
 		visualDensity: VisualDensity
 		primaryColor: Color
@@ -1473,7 +1473,7 @@ class ThemeData extends Object:
 		floatingActionButtonTheme: FloatingActionButtonThemeData
 		navigationRailTheme: NavigationRailThemeData
 		typography: Typography
-		cupertinoOverrideTheme: NoDefaultCupertinoThemeData
+		cupertinoOverrideTheme: NoDefaultCupertinoThemeData?
 		snackBarTheme: SnackBarThemeData
 		bottomSheetTheme: BottomSheetThemeData
 		popupMenuTheme: PopupMenuThemeData
@@ -1540,7 +1540,7 @@ class ScrollBehavior extends Object:
 abstract class Listenable extends Object:
 	default:
 	merge:
-		listenables: List<Listenable>
+		listenables: List<Listenable?>
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 abstract class ValueListenable<T> extends Listenable:
@@ -1549,7 +1549,7 @@ abstract class ValueListenable<T> extends Listenable:
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformation extends Object:
 	default:
-		location: String?
+		location: String
 		state: Object?
 
 # packages/flutter/lib/src/widgets/router.dart
@@ -1599,7 +1599,7 @@ abstract class Future<T> extends Object:
 		stackTrace: StackTrace?
 	delayed:
 		duration: Duration
-		computation: FutureOr<T> Function()?
+		computation: FutureOr<T> Function()
 
 # packages/flutter/lib/src/widgets/router.dart
 abstract class BackButtonDispatcher extends _CallbackHookProvider<Future<bool>>:
@@ -1612,15 +1612,15 @@ class MaterialApp extends StatefulWidget:
 		navigatorKey: GlobalKey<NavigatorState>?
 		scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>?
 		home: Widget?
-		routes: Map<String, Widget Function(BuildContext)>?
-		initialRoute: String?
-		onGenerateRoute: Route<dynamic> Function(RouteSettings)?
-		onGenerateInitialRoutes: List<Route<dynamic>> Function(String)?
-		onUnknownRoute: Route<dynamic> Function(RouteSettings)?
-		navigatorObservers: List<NavigatorObserver>?
-		builder: Widget Function(BuildContext, Widget)?
-		title: String?
-		onGenerateTitle: String Function(BuildContext)?
+		routes: Map<String, Widget Function(BuildContext)>
+		initialRoute: String
+		onGenerateRoute: Route<dynamic>? Function(RouteSettings)
+		onGenerateInitialRoutes: List<Route<dynamic>> Function(String)
+		onUnknownRoute: Route<dynamic>? Function(RouteSettings)
+		navigatorObservers: List<NavigatorObserver>
+		builder: Widget Function(BuildContext, Widget?)
+		title: String
+		onGenerateTitle: String Function(BuildContext)
 		color: Color?
 		theme: ThemeData?
 		darkTheme: ThemeData?
@@ -1629,20 +1629,20 @@ class MaterialApp extends StatefulWidget:
 		themeMode: ThemeMode?
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
-		localeListResolutionCallback: Locale Function(List<Locale>, Iterable<Locale>)?
-		localeResolutionCallback: Locale Function(Locale, Iterable<Locale>)?
-		supportedLocales: Iterable<Locale>?
-		debugShowMaterialGrid: bool?
-		showPerformanceOverlay: bool?
-		checkerboardRasterCacheImages: bool?
-		checkerboardOffscreenLayers: bool?
-		showSemanticsDebugger: bool?
-		debugShowCheckedModeBanner: bool?
+		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)
+		localeResolutionCallback: Locale? Function(Locale?, Iterable<Locale>)
+		supportedLocales: Iterable<Locale>
+		debugShowMaterialGrid: bool
+		showPerformanceOverlay: bool
+		checkerboardRasterCacheImages: bool
+		checkerboardOffscreenLayers: bool
+		showSemanticsDebugger: bool
+		debugShowCheckedModeBanner: bool
 		shortcuts: Map<ShortcutActivator, Intent>?
 		actions: Map<Type, Action<Intent>>?
-		restorationScopeId: String?
+		restorationScopeId: String
 		scrollBehavior: ScrollBehavior?
-		useInheritedMediaQuery: bool?
+		useInheritedMediaQuery: bool
 	router:
 		key: Key?
 		scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>?
@@ -1650,9 +1650,9 @@ class MaterialApp extends StatefulWidget:
 		routeInformationParser: RouteInformationParser<Object>
 		routerDelegate: RouterDelegate<Object>
 		backButtonDispatcher: BackButtonDispatcher?
-		builder: Widget Function(BuildContext, Widget)?
-		title: String?
-		onGenerateTitle: String Function(BuildContext)?
+		builder: Widget Function(BuildContext, Widget?)
+		title: String
+		onGenerateTitle: String Function(BuildContext)
 		color: Color?
 		theme: ThemeData?
 		darkTheme: ThemeData?
@@ -1661,56 +1661,20 @@ class MaterialApp extends StatefulWidget:
 		themeMode: ThemeMode?
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
-		localeListResolutionCallback: Locale Function(List<Locale>, Iterable<Locale>)?
-		localeResolutionCallback: Locale Function(Locale, Iterable<Locale>)?
-		supportedLocales: Iterable<Locale>?
-		debugShowMaterialGrid: bool?
-		showPerformanceOverlay: bool?
-		checkerboardRasterCacheImages: bool?
-		checkerboardOffscreenLayers: bool?
-		showSemanticsDebugger: bool?
-		debugShowCheckedModeBanner: bool?
+		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)
+		localeResolutionCallback: Locale? Function(Locale?, Iterable<Locale>)
+		supportedLocales: Iterable<Locale>
+		debugShowMaterialGrid: bool
+		showPerformanceOverlay: bool
+		checkerboardRasterCacheImages: bool
+		checkerboardOffscreenLayers: bool
+		showSemanticsDebugger: bool
+		debugShowCheckedModeBanner: bool
 		shortcuts: Map<ShortcutActivator, Intent>?
 		actions: Map<Type, Action<Intent>>?
-		restorationScopeId: String?
+		restorationScopeId: String
 		scrollBehavior: ScrollBehavior?
-		useInheritedMediaQuery: bool?
-
-# packages/flutter/lib/src/widgets/preferred_size.dart
-abstract class PreferredSizeWidget extends Object implements Widget:
-	default:
-
-# packages/flutter/lib/src/material/app_bar.dart
-class AppBar extends StatefulWidget implements PreferredSizeWidget:
-	default:
-		key: Key?
-		leading: Widget?
-		automaticallyImplyLeading: bool?
-		title: Widget?
-		actions: List<Widget>?
-		flexibleSpace: Widget?
-		bottom: PreferredSizeWidget?
-		elevation: double?
-		shadowColor: Color?
-		shape: ShapeBorder?
-		backgroundColor: Color?
-		foregroundColor: Color?
-		brightness: Brightness?
-		iconTheme: IconThemeData?
-		actionsIconTheme: IconThemeData?
-		textTheme: TextTheme?
-		primary: bool?
-		centerTitle: bool?
-		excludeHeaderSemantics: bool?
-		titleSpacing: double?
-		toolbarOpacity: double?
-		bottomOpacity: double?
-		toolbarHeight: double?
-		leadingWidth: double?
-		backwardsCompatibility: bool?
-		toolbarTextStyle: TextStyle?
-		titleTextStyle: TextStyle?
-		systemOverlayStyle: SystemUiOverlayStyle?
+		useInheritedMediaQuery: bool
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEventData extends Object:
@@ -1720,7 +1684,7 @@ abstract class RawKeyEventData extends Object:
 abstract class RawKeyEvent extends Object:
 	default:
 		data: RawKeyEventData
-		character: String?
+		character: String
 	fromMessage:
 		message: Map<String, dynamic>
 
@@ -2477,19 +2441,19 @@ abstract class KeyEvent extends Object:
 	default:
 		physicalKey: PhysicalKeyboardKey
 		logicalKey: LogicalKeyboardKey
-		character: String?
+		character: String
 		timeStamp: Duration
-		synthesized: bool?
+		synthesized: bool
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode extends Object:
 	default:
-		debugLabel: String?
-		onKey: KeyEventResult Function(FocusNode, RawKeyEvent)?
-		onKeyEvent: KeyEventResult Function(FocusNode, KeyEvent)?
-		skipTraversal: bool?
-		canRequestFocus: bool?
-		descendantsAreFocusable: bool?
+		debugLabel: String
+		onKey: KeyEventResult Function(FocusNode, RawKeyEvent)
+		onKeyEvent: KeyEventResult Function(FocusNode, KeyEvent)
+		skipTraversal: bool
+		canRequestFocus: bool
+		descendantsAreFocusable: bool
 
 # packages/flutter/lib/src/material/button_style_button.dart
 abstract class ButtonStyleButton extends StatefulWidget:
@@ -2497,396 +2461,31 @@ abstract class ButtonStyleButton extends StatefulWidget:
 		key: Key?
 		onPressed: void Function()
 		onLongPress: void Function()
-		style: ButtonStyle
-		focusNode: FocusNode
+		style: ButtonStyle?
+		focusNode: FocusNode?
 		autofocus: bool
 		clipBehavior: Clip
-		child: Widget
+		child: Widget?
 
 # packages/flutter/lib/src/material/elevated_button.dart
 class ElevatedButton extends ButtonStyleButton:
 	default:
 		key: Key?
 		onPressed: void Function()
-		onLongPress: void Function()?
+		onLongPress: void Function()
 		style: ButtonStyle?
 		focusNode: FocusNode?
-		autofocus: bool?
-		clipBehavior: Clip?
-		child: Widget
+		autofocus: bool
+		clipBehavior: Clip
+		child: Widget?
 	icon:
 		key: Key?
 		onPressed: void Function()
-		onLongPress: void Function()?
+		onLongPress: void Function()
 		style: ButtonStyle?
 		focusNode: FocusNode?
-		autofocus: bool?
+		autofocus: bool
 		clipBehavior: Clip?
 		icon: Widget
 		label: Widget
-
-# packages/flutter/lib/src/widgets/framework.dart
-abstract class StatelessWidget extends Widget:
-	default:
-		key: Key?
-
-# packages/flutter/lib/src/material/list_tile.dart
-class ListTile extends StatelessWidget:
-	default:
-		key: Key?
-		leading: Widget?
-		title: Widget?
-		subtitle: Widget?
-		trailing: Widget?
-		isThreeLine: bool?
-		dense: bool?
-		visualDensity: VisualDensity?
-		shape: ShapeBorder?
-		contentPadding: EdgeInsetsGeometry?
-		enabled: bool?
-		onTap: void Function()?
-		onLongPress: void Function()?
-		mouseCursor: MouseCursor?
-		selected: bool?
-		focusColor: Color?
-		hoverColor: Color?
-		focusNode: FocusNode?
-		autofocus: bool?
-		tileColor: Color?
-		selectedTileColor: Color?
-		enableFeedback: bool?
-		horizontalTitleGap: double?
-		minVerticalPadding: double?
-		minLeadingWidth: double?
-
-# packages/flutter/lib/src/material/floating_action_button_location.dart
-abstract class FloatingActionButtonLocation extends Object:
-	static:
-		startTop: FloatingActionButtonLocation
-		miniStartTop: FloatingActionButtonLocation
-		centerTop: FloatingActionButtonLocation
-		miniCenterTop: FloatingActionButtonLocation
-		endTop: FloatingActionButtonLocation
-		miniEndTop: FloatingActionButtonLocation
-		startFloat: FloatingActionButtonLocation
-		miniStartFloat: FloatingActionButtonLocation
-		centerFloat: FloatingActionButtonLocation
-		miniCenterFloat: FloatingActionButtonLocation
-		endFloat: FloatingActionButtonLocation
-		miniEndFloat: FloatingActionButtonLocation
-		startDocked: FloatingActionButtonLocation
-		miniStartDocked: FloatingActionButtonLocation
-		centerDocked: FloatingActionButtonLocation
-		miniCenterDocked: FloatingActionButtonLocation
-		endDocked: FloatingActionButtonLocation
-		miniEndDocked: FloatingActionButtonLocation
-	default:
-
-# packages/flutter/lib/src/material/floating_action_button_location.dart
-abstract class FloatingActionButtonAnimator extends Object:
-	static:
-		scaling: FloatingActionButtonAnimator
-	default:
-
-# packages/flutter/lib/src/gestures/recognizer.dart
-enum DragStartBehavior:
-	down
-	start
-
-# packages/flutter/lib/src/material/scaffold.dart
-class Scaffold extends StatefulWidget:
-	default:
-		key: Key?
-		appBar: PreferredSizeWidget?
-		body: Widget?
-		floatingActionButton: Widget?
-		floatingActionButtonLocation: FloatingActionButtonLocation?
-		floatingActionButtonAnimator: FloatingActionButtonAnimator?
-		persistentFooterButtons: List<Widget>?
-		drawer: Widget?
-		onDrawerChanged: void Function(bool)?
-		endDrawer: Widget?
-		onEndDrawerChanged: void Function(bool)?
-		bottomNavigationBar: Widget?
-		bottomSheet: Widget?
-		backgroundColor: Color?
-		resizeToAvoidBottomInset: bool?
-		primary: bool?
-		drawerDragStartBehavior: DragStartBehavior?
-		extendBody: bool?
-		extendBodyBehindAppBar: bool?
-		drawerScrimColor: Color?
-		drawerEdgeDragWidth: double?
-		drawerEnableOpenDragGesture: bool?
-		endDrawerEnableOpenDragGesture: bool?
-		restorationId: String?
-
-# bin/cache/pkg/sky_engine/lib/ui/platform_dispatcher.dart
-class WindowPadding extends Object:
-	static:
-		zero: WindowPadding
-
-# packages/flutter/lib/src/painting/edge_insets.dart
-class EdgeInsets extends EdgeInsetsGeometry:
-	static:
-		zero: EdgeInsets
-	fromLTRB:
-		left: double
-		top: double
-		right: double
-		bottom: double
-	all:
-		value: double
-	only:
-		left: double?
-		top: double?
-		right: double?
-		bottom: double?
-	symmetric:
-		vertical: double?
-		horizontal: double?
-	fromWindowPadding:
-		padding: WindowPadding
-		devicePixelRatio: double
-
-# packages/flutter/lib/src/painting/basic_types.dart
-enum Axis:
-	horizontal
-	vertical
-
-# packages/flutter/lib/src/foundation/change_notifier.dart
-class ChangeNotifier extends Object implements Listenable:
-	default:
-
-# packages/flutter/lib/src/widgets/scroll_controller.dart
-class ScrollController extends ChangeNotifier:
-	default:
-		initialScrollOffset: double?
-		keepScrollOffset: bool?
-		debugLabel: String?
-
-# packages/flutter/lib/src/widgets/scroll_physics.dart
-class ScrollPhysics extends Object:
-	default:
-		parent: ScrollPhysics?
-
-# packages/flutter/lib/src/widgets/scroll_view.dart
-enum ScrollViewKeyboardDismissBehavior:
-	manual
-	onDrag
-
-# packages/flutter/lib/src/widgets/scroll_view.dart
-abstract class ScrollView extends StatelessWidget:
-	default:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		scrollBehavior: ScrollBehavior?
-		shrinkWrap: bool?
-		center: Key?
-		anchor: double?
-		cacheExtent: double?
-		semanticChildCount: int?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-
-# packages/flutter/lib/src/widgets/scroll_view.dart
-abstract class BoxScrollView extends ScrollView:
-	default:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		shrinkWrap: bool?
-		padding: EdgeInsetsGeometry?
-		cacheExtent: double?
-		semanticChildCount: int?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-
-# packages/flutter/lib/src/widgets/sliver.dart
-abstract class SliverChildDelegate extends Object:
-	default:
-
-# packages/flutter/lib/src/widgets/scroll_view.dart
-class ListView extends BoxScrollView:
-	default:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		shrinkWrap: bool?
-		padding: EdgeInsetsGeometry?
-		itemExtent: double?
-		prototypeItem: Widget?
-		addAutomaticKeepAlives: bool?
-		addRepaintBoundaries: bool?
-		addSemanticIndexes: bool?
-		cacheExtent: double?
-		children: List<Widget>?
-		semanticChildCount: int?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-	builder:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		shrinkWrap: bool?
-		padding: EdgeInsetsGeometry?
-		itemExtent: double?
-		prototypeItem: Widget?
-		itemBuilder: Widget Function(BuildContext, int)
-		itemCount: int?
-		addAutomaticKeepAlives: bool?
-		addRepaintBoundaries: bool?
-		addSemanticIndexes: bool?
-		cacheExtent: double?
-		semanticChildCount: int?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-	separated:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		shrinkWrap: bool?
-		padding: EdgeInsetsGeometry?
-		itemBuilder: Widget Function(BuildContext, int)
-		separatorBuilder: Widget Function(BuildContext, int)
-		itemCount: int
-		addAutomaticKeepAlives: bool?
-		addRepaintBoundaries: bool?
-		addSemanticIndexes: bool?
-		cacheExtent: double?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-	custom:
-		key: Key?
-		scrollDirection: Axis?
-		reverse: bool?
-		controller: ScrollController?
-		primary: bool?
-		physics: ScrollPhysics?
-		shrinkWrap: bool?
-		padding: EdgeInsetsGeometry?
-		itemExtent: double?
-		prototypeItem: Widget?
-		childrenDelegate: SliverChildDelegate
-		cacheExtent: double?
-		semanticChildCount: int?
-		dragStartBehavior: DragStartBehavior?
-		keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior?
-		restorationId: String?
-		clipBehavior: Clip?
-
-# packages/flutter/lib/src/painting/strut_style.dart
-class StrutStyle extends Object:
-	static:
-		disabled: StrutStyle
-	default:
-		fontFamily: String?
-		fontFamilyFallback: List<String>?
-		fontSize: double?
-		height: double?
-		leadingDistribution: TextLeadingDistribution?
-		leading: double?
-		fontWeight: FontWeight?
-		fontStyle: FontStyle?
-		forceStrutHeight: bool?
-		debugLabel: String?
-		package: String?
-	fromTextStyle:
-		textStyle: TextStyle
-		fontFamily: String?
-		fontFamilyFallback: List<String>?
-		fontSize: double?
-		height: double?
-		leadingDistribution: TextLeadingDistribution?
-		leading: double?
-		fontWeight: FontWeight?
-		fontStyle: FontStyle?
-		forceStrutHeight: bool?
-		debugLabel: String?
-		package: String?
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-enum TextAlign:
-	left
-	right
-	center
-	justify
-	start
-	end
-
-# packages/flutter/lib/src/painting/text_painter.dart
-enum TextWidthBasis:
-	parent
-	longestLine
-
-# bin/cache/pkg/sky_engine/lib/ui/text.dart
-class TextHeightBehavior extends Object:
-	default:
-		applyHeightToFirstAscent: bool?
-		applyHeightToLastDescent: bool?
-		leadingDistribution: TextLeadingDistribution?
-
-# packages/flutter/lib/src/painting/inline_span.dart
-abstract class InlineSpan extends DiagnosticableTree:
-	default:
-		style: TextStyle?
-
-# packages/flutter/lib/src/widgets/text.dart
-class Text extends StatelessWidget:
-	default:
-		data: String
-		key: Key?
-		style: TextStyle?
-		strutStyle: StrutStyle?
-		textAlign: TextAlign?
-		textDirection: TextDirection?
-		locale: Locale?
-		softWrap: bool?
-		overflow: TextOverflow?
-		textScaleFactor: double?
-		maxLines: int?
-		semanticsLabel: String?
-		textWidthBasis: TextWidthBasis?
-		textHeightBehavior: TextHeightBehavior?
-	rich:
-		textSpan: InlineSpan
-		key: Key?
-		style: TextStyle?
-		strutStyle: StrutStyle?
-		textAlign: TextAlign?
-		textDirection: TextDirection?
-		locale: Locale?
-		softWrap: bool?
-		overflow: TextOverflow?
-		textScaleFactor: double?
-		maxLines: int?
-		semanticsLabel: String?
-		textWidthBasis: TextWidthBasis?
-		textHeightBehavior: TextHeightBehavior?
 

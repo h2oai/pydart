@@ -10,7 +10,7 @@ Object _uObject(Map<String, dynamic> __m) {
 }
 
 RouteSettings _uRouteSettings(Map<String, dynamic> __m) {
-  final String? name = __m['name'];
+  final String name = __m['name'];
   final Object? arguments = __m['arguments'];
   return RouteSettings(
     name: name,
@@ -25,16 +25,16 @@ NavigatorObserver _uNavigatorObserver(Map<String, dynamic> __m) {
 
 Navigator _uNavigator(Map<String, dynamic> __m) {
   final Key? key = __m['key'];
-  final List<Page<dynamic>>? pages = __m['pages'];
-  final func<Route<dynamic>, dynamic, bool>? onPopPage = __m['onPopPage'];
-  final String? initialRoute = __m['initialRoute'];
-  final func<NavigatorState, String, List<Route<dynamic>>>? onGenerateInitialRoutes = __m['onGenerateInitialRoutes'];
-  final func<RouteSettings, Route<dynamic>>? onGenerateRoute = __m['onGenerateRoute'];
-  final func<RouteSettings, Route<dynamic>>? onUnknownRoute = __m['onUnknownRoute'];
-  final TransitionDelegate<dynamic>? transitionDelegate = __m['transitionDelegate'];
-  final bool? reportsRouteUpdateToEngine = __m['reportsRouteUpdateToEngine'];
-  final List<NavigatorObserver>? observers = __m['observers'];
-  final String? restorationScopeId = __m['restorationScopeId'];
+  final List<Page<dynamic>> pages = __m['pages'];
+  final bool Function(Route<dynamic>, dynamic) onPopPage = __m['onPopPage'];
+  final String initialRoute = __m['initialRoute'];
+  final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = __m['onGenerateInitialRoutes'];
+  final Route<dynamic>? Function(RouteSettings) onGenerateRoute = __m['onGenerateRoute'];
+  final Route<dynamic>? Function(RouteSettings) onUnknownRoute = __m['onUnknownRoute'];
+  final TransitionDelegate<dynamic> transitionDelegate = __m['transitionDelegate'];
+  final bool reportsRouteUpdateToEngine = __m['reportsRouteUpdateToEngine'];
+  final List<NavigatorObserver> observers = __m['observers'];
+  final String restorationScopeId = __m['restorationScopeId'];
   return Navigator(
     key: key,
     pages: pages,
@@ -124,8 +124,8 @@ Brightness _uBrightness(dynamic v) {
 }
 
 VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
-  final double? horizontal = __m['horizontal'];
-  final double? vertical = __m['vertical'];
+  final double horizontal = __m['horizontal'];
+  final double vertical = __m['vertical'];
   return VisualDensity(
     horizontal: horizontal,
     vertical: vertical,
@@ -208,19 +208,19 @@ ColorScheme _uColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _ulightColorScheme(Map<String, dynamic> __m) {
-  final Color? primary = __m['primary'];
-  final Color? primaryVariant = __m['primaryVariant'];
-  final Color? secondary = __m['secondary'];
-  final Color? secondaryVariant = __m['secondaryVariant'];
-  final Color? surface = __m['surface'];
-  final Color? background = __m['background'];
-  final Color? error = __m['error'];
-  final Color? onPrimary = __m['onPrimary'];
-  final Color? onSecondary = __m['onSecondary'];
-  final Color? onSurface = __m['onSurface'];
-  final Color? onBackground = __m['onBackground'];
-  final Color? onError = __m['onError'];
-  final Brightness? brightness = __m['brightness'];
+  final Color primary = __m['primary'];
+  final Color primaryVariant = __m['primaryVariant'];
+  final Color secondary = __m['secondary'];
+  final Color secondaryVariant = __m['secondaryVariant'];
+  final Color surface = __m['surface'];
+  final Color background = __m['background'];
+  final Color error = __m['error'];
+  final Color onPrimary = __m['onPrimary'];
+  final Color onSecondary = __m['onSecondary'];
+  final Color onSurface = __m['onSurface'];
+  final Color onBackground = __m['onBackground'];
+  final Color onError = __m['onError'];
+  final Brightness brightness = __m['brightness'];
   return ColorScheme.light(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -239,19 +239,19 @@ ColorScheme _ulightColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _udarkColorScheme(Map<String, dynamic> __m) {
-  final Color? primary = __m['primary'];
-  final Color? primaryVariant = __m['primaryVariant'];
-  final Color? secondary = __m['secondary'];
-  final Color? secondaryVariant = __m['secondaryVariant'];
-  final Color? surface = __m['surface'];
-  final Color? background = __m['background'];
-  final Color? error = __m['error'];
-  final Color? onPrimary = __m['onPrimary'];
-  final Color? onSecondary = __m['onSecondary'];
-  final Color? onSurface = __m['onSurface'];
-  final Color? onBackground = __m['onBackground'];
-  final Color? onError = __m['onError'];
-  final Brightness? brightness = __m['brightness'];
+  final Color primary = __m['primary'];
+  final Color primaryVariant = __m['primaryVariant'];
+  final Color secondary = __m['secondary'];
+  final Color secondaryVariant = __m['secondaryVariant'];
+  final Color surface = __m['surface'];
+  final Color background = __m['background'];
+  final Color error = __m['error'];
+  final Color onPrimary = __m['onPrimary'];
+  final Color onSecondary = __m['onSecondary'];
+  final Color onSurface = __m['onSurface'];
+  final Color onBackground = __m['onBackground'];
+  final Color onError = __m['onError'];
+  final Brightness brightness = __m['brightness'];
   return ColorScheme.dark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -270,19 +270,19 @@ ColorScheme _udarkColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uhighContrastLightColorScheme(Map<String, dynamic> __m) {
-  final Color? primary = __m['primary'];
-  final Color? primaryVariant = __m['primaryVariant'];
-  final Color? secondary = __m['secondary'];
-  final Color? secondaryVariant = __m['secondaryVariant'];
-  final Color? surface = __m['surface'];
-  final Color? background = __m['background'];
-  final Color? error = __m['error'];
-  final Color? onPrimary = __m['onPrimary'];
-  final Color? onSecondary = __m['onSecondary'];
-  final Color? onSurface = __m['onSurface'];
-  final Color? onBackground = __m['onBackground'];
-  final Color? onError = __m['onError'];
-  final Brightness? brightness = __m['brightness'];
+  final Color primary = __m['primary'];
+  final Color primaryVariant = __m['primaryVariant'];
+  final Color secondary = __m['secondary'];
+  final Color secondaryVariant = __m['secondaryVariant'];
+  final Color surface = __m['surface'];
+  final Color background = __m['background'];
+  final Color error = __m['error'];
+  final Color onPrimary = __m['onPrimary'];
+  final Color onSecondary = __m['onSecondary'];
+  final Color onSurface = __m['onSurface'];
+  final Color onBackground = __m['onBackground'];
+  final Color onError = __m['onError'];
+  final Brightness brightness = __m['brightness'];
   return ColorScheme.highContrastLight(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -301,19 +301,19 @@ ColorScheme _uhighContrastLightColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uhighContrastDarkColorScheme(Map<String, dynamic> __m) {
-  final Color? primary = __m['primary'];
-  final Color? primaryVariant = __m['primaryVariant'];
-  final Color? secondary = __m['secondary'];
-  final Color? secondaryVariant = __m['secondaryVariant'];
-  final Color? surface = __m['surface'];
-  final Color? background = __m['background'];
-  final Color? error = __m['error'];
-  final Color? onPrimary = __m['onPrimary'];
-  final Color? onSecondary = __m['onSecondary'];
-  final Color? onSurface = __m['onSurface'];
-  final Color? onBackground = __m['onBackground'];
-  final Color? onError = __m['onError'];
-  final Brightness? brightness = __m['brightness'];
+  final Color primary = __m['primary'];
+  final Color primaryVariant = __m['primaryVariant'];
+  final Color secondary = __m['secondary'];
+  final Color secondaryVariant = __m['secondaryVariant'];
+  final Color surface = __m['surface'];
+  final Color background = __m['background'];
+  final Color error = __m['error'];
+  final Color onPrimary = __m['onPrimary'];
+  final Color onSecondary = __m['onSecondary'];
+  final Color onSurface = __m['onSurface'];
+  final Color onBackground = __m['onBackground'];
+  final Color onError = __m['onError'];
+  final Brightness brightness = __m['brightness'];
   return ColorScheme.highContrastDark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -332,13 +332,13 @@ ColorScheme _uhighContrastDarkColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _ufromSwatchColorScheme(Map<String, dynamic> __m) {
-  final MaterialColor? primarySwatch = __m['primarySwatch'];
+  final MaterialColor primarySwatch = __m['primarySwatch'];
   final Color? primaryColorDark = __m['primaryColorDark'];
   final Color? accentColor = __m['accentColor'];
   final Color? cardColor = __m['cardColor'];
   final Color? backgroundColor = __m['backgroundColor'];
   final Color? errorColor = __m['errorColor'];
-  final Brightness? brightness = __m['brightness'];
+  final Brightness brightness = __m['brightness'];
   return ColorScheme.fromSwatch(
     primarySwatch: primarySwatch,
     primaryColorDark: primaryColorDark,
@@ -363,13 +363,13 @@ MaterialTapTargetSize _uMaterialTapTargetSize(dynamic v) {
 }
 
 ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonTextTheme? textTheme = __m['textTheme'];
-  final double? minWidth = __m['minWidth'];
-  final double? height = __m['height'];
+  final ButtonTextTheme textTheme = __m['textTheme'];
+  final double minWidth = __m['minWidth'];
+  final double height = __m['height'];
   final EdgeInsetsGeometry? padding = __m['padding'];
   final ShapeBorder? shape = __m['shape'];
-  final ButtonBarLayoutBehavior? layoutBehavior = __m['layoutBehavior'];
-  final bool? alignedDropdown = __m['alignedDropdown'];
+  final ButtonBarLayoutBehavior layoutBehavior = __m['layoutBehavior'];
+  final bool alignedDropdown = __m['alignedDropdown'];
   final Color? buttonColor = __m['buttonColor'];
   final Color? disabledColor = __m['disabledColor'];
   final Color? focusColor = __m['focusColor'];
@@ -435,7 +435,7 @@ TextLeadingDistribution _uTextLeadingDistribution(dynamic v) {
 
 Locale _uLocale(Map<String, dynamic> __m) {
   final String _languageCode = __m['_languageCode'];
-  final String? _countryCode = __m['_countryCode'];
+  final String _countryCode = __m['_countryCode'];
   return Locale(
     _languageCode,
     _countryCode,
@@ -443,9 +443,9 @@ Locale _uLocale(Map<String, dynamic> __m) {
 }
 
 Locale _ufromSubtagsLocale(Map<String, dynamic> __m) {
-  final String? languageCode = __m['languageCode'];
-  final String? scriptCode = __m['scriptCode'];
-  final String? countryCode = __m['countryCode'];
+  final String languageCode = __m['languageCode'];
+  final String scriptCode = __m['scriptCode'];
+  final String countryCode = __m['countryCode'];
   return Locale.fromSubtags(
     languageCode: languageCode,
     scriptCode: scriptCode,
@@ -469,7 +469,7 @@ Offset _uOffset(Map<String, dynamic> __m) {
 
 Offset _ufromDirectionOffset(Map<String, dynamic> __m) {
   final double direction = __m['direction'];
-  final double? distance = __m['distance'];
+  final double distance = __m['distance'];
   return Offset.fromDirection(
     direction,
     distance,
@@ -477,9 +477,9 @@ Offset _ufromDirectionOffset(Map<String, dynamic> __m) {
 }
 
 Shadow _uShadow(Map<String, dynamic> __m) {
-  final Color? color = __m['color'];
-  final Offset? offset = __m['offset'];
-  final double? blurRadius = __m['blurRadius'];
+  final Color color = __m['color'];
+  final Offset offset = __m['offset'];
+  final double blurRadius = __m['blurRadius'];
   return Shadow(
     color: color,
     offset: offset,
@@ -489,7 +489,7 @@ Shadow _uShadow(Map<String, dynamic> __m) {
 
 FontFeature _uFontFeature(Map<String, dynamic> __m) {
   final String feature = __m['feature'];
-  final int? value = __m['value'];
+  final int value = __m['value'];
   return FontFeature(
     feature,
     value,
@@ -565,14 +565,14 @@ FontFeature _uliningFiguresFontFeature(Map<String, dynamic> __m) {
 }
 
 FontFeature _ulocaleAwareFontFeature(Map<String, dynamic> __m) {
-  final bool? enable = __m['enable'];
+  final bool enable = __m['enable'];
   return FontFeature.localeAware(
     enable: enable,
   );
 }
 
 FontFeature _unotationalFormsFontFeature(Map<String, dynamic> __m) {
-  final int? value = __m['value'];
+  final int value = __m['value'];
   return FontFeature.notationalForms(
     value,
   );
@@ -631,7 +631,7 @@ FontFeature _usuperscriptsFontFeature(Map<String, dynamic> __m) {
 }
 
 FontFeature _uswashFontFeature(Map<String, dynamic> __m) {
-  final int? value = __m['value'];
+  final int value = __m['value'];
   return FontFeature.swash(
     value,
   );
@@ -689,16 +689,16 @@ TextOverflow _uTextOverflow(dynamic v) {
 }
 
 TextStyle _uTextStyle(Map<String, dynamic> __m) {
-  final bool? inherit = __m['inherit'];
+  final bool inherit = __m['inherit'];
   final Color? color = __m['color'];
   final Color? backgroundColor = __m['backgroundColor'];
-  final double? fontSize = __m['fontSize'];
+  final double fontSize = __m['fontSize'];
   final FontWeight? fontWeight = __m['fontWeight'];
   final FontStyle? fontStyle = __m['fontStyle'];
-  final double? letterSpacing = __m['letterSpacing'];
-  final double? wordSpacing = __m['wordSpacing'];
+  final double letterSpacing = __m['letterSpacing'];
+  final double wordSpacing = __m['wordSpacing'];
   final TextBaseline? textBaseline = __m['textBaseline'];
-  final double? height = __m['height'];
+  final double height = __m['height'];
   final TextLeadingDistribution? leadingDistribution = __m['leadingDistribution'];
   final Locale? locale = __m['locale'];
   final Paint? foreground = __m['foreground'];
@@ -708,11 +708,11 @@ TextStyle _uTextStyle(Map<String, dynamic> __m) {
   final TextDecoration? decoration = __m['decoration'];
   final Color? decorationColor = __m['decorationColor'];
   final TextDecorationStyle? decorationStyle = __m['decorationStyle'];
-  final double? decorationThickness = __m['decorationThickness'];
-  final String? debugLabel = __m['debugLabel'];
-  final String? fontFamily = __m['fontFamily'];
+  final double decorationThickness = __m['decorationThickness'];
+  final String debugLabel = __m['debugLabel'];
+  final String fontFamily = __m['fontFamily'];
   final List<String>? fontFamilyFallback = __m['fontFamilyFallback'];
-  final String? package = __m['package'];
+  final String package = __m['package'];
   final TextOverflow? overflow = __m['overflow'];
   return TextStyle(
     inherit: inherit,
@@ -788,10 +788,10 @@ Size _ufromRadiusSize(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraints(Map<String, dynamic> __m) {
-  final double? minWidth = __m['minWidth'];
-  final double? maxWidth = __m['maxWidth'];
-  final double? minHeight = __m['minHeight'];
-  final double? maxHeight = __m['maxHeight'];
+  final double minWidth = __m['minWidth'];
+  final double maxWidth = __m['maxWidth'];
+  final double minHeight = __m['minHeight'];
+  final double maxHeight = __m['maxHeight'];
   return BoxConstraints(
     minWidth: minWidth,
     maxWidth: maxWidth,
@@ -808,8 +808,8 @@ BoxConstraints _utightBoxConstraints(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _utightForBoxConstraints(Map<String, dynamic> __m) {
-  final double? width = __m['width'];
-  final double? height = __m['height'];
+  final double width = __m['width'];
+  final double height = __m['height'];
   return BoxConstraints.tightFor(
     width: width,
     height: height,
@@ -817,8 +817,8 @@ BoxConstraints _utightForBoxConstraints(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _utightForFiniteBoxConstraints(Map<String, dynamic> __m) {
-  final double? width = __m['width'];
-  final double? height = __m['height'];
+  final double width = __m['width'];
+  final double height = __m['height'];
   return BoxConstraints.tightForFinite(
     width: width,
     height: height,
@@ -833,8 +833,8 @@ BoxConstraints _ulooseBoxConstraints(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uexpandBoxConstraints(Map<String, dynamic> __m) {
-  final double? width = __m['width'];
-  final double? height = __m['height'];
+  final double width = __m['width'];
+  final double height = __m['height'];
   return BoxConstraints.expand(
     width: width,
     height: height,
@@ -872,8 +872,8 @@ BorderRadius _ucircularBorderRadius(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uverticalBorderRadius(Map<String, dynamic> __m) {
-  final Radius? top = __m['top'];
-  final Radius? bottom = __m['bottom'];
+  final Radius top = __m['top'];
+  final Radius bottom = __m['bottom'];
   return BorderRadius.vertical(
     top: top,
     bottom: bottom,
@@ -881,8 +881,8 @@ BorderRadius _uverticalBorderRadius(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uhorizontalBorderRadius(Map<String, dynamic> __m) {
-  final Radius? left = __m['left'];
-  final Radius? right = __m['right'];
+  final Radius left = __m['left'];
+  final Radius right = __m['right'];
   return BorderRadius.horizontal(
     left: left,
     right: right,
@@ -890,10 +890,10 @@ BorderRadius _uhorizontalBorderRadius(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uonlyBorderRadius(Map<String, dynamic> __m) {
-  final Radius? topLeft = __m['topLeft'];
-  final Radius? topRight = __m['topRight'];
-  final Radius? bottomLeft = __m['bottomLeft'];
-  final Radius? bottomRight = __m['bottomRight'];
+  final Radius topLeft = __m['topLeft'];
+  final Radius topRight = __m['topRight'];
+  final Radius bottomLeft = __m['bottomLeft'];
+  final Radius bottomRight = __m['bottomRight'];
   return BorderRadius.only(
     topLeft: topLeft,
     topRight: topRight,
@@ -917,7 +917,7 @@ ToggleButtonsThemeData _uToggleButtonsThemeData(Map<String, dynamic> __m) {
   final Color? selectedBorderColor = __m['selectedBorderColor'];
   final Color? disabledBorderColor = __m['disabledBorderColor'];
   final BorderRadius? borderRadius = __m['borderRadius'];
-  final double? borderWidth = __m['borderWidth'];
+  final double borderWidth = __m['borderWidth'];
   return ToggleButtonsThemeData(
     textStyle: textStyle,
     constraints: constraints,
@@ -995,9 +995,9 @@ BorderStyle _uBorderStyle(dynamic v) {
 }
 
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
-  final Color? color = __m['color'];
-  final double? width = __m['width'];
-  final BorderStyle? style = __m['style'];
+  final Color color = __m['color'];
+  final double width = __m['width'];
+  final BorderStyle style = __m['style'];
   return BorderSide(
     color: color,
     width: width,
@@ -1009,18 +1009,18 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
   final TextStyle? labelStyle = __m['labelStyle'];
   final TextStyle? floatingLabelStyle = __m['floatingLabelStyle'];
   final TextStyle? helperStyle = __m['helperStyle'];
-  final int? helperMaxLines = __m['helperMaxLines'];
+  final int helperMaxLines = __m['helperMaxLines'];
   final TextStyle? hintStyle = __m['hintStyle'];
   final TextStyle? errorStyle = __m['errorStyle'];
-  final int? errorMaxLines = __m['errorMaxLines'];
-  final FloatingLabelBehavior? floatingLabelBehavior = __m['floatingLabelBehavior'];
-  final bool? isDense = __m['isDense'];
+  final int errorMaxLines = __m['errorMaxLines'];
+  final FloatingLabelBehavior floatingLabelBehavior = __m['floatingLabelBehavior'];
+  final bool isDense = __m['isDense'];
   final EdgeInsetsGeometry? contentPadding = __m['contentPadding'];
-  final bool? isCollapsed = __m['isCollapsed'];
+  final bool isCollapsed = __m['isCollapsed'];
   final TextStyle? prefixStyle = __m['prefixStyle'];
   final TextStyle? suffixStyle = __m['suffixStyle'];
   final TextStyle? counterStyle = __m['counterStyle'];
-  final bool? filled = __m['filled'];
+  final bool filled = __m['filled'];
   final Color? fillColor = __m['fillColor'];
   final Color? focusColor = __m['focusColor'];
   final Color? hoverColor = __m['hoverColor'];
@@ -1030,7 +1030,7 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
   final InputBorder? disabledBorder = __m['disabledBorder'];
   final InputBorder? enabledBorder = __m['enabledBorder'];
   final InputBorder? border = __m['border'];
-  final bool? alignLabelWithHint = __m['alignLabelWithHint'];
+  final bool alignLabelWithHint = __m['alignLabelWithHint'];
   final BoxConstraints? constraints = __m['constraints'];
   return InputDecorationTheme(
     labelStyle: labelStyle,
@@ -1064,8 +1064,8 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
 
 IconThemeData _uIconThemeData(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
-  final double? opacity = __m['opacity'];
-  final double? size = __m['size'];
+  final double opacity = __m['opacity'];
+  final double size = __m['size'];
   return IconThemeData(
     color: color,
     opacity: opacity,
@@ -1128,7 +1128,7 @@ Thumb _uThumb(dynamic v) {
 }
 
 SliderThemeData _uSliderThemeData(Map<String, dynamic> __m) {
-  final double? trackHeight = __m['trackHeight'];
+  final double trackHeight = __m['trackHeight'];
   final Color? activeTrackColor = __m['activeTrackColor'];
   final Color? inactiveTrackColor = __m['inactiveTrackColor'];
   final Color? disabledActiveTrackColor = __m['disabledActiveTrackColor'];
@@ -1153,8 +1153,8 @@ SliderThemeData _uSliderThemeData(Map<String, dynamic> __m) {
   final RangeSliderValueIndicatorShape? rangeValueIndicatorShape = __m['rangeValueIndicatorShape'];
   final ShowValueIndicator? showValueIndicator = __m['showValueIndicator'];
   final TextStyle? valueIndicatorTextStyle = __m['valueIndicatorTextStyle'];
-  final double? minThumbSeparation = __m['minThumbSeparation'];
-  final func<TextDirection, RangeValues, double, Size, Size, double, Thumb>? thumbSelector = __m['thumbSelector'];
+  final double minThumbSeparation = __m['minThumbSeparation'];
+  final Thumb? Function(TextDirection, RangeValues, double, Size, Size, double) thumbSelector = __m['thumbSelector'];
   return SliderThemeData(
     trackHeight: trackHeight,
     activeTrackColor: activeTrackColor,
@@ -1231,12 +1231,12 @@ TabBarTheme _uTabBarTheme(Map<String, dynamic> __m) {
 }
 
 Duration _uDuration(Map<String, dynamic> __m) {
-  final int? days = __m['days'];
-  final int? hours = __m['hours'];
-  final int? minutes = __m['minutes'];
-  final int? seconds = __m['seconds'];
-  final int? milliseconds = __m['milliseconds'];
-  final int? microseconds = __m['microseconds'];
+  final int days = __m['days'];
+  final int hours = __m['hours'];
+  final int minutes = __m['minutes'];
+  final int seconds = __m['seconds'];
+  final int milliseconds = __m['milliseconds'];
+  final int microseconds = __m['microseconds'];
   return Duration(
     days: days,
     hours: hours,
@@ -1262,18 +1262,18 @@ TooltipTriggerMode _uTooltipTriggerMode(dynamic v) {
 }
 
 TooltipThemeData _uTooltipThemeData(Map<String, dynamic> __m) {
-  final double? height = __m['height'];
+  final double height = __m['height'];
   final EdgeInsetsGeometry? padding = __m['padding'];
   final EdgeInsetsGeometry? margin = __m['margin'];
-  final double? verticalOffset = __m['verticalOffset'];
-  final bool? preferBelow = __m['preferBelow'];
-  final bool? excludeFromSemantics = __m['excludeFromSemantics'];
+  final double verticalOffset = __m['verticalOffset'];
+  final bool preferBelow = __m['preferBelow'];
+  final bool excludeFromSemantics = __m['excludeFromSemantics'];
   final Decoration? decoration = __m['decoration'];
   final TextStyle? textStyle = __m['textStyle'];
   final Duration? waitDuration = __m['waitDuration'];
   final Duration? showDuration = __m['showDuration'];
   final TooltipTriggerMode? triggerMode = __m['triggerMode'];
-  final bool? enableFeedback = __m['enableFeedback'];
+  final bool enableFeedback = __m['enableFeedback'];
   return TooltipThemeData(
     height: height,
     padding: padding,
@@ -1310,7 +1310,7 @@ CardTheme _uCardTheme(Map<String, dynamic> __m) {
   final Clip? clipBehavior = __m['clipBehavior'];
   final Color? color = __m['color'];
   final Color? shadowColor = __m['shadowColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final EdgeInsetsGeometry? margin = __m['margin'];
   final ShapeBorder? shape = __m['shape'];
   return CardTheme(
@@ -1331,7 +1331,7 @@ ChipThemeData _uChipThemeData(Map<String, dynamic> __m) {
   final Color secondarySelectedColor = __m['secondarySelectedColor'];
   final Color? shadowColor = __m['shadowColor'];
   final Color? selectedShadowColor = __m['selectedShadowColor'];
-  final bool? showCheckmark = __m['showCheckmark'];
+  final bool showCheckmark = __m['showCheckmark'];
   final Color? checkmarkColor = __m['checkmarkColor'];
   final EdgeInsetsGeometry? labelPadding = __m['labelPadding'];
   final EdgeInsetsGeometry padding = __m['padding'];
@@ -1340,8 +1340,8 @@ ChipThemeData _uChipThemeData(Map<String, dynamic> __m) {
   final TextStyle labelStyle = __m['labelStyle'];
   final TextStyle secondaryLabelStyle = __m['secondaryLabelStyle'];
   final Brightness brightness = __m['brightness'];
-  final double? elevation = __m['elevation'];
-  final double? pressElevation = __m['pressElevation'];
+  final double elevation = __m['elevation'];
+  final double pressElevation = __m['pressElevation'];
   return ChipThemeData(
     backgroundColor: backgroundColor,
     deleteIconColor: deleteIconColor,
@@ -1398,7 +1398,7 @@ TargetPlatform _uTargetPlatform(dynamic v) {
 }
 
 PageTransitionsTheme _uPageTransitionsTheme(Map<String, dynamic> __m) {
-  final Map<TargetPlatform, PageTransitionsBuilder>? builders = __m['builders'];
+  final Map<TargetPlatform, PageTransitionsBuilder> builders = __m['builders'];
   return PageTransitionsTheme(
     builders: builders,
   );
@@ -1408,11 +1408,11 @@ SystemUiOverlayStyle _uSystemUiOverlayStyle(Map<String, dynamic> __m) {
   final Color? systemNavigationBarColor = __m['systemNavigationBarColor'];
   final Color? systemNavigationBarDividerColor = __m['systemNavigationBarDividerColor'];
   final Brightness? systemNavigationBarIconBrightness = __m['systemNavigationBarIconBrightness'];
-  final bool? systemNavigationBarContrastEnforced = __m['systemNavigationBarContrastEnforced'];
+  final bool systemNavigationBarContrastEnforced = __m['systemNavigationBarContrastEnforced'];
   final Color? statusBarColor = __m['statusBarColor'];
   final Brightness? statusBarBrightness = __m['statusBarBrightness'];
   final Brightness? statusBarIconBrightness = __m['statusBarIconBrightness'];
-  final bool? systemStatusBarContrastEnforced = __m['systemStatusBarContrastEnforced'];
+  final bool systemStatusBarContrastEnforced = __m['systemStatusBarContrastEnforced'];
   return SystemUiOverlayStyle(
     systemNavigationBarColor: systemNavigationBarColor,
     systemNavigationBarDividerColor: systemNavigationBarDividerColor,
@@ -1430,19 +1430,19 @@ AppBarTheme _uAppBarTheme(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
   final Color? backgroundColor = __m['backgroundColor'];
   final Color? foregroundColor = __m['foregroundColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final Color? shadowColor = __m['shadowColor'];
   final ShapeBorder? shape = __m['shape'];
   final IconThemeData? iconTheme = __m['iconTheme'];
   final IconThemeData? actionsIconTheme = __m['actionsIconTheme'];
   final TextTheme? textTheme = __m['textTheme'];
-  final bool? centerTitle = __m['centerTitle'];
-  final double? titleSpacing = __m['titleSpacing'];
-  final double? toolbarHeight = __m['toolbarHeight'];
+  final bool centerTitle = __m['centerTitle'];
+  final double titleSpacing = __m['titleSpacing'];
+  final double toolbarHeight = __m['toolbarHeight'];
   final TextStyle? toolbarTextStyle = __m['toolbarTextStyle'];
   final TextStyle? titleTextStyle = __m['titleTextStyle'];
   final SystemUiOverlayStyle? systemOverlayStyle = __m['systemOverlayStyle'];
-  final bool? backwardsCompatibility = __m['backwardsCompatibility'];
+  final bool backwardsCompatibility = __m['backwardsCompatibility'];
   return AppBarTheme(
     brightness: brightness,
     color: color,
@@ -1466,16 +1466,16 @@ AppBarTheme _uAppBarTheme(Map<String, dynamic> __m) {
 
 ScrollbarThemeData _uScrollbarThemeData(Map<String, dynamic> __m) {
   final MaterialStateProperty<double>? thickness = __m['thickness'];
-  final bool? showTrackOnHover = __m['showTrackOnHover'];
-  final bool? isAlwaysShown = __m['isAlwaysShown'];
+  final bool showTrackOnHover = __m['showTrackOnHover'];
+  final bool isAlwaysShown = __m['isAlwaysShown'];
   final Radius? radius = __m['radius'];
-  final MaterialStateProperty<Color>? thumbColor = __m['thumbColor'];
-  final MaterialStateProperty<Color>? trackColor = __m['trackColor'];
-  final MaterialStateProperty<Color>? trackBorderColor = __m['trackBorderColor'];
-  final double? crossAxisMargin = __m['crossAxisMargin'];
-  final double? mainAxisMargin = __m['mainAxisMargin'];
-  final double? minThumbLength = __m['minThumbLength'];
-  final bool? interactive = __m['interactive'];
+  final MaterialStateProperty<Color?>? thumbColor = __m['thumbColor'];
+  final MaterialStateProperty<Color?>? trackColor = __m['trackColor'];
+  final MaterialStateProperty<Color?>? trackBorderColor = __m['trackBorderColor'];
+  final double crossAxisMargin = __m['crossAxisMargin'];
+  final double mainAxisMargin = __m['mainAxisMargin'];
+  final double minThumbLength = __m['minThumbLength'];
+  final bool interactive = __m['interactive'];
   return ScrollbarThemeData(
     thickness: thickness,
     showTrackOnHover: showTrackOnHover,
@@ -1493,7 +1493,7 @@ ScrollbarThemeData _uScrollbarThemeData(Map<String, dynamic> __m) {
 
 BottomAppBarTheme _uBottomAppBarTheme(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final NotchedShape? shape = __m['shape'];
   return BottomAppBarTheme(
     color: color,
@@ -1504,7 +1504,7 @@ BottomAppBarTheme _uBottomAppBarTheme(Map<String, dynamic> __m) {
 
 DialogTheme _uDialogTheme(Map<String, dynamic> __m) {
   final Color? backgroundColor = __m['backgroundColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final ShapeBorder? shape = __m['shape'];
   final TextStyle? titleTextStyle = __m['titleTextStyle'];
   final TextStyle? contentTextStyle = __m['contentTextStyle'];
@@ -1523,18 +1523,18 @@ FloatingActionButtonThemeData _uFloatingActionButtonThemeData(Map<String, dynami
   final Color? focusColor = __m['focusColor'];
   final Color? hoverColor = __m['hoverColor'];
   final Color? splashColor = __m['splashColor'];
-  final double? elevation = __m['elevation'];
-  final double? focusElevation = __m['focusElevation'];
-  final double? hoverElevation = __m['hoverElevation'];
-  final double? disabledElevation = __m['disabledElevation'];
-  final double? highlightElevation = __m['highlightElevation'];
+  final double elevation = __m['elevation'];
+  final double focusElevation = __m['focusElevation'];
+  final double hoverElevation = __m['hoverElevation'];
+  final double disabledElevation = __m['disabledElevation'];
+  final double highlightElevation = __m['highlightElevation'];
   final ShapeBorder? shape = __m['shape'];
-  final bool? enableFeedback = __m['enableFeedback'];
+  final bool enableFeedback = __m['enableFeedback'];
   final BoxConstraints? sizeConstraints = __m['sizeConstraints'];
   final BoxConstraints? smallSizeConstraints = __m['smallSizeConstraints'];
   final BoxConstraints? largeSizeConstraints = __m['largeSizeConstraints'];
   final BoxConstraints? extendedSizeConstraints = __m['extendedSizeConstraints'];
-  final double? extendedIconLabelSpacing = __m['extendedIconLabelSpacing'];
+  final double extendedIconLabelSpacing = __m['extendedIconLabelSpacing'];
   final EdgeInsetsGeometry? extendedPadding = __m['extendedPadding'];
   final TextStyle? extendedTextStyle = __m['extendedTextStyle'];
   return FloatingActionButtonThemeData(
@@ -1576,12 +1576,12 @@ NavigationRailLabelType _uNavigationRailLabelType(dynamic v) {
 
 NavigationRailThemeData _uNavigationRailThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = __m['backgroundColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final TextStyle? unselectedLabelTextStyle = __m['unselectedLabelTextStyle'];
   final TextStyle? selectedLabelTextStyle = __m['selectedLabelTextStyle'];
   final IconThemeData? unselectedIconTheme = __m['unselectedIconTheme'];
   final IconThemeData? selectedIconTheme = __m['selectedIconTheme'];
-  final double? groupAlignment = __m['groupAlignment'];
+  final double groupAlignment = __m['groupAlignment'];
   final NavigationRailLabelType? labelType = __m['labelType'];
   return NavigationRailThemeData(
     backgroundColor: backgroundColor,
@@ -1647,7 +1647,7 @@ Typography _umaterial2018Typography(Map<String, dynamic> __m) {
 }
 
 CupertinoTextThemeData _uCupertinoTextThemeData(Map<String, dynamic> __m) {
-  final Color? primaryColor = __m['primaryColor'];
+  final Color primaryColor = __m['primaryColor'];
   final TextStyle? textStyle = __m['textStyle'];
   final TextStyle? actionTextStyle = __m['actionTextStyle'];
   final TextStyle? tabLabelTextStyle = __m['tabLabelTextStyle'];
@@ -1703,7 +1703,7 @@ SnackBarThemeData _uSnackBarThemeData(Map<String, dynamic> __m) {
   final Color? actionTextColor = __m['actionTextColor'];
   final Color? disabledActionTextColor = __m['disabledActionTextColor'];
   final TextStyle? contentTextStyle = __m['contentTextStyle'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final ShapeBorder? shape = __m['shape'];
   final SnackBarBehavior? behavior = __m['behavior'];
   return SnackBarThemeData(
@@ -1719,9 +1719,9 @@ SnackBarThemeData _uSnackBarThemeData(Map<String, dynamic> __m) {
 
 BottomSheetThemeData _uBottomSheetThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = __m['backgroundColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final Color? modalBackgroundColor = __m['modalBackgroundColor'];
-  final double? modalElevation = __m['modalElevation'];
+  final double modalElevation = __m['modalElevation'];
   final ShapeBorder? shape = __m['shape'];
   final Clip? clipBehavior = __m['clipBehavior'];
   final BoxConstraints? constraints = __m['constraints'];
@@ -1739,9 +1739,9 @@ BottomSheetThemeData _uBottomSheetThemeData(Map<String, dynamic> __m) {
 PopupMenuThemeData _uPopupMenuThemeData(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
   final ShapeBorder? shape = __m['shape'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final TextStyle? textStyle = __m['textStyle'];
-  final bool? enableFeedback = __m['enableFeedback'];
+  final bool enableFeedback = __m['enableFeedback'];
   return PopupMenuThemeData(
     color: color,
     shape: shape,
@@ -1766,10 +1766,10 @@ MaterialBannerThemeData _uMaterialBannerThemeData(Map<String, dynamic> __m) {
 
 DividerThemeData _uDividerThemeData(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
-  final double? space = __m['space'];
-  final double? thickness = __m['thickness'];
-  final double? indent = __m['indent'];
-  final double? endIndent = __m['endIndent'];
+  final double space = __m['space'];
+  final double thickness = __m['thickness'];
+  final double indent = __m['indent'];
+  final double endIndent = __m['endIndent'];
   return DividerThemeData(
     color: color,
     space: space,
@@ -1827,10 +1827,10 @@ ButtonBarThemeData _uButtonBarThemeData(Map<String, dynamic> __m) {
   final MainAxisAlignment? alignment = __m['alignment'];
   final MainAxisSize? mainAxisSize = __m['mainAxisSize'];
   final ButtonTextTheme? buttonTextTheme = __m['buttonTextTheme'];
-  final double? buttonMinWidth = __m['buttonMinWidth'];
-  final double? buttonHeight = __m['buttonHeight'];
+  final double buttonMinWidth = __m['buttonMinWidth'];
+  final double buttonHeight = __m['buttonHeight'];
   final EdgeInsetsGeometry? buttonPadding = __m['buttonPadding'];
-  final bool? buttonAlignedDropdown = __m['buttonAlignedDropdown'];
+  final bool buttonAlignedDropdown = __m['buttonAlignedDropdown'];
   final ButtonBarLayoutBehavior? layoutBehavior = __m['layoutBehavior'];
   final VerticalDirection? overflowDirection = __m['overflowDirection'];
   return ButtonBarThemeData(
@@ -1874,17 +1874,17 @@ BottomNavigationBarLandscapeLayout _uBottomNavigationBarLandscapeLayout(dynamic 
 
 BottomNavigationBarThemeData _uBottomNavigationBarThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = __m['backgroundColor'];
-  final double? elevation = __m['elevation'];
+  final double elevation = __m['elevation'];
   final IconThemeData? selectedIconTheme = __m['selectedIconTheme'];
   final IconThemeData? unselectedIconTheme = __m['unselectedIconTheme'];
   final Color? selectedItemColor = __m['selectedItemColor'];
   final Color? unselectedItemColor = __m['unselectedItemColor'];
   final TextStyle? selectedLabelStyle = __m['selectedLabelStyle'];
   final TextStyle? unselectedLabelStyle = __m['unselectedLabelStyle'];
-  final bool? showSelectedLabels = __m['showSelectedLabels'];
-  final bool? showUnselectedLabels = __m['showUnselectedLabels'];
+  final bool showSelectedLabels = __m['showSelectedLabels'];
+  final bool showUnselectedLabels = __m['showUnselectedLabels'];
   final BottomNavigationBarType? type = __m['type'];
-  final bool? enableFeedback = __m['enableFeedback'];
+  final bool enableFeedback = __m['enableFeedback'];
   final BottomNavigationBarLandscapeLayout? landscapeLayout = __m['landscapeLayout'];
   return BottomNavigationBarThemeData(
     backgroundColor: backgroundColor,
@@ -1943,23 +1943,23 @@ TimePickerThemeData _uTimePickerThemeData(Map<String, dynamic> __m) {
 }
 
 ButtonStyle _uButtonStyle(Map<String, dynamic> __m) {
-  final MaterialStateProperty<TextStyle>? textStyle = __m['textStyle'];
-  final MaterialStateProperty<Color>? backgroundColor = __m['backgroundColor'];
-  final MaterialStateProperty<Color>? foregroundColor = __m['foregroundColor'];
-  final MaterialStateProperty<Color>? overlayColor = __m['overlayColor'];
-  final MaterialStateProperty<Color>? shadowColor = __m['shadowColor'];
+  final MaterialStateProperty<TextStyle?>? textStyle = __m['textStyle'];
+  final MaterialStateProperty<Color?>? backgroundColor = __m['backgroundColor'];
+  final MaterialStateProperty<Color?>? foregroundColor = __m['foregroundColor'];
+  final MaterialStateProperty<Color?>? overlayColor = __m['overlayColor'];
+  final MaterialStateProperty<Color?>? shadowColor = __m['shadowColor'];
   final MaterialStateProperty<double>? elevation = __m['elevation'];
-  final MaterialStateProperty<EdgeInsetsGeometry>? padding = __m['padding'];
-  final MaterialStateProperty<Size>? minimumSize = __m['minimumSize'];
-  final MaterialStateProperty<Size>? fixedSize = __m['fixedSize'];
-  final MaterialStateProperty<Size>? maximumSize = __m['maximumSize'];
-  final MaterialStateProperty<BorderSide>? side = __m['side'];
-  final MaterialStateProperty<OutlinedBorder>? shape = __m['shape'];
-  final MaterialStateProperty<MouseCursor>? mouseCursor = __m['mouseCursor'];
+  final MaterialStateProperty<EdgeInsetsGeometry?>? padding = __m['padding'];
+  final MaterialStateProperty<Size?>? minimumSize = __m['minimumSize'];
+  final MaterialStateProperty<Size?>? fixedSize = __m['fixedSize'];
+  final MaterialStateProperty<Size?>? maximumSize = __m['maximumSize'];
+  final MaterialStateProperty<BorderSide?>? side = __m['side'];
+  final MaterialStateProperty<OutlinedBorder?>? shape = __m['shape'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = __m['mouseCursor'];
   final VisualDensity? visualDensity = __m['visualDensity'];
   final MaterialTapTargetSize? tapTargetSize = __m['tapTargetSize'];
   final Duration? animationDuration = __m['animationDuration'];
-  final bool? enableFeedback = __m['enableFeedback'];
+  final bool enableFeedback = __m['enableFeedback'];
   final AlignmentGeometry? alignment = __m['alignment'];
   final InteractiveInkFeatureFactory? splashFactory = __m['splashFactory'];
   return ButtonStyle(
@@ -2019,16 +2019,16 @@ TextSelectionThemeData _uTextSelectionThemeData(Map<String, dynamic> __m) {
 
 DataTableThemeData _uDataTableThemeData(Map<String, dynamic> __m) {
   final Decoration? decoration = __m['decoration'];
-  final MaterialStateProperty<Color>? dataRowColor = __m['dataRowColor'];
-  final double? dataRowHeight = __m['dataRowHeight'];
+  final MaterialStateProperty<Color?>? dataRowColor = __m['dataRowColor'];
+  final double dataRowHeight = __m['dataRowHeight'];
   final TextStyle? dataTextStyle = __m['dataTextStyle'];
-  final MaterialStateProperty<Color>? headingRowColor = __m['headingRowColor'];
-  final double? headingRowHeight = __m['headingRowHeight'];
+  final MaterialStateProperty<Color?>? headingRowColor = __m['headingRowColor'];
+  final double headingRowHeight = __m['headingRowHeight'];
   final TextStyle? headingTextStyle = __m['headingTextStyle'];
-  final double? horizontalMargin = __m['horizontalMargin'];
-  final double? columnSpacing = __m['columnSpacing'];
-  final double? dividerThickness = __m['dividerThickness'];
-  final double? checkboxHorizontalMargin = __m['checkboxHorizontalMargin'];
+  final double horizontalMargin = __m['horizontalMargin'];
+  final double columnSpacing = __m['columnSpacing'];
+  final double dividerThickness = __m['dividerThickness'];
+  final double checkboxHorizontalMargin = __m['checkboxHorizontalMargin'];
   return DataTableThemeData(
     decoration: decoration,
     dataRowColor: dataRowColor,
@@ -2045,11 +2045,11 @@ DataTableThemeData _uDataTableThemeData(Map<String, dynamic> __m) {
 }
 
 CheckboxThemeData _uCheckboxThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<MouseCursor>? mouseCursor = __m['mouseCursor'];
-  final MaterialStateProperty<Color>? fillColor = __m['fillColor'];
-  final MaterialStateProperty<Color>? checkColor = __m['checkColor'];
-  final MaterialStateProperty<Color>? overlayColor = __m['overlayColor'];
-  final double? splashRadius = __m['splashRadius'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = __m['mouseCursor'];
+  final MaterialStateProperty<Color?>? fillColor = __m['fillColor'];
+  final MaterialStateProperty<Color?>? checkColor = __m['checkColor'];
+  final MaterialStateProperty<Color?>? overlayColor = __m['overlayColor'];
+  final double splashRadius = __m['splashRadius'];
   final MaterialTapTargetSize? materialTapTargetSize = __m['materialTapTargetSize'];
   final VisualDensity? visualDensity = __m['visualDensity'];
   final OutlinedBorder? shape = __m['shape'];
@@ -2068,10 +2068,10 @@ CheckboxThemeData _uCheckboxThemeData(Map<String, dynamic> __m) {
 }
 
 RadioThemeData _uRadioThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<MouseCursor>? mouseCursor = __m['mouseCursor'];
-  final MaterialStateProperty<Color>? fillColor = __m['fillColor'];
-  final MaterialStateProperty<Color>? overlayColor = __m['overlayColor'];
-  final double? splashRadius = __m['splashRadius'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = __m['mouseCursor'];
+  final MaterialStateProperty<Color?>? fillColor = __m['fillColor'];
+  final MaterialStateProperty<Color?>? overlayColor = __m['overlayColor'];
+  final double splashRadius = __m['splashRadius'];
   final MaterialTapTargetSize? materialTapTargetSize = __m['materialTapTargetSize'];
   final VisualDensity? visualDensity = __m['visualDensity'];
   return RadioThemeData(
@@ -2085,12 +2085,12 @@ RadioThemeData _uRadioThemeData(Map<String, dynamic> __m) {
 }
 
 SwitchThemeData _uSwitchThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<Color>? thumbColor = __m['thumbColor'];
-  final MaterialStateProperty<Color>? trackColor = __m['trackColor'];
+  final MaterialStateProperty<Color?>? thumbColor = __m['thumbColor'];
+  final MaterialStateProperty<Color?>? trackColor = __m['trackColor'];
   final MaterialTapTargetSize? materialTapTargetSize = __m['materialTapTargetSize'];
-  final MaterialStateProperty<MouseCursor>? mouseCursor = __m['mouseCursor'];
-  final MaterialStateProperty<Color>? overlayColor = __m['overlayColor'];
-  final double? splashRadius = __m['splashRadius'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = __m['mouseCursor'];
+  final MaterialStateProperty<Color?>? overlayColor = __m['overlayColor'];
+  final double splashRadius = __m['splashRadius'];
   return SwitchThemeData(
     thumbColor: thumbColor,
     trackColor: trackColor,
@@ -2104,7 +2104,7 @@ SwitchThemeData _uSwitchThemeData(Map<String, dynamic> __m) {
 ProgressIndicatorThemeData _uProgressIndicatorThemeData(Map<String, dynamic> __m) {
   final Color? color = __m['color'];
   final Color? linearTrackColor = __m['linearTrackColor'];
-  final double? linearMinHeight = __m['linearMinHeight'];
+  final double linearMinHeight = __m['linearMinHeight'];
   final Color? circularTrackColor = __m['circularTrackColor'];
   final Color? refreshBackgroundColor = __m['refreshBackgroundColor'];
   return ProgressIndicatorThemeData(
@@ -2153,7 +2153,7 @@ ThemeData _uThemeData(Map<String, dynamic> __m) {
   final Color? hintColor = __m['hintColor'];
   final Color? errorColor = __m['errorColor'];
   final Color? toggleableActiveColor = __m['toggleableActiveColor'];
-  final String? fontFamily = __m['fontFamily'];
+  final String fontFamily = __m['fontFamily'];
   final TextTheme? textTheme = __m['textTheme'];
   final TextTheme? primaryTextTheme = __m['primaryTextTheme'];
   final TextTheme? accentTextTheme = __m['accentTextTheme'];
@@ -2168,7 +2168,7 @@ ThemeData _uThemeData(Map<String, dynamic> __m) {
   final ChipThemeData? chipTheme = __m['chipTheme'];
   final TargetPlatform? platform = __m['platform'];
   final MaterialTapTargetSize? materialTapTargetSize = __m['materialTapTargetSize'];
-  final bool? applyElevationOverlayColor = __m['applyElevationOverlayColor'];
+  final bool applyElevationOverlayColor = __m['applyElevationOverlayColor'];
   final PageTransitionsTheme? pageTransitionsTheme = __m['pageTransitionsTheme'];
   final AppBarTheme? appBarTheme = __m['appBarTheme'];
   final ScrollbarThemeData? scrollbarTheme = __m['scrollbarTheme'];
@@ -2196,8 +2196,8 @@ ThemeData _uThemeData(Map<String, dynamic> __m) {
   final RadioThemeData? radioTheme = __m['radioTheme'];
   final SwitchThemeData? switchTheme = __m['switchTheme'];
   final ProgressIndicatorThemeData? progressIndicatorTheme = __m['progressIndicatorTheme'];
-  final bool? fixTextFieldOutlineLabel = __m['fixTextFieldOutlineLabel'];
-  final bool? useTextSelectionTheme = __m['useTextSelectionTheme'];
+  final bool fixTextFieldOutlineLabel = __m['fixTextFieldOutlineLabel'];
+  final bool useTextSelectionTheme = __m['useTextSelectionTheme'];
   return ThemeData(
     brightness: brightness,
     visualDensity: visualDensity,
@@ -2342,7 +2342,7 @@ ThemeData _urawThemeData(Map<String, dynamic> __m) {
   final FloatingActionButtonThemeData floatingActionButtonTheme = __m['floatingActionButtonTheme'];
   final NavigationRailThemeData navigationRailTheme = __m['navigationRailTheme'];
   final Typography typography = __m['typography'];
-  final NoDefaultCupertinoThemeData cupertinoOverrideTheme = __m['cupertinoOverrideTheme'];
+  final NoDefaultCupertinoThemeData? cupertinoOverrideTheme = __m['cupertinoOverrideTheme'];
   final SnackBarThemeData snackBarTheme = __m['snackBarTheme'];
   final BottomSheetThemeData bottomSheetTheme = __m['bottomSheetTheme'];
   final PopupMenuThemeData popupMenuTheme = __m['popupMenuTheme'];
@@ -2493,7 +2493,7 @@ ScrollBehavior _uScrollBehavior(Map<String, dynamic> __m) {
 }
 
 RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
-  final String? location = __m['location'];
+  final String location = __m['location'];
   final Object? state = __m['state'];
   return RouteInformation(
     location: location,
@@ -2518,15 +2518,15 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final GlobalKey<NavigatorState>? navigatorKey = __m['navigatorKey'];
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = __m['scaffoldMessengerKey'];
   final Widget? home = __m['home'];
-  final Map<String, func<BuildContext, Widget>>? routes = __m['routes'];
-  final String? initialRoute = __m['initialRoute'];
-  final func<RouteSettings, Route<dynamic>>? onGenerateRoute = __m['onGenerateRoute'];
-  final func<String, List<Route<dynamic>>>? onGenerateInitialRoutes = __m['onGenerateInitialRoutes'];
-  final func<RouteSettings, Route<dynamic>>? onUnknownRoute = __m['onUnknownRoute'];
-  final List<NavigatorObserver>? navigatorObservers = __m['navigatorObservers'];
-  final func<BuildContext, Widget, Widget>? builder = __m['builder'];
-  final String? title = __m['title'];
-  final func<BuildContext, String>? onGenerateTitle = __m['onGenerateTitle'];
+  final Map<String, Widget Function(BuildContext)> routes = __m['routes'];
+  final String initialRoute = __m['initialRoute'];
+  final Route<dynamic>? Function(RouteSettings) onGenerateRoute = __m['onGenerateRoute'];
+  final List<Route<dynamic>> Function(String) onGenerateInitialRoutes = __m['onGenerateInitialRoutes'];
+  final Route<dynamic>? Function(RouteSettings) onUnknownRoute = __m['onUnknownRoute'];
+  final List<NavigatorObserver> navigatorObservers = __m['navigatorObservers'];
+  final Widget Function(BuildContext, Widget?) builder = __m['builder'];
+  final String title = __m['title'];
+  final String Function(BuildContext) onGenerateTitle = __m['onGenerateTitle'];
   final Color? color = __m['color'];
   final ThemeData? theme = __m['theme'];
   final ThemeData? darkTheme = __m['darkTheme'];
@@ -2535,20 +2535,20 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final ThemeMode? themeMode = __m['themeMode'];
   final Locale? locale = __m['locale'];
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = __m['localizationsDelegates'];
-  final func<List<Locale>, Iterable<Locale>, Locale>? localeListResolutionCallback = __m['localeListResolutionCallback'];
-  final func<Locale, Iterable<Locale>, Locale>? localeResolutionCallback = __m['localeResolutionCallback'];
-  final Iterable<Locale>? supportedLocales = __m['supportedLocales'];
-  final bool? debugShowMaterialGrid = __m['debugShowMaterialGrid'];
-  final bool? showPerformanceOverlay = __m['showPerformanceOverlay'];
-  final bool? checkerboardRasterCacheImages = __m['checkerboardRasterCacheImages'];
-  final bool? checkerboardOffscreenLayers = __m['checkerboardOffscreenLayers'];
-  final bool? showSemanticsDebugger = __m['showSemanticsDebugger'];
-  final bool? debugShowCheckedModeBanner = __m['debugShowCheckedModeBanner'];
+  final Locale? Function(List<Locale>?, Iterable<Locale>) localeListResolutionCallback = __m['localeListResolutionCallback'];
+  final Locale? Function(Locale?, Iterable<Locale>) localeResolutionCallback = __m['localeResolutionCallback'];
+  final Iterable<Locale> supportedLocales = __m['supportedLocales'];
+  final bool debugShowMaterialGrid = __m['debugShowMaterialGrid'];
+  final bool showPerformanceOverlay = __m['showPerformanceOverlay'];
+  final bool checkerboardRasterCacheImages = __m['checkerboardRasterCacheImages'];
+  final bool checkerboardOffscreenLayers = __m['checkerboardOffscreenLayers'];
+  final bool showSemanticsDebugger = __m['showSemanticsDebugger'];
+  final bool debugShowCheckedModeBanner = __m['debugShowCheckedModeBanner'];
   final Map<ShortcutActivator, Intent>? shortcuts = __m['shortcuts'];
   final Map<Type, Action<Intent>>? actions = __m['actions'];
-  final String? restorationScopeId = __m['restorationScopeId'];
+  final String restorationScopeId = __m['restorationScopeId'];
   final ScrollBehavior? scrollBehavior = __m['scrollBehavior'];
-  final bool? useInheritedMediaQuery = __m['useInheritedMediaQuery'];
+  final bool useInheritedMediaQuery = __m['useInheritedMediaQuery'];
   return MaterialApp(
     key: key,
     navigatorKey: navigatorKey,
@@ -2595,9 +2595,9 @@ MaterialApp _urouterMaterialApp(Map<String, dynamic> __m) {
   final RouteInformationParser<Object> routeInformationParser = __m['routeInformationParser'];
   final RouterDelegate<Object> routerDelegate = __m['routerDelegate'];
   final BackButtonDispatcher? backButtonDispatcher = __m['backButtonDispatcher'];
-  final func<BuildContext, Widget, Widget>? builder = __m['builder'];
-  final String? title = __m['title'];
-  final func<BuildContext, String>? onGenerateTitle = __m['onGenerateTitle'];
+  final Widget Function(BuildContext, Widget?) builder = __m['builder'];
+  final String title = __m['title'];
+  final String Function(BuildContext) onGenerateTitle = __m['onGenerateTitle'];
   final Color? color = __m['color'];
   final ThemeData? theme = __m['theme'];
   final ThemeData? darkTheme = __m['darkTheme'];
@@ -2606,20 +2606,20 @@ MaterialApp _urouterMaterialApp(Map<String, dynamic> __m) {
   final ThemeMode? themeMode = __m['themeMode'];
   final Locale? locale = __m['locale'];
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = __m['localizationsDelegates'];
-  final func<List<Locale>, Iterable<Locale>, Locale>? localeListResolutionCallback = __m['localeListResolutionCallback'];
-  final func<Locale, Iterable<Locale>, Locale>? localeResolutionCallback = __m['localeResolutionCallback'];
-  final Iterable<Locale>? supportedLocales = __m['supportedLocales'];
-  final bool? debugShowMaterialGrid = __m['debugShowMaterialGrid'];
-  final bool? showPerformanceOverlay = __m['showPerformanceOverlay'];
-  final bool? checkerboardRasterCacheImages = __m['checkerboardRasterCacheImages'];
-  final bool? checkerboardOffscreenLayers = __m['checkerboardOffscreenLayers'];
-  final bool? showSemanticsDebugger = __m['showSemanticsDebugger'];
-  final bool? debugShowCheckedModeBanner = __m['debugShowCheckedModeBanner'];
+  final Locale? Function(List<Locale>?, Iterable<Locale>) localeListResolutionCallback = __m['localeListResolutionCallback'];
+  final Locale? Function(Locale?, Iterable<Locale>) localeResolutionCallback = __m['localeResolutionCallback'];
+  final Iterable<Locale> supportedLocales = __m['supportedLocales'];
+  final bool debugShowMaterialGrid = __m['debugShowMaterialGrid'];
+  final bool showPerformanceOverlay = __m['showPerformanceOverlay'];
+  final bool checkerboardRasterCacheImages = __m['checkerboardRasterCacheImages'];
+  final bool checkerboardOffscreenLayers = __m['checkerboardOffscreenLayers'];
+  final bool showSemanticsDebugger = __m['showSemanticsDebugger'];
+  final bool debugShowCheckedModeBanner = __m['debugShowCheckedModeBanner'];
   final Map<ShortcutActivator, Intent>? shortcuts = __m['shortcuts'];
   final Map<Type, Action<Intent>>? actions = __m['actions'];
-  final String? restorationScopeId = __m['restorationScopeId'];
+  final String restorationScopeId = __m['restorationScopeId'];
   final ScrollBehavior? scrollBehavior = __m['scrollBehavior'];
-  final bool? useInheritedMediaQuery = __m['useInheritedMediaQuery'];
+  final bool useInheritedMediaQuery = __m['useInheritedMediaQuery'];
   return MaterialApp.router(
     key: key,
     scaffoldMessengerKey: scaffoldMessengerKey,
@@ -2684,12 +2684,12 @@ LogicalKeyboardKey _uLogicalKeyboardKey(Map<String, dynamic> __m) {
 }
 
 FocusNode _uFocusNode(Map<String, dynamic> __m) {
-  final String? debugLabel = __m['debugLabel'];
-  final func<FocusNode, RawKeyEvent, KeyEventResult>? onKey = __m['onKey'];
-  final func<FocusNode, KeyEvent, KeyEventResult>? onKeyEvent = __m['onKeyEvent'];
-  final bool? skipTraversal = __m['skipTraversal'];
-  final bool? canRequestFocus = __m['canRequestFocus'];
-  final bool? descendantsAreFocusable = __m['descendantsAreFocusable'];
+  final String debugLabel = __m['debugLabel'];
+  final KeyEventResult Function(FocusNode, RawKeyEvent) onKey = __m['onKey'];
+  final KeyEventResult Function(FocusNode, KeyEvent) onKeyEvent = __m['onKeyEvent'];
+  final bool skipTraversal = __m['skipTraversal'];
+  final bool canRequestFocus = __m['canRequestFocus'];
+  final bool descendantsAreFocusable = __m['descendantsAreFocusable'];
   return FocusNode(
     debugLabel: debugLabel,
     onKey: onKey,
@@ -2702,13 +2702,13 @@ FocusNode _uFocusNode(Map<String, dynamic> __m) {
 
 ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
   final Key? key = __m['key'];
-  final func<void> onPressed = __m['onPressed'];
-  final func<void>? onLongPress = __m['onLongPress'];
+  final void Function() onPressed = __m['onPressed'];
+  final void Function() onLongPress = __m['onLongPress'];
   final ButtonStyle? style = __m['style'];
   final FocusNode? focusNode = __m['focusNode'];
-  final bool? autofocus = __m['autofocus'];
-  final Clip? clipBehavior = __m['clipBehavior'];
-  final Widget child = __m['child'];
+  final bool autofocus = __m['autofocus'];
+  final Clip clipBehavior = __m['clipBehavior'];
+  final Widget? child = __m['child'];
   return ElevatedButton(
     key: key,
     onPressed: onPressed,
@@ -2723,11 +2723,11 @@ ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
 
 ElevatedButton _uiconElevatedButton(Map<String, dynamic> __m) {
   final Key? key = __m['key'];
-  final func<void> onPressed = __m['onPressed'];
-  final func<void>? onLongPress = __m['onLongPress'];
+  final void Function() onPressed = __m['onPressed'];
+  final void Function() onLongPress = __m['onLongPress'];
   final ButtonStyle? style = __m['style'];
   final FocusNode? focusNode = __m['focusNode'];
-  final bool? autofocus = __m['autofocus'];
+  final bool autofocus = __m['autofocus'];
   final Clip? clipBehavior = __m['clipBehavior'];
   final Widget icon = __m['icon'];
   final Widget label = __m['label'];

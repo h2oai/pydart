@@ -1,5 +1,6 @@
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/element.dart'
     show ConstFieldElementImpl;
@@ -125,12 +126,16 @@ class IRField {
   final IRType type;
   final IRConst value;
   final bool isPositional;
+  final bool isRequired;
+  final bool isOptional;
 
   IRField({
     required this.name,
     required this.type,
     required this.value,
     required this.isPositional,
+    required this.isRequired,
+    required this.isOptional,
   });
 }
 
@@ -195,7 +200,7 @@ String dumpType(IRType t) {
     if (t.parameters.isNotEmpty) {
       final types = t.parameters.map(dumpType).toList();
       if (t.element == IRElement.func) {
-        final params = types.sublist(0, types.length-1).join(', ');
+        final params = types.sublist(0, types.length - 1).join(', ');
         final returnType = types.last;
         return '$returnType Function($params)';
       }
@@ -238,14 +243,16 @@ class IRBuilder {
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
-      return IRParameterizedType(
+      final pt = IRParameterizedType(
           _toElement(t.element), t.typeArguments.map(_toType).toList());
+      return t.nullabilitySuffix == NullabilitySuffix.question
+          ? _toOptional(pt)
+          : pt;
     }
 
     if (t is FunctionType) {
       final parameterTypes = t.parameters.map((p) {
-        final t = _toType(p.type);
-        return p.isOptional ? _toOptional(t) : t;
+        return _toType(p.type);
       }).toList();
       final returnType = _toType(t.returnType);
       return IRParameterizedType(
@@ -265,6 +272,8 @@ class IRBuilder {
       type: _toType(f.type),
       value: _toConst(f.computeConstantValue()),
       isPositional: false,
+      isRequired: true,
+      isOptional: false,
     );
   }
 
@@ -296,13 +305,13 @@ class IRBuilder {
   }
 
   IRField _toField(ParameterElement e) {
-    final required = e.isRequiredNamed || e.isRequiredPositional;
-    final t = _toType(e.type);
     return IRField(
       name: e.name,
-      type: required ? t : _toOptional(t),
+      type: _toType(e.type),
       value: undefined,
       isPositional: e.isPositional,
+      isRequired: e.isNotOptional,
+      isOptional: e.isOptional,
     );
   }
 
@@ -376,6 +385,8 @@ class IRBuilder {
         type: _resolveType(f.type),
         value: f.value,
         isPositional: f.isPositional,
+        isRequired: f.isRequired,
+        isOptional: f.isOptional,
       );
 
   IRConstructor _resolveConstructor(IRConstructor c) =>

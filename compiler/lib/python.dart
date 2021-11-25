@@ -439,6 +439,8 @@ class PythonTranslator {
               type: IRParameterizedType(e, []),
               value: f.value,
               isPositional: f.isPositional,
+              isRequired: f.isRequired,
+              isOptional: f.isOptional,
             );
           }
           return f;
