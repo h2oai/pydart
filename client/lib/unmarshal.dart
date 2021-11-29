@@ -1,9 +1,9 @@
 typedef Unmarshal = dynamic Function(Map<String, dynamic> state);
 
-Map<String, Unmarshal> _loaders = {};
+Map<String, Unmarshal> _unmarshalers = {};
 
-void registerLoaders(Map<String, Unmarshal> loaders) =>
-    _loaders.addAll(loaders);
+void registerUnmarshalers(Map<String, Unmarshal> unmarshalers) =>
+    _unmarshalers.addAll(unmarshalers);
 
 String? _typeOf(Map<String, dynamic> state) {
   final t = state['#t'];
@@ -21,7 +21,7 @@ dynamic unmarshal(dynamic v) {
   if (v is Map<String, dynamic>) {
     final t = _typeOf(v);
     if (t != null) {
-      final u = _loaders[t];
+      final u = _unmarshalers[t];
       if (u != null) return u(v);
       throw 'unmarshal failed: no loader found for $t';
     }

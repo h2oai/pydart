@@ -4,9 +4,11 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'load.dart';
+import 'unmarshal.dart';
+import 'types.dart';
 
 void main() {
+  registerUnmarshalers(unmarshalers);
   runApp(const NitroApp());
 }
 

@@ -91,12 +91,13 @@ class ClientTranslator {
 
   String _emit(List<IRElement> elements) {
     // TODO generate imports automatically
+    p("// ignore_for_file: deprecated_member_use");
     p("import 'dart:ui';");
     p("import 'package:flutter/cupertino.dart';");
     p("import 'package:flutter/material.dart';");
     p("import 'package:flutter/gestures.dart';");
     p("import 'package:flutter/services.dart';");
-    p("import 'load.dart';");
+    p("import 'unmarshal.dart';");
     for (final e in elements) {
       if (e is IRClass && !e.isAbstract) {
         _emitClass(e);
@@ -106,9 +107,7 @@ class ClientTranslator {
     }
 
     p('');
-    p('typedef Unmarshal = dynamic Function(Map<String, dynamic> state);');
-    p('');
-    p('registerLoaders(<String, Unmarshal>{');
+    p('final unmarshalers = <String, Unmarshal>{');
     for (final e in elements.whereType<IRClass>()) {
       if (!e.isAbstract) {
         for (final c in e.constructors) {
@@ -116,7 +115,7 @@ class ClientTranslator {
         }
       }
     }
-    p('});');
+    p('};');
     return p.lines.join();
   }
 

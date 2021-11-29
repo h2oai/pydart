@@ -1,9 +1,10 @@
+// ignore_for_file: deprecated_member_use
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'load.dart';
+import 'unmarshal.dart';
 
 Object _uObject(Map<String, dynamic> __m) {
   return Object(
@@ -2799,9 +2800,7 @@ ElevatedButton _uElevatedButtonIcon(Map<String, dynamic> __m) {
   );
 }
 
-typedef Unmarshal = dynamic Function(Map<String, dynamic> state);
-
-registerLoaders(<String, Unmarshal>{
+final unmarshalers = <String, Unmarshal>{
   'Object.': _uObject,
   'RouteSettings.': _uRouteSettings,
   'NavigatorObserver.': _uNavigatorObserver,
@@ -2942,4 +2941,4 @@ registerLoaders(<String, Unmarshal>{
   'FocusNode.': _uFocusNode,
   'ElevatedButton.': _uElevatedButton,
   'ElevatedButton.icon': _uElevatedButtonIcon,
-});
+};
