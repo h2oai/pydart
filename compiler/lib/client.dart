@@ -45,14 +45,31 @@ String _unmarshalerOf(IRType t) {
   return '';
 }
 
+void _collectTypeParameters(
+    List<IRTypeParameter> params, Iterable<IRType> types) {
+  for (final t in types) {
+    if (t is IRTypeParameter) {
+      params.add(t);
+    } else if (t is IRParameterizedType) {
+      _collectTypeParameters(params, t.parameters);
+    }
+  }
+}
+
 class ClientTranslator {
   final p = Printer('  ');
 
   void _emitClass(IRClass e) {
     final m = '__m';
     for (final c in e.constructors) {
+      final params = <IRTypeParameter>[];
+      _collectTypeParameters(params, c.fields.map((f) => f.type));
+
+      final typeParams =
+          params.isNotEmpty ? "<${params.map((p) => p.name).join(', ')}>" : '';
+
       p('');
-      p('${e.name} ${_unmarshalerNameOf(e.name, c.name)}(Map<String, dynamic> $m) {');
+      p('${e.name} ${_unmarshalerNameOf(e.name, c.name)}$typeParams(Map<String, dynamic> $m) {');
       p.t(() {
         for (final f in c.fields) {
           final lookup = "$m['${f.name}']";
