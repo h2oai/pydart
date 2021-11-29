@@ -103,8 +103,6 @@ class ClientTranslator {
     p('  }');
     p("  throw 'illegal enum value \$v';");
     p('}');
-    p('');
-    p('${e.name}? _un${e.name}(dynamic v) => v == null ? v : _u${e.name}(v);');
   }
 
   String _emit(List<IRElement> elements) {

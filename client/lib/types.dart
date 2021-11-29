@@ -21,7 +21,7 @@ RouteSettings _uRouteSettings(Map<String, dynamic> __m) {
 }
 
 NavigatorObserver _uNavigatorObserver(Map<String, dynamic> __m) {
-  return const NavigatorObserver(
+  return NavigatorObserver(
   );
 }
 
@@ -53,7 +53,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
 }
 
 NavigatorState _uNavigatorState(Map<String, dynamic> __m) {
-  return const NavigatorState(
+  return NavigatorState(
   );
 }
 
@@ -67,7 +67,7 @@ ScaffoldMessenger _uScaffoldMessenger(Map<String, dynamic> __m) {
 }
 
 ScaffoldMessengerState _uScaffoldMessengerState(Map<String, dynamic> __m) {
-  return const ScaffoldMessengerState(
+  return ScaffoldMessengerState(
   );
 }
 
@@ -125,8 +125,6 @@ Brightness _uBrightness(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-Brightness? _unBrightness(dynamic v) => v == null ? v : _uBrightness(v);
-
 VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
   final double horizontal = uDouble(__m['horizontal']);
   final double vertical = uDouble(__m['vertical']);
@@ -168,8 +166,6 @@ ButtonTextTheme _uButtonTextTheme(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-ButtonTextTheme? _unButtonTextTheme(dynamic v) => v == null ? v : _uButtonTextTheme(v);
-
 ButtonBarLayoutBehavior _uButtonBarLayoutBehavior(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -181,8 +177,6 @@ ButtonBarLayoutBehavior _uButtonBarLayoutBehavior(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-ButtonBarLayoutBehavior? _unButtonBarLayoutBehavior(dynamic v) => v == null ? v : _uButtonBarLayoutBehavior(v);
 
 ColorScheme _uColorScheme(Map<String, dynamic> __m) {
   final Color primary = uClass(__m['primary']);
@@ -370,8 +364,6 @@ MaterialTapTargetSize _uMaterialTapTargetSize(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-MaterialTapTargetSize? _unMaterialTapTargetSize(dynamic v) => v == null ? v : _uMaterialTapTargetSize(v);
-
 ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
   final ButtonTextTheme textTheme = _uButtonTextTheme(__m['textTheme']);
   final double minWidth = uDouble(__m['minWidth']);
@@ -419,8 +411,6 @@ FontStyle _uFontStyle(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-FontStyle? _unFontStyle(dynamic v) => v == null ? v : _uFontStyle(v);
-
 TextBaseline _uTextBaseline(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -433,8 +423,6 @@ TextBaseline _uTextBaseline(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-TextBaseline? _unTextBaseline(dynamic v) => v == null ? v : _uTextBaseline(v);
-
 TextLeadingDistribution _uTextLeadingDistribution(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -446,8 +434,6 @@ TextLeadingDistribution _uTextLeadingDistribution(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-TextLeadingDistribution? _unTextLeadingDistribution(dynamic v) => v == null ? v : _uTextLeadingDistribution(v);
 
 Locale _uLocale(Map<String, dynamic> __m) {
   final String _languageCode = uString(__m['_languageCode']);
@@ -470,7 +456,7 @@ Locale _uLocaleFromSubtags(Map<String, dynamic> __m) {
 }
 
 Paint _uPaint(Map<String, dynamic> __m) {
-  return const Paint(
+  return Paint(
   );
 }
 
@@ -688,8 +674,6 @@ TextDecorationStyle _uTextDecorationStyle(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-TextDecorationStyle? _unTextDecorationStyle(dynamic v) => v == null ? v : _uTextDecorationStyle(v);
-
 TextOverflow _uTextOverflow(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -705,8 +689,6 @@ TextOverflow _uTextOverflow(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-TextOverflow? _unTextOverflow(dynamic v) => v == null ? v : _uTextOverflow(v);
 
 TextStyle _uTextStyle(Map<String, dynamic> __m) {
   final bool inherit = uBool(__m['inherit']);
@@ -1002,8 +984,6 @@ FloatingLabelBehavior _uFloatingLabelBehavior(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-FloatingLabelBehavior? _unFloatingLabelBehavior(dynamic v) => v == null ? v : _uFloatingLabelBehavior(v);
-
 BorderStyle _uBorderStyle(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -1015,8 +995,6 @@ BorderStyle _uBorderStyle(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-BorderStyle? _unBorderStyle(dynamic v) => v == null ? v : _uBorderStyle(v);
 
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
   final Color color = uClass(__m['color']);
@@ -1118,8 +1096,6 @@ ShowValueIndicator _uShowValueIndicator(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-ShowValueIndicator? _unShowValueIndicator(dynamic v) => v == null ? v : _uShowValueIndicator(v);
-
 TextDirection _uTextDirection(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -1131,8 +1107,6 @@ TextDirection _uTextDirection(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-TextDirection? _unTextDirection(dynamic v) => v == null ? v : _uTextDirection(v);
 
 RangeValues _uRangeValues(Map<String, dynamic> __m) {
   final double start = uDouble(__m['start']);
@@ -1154,8 +1128,6 @@ Thumb _uThumb(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-Thumb? _unThumb(dynamic v) => v == null ? v : _uThumb(v);
 
 SliderThemeData _uSliderThemeData(Map<String, dynamic> __m) {
   final double trackHeight = uDouble(__m['trackHeight']);
@@ -1241,8 +1213,6 @@ TabBarIndicatorSize _uTabBarIndicatorSize(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-TabBarIndicatorSize? _unTabBarIndicatorSize(dynamic v) => v == null ? v : _uTabBarIndicatorSize(v);
-
 TabBarTheme _uTabBarTheme(Map<String, dynamic> __m) {
   final Decoration? indicator = uNull<Decoration>(uClass)(__m['indicator']);
   final TabBarIndicatorSize? indicatorSize = uNull<TabBarIndicatorSize>(_uTabBarIndicatorSize)(__m['indicatorSize']);
@@ -1293,8 +1263,6 @@ TooltipTriggerMode _uTooltipTriggerMode(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-TooltipTriggerMode? _unTooltipTriggerMode(dynamic v) => v == null ? v : _uTooltipTriggerMode(v);
-
 TooltipThemeData _uTooltipThemeData(Map<String, dynamic> __m) {
   final double height = uDouble(__m['height']);
   final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
@@ -1339,8 +1307,6 @@ Clip _uClip(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-Clip? _unClip(dynamic v) => v == null ? v : _uClip(v);
 
 CardTheme _uCardTheme(Map<String, dynamic> __m) {
   final Clip? clipBehavior = uNull<Clip>(_uClip)(__m['clipBehavior']);
@@ -1432,8 +1398,6 @@ TargetPlatform _uTargetPlatform(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-TargetPlatform? _unTargetPlatform(dynamic v) => v == null ? v : _uTargetPlatform(v);
 
 PageTransitionsTheme _uPageTransitionsTheme(Map<String, dynamic> __m) {
   final Map<TargetPlatform, PageTransitionsBuilder> builders = uClass(__m['builders']);
@@ -1612,8 +1576,6 @@ NavigationRailLabelType _uNavigationRailLabelType(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-NavigationRailLabelType? _unNavigationRailLabelType(dynamic v) => v == null ? v : _uNavigationRailLabelType(v);
-
 NavigationRailThemeData _uNavigationRailThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
   final double elevation = uDouble(__m['elevation']);
@@ -1738,8 +1700,6 @@ SnackBarBehavior _uSnackBarBehavior(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-SnackBarBehavior? _unSnackBarBehavior(dynamic v) => v == null ? v : _uSnackBarBehavior(v);
-
 SnackBarThemeData _uSnackBarThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
   final Color? actionTextColor = uNull<Color>(uClass)(__m['actionTextColor']);
@@ -1841,8 +1801,6 @@ MainAxisAlignment _uMainAxisAlignment(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-MainAxisAlignment? _unMainAxisAlignment(dynamic v) => v == null ? v : _uMainAxisAlignment(v);
-
 MainAxisSize _uMainAxisSize(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -1855,8 +1813,6 @@ MainAxisSize _uMainAxisSize(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-MainAxisSize? _unMainAxisSize(dynamic v) => v == null ? v : _uMainAxisSize(v);
-
 VerticalDirection _uVerticalDirection(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -1868,8 +1824,6 @@ VerticalDirection _uVerticalDirection(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-VerticalDirection? _unVerticalDirection(dynamic v) => v == null ? v : _uVerticalDirection(v);
 
 ButtonBarThemeData _uButtonBarThemeData(Map<String, dynamic> __m) {
   final MainAxisAlignment? alignment = uNull<MainAxisAlignment>(_uMainAxisAlignment)(__m['alignment']);
@@ -1906,8 +1860,6 @@ BottomNavigationBarType _uBottomNavigationBarType(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-BottomNavigationBarType? _unBottomNavigationBarType(dynamic v) => v == null ? v : _uBottomNavigationBarType(v);
-
 BottomNavigationBarLandscapeLayout _uBottomNavigationBarLandscapeLayout(dynamic v) {
   if (v is String) {
     switch(v) {
@@ -1921,8 +1873,6 @@ BottomNavigationBarLandscapeLayout _uBottomNavigationBarLandscapeLayout(dynamic 
   }
   throw 'illegal enum value $v';
 }
-
-BottomNavigationBarLandscapeLayout? _unBottomNavigationBarLandscapeLayout(dynamic v) => v == null ? v : _uBottomNavigationBarLandscapeLayout(v);
 
 BottomNavigationBarThemeData _uBottomNavigationBarThemeData(Map<String, dynamic> __m) {
   final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
@@ -2506,17 +2456,17 @@ ThemeData _uThemeDataFrom(Map<String, dynamic> __m) {
 }
 
 ThemeData _uThemeDataLight(Map<String, dynamic> __m) {
-  return const ThemeData.light(
+  return ThemeData.light(
   );
 }
 
 ThemeData _uThemeDataDark(Map<String, dynamic> __m) {
-  return const ThemeData.dark(
+  return ThemeData.dark(
   );
 }
 
 ThemeData _uThemeDataFallback(Map<String, dynamic> __m) {
-  return const ThemeData.fallback(
+  return ThemeData.fallback(
   );
 }
 
@@ -2534,10 +2484,8 @@ ThemeMode _uThemeMode(dynamic v) {
   throw 'illegal enum value $v';
 }
 
-ThemeMode? _unThemeMode(dynamic v) => v == null ? v : _uThemeMode(v);
-
 DoNothingIntent _uDoNothingIntent(Map<String, dynamic> __m) {
-  return const DoNothingIntent(
+  return DoNothingIntent(
   );
 }
 
@@ -2556,7 +2504,7 @@ RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
 }
 
 _CallbackHookProvider _u_CallbackHookProvider(Map<String, dynamic> __m) {
-  return const _CallbackHookProvider(
+  return _CallbackHookProvider(
   );
 }
 
@@ -2722,8 +2670,6 @@ KeyEventResult _uKeyEventResult(dynamic v) {
   }
   throw 'illegal enum value $v';
 }
-
-KeyEventResult? _unKeyEventResult(dynamic v) => v == null ? v : _uKeyEventResult(v);
 
 PhysicalKeyboardKey _uPhysicalKeyboardKey(Map<String, dynamic> __m) {
   final int usbHidUsage = uInt(__m['usbHidUsage']);
