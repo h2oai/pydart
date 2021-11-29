@@ -77,7 +77,8 @@ class ClientTranslator {
           p("final ${dumpType(f.type)} ${f.name} = $unmarshal($lookup);");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
-        p('return ${e.name}$ctor(');
+        final constPrefix = c.fields.isEmpty ? 'const ': '';
+        p('return $constPrefix${e.name}$ctor(');
         p.t(() {
           for (final f in c.fields) {
             p(f.isPositional ? '${f.name},' : '${f.name}: ${f.name},');

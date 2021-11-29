@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'unmarshal.dart';
 
 Object _uObject(Map<String, dynamic> __m) {
-  return Object(
+  return const Object(
   );
 }
 
@@ -21,7 +21,7 @@ RouteSettings _uRouteSettings(Map<String, dynamic> __m) {
 }
 
 NavigatorObserver _uNavigatorObserver(Map<String, dynamic> __m) {
-  return NavigatorObserver(
+  return const NavigatorObserver(
   );
 }
 
@@ -53,7 +53,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
 }
 
 NavigatorState _uNavigatorState(Map<String, dynamic> __m) {
-  return NavigatorState(
+  return const NavigatorState(
   );
 }
 
@@ -67,11 +67,11 @@ ScaffoldMessenger _uScaffoldMessenger(Map<String, dynamic> __m) {
 }
 
 ScaffoldMessengerState _uScaffoldMessengerState(Map<String, dynamic> __m) {
-  return ScaffoldMessengerState(
+  return const ScaffoldMessengerState(
   );
 }
 
-MapEntry _uMapEntry(Map<String, dynamic> __m) {
+MapEntry _uMapEntry<K, V>(Map<String, dynamic> __m) {
   final K key = (__m['key']);
   final V value = (__m['value']);
   return MapEntry(
@@ -136,7 +136,7 @@ VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
   );
 }
 
-ColorSwatch _uColorSwatch(Map<String, dynamic> __m) {
+ColorSwatch _uColorSwatch<T>(Map<String, dynamic> __m) {
   final int primary = uInt(__m['primary']);
   final Map<T, Color> _swatch = uClass(__m['_swatch']);
   return ColorSwatch(
@@ -470,7 +470,7 @@ Locale _uLocaleFromSubtags(Map<String, dynamic> __m) {
 }
 
 Paint _uPaint(Map<String, dynamic> __m) {
-  return Paint(
+  return const Paint(
   );
 }
 
@@ -534,17 +534,17 @@ FontFeature _uFontFeatureAlternative(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureAlternativeFractions(Map<String, dynamic> __m) {
-  return FontFeature.alternativeFractions(
+  return const FontFeature.alternativeFractions(
   );
 }
 
 FontFeature _uFontFeatureContextualAlternates(Map<String, dynamic> __m) {
-  return FontFeature.contextualAlternates(
+  return const FontFeature.contextualAlternates(
   );
 }
 
 FontFeature _uFontFeatureCaseSensitiveForms(Map<String, dynamic> __m) {
-  return FontFeature.caseSensitiveForms(
+  return const FontFeature.caseSensitiveForms(
   );
 }
 
@@ -556,27 +556,27 @@ FontFeature _uFontFeatureCharacterVariant(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureDenominator(Map<String, dynamic> __m) {
-  return FontFeature.denominator(
+  return const FontFeature.denominator(
   );
 }
 
 FontFeature _uFontFeatureFractions(Map<String, dynamic> __m) {
-  return FontFeature.fractions(
+  return const FontFeature.fractions(
   );
 }
 
 FontFeature _uFontFeatureHistoricalForms(Map<String, dynamic> __m) {
-  return FontFeature.historicalForms(
+  return const FontFeature.historicalForms(
   );
 }
 
 FontFeature _uFontFeatureHistoricalLigatures(Map<String, dynamic> __m) {
-  return FontFeature.historicalLigatures(
+  return const FontFeature.historicalLigatures(
   );
 }
 
 FontFeature _uFontFeatureLiningFigures(Map<String, dynamic> __m) {
-  return FontFeature.liningFigures(
+  return const FontFeature.liningFigures(
   );
 }
 
@@ -595,37 +595,37 @@ FontFeature _uFontFeatureNotationalForms(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureNumerators(Map<String, dynamic> __m) {
-  return FontFeature.numerators(
+  return const FontFeature.numerators(
   );
 }
 
 FontFeature _uFontFeatureOldstyleFigures(Map<String, dynamic> __m) {
-  return FontFeature.oldstyleFigures(
+  return const FontFeature.oldstyleFigures(
   );
 }
 
 FontFeature _uFontFeatureOrdinalForms(Map<String, dynamic> __m) {
-  return FontFeature.ordinalForms(
+  return const FontFeature.ordinalForms(
   );
 }
 
 FontFeature _uFontFeatureProportionalFigures(Map<String, dynamic> __m) {
-  return FontFeature.proportionalFigures(
+  return const FontFeature.proportionalFigures(
   );
 }
 
 FontFeature _uFontFeatureRandomize(Map<String, dynamic> __m) {
-  return FontFeature.randomize(
+  return const FontFeature.randomize(
   );
 }
 
 FontFeature _uFontFeatureStylisticAlternates(Map<String, dynamic> __m) {
-  return FontFeature.stylisticAlternates(
+  return const FontFeature.stylisticAlternates(
   );
 }
 
 FontFeature _uFontFeatureScientificInferiors(Map<String, dynamic> __m) {
-  return FontFeature.scientificInferiors(
+  return const FontFeature.scientificInferiors(
   );
 }
 
@@ -637,12 +637,12 @@ FontFeature _uFontFeatureStylisticSet(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureSubscripts(Map<String, dynamic> __m) {
-  return FontFeature.subscripts(
+  return const FontFeature.subscripts(
   );
 }
 
 FontFeature _uFontFeatureSuperscripts(Map<String, dynamic> __m) {
-  return FontFeature.superscripts(
+  return const FontFeature.superscripts(
   );
 }
 
@@ -654,12 +654,12 @@ FontFeature _uFontFeatureSwash(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureTabularFigures(Map<String, dynamic> __m) {
-  return FontFeature.tabularFigures(
+  return const FontFeature.tabularFigures(
   );
 }
 
 FontFeature _uFontFeatureSlashedZero(Map<String, dynamic> __m) {
-  return FontFeature.slashedZero(
+  return const FontFeature.slashedZero(
   );
 }
 
@@ -1098,7 +1098,7 @@ IconThemeData _uIconThemeData(Map<String, dynamic> __m) {
 }
 
 IconThemeData _uIconThemeDataFallback(Map<String, dynamic> __m) {
-  return IconThemeData.fallback(
+  return const IconThemeData.fallback(
   );
 }
 
@@ -2506,17 +2506,17 @@ ThemeData _uThemeDataFrom(Map<String, dynamic> __m) {
 }
 
 ThemeData _uThemeDataLight(Map<String, dynamic> __m) {
-  return ThemeData.light(
+  return const ThemeData.light(
   );
 }
 
 ThemeData _uThemeDataDark(Map<String, dynamic> __m) {
-  return ThemeData.dark(
+  return const ThemeData.dark(
   );
 }
 
 ThemeData _uThemeDataFallback(Map<String, dynamic> __m) {
-  return ThemeData.fallback(
+  return const ThemeData.fallback(
   );
 }
 
@@ -2537,12 +2537,12 @@ ThemeMode _uThemeMode(dynamic v) {
 ThemeMode? _unThemeMode(dynamic v) => v == null ? v : _uThemeMode(v);
 
 DoNothingIntent _uDoNothingIntent(Map<String, dynamic> __m) {
-  return DoNothingIntent(
+  return const DoNothingIntent(
   );
 }
 
 ScrollBehavior _uScrollBehavior(Map<String, dynamic> __m) {
-  return ScrollBehavior(
+  return const ScrollBehavior(
   );
 }
 
@@ -2556,7 +2556,7 @@ RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
 }
 
 _CallbackHookProvider _u_CallbackHookProvider(Map<String, dynamic> __m) {
-  return _CallbackHookProvider(
+  return const _CallbackHookProvider(
   );
 }
 
