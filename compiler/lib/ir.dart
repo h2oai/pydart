@@ -142,8 +142,9 @@ class IRField {
 class IRConstructor {
   final String name;
   final List<IRField> fields;
+  final bool isConst;
 
-  IRConstructor(this.name, this.fields);
+  IRConstructor(this.name, this.fields, this.isConst);
 }
 
 class IRClass extends IRElement {
@@ -337,7 +338,7 @@ class IRBuilder {
 
     final constructors = e.constructors
         .where((c) => !_isPrivateSymbol(c.name))
-        .map((c) => IRConstructor(c.name, _toFields(c.parameters)))
+        .map((c) => IRConstructor(c.name, _toFields(c.parameters), c.isConst))
         .toList();
 
     final parameters = e.typeParameters.map(_toParameterType).toList();
@@ -390,7 +391,7 @@ class IRBuilder {
       );
 
   IRConstructor _resolveConstructor(IRConstructor c) =>
-      IRConstructor(c.name, c.fields.map(_resolveField).toList());
+      IRConstructor(c.name, c.fields.map(_resolveField).toList(), c.isConst);
 
   IRElement _resolveElement(IRElement e) {
     if (e is IRPlaceholder) {
