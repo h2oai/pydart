@@ -12,12 +12,26 @@ T = TypeVar('T')
 
 # bin/cache/pkg/sky_engine/lib/core/object.dart
 class Object:
-    pass
+
+    def __init__(
+        self,
+    ):
+        self._nx_ = {
+            '#t': ('Object', ''),
+        }
 
 
 # packages/flutter/lib/src/foundation/diagnostics.dart
 class DiagnosticableTree(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('DiagnosticableTree', ''),
+        }
 
 
 # packages/flutter/lib/src/foundation/key.dart
@@ -27,6 +41,8 @@ class Key(Object, ABC):
         self,
         value: str,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Key', ''),
             'value': value,
@@ -51,6 +67,8 @@ class Widget(DiagnosticableTree, ABC):
         self,
         key: Optional[Key] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Widget', ''),
             'key': key,
@@ -74,7 +92,15 @@ class StatefulWidget(Widget, ABC):
 
 # packages/flutter/lib/src/widgets/framework.dart
 class State(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('State', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/framework.dart
@@ -82,7 +108,7 @@ class GlobalKey(Key, ABC, Generic[T]):
 
     def __init__(
         self,
-        debug_label: str,
+        debug_label: Optional[str] = None,
     ):
         super().__init__(
             value='',
@@ -96,7 +122,6 @@ class GlobalKey(Key, ABC, Generic[T]):
     def constructor(
     ):
         _o = GlobalKey(
-            debug_label='',
         )
         _o._nx_ = {
             '#t': ('GlobalKey', 'constructor'),
@@ -106,7 +131,15 @@ class GlobalKey(Key, ABC, Generic[T]):
 
 # bin/cache/pkg/sky_engine/lib/internal/iterable.dart
 class EfficientLengthIterable(Iterable[T], ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('EfficientLengthIterable', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -114,9 +147,11 @@ class RouteSettings(Object):
 
     def __init__(
         self,
-        name: str,
+        name: Optional[str] = None,
         arguments: Optional[Object] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('RouteSettings', ''),
             'name': name,
@@ -126,7 +161,16 @@ class RouteSettings(Object):
 
 # packages/flutter/lib/src/foundation/key.dart
 class LocalKey(Key, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+            value='',
+        )
+        self._nx_ = {
+            '#t': ('LocalKey', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -134,20 +178,19 @@ class Page(RouteSettings, ABC, Generic[T]):
 
     def __init__(
         self,
-        name: str,
-        restoration_id: str,
         key: Optional[LocalKey] = None,
+        name: Optional[str] = None,
         arguments: Optional[Object] = None,
+        restoration_id: Optional[str] = None,
     ):
         super().__init__(
-            name='',
         )
         self._nx_ = {
             '#t': ('Page', ''),
-            'name': name,
-            'restorationId': restoration_id,
             'key': key,
+            'name': name,
             'arguments': arguments,
+            'restorationId': restoration_id,
         }
 
 
@@ -158,6 +201,8 @@ class Route(Object, ABC, Generic[T]):
         self,
         settings: Optional[RouteSettings] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Route', ''),
             'settings': settings,
@@ -166,12 +211,28 @@ class Route(Object, ABC, Generic[T]):
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class TransitionDelegate(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('TransitionDelegate', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorObserver(Object):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('NavigatorObserver', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -180,22 +241,23 @@ class Navigator(StatefulWidget):
 
     def __init__(
         self,
-        pages: List[Page[Any]],
-        on_pop_page: Callable[[Route[Any], Any], bool],
-        initial_route: str,
-        on_generate_initial_routes: Callable[['NavigatorState', str], List[Route[Any]]],
-        on_generate_route: Callable[[RouteSettings], Optional[Route[Any]]],
-        on_unknown_route: Callable[[RouteSettings], Optional[Route[Any]]],
-        transition_delegate: TransitionDelegate[Any],
-        reports_route_update_to_engine: bool,
-        observers: List[NavigatorObserver],
-        restoration_scope_id: str,
         key: Optional[Key] = None,
+        pages: List[Page[Any]] = None,
+        on_pop_page: Optional[Callable[[Route[Any], Any], bool]] = None,
+        initial_route: Optional[str] = None,
+        on_generate_initial_routes: Callable[['NavigatorState', str], List[Route[Any]]] = None,
+        on_generate_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
+        on_unknown_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
+        transition_delegate: TransitionDelegate[Any] = None,
+        reports_route_update_to_engine: bool = None,
+        observers: List[NavigatorObserver] = None,
+        restoration_scope_id: Optional[str] = None,
     ):
         super().__init__(
         )
         self._nx_ = {
             '#t': ('Navigator', ''),
+            'key': key,
             'pages': pages,
             'onPopPage': on_pop_page,
             'initialRoute': initial_route,
@@ -206,13 +268,20 @@ class Navigator(StatefulWidget):
             'reportsRouteUpdateToEngine': reports_route_update_to_engine,
             'observers': observers,
             'restorationScopeId': restoration_scope_id,
-            'key': key,
         }
 
 
 # packages/flutter/lib/src/widgets/navigator.dart
 class NavigatorState(State[Navigator]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('NavigatorState', ''),
+        }
 
 
 # packages/flutter/lib/src/material/scaffold.dart
@@ -234,12 +303,28 @@ class ScaffoldMessenger(StatefulWidget):
 
 # packages/flutter/lib/src/material/scaffold.dart
 class ScaffoldMessengerState(State[ScaffoldMessenger]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('ScaffoldMessengerState', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/framework.dart
 class BuildContext(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('BuildContext', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
@@ -249,6 +334,8 @@ class Color(Object):
         self,
         value: int,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Color', ''),
             'value': value,
@@ -306,9 +393,11 @@ class VisualDensity(Object):
 
     def __init__(
         self,
-        horizontal: float,
-        vertical: float,
+        horizontal: float = None,
+        vertical: float = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('VisualDensity', ''),
             'horizontal': horizontal,
@@ -317,18 +406,12 @@ class VisualDensity(Object):
 
 
 VisualDensity.standard = VisualDensity(
-    horizontal=0.0,
-    vertical=0.0,
 )
 VisualDensity.standard._nx_ = {'#t': ('VisualDensity', 'standard')}
 VisualDensity.comfortable = VisualDensity(
-    horizontal=0.0,
-    vertical=0.0,
 )
 VisualDensity.comfortable._nx_ = {'#t': ('VisualDensity', 'comfortable')}
 VisualDensity.compact = VisualDensity(
-    horizontal=0.0,
-    vertical=0.0,
 )
 VisualDensity.compact._nx_ = {'#t': ('VisualDensity', 'compact')}
 
@@ -372,7 +455,15 @@ class MaterialColor(ColorSwatch[int]):
 
 # packages/flutter/lib/src/material/ink_well.dart
 class InteractiveInkFeatureFactory(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('InteractiveInkFeatureFactory', ''),
+        }
 
 
 # packages/flutter/lib/src/material/button_theme.dart
@@ -384,7 +475,15 @@ class ButtonTextTheme(Enum):
 
 # packages/flutter/lib/src/painting/edge_insets.dart
 class EdgeInsetsGeometry(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('EdgeInsetsGeometry', ''),
+        }
 
 
 EdgeInsetsGeometry.infinity = EdgeInsetsGeometry(
@@ -394,7 +493,15 @@ EdgeInsetsGeometry.infinity._nx_ = {'#t': ('EdgeInsetsGeometry', 'infinity')}
 
 # packages/flutter/lib/src/painting/borders.dart
 class ShapeBorder(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('ShapeBorder', ''),
+        }
 
 
 # packages/flutter/lib/src/material/button_theme.dart
@@ -422,6 +529,8 @@ class ColorScheme(Object):
         on_error: Color,
         brightness: Brightness,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ColorScheme', ''),
             'primary': primary,
@@ -441,19 +550,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def light(
-        primary: Color,
-        primary_variant: Color,
-        secondary: Color,
-        secondary_variant: Color,
-        surface: Color,
-        background: Color,
-        error: Color,
-        on_primary: Color,
-        on_secondary: Color,
-        on_surface: Color,
-        on_background: Color,
-        on_error: Color,
-        brightness: Brightness,
+        primary: Color = None,
+        primary_variant: Color = None,
+        secondary: Color = None,
+        secondary_variant: Color = None,
+        surface: Color = None,
+        background: Color = None,
+        error: Color = None,
+        on_primary: Color = None,
+        on_secondary: Color = None,
+        on_surface: Color = None,
+        on_background: Color = None,
+        on_error: Color = None,
+        brightness: Brightness = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -490,19 +599,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def dark(
-        primary: Color,
-        primary_variant: Color,
-        secondary: Color,
-        secondary_variant: Color,
-        surface: Color,
-        background: Color,
-        error: Color,
-        on_primary: Color,
-        on_secondary: Color,
-        on_surface: Color,
-        on_background: Color,
-        on_error: Color,
-        brightness: Brightness,
+        primary: Color = None,
+        primary_variant: Color = None,
+        secondary: Color = None,
+        secondary_variant: Color = None,
+        surface: Color = None,
+        background: Color = None,
+        error: Color = None,
+        on_primary: Color = None,
+        on_secondary: Color = None,
+        on_surface: Color = None,
+        on_background: Color = None,
+        on_error: Color = None,
+        brightness: Brightness = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -539,19 +648,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def high_contrast_light(
-        primary: Color,
-        primary_variant: Color,
-        secondary: Color,
-        secondary_variant: Color,
-        surface: Color,
-        background: Color,
-        error: Color,
-        on_primary: Color,
-        on_secondary: Color,
-        on_surface: Color,
-        on_background: Color,
-        on_error: Color,
-        brightness: Brightness,
+        primary: Color = None,
+        primary_variant: Color = None,
+        secondary: Color = None,
+        secondary_variant: Color = None,
+        surface: Color = None,
+        background: Color = None,
+        error: Color = None,
+        on_primary: Color = None,
+        on_secondary: Color = None,
+        on_surface: Color = None,
+        on_background: Color = None,
+        on_error: Color = None,
+        brightness: Brightness = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -588,19 +697,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def high_contrast_dark(
-        primary: Color,
-        primary_variant: Color,
-        secondary: Color,
-        secondary_variant: Color,
-        surface: Color,
-        background: Color,
-        error: Color,
-        on_primary: Color,
-        on_secondary: Color,
-        on_surface: Color,
-        on_background: Color,
-        on_error: Color,
-        brightness: Brightness,
+        primary: Color = None,
+        primary_variant: Color = None,
+        secondary: Color = None,
+        secondary_variant: Color = None,
+        surface: Color = None,
+        background: Color = None,
+        error: Color = None,
+        on_primary: Color = None,
+        on_secondary: Color = None,
+        on_surface: Color = None,
+        on_background: Color = None,
+        on_error: Color = None,
+        brightness: Brightness = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -637,13 +746,13 @@ class ColorScheme(Object):
 
     @staticmethod
     def from_swatch(
-        primary_swatch: MaterialColor,
-        brightness: Brightness,
+        primary_swatch: MaterialColor = None,
         primary_color_dark: Optional[Color] = None,
         accent_color: Optional[Color] = None,
         card_color: Optional[Color] = None,
         background_color: Optional[Color] = None,
         error_color: Optional[Color] = None,
+        brightness: Brightness = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -663,12 +772,12 @@ class ColorScheme(Object):
         _o._nx_ = {
             '#t': ('ColorScheme', 'fromSwatch'),
             'primarySwatch': primary_swatch,
-            'brightness': brightness,
             'primaryColorDark': primary_color_dark,
             'accentColor': accent_color,
             'cardColor': card_color,
             'backgroundColor': background_color,
             'errorColor': error_color,
+            'brightness': brightness,
         }
         return _o
 
@@ -684,13 +793,13 @@ class ButtonThemeData(Object):
 
     def __init__(
         self,
-        text_theme: ButtonTextTheme,
-        min_width: float,
-        height: float,
-        layout_behavior: ButtonBarLayoutBehavior,
-        aligned_dropdown: bool,
+        text_theme: ButtonTextTheme = None,
+        min_width: float = None,
+        height: float = None,
         padding: Optional[EdgeInsetsGeometry] = None,
         shape: Optional[ShapeBorder] = None,
+        layout_behavior: ButtonBarLayoutBehavior = None,
+        aligned_dropdown: bool = None,
         button_color: Optional[Color] = None,
         disabled_color: Optional[Color] = None,
         focus_color: Optional[Color] = None,
@@ -700,15 +809,17 @@ class ButtonThemeData(Object):
         color_scheme: Optional[ColorScheme] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ButtonThemeData', ''),
             'textTheme': text_theme,
             'minWidth': min_width,
             'height': height,
-            'layoutBehavior': layout_behavior,
-            'alignedDropdown': aligned_dropdown,
             'padding': padding,
             'shape': shape,
+            'layoutBehavior': layout_behavior,
+            'alignedDropdown': aligned_dropdown,
             'buttonColor': button_color,
             'disabledColor': disabled_color,
             'focusColor': focus_color,
@@ -784,8 +895,10 @@ class Locale(Object):
     def __init__(
         self,
         _language_code: str,
-        _country_code: str,
+        _country_code: Optional[str] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Locale', ''),
             '_languageCode': _language_code,
@@ -794,13 +907,12 @@ class Locale(Object):
 
     @staticmethod
     def from_subtags(
-        language_code: str,
-        script_code: str,
-        country_code: str,
+        language_code: str = None,
+        script_code: Optional[str] = None,
+        country_code: Optional[str] = None,
     ):
         _o = Locale(
             _language_code='',
-            _country_code='',
         )
         _o._nx_ = {
             '#t': ('Locale', 'fromSubtags'),
@@ -813,7 +925,15 @@ class Locale(Object):
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Paint(Object):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Paint', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -824,6 +944,8 @@ class OffsetBase(Object, ABC):
         _dx: float,
         _dy: float,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('OffsetBase', ''),
             '_dx': _dx,
@@ -852,7 +974,7 @@ class Offset(OffsetBase):
     @staticmethod
     def from_direction(
         direction: float,
-        distance: float,
+        distance: float = None,
     ):
         _o = Offset(
             dx=0.0,
@@ -883,10 +1005,12 @@ class Shadow(Object):
 
     def __init__(
         self,
-        color: Color,
-        offset: Offset,
-        blur_radius: float,
+        color: Color = None,
+        offset: Offset = None,
+        blur_radius: float = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Shadow', ''),
             'color': color,
@@ -901,8 +1025,10 @@ class FontFeature(Object):
     def __init__(
         self,
         feature: str,
-        value: int,
+        value: int = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('FontFeature', ''),
             'feature': feature,
@@ -915,7 +1041,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'enable'),
@@ -929,7 +1054,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'disable'),
@@ -943,7 +1067,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'alternative'),
@@ -956,7 +1079,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'alternativeFractions'),
@@ -968,7 +1090,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'contextualAlternates'),
@@ -980,7 +1101,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'caseSensitiveForms'),
@@ -993,7 +1113,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'characterVariant'),
@@ -1006,7 +1125,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'denominator'),
@@ -1018,7 +1136,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'fractions'),
@@ -1030,7 +1147,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'historicalForms'),
@@ -1042,7 +1158,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'historicalLigatures'),
@@ -1054,7 +1169,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'liningFigures'),
@@ -1063,11 +1177,10 @@ class FontFeature(Object):
 
     @staticmethod
     def locale_aware(
-        enable: bool,
+        enable: bool = None,
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'localeAware'),
@@ -1077,11 +1190,10 @@ class FontFeature(Object):
 
     @staticmethod
     def notational_forms(
-        value: int,
+        value: int = None,
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'notationalForms'),
@@ -1094,7 +1206,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'numerators'),
@@ -1106,7 +1217,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'oldstyleFigures'),
@@ -1118,7 +1228,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'ordinalForms'),
@@ -1130,7 +1239,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'proportionalFigures'),
@@ -1142,7 +1250,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'randomize'),
@@ -1154,7 +1261,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'stylisticAlternates'),
@@ -1166,7 +1272,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'scientificInferiors'),
@@ -1179,7 +1284,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'stylisticSet'),
@@ -1192,7 +1296,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'subscripts'),
@@ -1204,7 +1307,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'superscripts'),
@@ -1213,11 +1315,10 @@ class FontFeature(Object):
 
     @staticmethod
     def swash(
-        value: int,
+        value: int = None,
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'swash'),
@@ -1230,7 +1331,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'tabularFigures'),
@@ -1242,7 +1342,6 @@ class FontFeature(Object):
     ):
         _o = FontFeature(
             feature='',
-            value=0,
         )
         _o._nx_ = {
             '#t': ('FontFeature', 'slashedZero'),
@@ -1302,20 +1401,16 @@ class TextStyle(Object):
 
     def __init__(
         self,
-        inherit: bool,
-        font_size: float,
-        letter_spacing: float,
-        word_spacing: float,
-        height: float,
-        decoration_thickness: float,
-        debug_label: str,
-        font_family: str,
-        package: str,
+        inherit: bool = None,
         color: Optional[Color] = None,
         background_color: Optional[Color] = None,
+        font_size: Optional[float] = None,
         font_weight: Optional[FontWeight] = None,
         font_style: Optional[FontStyle] = None,
+        letter_spacing: Optional[float] = None,
+        word_spacing: Optional[float] = None,
         text_baseline: Optional[TextBaseline] = None,
+        height: Optional[float] = None,
         leading_distribution: Optional[TextLeadingDistribution] = None,
         locale: Optional[Locale] = None,
         foreground: Optional[Paint] = None,
@@ -1325,25 +1420,27 @@ class TextStyle(Object):
         decoration: Optional[TextDecoration] = None,
         decoration_color: Optional[Color] = None,
         decoration_style: Optional[TextDecorationStyle] = None,
+        decoration_thickness: Optional[float] = None,
+        debug_label: Optional[str] = None,
+        font_family: Optional[str] = None,
         font_family_fallback: Optional[List[str]] = None,
+        package: Optional[str] = None,
         overflow: Optional[TextOverflow] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TextStyle', ''),
             'inherit': inherit,
-            'fontSize': font_size,
-            'letterSpacing': letter_spacing,
-            'wordSpacing': word_spacing,
-            'height': height,
-            'decorationThickness': decoration_thickness,
-            'debugLabel': debug_label,
-            'fontFamily': font_family,
-            'package': package,
             'color': color,
             'backgroundColor': background_color,
+            'fontSize': font_size,
             'fontWeight': font_weight,
             'fontStyle': font_style,
+            'letterSpacing': letter_spacing,
+            'wordSpacing': word_spacing,
             'textBaseline': text_baseline,
+            'height': height,
             'leadingDistribution': leading_distribution,
             'locale': locale,
             'foreground': foreground,
@@ -1353,14 +1450,26 @@ class TextStyle(Object):
             'decoration': decoration,
             'decorationColor': decoration_color,
             'decorationStyle': decoration_style,
+            'decorationThickness': decoration_thickness,
+            'debugLabel': debug_label,
+            'fontFamily': font_family,
             'fontFamilyFallback': font_family_fallback,
+            'package': package,
             'overflow': overflow,
         }
 
 
 # packages/flutter/lib/src/rendering/object.dart
 class Constraints(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Constraints', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -1469,11 +1578,13 @@ class BoxConstraints(Constraints):
 
     def __init__(
         self,
-        min_width: float,
-        max_width: float,
-        min_height: float,
-        max_height: float,
+        min_width: float = None,
+        max_width: float = None,
+        min_height: float = None,
+        max_height: float = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('BoxConstraints', ''),
             'minWidth': min_width,
@@ -1487,10 +1598,6 @@ class BoxConstraints(Constraints):
         size: Size,
     ):
         _o = BoxConstraints(
-            min_width=0.0,
-            max_width=0.0,
-            min_height=0.0,
-            max_height=0.0,
         )
         _o._nx_ = {
             '#t': ('BoxConstraints', 'tight'),
@@ -1500,14 +1607,10 @@ class BoxConstraints(Constraints):
 
     @staticmethod
     def tight_for(
-        width: float,
-        height: float,
+        width: Optional[float] = None,
+        height: Optional[float] = None,
     ):
         _o = BoxConstraints(
-            min_width=0.0,
-            max_width=0.0,
-            min_height=0.0,
-            max_height=0.0,
         )
         _o._nx_ = {
             '#t': ('BoxConstraints', 'tightFor'),
@@ -1518,14 +1621,10 @@ class BoxConstraints(Constraints):
 
     @staticmethod
     def tight_for_finite(
-        width: float,
-        height: float,
+        width: float = None,
+        height: float = None,
     ):
         _o = BoxConstraints(
-            min_width=0.0,
-            max_width=0.0,
-            min_height=0.0,
-            max_height=0.0,
         )
         _o._nx_ = {
             '#t': ('BoxConstraints', 'tightForFinite'),
@@ -1539,10 +1638,6 @@ class BoxConstraints(Constraints):
         size: Size,
     ):
         _o = BoxConstraints(
-            min_width=0.0,
-            max_width=0.0,
-            min_height=0.0,
-            max_height=0.0,
         )
         _o._nx_ = {
             '#t': ('BoxConstraints', 'loose'),
@@ -1552,14 +1647,10 @@ class BoxConstraints(Constraints):
 
     @staticmethod
     def expand(
-        width: float,
-        height: float,
+        width: Optional[float] = None,
+        height: Optional[float] = None,
     ):
         _o = BoxConstraints(
-            min_width=0.0,
-            max_width=0.0,
-            min_height=0.0,
-            max_height=0.0,
         )
         _o._nx_ = {
             '#t': ('BoxConstraints', 'expand'),
@@ -1571,7 +1662,15 @@ class BoxConstraints(Constraints):
 
 # packages/flutter/lib/src/painting/border_radius.dart
 class BorderRadiusGeometry(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('BorderRadiusGeometry', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/ui/geometry.dart
@@ -1638,8 +1737,8 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def vertical(
-        top: Radius,
-        bottom: Radius,
+        top: Radius = None,
+        bottom: Radius = None,
     ):
         _o = BorderRadius(
         )
@@ -1652,8 +1751,8 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def horizontal(
-        left: Radius,
-        right: Radius,
+        left: Radius = None,
+        right: Radius = None,
     ):
         _o = BorderRadius(
         )
@@ -1666,10 +1765,10 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def only(
-        top_left: Radius,
-        top_right: Radius,
-        bottom_left: Radius,
-        bottom_right: Radius,
+        top_left: Radius = None,
+        top_right: Radius = None,
+        bottom_left: Radius = None,
+        bottom_right: Radius = None,
     ):
         _o = BorderRadius(
         )
@@ -1693,7 +1792,6 @@ class ToggleButtonsThemeData(Object):
 
     def __init__(
         self,
-        border_width: float,
         text_style: Optional[TextStyle] = None,
         constraints: Optional[BoxConstraints] = None,
         color: Optional[Color] = None,
@@ -1708,10 +1806,12 @@ class ToggleButtonsThemeData(Object):
         selected_border_color: Optional[Color] = None,
         disabled_border_color: Optional[Color] = None,
         border_radius: Optional[BorderRadius] = None,
+        border_width: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ToggleButtonsThemeData', ''),
-            'borderWidth': border_width,
             'textStyle': text_style,
             'constraints': constraints,
             'color': color,
@@ -1726,6 +1826,7 @@ class ToggleButtonsThemeData(Object):
             'selectedBorderColor': selected_border_color,
             'disabledBorderColor': disabled_border_color,
             'borderRadius': border_radius,
+            'borderWidth': border_width,
         }
 
 
@@ -1748,6 +1849,8 @@ class TextTheme(Object):
         button: Optional[TextStyle] = None,
         overline: Optional[TextStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TextTheme', ''),
             'headline1': headline1,
@@ -1784,10 +1887,12 @@ class BorderSide(Object):
 
     def __init__(
         self,
-        color: Color,
-        width: float,
-        style: BorderStyle,
+        color: Color = None,
+        width: float = None,
+        style: BorderStyle = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('BorderSide', ''),
             'color': color,
@@ -1797,9 +1902,6 @@ class BorderSide(Object):
 
 
 BorderSide.none = BorderSide(
-    color=Color(0),
-    width=0.0,
-    style=BorderStyle.none,
 )
 BorderSide.none._nx_ = {'#t': ('BorderSide', 'none')}
 
@@ -1809,8 +1911,10 @@ class InputBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
-        border_side: BorderSide,
+        border_side: BorderSide = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('InputBorder', ''),
             'borderSide': border_side,
@@ -1818,7 +1922,6 @@ class InputBorder(ShapeBorder, ABC):
 
 
 InputBorder.none = InputBorder(
-    border_side=BorderSide(Color(0), 0.0, BorderStyle.none),
 )
 InputBorder.none._nx_ = {'#t': ('InputBorder', 'none')}
 
@@ -1828,22 +1931,21 @@ class InputDecorationTheme(Object):
 
     def __init__(
         self,
-        helper_max_lines: int,
-        error_max_lines: int,
-        floating_label_behavior: FloatingLabelBehavior,
-        is_dense: bool,
-        is_collapsed: bool,
-        filled: bool,
-        align_label_with_hint: bool,
         label_style: Optional[TextStyle] = None,
         floating_label_style: Optional[TextStyle] = None,
         helper_style: Optional[TextStyle] = None,
+        helper_max_lines: Optional[int] = None,
         hint_style: Optional[TextStyle] = None,
         error_style: Optional[TextStyle] = None,
+        error_max_lines: Optional[int] = None,
+        floating_label_behavior: FloatingLabelBehavior = None,
+        is_dense: bool = None,
         content_padding: Optional[EdgeInsetsGeometry] = None,
+        is_collapsed: bool = None,
         prefix_style: Optional[TextStyle] = None,
         suffix_style: Optional[TextStyle] = None,
         counter_style: Optional[TextStyle] = None,
+        filled: bool = None,
         fill_color: Optional[Color] = None,
         focus_color: Optional[Color] = None,
         hover_color: Optional[Color] = None,
@@ -1853,26 +1955,28 @@ class InputDecorationTheme(Object):
         disabled_border: Optional[InputBorder] = None,
         enabled_border: Optional[InputBorder] = None,
         border: Optional[InputBorder] = None,
+        align_label_with_hint: bool = None,
         constraints: Optional[BoxConstraints] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('InputDecorationTheme', ''),
-            'helperMaxLines': helper_max_lines,
-            'errorMaxLines': error_max_lines,
-            'floatingLabelBehavior': floating_label_behavior,
-            'isDense': is_dense,
-            'isCollapsed': is_collapsed,
-            'filled': filled,
-            'alignLabelWithHint': align_label_with_hint,
             'labelStyle': label_style,
             'floatingLabelStyle': floating_label_style,
             'helperStyle': helper_style,
+            'helperMaxLines': helper_max_lines,
             'hintStyle': hint_style,
             'errorStyle': error_style,
+            'errorMaxLines': error_max_lines,
+            'floatingLabelBehavior': floating_label_behavior,
+            'isDense': is_dense,
             'contentPadding': content_padding,
+            'isCollapsed': is_collapsed,
             'prefixStyle': prefix_style,
             'suffixStyle': suffix_style,
             'counterStyle': counter_style,
+            'filled': filled,
             'fillColor': fill_color,
             'focusColor': focus_color,
             'hoverColor': hover_color,
@@ -1882,6 +1986,7 @@ class InputDecorationTheme(Object):
             'disabledBorder': disabled_border,
             'enabledBorder': enabled_border,
             'border': border,
+            'alignLabelWithHint': align_label_with_hint,
             'constraints': constraints,
         }
 
@@ -1891,23 +1996,23 @@ class IconThemeData(Object):
 
     def __init__(
         self,
-        opacity: float,
-        size: float,
         color: Optional[Color] = None,
+        opacity: Optional[float] = None,
+        size: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('IconThemeData', ''),
+            'color': color,
             'opacity': opacity,
             'size': size,
-            'color': color,
         }
 
     @staticmethod
     def fallback(
     ):
         _o = IconThemeData(
-            opacity=0.0,
-            size=0.0,
         )
         _o._nx_ = {
             '#t': ('IconThemeData', 'fallback'),
@@ -1917,37 +2022,93 @@ class IconThemeData(Object):
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderComponentShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('SliderComponentShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderTickMarkShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('SliderTickMarkShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class SliderTrackShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('SliderTrackShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderTickMarkShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RangeSliderTickMarkShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderThumbShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RangeSliderThumbShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderTrackShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RangeSliderTrackShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
 class RangeSliderValueIndicatorShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RangeSliderValueIndicatorShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/slider_theme.dart
@@ -1972,6 +2133,8 @@ class RangeValues(Object):
         start: float,
         end: float,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('RangeValues', ''),
             'start': start,
@@ -1990,9 +2153,7 @@ class SliderThemeData(Object):
 
     def __init__(
         self,
-        track_height: float,
-        min_thumb_separation: float,
-        thumb_selector: Callable[[TextDirection, RangeValues, float, Size, Size, float], Optional[Thumb]],
+        track_height: Optional[float] = None,
         active_track_color: Optional[Color] = None,
         inactive_track_color: Optional[Color] = None,
         disabled_active_track_color: Optional[Color] = None,
@@ -2017,12 +2178,14 @@ class SliderThemeData(Object):
         range_value_indicator_shape: Optional[RangeSliderValueIndicatorShape] = None,
         show_value_indicator: Optional[ShowValueIndicator] = None,
         value_indicator_text_style: Optional[TextStyle] = None,
+        min_thumb_separation: Optional[float] = None,
+        thumb_selector: Optional[Callable[[TextDirection, RangeValues, float, Size, Size, float], Optional[Thumb]]] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('SliderThemeData', ''),
             'trackHeight': track_height,
-            'minThumbSeparation': min_thumb_separation,
-            'thumbSelector': thumb_selector,
             'activeTrackColor': active_track_color,
             'inactiveTrackColor': inactive_track_color,
             'disabledActiveTrackColor': disabled_active_track_color,
@@ -2047,6 +2210,8 @@ class SliderThemeData(Object):
             'rangeValueIndicatorShape': range_value_indicator_shape,
             'showValueIndicator': show_value_indicator,
             'valueIndicatorTextStyle': value_indicator_text_style,
+            'minThumbSeparation': min_thumb_separation,
+            'thumbSelector': thumb_selector,
         }
 
     @staticmethod
@@ -2057,9 +2222,6 @@ class SliderThemeData(Object):
         value_indicator_text_style: TextStyle,
     ):
         _o = SliderThemeData(
-            track_height=0.0,
-            min_thumb_separation=0.0,
-            thumb_selector=_noop,
         )
         _o._nx_ = {
             '#t': ('SliderThemeData', 'fromPrimaryColors'),
@@ -2073,7 +2235,15 @@ class SliderThemeData(Object):
 
 # packages/flutter/lib/src/painting/decoration.dart
 class Decoration(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Decoration', ''),
+        }
 
 
 # packages/flutter/lib/src/material/tabs.dart
@@ -2095,6 +2265,8 @@ class TabBarTheme(Object):
         unselected_label_color: Optional[Color] = None,
         unselected_label_style: Optional[TextStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TabBarTheme', ''),
             'indicator': indicator,
@@ -2109,7 +2281,15 @@ class TabBarTheme(Object):
 
 # bin/cache/pkg/sky_engine/lib/core/comparable.dart
 class Comparable(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Comparable', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/core/duration.dart
@@ -2132,13 +2312,15 @@ class Duration(Comparable['Duration'], Object):
 
     def __init__(
         self,
-        days: int,
-        hours: int,
-        minutes: int,
-        seconds: int,
-        milliseconds: int,
-        microseconds: int,
+        days: int = None,
+        hours: int = None,
+        minutes: int = None,
+        seconds: int = None,
+        milliseconds: int = None,
+        microseconds: int = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Duration', ''),
             'days': days,
@@ -2151,12 +2333,6 @@ class Duration(Comparable['Duration'], Object):
 
 
 Duration.zero = Duration(
-    days=0,
-    hours=0,
-    minutes=0,
-    seconds=0,
-    milliseconds=0,
-    microseconds=0,
 )
 Duration.zero._nx_ = {'#t': ('Duration', 'zero')}
 
@@ -2173,33 +2349,35 @@ class TooltipThemeData(Object):
 
     def __init__(
         self,
-        height: float,
-        vertical_offset: float,
-        prefer_below: bool,
-        exclude_from_semantics: bool,
-        enable_feedback: bool,
+        height: Optional[float] = None,
         padding: Optional[EdgeInsetsGeometry] = None,
         margin: Optional[EdgeInsetsGeometry] = None,
+        vertical_offset: Optional[float] = None,
+        prefer_below: Optional[bool] = None,
+        exclude_from_semantics: Optional[bool] = None,
         decoration: Optional[Decoration] = None,
         text_style: Optional[TextStyle] = None,
         wait_duration: Optional[Duration] = None,
         show_duration: Optional[Duration] = None,
         trigger_mode: Optional[TooltipTriggerMode] = None,
+        enable_feedback: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TooltipThemeData', ''),
             'height': height,
+            'padding': padding,
+            'margin': margin,
             'verticalOffset': vertical_offset,
             'preferBelow': prefer_below,
             'excludeFromSemantics': exclude_from_semantics,
-            'enableFeedback': enable_feedback,
-            'padding': padding,
-            'margin': margin,
             'decoration': decoration,
             'textStyle': text_style,
             'waitDuration': wait_duration,
             'showDuration': show_duration,
             'triggerMode': trigger_mode,
+            'enableFeedback': enable_feedback,
         }
 
 
@@ -2216,19 +2394,21 @@ class CardTheme(Object):
 
     def __init__(
         self,
-        elevation: float,
         clip_behavior: Optional[Clip] = None,
         color: Optional[Color] = None,
         shadow_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         margin: Optional[EdgeInsetsGeometry] = None,
         shape: Optional[ShapeBorder] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('CardTheme', ''),
-            'elevation': elevation,
             'clipBehavior': clip_behavior,
             'color': color,
             'shadowColor': shadow_color,
+            'elevation': elevation,
             'margin': margin,
             'shape': shape,
         }
@@ -2239,8 +2419,10 @@ class OutlinedBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
-        side: BorderSide,
+        side: BorderSide = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('OutlinedBorder', ''),
             'side': side,
@@ -2256,41 +2438,43 @@ class ChipThemeData(Object):
         disabled_color: Color,
         selected_color: Color,
         secondary_selected_color: Color,
-        show_checkmark: bool,
         padding: EdgeInsetsGeometry,
         label_style: TextStyle,
         secondary_label_style: TextStyle,
         brightness: Brightness,
-        elevation: float,
-        press_elevation: float,
         delete_icon_color: Optional[Color] = None,
         shadow_color: Optional[Color] = None,
         selected_shadow_color: Optional[Color] = None,
+        show_checkmark: Optional[bool] = None,
         checkmark_color: Optional[Color] = None,
         label_padding: Optional[EdgeInsetsGeometry] = None,
         side: Optional[BorderSide] = None,
         shape: Optional[OutlinedBorder] = None,
+        elevation: Optional[float] = None,
+        press_elevation: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ChipThemeData', ''),
             'backgroundColor': background_color,
             'disabledColor': disabled_color,
             'selectedColor': selected_color,
             'secondarySelectedColor': secondary_selected_color,
-            'showCheckmark': show_checkmark,
             'padding': padding,
             'labelStyle': label_style,
             'secondaryLabelStyle': secondary_label_style,
             'brightness': brightness,
-            'elevation': elevation,
-            'pressElevation': press_elevation,
             'deleteIconColor': delete_icon_color,
             'shadowColor': shadow_color,
             'selectedShadowColor': selected_shadow_color,
+            'showCheckmark': show_checkmark,
             'checkmarkColor': checkmark_color,
             'labelPadding': label_padding,
             'side': side,
             'shape': shape,
+            'elevation': elevation,
+            'pressElevation': press_elevation,
         }
 
     @staticmethod
@@ -2305,13 +2489,10 @@ class ChipThemeData(Object):
             disabled_color=Color(0),
             selected_color=Color(0),
             secondary_selected_color=Color(0),
-            show_checkmark=False,
             padding=EdgeInsetsGeometry(),
-            label_style=TextStyle(False, 0.0, 0.0, 0.0, 0.0, 0.0, '', '', ''),
-            secondary_label_style=TextStyle(False, 0.0, 0.0, 0.0, 0.0, 0.0, '', '', ''),
+            label_style=TextStyle(),
+            secondary_label_style=TextStyle(),
             brightness=Brightness.dark,
-            elevation=0.0,
-            press_elevation=0.0,
         )
         _o._nx_ = {
             '#t': ('ChipThemeData', 'fromDefaults'),
@@ -2335,7 +2516,15 @@ class TargetPlatform(Enum):
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
 class PageTransitionsBuilder(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('PageTransitionsBuilder', ''),
+        }
 
 
 # packages/flutter/lib/src/material/page_transitions_theme.dart
@@ -2343,8 +2532,10 @@ class PageTransitionsTheme(Object):
 
     def __init__(
         self,
-        builders: Dict[TargetPlatform, PageTransitionsBuilder],
+        builders: Dict[TargetPlatform, PageTransitionsBuilder] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('PageTransitionsTheme', ''),
             'builders': builders,
@@ -2356,36 +2547,34 @@ class SystemUiOverlayStyle(Object):
 
     def __init__(
         self,
-        system_navigation_bar_contrast_enforced: bool,
-        system_status_bar_contrast_enforced: bool,
         system_navigation_bar_color: Optional[Color] = None,
         system_navigation_bar_divider_color: Optional[Color] = None,
         system_navigation_bar_icon_brightness: Optional[Brightness] = None,
+        system_navigation_bar_contrast_enforced: Optional[bool] = None,
         status_bar_color: Optional[Color] = None,
         status_bar_brightness: Optional[Brightness] = None,
         status_bar_icon_brightness: Optional[Brightness] = None,
+        system_status_bar_contrast_enforced: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('SystemUiOverlayStyle', ''),
-            'systemNavigationBarContrastEnforced': system_navigation_bar_contrast_enforced,
-            'systemStatusBarContrastEnforced': system_status_bar_contrast_enforced,
             'systemNavigationBarColor': system_navigation_bar_color,
             'systemNavigationBarDividerColor': system_navigation_bar_divider_color,
             'systemNavigationBarIconBrightness': system_navigation_bar_icon_brightness,
+            'systemNavigationBarContrastEnforced': system_navigation_bar_contrast_enforced,
             'statusBarColor': status_bar_color,
             'statusBarBrightness': status_bar_brightness,
             'statusBarIconBrightness': status_bar_icon_brightness,
+            'systemStatusBarContrastEnforced': system_status_bar_contrast_enforced,
         }
 
 
 SystemUiOverlayStyle.light = SystemUiOverlayStyle(
-    system_navigation_bar_contrast_enforced=False,
-    system_status_bar_contrast_enforced=False,
 )
 SystemUiOverlayStyle.light._nx_ = {'#t': ('SystemUiOverlayStyle', 'light')}
 SystemUiOverlayStyle.dark = SystemUiOverlayStyle(
-    system_navigation_bar_contrast_enforced=False,
-    system_status_bar_contrast_enforced=False,
 )
 SystemUiOverlayStyle.dark._nx_ = {'#t': ('SystemUiOverlayStyle', 'dark')}
 
@@ -2395,49 +2584,59 @@ class AppBarTheme(Object):
 
     def __init__(
         self,
-        elevation: float,
-        center_title: bool,
-        title_spacing: float,
-        toolbar_height: float,
-        backwards_compatibility: bool,
         brightness: Optional[Brightness] = None,
         color: Optional[Color] = None,
         background_color: Optional[Color] = None,
         foreground_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         shadow_color: Optional[Color] = None,
         shape: Optional[ShapeBorder] = None,
         icon_theme: Optional[IconThemeData] = None,
         actions_icon_theme: Optional[IconThemeData] = None,
         text_theme: Optional[TextTheme] = None,
+        center_title: Optional[bool] = None,
+        title_spacing: Optional[float] = None,
+        toolbar_height: Optional[float] = None,
         toolbar_text_style: Optional[TextStyle] = None,
         title_text_style: Optional[TextStyle] = None,
         system_overlay_style: Optional[SystemUiOverlayStyle] = None,
+        backwards_compatibility: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('AppBarTheme', ''),
-            'elevation': elevation,
-            'centerTitle': center_title,
-            'titleSpacing': title_spacing,
-            'toolbarHeight': toolbar_height,
-            'backwardsCompatibility': backwards_compatibility,
             'brightness': brightness,
             'color': color,
             'backgroundColor': background_color,
             'foregroundColor': foreground_color,
+            'elevation': elevation,
             'shadowColor': shadow_color,
             'shape': shape,
             'iconTheme': icon_theme,
             'actionsIconTheme': actions_icon_theme,
             'textTheme': text_theme,
+            'centerTitle': center_title,
+            'titleSpacing': title_spacing,
+            'toolbarHeight': toolbar_height,
             'toolbarTextStyle': toolbar_text_style,
             'titleTextStyle': title_text_style,
             'systemOverlayStyle': system_overlay_style,
+            'backwardsCompatibility': backwards_compatibility,
         }
 
 
 # packages/flutter/lib/src/material/material_state.dart
 class MaterialStateProperty(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('MaterialStateProperty', ''),
+        }
 
 
 # packages/flutter/lib/src/material/scrollbar_theme.dart
@@ -2445,37 +2644,47 @@ class ScrollbarThemeData(Object):
 
     def __init__(
         self,
-        show_track_on_hover: bool,
-        is_always_shown: bool,
-        cross_axis_margin: float,
-        main_axis_margin: float,
-        min_thumb_length: float,
-        interactive: bool,
-        thickness: Optional[MaterialStateProperty[float]] = None,
+        thickness: Optional[MaterialStateProperty[Optional[float]]] = None,
+        show_track_on_hover: Optional[bool] = None,
+        is_always_shown: Optional[bool] = None,
         radius: Optional[Radius] = None,
         thumb_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         track_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         track_border_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        cross_axis_margin: Optional[float] = None,
+        main_axis_margin: Optional[float] = None,
+        min_thumb_length: Optional[float] = None,
+        interactive: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ScrollbarThemeData', ''),
+            'thickness': thickness,
             'showTrackOnHover': show_track_on_hover,
             'isAlwaysShown': is_always_shown,
-            'crossAxisMargin': cross_axis_margin,
-            'mainAxisMargin': main_axis_margin,
-            'minThumbLength': min_thumb_length,
-            'interactive': interactive,
-            'thickness': thickness,
             'radius': radius,
             'thumbColor': thumb_color,
             'trackColor': track_color,
             'trackBorderColor': track_border_color,
+            'crossAxisMargin': cross_axis_margin,
+            'mainAxisMargin': main_axis_margin,
+            'minThumbLength': min_thumb_length,
+            'interactive': interactive,
         }
 
 
 # packages/flutter/lib/src/painting/notched_shapes.dart
 class NotchedShape(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('NotchedShape', ''),
+        }
 
 
 # packages/flutter/lib/src/material/bottom_app_bar_theme.dart
@@ -2483,14 +2692,16 @@ class BottomAppBarTheme(Object):
 
     def __init__(
         self,
-        elevation: float,
         color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         shape: Optional[NotchedShape] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('BottomAppBarTheme', ''),
-            'elevation': elevation,
             'color': color,
+            'elevation': elevation,
             'shape': shape,
         }
 
@@ -2500,16 +2711,18 @@ class DialogTheme(Object):
 
     def __init__(
         self,
-        elevation: float,
         background_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         shape: Optional[ShapeBorder] = None,
         title_text_style: Optional[TextStyle] = None,
         content_text_style: Optional[TextStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('DialogTheme', ''),
-            'elevation': elevation,
             'backgroundColor': background_color,
+            'elevation': elevation,
             'shape': shape,
             'titleTextStyle': title_text_style,
             'contentTextStyle': content_text_style,
@@ -2521,45 +2734,47 @@ class FloatingActionButtonThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
-        focus_elevation: float,
-        hover_elevation: float,
-        disabled_elevation: float,
-        highlight_elevation: float,
-        enable_feedback: bool,
-        extended_icon_label_spacing: float,
         foreground_color: Optional[Color] = None,
         background_color: Optional[Color] = None,
         focus_color: Optional[Color] = None,
         hover_color: Optional[Color] = None,
         splash_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
+        focus_elevation: Optional[float] = None,
+        hover_elevation: Optional[float] = None,
+        disabled_elevation: Optional[float] = None,
+        highlight_elevation: Optional[float] = None,
         shape: Optional[ShapeBorder] = None,
+        enable_feedback: Optional[bool] = None,
         size_constraints: Optional[BoxConstraints] = None,
         small_size_constraints: Optional[BoxConstraints] = None,
         large_size_constraints: Optional[BoxConstraints] = None,
         extended_size_constraints: Optional[BoxConstraints] = None,
+        extended_icon_label_spacing: Optional[float] = None,
         extended_padding: Optional[EdgeInsetsGeometry] = None,
         extended_text_style: Optional[TextStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('FloatingActionButtonThemeData', ''),
-            'elevation': elevation,
-            'focusElevation': focus_elevation,
-            'hoverElevation': hover_elevation,
-            'disabledElevation': disabled_elevation,
-            'highlightElevation': highlight_elevation,
-            'enableFeedback': enable_feedback,
-            'extendedIconLabelSpacing': extended_icon_label_spacing,
             'foregroundColor': foreground_color,
             'backgroundColor': background_color,
             'focusColor': focus_color,
             'hoverColor': hover_color,
             'splashColor': splash_color,
+            'elevation': elevation,
+            'focusElevation': focus_elevation,
+            'hoverElevation': hover_elevation,
+            'disabledElevation': disabled_elevation,
+            'highlightElevation': highlight_elevation,
             'shape': shape,
+            'enableFeedback': enable_feedback,
             'sizeConstraints': size_constraints,
             'smallSizeConstraints': small_size_constraints,
             'largeSizeConstraints': large_size_constraints,
             'extendedSizeConstraints': extended_size_constraints,
+            'extendedIconLabelSpacing': extended_icon_label_spacing,
             'extendedPadding': extended_padding,
             'extendedTextStyle': extended_text_style,
         }
@@ -2577,24 +2792,26 @@ class NavigationRailThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
-        group_alignment: float,
         background_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         unselected_label_text_style: Optional[TextStyle] = None,
         selected_label_text_style: Optional[TextStyle] = None,
         unselected_icon_theme: Optional[IconThemeData] = None,
         selected_icon_theme: Optional[IconThemeData] = None,
+        group_alignment: Optional[float] = None,
         label_type: Optional[NavigationRailLabelType] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('NavigationRailThemeData', ''),
-            'elevation': elevation,
-            'groupAlignment': group_alignment,
             'backgroundColor': background_color,
+            'elevation': elevation,
             'unselectedLabelTextStyle': unselected_label_text_style,
             'selectedLabelTextStyle': selected_label_text_style,
             'unselectedIconTheme': unselected_icon_theme,
             'selectedIconTheme': selected_icon_theme,
+            'groupAlignment': group_alignment,
             'labelType': label_type,
         }
 
@@ -2634,6 +2851,8 @@ class Typography(Object):
         dense: Optional[TextTheme] = None,
         tall: Optional[TextTheme] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Typography', ''),
             'platform': platform,
@@ -2694,7 +2913,7 @@ class CupertinoTextThemeData(Object):
 
     def __init__(
         self,
-        primary_color: Color,
+        primary_color: Color = None,
         text_style: Optional[TextStyle] = None,
         action_text_style: Optional[TextStyle] = None,
         tab_label_text_style: Optional[TextStyle] = None,
@@ -2704,6 +2923,8 @@ class CupertinoTextThemeData(Object):
         picker_text_style: Optional[TextStyle] = None,
         date_time_picker_text_style: Optional[TextStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('CupertinoTextThemeData', ''),
             'primaryColor': primary_color,
@@ -2730,6 +2951,8 @@ class NoDefaultCupertinoThemeData(Object):
         bar_background_color: Optional[Color] = None,
         scaffold_background_color: Optional[Color] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('NoDefaultCupertinoThemeData', ''),
             'brightness': brightness,
@@ -2752,21 +2975,23 @@ class SnackBarThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
         background_color: Optional[Color] = None,
         action_text_color: Optional[Color] = None,
         disabled_action_text_color: Optional[Color] = None,
         content_text_style: Optional[TextStyle] = None,
+        elevation: Optional[float] = None,
         shape: Optional[ShapeBorder] = None,
         behavior: Optional[SnackBarBehavior] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('SnackBarThemeData', ''),
-            'elevation': elevation,
             'backgroundColor': background_color,
             'actionTextColor': action_text_color,
             'disabledActionTextColor': disabled_action_text_color,
             'contentTextStyle': content_text_style,
+            'elevation': elevation,
             'shape': shape,
             'behavior': behavior,
         }
@@ -2777,20 +3002,22 @@ class BottomSheetThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
-        modal_elevation: float,
         background_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         modal_background_color: Optional[Color] = None,
+        modal_elevation: Optional[float] = None,
         shape: Optional[ShapeBorder] = None,
         clip_behavior: Optional[Clip] = None,
         constraints: Optional[BoxConstraints] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('BottomSheetThemeData', ''),
-            'elevation': elevation,
-            'modalElevation': modal_elevation,
             'backgroundColor': background_color,
+            'elevation': elevation,
             'modalBackgroundColor': modal_background_color,
+            'modalElevation': modal_elevation,
             'shape': shape,
             'clipBehavior': clip_behavior,
             'constraints': constraints,
@@ -2802,19 +3029,21 @@ class PopupMenuThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
-        enable_feedback: bool,
         color: Optional[Color] = None,
         shape: Optional[ShapeBorder] = None,
+        elevation: Optional[float] = None,
         text_style: Optional[TextStyle] = None,
+        enable_feedback: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('PopupMenuThemeData', ''),
-            'elevation': elevation,
-            'enableFeedback': enable_feedback,
             'color': color,
             'shape': shape,
+            'elevation': elevation,
             'textStyle': text_style,
+            'enableFeedback': enable_feedback,
         }
 
 
@@ -2828,6 +3057,8 @@ class MaterialBannerThemeData(Object):
         padding: Optional[EdgeInsetsGeometry] = None,
         leading_padding: Optional[EdgeInsetsGeometry] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('MaterialBannerThemeData', ''),
             'backgroundColor': background_color,
@@ -2842,19 +3073,21 @@ class DividerThemeData(Object):
 
     def __init__(
         self,
-        space: float,
-        thickness: float,
-        indent: float,
-        end_indent: float,
         color: Optional[Color] = None,
+        space: Optional[float] = None,
+        thickness: Optional[float] = None,
+        indent: Optional[float] = None,
+        end_indent: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('DividerThemeData', ''),
+            'color': color,
             'space': space,
             'thickness': thickness,
             'indent': indent,
             'endIndent': end_indent,
-            'color': color,
         }
 
 
@@ -2885,25 +3118,27 @@ class ButtonBarThemeData(Object):
 
     def __init__(
         self,
-        button_min_width: float,
-        button_height: float,
-        button_aligned_dropdown: bool,
         alignment: Optional[MainAxisAlignment] = None,
         main_axis_size: Optional[MainAxisSize] = None,
         button_text_theme: Optional[ButtonTextTheme] = None,
+        button_min_width: Optional[float] = None,
+        button_height: Optional[float] = None,
         button_padding: Optional[EdgeInsetsGeometry] = None,
+        button_aligned_dropdown: Optional[bool] = None,
         layout_behavior: Optional[ButtonBarLayoutBehavior] = None,
         overflow_direction: Optional[VerticalDirection] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ButtonBarThemeData', ''),
-            'buttonMinWidth': button_min_width,
-            'buttonHeight': button_height,
-            'buttonAlignedDropdown': button_aligned_dropdown,
             'alignment': alignment,
             'mainAxisSize': main_axis_size,
             'buttonTextTheme': button_text_theme,
+            'buttonMinWidth': button_min_width,
+            'buttonHeight': button_height,
             'buttonPadding': button_padding,
+            'buttonAlignedDropdown': button_aligned_dropdown,
             'layoutBehavior': layout_behavior,
             'overflowDirection': overflow_direction,
         }
@@ -2927,34 +3162,36 @@ class BottomNavigationBarThemeData(Object):
 
     def __init__(
         self,
-        elevation: float,
-        show_selected_labels: bool,
-        show_unselected_labels: bool,
-        enable_feedback: bool,
         background_color: Optional[Color] = None,
+        elevation: Optional[float] = None,
         selected_icon_theme: Optional[IconThemeData] = None,
         unselected_icon_theme: Optional[IconThemeData] = None,
         selected_item_color: Optional[Color] = None,
         unselected_item_color: Optional[Color] = None,
         selected_label_style: Optional[TextStyle] = None,
         unselected_label_style: Optional[TextStyle] = None,
+        show_selected_labels: Optional[bool] = None,
+        show_unselected_labels: Optional[bool] = None,
         type: Optional[BottomNavigationBarType] = None,
+        enable_feedback: Optional[bool] = None,
         landscape_layout: Optional[BottomNavigationBarLandscapeLayout] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('BottomNavigationBarThemeData', ''),
-            'elevation': elevation,
-            'showSelectedLabels': show_selected_labels,
-            'showUnselectedLabels': show_unselected_labels,
-            'enableFeedback': enable_feedback,
             'backgroundColor': background_color,
+            'elevation': elevation,
             'selectedIconTheme': selected_icon_theme,
             'unselectedIconTheme': unselected_icon_theme,
             'selectedItemColor': selected_item_color,
             'unselectedItemColor': unselected_item_color,
             'selectedLabelStyle': selected_label_style,
             'unselectedLabelStyle': unselected_label_style,
+            'showSelectedLabels': show_selected_labels,
+            'showUnselectedLabels': show_unselected_labels,
             'type': type,
+            'enableFeedback': enable_feedback,
             'landscapeLayout': landscape_layout,
         }
 
@@ -2982,6 +3219,8 @@ class TimePickerThemeData(Object):
         day_period_border_side: Optional[BorderSide] = None,
         input_decoration_theme: Optional[InputDecorationTheme] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TimePickerThemeData', ''),
             'backgroundColor': background_color,
@@ -3006,7 +3245,15 @@ class TimePickerThemeData(Object):
 
 # packages/flutter/lib/src/services/mouse_cursor.dart
 class MouseCursor(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('MouseCursor', ''),
+        }
 
 
 MouseCursor.defer = MouseCursor(
@@ -3019,7 +3266,15 @@ MouseCursor.uncontrolled._nx_ = {'#t': ('MouseCursor', 'uncontrolled')}
 
 # packages/flutter/lib/src/painting/alignment.dart
 class AlignmentGeometry(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('AlignmentGeometry', ''),
+        }
 
 
 # packages/flutter/lib/src/material/button_style.dart
@@ -3027,13 +3282,12 @@ class ButtonStyle(Object):
 
     def __init__(
         self,
-        enable_feedback: bool,
         text_style: Optional[MaterialStateProperty[Optional[TextStyle]]] = None,
         background_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         foreground_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         overlay_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         shadow_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
-        elevation: Optional[MaterialStateProperty[float]] = None,
+        elevation: Optional[MaterialStateProperty[Optional[float]]] = None,
         padding: Optional[MaterialStateProperty[Optional[EdgeInsetsGeometry]]] = None,
         minimum_size: Optional[MaterialStateProperty[Optional[Size]]] = None,
         fixed_size: Optional[MaterialStateProperty[Optional[Size]]] = None,
@@ -3044,12 +3298,14 @@ class ButtonStyle(Object):
         visual_density: Optional[VisualDensity] = None,
         tap_target_size: Optional[MaterialTapTargetSize] = None,
         animation_duration: Optional[Duration] = None,
+        enable_feedback: Optional[bool] = None,
         alignment: Optional[AlignmentGeometry] = None,
         splash_factory: Optional[InteractiveInkFeatureFactory] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ButtonStyle', ''),
-            'enableFeedback': enable_feedback,
             'textStyle': text_style,
             'backgroundColor': background_color,
             'foregroundColor': foreground_color,
@@ -3066,6 +3322,7 @@ class ButtonStyle(Object):
             'visualDensity': visual_density,
             'tapTargetSize': tap_target_size,
             'animationDuration': animation_duration,
+            'enableFeedback': enable_feedback,
             'alignment': alignment,
             'splashFactory': splash_factory,
         }
@@ -3078,6 +3335,8 @@ class TextButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TextButtonThemeData', ''),
             'style': style,
@@ -3091,6 +3350,8 @@ class ElevatedButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ElevatedButtonThemeData', ''),
             'style': style,
@@ -3104,6 +3365,8 @@ class OutlinedButtonThemeData(Object):
         self,
         style: Optional[ButtonStyle] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('OutlinedButtonThemeData', ''),
             'style': style,
@@ -3119,6 +3382,8 @@ class TextSelectionThemeData(Object):
         selection_color: Optional[Color] = None,
         selection_handle_color: Optional[Color] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('TextSelectionThemeData', ''),
             'cursorColor': cursor_color,
@@ -3132,31 +3397,33 @@ class DataTableThemeData(Object):
 
     def __init__(
         self,
-        data_row_height: float,
-        heading_row_height: float,
-        horizontal_margin: float,
-        column_spacing: float,
-        divider_thickness: float,
-        checkbox_horizontal_margin: float,
         decoration: Optional[Decoration] = None,
         data_row_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        data_row_height: Optional[float] = None,
         data_text_style: Optional[TextStyle] = None,
         heading_row_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        heading_row_height: Optional[float] = None,
         heading_text_style: Optional[TextStyle] = None,
+        horizontal_margin: Optional[float] = None,
+        column_spacing: Optional[float] = None,
+        divider_thickness: Optional[float] = None,
+        checkbox_horizontal_margin: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('DataTableThemeData', ''),
+            'decoration': decoration,
+            'dataRowColor': data_row_color,
             'dataRowHeight': data_row_height,
+            'dataTextStyle': data_text_style,
+            'headingRowColor': heading_row_color,
             'headingRowHeight': heading_row_height,
+            'headingTextStyle': heading_text_style,
             'horizontalMargin': horizontal_margin,
             'columnSpacing': column_spacing,
             'dividerThickness': divider_thickness,
             'checkboxHorizontalMargin': checkbox_horizontal_margin,
-            'decoration': decoration,
-            'dataRowColor': data_row_color,
-            'dataTextStyle': data_text_style,
-            'headingRowColor': heading_row_color,
-            'headingTextStyle': heading_text_style,
         }
 
 
@@ -3165,23 +3432,25 @@ class CheckboxThemeData(Object):
 
     def __init__(
         self,
-        splash_radius: float,
         mouse_cursor: Optional[MaterialStateProperty[Optional[MouseCursor]]] = None,
         fill_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         check_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         overlay_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        splash_radius: Optional[float] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
         visual_density: Optional[VisualDensity] = None,
         shape: Optional[OutlinedBorder] = None,
         side: Optional[BorderSide] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('CheckboxThemeData', ''),
-            'splashRadius': splash_radius,
             'mouseCursor': mouse_cursor,
             'fillColor': fill_color,
             'checkColor': check_color,
             'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
             'materialTapTargetSize': material_tap_target_size,
             'visualDensity': visual_density,
             'shape': shape,
@@ -3194,19 +3463,21 @@ class RadioThemeData(Object):
 
     def __init__(
         self,
-        splash_radius: float,
         mouse_cursor: Optional[MaterialStateProperty[Optional[MouseCursor]]] = None,
         fill_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         overlay_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        splash_radius: Optional[float] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
         visual_density: Optional[VisualDensity] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('RadioThemeData', ''),
-            'splashRadius': splash_radius,
             'mouseCursor': mouse_cursor,
             'fillColor': fill_color,
             'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
             'materialTapTargetSize': material_tap_target_size,
             'visualDensity': visual_density,
         }
@@ -3217,21 +3488,23 @@ class SwitchThemeData(Object):
 
     def __init__(
         self,
-        splash_radius: float,
         thumb_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         track_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
         mouse_cursor: Optional[MaterialStateProperty[Optional[MouseCursor]]] = None,
         overlay_color: Optional[MaterialStateProperty[Optional[Color]]] = None,
+        splash_radius: Optional[float] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('SwitchThemeData', ''),
-            'splashRadius': splash_radius,
             'thumbColor': thumb_color,
             'trackColor': track_color,
             'materialTapTargetSize': material_tap_target_size,
             'mouseCursor': mouse_cursor,
             'overlayColor': overlay_color,
+            'splashRadius': splash_radius,
         }
 
 
@@ -3240,17 +3513,19 @@ class ProgressIndicatorThemeData(Object):
 
     def __init__(
         self,
-        linear_min_height: float,
         color: Optional[Color] = None,
         linear_track_color: Optional[Color] = None,
+        linear_min_height: Optional[float] = None,
         circular_track_color: Optional[Color] = None,
         refresh_background_color: Optional[Color] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ProgressIndicatorThemeData', ''),
-            'linearMinHeight': linear_min_height,
             'color': color,
             'linearTrackColor': linear_track_color,
+            'linearMinHeight': linear_min_height,
             'circularTrackColor': circular_track_color,
             'refreshBackgroundColor': refresh_background_color,
         }
@@ -3261,10 +3536,6 @@ class ThemeData(Object):
 
     def __init__(
         self,
-        font_family: str,
-        apply_elevation_overlay_color: bool,
-        fix_text_field_outline_label: bool,
-        use_text_selection_theme: bool,
         brightness: Optional[Brightness] = None,
         visual_density: Optional[VisualDensity] = None,
         primary_swatch: Optional[MaterialColor] = None,
@@ -3301,6 +3572,7 @@ class ThemeData(Object):
         hint_color: Optional[Color] = None,
         error_color: Optional[Color] = None,
         toggleable_active_color: Optional[Color] = None,
+        font_family: Optional[str] = None,
         text_theme: Optional[TextTheme] = None,
         primary_text_theme: Optional[TextTheme] = None,
         accent_text_theme: Optional[TextTheme] = None,
@@ -3315,6 +3587,7 @@ class ThemeData(Object):
         chip_theme: Optional[ChipThemeData] = None,
         platform: Optional[TargetPlatform] = None,
         material_tap_target_size: Optional[MaterialTapTargetSize] = None,
+        apply_elevation_overlay_color: Optional[bool] = None,
         page_transitions_theme: Optional[PageTransitionsTheme] = None,
         app_bar_theme: Optional[AppBarTheme] = None,
         scrollbar_theme: Optional[ScrollbarThemeData] = None,
@@ -3342,13 +3615,13 @@ class ThemeData(Object):
         radio_theme: Optional[RadioThemeData] = None,
         switch_theme: Optional[SwitchThemeData] = None,
         progress_indicator_theme: Optional[ProgressIndicatorThemeData] = None,
+        fix_text_field_outline_label: Optional[bool] = None,
+        use_text_selection_theme: Optional[bool] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('ThemeData', ''),
-            'fontFamily': font_family,
-            'applyElevationOverlayColor': apply_elevation_overlay_color,
-            'fixTextFieldOutlineLabel': fix_text_field_outline_label,
-            'useTextSelectionTheme': use_text_selection_theme,
             'brightness': brightness,
             'visualDensity': visual_density,
             'primarySwatch': primary_swatch,
@@ -3385,6 +3658,7 @@ class ThemeData(Object):
             'hintColor': hint_color,
             'errorColor': error_color,
             'toggleableActiveColor': toggleable_active_color,
+            'fontFamily': font_family,
             'textTheme': text_theme,
             'primaryTextTheme': primary_text_theme,
             'accentTextTheme': accent_text_theme,
@@ -3399,6 +3673,7 @@ class ThemeData(Object):
             'chipTheme': chip_theme,
             'platform': platform,
             'materialTapTargetSize': material_tap_target_size,
+            'applyElevationOverlayColor': apply_elevation_overlay_color,
             'pageTransitionsTheme': page_transitions_theme,
             'appBarTheme': app_bar_theme,
             'scrollbarTheme': scrollbar_theme,
@@ -3426,6 +3701,8 @@ class ThemeData(Object):
             'radioTheme': radio_theme,
             'switchTheme': switch_theme,
             'progressIndicatorTheme': progress_indicator_theme,
+            'fixTextFieldOutlineLabel': fix_text_field_outline_label,
+            'useTextSelectionTheme': use_text_selection_theme,
         }
 
     @staticmethod
@@ -3510,10 +3787,6 @@ class ThemeData(Object):
         cupertino_override_theme: Optional[NoDefaultCupertinoThemeData] = None,
     ):
         _o = ThemeData(
-            font_family='',
-            apply_elevation_overlay_color=False,
-            fix_text_field_outline_label=False,
-            use_text_selection_theme=False,
         )
         _o._nx_ = {
             '#t': ('ThemeData', 'raw'),
@@ -3604,10 +3877,6 @@ class ThemeData(Object):
         text_theme: Optional[TextTheme] = None,
     ):
         _o = ThemeData(
-            font_family='',
-            apply_elevation_overlay_color=False,
-            fix_text_field_outline_label=False,
-            use_text_selection_theme=False,
         )
         _o._nx_ = {
             '#t': ('ThemeData', 'from'),
@@ -3620,10 +3889,6 @@ class ThemeData(Object):
     def light(
     ):
         _o = ThemeData(
-            font_family='',
-            apply_elevation_overlay_color=False,
-            fix_text_field_outline_label=False,
-            use_text_selection_theme=False,
         )
         _o._nx_ = {
             '#t': ('ThemeData', 'light'),
@@ -3634,10 +3899,6 @@ class ThemeData(Object):
     def dark(
     ):
         _o = ThemeData(
-            font_family='',
-            apply_elevation_overlay_color=False,
-            fix_text_field_outline_label=False,
-            use_text_selection_theme=False,
         )
         _o._nx_ = {
             '#t': ('ThemeData', 'dark'),
@@ -3648,10 +3909,6 @@ class ThemeData(Object):
     def fallback(
     ):
         _o = ThemeData(
-            font_family='',
-            apply_elevation_overlay_color=False,
-            fix_text_field_outline_label=False,
-            use_text_selection_theme=False,
         )
         _o._nx_ = {
             '#t': ('ThemeData', 'fallback'),
@@ -3668,17 +3925,41 @@ class ThemeMode(Enum):
 
 # packages/flutter/lib/src/widgets/localizations.dart
 class LocalizationsDelegate(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('LocalizationsDelegate', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/shortcuts.dart
 class ShortcutActivator(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('ShortcutActivator', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/actions.dart
 class Intent(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Intent', ''),
+        }
 
 
 Intent.do_nothing = Intent(
@@ -3688,21 +3969,54 @@ Intent.do_nothing._nx_ = {'#t': ('Intent', 'doNothing')}
 
 # bin/cache/pkg/sky_engine/lib/core/type.dart
 class Type(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Type', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/actions.dart
 class Action(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Action', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/scroll_configuration.dart
 class ScrollBehavior(Object):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('ScrollBehavior', ''),
+        }
 
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 class Listenable(Object, ABC):
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('Listenable', ''),
+        }
 
     @staticmethod
     def merge(
@@ -3719,7 +4033,15 @@ class Listenable(Object, ABC):
 
 # packages/flutter/lib/src/foundation/change_notifier.dart
 class ValueListenable(Listenable, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('ValueListenable', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/router.dart
@@ -3727,9 +4049,11 @@ class RouteInformation(Object):
 
     def __init__(
         self,
-        location: str,
+        location: Optional[str] = None,
         state: Optional[Object] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('RouteInformation', ''),
             'location': location,
@@ -3739,22 +4063,54 @@ class RouteInformation(Object):
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformationProvider(ValueListenable[RouteInformation], ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RouteInformationProvider', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouteInformationParser(Object, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RouteInformationParser', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/router.dart
 class RouterDelegate(Listenable, ABC, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RouterDelegate', ''),
+        }
 
 
 # packages/flutter/lib/src/widgets/router.dart
 class _CallbackHookProvider(Object, Generic[T]):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('_CallbackHookProvider', ''),
+        }
 
 
 # bin/cache/pkg/sky_engine/lib/async/future.dart
@@ -3764,6 +4120,15 @@ class FutureOr(Object, ABC, Generic[T]):
 
 # bin/cache/pkg/sky_engine/lib/core/stacktrace.dart
 class StackTrace(Object, ABC):
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('StackTrace', ''),
+        }
 
     @staticmethod
     def from_string(
@@ -3790,6 +4155,8 @@ class Future(Object, ABC, Generic[T]):
         self,
         computation: Callable[[], FutureOr[T]],
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('Future', ''),
             'computation': computation,
@@ -3852,7 +4219,7 @@ class Future(Object, ABC, Generic[T]):
     @staticmethod
     def delayed(
         duration: Duration,
-        computation: Callable[[], FutureOr[T]],
+        computation: Optional[Callable[[], FutureOr[T]]] = None,
     ):
         _o = Future(
             computation=_noop,
@@ -3867,7 +4234,15 @@ class Future(Object, ABC, Generic[T]):
 
 # packages/flutter/lib/src/widgets/router.dart
 class BackButtonDispatcher(_CallbackHookProvider[Future[bool]], ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('BackButtonDispatcher', ''),
+        }
 
 
 # packages/flutter/lib/src/material/app.dart
@@ -3875,30 +4250,19 @@ class MaterialApp(StatefulWidget):
 
     def __init__(
         self,
-        routes: Dict[str, Callable[[BuildContext], Widget]],
-        initial_route: str,
-        on_generate_route: Callable[[RouteSettings], Optional[Route[Any]]],
-        on_generate_initial_routes: Callable[[str], List[Route[Any]]],
-        on_unknown_route: Callable[[RouteSettings], Optional[Route[Any]]],
-        navigator_observers: List[NavigatorObserver],
-        builder: Callable[[BuildContext, Optional[Widget]], Widget],
-        title: str,
-        on_generate_title: Callable[[BuildContext], str],
-        locale_list_resolution_callback: Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]],
-        locale_resolution_callback: Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]],
-        supported_locales: Iterable[Locale],
-        debug_show_material_grid: bool,
-        show_performance_overlay: bool,
-        checkerboard_raster_cache_images: bool,
-        checkerboard_offscreen_layers: bool,
-        show_semantics_debugger: bool,
-        debug_show_checked_mode_banner: bool,
-        restoration_scope_id: str,
-        use_inherited_media_query: bool,
         key: Optional[Key] = None,
         navigator_key: Optional[GlobalKey[NavigatorState]] = None,
         scaffold_messenger_key: Optional[GlobalKey[ScaffoldMessengerState]] = None,
         home: Optional[Widget] = None,
+        routes: Dict[str, Callable[[BuildContext], Widget]] = None,
+        initial_route: Optional[str] = None,
+        on_generate_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
+        on_generate_initial_routes: Optional[Callable[[str], List[Route[Any]]]] = None,
+        on_unknown_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
+        navigator_observers: List[NavigatorObserver] = None,
+        builder: Optional[Callable[[BuildContext, Optional[Widget]], Widget]] = None,
+        title: str = None,
+        on_generate_title: Optional[Callable[[BuildContext], str]] = None,
         color: Optional[Color] = None,
         theme: Optional[ThemeData] = None,
         dark_theme: Optional[ThemeData] = None,
@@ -3907,14 +4271,29 @@ class MaterialApp(StatefulWidget):
         theme_mode: Optional[ThemeMode] = None,
         locale: Optional[Locale] = None,
         localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
+        locale_list_resolution_callback: Optional[Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]]] = None,
+        locale_resolution_callback: Optional[Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]]] = None,
+        supported_locales: Iterable[Locale] = None,
+        debug_show_material_grid: bool = None,
+        show_performance_overlay: bool = None,
+        checkerboard_raster_cache_images: bool = None,
+        checkerboard_offscreen_layers: bool = None,
+        show_semantics_debugger: bool = None,
+        debug_show_checked_mode_banner: bool = None,
         shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
         actions: Optional[Dict[Type, Action[Intent]]] = None,
+        restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
+        use_inherited_media_query: bool = None,
     ):
         super().__init__(
         )
         self._nx_ = {
             '#t': ('MaterialApp', ''),
+            'key': key,
+            'navigatorKey': navigator_key,
+            'scaffoldMessengerKey': scaffold_messenger_key,
+            'home': home,
             'routes': routes,
             'initialRoute': initial_route,
             'onGenerateRoute': on_generate_route,
@@ -3924,6 +4303,14 @@ class MaterialApp(StatefulWidget):
             'builder': builder,
             'title': title,
             'onGenerateTitle': on_generate_title,
+            'color': color,
+            'theme': theme,
+            'darkTheme': dark_theme,
+            'highContrastTheme': high_contrast_theme,
+            'highContrastDarkTheme': high_contrast_dark_theme,
+            'themeMode': theme_mode,
+            'locale': locale,
+            'localizationsDelegates': localizations_delegates,
             'localeListResolutionCallback': locale_list_resolution_callback,
             'localeResolutionCallback': locale_resolution_callback,
             'supportedLocales': supported_locales,
@@ -3933,47 +4320,24 @@ class MaterialApp(StatefulWidget):
             'checkerboardOffscreenLayers': checkerboard_offscreen_layers,
             'showSemanticsDebugger': show_semantics_debugger,
             'debugShowCheckedModeBanner': debug_show_checked_mode_banner,
-            'restorationScopeId': restoration_scope_id,
-            'useInheritedMediaQuery': use_inherited_media_query,
-            'key': key,
-            'navigatorKey': navigator_key,
-            'scaffoldMessengerKey': scaffold_messenger_key,
-            'home': home,
-            'color': color,
-            'theme': theme,
-            'darkTheme': dark_theme,
-            'highContrastTheme': high_contrast_theme,
-            'highContrastDarkTheme': high_contrast_dark_theme,
-            'themeMode': theme_mode,
-            'locale': locale,
-            'localizationsDelegates': localizations_delegates,
             'shortcuts': shortcuts,
             'actions': actions,
+            'restorationScopeId': restoration_scope_id,
             'scrollBehavior': scroll_behavior,
+            'useInheritedMediaQuery': use_inherited_media_query,
         }
 
     @staticmethod
     def router(
         route_information_parser: RouteInformationParser[Object],
         router_delegate: RouterDelegate[Object],
-        builder: Callable[[BuildContext, Optional[Widget]], Widget],
-        title: str,
-        on_generate_title: Callable[[BuildContext], str],
-        locale_list_resolution_callback: Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]],
-        locale_resolution_callback: Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]],
-        supported_locales: Iterable[Locale],
-        debug_show_material_grid: bool,
-        show_performance_overlay: bool,
-        checkerboard_raster_cache_images: bool,
-        checkerboard_offscreen_layers: bool,
-        show_semantics_debugger: bool,
-        debug_show_checked_mode_banner: bool,
-        restoration_scope_id: str,
-        use_inherited_media_query: bool,
         key: Optional[Key] = None,
         scaffold_messenger_key: Optional[GlobalKey[ScaffoldMessengerState]] = None,
         route_information_provider: Optional[RouteInformationProvider] = None,
         back_button_dispatcher: Optional[BackButtonDispatcher] = None,
+        builder: Optional[Callable[[BuildContext, Optional[Widget]], Widget]] = None,
+        title: str = None,
+        on_generate_title: Optional[Callable[[BuildContext], str]] = None,
         color: Optional[Color] = None,
         theme: Optional[ThemeData] = None,
         dark_theme: Optional[ThemeData] = None,
@@ -3982,39 +4346,42 @@ class MaterialApp(StatefulWidget):
         theme_mode: Optional[ThemeMode] = None,
         locale: Optional[Locale] = None,
         localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
+        locale_list_resolution_callback: Optional[Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]]] = None,
+        locale_resolution_callback: Optional[Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]]] = None,
+        supported_locales: Iterable[Locale] = None,
+        debug_show_material_grid: bool = None,
+        show_performance_overlay: bool = None,
+        checkerboard_raster_cache_images: bool = None,
+        checkerboard_offscreen_layers: bool = None,
+        show_semantics_debugger: bool = None,
+        debug_show_checked_mode_banner: bool = None,
         shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
         actions: Optional[Dict[Type, Action[Intent]]] = None,
+        restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
+        use_inherited_media_query: bool = None,
     ):
         _o = MaterialApp(
-            routes={},
-            initial_route='',
-            on_generate_route=_noop,
-            on_generate_initial_routes=_noop,
-            on_unknown_route=_noop,
-            navigator_observers=[],
-            builder=_noop,
-            title='',
-            on_generate_title=_noop,
-            locale_list_resolution_callback=_noop,
-            locale_resolution_callback=_noop,
-            supported_locales=Iterable(),
-            debug_show_material_grid=False,
-            show_performance_overlay=False,
-            checkerboard_raster_cache_images=False,
-            checkerboard_offscreen_layers=False,
-            show_semantics_debugger=False,
-            debug_show_checked_mode_banner=False,
-            restoration_scope_id='',
-            use_inherited_media_query=False,
         )
         _o._nx_ = {
             '#t': ('MaterialApp', 'router'),
             'routeInformationParser': route_information_parser,
             'routerDelegate': router_delegate,
+            'key': key,
+            'scaffoldMessengerKey': scaffold_messenger_key,
+            'routeInformationProvider': route_information_provider,
+            'backButtonDispatcher': back_button_dispatcher,
             'builder': builder,
             'title': title,
             'onGenerateTitle': on_generate_title,
+            'color': color,
+            'theme': theme,
+            'darkTheme': dark_theme,
+            'highContrastTheme': high_contrast_theme,
+            'highContrastDarkTheme': high_contrast_dark_theme,
+            'themeMode': theme_mode,
+            'locale': locale,
+            'localizationsDelegates': localizations_delegates,
             'localeListResolutionCallback': locale_list_resolution_callback,
             'localeResolutionCallback': locale_resolution_callback,
             'supportedLocales': supported_locales,
@@ -4024,30 +4391,26 @@ class MaterialApp(StatefulWidget):
             'checkerboardOffscreenLayers': checkerboard_offscreen_layers,
             'showSemanticsDebugger': show_semantics_debugger,
             'debugShowCheckedModeBanner': debug_show_checked_mode_banner,
-            'restorationScopeId': restoration_scope_id,
-            'useInheritedMediaQuery': use_inherited_media_query,
-            'key': key,
-            'scaffoldMessengerKey': scaffold_messenger_key,
-            'routeInformationProvider': route_information_provider,
-            'backButtonDispatcher': back_button_dispatcher,
-            'color': color,
-            'theme': theme,
-            'darkTheme': dark_theme,
-            'highContrastTheme': high_contrast_theme,
-            'highContrastDarkTheme': high_contrast_dark_theme,
-            'themeMode': theme_mode,
-            'locale': locale,
-            'localizationsDelegates': localizations_delegates,
             'shortcuts': shortcuts,
             'actions': actions,
+            'restorationScopeId': restoration_scope_id,
             'scrollBehavior': scroll_behavior,
+            'useInheritedMediaQuery': use_inherited_media_query,
         }
         return _o
 
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 class RawKeyEventData(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('RawKeyEventData', ''),
+        }
 
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
@@ -4056,8 +4419,10 @@ class RawKeyEvent(Object, ABC):
     def __init__(
         self,
         data: RawKeyEventData,
-        character: str,
+        character: Optional[str] = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('RawKeyEvent', ''),
             'data': data,
@@ -4070,7 +4435,6 @@ class RawKeyEvent(Object, ABC):
     ):
         _o = RawKeyEvent(
             data=RawKeyEventData(),
-            character='',
         )
         _o._nx_ = {
             '#t': ('RawKeyEvent', 'fromMessage'),
@@ -4088,7 +4452,15 @@ class KeyEventResult(Enum):
 
 # packages/flutter/lib/src/services/keyboard_key.dart
 class KeyboardKey(Object, ABC):
-    pass
+
+    def __init__(
+        self,
+    ):
+        super().__init__(
+        )
+        self._nx_ = {
+            '#t': ('KeyboardKey', ''),
+        }
 
 
 # packages/flutter/lib/src/services/keyboard_key.dart
@@ -4098,6 +4470,8 @@ class PhysicalKeyboardKey(KeyboardKey):
         self,
         usb_hid_usage: int,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('PhysicalKeyboardKey', ''),
             'usbHidUsage': usb_hid_usage,
@@ -5199,6 +5573,8 @@ class LogicalKeyboardKey(KeyboardKey):
         self,
         key_id: int,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('LogicalKeyboardKey', ''),
             'keyId': key_id,
@@ -6990,16 +7366,18 @@ class KeyEvent(Object, ABC):
         self,
         physical_key: PhysicalKeyboardKey,
         logical_key: LogicalKeyboardKey,
-        character: str,
         time_stamp: Duration,
-        synthesized: bool,
+        character: Optional[str] = None,
+        synthesized: bool = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('KeyEvent', ''),
             'physicalKey': physical_key,
             'logicalKey': logical_key,
-            'character': character,
             'timeStamp': time_stamp,
+            'character': character,
             'synthesized': synthesized,
         }
 
@@ -7009,13 +7387,15 @@ class FocusNode(Object):
 
     def __init__(
         self,
-        debug_label: str,
-        on_key: Callable[['FocusNode', RawKeyEvent], KeyEventResult],
-        on_key_event: Callable[['FocusNode', KeyEvent], KeyEventResult],
-        skip_traversal: bool,
-        can_request_focus: bool,
-        descendants_are_focusable: bool,
+        debug_label: Optional[str] = None,
+        on_key: Optional[Callable[['FocusNode', RawKeyEvent], KeyEventResult]] = None,
+        on_key_event: Optional[Callable[['FocusNode', KeyEvent], KeyEventResult]] = None,
+        skip_traversal: bool = None,
+        can_request_focus: bool = None,
+        descendants_are_focusable: bool = None,
     ):
+        super().__init__(
+        )
         self._nx_ = {
             '#t': ('FocusNode', ''),
             'debugLabel': debug_label,
@@ -7032,11 +7412,11 @@ class ButtonStyleButton(StatefulWidget, ABC):
 
     def __init__(
         self,
-        on_pressed: Callable[[], None],
-        on_long_press: Callable[[], None],
         autofocus: bool,
         clip_behavior: Clip,
         key: Optional[Key] = None,
+        on_pressed: Optional[Callable[[], None]] = None,
+        on_long_press: Optional[Callable[[], None]] = None,
         style: Optional[ButtonStyle] = None,
         focus_node: Optional[FocusNode] = None,
         child: Optional[Widget] = None,
@@ -7045,11 +7425,11 @@ class ButtonStyleButton(StatefulWidget, ABC):
         )
         self._nx_ = {
             '#t': ('ButtonStyleButton', ''),
-            'onPressed': on_pressed,
-            'onLongPress': on_long_press,
             'autofocus': autofocus,
             'clipBehavior': clip_behavior,
             'key': key,
+            'onPressed': on_pressed,
+            'onLongPress': on_long_press,
             'style': style,
             'focusNode': focus_node,
             'child': child,
@@ -7061,61 +7441,55 @@ class ElevatedButton(ButtonStyleButton):
 
     def __init__(
         self,
-        on_pressed: Callable[[], None],
-        on_long_press: Callable[[], None],
-        autofocus: bool,
-        clip_behavior: Clip,
         key: Optional[Key] = None,
+        on_pressed: Optional[Callable[[], None]] = None,
+        on_long_press: Optional[Callable[[], None]] = None,
         style: Optional[ButtonStyle] = None,
         focus_node: Optional[FocusNode] = None,
+        autofocus: bool = None,
+        clip_behavior: Clip = None,
         child: Optional[Widget] = None,
     ):
         super().__init__(
-            on_pressed=_noop,
-            on_long_press=_noop,
             autofocus=False,
             clip_behavior=Clip.none,
         )
         self._nx_ = {
             '#t': ('ElevatedButton', ''),
+            'key': key,
             'onPressed': on_pressed,
             'onLongPress': on_long_press,
-            'autofocus': autofocus,
-            'clipBehavior': clip_behavior,
-            'key': key,
             'style': style,
             'focusNode': focus_node,
+            'autofocus': autofocus,
+            'clipBehavior': clip_behavior,
             'child': child,
         }
 
     @staticmethod
     def icon(
-        on_pressed: Callable[[], None],
-        on_long_press: Callable[[], None],
-        autofocus: bool,
         icon: Widget,
         label: Widget,
         key: Optional[Key] = None,
+        on_pressed: Optional[Callable[[], None]] = None,
+        on_long_press: Optional[Callable[[], None]] = None,
         style: Optional[ButtonStyle] = None,
         focus_node: Optional[FocusNode] = None,
+        autofocus: Optional[bool] = None,
         clip_behavior: Optional[Clip] = None,
     ):
         _o = ElevatedButton(
-            on_pressed=_noop,
-            on_long_press=_noop,
-            autofocus=False,
-            clip_behavior=Clip.none,
         )
         _o._nx_ = {
             '#t': ('ElevatedButton', 'icon'),
-            'onPressed': on_pressed,
-            'onLongPress': on_long_press,
-            'autofocus': autofocus,
             'icon': icon,
             'label': label,
             'key': key,
+            'onPressed': on_pressed,
+            'onLongPress': on_long_press,
             'style': style,
             'focusNode': focus_node,
+            'autofocus': autofocus,
             'clipBehavior': clip_behavior,
         }
         return _o
