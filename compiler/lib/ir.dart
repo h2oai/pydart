@@ -235,7 +235,7 @@ class IRBuilder {
     return IRTypeParameter(p.name, bound != null ? _toType(bound) : null);
   }
 
-  IRType _toType(DartType t) {
+  IRType _toBaseType(DartType t) {
     if (t.isVoid) return IRType.nothing;
     if (t.isDartCoreBool) return IRType.bool;
     if (t.isDartCoreInt) return IRType.int;
@@ -244,11 +244,8 @@ class IRBuilder {
     if (t.isDynamic) return IRType.any;
 
     if (t is InterfaceType) {
-      final pt = IRParameterizedType(
+      return IRParameterizedType(
           _toElement(t.element), t.typeArguments.map(_toType).toList());
-      return t.nullabilitySuffix == NullabilitySuffix.question
-          ? _toOptional(pt)
-          : pt;
     }
 
     if (t is FunctionType) {
@@ -265,6 +262,13 @@ class IRBuilder {
     }
 
     return IRType.unknown;
+  }
+
+  IRType _toType(DartType t) {
+    final bt = _toBaseType(t);
+    return t.nullabilitySuffix == NullabilitySuffix.question
+        ? _toOptional(bt)
+        : bt;
   }
 
   IRField _toStaticField(ClassElement e, ConstFieldElementImpl f) {
