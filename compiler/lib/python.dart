@@ -196,12 +196,10 @@ class PythonTranslator {
         // optional args, otherwise PyCharm's type checker will complain.
         if (e is IRClass) {
           final fs = _getDefaultConstructorFields(e);
-          if (fs.isNotEmpty) {
-            p('super().__init__(');
-            _emitDefaultArgs(e);
-            p(')');
-            return;
-          }
+          p('super().__init__(');
+          _emitDefaultArgs(e);
+          p(')');
+          return; // bail out after printing first available super() call
         }
       }
     }
