@@ -167,7 +167,7 @@ class PythonTranslator {
 
       if (e is IRClass) {
         final args = _getDefaultConstructorFields(e)
-            .where((f) => !_isOptional(f.type))
+            .where((f) => !_isOptional(f))
             .map((f) => _defaultValueOf(f.type))
             .join(', ');
         return '${_n(e.name)}($args)';
@@ -179,8 +179,11 @@ class PythonTranslator {
     throw 'cannot compute default value of ${t.name}';
   }
 
-  bool _isOptional(IRType t) =>
-      t is IRParameterizedType && t.element == IRElement.optional;
+  bool _isOptional(IRField f) {
+    if (f.isOptional) return true;
+    final t = f.type;
+    return t is IRParameterizedType && t.element == IRElement.optional;
+  }
 
   bool _typeRefersTo(IRType t, IRElement e) =>
       t is IRParameterizedType && t.element == e;
@@ -212,7 +215,7 @@ class PythonTranslator {
   void _emitDefaultArgs(IRClass e) {
     p.t(() {
       final req =
-          _getDefaultConstructorFields(e).where((f) => !_isOptional(f.type));
+          _getDefaultConstructorFields(e).where((f) => !_isOptional(f));
       for (final f in req) {
         p('${_sc(f.name)}=${_defaultValueOf(f.type)},');
       }
@@ -294,8 +297,8 @@ class PythonTranslator {
         final name = isDefault ? '__init__' : _sc(c.name);
         p('def $name(');
         // Non-default params must precede default params, so separate them.
-        final req = c.fields.where((f) => !_isOptional(f.type));
-        final opt = c.fields.where((f) => _isOptional(f.type));
+        final req = c.fields.where((f) => !_isOptional(f));
+        final opt = c.fields.where((f) => _isOptional(f));
         p.t(() {
           if (isDefault) {
             p('self,');
