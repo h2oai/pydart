@@ -286,7 +286,6 @@ class PythonTranslator {
       for (final c in e.constructors) {
         final isDefault = c.name.isEmpty;
         // Don't emit default constructor if empty
-        if (isDefault && c.fields.isEmpty) continue;
 
         p('');
         if (!isDefault) {
@@ -336,11 +335,8 @@ class PythonTranslator {
         });
       }
 
-      // No fields/constructors or default param-less constructor only
-      if (internalFields.isEmpty &&
-          (e.constructors.isEmpty ||
-              e.constructors.length == 1 &&
-                  e.constructors.first.fields.isEmpty)) {
+      // No fields/constructors
+      if (internalFields.isEmpty && e.constructors.isEmpty) {
         p('pass');
       }
     });
