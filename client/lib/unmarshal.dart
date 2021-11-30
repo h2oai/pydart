@@ -52,6 +52,10 @@ String uString(dynamic v) {
 
 T uClass<T>(dynamic v) => unmarshal(v);
 
+T uFunc<T>(dynamic v) {
+  throw 'unmarshal function: not implemented';
+}
+
 T? Function(dynamic) uNull<T>(T Function(dynamic) u) =>
     (dynamic v) => v == null ? v : u(v);
 

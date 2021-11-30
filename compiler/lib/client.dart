@@ -33,6 +33,8 @@ String _unmarshalerOf(IRType t) {
 
     // FIXME Handle Map<K, V>
 
+    if (e == IRElement.func) return 'uFunc';
+
     if (e is IREnum) return "_u${e.name}";
 
     // TODO constructor-tearoffs
@@ -42,7 +44,10 @@ String _unmarshalerOf(IRType t) {
     // https://github.com/dart-lang/language/blob/master/accepted/future-releases/constructor-tearoffs/feature-specification.md
     if (e is IRClass) return 'uClass';
   }
-  return '';
+
+  if (t is IRTypeParameter) return '';
+
+  throw 'could not determine unmarshaler for ${t.name}';
 }
 
 void _collectTypeParameters(
@@ -77,7 +82,7 @@ class ClientTranslator {
           p("final ${dumpType(f.type)} ${f.name} = $unmarshal($lookup);");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
-        final constPrefix = c.isConst && c.fields.isEmpty ? 'const ': '';
+        final constPrefix = c.isConst && c.fields.isEmpty ? 'const ' : '';
         p('return $constPrefix${e.name}$ctor(');
         p.t(() {
           for (final f in c.fields) {
