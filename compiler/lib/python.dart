@@ -212,8 +212,7 @@ class PythonTranslator {
 
   void _emitDefaultArgs(IRClass e) {
     p.t(() {
-      final req =
-          _getDefaultConstructorFields(e).where((f) => !_isOptional(f));
+      final req = _getDefaultConstructorFields(e).where((f) => !_isOptional(f));
       for (final f in req) {
         p('${_sc(f.name)}=${_defaultValueOf(f.type)},');
       }
@@ -447,6 +446,7 @@ class PythonTranslator {
           e.path,
           e.name,
           isAbstract: e.isAbstract,
+          isInternal: e.isInternal,
           parameters: e.parameters,
           supertypes: e.supertypes,
           interfaces: e.interfaces,

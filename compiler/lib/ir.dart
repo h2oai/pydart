@@ -149,6 +149,7 @@ class IRConstructor {
 
 class IRClass extends IRElement {
   final bool isAbstract;
+  final bool isInternal;
   final List<IRTypeParameter> parameters;
   final List<IRType> supertypes;
   final List<IRType> interfaces;
@@ -160,6 +161,7 @@ class IRClass extends IRElement {
     String path,
     String name, {
     required this.isAbstract,
+    required this.isInternal,
     required this.parameters,
     required this.supertypes,
     required this.interfaces,
@@ -351,6 +353,7 @@ class IRBuilder {
       path, e.name,
       // TODO handle e.isMixin
       isAbstract: e.isAbstract,
+      isInternal: _isPrivateSymbol(e.name),
       parameters: parameters,
       supertypes: supertypes,
       interfaces: interfaces,
@@ -408,6 +411,7 @@ class IRBuilder {
         e.path,
         e.name,
         isAbstract: e.isAbstract,
+        isInternal: e.isInternal,
         parameters: e.parameters.map(_resolveTypeParameter).toList(),
         supertypes: e.supertypes.map(_resolveType).toList(),
         interfaces: e.interfaces.map(_resolveType).toList(),

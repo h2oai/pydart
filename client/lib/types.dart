@@ -2503,18 +2503,6 @@ RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
   );
 }
 
-_CallbackHookProvider _u_CallbackHookProvider(Map<String, dynamic> __m) {
-  return _CallbackHookProvider(
-  );
-}
-
-_StringStackTrace _u_StringStackTrace(Map<String, dynamic> __m) {
-  final String _stackTrace = uString(__m['_stackTrace']);
-  return _StringStackTrace(
-    _stackTrace,
-  );
-}
-
 MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final Key? key = uNull<Key>(uClass)(__m['key']);
   final GlobalKey<NavigatorState>? navigatorKey = uNull<GlobalKey<NavigatorState>>(uClass)(__m['navigatorKey']);
@@ -2878,8 +2866,6 @@ final unmarshalers = <String, Unmarshal>{
   'DoNothingIntent.': _uDoNothingIntent,
   'ScrollBehavior.': _uScrollBehavior,
   'RouteInformation.': _uRouteInformation,
-  '_CallbackHookProvider.': _u_CallbackHookProvider,
-  '_StringStackTrace.': _u_StringStackTrace,
   'MaterialApp.': _uMaterialApp,
   'MaterialApp.router': _uMaterialAppRouter,
   'PhysicalKeyboardKey.': _uPhysicalKeyboardKey,

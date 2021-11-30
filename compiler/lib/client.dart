@@ -120,7 +120,7 @@ class ClientTranslator {
     p("import 'package:flutter/services.dart';");
     p("import 'unmarshal.dart';");
     for (final e in elements) {
-      if (e is IRClass && !e.isAbstract) {
+      if (e is IRClass && !e.isAbstract && !e.isInternal) {
         _emitClass(e);
       } else if (e is IREnum) {
         _emitEnum(e);
@@ -130,7 +130,7 @@ class ClientTranslator {
     p('');
     p('final unmarshalers = <String, Unmarshal>{');
     for (final e in elements.whereType<IRClass>()) {
-      if (!e.isAbstract) {
+      if (!e.isAbstract && !e.isInternal) {
         for (final c in e.constructors) {
           p("  '${e.name}.${c.name}': ${_unmarshalerNameOf(e.name, c.name)},");
         }
