@@ -524,17 +524,17 @@ class Size extends OffsetBase:
 class BoxConstraints extends Constraints:
 	default:
 		minWidth: double = 0.0
-		maxWidth: double = Infinity
+		maxWidth: double = double.infinity
 		minHeight: double = 0.0
-		maxHeight: double = Infinity
+		maxHeight: double = double.infinity
 	tight:
 		size: Size
 	tightFor:
 		width: double?
 		height: double?
 	tightForFinite:
-		width: double = Infinity
-		height: double = Infinity
+		width: double = double.infinity
+		height: double = double.infinity
 	loose:
 		size: Size
 	expand:

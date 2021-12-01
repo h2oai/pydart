@@ -41,7 +41,11 @@ class IRDouble extends IRConst {
   IRDouble(this.value);
 
   @override
-  String toString() => '$value';
+  String toString() => value.isInfinite
+      ? value.isNegative
+          ? 'double.negativeInfinity'
+          : 'double.infinity'
+      : '$value';
 }
 
 class IRString extends IRConst {

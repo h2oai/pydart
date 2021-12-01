@@ -791,9 +791,9 @@ Size _uSizeFromRadius(Map<String, dynamic> __m) {
 
 BoxConstraints _uBoxConstraints(Map<String, dynamic> __m) {
   final double minWidth = uConst<double>(0.0, uDouble)(__m['minWidth']);
-  final double maxWidth = uConst<double>(Infinity, uDouble)(__m['maxWidth']);
+  final double maxWidth = uConst<double>(double.infinity, uDouble)(__m['maxWidth']);
   final double minHeight = uConst<double>(0.0, uDouble)(__m['minHeight']);
-  final double maxHeight = uConst<double>(Infinity, uDouble)(__m['maxHeight']);
+  final double maxHeight = uConst<double>(double.infinity, uDouble)(__m['maxHeight']);
   return BoxConstraints(
     minWidth: minWidth,
     maxWidth: maxWidth,
@@ -819,8 +819,8 @@ BoxConstraints _uBoxConstraintsTightFor(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraintsTightForFinite(Map<String, dynamic> __m) {
-  final double width = uConst<double>(Infinity, uDouble)(__m['width']);
-  final double height = uConst<double>(Infinity, uDouble)(__m['height']);
+  final double width = uConst<double>(double.infinity, uDouble)(__m['width']);
+  final double height = uConst<double>(double.infinity, uDouble)(__m['height']);
   return BoxConstraints.tightForFinite(
     width: width,
     height: height,
