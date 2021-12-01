@@ -9,18 +9,22 @@ String capitalize(String s) {
 String _toConstructorSymbol(IRClass e, IRConstructor c) =>
     e.name + capitalize(c.name);
 
-String _unmarshalerOf(IRType t) {
-  if (t.isPrimitive) return 'u' + capitalize(t.name);
+String _unmarshalerOf(IRType t, IRConst c) {
+  if (t.isPrimitive) {
+    final u = 'u' + capitalize(t.name);
+    if (c != undefined) return 'uConst<${t.name}>($c, $u)';
+    return u;
+  }
 
   if (t is IRParameterizedType) {
     final e = t.element;
     if (e == IRElement.nullable) {
       final p = t.parameters.first;
-      return 'uNull<${dumpType(p)}>(${_unmarshalerOf(p)})';
+      return 'uNull<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
     }
     if (e.name == 'List') {
       final p = t.parameters.first;
-      return 'uList<${dumpType(p)}>(${_unmarshalerOf(p)})';
+      return 'uList<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
     }
 
     // FIXME Handle Map<K, V>
@@ -70,7 +74,7 @@ class ClientTranslator {
       p.t(() {
         for (final f in c.fields) {
           final lookup = "$m['${f.name}']";
-          final unmarshal = _unmarshalerOf(f.type);
+          final unmarshal = _unmarshalerOf(f.type, f.value);
           p("final ${dumpType(f.type)} ${f.name} = $unmarshal($lookup);");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';

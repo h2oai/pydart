@@ -59,6 +59,9 @@ T uFunc<T>(dynamic v) {
 T? Function(dynamic) uNull<T>(T Function(dynamic) u) =>
     (dynamic v) => v == null ? v : u(v);
 
+T Function(dynamic) uConst<T>(T c, T Function(dynamic) u) =>
+    (dynamic v) => v == null ? c : u(v);
+
 List<T> Function(dynamic) uList<T>(T Function(dynamic) u) {
   return (dynamic v) {
     if (v is List<dynamic>) return v.map(u).toList(growable: false);

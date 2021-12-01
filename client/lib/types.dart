@@ -34,7 +34,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
   final TransitionDelegate<dynamic> transitionDelegate = uClass(__m['transitionDelegate']);
-  final bool reportsRouteUpdateToEngine = uBool(__m['reportsRouteUpdateToEngine']);
+  final bool reportsRouteUpdateToEngine = uConst<bool>(false, uBool)(__m['reportsRouteUpdateToEngine']);
   final List<NavigatorObserver> observers = uList<NavigatorObserver>(uClass)(__m['observers']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   return Navigator(
@@ -126,8 +126,8 @@ Brightness _uBrightness(dynamic v) {
 }
 
 VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
-  final double horizontal = uDouble(__m['horizontal']);
-  final double vertical = uDouble(__m['vertical']);
+  final double horizontal = uConst<double>(0.0, uDouble)(__m['horizontal']);
+  final double vertical = uConst<double>(0.0, uDouble)(__m['vertical']);
   return VisualDensity(
     horizontal: horizontal,
     vertical: vertical,
@@ -366,12 +366,12 @@ MaterialTapTargetSize _uMaterialTapTargetSize(dynamic v) {
 
 ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
   final ButtonTextTheme textTheme = _uButtonTextTheme(__m['textTheme']);
-  final double minWidth = uDouble(__m['minWidth']);
-  final double height = uDouble(__m['height']);
+  final double minWidth = uConst<double>(88.0, uDouble)(__m['minWidth']);
+  final double height = uConst<double>(36.0, uDouble)(__m['height']);
   final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
   final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
   final ButtonBarLayoutBehavior layoutBehavior = _uButtonBarLayoutBehavior(__m['layoutBehavior']);
-  final bool alignedDropdown = uBool(__m['alignedDropdown']);
+  final bool alignedDropdown = uConst<bool>(false, uBool)(__m['alignedDropdown']);
   final Color? buttonColor = uNull<Color>(uClass)(__m['buttonColor']);
   final Color? disabledColor = uNull<Color>(uClass)(__m['disabledColor']);
   final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
@@ -445,7 +445,7 @@ Locale _uLocale(Map<String, dynamic> __m) {
 }
 
 Locale _uLocaleFromSubtags(Map<String, dynamic> __m) {
-  final String languageCode = uString(__m['languageCode']);
+  final String languageCode = uConst<String>('und', uString)(__m['languageCode']);
   final String? scriptCode = uNull<String>(uString)(__m['scriptCode']);
   final String? countryCode = uNull<String>(uString)(__m['countryCode']);
   return Locale.fromSubtags(
@@ -471,7 +471,7 @@ Offset _uOffset(Map<String, dynamic> __m) {
 
 Offset _uOffsetFromDirection(Map<String, dynamic> __m) {
   final double direction = uDouble(__m['direction']);
-  final double distance = uDouble(__m['distance']);
+  final double distance = uConst<double>(1.0, uDouble)(__m['distance']);
   return Offset.fromDirection(
     direction,
     distance,
@@ -481,7 +481,7 @@ Offset _uOffsetFromDirection(Map<String, dynamic> __m) {
 Shadow _uShadow(Map<String, dynamic> __m) {
   final Color color = uClass(__m['color']);
   final Offset offset = uClass(__m['offset']);
-  final double blurRadius = uDouble(__m['blurRadius']);
+  final double blurRadius = uConst<double>(0.0, uDouble)(__m['blurRadius']);
   return Shadow(
     color: color,
     offset: offset,
@@ -491,7 +491,7 @@ Shadow _uShadow(Map<String, dynamic> __m) {
 
 FontFeature _uFontFeature(Map<String, dynamic> __m) {
   final String feature = uString(__m['feature']);
-  final int value = uInt(__m['value']);
+  final int value = uConst<int>(1, uInt)(__m['value']);
   return FontFeature(
     feature,
     value,
@@ -567,14 +567,14 @@ FontFeature _uFontFeatureLiningFigures(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureLocaleAware(Map<String, dynamic> __m) {
-  final bool enable = uBool(__m['enable']);
+  final bool enable = uConst<bool>(true, uBool)(__m['enable']);
   return FontFeature.localeAware(
     enable: enable,
   );
 }
 
 FontFeature _uFontFeatureNotationalForms(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final int value = uConst<int>(1, uInt)(__m['value']);
   return FontFeature.notationalForms(
     value,
   );
@@ -633,7 +633,7 @@ FontFeature _uFontFeatureSuperscripts(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureSwash(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final int value = uConst<int>(1, uInt)(__m['value']);
   return FontFeature.swash(
     value,
   );
@@ -691,7 +691,7 @@ TextOverflow _uTextOverflow(dynamic v) {
 }
 
 TextStyle _uTextStyle(Map<String, dynamic> __m) {
-  final bool inherit = uBool(__m['inherit']);
+  final bool inherit = uConst<bool>(true, uBool)(__m['inherit']);
   final Color? color = uNull<Color>(uClass)(__m['color']);
   final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
   final double? fontSize = uNull<double>(uDouble)(__m['fontSize']);
@@ -790,10 +790,10 @@ Size _uSizeFromRadius(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraints(Map<String, dynamic> __m) {
-  final double minWidth = uDouble(__m['minWidth']);
-  final double maxWidth = uDouble(__m['maxWidth']);
-  final double minHeight = uDouble(__m['minHeight']);
-  final double maxHeight = uDouble(__m['maxHeight']);
+  final double minWidth = uConst<double>(0.0, uDouble)(__m['minWidth']);
+  final double maxWidth = uConst<double>(Infinity, uDouble)(__m['maxWidth']);
+  final double minHeight = uConst<double>(0.0, uDouble)(__m['minHeight']);
+  final double maxHeight = uConst<double>(Infinity, uDouble)(__m['maxHeight']);
   return BoxConstraints(
     minWidth: minWidth,
     maxWidth: maxWidth,
@@ -819,8 +819,8 @@ BoxConstraints _uBoxConstraintsTightFor(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraintsTightForFinite(Map<String, dynamic> __m) {
-  final double width = uDouble(__m['width']);
-  final double height = uDouble(__m['height']);
+  final double width = uConst<double>(Infinity, uDouble)(__m['width']);
+  final double height = uConst<double>(Infinity, uDouble)(__m['height']);
   return BoxConstraints.tightForFinite(
     width: width,
     height: height,
@@ -998,7 +998,7 @@ BorderStyle _uBorderStyle(dynamic v) {
 
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
   final Color color = uClass(__m['color']);
-  final double width = uDouble(__m['width']);
+  final double width = uConst<double>(1.0, uDouble)(__m['width']);
   final BorderStyle style = _uBorderStyle(__m['style']);
   return BorderSide(
     color: color,
@@ -1016,13 +1016,13 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
   final TextStyle? errorStyle = uNull<TextStyle>(uClass)(__m['errorStyle']);
   final int? errorMaxLines = uNull<int>(uInt)(__m['errorMaxLines']);
   final FloatingLabelBehavior floatingLabelBehavior = _uFloatingLabelBehavior(__m['floatingLabelBehavior']);
-  final bool isDense = uBool(__m['isDense']);
+  final bool isDense = uConst<bool>(false, uBool)(__m['isDense']);
   final EdgeInsetsGeometry? contentPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['contentPadding']);
-  final bool isCollapsed = uBool(__m['isCollapsed']);
+  final bool isCollapsed = uConst<bool>(false, uBool)(__m['isCollapsed']);
   final TextStyle? prefixStyle = uNull<TextStyle>(uClass)(__m['prefixStyle']);
   final TextStyle? suffixStyle = uNull<TextStyle>(uClass)(__m['suffixStyle']);
   final TextStyle? counterStyle = uNull<TextStyle>(uClass)(__m['counterStyle']);
-  final bool filled = uBool(__m['filled']);
+  final bool filled = uConst<bool>(false, uBool)(__m['filled']);
   final Color? fillColor = uNull<Color>(uClass)(__m['fillColor']);
   final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
   final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
@@ -1032,7 +1032,7 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
   final InputBorder? disabledBorder = uNull<InputBorder>(uClass)(__m['disabledBorder']);
   final InputBorder? enabledBorder = uNull<InputBorder>(uClass)(__m['enabledBorder']);
   final InputBorder? border = uNull<InputBorder>(uClass)(__m['border']);
-  final bool alignLabelWithHint = uBool(__m['alignLabelWithHint']);
+  final bool alignLabelWithHint = uConst<bool>(false, uBool)(__m['alignLabelWithHint']);
   final BoxConstraints? constraints = uNull<BoxConstraints>(uClass)(__m['constraints']);
   return InputDecorationTheme(
     labelStyle: labelStyle,
@@ -1233,12 +1233,12 @@ TabBarTheme _uTabBarTheme(Map<String, dynamic> __m) {
 }
 
 Duration _uDuration(Map<String, dynamic> __m) {
-  final int days = uInt(__m['days']);
-  final int hours = uInt(__m['hours']);
-  final int minutes = uInt(__m['minutes']);
-  final int seconds = uInt(__m['seconds']);
-  final int milliseconds = uInt(__m['milliseconds']);
-  final int microseconds = uInt(__m['microseconds']);
+  final int days = uConst<int>(0, uInt)(__m['days']);
+  final int hours = uConst<int>(0, uInt)(__m['hours']);
+  final int minutes = uConst<int>(0, uInt)(__m['minutes']);
+  final int seconds = uConst<int>(0, uInt)(__m['seconds']);
+  final int milliseconds = uConst<int>(0, uInt)(__m['milliseconds']);
+  final int microseconds = uConst<int>(0, uInt)(__m['microseconds']);
   return Duration(
     days: days,
     hours: hours,
@@ -2515,7 +2515,7 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
   final List<NavigatorObserver> navigatorObservers = uList<NavigatorObserver>(uClass)(__m['navigatorObservers']);
   final Widget Function(BuildContext, Widget?)? builder = uNull<Widget Function(BuildContext, Widget?)>(uFunc)(__m['builder']);
-  final String title = uString(__m['title']);
+  final String title = uConst<String>('', uString)(__m['title']);
   final String Function(BuildContext)? onGenerateTitle = uNull<String Function(BuildContext)>(uFunc)(__m['onGenerateTitle']);
   final Color? color = uNull<Color>(uClass)(__m['color']);
   final ThemeData? theme = uNull<ThemeData>(uClass)(__m['theme']);
@@ -2528,17 +2528,17 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
   final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
   final Iterable<Locale> supportedLocales = uClass(__m['supportedLocales']);
-  final bool debugShowMaterialGrid = uBool(__m['debugShowMaterialGrid']);
-  final bool showPerformanceOverlay = uBool(__m['showPerformanceOverlay']);
-  final bool checkerboardRasterCacheImages = uBool(__m['checkerboardRasterCacheImages']);
-  final bool checkerboardOffscreenLayers = uBool(__m['checkerboardOffscreenLayers']);
-  final bool showSemanticsDebugger = uBool(__m['showSemanticsDebugger']);
-  final bool debugShowCheckedModeBanner = uBool(__m['debugShowCheckedModeBanner']);
+  final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
+  final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
+  final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
+  final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
+  final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
+  final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
   final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uClass)(__m['shortcuts']);
   final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uClass)(__m['actions']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
-  final bool useInheritedMediaQuery = uBool(__m['useInheritedMediaQuery']);
+  final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);
   return MaterialApp(
     key: key,
     navigatorKey: navigatorKey,
@@ -2586,7 +2586,7 @@ MaterialApp _uMaterialAppRouter(Map<String, dynamic> __m) {
   final RouterDelegate<Object> routerDelegate = uClass(__m['routerDelegate']);
   final BackButtonDispatcher? backButtonDispatcher = uNull<BackButtonDispatcher>(uClass)(__m['backButtonDispatcher']);
   final Widget Function(BuildContext, Widget?)? builder = uNull<Widget Function(BuildContext, Widget?)>(uFunc)(__m['builder']);
-  final String title = uString(__m['title']);
+  final String title = uConst<String>('', uString)(__m['title']);
   final String Function(BuildContext)? onGenerateTitle = uNull<String Function(BuildContext)>(uFunc)(__m['onGenerateTitle']);
   final Color? color = uNull<Color>(uClass)(__m['color']);
   final ThemeData? theme = uNull<ThemeData>(uClass)(__m['theme']);
@@ -2599,17 +2599,17 @@ MaterialApp _uMaterialAppRouter(Map<String, dynamic> __m) {
   final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
   final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
   final Iterable<Locale> supportedLocales = uClass(__m['supportedLocales']);
-  final bool debugShowMaterialGrid = uBool(__m['debugShowMaterialGrid']);
-  final bool showPerformanceOverlay = uBool(__m['showPerformanceOverlay']);
-  final bool checkerboardRasterCacheImages = uBool(__m['checkerboardRasterCacheImages']);
-  final bool checkerboardOffscreenLayers = uBool(__m['checkerboardOffscreenLayers']);
-  final bool showSemanticsDebugger = uBool(__m['showSemanticsDebugger']);
-  final bool debugShowCheckedModeBanner = uBool(__m['debugShowCheckedModeBanner']);
+  final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
+  final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
+  final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
+  final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
+  final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
+  final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
   final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uClass)(__m['shortcuts']);
   final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uClass)(__m['actions']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
-  final bool useInheritedMediaQuery = uBool(__m['useInheritedMediaQuery']);
+  final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);
   return MaterialApp.router(
     key: key,
     scaffoldMessengerKey: scaffoldMessengerKey,
@@ -2677,9 +2677,9 @@ FocusNode _uFocusNode(Map<String, dynamic> __m) {
   final String? debugLabel = uNull<String>(uString)(__m['debugLabel']);
   final KeyEventResult Function(FocusNode, RawKeyEvent)? onKey = uNull<KeyEventResult Function(FocusNode, RawKeyEvent)>(uFunc)(__m['onKey']);
   final KeyEventResult Function(FocusNode, KeyEvent)? onKeyEvent = uNull<KeyEventResult Function(FocusNode, KeyEvent)>(uFunc)(__m['onKeyEvent']);
-  final bool skipTraversal = uBool(__m['skipTraversal']);
-  final bool canRequestFocus = uBool(__m['canRequestFocus']);
-  final bool descendantsAreFocusable = uBool(__m['descendantsAreFocusable']);
+  final bool skipTraversal = uConst<bool>(false, uBool)(__m['skipTraversal']);
+  final bool canRequestFocus = uConst<bool>(true, uBool)(__m['canRequestFocus']);
+  final bool descendantsAreFocusable = uConst<bool>(true, uBool)(__m['descendantsAreFocusable']);
   return FocusNode(
     debugLabel: debugLabel,
     onKey: onKey,
@@ -2696,7 +2696,7 @@ ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
   final void Function()? onLongPress = uNull<void Function()>(uFunc)(__m['onLongPress']);
   final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
   final FocusNode? focusNode = uNull<FocusNode>(uClass)(__m['focusNode']);
-  final bool autofocus = uBool(__m['autofocus']);
+  final bool autofocus = uConst<bool>(false, uBool)(__m['autofocus']);
   final Clip clipBehavior = _uClip(__m['clipBehavior']);
   final Widget? child = uNull<Widget>(uClass)(__m['child']);
   return ElevatedButton(
