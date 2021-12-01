@@ -51,19 +51,19 @@ abstract class List<E> extends Object implements EfficientLengthIterable<E>:
 	filled:
 		length: int
 		fill: E
-		growable: bool
+		growable: bool = false
 	empty:
-		growable: bool
+		growable: bool = false
 	from:
 		elements: Iterable<dynamic>
-		growable: bool
+		growable: bool = true
 	of:
 		elements: Iterable<E>
-		growable: bool
+		growable: bool = true
 	generate:
 		length: int
 		generator: E Function(int)
-		growable: bool
+		growable: bool = true
 	unmodifiable:
 		elements: Iterable<dynamic>
 
@@ -111,7 +111,7 @@ class Navigator extends StatefulWidget:
 		onGenerateRoute: Route<dynamic>? Function(RouteSettings)?
 		onUnknownRoute: Route<dynamic>? Function(RouteSettings)?
 		transitionDelegate: TransitionDelegate<dynamic>
-		reportsRouteUpdateToEngine: bool
+		reportsRouteUpdateToEngine: bool = false
 		observers: List<NavigatorObserver>
 		restorationScopeId: String?
 
@@ -188,8 +188,8 @@ class VisualDensity extends Object:
 		comfortable: VisualDensity
 		compact: VisualDensity
 	default:
-		horizontal: double
-		vertical: double
+		horizontal: double = 0.0
+		vertical: double = 0.0
 
 # packages/flutter/lib/src/painting/colors.dart
 class ColorSwatch<T> extends Color:
@@ -318,12 +318,12 @@ enum MaterialTapTargetSize:
 class ButtonThemeData extends Object:
 	default:
 		textTheme: ButtonTextTheme
-		minWidth: double
-		height: double
+		minWidth: double = 88.0
+		height: double = 36.0
 		padding: EdgeInsetsGeometry?
 		shape: ShapeBorder?
 		layoutBehavior: ButtonBarLayoutBehavior
-		alignedDropdown: bool
+		alignedDropdown: bool = false
 		buttonColor: Color?
 		disabledColor: Color?
 		focusColor: Color?
@@ -369,7 +369,7 @@ class Locale extends Object:
 		_languageCode: String
 		_countryCode: String?
 	fromSubtags:
-		languageCode: String
+		languageCode: String = 'und'
 		scriptCode: String?
 		countryCode: String?
 
@@ -393,20 +393,20 @@ class Offset extends OffsetBase:
 		dy: double
 	fromDirection:
 		direction: double
-		distance: double
+		distance: double = 1.0
 
 # bin/cache/pkg/sky_engine/lib/ui/painting.dart
 class Shadow extends Object:
 	default:
 		color: Color
 		offset: Offset
-		blurRadius: double
+		blurRadius: double = 0.0
 
 # bin/cache/pkg/sky_engine/lib/ui/text.dart
 class FontFeature extends Object:
 	default:
 		feature: String
-		value: int
+		value: int = 1
 	enable:
 		feature: String
 	disable:
@@ -424,9 +424,9 @@ class FontFeature extends Object:
 	historicalLigatures:
 	liningFigures:
 	localeAware:
-		enable: bool
+		enable: bool = true
 	notationalForms:
-		value: int
+		value: int = 1
 	numerators:
 	oldstyleFigures:
 	ordinalForms:
@@ -439,7 +439,7 @@ class FontFeature extends Object:
 	subscripts:
 	superscripts:
 	swash:
-		value: int
+		value: int = 1
 	tabularFigures:
 	slashedZero:
 
@@ -471,7 +471,7 @@ enum TextOverflow:
 # packages/flutter/lib/src/painting/text_style.dart
 class TextStyle extends Object:
 	default:
-		inherit: bool
+		inherit: bool = true
 		color: Color?
 		backgroundColor: Color?
 		fontSize: double?
@@ -523,18 +523,18 @@ class Size extends OffsetBase:
 # packages/flutter/lib/src/rendering/box.dart
 class BoxConstraints extends Constraints:
 	default:
-		minWidth: double
-		maxWidth: double
-		minHeight: double
-		maxHeight: double
+		minWidth: double = 0.0
+		maxWidth: double = Infinity
+		minHeight: double = 0.0
+		maxHeight: double = Infinity
 	tight:
 		size: Size
 	tightFor:
 		width: double?
 		height: double?
 	tightForFinite:
-		width: double
-		height: double
+		width: double = Infinity
+		height: double = Infinity
 	loose:
 		size: Size
 	expand:
@@ -628,7 +628,7 @@ class BorderSide extends Object:
 		none: BorderSide
 	default:
 		color: Color
-		width: double
+		width: double = 1.0
 		style: BorderStyle
 
 # packages/flutter/lib/src/material/input_border.dart
@@ -649,13 +649,13 @@ class InputDecorationTheme extends Object:
 		errorStyle: TextStyle?
 		errorMaxLines: int?
 		floatingLabelBehavior: FloatingLabelBehavior
-		isDense: bool
+		isDense: bool = false
 		contentPadding: EdgeInsetsGeometry?
-		isCollapsed: bool
+		isCollapsed: bool = false
 		prefixStyle: TextStyle?
 		suffixStyle: TextStyle?
 		counterStyle: TextStyle?
-		filled: bool
+		filled: bool = false
 		fillColor: Color?
 		focusColor: Color?
 		hoverColor: Color?
@@ -665,7 +665,7 @@ class InputDecorationTheme extends Object:
 		disabledBorder: InputBorder?
 		enabledBorder: InputBorder?
 		border: InputBorder?
-		alignLabelWithHint: bool
+		alignLabelWithHint: bool = false
 		constraints: BoxConstraints?
 
 # packages/flutter/lib/src/widgets/icon_theme_data.dart
@@ -807,12 +807,12 @@ class Duration extends Object implements Comparable<Duration>:
 		minutesPerDay: int = 1440
 		zero: Duration
 	default:
-		days: int
-		hours: int
-		minutes: int
-		seconds: int
-		milliseconds: int
-		microseconds: int
+		days: int = 0
+		hours: int = 0
+		minutes: int = 0
+		seconds: int = 0
+		milliseconds: int = 0
+		microseconds: int = 0
 
 # packages/flutter/lib/src/material/tooltip_theme.dart
 enum TooltipTriggerMode:
@@ -1619,7 +1619,7 @@ class MaterialApp extends StatefulWidget:
 		onUnknownRoute: Route<dynamic>? Function(RouteSettings)?
 		navigatorObservers: List<NavigatorObserver>
 		builder: Widget Function(BuildContext, Widget?)?
-		title: String
+		title: String = ''
 		onGenerateTitle: String Function(BuildContext)?
 		color: Color?
 		theme: ThemeData?
@@ -1632,17 +1632,17 @@ class MaterialApp extends StatefulWidget:
 		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)?
 		localeResolutionCallback: Locale? Function(Locale?, Iterable<Locale>)?
 		supportedLocales: Iterable<Locale>
-		debugShowMaterialGrid: bool
-		showPerformanceOverlay: bool
-		checkerboardRasterCacheImages: bool
-		checkerboardOffscreenLayers: bool
-		showSemanticsDebugger: bool
-		debugShowCheckedModeBanner: bool
+		debugShowMaterialGrid: bool = false
+		showPerformanceOverlay: bool = false
+		checkerboardRasterCacheImages: bool = false
+		checkerboardOffscreenLayers: bool = false
+		showSemanticsDebugger: bool = false
+		debugShowCheckedModeBanner: bool = true
 		shortcuts: Map<ShortcutActivator, Intent>?
 		actions: Map<Type, Action<Intent>>?
 		restorationScopeId: String?
 		scrollBehavior: ScrollBehavior?
-		useInheritedMediaQuery: bool
+		useInheritedMediaQuery: bool = false
 	router:
 		key: Key?
 		scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>?
@@ -1651,7 +1651,7 @@ class MaterialApp extends StatefulWidget:
 		routerDelegate: RouterDelegate<Object>
 		backButtonDispatcher: BackButtonDispatcher?
 		builder: Widget Function(BuildContext, Widget?)?
-		title: String
+		title: String = ''
 		onGenerateTitle: String Function(BuildContext)?
 		color: Color?
 		theme: ThemeData?
@@ -1664,17 +1664,17 @@ class MaterialApp extends StatefulWidget:
 		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)?
 		localeResolutionCallback: Locale? Function(Locale?, Iterable<Locale>)?
 		supportedLocales: Iterable<Locale>
-		debugShowMaterialGrid: bool
-		showPerformanceOverlay: bool
-		checkerboardRasterCacheImages: bool
-		checkerboardOffscreenLayers: bool
-		showSemanticsDebugger: bool
-		debugShowCheckedModeBanner: bool
+		debugShowMaterialGrid: bool = false
+		showPerformanceOverlay: bool = false
+		checkerboardRasterCacheImages: bool = false
+		checkerboardOffscreenLayers: bool = false
+		showSemanticsDebugger: bool = false
+		debugShowCheckedModeBanner: bool = true
 		shortcuts: Map<ShortcutActivator, Intent>?
 		actions: Map<Type, Action<Intent>>?
 		restorationScopeId: String?
 		scrollBehavior: ScrollBehavior?
-		useInheritedMediaQuery: bool
+		useInheritedMediaQuery: bool = false
 
 # packages/flutter/lib/src/services/raw_keyboard.dart
 abstract class RawKeyEventData extends Object:
@@ -2443,7 +2443,7 @@ abstract class KeyEvent extends Object:
 		logicalKey: LogicalKeyboardKey
 		character: String?
 		timeStamp: Duration
-		synthesized: bool
+		synthesized: bool = false
 
 # packages/flutter/lib/src/widgets/focus_manager.dart
 class FocusNode extends Object:
@@ -2451,9 +2451,9 @@ class FocusNode extends Object:
 		debugLabel: String?
 		onKey: KeyEventResult Function(FocusNode, RawKeyEvent)?
 		onKeyEvent: KeyEventResult Function(FocusNode, KeyEvent)?
-		skipTraversal: bool
-		canRequestFocus: bool
-		descendantsAreFocusable: bool
+		skipTraversal: bool = false
+		canRequestFocus: bool = true
+		descendantsAreFocusable: bool = true
 
 # packages/flutter/lib/src/material/button_style_button.dart
 abstract class ButtonStyleButton extends StatefulWidget:
@@ -2475,7 +2475,7 @@ class ElevatedButton extends ButtonStyleButton:
 		onLongPress: void Function()?
 		style: ButtonStyle?
 		focusNode: FocusNode?
-		autofocus: bool
+		autofocus: bool = false
 		clipBehavior: Clip
 		child: Widget?
 	icon:

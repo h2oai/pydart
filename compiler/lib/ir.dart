@@ -319,7 +319,7 @@ class IRBuilder {
     return IRField(
       name: e.name,
       type: _toType(e.type),
-      value: undefined,
+      value: _toConst(e.computeConstantValue()),
       isPositional: e.isPositional,
       isRequired: e.isNotOptional,
       isOptional: e.isOptional,
@@ -449,6 +449,15 @@ class IRBuilder {
           Set<Element> elements, Set<String> widgetWhitelist) =>
       IRBuilder()._load(elements, widgetWhitelist);
 
+  static dumpFields(Printer p, Iterable<IRField> fields) {
+    p.t(() {
+      for (final f in fields) {
+        final v = f.value is! IRUndefined ? ' = ${f.value}' : '';
+        p('${f.name}: ${dumpType(f.type)}$v');
+      }
+    });
+  }
+
   static String dump(List<IRElement> elements) {
     final p = Printer('\t');
     for (final e in elements) {
@@ -475,20 +484,11 @@ class IRBuilder {
         p.t(() {
           if (e.fields.isNotEmpty) {
             p('static:');
-            p.t(() {
-              for (final f in e.fields) {
-                final v = f.value is! IRUndefined ? ' = ${f.value}' : '';
-                p('${f.name}: ${dumpType(f.type)}$v');
-              }
-            });
+            dumpFields(p, e.fields);
           }
           for (final c in e.constructors) {
             p(c.name.isNotEmpty ? '${c.name}:' : 'default:');
-            p.t(() {
-              for (final f in c.fields) {
-                p('${f.name}: ${dumpType(f.type)}');
-              }
-            });
+            dumpFields(p, c.fields);
           }
         });
       }

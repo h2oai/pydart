@@ -1,19 +1,13 @@
-import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/type.dart';
-
 import 'emit.dart';
 import 'ir.dart';
-
-bool _isOptional(IRType t) =>
-    t is IRParameterizedType && t.element == IRElement.nullable;
 
 String capitalize(String s) {
   if (s.isEmpty) return s;
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
-String _unmarshalerNameOf(String className, String ctorName) =>
-    '_u$className' + capitalize(ctorName);
+String _toConstructorSymbol(IRClass e, IRConstructor c) =>
+    e.name + capitalize(c.name);
 
 String _unmarshalerOf(IRType t) {
   if (t.isPrimitive) return 'u' + capitalize(t.name);
@@ -72,7 +66,7 @@ class ClientTranslator {
           params.isNotEmpty ? "<${params.map((p) => p.name).join(', ')}>" : '';
 
       p('');
-      p('${e.name} ${_unmarshalerNameOf(e.name, c.name)}$typeParams(Map<String, dynamic> $m) {');
+      p('${e.name} _u${_toConstructorSymbol(e, c)}$typeParams(Map<String, dynamic> $m) {');
       p.t(() {
         for (final f in c.fields) {
           final lookup = "$m['${f.name}']";
@@ -130,7 +124,7 @@ class ClientTranslator {
     for (final e in elements.whereType<IRClass>()) {
       if (!e.isAbstract && !e.isInternal) {
         for (final c in e.constructors) {
-          p("  '${e.name}.${c.name}': ${_unmarshalerNameOf(e.name, c.name)},");
+          p("  '${e.name}.${c.name}': _u${_toConstructorSymbol(e, c)},");
         }
       }
     }
