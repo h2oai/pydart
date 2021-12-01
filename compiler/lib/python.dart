@@ -50,7 +50,7 @@ final _builtins = {
   'double': 'float',
   'String': 'str',
   'dynamic': 'Any',
-  'opt': 'Optional',
+  'Nullable': 'Optional',
   'Function': 'Callable',
   'Map': 'Dict',
 };
@@ -100,6 +100,9 @@ String _n(String s) {
 }
 
 String _sc(String s) => _n(_snakeCase(s));
+
+bool _isOptional(IRField f) =>
+    f.isOptional || (f.isRequired && isNullable(f.type));
 
 class PythonTranslator {
   final p = Printer('    ');
@@ -155,7 +158,7 @@ class PythonTranslator {
     if (t is IRParameterizedType) {
       final e = t.element;
       if (e == IRElement.func) return '_noop';
-      if (e == IRElement.optional) return 'None';
+      if (e == IRElement.nullable) return 'None';
       switch (e.name) {
         case 'List':
           return '[]';
@@ -177,12 +180,6 @@ class PythonTranslator {
     }
 
     throw 'cannot compute default value of ${t.name}';
-  }
-
-  bool _isOptional(IRField f) {
-    if (f.isOptional) return true;
-    final t = f.type;
-    return t is IRParameterizedType && t.element == IRElement.optional;
   }
 
   bool _typeRefersTo(IRType t, IRElement e) =>
@@ -305,7 +302,8 @@ class PythonTranslator {
           }
           // foo: Optional[Foo] = None,
           for (final f in opt) {
-            p('${_sc(f.name)}: ${_toType(f.type)} = None,');
+            final t = isNullable(f.type) ? f.type : toNullable(f.type);
+            p('${_sc(f.name)}: ${_toType(t)} = None,');
           }
         });
         p('):');

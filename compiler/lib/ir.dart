@@ -95,7 +95,7 @@ class IRElement {
 
   IRElement(this.path, this.name);
 
-  static final optional = IRElement('', 'opt');
+  static final nullable = IRElement('', 'Nullable');
   static final func = IRElement('', 'Function');
 
   @override
@@ -208,7 +208,7 @@ String dumpType(IRType t) {
         return '$returnType Function($params)';
       }
       final params = types.join(', ');
-      if (t.element == IRElement.optional) {
+      if (t.element == IRElement.nullable) {
         return '$params?';
       }
       return '${t.name}<$params>';
@@ -219,6 +219,11 @@ String dumpType(IRType t) {
   }
   return t.name;
 }
+
+IRType toNullable(IRType t) => IRParameterizedType(IRElement.nullable, [t]);
+
+bool isNullable(IRType t) =>
+    t is IRParameterizedType && t.element == IRElement.nullable;
 
 class IRBuilder {
   final _elements = <IRElement>[];
@@ -269,7 +274,7 @@ class IRBuilder {
   IRType _toType(DartType t) {
     final bt = _toBaseType(t);
     return t.nullabilitySuffix == NullabilitySuffix.question
-        ? _toOptional(bt)
+        ? toNullable(bt)
         : bt;
   }
 
@@ -305,10 +310,6 @@ class IRBuilder {
     }
 
     return undefined;
-  }
-
-  IRType _toOptional(IRType t) {
-    return IRParameterizedType(IRElement.optional, [t]);
   }
 
   IRField _toField(ParameterElement e) {

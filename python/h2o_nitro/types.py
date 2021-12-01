@@ -242,15 +242,15 @@ class Navigator(StatefulWidget):
     def __init__(
         self,
         key: Optional[Key] = None,
-        pages: List[Page[Any]] = None,
+        pages: Optional[List[Page[Any]]] = None,
         on_pop_page: Optional[Callable[[Route[Any], Any], bool]] = None,
         initial_route: Optional[str] = None,
-        on_generate_initial_routes: Callable[['NavigatorState', str], List[Route[Any]]] = None,
+        on_generate_initial_routes: Optional[Callable[['NavigatorState', str], List[Route[Any]]]] = None,
         on_generate_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
         on_unknown_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
-        transition_delegate: TransitionDelegate[Any] = None,
-        reports_route_update_to_engine: bool = None,
-        observers: List[NavigatorObserver] = None,
+        transition_delegate: Optional[TransitionDelegate[Any]] = None,
+        reports_route_update_to_engine: Optional[bool] = None,
+        observers: Optional[List[NavigatorObserver]] = None,
         restoration_scope_id: Optional[str] = None,
     ):
         super().__init__(
@@ -393,8 +393,8 @@ class VisualDensity(Object):
 
     def __init__(
         self,
-        horizontal: float = None,
-        vertical: float = None,
+        horizontal: Optional[float] = None,
+        vertical: Optional[float] = None,
     ):
         super().__init__(
         )
@@ -550,19 +550,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def light(
-        primary: Color = None,
-        primary_variant: Color = None,
-        secondary: Color = None,
-        secondary_variant: Color = None,
-        surface: Color = None,
-        background: Color = None,
-        error: Color = None,
-        on_primary: Color = None,
-        on_secondary: Color = None,
-        on_surface: Color = None,
-        on_background: Color = None,
-        on_error: Color = None,
-        brightness: Brightness = None,
+        primary: Optional[Color] = None,
+        primary_variant: Optional[Color] = None,
+        secondary: Optional[Color] = None,
+        secondary_variant: Optional[Color] = None,
+        surface: Optional[Color] = None,
+        background: Optional[Color] = None,
+        error: Optional[Color] = None,
+        on_primary: Optional[Color] = None,
+        on_secondary: Optional[Color] = None,
+        on_surface: Optional[Color] = None,
+        on_background: Optional[Color] = None,
+        on_error: Optional[Color] = None,
+        brightness: Optional[Brightness] = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -599,19 +599,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def dark(
-        primary: Color = None,
-        primary_variant: Color = None,
-        secondary: Color = None,
-        secondary_variant: Color = None,
-        surface: Color = None,
-        background: Color = None,
-        error: Color = None,
-        on_primary: Color = None,
-        on_secondary: Color = None,
-        on_surface: Color = None,
-        on_background: Color = None,
-        on_error: Color = None,
-        brightness: Brightness = None,
+        primary: Optional[Color] = None,
+        primary_variant: Optional[Color] = None,
+        secondary: Optional[Color] = None,
+        secondary_variant: Optional[Color] = None,
+        surface: Optional[Color] = None,
+        background: Optional[Color] = None,
+        error: Optional[Color] = None,
+        on_primary: Optional[Color] = None,
+        on_secondary: Optional[Color] = None,
+        on_surface: Optional[Color] = None,
+        on_background: Optional[Color] = None,
+        on_error: Optional[Color] = None,
+        brightness: Optional[Brightness] = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -648,19 +648,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def high_contrast_light(
-        primary: Color = None,
-        primary_variant: Color = None,
-        secondary: Color = None,
-        secondary_variant: Color = None,
-        surface: Color = None,
-        background: Color = None,
-        error: Color = None,
-        on_primary: Color = None,
-        on_secondary: Color = None,
-        on_surface: Color = None,
-        on_background: Color = None,
-        on_error: Color = None,
-        brightness: Brightness = None,
+        primary: Optional[Color] = None,
+        primary_variant: Optional[Color] = None,
+        secondary: Optional[Color] = None,
+        secondary_variant: Optional[Color] = None,
+        surface: Optional[Color] = None,
+        background: Optional[Color] = None,
+        error: Optional[Color] = None,
+        on_primary: Optional[Color] = None,
+        on_secondary: Optional[Color] = None,
+        on_surface: Optional[Color] = None,
+        on_background: Optional[Color] = None,
+        on_error: Optional[Color] = None,
+        brightness: Optional[Brightness] = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -697,19 +697,19 @@ class ColorScheme(Object):
 
     @staticmethod
     def high_contrast_dark(
-        primary: Color = None,
-        primary_variant: Color = None,
-        secondary: Color = None,
-        secondary_variant: Color = None,
-        surface: Color = None,
-        background: Color = None,
-        error: Color = None,
-        on_primary: Color = None,
-        on_secondary: Color = None,
-        on_surface: Color = None,
-        on_background: Color = None,
-        on_error: Color = None,
-        brightness: Brightness = None,
+        primary: Optional[Color] = None,
+        primary_variant: Optional[Color] = None,
+        secondary: Optional[Color] = None,
+        secondary_variant: Optional[Color] = None,
+        surface: Optional[Color] = None,
+        background: Optional[Color] = None,
+        error: Optional[Color] = None,
+        on_primary: Optional[Color] = None,
+        on_secondary: Optional[Color] = None,
+        on_surface: Optional[Color] = None,
+        on_background: Optional[Color] = None,
+        on_error: Optional[Color] = None,
+        brightness: Optional[Brightness] = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -746,13 +746,13 @@ class ColorScheme(Object):
 
     @staticmethod
     def from_swatch(
-        primary_swatch: MaterialColor = None,
+        primary_swatch: Optional[MaterialColor] = None,
         primary_color_dark: Optional[Color] = None,
         accent_color: Optional[Color] = None,
         card_color: Optional[Color] = None,
         background_color: Optional[Color] = None,
         error_color: Optional[Color] = None,
-        brightness: Brightness = None,
+        brightness: Optional[Brightness] = None,
     ):
         _o = ColorScheme(
             primary=Color(0),
@@ -793,13 +793,13 @@ class ButtonThemeData(Object):
 
     def __init__(
         self,
-        text_theme: ButtonTextTheme = None,
-        min_width: float = None,
-        height: float = None,
+        text_theme: Optional[ButtonTextTheme] = None,
+        min_width: Optional[float] = None,
+        height: Optional[float] = None,
         padding: Optional[EdgeInsetsGeometry] = None,
         shape: Optional[ShapeBorder] = None,
-        layout_behavior: ButtonBarLayoutBehavior = None,
-        aligned_dropdown: bool = None,
+        layout_behavior: Optional[ButtonBarLayoutBehavior] = None,
+        aligned_dropdown: Optional[bool] = None,
         button_color: Optional[Color] = None,
         disabled_color: Optional[Color] = None,
         focus_color: Optional[Color] = None,
@@ -907,7 +907,7 @@ class Locale(Object):
 
     @staticmethod
     def from_subtags(
-        language_code: str = None,
+        language_code: Optional[str] = None,
         script_code: Optional[str] = None,
         country_code: Optional[str] = None,
     ):
@@ -974,7 +974,7 @@ class Offset(OffsetBase):
     @staticmethod
     def from_direction(
         direction: float,
-        distance: float = None,
+        distance: Optional[float] = None,
     ):
         _o = Offset(
             dx=0.0,
@@ -1005,9 +1005,9 @@ class Shadow(Object):
 
     def __init__(
         self,
-        color: Color = None,
-        offset: Offset = None,
-        blur_radius: float = None,
+        color: Optional[Color] = None,
+        offset: Optional[Offset] = None,
+        blur_radius: Optional[float] = None,
     ):
         super().__init__(
         )
@@ -1025,7 +1025,7 @@ class FontFeature(Object):
     def __init__(
         self,
         feature: str,
-        value: int = None,
+        value: Optional[int] = None,
     ):
         super().__init__(
         )
@@ -1177,7 +1177,7 @@ class FontFeature(Object):
 
     @staticmethod
     def locale_aware(
-        enable: bool = None,
+        enable: Optional[bool] = None,
     ):
         _o = FontFeature(
             feature='',
@@ -1190,7 +1190,7 @@ class FontFeature(Object):
 
     @staticmethod
     def notational_forms(
-        value: int = None,
+        value: Optional[int] = None,
     ):
         _o = FontFeature(
             feature='',
@@ -1315,7 +1315,7 @@ class FontFeature(Object):
 
     @staticmethod
     def swash(
-        value: int = None,
+        value: Optional[int] = None,
     ):
         _o = FontFeature(
             feature='',
@@ -1401,7 +1401,7 @@ class TextStyle(Object):
 
     def __init__(
         self,
-        inherit: bool = None,
+        inherit: Optional[bool] = None,
         color: Optional[Color] = None,
         background_color: Optional[Color] = None,
         font_size: Optional[float] = None,
@@ -1578,10 +1578,10 @@ class BoxConstraints(Constraints):
 
     def __init__(
         self,
-        min_width: float = None,
-        max_width: float = None,
-        min_height: float = None,
-        max_height: float = None,
+        min_width: Optional[float] = None,
+        max_width: Optional[float] = None,
+        min_height: Optional[float] = None,
+        max_height: Optional[float] = None,
     ):
         super().__init__(
         )
@@ -1621,8 +1621,8 @@ class BoxConstraints(Constraints):
 
     @staticmethod
     def tight_for_finite(
-        width: float = None,
-        height: float = None,
+        width: Optional[float] = None,
+        height: Optional[float] = None,
     ):
         _o = BoxConstraints(
         )
@@ -1737,8 +1737,8 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def vertical(
-        top: Radius = None,
-        bottom: Radius = None,
+        top: Optional[Radius] = None,
+        bottom: Optional[Radius] = None,
     ):
         _o = BorderRadius(
         )
@@ -1751,8 +1751,8 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def horizontal(
-        left: Radius = None,
-        right: Radius = None,
+        left: Optional[Radius] = None,
+        right: Optional[Radius] = None,
     ):
         _o = BorderRadius(
         )
@@ -1765,10 +1765,10 @@ class BorderRadius(BorderRadiusGeometry):
 
     @staticmethod
     def only(
-        top_left: Radius = None,
-        top_right: Radius = None,
-        bottom_left: Radius = None,
-        bottom_right: Radius = None,
+        top_left: Optional[Radius] = None,
+        top_right: Optional[Radius] = None,
+        bottom_left: Optional[Radius] = None,
+        bottom_right: Optional[Radius] = None,
     ):
         _o = BorderRadius(
         )
@@ -1887,9 +1887,9 @@ class BorderSide(Object):
 
     def __init__(
         self,
-        color: Color = None,
-        width: float = None,
-        style: BorderStyle = None,
+        color: Optional[Color] = None,
+        width: Optional[float] = None,
+        style: Optional[BorderStyle] = None,
     ):
         super().__init__(
         )
@@ -1911,7 +1911,7 @@ class InputBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
-        border_side: BorderSide = None,
+        border_side: Optional[BorderSide] = None,
     ):
         super().__init__(
         )
@@ -1938,14 +1938,14 @@ class InputDecorationTheme(Object):
         hint_style: Optional[TextStyle] = None,
         error_style: Optional[TextStyle] = None,
         error_max_lines: Optional[int] = None,
-        floating_label_behavior: FloatingLabelBehavior = None,
-        is_dense: bool = None,
+        floating_label_behavior: Optional[FloatingLabelBehavior] = None,
+        is_dense: Optional[bool] = None,
         content_padding: Optional[EdgeInsetsGeometry] = None,
-        is_collapsed: bool = None,
+        is_collapsed: Optional[bool] = None,
         prefix_style: Optional[TextStyle] = None,
         suffix_style: Optional[TextStyle] = None,
         counter_style: Optional[TextStyle] = None,
-        filled: bool = None,
+        filled: Optional[bool] = None,
         fill_color: Optional[Color] = None,
         focus_color: Optional[Color] = None,
         hover_color: Optional[Color] = None,
@@ -1955,7 +1955,7 @@ class InputDecorationTheme(Object):
         disabled_border: Optional[InputBorder] = None,
         enabled_border: Optional[InputBorder] = None,
         border: Optional[InputBorder] = None,
-        align_label_with_hint: bool = None,
+        align_label_with_hint: Optional[bool] = None,
         constraints: Optional[BoxConstraints] = None,
     ):
         super().__init__(
@@ -2312,12 +2312,12 @@ class Duration(Comparable['Duration'], Object):
 
     def __init__(
         self,
-        days: int = None,
-        hours: int = None,
-        minutes: int = None,
-        seconds: int = None,
-        milliseconds: int = None,
-        microseconds: int = None,
+        days: Optional[int] = None,
+        hours: Optional[int] = None,
+        minutes: Optional[int] = None,
+        seconds: Optional[int] = None,
+        milliseconds: Optional[int] = None,
+        microseconds: Optional[int] = None,
     ):
         super().__init__(
         )
@@ -2419,7 +2419,7 @@ class OutlinedBorder(ShapeBorder, ABC):
 
     def __init__(
         self,
-        side: BorderSide = None,
+        side: Optional[BorderSide] = None,
     ):
         super().__init__(
         )
@@ -2532,7 +2532,7 @@ class PageTransitionsTheme(Object):
 
     def __init__(
         self,
-        builders: Dict[TargetPlatform, PageTransitionsBuilder] = None,
+        builders: Optional[Dict[TargetPlatform, PageTransitionsBuilder]] = None,
     ):
         super().__init__(
         )
@@ -2913,7 +2913,7 @@ class CupertinoTextThemeData(Object):
 
     def __init__(
         self,
-        primary_color: Color = None,
+        primary_color: Optional[Color] = None,
         text_style: Optional[TextStyle] = None,
         action_text_style: Optional[TextStyle] = None,
         tab_label_text_style: Optional[TextStyle] = None,
@@ -4254,14 +4254,14 @@ class MaterialApp(StatefulWidget):
         navigator_key: Optional[GlobalKey[NavigatorState]] = None,
         scaffold_messenger_key: Optional[GlobalKey[ScaffoldMessengerState]] = None,
         home: Optional[Widget] = None,
-        routes: Dict[str, Callable[[BuildContext], Widget]] = None,
+        routes: Optional[Dict[str, Callable[[BuildContext], Widget]]] = None,
         initial_route: Optional[str] = None,
         on_generate_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
         on_generate_initial_routes: Optional[Callable[[str], List[Route[Any]]]] = None,
         on_unknown_route: Optional[Callable[[RouteSettings], Optional[Route[Any]]]] = None,
-        navigator_observers: List[NavigatorObserver] = None,
+        navigator_observers: Optional[List[NavigatorObserver]] = None,
         builder: Optional[Callable[[BuildContext, Optional[Widget]], Widget]] = None,
-        title: str = None,
+        title: Optional[str] = None,
         on_generate_title: Optional[Callable[[BuildContext], str]] = None,
         color: Optional[Color] = None,
         theme: Optional[ThemeData] = None,
@@ -4273,18 +4273,18 @@ class MaterialApp(StatefulWidget):
         localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
         locale_list_resolution_callback: Optional[Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]]] = None,
         locale_resolution_callback: Optional[Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]]] = None,
-        supported_locales: Iterable[Locale] = None,
-        debug_show_material_grid: bool = None,
-        show_performance_overlay: bool = None,
-        checkerboard_raster_cache_images: bool = None,
-        checkerboard_offscreen_layers: bool = None,
-        show_semantics_debugger: bool = None,
-        debug_show_checked_mode_banner: bool = None,
+        supported_locales: Optional[Iterable[Locale]] = None,
+        debug_show_material_grid: Optional[bool] = None,
+        show_performance_overlay: Optional[bool] = None,
+        checkerboard_raster_cache_images: Optional[bool] = None,
+        checkerboard_offscreen_layers: Optional[bool] = None,
+        show_semantics_debugger: Optional[bool] = None,
+        debug_show_checked_mode_banner: Optional[bool] = None,
         shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
         actions: Optional[Dict[Type, Action[Intent]]] = None,
         restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
-        use_inherited_media_query: bool = None,
+        use_inherited_media_query: Optional[bool] = None,
     ):
         super().__init__(
         )
@@ -4336,7 +4336,7 @@ class MaterialApp(StatefulWidget):
         route_information_provider: Optional[RouteInformationProvider] = None,
         back_button_dispatcher: Optional[BackButtonDispatcher] = None,
         builder: Optional[Callable[[BuildContext, Optional[Widget]], Widget]] = None,
-        title: str = None,
+        title: Optional[str] = None,
         on_generate_title: Optional[Callable[[BuildContext], str]] = None,
         color: Optional[Color] = None,
         theme: Optional[ThemeData] = None,
@@ -4348,18 +4348,18 @@ class MaterialApp(StatefulWidget):
         localizations_delegates: Optional[Iterable[LocalizationsDelegate[Any]]] = None,
         locale_list_resolution_callback: Optional[Callable[[Optional[List[Locale]], Iterable[Locale]], Optional[Locale]]] = None,
         locale_resolution_callback: Optional[Callable[[Optional[Locale], Iterable[Locale]], Optional[Locale]]] = None,
-        supported_locales: Iterable[Locale] = None,
-        debug_show_material_grid: bool = None,
-        show_performance_overlay: bool = None,
-        checkerboard_raster_cache_images: bool = None,
-        checkerboard_offscreen_layers: bool = None,
-        show_semantics_debugger: bool = None,
-        debug_show_checked_mode_banner: bool = None,
+        supported_locales: Optional[Iterable[Locale]] = None,
+        debug_show_material_grid: Optional[bool] = None,
+        show_performance_overlay: Optional[bool] = None,
+        checkerboard_raster_cache_images: Optional[bool] = None,
+        checkerboard_offscreen_layers: Optional[bool] = None,
+        show_semantics_debugger: Optional[bool] = None,
+        debug_show_checked_mode_banner: Optional[bool] = None,
         shortcuts: Optional[Dict[ShortcutActivator, Intent]] = None,
         actions: Optional[Dict[Type, Action[Intent]]] = None,
         restoration_scope_id: Optional[str] = None,
         scroll_behavior: Optional[ScrollBehavior] = None,
-        use_inherited_media_query: bool = None,
+        use_inherited_media_query: Optional[bool] = None,
     ):
         _o = MaterialApp(
         )
@@ -7368,7 +7368,7 @@ class KeyEvent(Object, ABC):
         logical_key: LogicalKeyboardKey,
         time_stamp: Duration,
         character: Optional[str] = None,
-        synthesized: bool = None,
+        synthesized: Optional[bool] = None,
     ):
         super().__init__(
         )
@@ -7390,9 +7390,9 @@ class FocusNode(Object):
         debug_label: Optional[str] = None,
         on_key: Optional[Callable[['FocusNode', RawKeyEvent], KeyEventResult]] = None,
         on_key_event: Optional[Callable[['FocusNode', KeyEvent], KeyEventResult]] = None,
-        skip_traversal: bool = None,
-        can_request_focus: bool = None,
-        descendants_are_focusable: bool = None,
+        skip_traversal: Optional[bool] = None,
+        can_request_focus: Optional[bool] = None,
+        descendants_are_focusable: Optional[bool] = None,
     ):
         super().__init__(
         )
@@ -7446,8 +7446,8 @@ class ElevatedButton(ButtonStyleButton):
         on_long_press: Optional[Callable[[], None]] = None,
         style: Optional[ButtonStyle] = None,
         focus_node: Optional[FocusNode] = None,
-        autofocus: bool = None,
-        clip_behavior: Clip = None,
+        autofocus: Optional[bool] = None,
+        clip_behavior: Optional[Clip] = None,
         child: Optional[Widget] = None,
     ):
         super().__init__(

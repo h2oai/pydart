@@ -5,7 +5,7 @@ import 'emit.dart';
 import 'ir.dart';
 
 bool _isOptional(IRType t) =>
-    t is IRParameterizedType && t.element == IRElement.optional;
+    t is IRParameterizedType && t.element == IRElement.nullable;
 
 String capitalize(String s) {
   if (s.isEmpty) return s;
@@ -18,11 +18,9 @@ String _unmarshalerNameOf(String className, String ctorName) =>
 String _unmarshalerOf(IRType t) {
   if (t.isPrimitive) return 'u' + capitalize(t.name);
 
-  // uNull(uList(uBool))(v)
-
   if (t is IRParameterizedType) {
     final e = t.element;
-    if (e == IRElement.optional) {
+    if (e == IRElement.nullable) {
       final p = t.parameters.first;
       return 'uNull<${dumpType(p)}>(${_unmarshalerOf(p)})';
     }
