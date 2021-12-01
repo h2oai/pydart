@@ -435,6 +435,7 @@ class PythonTranslator {
               isPositional: f.isPositional,
               isRequired: f.isRequired,
               isOptional: f.isOptional,
+              hasDefaultValue: f.hasDefaultValue,
             );
           }
           return f;

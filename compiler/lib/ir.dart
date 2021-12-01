@@ -128,6 +128,7 @@ class IRField {
   final bool isPositional;
   final bool isRequired;
   final bool isOptional;
+  final bool hasDefaultValue;
 
   IRField({
     required this.name,
@@ -136,6 +137,7 @@ class IRField {
     required this.isPositional,
     required this.isRequired,
     required this.isOptional,
+    required this.hasDefaultValue,
   });
 }
 
@@ -286,6 +288,7 @@ class IRBuilder {
       isPositional: false,
       isRequired: true,
       isOptional: false,
+      hasDefaultValue: true,
     );
   }
 
@@ -320,6 +323,7 @@ class IRBuilder {
       isPositional: e.isPositional,
       isRequired: e.isNotOptional,
       isOptional: e.isOptional,
+      hasDefaultValue: e.hasDefaultValue,
     );
   }
 
@@ -396,6 +400,7 @@ class IRBuilder {
         isPositional: f.isPositional,
         isRequired: f.isRequired,
         isOptional: f.isOptional,
+        hasDefaultValue: f.hasDefaultValue,
       );
 
   IRConstructor _resolveConstructor(IRConstructor c) =>
