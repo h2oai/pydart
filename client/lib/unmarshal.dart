@@ -65,6 +65,13 @@ T Function(dynamic) uConst<T>(T c, T Function(dynamic) u) =>
 List<T> Function(dynamic) uList<T>(T Function(dynamic) u) {
   return (dynamic v) {
     if (v is List<dynamic>) return v.map(u).toList(growable: false);
-    throw 'unmarshal failed: not a list';
+    throw 'unmarshal list failed: not a list';
+  };
+}
+
+Set<T> Function(dynamic) uSet<T>(T Function(dynamic) u) {
+  return (dynamic v) {
+    if (v is List<dynamic>) return v.map(u).toSet();
+    throw 'unmarshal set failed: not a list';
   };
 }

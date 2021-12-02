@@ -25,10 +25,13 @@ String _unmarshalerOf(IRType t, IRConst c) {
     if (e.name == 'List') {
       final p = t.parameters.first;
       final u = 'uList<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
-      return c is IRList ? 'uConst($c, $u)': u;
+      return c is IRList ? 'uConst($c, $u)' : u;
     }
-
-    // FIXME Handle Map<K, V>
+    if (e.name == 'Set') {
+      final p = t.parameters.first;
+      final u = 'uSet<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
+      return c is IRSet ? 'uConst($c, $u)' : u;
+    }
 
     if (e == IRElement.func) return 'uFunc';
 
