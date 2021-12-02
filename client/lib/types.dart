@@ -30,7 +30,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
   final List<Page<dynamic>> pages = uConst(<Page<dynamic>>[], uList<Page<dynamic>>(uClass))(__m['pages']);
   final bool Function(Route<dynamic>, dynamic)? onPopPage = uNull<bool Function(Route<dynamic>, dynamic)>(uFunc)(__m['onPopPage']);
   final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
-  final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = uFunc(__m['onGenerateInitialRoutes']);
+  final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = uConst(Navigator.defaultGenerateInitialRoutes, uFunc)(__m['onGenerateInitialRoutes']);
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
   final TransitionDelegate<dynamic> transitionDelegate = uClass(__m['transitionDelegate']);

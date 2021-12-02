@@ -88,6 +88,14 @@ class IRMap extends IRConst {
   String toString() => '<${dumpType(keyType)}, ${dumpType(valueType)}>{}';
 }
 
+class IRStatic extends IRConst {
+  final String className;
+  final String elementName;
+  IRStatic(this.className, this.elementName);
+  @override
+  String toString() => '$className.$elementName';
+}
+
 class IRType {
   final String name;
 
@@ -374,6 +382,17 @@ class IRBuilder {
         }
       } else {
         print('unhandled: non-empty const map');
+      }
+    }
+
+    final v = o.toFunctionValue();
+    if (v != null) {
+      final c = v.enclosingElement;
+      if (v.isPublic &&
+          v.isStatic &&
+          c is ClassElement &&
+          v is MethodElement) {
+        return IRStatic(c.name, v.name);
       }
     }
 

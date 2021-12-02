@@ -107,7 +107,7 @@ class Navigator extends StatefulWidget:
 		pages: List<Page<dynamic>> = <Page<dynamic>>[]
 		onPopPage: bool Function(Route<dynamic>, dynamic)?
 		initialRoute: String?
-		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String)
+		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String) = Navigator.defaultGenerateInitialRoutes
 		onGenerateRoute: Route<dynamic>? Function(RouteSettings)?
 		onUnknownRoute: Route<dynamic>? Function(RouteSettings)?
 		transitionDelegate: TransitionDelegate<dynamic>

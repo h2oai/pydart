@@ -9,12 +9,14 @@ String capitalize(String s) {
 String _toConstructorSymbol(IRClass e, IRConstructor c) =>
     e.name + capitalize(c.name);
 
+String _withConst(IRType? t, String u, IRConst c) => c != undefined
+    ? t != null // type explicitly?
+        ? 'uConst<${dumpType(t)}>($c, $u)' // explicit (type inference might confuse int vs float)
+        : 'uConst($c, $u)' // implicit
+    : u; // no default available
+
 String _unmarshalerOf(IRType t, IRConst c) {
-  if (t.isPrimitive) {
-    final u = 'u' + capitalize(t.name);
-    if (c != undefined) return 'uConst<${t.name}>($c, $u)';
-    return u;
-  }
+  if (t.isPrimitive) return _withConst(t, 'u' + capitalize(t.name), c);
 
   if (t is IRParameterizedType) {
     final e = t.element;
@@ -25,16 +27,17 @@ String _unmarshalerOf(IRType t, IRConst c) {
     if (e.name == 'List') {
       final p = t.parameters.first;
       final u = 'uList<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
-      return c is IRList ? 'uConst($c, $u)' : u;
+      return _withConst(null, u, c);
     }
     if (e.name == 'Set') {
       final p = t.parameters.first;
       final u = 'uSet<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
-      return c is IRSet ? 'uConst($c, $u)' : u;
+      return _withConst(null, u, c);
     }
 
-    if (e == IRElement.func) return 'uFunc';
+    if (e == IRElement.func) return _withConst(null, 'uFunc', c);
 
+    // FIXME withConst
     if (e is IREnum) return "_u${e.name}";
 
     // TODO constructor-tearoffs
@@ -42,6 +45,7 @@ String _unmarshalerOf(IRType t, IRConst c) {
     //  complain with "This requires the 'constructor-tearoffs' language
     //  feature to be enabled."
     // https://github.com/dart-lang/language/blob/master/accepted/future-releases/constructor-tearoffs/feature-specification.md
+    // FIXME withConst
     if (e is IRClass) return 'uClass';
   }
 
