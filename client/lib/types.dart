@@ -27,7 +27,7 @@ NavigatorObserver _uNavigatorObserver(Map<String, dynamic> __m) {
 
 Navigator _uNavigator(Map<String, dynamic> __m) {
   final Key? key = uNull<Key>(uClass)(__m['key']);
-  final List<Page<dynamic>> pages = uList<Page<dynamic>>(uClass)(__m['pages']);
+  final List<Page<dynamic>> pages = uConst(<Page<dynamic>>[], uList<Page<dynamic>>(uClass))(__m['pages']);
   final bool Function(Route<dynamic>, dynamic)? onPopPage = uNull<bool Function(Route<dynamic>, dynamic)>(uFunc)(__m['onPopPage']);
   final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
   final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = uFunc(__m['onGenerateInitialRoutes']);
@@ -35,7 +35,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
   final TransitionDelegate<dynamic> transitionDelegate = uClass(__m['transitionDelegate']);
   final bool reportsRouteUpdateToEngine = uConst<bool>(false, uBool)(__m['reportsRouteUpdateToEngine']);
-  final List<NavigatorObserver> observers = uList<NavigatorObserver>(uClass)(__m['observers']);
+  final List<NavigatorObserver> observers = uConst(<NavigatorObserver>[], uList<NavigatorObserver>(uClass))(__m['observers']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   return Navigator(
     key: key,
@@ -2513,7 +2513,7 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final List<Route<dynamic>> Function(String)? onGenerateInitialRoutes = uNull<List<Route<dynamic>> Function(String)>(uFunc)(__m['onGenerateInitialRoutes']);
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
-  final List<NavigatorObserver> navigatorObservers = uList<NavigatorObserver>(uClass)(__m['navigatorObservers']);
+  final List<NavigatorObserver> navigatorObservers = uConst(<NavigatorObserver>[], uList<NavigatorObserver>(uClass))(__m['navigatorObservers']);
   final Widget Function(BuildContext, Widget?)? builder = uNull<Widget Function(BuildContext, Widget?)>(uFunc)(__m['builder']);
   final String title = uConst<String>('', uString)(__m['title']);
   final String Function(BuildContext)? onGenerateTitle = uNull<String Function(BuildContext)>(uFunc)(__m['onGenerateTitle']);

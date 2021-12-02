@@ -104,7 +104,7 @@ class Navigator extends StatefulWidget:
 		defaultRouteName: String = '/'
 	default:
 		key: Key?
-		pages: List<Page<dynamic>>
+		pages: List<Page<dynamic>> = <Page<dynamic>>[]
 		onPopPage: bool Function(Route<dynamic>, dynamic)?
 		initialRoute: String?
 		onGenerateInitialRoutes: List<Route<dynamic>> Function(NavigatorState, String)
@@ -112,7 +112,7 @@ class Navigator extends StatefulWidget:
 		onUnknownRoute: Route<dynamic>? Function(RouteSettings)?
 		transitionDelegate: TransitionDelegate<dynamic>
 		reportsRouteUpdateToEngine: bool = false
-		observers: List<NavigatorObserver>
+		observers: List<NavigatorObserver> = <NavigatorObserver>[]
 		restorationScopeId: String?
 
 # packages/flutter/lib/src/widgets/navigator.dart
@@ -1612,12 +1612,12 @@ class MaterialApp extends StatefulWidget:
 		navigatorKey: GlobalKey<NavigatorState>?
 		scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>?
 		home: Widget?
-		routes: Map<String, Widget Function(BuildContext)>
+		routes: Map<String, Widget Function(BuildContext)> = <String, Widget Function(BuildContext)>{}
 		initialRoute: String?
 		onGenerateRoute: Route<dynamic>? Function(RouteSettings)?
 		onGenerateInitialRoutes: List<Route<dynamic>> Function(String)?
 		onUnknownRoute: Route<dynamic>? Function(RouteSettings)?
-		navigatorObservers: List<NavigatorObserver>
+		navigatorObservers: List<NavigatorObserver> = <NavigatorObserver>[]
 		builder: Widget Function(BuildContext, Widget?)?
 		title: String = ''
 		onGenerateTitle: String Function(BuildContext)?

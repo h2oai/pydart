@@ -57,6 +57,37 @@ class IRString extends IRConst {
   String toString() => "'$value'";
 }
 
+class IRList extends IRConst {
+  final IRType type;
+  final List<dynamic> value;
+
+  IRList(this.type, this.value);
+
+  @override
+  String toString() => '<${dumpType(type)}>[]';
+}
+
+class IRSet extends IRConst {
+  final IRType type;
+  final Set<dynamic> value;
+
+  IRSet(this.type, this.value);
+
+  @override
+  String toString() => '<${dumpType(type)}>{}';
+}
+
+class IRMap extends IRConst {
+  final IRType keyType;
+  final IRType valueType;
+  final Map<dynamic, dynamic> value;
+
+  IRMap(this.keyType, this.valueType, this.value);
+
+  @override
+  String toString() => '<${dumpType(keyType)}, ${dumpType(valueType)}>{}';
+}
+
 class IRType {
   final String name;
 
@@ -314,6 +345,42 @@ class IRBuilder {
     } else if (t.isDartCoreString) {
       final v = o.toStringValue();
       if (v != null) return IRString(v);
+    } else if (t.isDartCoreList) {
+      final v = o.toListValue();
+      if (v != null && v.isEmpty) {
+        final ir = _toType(t);
+        if (ir is IRParameterizedType && ir.parameters.length == 1) {
+          return IRList(ir.parameters.first, v);
+        }
+      } else {
+        print('unhandled: non-empty const list');
+      }
+    } else if (t.isDartCoreSet) {
+      final v = o.toSetValue();
+      if (v != null && v.isEmpty) {
+        final ir = _toType(t);
+        if (ir is IRParameterizedType && ir.parameters.length == 1) {
+          return IRSet(ir.parameters.first, v);
+        }
+      } else {
+        print('unhandled: non-empty const set');
+      }
+    } else if (t.isDartCoreMap) {
+      final v = o.toMapValue();
+      if (v != null && v.isEmpty) {
+        final ir = _toType(t);
+        if (ir is IRParameterizedType && ir.parameters.length == 2) {
+          return IRMap(ir.parameters[0], ir.parameters[1], v);
+        }
+      } else {
+        print('unhandled: non-empty const map');
+      }
+    }
+
+    // FIXME: introduce enum, etc. This should probably fail hard for unhandled cases
+
+    if (!o.isNull) {
+      print('Skipping $o');
     }
 
     return undefined;

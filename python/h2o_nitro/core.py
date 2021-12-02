@@ -2,22 +2,22 @@ import json
 from typing import Any
 
 
-def _dump(xs: Any):
+def dump(xs: Any) -> Any:
     if isinstance(xs, (list, tuple)):
-        return [_dump(x) for x in xs]
+        return [dump(x) for x in xs]
     elif isinstance(xs, dict):
-        return {k: _dump(v) for k, v in xs.items()}
+        return {k: dump(v) for k, v in xs.items()}
     elif hasattr(xs, '_nx_'):
-        return _dump(xs._nx_)
+        return dump(xs._nx_)
     else:
         return xs
 
 
-def _marshal(x: Any) -> str:
+def marshal(x: Any) -> str:
     return json.dumps(x, allow_nan=False, separators=(',', ':'))
 
 
-def _unmarshal(s: str) -> dict:
+def unmarshal(s: str) -> dict:
     return json.loads(s)
 
 
@@ -27,12 +27,12 @@ class UI:
         self._changes = []
 
     def __setitem__(self, key: str, value: Any):
-        self._changes.append(('=', key, _dump(value)))
+        self._changes.append(('=', key, dump(value)))
 
     def __delitem__(self, key: str):
         self._changes.append(('~', key))
 
     async def save(self):
-        data = _marshal(self._changes)
+        data = marshal(self._changes)
         self._changes.clear()
         await self._on_send(data)
