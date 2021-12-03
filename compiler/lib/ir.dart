@@ -60,22 +60,28 @@ class IRString extends IRConst {
 
 class IRList extends IRConst {
   final IRType type;
-  final List<dynamic> value;
+  final List<IRConst> value;
 
   IRList(this.type, this.value);
 
   @override
-  String toString() => '<${dumpType(type)}>[]';
+  String toString() {
+    final items = value.map((v) => v.toString()).join(', ');
+    return '<${dumpType(type)}>[$items]';
+  }
 }
 
 class IRSet extends IRConst {
   final IRType type;
-  final Set<dynamic> value;
+  final Set<IRConst> value;
 
   IRSet(this.type, this.value);
 
   @override
-  String toString() => '<${dumpType(type)}>{}';
+  String toString() {
+    final items = value.map((v) => v.toString()).join(', ');
+    return '<${dumpType(type)}>{$items}';
+  }
 }
 
 class IRMap extends IRConst {
@@ -389,23 +395,19 @@ class IRBuilder {
       if (v != null) return IRString(v);
     } else if (t.isDartCoreList) {
       final v = o.toListValue();
-      if (v != null && v.isEmpty) {
+      if (v != null) {
         final ir = _toType(t);
         if (ir is IRParameterizedType && ir.parameters.length == 1) {
-          return IRList(ir.parameters.first, v);
+          return IRList(ir.parameters.first, v.map(_toConst).toList());
         }
-      } else {
-        print('unhandled: non-empty const list');
       }
     } else if (t.isDartCoreSet) {
       final v = o.toSetValue();
-      if (v != null && v.isEmpty) {
+      if (v != null) {
         final ir = _toType(t);
         if (ir is IRParameterizedType && ir.parameters.length == 1) {
-          return IRSet(ir.parameters.first, v);
+          return IRSet(ir.parameters.first, v.map(_toConst).toSet());
         }
-      } else {
-        print('unhandled: non-empty const set');
       }
     } else if (t.isDartCoreMap) {
       final v = o.toMapValue();
