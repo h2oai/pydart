@@ -111,18 +111,20 @@ class IRInvocationResult extends IRConst {
   final String methodName;
   final List<IRConst> arguments;
   final List<IRNamedArgument> namedArguments;
+  final bool isConst;
 
-  IRInvocationResult(
-      this.className, this.methodName, this.arguments, this.namedArguments);
+  IRInvocationResult(this.className, this.methodName, this.arguments,
+      this.namedArguments, this.isConst);
 
   @override
   String toString() {
+    final prefix = isConst ? 'const ' : '';
     final dot = methodName.isNotEmpty ? '.' : '';
     final args = arguments.map((a) => a.toString()).join(', ');
     final kwargs =
         namedArguments.map((a) => '${a.name}: ${a.value}').join(', ');
     final sep = args.isNotEmpty && kwargs.isNotEmpty ? ', ' : '';
-    return '$className$dot$methodName($args$sep$kwargs)';
+    return '$prefix$className$dot$methodName($args$sep$kwargs)';
   }
 }
 
@@ -429,18 +431,19 @@ class IRBuilder {
             return IRFieldReference(e.name, field.name);
           }
         }
-      } else {
-        if (o is DartObjectImpl) {
-          final inv = o.getInvocation();
-          if (inv != null) {
-            final ctor = inv.constructor;
-            final args = inv.positionalArguments.map(_toConst).toList();
-            final kwargs = inv.namedArguments.entries
-                .map((e) => IRNamedArgument(e.key, _toConst(e.value)))
-                .toList();
-            return IRInvocationResult(
-                ctor.enclosingElement.name, ctor.name, args, kwargs);
-          }
+      } else if (o is DartObjectImpl) {
+        // WARNING: Unstable API
+        // The invocation is not accessible on the DartObject interface, so
+        //  DartObjectImpl.getInvocation() is imported and used here.
+        final inv = o.getInvocation();
+        if (inv != null) {
+          final ctor = inv.constructor;
+          final args = inv.positionalArguments.map(_toConst).toList();
+          final kwargs = inv.namedArguments.entries
+              .map((e) => IRNamedArgument(e.key, _toConst(e.value)))
+              .toList();
+          return IRInvocationResult(ctor.enclosingElement.name, ctor.name, args,
+              kwargs, ctor.isConst);
         }
       }
     }

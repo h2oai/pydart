@@ -114,7 +114,8 @@ class ClientTranslator {
 
   String _emit(List<IRElement> elements) {
     // TODO generate imports automatically
-    p("// ignore_for_file: deprecated_member_use");
+    p('// ignore_for_file: deprecated_member_use');
+    p('// ignore_for_file: use_full_hex_values_for_flutter_colors');
     p("import 'dart:ui';");
     p("import 'package:flutter/cupertino.dart';");
     p("import 'package:flutter/material.dart';");
