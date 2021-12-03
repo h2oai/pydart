@@ -257,7 +257,7 @@ class ColorScheme extends Object:
 		onSurface: Color
 		onBackground: Color
 		onError: Color
-		brightness: Brightness
+		brightness: Brightness = Brightness.light
 	dark:
 		primary: Color
 		primaryVariant: Color
@@ -271,7 +271,7 @@ class ColorScheme extends Object:
 		onSurface: Color
 		onBackground: Color
 		onError: Color
-		brightness: Brightness
+		brightness: Brightness = Brightness.dark
 	highContrastLight:
 		primary: Color
 		primaryVariant: Color
@@ -285,7 +285,7 @@ class ColorScheme extends Object:
 		onSurface: Color
 		onBackground: Color
 		onError: Color
-		brightness: Brightness
+		brightness: Brightness = Brightness.light
 	highContrastDark:
 		primary: Color
 		primaryVariant: Color
@@ -299,7 +299,7 @@ class ColorScheme extends Object:
 		onSurface: Color
 		onBackground: Color
 		onError: Color
-		brightness: Brightness
+		brightness: Brightness = Brightness.dark
 	fromSwatch:
 		primarySwatch: MaterialColor
 		primaryColorDark: Color?
@@ -307,7 +307,7 @@ class ColorScheme extends Object:
 		cardColor: Color?
 		backgroundColor: Color?
 		errorColor: Color?
-		brightness: Brightness
+		brightness: Brightness = Brightness.light
 
 # packages/flutter/lib/src/material/theme_data.dart
 enum MaterialTapTargetSize:
@@ -317,12 +317,12 @@ enum MaterialTapTargetSize:
 # packages/flutter/lib/src/material/button_theme.dart
 class ButtonThemeData extends Object:
 	default:
-		textTheme: ButtonTextTheme
+		textTheme: ButtonTextTheme = ButtonTextTheme.normal
 		minWidth: double = 88.0
 		height: double = 36.0
 		padding: EdgeInsetsGeometry?
 		shape: ShapeBorder?
-		layoutBehavior: ButtonBarLayoutBehavior
+		layoutBehavior: ButtonBarLayoutBehavior = ButtonBarLayoutBehavior.padded
 		alignedDropdown: bool = false
 		buttonColor: Color?
 		disabledColor: Color?
@@ -629,7 +629,7 @@ class BorderSide extends Object:
 	default:
 		color: Color
 		width: double = 1.0
-		style: BorderStyle
+		style: BorderStyle = BorderStyle.solid
 
 # packages/flutter/lib/src/material/input_border.dart
 abstract class InputBorder extends ShapeBorder:
@@ -648,7 +648,7 @@ class InputDecorationTheme extends Object:
 		hintStyle: TextStyle?
 		errorStyle: TextStyle?
 		errorMaxLines: int?
-		floatingLabelBehavior: FloatingLabelBehavior
+		floatingLabelBehavior: FloatingLabelBehavior = FloatingLabelBehavior.auto
 		isDense: bool = false
 		contentPadding: EdgeInsetsGeometry?
 		isCollapsed: bool = false
@@ -1046,14 +1046,14 @@ class Typography extends Object:
 		dense: TextTheme?
 		tall: TextTheme?
 	material2014:
-		platform: TargetPlatform?
+		platform: TargetPlatform? = TargetPlatform.android
 		black: TextTheme?
 		white: TextTheme?
 		englishLike: TextTheme?
 		dense: TextTheme?
 		tall: TextTheme?
 	material2018:
-		platform: TargetPlatform?
+		platform: TargetPlatform? = TargetPlatform.android
 		black: TextTheme?
 		white: TextTheme?
 		englishLike: TextTheme?
@@ -1626,7 +1626,7 @@ class MaterialApp extends StatefulWidget:
 		darkTheme: ThemeData?
 		highContrastTheme: ThemeData?
 		highContrastDarkTheme: ThemeData?
-		themeMode: ThemeMode?
+		themeMode: ThemeMode? = ThemeMode.system
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
 		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)?
@@ -1658,7 +1658,7 @@ class MaterialApp extends StatefulWidget:
 		darkTheme: ThemeData?
 		highContrastTheme: ThemeData?
 		highContrastDarkTheme: ThemeData?
-		themeMode: ThemeMode?
+		themeMode: ThemeMode? = ThemeMode.system
 		locale: Locale?
 		localizationsDelegates: Iterable<LocalizationsDelegate<dynamic>>?
 		localeListResolutionCallback: Locale? Function(List<Locale>?, Iterable<Locale>)?
@@ -2476,7 +2476,7 @@ class ElevatedButton extends ButtonStyleButton:
 		style: ButtonStyle?
 		focusNode: FocusNode?
 		autofocus: bool = false
-		clipBehavior: Clip
+		clipBehavior: Clip = Clip.none
 		child: Widget?
 	icon:
 		key: Key?

@@ -91,7 +91,9 @@ class IRMap extends IRConst {
 class IRStatic extends IRConst {
   final String className;
   final String elementName;
+
   IRStatic(this.className, this.elementName);
+
   @override
   String toString() => '$className.$elementName';
 }
@@ -270,6 +272,9 @@ IRType toNullable(IRType t) => IRParameterizedType(IRElement.nullable, [t]);
 bool isNullable(IRType t) =>
     t is IRParameterizedType && t.element == IRElement.nullable;
 
+Iterable<FieldElement> getEnumFields(ClassElement e) =>
+    e.fields.where((f) => f.isEnumConstant);
+
 class IRBuilder {
   final _elements = <IRElement>[];
   final _cache = <Element, IRElement>{};
@@ -277,8 +282,7 @@ class IRBuilder {
   IREnum _toEnum(ClassElement e) {
     assert(e.isEnum);
     final path = _getRelativeSourcePath(e);
-    final values =
-        e.fields.where((f) => f.isEnumConstant).map((f) => f.name).toList();
+    final values = getEnumFields(e).map((f) => f.name).toList();
     return IREnum(path, e.name, values: values, dartElement: e);
   }
 
@@ -385,13 +389,25 @@ class IRBuilder {
       }
     }
 
+    if (t is InterfaceType) {
+      final e = t.element;
+      if (e.isEnum) {
+        final indexField = o.getField('index');
+        if (indexField != null) {
+          final index = indexField.toIntValue();
+          if (index != null) {
+            final fields = getEnumFields(e).toList();
+            final field = fields[index];
+            return IRStatic(e.name, field.name);
+          }
+        }
+      }
+    }
+
     final v = o.toFunctionValue();
     if (v != null) {
       final c = v.enclosingElement;
-      if (v.isPublic &&
-          v.isStatic &&
-          c is ClassElement &&
-          v is MethodElement) {
+      if (v.isPublic && v.isStatic && c is ClassElement && v is MethodElement) {
         return IRStatic(c.name, v.name);
       }
     }

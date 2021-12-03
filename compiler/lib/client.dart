@@ -37,16 +37,14 @@ String _unmarshalerOf(IRType t, IRConst c) {
 
     if (e == IRElement.func) return _withConst(null, 'uFunc', c);
 
-    // FIXME withConst
-    if (e is IREnum) return "_u${e.name}";
+    if (e is IREnum) return _withConst(null, "_u${e.name}", c);
 
     // TODO constructor-tearoffs
     // Ideally this would be passed as uClass<T>, but causes the compiler to
     //  complain with "This requires the 'constructor-tearoffs' language
     //  feature to be enabled."
     // https://github.com/dart-lang/language/blob/master/accepted/future-releases/constructor-tearoffs/feature-specification.md
-    // FIXME withConst
-    if (e is IRClass) return 'uClass';
+    if (e is IRClass) return _withConst(null, 'uClass', c);
   }
 
   if (t is IRTypeParameter) return '';

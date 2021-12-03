@@ -222,7 +222,7 @@ ColorScheme _uColorSchemeLight(Map<String, dynamic> __m) {
   final Color onSurface = uClass(__m['onSurface']);
   final Color onBackground = uClass(__m['onBackground']);
   final Color onError = uClass(__m['onError']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
   return ColorScheme.light(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -253,7 +253,7 @@ ColorScheme _uColorSchemeDark(Map<String, dynamic> __m) {
   final Color onSurface = uClass(__m['onSurface']);
   final Color onBackground = uClass(__m['onBackground']);
   final Color onError = uClass(__m['onError']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
   return ColorScheme.dark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -284,7 +284,7 @@ ColorScheme _uColorSchemeHighContrastLight(Map<String, dynamic> __m) {
   final Color onSurface = uClass(__m['onSurface']);
   final Color onBackground = uClass(__m['onBackground']);
   final Color onError = uClass(__m['onError']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
   return ColorScheme.highContrastLight(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -315,7 +315,7 @@ ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
   final Color onSurface = uClass(__m['onSurface']);
   final Color onBackground = uClass(__m['onBackground']);
   final Color onError = uClass(__m['onError']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
   return ColorScheme.highContrastDark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -340,7 +340,7 @@ ColorScheme _uColorSchemeFromSwatch(Map<String, dynamic> __m) {
   final Color? cardColor = uNull<Color>(uClass)(__m['cardColor']);
   final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
   final Color? errorColor = uNull<Color>(uClass)(__m['errorColor']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
   return ColorScheme.fromSwatch(
     primarySwatch: primarySwatch,
     primaryColorDark: primaryColorDark,
@@ -365,12 +365,12 @@ MaterialTapTargetSize _uMaterialTapTargetSize(dynamic v) {
 }
 
 ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonTextTheme textTheme = _uButtonTextTheme(__m['textTheme']);
+  final ButtonTextTheme textTheme = uConst(ButtonTextTheme.normal, _uButtonTextTheme)(__m['textTheme']);
   final double minWidth = uConst<double>(88.0, uDouble)(__m['minWidth']);
   final double height = uConst<double>(36.0, uDouble)(__m['height']);
   final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
   final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final ButtonBarLayoutBehavior layoutBehavior = _uButtonBarLayoutBehavior(__m['layoutBehavior']);
+  final ButtonBarLayoutBehavior layoutBehavior = uConst(ButtonBarLayoutBehavior.padded, _uButtonBarLayoutBehavior)(__m['layoutBehavior']);
   final bool alignedDropdown = uConst<bool>(false, uBool)(__m['alignedDropdown']);
   final Color? buttonColor = uNull<Color>(uClass)(__m['buttonColor']);
   final Color? disabledColor = uNull<Color>(uClass)(__m['disabledColor']);
@@ -999,7 +999,7 @@ BorderStyle _uBorderStyle(dynamic v) {
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
   final Color color = uClass(__m['color']);
   final double width = uConst<double>(1.0, uDouble)(__m['width']);
-  final BorderStyle style = _uBorderStyle(__m['style']);
+  final BorderStyle style = uConst(BorderStyle.solid, _uBorderStyle)(__m['style']);
   return BorderSide(
     color: color,
     width: width,
@@ -1015,7 +1015,7 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
   final TextStyle? hintStyle = uNull<TextStyle>(uClass)(__m['hintStyle']);
   final TextStyle? errorStyle = uNull<TextStyle>(uClass)(__m['errorStyle']);
   final int? errorMaxLines = uNull<int>(uInt)(__m['errorMaxLines']);
-  final FloatingLabelBehavior floatingLabelBehavior = _uFloatingLabelBehavior(__m['floatingLabelBehavior']);
+  final FloatingLabelBehavior floatingLabelBehavior = uConst(FloatingLabelBehavior.auto, _uFloatingLabelBehavior)(__m['floatingLabelBehavior']);
   final bool isDense = uConst<bool>(false, uBool)(__m['isDense']);
   final EdgeInsetsGeometry? contentPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['contentPadding']);
   final bool isCollapsed = uConst<bool>(false, uBool)(__m['isCollapsed']);
@@ -2508,7 +2508,7 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final GlobalKey<NavigatorState>? navigatorKey = uNull<GlobalKey<NavigatorState>>(uClass)(__m['navigatorKey']);
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = uNull<GlobalKey<ScaffoldMessengerState>>(uClass)(__m['scaffoldMessengerKey']);
   final Widget? home = uNull<Widget>(uClass)(__m['home']);
-  final Map<String, Widget Function(BuildContext)> routes = uClass(__m['routes']);
+  final Map<String, Widget Function(BuildContext)> routes = uConst(<String, Widget Function(BuildContext)>{}, uClass)(__m['routes']);
   final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final List<Route<dynamic>> Function(String)? onGenerateInitialRoutes = uNull<List<Route<dynamic>> Function(String)>(uFunc)(__m['onGenerateInitialRoutes']);
@@ -2697,7 +2697,7 @@ ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
   final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
   final FocusNode? focusNode = uNull<FocusNode>(uClass)(__m['focusNode']);
   final bool autofocus = uConst<bool>(false, uBool)(__m['autofocus']);
-  final Clip clipBehavior = _uClip(__m['clipBehavior']);
+  final Clip clipBehavior = uConst(Clip.none, _uClip)(__m['clipBehavior']);
   final Widget? child = uNull<Widget>(uClass)(__m['child']);
   return ElevatedButton(
     key: key,
