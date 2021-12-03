@@ -34,6 +34,14 @@ String _unmarshalerOf(IRType t, IRConst c) {
       final u = 'uSet<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
       return _withConst(null, u, c);
     }
+    if (e.name == 'Map') {
+      final pk = t.parameters[0];
+      final pv = t.parameters[1];
+      final uk = _unmarshalerOf(pk, undefined);
+      final uv = _unmarshalerOf(pv, undefined);
+      final u = 'uMap<${dumpType(pk)}, ${dumpType(pv)}>($uk, $uv)';
+      return _withConst(null, u, c);
+    }
 
     if (e == IRElement.func) return _withConst(null, 'uFunc', c);
 
@@ -47,7 +55,7 @@ String _unmarshalerOf(IRType t, IRConst c) {
     if (e is IRClass) return _withConst(null, 'uClass', c);
   }
 
-  if (t is IRTypeParameter) return '';
+  if (t is IRTypeParameter) return _withConst(null, 'uClass', c);
 
   throw 'could not determine unmarshaler for ${t.name}';
 }
@@ -116,6 +124,7 @@ class ClientTranslator {
     // TODO generate imports automatically
     p('// ignore_for_file: deprecated_member_use');
     p('// ignore_for_file: use_full_hex_values_for_flutter_colors');
+    p('// ignore_for_file: unnecessary_const');
     p("import 'dart:ui';");
     p("import 'package:flutter/cupertino.dart';");
     p("import 'package:flutter/material.dart';");

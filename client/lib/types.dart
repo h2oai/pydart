@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 // ignore_for_file: use_full_hex_values_for_flutter_colors
+// ignore_for_file: unnecessary_const
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,8 +74,8 @@ ScaffoldMessengerState _uScaffoldMessengerState(Map<String, dynamic> __m) {
 }
 
 MapEntry _uMapEntry<K, V>(Map<String, dynamic> __m) {
-  final K key = (__m['key']);
-  final V value = (__m['value']);
+  final K key = uClass(__m['key']);
+  final V value = uClass(__m['value']);
   return MapEntry(
     key,
     value,
@@ -137,7 +138,7 @@ VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
 
 ColorSwatch _uColorSwatch<T>(Map<String, dynamic> __m) {
   final int primary = uInt(__m['primary']);
-  final Map<T, Color> _swatch = uClass(__m['_swatch']);
+  final Map<T, Color> _swatch = uMap<T, Color>(uClass, uClass)(__m['_swatch']);
   return ColorSwatch(
     primary,
     _swatch,
@@ -146,7 +147,7 @@ ColorSwatch _uColorSwatch<T>(Map<String, dynamic> __m) {
 
 MaterialColor _uMaterialColor(Map<String, dynamic> __m) {
   final int primary = uInt(__m['primary']);
-  final Map<int, Color> swatch = uClass(__m['swatch']);
+  final Map<int, Color> swatch = uMap<int, Color>(uInt, uClass)(__m['swatch']);
   return MaterialColor(
     primary,
     swatch,
@@ -335,7 +336,7 @@ ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeFromSwatch(Map<String, dynamic> __m) {
-  final MaterialColor primarySwatch = uConst(const MaterialColor(4280391411, undefined), uClass)(__m['primarySwatch']);
+  final MaterialColor primarySwatch = uConst(const MaterialColor(4280391411, <int, Color>{50: const Color(4293128957), 100: const Color(4290502395), 200: const Color(4287679225), 300: const Color(4284790262), 400: const Color(4282557941), 500: const Color(4280391411), 600: const Color(4280191205), 700: const Color(4279858898), 800: const Color(4279592384), 900: const Color(4279060385)}), uClass)(__m['primarySwatch']);
   final Color? primaryColorDark = uNull<Color>(uClass)(__m['primaryColorDark']);
   final Color? accentColor = uNull<Color>(uClass)(__m['accentColor']);
   final Color? cardColor = uNull<Color>(uClass)(__m['cardColor']);
@@ -1401,7 +1402,7 @@ TargetPlatform _uTargetPlatform(dynamic v) {
 }
 
 PageTransitionsTheme _uPageTransitionsTheme(Map<String, dynamic> __m) {
-  final Map<TargetPlatform, PageTransitionsBuilder> builders = uClass(__m['builders']);
+  final Map<TargetPlatform, PageTransitionsBuilder> builders = uConst(<TargetPlatform, PageTransitionsBuilder>{TargetPlatform.android: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.linux: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.macOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.windows: const FadeUpwardsPageTransitionsBuilder()}, uMap<TargetPlatform, PageTransitionsBuilder>(_uTargetPlatform, uClass))(__m['builders']);
   return PageTransitionsTheme(
     builders: builders,
   );
@@ -2509,7 +2510,7 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final GlobalKey<NavigatorState>? navigatorKey = uNull<GlobalKey<NavigatorState>>(uClass)(__m['navigatorKey']);
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = uNull<GlobalKey<ScaffoldMessengerState>>(uClass)(__m['scaffoldMessengerKey']);
   final Widget? home = uNull<Widget>(uClass)(__m['home']);
-  final Map<String, Widget Function(BuildContext)> routes = uConst(<String, Widget Function(BuildContext)>{}, uClass)(__m['routes']);
+  final Map<String, Widget Function(BuildContext)> routes = uConst(<String, Widget Function(BuildContext)>{}, uMap<String, Widget Function(BuildContext)>(uString, uFunc))(__m['routes']);
   final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final List<Route<dynamic>> Function(String)? onGenerateInitialRoutes = uNull<List<Route<dynamic>> Function(String)>(uFunc)(__m['onGenerateInitialRoutes']);
@@ -2528,15 +2529,15 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = uNull<Iterable<LocalizationsDelegate<dynamic>>>(uClass)(__m['localizationsDelegates']);
   final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
   final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
-  final Iterable<Locale> supportedLocales = uClass(__m['supportedLocales']);
+  final Iterable<Locale> supportedLocales = uConst(<Locale>[const Locale('en', 'US')], uClass)(__m['supportedLocales']);
   final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
   final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
   final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
   final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
   final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
   final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
-  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uClass)(__m['shortcuts']);
-  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uClass)(__m['actions']);
+  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uMap<ShortcutActivator, Intent>(uClass, uClass))(__m['shortcuts']);
+  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uMap<Type, Action<Intent>>(uClass, uClass))(__m['actions']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
   final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);
@@ -2599,15 +2600,15 @@ MaterialApp _uMaterialAppRouter(Map<String, dynamic> __m) {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = uNull<Iterable<LocalizationsDelegate<dynamic>>>(uClass)(__m['localizationsDelegates']);
   final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
   final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
-  final Iterable<Locale> supportedLocales = uClass(__m['supportedLocales']);
+  final Iterable<Locale> supportedLocales = uConst(<Locale>[const Locale('en', 'US')], uClass)(__m['supportedLocales']);
   final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
   final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
   final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
   final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
   final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
   final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
-  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uClass)(__m['shortcuts']);
-  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uClass)(__m['actions']);
+  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uMap<ShortcutActivator, Intent>(uClass, uClass))(__m['shortcuts']);
+  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uMap<Type, Action<Intent>>(uClass, uClass))(__m['actions']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
   final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
   final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);

@@ -87,12 +87,15 @@ class IRSet extends IRConst {
 class IRMap extends IRConst {
   final IRType keyType;
   final IRType valueType;
-  final Map<dynamic, dynamic> value;
+  final Map<IRConst, IRConst> value;
 
   IRMap(this.keyType, this.valueType, this.value);
 
   @override
-  String toString() => '<${dumpType(keyType)}, ${dumpType(valueType)}>{}';
+  String toString() {
+    final items = value.entries.map((e) => '${e.key}: ${e.value}').join(', ');
+    return '<${dumpType(keyType)}, ${dumpType(valueType)}>{$items}';
+  }
 }
 
 class IRFieldReference extends IRConst {
@@ -411,13 +414,12 @@ class IRBuilder {
       }
     } else if (t.isDartCoreMap) {
       final v = o.toMapValue();
-      if (v != null && v.isEmpty) {
+      if (v != null) {
         final ir = _toType(t);
         if (ir is IRParameterizedType && ir.parameters.length == 2) {
-          return IRMap(ir.parameters[0], ir.parameters[1], v);
+          return IRMap(ir.parameters[0], ir.parameters[1],
+              v.map((k, v) => MapEntry(_toConst(k), _toConst(v))));
         }
-      } else {
-        print('unhandled: non-empty const map');
       }
     }
 
