@@ -4,6 +4,7 @@ import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/src/dart/element/element.dart'
     show ConstFieldElementImpl;
+import 'package:analyzer/src/dart/constant/value.dart' show DartObjectImpl;
 import 'package:quiver/core.dart';
 
 import 'emit.dart';
@@ -88,14 +89,41 @@ class IRMap extends IRConst {
   String toString() => '<${dumpType(keyType)}, ${dumpType(valueType)}>{}';
 }
 
-class IRStatic extends IRConst {
+class IRFieldReference extends IRConst {
   final String className;
-  final String elementName;
+  final String fieldName;
 
-  IRStatic(this.className, this.elementName);
+  IRFieldReference(this.className, this.fieldName);
 
   @override
-  String toString() => '$className.$elementName';
+  String toString() => '$className.$fieldName';
+}
+
+class IRNamedArgument {
+  final String name;
+  final IRConst value;
+
+  IRNamedArgument(this.name, this.value);
+}
+
+class IRInvocationResult extends IRConst {
+  final String className;
+  final String methodName;
+  final List<IRConst> arguments;
+  final List<IRNamedArgument> namedArguments;
+
+  IRInvocationResult(
+      this.className, this.methodName, this.arguments, this.namedArguments);
+
+  @override
+  String toString() {
+    final dot = methodName.isNotEmpty ? '.' : '';
+    final args = arguments.map((a) => a.toString()).join(', ');
+    final kwargs =
+        namedArguments.map((a) => '${a.name}: ${a.value}').join(', ');
+    final sep = args.isNotEmpty && kwargs.isNotEmpty ? ', ' : '';
+    return '$className$dot$methodName($args$sep$kwargs)';
+  }
 }
 
 class IRType {
@@ -398,7 +426,20 @@ class IRBuilder {
           if (index != null) {
             final fields = getEnumFields(e).toList();
             final field = fields[index];
-            return IRStatic(e.name, field.name);
+            return IRFieldReference(e.name, field.name);
+          }
+        }
+      } else {
+        if (o is DartObjectImpl) {
+          final inv = o.getInvocation();
+          if (inv != null) {
+            final ctor = inv.constructor;
+            final args = inv.positionalArguments.map(_toConst).toList();
+            final kwargs = inv.namedArguments.entries
+                .map((e) => IRNamedArgument(e.key, _toConst(e.value)))
+                .toList();
+            return IRInvocationResult(
+                ctor.enclosingElement.name, ctor.name, args, kwargs);
           }
         }
       }
@@ -408,7 +449,7 @@ class IRBuilder {
     if (v != null) {
       final c = v.enclosingElement;
       if (v.isPublic && v.isStatic && c is ClassElement && v is MethodElement) {
-        return IRStatic(c.name, v.name);
+        return IRFieldReference(c.name, v.name);
       }
     }
 

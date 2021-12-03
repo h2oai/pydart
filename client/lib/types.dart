@@ -33,7 +33,7 @@ Navigator _uNavigator(Map<String, dynamic> __m) {
   final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = uConst(Navigator.defaultGenerateInitialRoutes, uFunc)(__m['onGenerateInitialRoutes']);
   final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
   final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
-  final TransitionDelegate<dynamic> transitionDelegate = uClass(__m['transitionDelegate']);
+  final TransitionDelegate<dynamic> transitionDelegate = uConst(DefaultTransitionDelegate(), uClass)(__m['transitionDelegate']);
   final bool reportsRouteUpdateToEngine = uConst<bool>(false, uBool)(__m['reportsRouteUpdateToEngine']);
   final List<NavigatorObserver> observers = uConst(<NavigatorObserver>[], uList<NavigatorObserver>(uClass))(__m['observers']);
   final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
@@ -210,18 +210,18 @@ ColorScheme _uColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeLight(Map<String, dynamic> __m) {
-  final Color primary = uClass(__m['primary']);
-  final Color primaryVariant = uClass(__m['primaryVariant']);
-  final Color secondary = uClass(__m['secondary']);
-  final Color secondaryVariant = uClass(__m['secondaryVariant']);
-  final Color surface = uClass(__m['surface']);
-  final Color background = uClass(__m['background']);
-  final Color error = uClass(__m['error']);
-  final Color onPrimary = uClass(__m['onPrimary']);
-  final Color onSecondary = uClass(__m['onSecondary']);
-  final Color onSurface = uClass(__m['onSurface']);
-  final Color onBackground = uClass(__m['onBackground']);
-  final Color onError = uClass(__m['onError']);
+  final Color primary = uConst(Color(4284612846), uClass)(__m['primary']);
+  final Color primaryVariant = uConst(Color(4281794739), uClass)(__m['primaryVariant']);
+  final Color secondary = uConst(Color(4278442694), uClass)(__m['secondary']);
+  final Color secondaryVariant = uConst(Color(4278290310), uClass)(__m['secondaryVariant']);
+  final Color surface = uConst(Color(4294967295), uClass)(__m['surface']);
+  final Color background = uConst(Color(4294967295), uClass)(__m['background']);
+  final Color error = uConst(Color(4289724448), uClass)(__m['error']);
+  final Color onPrimary = uConst(Color(4294967295), uClass)(__m['onPrimary']);
+  final Color onSecondary = uConst(Color(4278190080), uClass)(__m['onSecondary']);
+  final Color onSurface = uConst(Color(4278190080), uClass)(__m['onSurface']);
+  final Color onBackground = uConst(Color(4278190080), uClass)(__m['onBackground']);
+  final Color onError = uConst(Color(4294967295), uClass)(__m['onError']);
   final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
   return ColorScheme.light(
     primary: primary,
@@ -241,18 +241,18 @@ ColorScheme _uColorSchemeLight(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeDark(Map<String, dynamic> __m) {
-  final Color primary = uClass(__m['primary']);
-  final Color primaryVariant = uClass(__m['primaryVariant']);
-  final Color secondary = uClass(__m['secondary']);
-  final Color secondaryVariant = uClass(__m['secondaryVariant']);
-  final Color surface = uClass(__m['surface']);
-  final Color background = uClass(__m['background']);
-  final Color error = uClass(__m['error']);
-  final Color onPrimary = uClass(__m['onPrimary']);
-  final Color onSecondary = uClass(__m['onSecondary']);
-  final Color onSurface = uClass(__m['onSurface']);
-  final Color onBackground = uClass(__m['onBackground']);
-  final Color onError = uClass(__m['onError']);
+  final Color primary = uConst(Color(4290479868), uClass)(__m['primary']);
+  final Color primaryVariant = uConst(Color(4281794739), uClass)(__m['primaryVariant']);
+  final Color secondary = uConst(Color(4278442694), uClass)(__m['secondary']);
+  final Color secondaryVariant = uConst(Color(4278442694), uClass)(__m['secondaryVariant']);
+  final Color surface = uConst(Color(4279374354), uClass)(__m['surface']);
+  final Color background = uConst(Color(4279374354), uClass)(__m['background']);
+  final Color error = uConst(Color(4291782265), uClass)(__m['error']);
+  final Color onPrimary = uConst(Color(4278190080), uClass)(__m['onPrimary']);
+  final Color onSecondary = uConst(Color(4278190080), uClass)(__m['onSecondary']);
+  final Color onSurface = uConst(Color(4294967295), uClass)(__m['onSurface']);
+  final Color onBackground = uConst(Color(4294967295), uClass)(__m['onBackground']);
+  final Color onError = uConst(Color(4278190080), uClass)(__m['onError']);
   final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
   return ColorScheme.dark(
     primary: primary,
@@ -272,18 +272,18 @@ ColorScheme _uColorSchemeDark(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeHighContrastLight(Map<String, dynamic> __m) {
-  final Color primary = uClass(__m['primary']);
-  final Color primaryVariant = uClass(__m['primaryVariant']);
-  final Color secondary = uClass(__m['secondary']);
-  final Color secondaryVariant = uClass(__m['secondaryVariant']);
-  final Color surface = uClass(__m['surface']);
-  final Color background = uClass(__m['background']);
-  final Color error = uClass(__m['error']);
-  final Color onPrimary = uClass(__m['onPrimary']);
-  final Color onSecondary = uClass(__m['onSecondary']);
-  final Color onSurface = uClass(__m['onSurface']);
-  final Color onBackground = uClass(__m['onBackground']);
-  final Color onError = uClass(__m['onError']);
+  final Color primary = uConst(Color(4278190266), uClass)(__m['primary']);
+  final Color primaryVariant = uConst(Color(4278190216), uClass)(__m['primaryVariant']);
+  final Color secondary = uConst(Color(4284940281), uClass)(__m['secondary']);
+  final Color secondaryVariant = uConst(Color(4278290310), uClass)(__m['secondaryVariant']);
+  final Color surface = uConst(Color(4294967295), uClass)(__m['surface']);
+  final Color background = uConst(Color(4294967295), uClass)(__m['background']);
+  final Color error = uConst(Color(4286119936), uClass)(__m['error']);
+  final Color onPrimary = uConst(Color(4294967295), uClass)(__m['onPrimary']);
+  final Color onSecondary = uConst(Color(4278190080), uClass)(__m['onSecondary']);
+  final Color onSurface = uConst(Color(4278190080), uClass)(__m['onSurface']);
+  final Color onBackground = uConst(Color(4278190080), uClass)(__m['onBackground']);
+  final Color onError = uConst(Color(4294967295), uClass)(__m['onError']);
   final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
   return ColorScheme.highContrastLight(
     primary: primary,
@@ -303,18 +303,18 @@ ColorScheme _uColorSchemeHighContrastLight(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
-  final Color primary = uClass(__m['primary']);
-  final Color primaryVariant = uClass(__m['primaryVariant']);
-  final Color secondary = uClass(__m['secondary']);
-  final Color secondaryVariant = uClass(__m['secondaryVariant']);
-  final Color surface = uClass(__m['surface']);
-  final Color background = uClass(__m['background']);
-  final Color error = uClass(__m['error']);
-  final Color onPrimary = uClass(__m['onPrimary']);
-  final Color onSecondary = uClass(__m['onSecondary']);
-  final Color onSurface = uClass(__m['onSurface']);
-  final Color onBackground = uClass(__m['onBackground']);
-  final Color onError = uClass(__m['onError']);
+  final Color primary = uConst(Color(4293900287), uClass)(__m['primary']);
+  final Color primaryVariant = uConst(Color(4290682623), uClass)(__m['primaryVariant']);
+  final Color secondary = uConst(Color(4284940281), uClass)(__m['secondary']);
+  final Color secondaryVariant = uConst(Color(4284940281), uClass)(__m['secondaryVariant']);
+  final Color surface = uConst(Color(4279374354), uClass)(__m['surface']);
+  final Color background = uConst(Color(4279374354), uClass)(__m['background']);
+  final Color error = uConst(Color(4288362317), uClass)(__m['error']);
+  final Color onPrimary = uConst(Color(4278190080), uClass)(__m['onPrimary']);
+  final Color onSecondary = uConst(Color(4278190080), uClass)(__m['onSecondary']);
+  final Color onSurface = uConst(Color(4294967295), uClass)(__m['onSurface']);
+  final Color onBackground = uConst(Color(4294967295), uClass)(__m['onBackground']);
+  final Color onError = uConst(Color(4278190080), uClass)(__m['onError']);
   final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
   return ColorScheme.highContrastDark(
     primary: primary,
@@ -334,7 +334,7 @@ ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeFromSwatch(Map<String, dynamic> __m) {
-  final MaterialColor primarySwatch = uClass(__m['primarySwatch']);
+  final MaterialColor primarySwatch = uConst(MaterialColor(4280391411, undefined), uClass)(__m['primarySwatch']);
   final Color? primaryColorDark = uNull<Color>(uClass)(__m['primaryColorDark']);
   final Color? accentColor = uNull<Color>(uClass)(__m['accentColor']);
   final Color? cardColor = uNull<Color>(uClass)(__m['cardColor']);
@@ -479,8 +479,8 @@ Offset _uOffsetFromDirection(Map<String, dynamic> __m) {
 }
 
 Shadow _uShadow(Map<String, dynamic> __m) {
-  final Color color = uClass(__m['color']);
-  final Offset offset = uClass(__m['offset']);
+  final Color color = uConst(Color(4278190080), uClass)(__m['color']);
+  final Offset offset = uConst(Offset(0.0, 0.0), uClass)(__m['offset']);
   final double blurRadius = uConst<double>(0.0, uDouble)(__m['blurRadius']);
   return Shadow(
     color: color,
@@ -874,8 +874,8 @@ BorderRadius _uBorderRadiusCircular(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusVertical(Map<String, dynamic> __m) {
-  final Radius top = uClass(__m['top']);
-  final Radius bottom = uClass(__m['bottom']);
+  final Radius top = uConst(Radius.circular(0.0), uClass)(__m['top']);
+  final Radius bottom = uConst(Radius.circular(0.0), uClass)(__m['bottom']);
   return BorderRadius.vertical(
     top: top,
     bottom: bottom,
@@ -883,8 +883,8 @@ BorderRadius _uBorderRadiusVertical(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusHorizontal(Map<String, dynamic> __m) {
-  final Radius left = uClass(__m['left']);
-  final Radius right = uClass(__m['right']);
+  final Radius left = uConst(Radius.circular(0.0), uClass)(__m['left']);
+  final Radius right = uConst(Radius.circular(0.0), uClass)(__m['right']);
   return BorderRadius.horizontal(
     left: left,
     right: right,
@@ -892,10 +892,10 @@ BorderRadius _uBorderRadiusHorizontal(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusOnly(Map<String, dynamic> __m) {
-  final Radius topLeft = uClass(__m['topLeft']);
-  final Radius topRight = uClass(__m['topRight']);
-  final Radius bottomLeft = uClass(__m['bottomLeft']);
-  final Radius bottomRight = uClass(__m['bottomRight']);
+  final Radius topLeft = uConst(Radius.circular(0.0), uClass)(__m['topLeft']);
+  final Radius topRight = uConst(Radius.circular(0.0), uClass)(__m['topRight']);
+  final Radius bottomLeft = uConst(Radius.circular(0.0), uClass)(__m['bottomLeft']);
+  final Radius bottomRight = uConst(Radius.circular(0.0), uClass)(__m['bottomRight']);
   return BorderRadius.only(
     topLeft: topLeft,
     topRight: topRight,
@@ -997,7 +997,7 @@ BorderStyle _uBorderStyle(dynamic v) {
 }
 
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
-  final Color color = uClass(__m['color']);
+  final Color color = uConst(Color(4278190080), uClass)(__m['color']);
   final double width = uConst<double>(1.0, uDouble)(__m['width']);
   final BorderStyle style = uConst(BorderStyle.solid, _uBorderStyle)(__m['style']);
   return BorderSide(
@@ -1649,7 +1649,7 @@ Typography _uTypographyMaterial2018(Map<String, dynamic> __m) {
 }
 
 CupertinoTextThemeData _uCupertinoTextThemeData(Map<String, dynamic> __m) {
-  final Color primaryColor = uClass(__m['primaryColor']);
+  final Color primaryColor = uConst(CupertinoDynamicColor.withBrightnessAndContrast(debugLabel: 'systemBlue', color: Color.fromARGB(255, 0, 122, 255), darkColor: Color.fromARGB(255, 10, 132, 255), highContrastColor: Color.fromARGB(255, 0, 64, 221), darkHighContrastColor: Color.fromARGB(255, 64, 156, 255)), uClass)(__m['primaryColor']);
   final TextStyle? textStyle = uNull<TextStyle>(uClass)(__m['textStyle']);
   final TextStyle? actionTextStyle = uNull<TextStyle>(uClass)(__m['actionTextStyle']);
   final TextStyle? tabLabelTextStyle = uNull<TextStyle>(uClass)(__m['tabLabelTextStyle']);
