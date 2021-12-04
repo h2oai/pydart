@@ -23,31 +23,11 @@ dynamic unmarshal(dynamic v) {
     if (t != null) {
       final u = _unmarshalers[t];
       if (u != null) return u(v);
-      throw 'unmarshal failed: no loader found for $t';
+      throw 'no loader found for $t';
     }
-    throw 'unmarshal failed: no type name found on object';
+    throw 'no type name found on object';
   }
-  throw 'unmarshal failed: not an object';
-}
-
-bool uBool(dynamic v) {
-  if (v is bool) return v;
-  throw 'unmarshal failed: not a bool';
-}
-
-int uInt(dynamic v) {
-  if (v is int) return v;
-  throw 'unmarshal failed: not a int';
-}
-
-double uDouble(dynamic v) {
-  if (v is double) return v;
-  throw 'unmarshal failed: not a double';
-}
-
-String uString(dynamic v) {
-  if (v is String) return v;
-  throw 'unmarshal failed: not a string';
+  throw 'not an object';
 }
 
 T uClass<T>(dynamic v) => unmarshal(v);

@@ -111,12 +111,15 @@ String capitalize(String s) =>
 String _toConstructorSymbol(IRClass e, IRConstructor c) =>
     e.name + capitalize(c.name);
 
-Expr _die(String message) =>
-    CallExpr(IdExpr('die'), [], [StringLiteralExpr(message)]);
+Expr _want(IRType t, String k) =>
+    CallExpr(IdExpr('die'), [t], [IdExpr('__want${capitalize(k)}')]);
+
+final _jsonPrimitiveTypes = ['bool', 'int', 'double', 'String', 'List', 'Map'];
 
 Expr _unmarshal(IRType t, Expr x) {
   if (t.isPrimitive) {
-    return CallExpr(IdExpr('u' + capitalize(t.name)), [], [x]);
+    return TernaryExpr(
+        BinaryExpr(x, 'is', LiteralExpr(t.name)), x, _want(t, t.name));
   }
   if (t is IRParameterizedType) {
     final e = t.element;
@@ -137,7 +140,7 @@ Expr _unmarshal(IRType t, Expr x) {
                   IdExpr('toList')),
               [],
               []),
-          _die('not a list'));
+          _want(t, 'list'));
     }
     if (e.name == 'Set') {
       final p = t.parameters.first;
@@ -151,7 +154,7 @@ Expr _unmarshal(IRType t, Expr x) {
                   IdExpr('toSet')),
               [],
               []),
-          _die('not a list'));
+          _want(t, 'list'));
     }
     if (e.name == 'Map') {
       final pk = t.parameters[0];
@@ -164,7 +167,7 @@ Expr _unmarshal(IRType t, Expr x) {
                 CallExpr(IdExpr('MapEntry'), [],
                     [_unmarshal(pk, IdExpr('k')), _unmarshal(pv, IdExpr('v'))]))
           ]),
-          _die('not a map'));
+          _want(t, 'map'));
     }
 
     if (e == IRElement.func) return CallExpr(IdExpr('uFunc'), [t], [x]);
@@ -262,6 +265,12 @@ class ClientTranslator {
     p("import 'package:flutter/gestures.dart';");
     p("import 'package:flutter/services.dart';");
     p("import 'unmarshal.dart';");
+
+    p('');
+    for (final t in _jsonPrimitiveTypes) {
+      p("const __want${capitalize(t)} = 'want $t';");
+    }
+
     for (final e in elements) {
       if (e is IRClass && !e.isAbstract && !e.isInternal) {
         _emitClass(e);
