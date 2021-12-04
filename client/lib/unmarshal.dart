@@ -56,32 +56,6 @@ T uFunc<T>(dynamic v) {
   throw 'unmarshal function: not implemented';
 }
 
-T? Function(dynamic) uNull<T>(T Function(dynamic) u) =>
-    (dynamic v) => v == null ? v : u(v);
-
-T Function(dynamic) uConst<T>(T c, T Function(dynamic) u) =>
-    (dynamic v) => v == null ? c : u(v);
-
-List<T> Function(dynamic) uList<T>(T Function(dynamic) u) {
-  return (dynamic v) {
-    if (v is List<dynamic>) return v.map(u).toList(growable: false);
-    throw 'unmarshal list failed: not a list';
-  };
-}
-
-Set<T> Function(dynamic) uSet<T>(T Function(dynamic) u) {
-  return (dynamic v) {
-    if (v is List<dynamic>) return v.map(u).toSet();
-    throw 'unmarshal set failed: not a list';
-  };
-}
-
-Map<K, V> Function(dynamic) uMap<K, V>(
-    K Function(dynamic) uk, V Function(dynamic) uv) {
-  return (dynamic v) {
-    if (v is Map<dynamic, dynamic>) {
-      return v.map((k, v) => MapEntry(uk(k), uv(v)));
-    }
-    throw 'unmarshal map failed: not a map';
-  };
+T die<T>(String message) {
+  throw message;
 }

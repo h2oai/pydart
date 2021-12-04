@@ -1,61 +1,185 @@
 import 'emit.dart';
 import 'ir.dart';
 
-String capitalize(String s) {
-  if (s.isEmpty) return s;
-  return s.substring(0, 1).toUpperCase() + s.substring(1);
+class Expr {}
+
+class IdExpr extends Expr {
+  final String name;
+
+  IdExpr(this.name);
+
+  @override
+  String toString() => name;
 }
+
+class ConstExpr extends Expr {
+  final IRConst value;
+
+  ConstExpr(this.value);
+
+  @override
+  String toString() => value.toString();
+}
+
+class CallExpr extends Expr {
+  final Expr subject;
+  final List<IRType> parameters;
+  final List<Expr> arguments;
+
+  CallExpr(this.subject, this.parameters, this.arguments);
+
+  @override
+  String toString() {
+    final args = arguments.join(', ');
+    final params = parameters.map((p) => dumpType(p)).join(', ');
+    return parameters.isNotEmpty
+        ? '$subject<$params>($args)'
+        : '$subject($args)';
+  }
+}
+
+final nullExpr = IdExpr('null');
+
+class LiteralExpr extends Expr {
+  final String literal;
+
+  LiteralExpr(this.literal);
+
+  @override
+  String toString() => literal;
+}
+
+class StringLiteralExpr extends Expr {
+  final String literal;
+
+  StringLiteralExpr(this.literal);
+
+  @override
+  String toString() => "'$literal'";
+}
+
+class AttrExpr extends Expr {
+  final Expr subject;
+  final Expr attribute;
+
+  AttrExpr(this.subject, this.attribute);
+
+  @override
+  String toString() => '$subject.$attribute';
+}
+
+class BinaryExpr extends Expr {
+  final Expr left;
+  final String operator;
+  final Expr right;
+
+  BinaryExpr(this.left, this.operator, this.right);
+
+  @override
+  String toString() => '$left $operator $right';
+}
+
+class TernaryExpr extends Expr {
+  final Expr cond;
+  final Expr whenTrue;
+  final Expr whenFalse;
+
+  TernaryExpr(this.cond, this.whenTrue, this.whenFalse);
+
+  @override
+  String toString() => '($cond ? $whenTrue : $whenFalse)';
+}
+
+class LambdaExpr extends Expr {
+  final List<Expr> parameters;
+  final Expr body;
+
+  LambdaExpr(this.parameters, this.body);
+
+  @override
+  String toString() => "(${parameters.join(', ')}) => $body";
+}
+
+Expr Function() _gensym(String prefix) {
+  var i = 0;
+  return () => IdExpr('$prefix${++i}');
+}
+
+String capitalize(String s) =>
+    (s.isEmpty) ? s : s.substring(0, 1).toUpperCase() + s.substring(1);
 
 String _toConstructorSymbol(IRClass e, IRConstructor c) =>
     e.name + capitalize(c.name);
 
-String _withConst(IRType? t, String u, IRConst c) => c != undefined
-    ? t != null // type explicitly?
-        ? 'uConst<${dumpType(t)}>($c, $u)' // explicit (type inference might confuse int vs float)
-        : 'uConst($c, $u)' // implicit
-    : u; // no default available
+Expr _die(String message) =>
+    CallExpr(IdExpr('die'), [], [StringLiteralExpr(message)]);
 
-String _unmarshalerOf(IRType t, IRConst c) {
-  if (t.isPrimitive) return _withConst(t, 'u' + capitalize(t.name), c);
-
+Expr _unmarshal(IRType t, Expr x) {
+  if (t.isPrimitive) {
+    return CallExpr(IdExpr('u' + capitalize(t.name)), [], [x]);
+  }
   if (t is IRParameterizedType) {
     final e = t.element;
     if (e == IRElement.nullable) {
       final p = t.parameters.first;
-      return 'uNull<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
+      return TernaryExpr(
+          BinaryExpr(x, '!=', nullExpr), _unmarshal(p, x), nullExpr);
     }
     if (e.name == 'List') {
       final p = t.parameters.first;
-      final u = 'uList<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
-      return _withConst(null, u, c);
+      return TernaryExpr(
+          BinaryExpr(x, 'is', LiteralExpr('List<dynamic>')),
+          CallExpr(
+              AttrExpr(
+                  CallExpr(AttrExpr(x, IdExpr('map')), [], [
+                    LambdaExpr([IdExpr('v')], _unmarshal(p, IdExpr('v')))
+                  ]),
+                  IdExpr('toList')),
+              [],
+              []),
+          _die('not a list'));
     }
     if (e.name == 'Set') {
       final p = t.parameters.first;
-      final u = 'uSet<${dumpType(p)}>(${_unmarshalerOf(p, undefined)})';
-      return _withConst(null, u, c);
+      return TernaryExpr(
+          BinaryExpr(x, 'is', LiteralExpr('List<dynamic>')),
+          CallExpr(
+              AttrExpr(
+                  CallExpr(AttrExpr(x, IdExpr('map')), [], [
+                    LambdaExpr([IdExpr('v')], _unmarshal(p, IdExpr('v')))
+                  ]),
+                  IdExpr('toSet')),
+              [],
+              []),
+          _die('not a list'));
     }
     if (e.name == 'Map') {
       final pk = t.parameters[0];
       final pv = t.parameters[1];
-      final uk = _unmarshalerOf(pk, undefined);
-      final uv = _unmarshalerOf(pv, undefined);
-      final u = 'uMap<${dumpType(pk)}, ${dumpType(pv)}>($uk, $uv)';
-      return _withConst(null, u, c);
+      return TernaryExpr(
+          BinaryExpr(x, 'is', LiteralExpr('Map<dynamic, dynamic>')),
+          CallExpr(AttrExpr(x, IdExpr('map')), [], [
+            LambdaExpr(
+                [IdExpr('k'), IdExpr('v')],
+                CallExpr(IdExpr('MapEntry'), [],
+                    [_unmarshal(pk, IdExpr('k')), _unmarshal(pv, IdExpr('v'))]))
+          ]),
+          _die('not a map'));
     }
 
-    if (e == IRElement.func) return _withConst(null, 'uFunc', c);
+    if (e == IRElement.func) return CallExpr(IdExpr('uFunc'), [t], [x]);
 
-    if (e is IREnum) return _withConst(null, "_u${e.name}", c);
+    if (e is IREnum) return CallExpr(IdExpr('_u${e.name}'), [], [x]);
 
     // TODO constructor-tearoffs
     // Ideally this would be passed as uClass<T>, but causes the compiler to
     //  complain with "This requires the 'constructor-tearoffs' language
     //  feature to be enabled."
     // https://github.com/dart-lang/language/blob/master/accepted/future-releases/constructor-tearoffs/feature-specification.md
-    if (e is IRClass) return _withConst(null, 'uClass', c);
+    if (e is IRClass) return CallExpr(IdExpr('uClass'), [t], [x]);
   }
 
-  if (t is IRTypeParameter) return _withConst(null, 'uClass', c);
+  if (t is IRTypeParameter) return CallExpr(IdExpr('uClass'), [t], [x]);
 
   throw 'could not determine unmarshaler for ${t.name}';
 }
@@ -83,13 +207,20 @@ class ClientTranslator {
       final typeParams =
           params.isNotEmpty ? "<${params.map((p) => p.name).join(', ')}>" : '';
 
+      final gensym = _gensym('__m');
+
       p('');
       p('${e.name} _u${_toConstructorSymbol(e, c)}$typeParams(Map<String, dynamic> $m) {');
       p.t(() {
         for (final f in c.fields) {
-          final lookup = "$m['${f.name}']";
-          final unmarshal = _unmarshalerOf(f.type, f.value);
-          p("final ${dumpType(f.type)} ${f.name} = $unmarshal($lookup);");
+          final x = gensym();
+          p("final $x = $m['${f.name}'];");
+          final u = _unmarshal(f.type, x);
+          final unmarshal = f.value == undefined
+              ? u
+              : TernaryExpr(
+                  BinaryExpr(x, '!=', nullExpr), u, ConstExpr(f.value));
+          p("final ${dumpType(f.type)} ${f.name} = $unmarshal;");
         }
         final ctor = c.name.isNotEmpty ? '.${c.name}' : '';
         final constPrefix = c.isConst && c.fields.isEmpty ? 'const ' : '';

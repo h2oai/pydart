@@ -14,8 +14,10 @@ Object _uObject(Map<String, dynamic> __m) {
 }
 
 RouteSettings _uRouteSettings(Map<String, dynamic> __m) {
-  final String? name = uNull<String>(uString)(__m['name']);
-  final Object? arguments = uNull<Object>(uClass)(__m['arguments']);
+  final __m1 = __m['name'];
+  final String? name = (__m1 != null ? uString(__m1) : null);
+  final __m2 = __m['arguments'];
+  final Object? arguments = (__m2 != null ? uClass<Object>(__m2) : null);
   return RouteSettings(
     name: name,
     arguments: arguments,
@@ -28,17 +30,28 @@ NavigatorObserver _uNavigatorObserver(Map<String, dynamic> __m) {
 }
 
 Navigator _uNavigator(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final List<Page<dynamic>> pages = uConst(<Page<dynamic>>[], uList<Page<dynamic>>(uClass))(__m['pages']);
-  final bool Function(Route<dynamic>, dynamic)? onPopPage = uNull<bool Function(Route<dynamic>, dynamic)>(uFunc)(__m['onPopPage']);
-  final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
-  final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = uConst(Navigator.defaultGenerateInitialRoutes, uFunc)(__m['onGenerateInitialRoutes']);
-  final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
-  final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
-  final TransitionDelegate<dynamic> transitionDelegate = uConst(const DefaultTransitionDelegate(), uClass)(__m['transitionDelegate']);
-  final bool reportsRouteUpdateToEngine = uConst<bool>(false, uBool)(__m['reportsRouteUpdateToEngine']);
-  final List<NavigatorObserver> observers = uConst(<NavigatorObserver>[], uList<NavigatorObserver>(uClass))(__m['observers']);
-  final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['pages'];
+  final List<Page<dynamic>> pages = (__m2 != null ? (__m2 is List<dynamic> ? __m2.map((v) => uClass<Page<dynamic>>(v)).toList() : die('not a list')) : <Page<dynamic>>[]);
+  final __m3 = __m['onPopPage'];
+  final bool Function(Route<dynamic>, dynamic)? onPopPage = (__m3 != null ? uFunc<bool Function(Route<dynamic>, dynamic)>(__m3) : null);
+  final __m4 = __m['initialRoute'];
+  final String? initialRoute = (__m4 != null ? uString(__m4) : null);
+  final __m5 = __m['onGenerateInitialRoutes'];
+  final List<Route<dynamic>> Function(NavigatorState, String) onGenerateInitialRoutes = (__m5 != null ? uFunc<List<Route<dynamic>> Function(NavigatorState, String)>(__m5) : Navigator.defaultGenerateInitialRoutes);
+  final __m6 = __m['onGenerateRoute'];
+  final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = (__m6 != null ? uFunc<Route<dynamic>? Function(RouteSettings)>(__m6) : null);
+  final __m7 = __m['onUnknownRoute'];
+  final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = (__m7 != null ? uFunc<Route<dynamic>? Function(RouteSettings)>(__m7) : null);
+  final __m8 = __m['transitionDelegate'];
+  final TransitionDelegate<dynamic> transitionDelegate = (__m8 != null ? uClass<TransitionDelegate<dynamic>>(__m8) : const DefaultTransitionDelegate());
+  final __m9 = __m['reportsRouteUpdateToEngine'];
+  final bool reportsRouteUpdateToEngine = (__m9 != null ? uBool(__m9) : false);
+  final __m10 = __m['observers'];
+  final List<NavigatorObserver> observers = (__m10 != null ? (__m10 is List<dynamic> ? __m10.map((v) => uClass<NavigatorObserver>(v)).toList() : die('not a list')) : <NavigatorObserver>[]);
+  final __m11 = __m['restorationScopeId'];
+  final String? restorationScopeId = (__m11 != null ? uString(__m11) : null);
   return Navigator(
     key: key,
     pages: pages,
@@ -60,8 +73,10 @@ NavigatorState _uNavigatorState(Map<String, dynamic> __m) {
 }
 
 ScaffoldMessenger _uScaffoldMessenger(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final Widget child = uClass(__m['child']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['child'];
+  final Widget child = uClass<Widget>(__m2);
   return ScaffoldMessenger(
     key: key,
     child: child,
@@ -74,8 +89,10 @@ ScaffoldMessengerState _uScaffoldMessengerState(Map<String, dynamic> __m) {
 }
 
 MapEntry _uMapEntry<K, V>(Map<String, dynamic> __m) {
-  final K key = uClass(__m['key']);
-  final V value = uClass(__m['value']);
+  final __m1 = __m['key'];
+  final K key = uClass<K>(__m1);
+  final __m2 = __m['value'];
+  final V value = uClass<V>(__m2);
   return MapEntry(
     key,
     value,
@@ -83,17 +100,22 @@ MapEntry _uMapEntry<K, V>(Map<String, dynamic> __m) {
 }
 
 Color _uColor(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final __m1 = __m['value'];
+  final int value = uInt(__m1);
   return Color(
     value,
   );
 }
 
 Color _uColorFromARGB(Map<String, dynamic> __m) {
-  final int a = uInt(__m['a']);
-  final int r = uInt(__m['r']);
-  final int g = uInt(__m['g']);
-  final int b = uInt(__m['b']);
+  final __m1 = __m['a'];
+  final int a = uInt(__m1);
+  final __m2 = __m['r'];
+  final int r = uInt(__m2);
+  final __m3 = __m['g'];
+  final int g = uInt(__m3);
+  final __m4 = __m['b'];
+  final int b = uInt(__m4);
   return Color.fromARGB(
     a,
     r,
@@ -103,10 +125,14 @@ Color _uColorFromARGB(Map<String, dynamic> __m) {
 }
 
 Color _uColorFromRGBO(Map<String, dynamic> __m) {
-  final int r = uInt(__m['r']);
-  final int g = uInt(__m['g']);
-  final int b = uInt(__m['b']);
-  final double opacity = uDouble(__m['opacity']);
+  final __m1 = __m['r'];
+  final int r = uInt(__m1);
+  final __m2 = __m['g'];
+  final int g = uInt(__m2);
+  final __m3 = __m['b'];
+  final int b = uInt(__m3);
+  final __m4 = __m['opacity'];
+  final double opacity = uDouble(__m4);
   return Color.fromRGBO(
     r,
     g,
@@ -128,8 +154,10 @@ Brightness _uBrightness(dynamic v) {
 }
 
 VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
-  final double horizontal = uConst<double>(0.0, uDouble)(__m['horizontal']);
-  final double vertical = uConst<double>(0.0, uDouble)(__m['vertical']);
+  final __m1 = __m['horizontal'];
+  final double horizontal = (__m1 != null ? uDouble(__m1) : 0.0);
+  final __m2 = __m['vertical'];
+  final double vertical = (__m2 != null ? uDouble(__m2) : 0.0);
   return VisualDensity(
     horizontal: horizontal,
     vertical: vertical,
@@ -137,8 +165,10 @@ VisualDensity _uVisualDensity(Map<String, dynamic> __m) {
 }
 
 ColorSwatch _uColorSwatch<T>(Map<String, dynamic> __m) {
-  final int primary = uInt(__m['primary']);
-  final Map<T, Color> _swatch = uMap<T, Color>(uClass, uClass)(__m['_swatch']);
+  final __m1 = __m['primary'];
+  final int primary = uInt(__m1);
+  final __m2 = __m['_swatch'];
+  final Map<T, Color> _swatch = (__m2 is Map<dynamic, dynamic> ? __m2.map((k, v) => MapEntry(uClass<T>(k), uClass<Color>(v))) : die('not a map'));
   return ColorSwatch(
     primary,
     _swatch,
@@ -146,8 +176,10 @@ ColorSwatch _uColorSwatch<T>(Map<String, dynamic> __m) {
 }
 
 MaterialColor _uMaterialColor(Map<String, dynamic> __m) {
-  final int primary = uInt(__m['primary']);
-  final Map<int, Color> swatch = uMap<int, Color>(uInt, uClass)(__m['swatch']);
+  final __m1 = __m['primary'];
+  final int primary = uInt(__m1);
+  final __m2 = __m['swatch'];
+  final Map<int, Color> swatch = (__m2 is Map<dynamic, dynamic> ? __m2.map((k, v) => MapEntry(uInt(k), uClass<Color>(v))) : die('not a map'));
   return MaterialColor(
     primary,
     swatch,
@@ -181,19 +213,32 @@ ButtonBarLayoutBehavior _uButtonBarLayoutBehavior(dynamic v) {
 }
 
 ColorScheme _uColorScheme(Map<String, dynamic> __m) {
-  final Color primary = uClass(__m['primary']);
-  final Color primaryVariant = uClass(__m['primaryVariant']);
-  final Color secondary = uClass(__m['secondary']);
-  final Color secondaryVariant = uClass(__m['secondaryVariant']);
-  final Color surface = uClass(__m['surface']);
-  final Color background = uClass(__m['background']);
-  final Color error = uClass(__m['error']);
-  final Color onPrimary = uClass(__m['onPrimary']);
-  final Color onSecondary = uClass(__m['onSecondary']);
-  final Color onSurface = uClass(__m['onSurface']);
-  final Color onBackground = uClass(__m['onBackground']);
-  final Color onError = uClass(__m['onError']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
+  final __m1 = __m['primary'];
+  final Color primary = uClass<Color>(__m1);
+  final __m2 = __m['primaryVariant'];
+  final Color primaryVariant = uClass<Color>(__m2);
+  final __m3 = __m['secondary'];
+  final Color secondary = uClass<Color>(__m3);
+  final __m4 = __m['secondaryVariant'];
+  final Color secondaryVariant = uClass<Color>(__m4);
+  final __m5 = __m['surface'];
+  final Color surface = uClass<Color>(__m5);
+  final __m6 = __m['background'];
+  final Color background = uClass<Color>(__m6);
+  final __m7 = __m['error'];
+  final Color error = uClass<Color>(__m7);
+  final __m8 = __m['onPrimary'];
+  final Color onPrimary = uClass<Color>(__m8);
+  final __m9 = __m['onSecondary'];
+  final Color onSecondary = uClass<Color>(__m9);
+  final __m10 = __m['onSurface'];
+  final Color onSurface = uClass<Color>(__m10);
+  final __m11 = __m['onBackground'];
+  final Color onBackground = uClass<Color>(__m11);
+  final __m12 = __m['onError'];
+  final Color onError = uClass<Color>(__m12);
+  final __m13 = __m['brightness'];
+  final Brightness brightness = _uBrightness(__m13);
   return ColorScheme(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -212,19 +257,32 @@ ColorScheme _uColorScheme(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeLight(Map<String, dynamic> __m) {
-  final Color primary = uConst(const Color(4284612846), uClass)(__m['primary']);
-  final Color primaryVariant = uConst(const Color(4281794739), uClass)(__m['primaryVariant']);
-  final Color secondary = uConst(const Color(4278442694), uClass)(__m['secondary']);
-  final Color secondaryVariant = uConst(const Color(4278290310), uClass)(__m['secondaryVariant']);
-  final Color surface = uConst(const Color(4294967295), uClass)(__m['surface']);
-  final Color background = uConst(const Color(4294967295), uClass)(__m['background']);
-  final Color error = uConst(const Color(4289724448), uClass)(__m['error']);
-  final Color onPrimary = uConst(const Color(4294967295), uClass)(__m['onPrimary']);
-  final Color onSecondary = uConst(const Color(4278190080), uClass)(__m['onSecondary']);
-  final Color onSurface = uConst(const Color(4278190080), uClass)(__m['onSurface']);
-  final Color onBackground = uConst(const Color(4278190080), uClass)(__m['onBackground']);
-  final Color onError = uConst(const Color(4294967295), uClass)(__m['onError']);
-  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
+  final __m1 = __m['primary'];
+  final Color primary = (__m1 != null ? uClass<Color>(__m1) : const Color(4284612846));
+  final __m2 = __m['primaryVariant'];
+  final Color primaryVariant = (__m2 != null ? uClass<Color>(__m2) : const Color(4281794739));
+  final __m3 = __m['secondary'];
+  final Color secondary = (__m3 != null ? uClass<Color>(__m3) : const Color(4278442694));
+  final __m4 = __m['secondaryVariant'];
+  final Color secondaryVariant = (__m4 != null ? uClass<Color>(__m4) : const Color(4278290310));
+  final __m5 = __m['surface'];
+  final Color surface = (__m5 != null ? uClass<Color>(__m5) : const Color(4294967295));
+  final __m6 = __m['background'];
+  final Color background = (__m6 != null ? uClass<Color>(__m6) : const Color(4294967295));
+  final __m7 = __m['error'];
+  final Color error = (__m7 != null ? uClass<Color>(__m7) : const Color(4289724448));
+  final __m8 = __m['onPrimary'];
+  final Color onPrimary = (__m8 != null ? uClass<Color>(__m8) : const Color(4294967295));
+  final __m9 = __m['onSecondary'];
+  final Color onSecondary = (__m9 != null ? uClass<Color>(__m9) : const Color(4278190080));
+  final __m10 = __m['onSurface'];
+  final Color onSurface = (__m10 != null ? uClass<Color>(__m10) : const Color(4278190080));
+  final __m11 = __m['onBackground'];
+  final Color onBackground = (__m11 != null ? uClass<Color>(__m11) : const Color(4278190080));
+  final __m12 = __m['onError'];
+  final Color onError = (__m12 != null ? uClass<Color>(__m12) : const Color(4294967295));
+  final __m13 = __m['brightness'];
+  final Brightness brightness = (__m13 != null ? _uBrightness(__m13) : Brightness.light);
   return ColorScheme.light(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -243,19 +301,32 @@ ColorScheme _uColorSchemeLight(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeDark(Map<String, dynamic> __m) {
-  final Color primary = uConst(const Color(4290479868), uClass)(__m['primary']);
-  final Color primaryVariant = uConst(const Color(4281794739), uClass)(__m['primaryVariant']);
-  final Color secondary = uConst(const Color(4278442694), uClass)(__m['secondary']);
-  final Color secondaryVariant = uConst(const Color(4278442694), uClass)(__m['secondaryVariant']);
-  final Color surface = uConst(const Color(4279374354), uClass)(__m['surface']);
-  final Color background = uConst(const Color(4279374354), uClass)(__m['background']);
-  final Color error = uConst(const Color(4291782265), uClass)(__m['error']);
-  final Color onPrimary = uConst(const Color(4278190080), uClass)(__m['onPrimary']);
-  final Color onSecondary = uConst(const Color(4278190080), uClass)(__m['onSecondary']);
-  final Color onSurface = uConst(const Color(4294967295), uClass)(__m['onSurface']);
-  final Color onBackground = uConst(const Color(4294967295), uClass)(__m['onBackground']);
-  final Color onError = uConst(const Color(4278190080), uClass)(__m['onError']);
-  final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
+  final __m1 = __m['primary'];
+  final Color primary = (__m1 != null ? uClass<Color>(__m1) : const Color(4290479868));
+  final __m2 = __m['primaryVariant'];
+  final Color primaryVariant = (__m2 != null ? uClass<Color>(__m2) : const Color(4281794739));
+  final __m3 = __m['secondary'];
+  final Color secondary = (__m3 != null ? uClass<Color>(__m3) : const Color(4278442694));
+  final __m4 = __m['secondaryVariant'];
+  final Color secondaryVariant = (__m4 != null ? uClass<Color>(__m4) : const Color(4278442694));
+  final __m5 = __m['surface'];
+  final Color surface = (__m5 != null ? uClass<Color>(__m5) : const Color(4279374354));
+  final __m6 = __m['background'];
+  final Color background = (__m6 != null ? uClass<Color>(__m6) : const Color(4279374354));
+  final __m7 = __m['error'];
+  final Color error = (__m7 != null ? uClass<Color>(__m7) : const Color(4291782265));
+  final __m8 = __m['onPrimary'];
+  final Color onPrimary = (__m8 != null ? uClass<Color>(__m8) : const Color(4278190080));
+  final __m9 = __m['onSecondary'];
+  final Color onSecondary = (__m9 != null ? uClass<Color>(__m9) : const Color(4278190080));
+  final __m10 = __m['onSurface'];
+  final Color onSurface = (__m10 != null ? uClass<Color>(__m10) : const Color(4294967295));
+  final __m11 = __m['onBackground'];
+  final Color onBackground = (__m11 != null ? uClass<Color>(__m11) : const Color(4294967295));
+  final __m12 = __m['onError'];
+  final Color onError = (__m12 != null ? uClass<Color>(__m12) : const Color(4278190080));
+  final __m13 = __m['brightness'];
+  final Brightness brightness = (__m13 != null ? _uBrightness(__m13) : Brightness.dark);
   return ColorScheme.dark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -274,19 +345,32 @@ ColorScheme _uColorSchemeDark(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeHighContrastLight(Map<String, dynamic> __m) {
-  final Color primary = uConst(const Color(4278190266), uClass)(__m['primary']);
-  final Color primaryVariant = uConst(const Color(4278190216), uClass)(__m['primaryVariant']);
-  final Color secondary = uConst(const Color(4284940281), uClass)(__m['secondary']);
-  final Color secondaryVariant = uConst(const Color(4278290310), uClass)(__m['secondaryVariant']);
-  final Color surface = uConst(const Color(4294967295), uClass)(__m['surface']);
-  final Color background = uConst(const Color(4294967295), uClass)(__m['background']);
-  final Color error = uConst(const Color(4286119936), uClass)(__m['error']);
-  final Color onPrimary = uConst(const Color(4294967295), uClass)(__m['onPrimary']);
-  final Color onSecondary = uConst(const Color(4278190080), uClass)(__m['onSecondary']);
-  final Color onSurface = uConst(const Color(4278190080), uClass)(__m['onSurface']);
-  final Color onBackground = uConst(const Color(4278190080), uClass)(__m['onBackground']);
-  final Color onError = uConst(const Color(4294967295), uClass)(__m['onError']);
-  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
+  final __m1 = __m['primary'];
+  final Color primary = (__m1 != null ? uClass<Color>(__m1) : const Color(4278190266));
+  final __m2 = __m['primaryVariant'];
+  final Color primaryVariant = (__m2 != null ? uClass<Color>(__m2) : const Color(4278190216));
+  final __m3 = __m['secondary'];
+  final Color secondary = (__m3 != null ? uClass<Color>(__m3) : const Color(4284940281));
+  final __m4 = __m['secondaryVariant'];
+  final Color secondaryVariant = (__m4 != null ? uClass<Color>(__m4) : const Color(4278290310));
+  final __m5 = __m['surface'];
+  final Color surface = (__m5 != null ? uClass<Color>(__m5) : const Color(4294967295));
+  final __m6 = __m['background'];
+  final Color background = (__m6 != null ? uClass<Color>(__m6) : const Color(4294967295));
+  final __m7 = __m['error'];
+  final Color error = (__m7 != null ? uClass<Color>(__m7) : const Color(4286119936));
+  final __m8 = __m['onPrimary'];
+  final Color onPrimary = (__m8 != null ? uClass<Color>(__m8) : const Color(4294967295));
+  final __m9 = __m['onSecondary'];
+  final Color onSecondary = (__m9 != null ? uClass<Color>(__m9) : const Color(4278190080));
+  final __m10 = __m['onSurface'];
+  final Color onSurface = (__m10 != null ? uClass<Color>(__m10) : const Color(4278190080));
+  final __m11 = __m['onBackground'];
+  final Color onBackground = (__m11 != null ? uClass<Color>(__m11) : const Color(4278190080));
+  final __m12 = __m['onError'];
+  final Color onError = (__m12 != null ? uClass<Color>(__m12) : const Color(4294967295));
+  final __m13 = __m['brightness'];
+  final Brightness brightness = (__m13 != null ? _uBrightness(__m13) : Brightness.light);
   return ColorScheme.highContrastLight(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -305,19 +389,32 @@ ColorScheme _uColorSchemeHighContrastLight(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
-  final Color primary = uConst(const Color(4293900287), uClass)(__m['primary']);
-  final Color primaryVariant = uConst(const Color(4290682623), uClass)(__m['primaryVariant']);
-  final Color secondary = uConst(const Color(4284940281), uClass)(__m['secondary']);
-  final Color secondaryVariant = uConst(const Color(4284940281), uClass)(__m['secondaryVariant']);
-  final Color surface = uConst(const Color(4279374354), uClass)(__m['surface']);
-  final Color background = uConst(const Color(4279374354), uClass)(__m['background']);
-  final Color error = uConst(const Color(4288362317), uClass)(__m['error']);
-  final Color onPrimary = uConst(const Color(4278190080), uClass)(__m['onPrimary']);
-  final Color onSecondary = uConst(const Color(4278190080), uClass)(__m['onSecondary']);
-  final Color onSurface = uConst(const Color(4294967295), uClass)(__m['onSurface']);
-  final Color onBackground = uConst(const Color(4294967295), uClass)(__m['onBackground']);
-  final Color onError = uConst(const Color(4278190080), uClass)(__m['onError']);
-  final Brightness brightness = uConst(Brightness.dark, _uBrightness)(__m['brightness']);
+  final __m1 = __m['primary'];
+  final Color primary = (__m1 != null ? uClass<Color>(__m1) : const Color(4293900287));
+  final __m2 = __m['primaryVariant'];
+  final Color primaryVariant = (__m2 != null ? uClass<Color>(__m2) : const Color(4290682623));
+  final __m3 = __m['secondary'];
+  final Color secondary = (__m3 != null ? uClass<Color>(__m3) : const Color(4284940281));
+  final __m4 = __m['secondaryVariant'];
+  final Color secondaryVariant = (__m4 != null ? uClass<Color>(__m4) : const Color(4284940281));
+  final __m5 = __m['surface'];
+  final Color surface = (__m5 != null ? uClass<Color>(__m5) : const Color(4279374354));
+  final __m6 = __m['background'];
+  final Color background = (__m6 != null ? uClass<Color>(__m6) : const Color(4279374354));
+  final __m7 = __m['error'];
+  final Color error = (__m7 != null ? uClass<Color>(__m7) : const Color(4288362317));
+  final __m8 = __m['onPrimary'];
+  final Color onPrimary = (__m8 != null ? uClass<Color>(__m8) : const Color(4278190080));
+  final __m9 = __m['onSecondary'];
+  final Color onSecondary = (__m9 != null ? uClass<Color>(__m9) : const Color(4278190080));
+  final __m10 = __m['onSurface'];
+  final Color onSurface = (__m10 != null ? uClass<Color>(__m10) : const Color(4294967295));
+  final __m11 = __m['onBackground'];
+  final Color onBackground = (__m11 != null ? uClass<Color>(__m11) : const Color(4294967295));
+  final __m12 = __m['onError'];
+  final Color onError = (__m12 != null ? uClass<Color>(__m12) : const Color(4278190080));
+  final __m13 = __m['brightness'];
+  final Brightness brightness = (__m13 != null ? _uBrightness(__m13) : Brightness.dark);
   return ColorScheme.highContrastDark(
     primary: primary,
     primaryVariant: primaryVariant,
@@ -336,13 +433,20 @@ ColorScheme _uColorSchemeHighContrastDark(Map<String, dynamic> __m) {
 }
 
 ColorScheme _uColorSchemeFromSwatch(Map<String, dynamic> __m) {
-  final MaterialColor primarySwatch = uConst(const MaterialColor(4280391411, <int, Color>{50: const Color(4293128957), 100: const Color(4290502395), 200: const Color(4287679225), 300: const Color(4284790262), 400: const Color(4282557941), 500: const Color(4280391411), 600: const Color(4280191205), 700: const Color(4279858898), 800: const Color(4279592384), 900: const Color(4279060385)}), uClass)(__m['primarySwatch']);
-  final Color? primaryColorDark = uNull<Color>(uClass)(__m['primaryColorDark']);
-  final Color? accentColor = uNull<Color>(uClass)(__m['accentColor']);
-  final Color? cardColor = uNull<Color>(uClass)(__m['cardColor']);
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? errorColor = uNull<Color>(uClass)(__m['errorColor']);
-  final Brightness brightness = uConst(Brightness.light, _uBrightness)(__m['brightness']);
+  final __m1 = __m['primarySwatch'];
+  final MaterialColor primarySwatch = (__m1 != null ? uClass<MaterialColor>(__m1) : const MaterialColor(4280391411, <int, Color>{50: const Color(4293128957), 100: const Color(4290502395), 200: const Color(4287679225), 300: const Color(4284790262), 400: const Color(4282557941), 500: const Color(4280391411), 600: const Color(4280191205), 700: const Color(4279858898), 800: const Color(4279592384), 900: const Color(4279060385)}));
+  final __m2 = __m['primaryColorDark'];
+  final Color? primaryColorDark = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['accentColor'];
+  final Color? accentColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['cardColor'];
+  final Color? cardColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['errorColor'];
+  final Color? errorColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['brightness'];
+  final Brightness brightness = (__m7 != null ? _uBrightness(__m7) : Brightness.light);
   return ColorScheme.fromSwatch(
     primarySwatch: primarySwatch,
     primaryColorDark: primaryColorDark,
@@ -367,21 +471,36 @@ MaterialTapTargetSize _uMaterialTapTargetSize(dynamic v) {
 }
 
 ButtonThemeData _uButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonTextTheme textTheme = uConst(ButtonTextTheme.normal, _uButtonTextTheme)(__m['textTheme']);
-  final double minWidth = uConst<double>(88.0, uDouble)(__m['minWidth']);
-  final double height = uConst<double>(36.0, uDouble)(__m['height']);
-  final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final ButtonBarLayoutBehavior layoutBehavior = uConst(ButtonBarLayoutBehavior.padded, _uButtonBarLayoutBehavior)(__m['layoutBehavior']);
-  final bool alignedDropdown = uConst<bool>(false, uBool)(__m['alignedDropdown']);
-  final Color? buttonColor = uNull<Color>(uClass)(__m['buttonColor']);
-  final Color? disabledColor = uNull<Color>(uClass)(__m['disabledColor']);
-  final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
-  final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
-  final Color? highlightColor = uNull<Color>(uClass)(__m['highlightColor']);
-  final Color? splashColor = uNull<Color>(uClass)(__m['splashColor']);
-  final ColorScheme? colorScheme = uNull<ColorScheme>(uClass)(__m['colorScheme']);
-  final MaterialTapTargetSize? materialTapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['materialTapTargetSize']);
+  final __m1 = __m['textTheme'];
+  final ButtonTextTheme textTheme = (__m1 != null ? _uButtonTextTheme(__m1) : ButtonTextTheme.normal);
+  final __m2 = __m['minWidth'];
+  final double minWidth = (__m2 != null ? uDouble(__m2) : 88.0);
+  final __m3 = __m['height'];
+  final double height = (__m3 != null ? uDouble(__m3) : 36.0);
+  final __m4 = __m['padding'];
+  final EdgeInsetsGeometry? padding = (__m4 != null ? uClass<EdgeInsetsGeometry>(__m4) : null);
+  final __m5 = __m['shape'];
+  final ShapeBorder? shape = (__m5 != null ? uClass<ShapeBorder>(__m5) : null);
+  final __m6 = __m['layoutBehavior'];
+  final ButtonBarLayoutBehavior layoutBehavior = (__m6 != null ? _uButtonBarLayoutBehavior(__m6) : ButtonBarLayoutBehavior.padded);
+  final __m7 = __m['alignedDropdown'];
+  final bool alignedDropdown = (__m7 != null ? uBool(__m7) : false);
+  final __m8 = __m['buttonColor'];
+  final Color? buttonColor = (__m8 != null ? uClass<Color>(__m8) : null);
+  final __m9 = __m['disabledColor'];
+  final Color? disabledColor = (__m9 != null ? uClass<Color>(__m9) : null);
+  final __m10 = __m['focusColor'];
+  final Color? focusColor = (__m10 != null ? uClass<Color>(__m10) : null);
+  final __m11 = __m['hoverColor'];
+  final Color? hoverColor = (__m11 != null ? uClass<Color>(__m11) : null);
+  final __m12 = __m['highlightColor'];
+  final Color? highlightColor = (__m12 != null ? uClass<Color>(__m12) : null);
+  final __m13 = __m['splashColor'];
+  final Color? splashColor = (__m13 != null ? uClass<Color>(__m13) : null);
+  final __m14 = __m['colorScheme'];
+  final ColorScheme? colorScheme = (__m14 != null ? uClass<ColorScheme>(__m14) : null);
+  final __m15 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize? materialTapTargetSize = (__m15 != null ? _uMaterialTapTargetSize(__m15) : null);
   return ButtonThemeData(
     textTheme: textTheme,
     minWidth: minWidth,
@@ -438,8 +557,10 @@ TextLeadingDistribution _uTextLeadingDistribution(dynamic v) {
 }
 
 Locale _uLocale(Map<String, dynamic> __m) {
-  final String _languageCode = uString(__m['_languageCode']);
-  final String? _countryCode = uNull<String>(uString)(__m['_countryCode']);
+  final __m1 = __m['_languageCode'];
+  final String _languageCode = uString(__m1);
+  final __m2 = __m['_countryCode'];
+  final String? _countryCode = (__m2 != null ? uString(__m2) : null);
   return Locale(
     _languageCode,
     _countryCode,
@@ -447,9 +568,12 @@ Locale _uLocale(Map<String, dynamic> __m) {
 }
 
 Locale _uLocaleFromSubtags(Map<String, dynamic> __m) {
-  final String languageCode = uConst<String>('und', uString)(__m['languageCode']);
-  final String? scriptCode = uNull<String>(uString)(__m['scriptCode']);
-  final String? countryCode = uNull<String>(uString)(__m['countryCode']);
+  final __m1 = __m['languageCode'];
+  final String languageCode = (__m1 != null ? uString(__m1) : 'und');
+  final __m2 = __m['scriptCode'];
+  final String? scriptCode = (__m2 != null ? uString(__m2) : null);
+  final __m3 = __m['countryCode'];
+  final String? countryCode = (__m3 != null ? uString(__m3) : null);
   return Locale.fromSubtags(
     languageCode: languageCode,
     scriptCode: scriptCode,
@@ -463,8 +587,10 @@ Paint _uPaint(Map<String, dynamic> __m) {
 }
 
 Offset _uOffset(Map<String, dynamic> __m) {
-  final double dx = uDouble(__m['dx']);
-  final double dy = uDouble(__m['dy']);
+  final __m1 = __m['dx'];
+  final double dx = uDouble(__m1);
+  final __m2 = __m['dy'];
+  final double dy = uDouble(__m2);
   return Offset(
     dx,
     dy,
@@ -472,8 +598,10 @@ Offset _uOffset(Map<String, dynamic> __m) {
 }
 
 Offset _uOffsetFromDirection(Map<String, dynamic> __m) {
-  final double direction = uDouble(__m['direction']);
-  final double distance = uConst<double>(1.0, uDouble)(__m['distance']);
+  final __m1 = __m['direction'];
+  final double direction = uDouble(__m1);
+  final __m2 = __m['distance'];
+  final double distance = (__m2 != null ? uDouble(__m2) : 1.0);
   return Offset.fromDirection(
     direction,
     distance,
@@ -481,9 +609,12 @@ Offset _uOffsetFromDirection(Map<String, dynamic> __m) {
 }
 
 Shadow _uShadow(Map<String, dynamic> __m) {
-  final Color color = uConst(const Color(4278190080), uClass)(__m['color']);
-  final Offset offset = uConst(const Offset(0.0, 0.0), uClass)(__m['offset']);
-  final double blurRadius = uConst<double>(0.0, uDouble)(__m['blurRadius']);
+  final __m1 = __m['color'];
+  final Color color = (__m1 != null ? uClass<Color>(__m1) : const Color(4278190080));
+  final __m2 = __m['offset'];
+  final Offset offset = (__m2 != null ? uClass<Offset>(__m2) : const Offset(0.0, 0.0));
+  final __m3 = __m['blurRadius'];
+  final double blurRadius = (__m3 != null ? uDouble(__m3) : 0.0);
   return Shadow(
     color: color,
     offset: offset,
@@ -492,8 +623,10 @@ Shadow _uShadow(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeature(Map<String, dynamic> __m) {
-  final String feature = uString(__m['feature']);
-  final int value = uConst<int>(1, uInt)(__m['value']);
+  final __m1 = __m['feature'];
+  final String feature = uString(__m1);
+  final __m2 = __m['value'];
+  final int value = (__m2 != null ? uInt(__m2) : 1);
   return FontFeature(
     feature,
     value,
@@ -501,21 +634,24 @@ FontFeature _uFontFeature(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureEnable(Map<String, dynamic> __m) {
-  final String feature = uString(__m['feature']);
+  final __m1 = __m['feature'];
+  final String feature = uString(__m1);
   return FontFeature.enable(
     feature,
   );
 }
 
 FontFeature _uFontFeatureDisable(Map<String, dynamic> __m) {
-  final String feature = uString(__m['feature']);
+  final __m1 = __m['feature'];
+  final String feature = uString(__m1);
   return FontFeature.disable(
     feature,
   );
 }
 
 FontFeature _uFontFeatureAlternative(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final __m1 = __m['value'];
+  final int value = uInt(__m1);
   return FontFeature.alternative(
     value,
   );
@@ -537,7 +673,8 @@ FontFeature _uFontFeatureCaseSensitiveForms(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureCharacterVariant(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final __m1 = __m['value'];
+  final int value = uInt(__m1);
   return FontFeature.characterVariant(
     value,
   );
@@ -569,14 +706,16 @@ FontFeature _uFontFeatureLiningFigures(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureLocaleAware(Map<String, dynamic> __m) {
-  final bool enable = uConst<bool>(true, uBool)(__m['enable']);
+  final __m1 = __m['enable'];
+  final bool enable = (__m1 != null ? uBool(__m1) : true);
   return FontFeature.localeAware(
     enable: enable,
   );
 }
 
 FontFeature _uFontFeatureNotationalForms(Map<String, dynamic> __m) {
-  final int value = uConst<int>(1, uInt)(__m['value']);
+  final __m1 = __m['value'];
+  final int value = (__m1 != null ? uInt(__m1) : 1);
   return FontFeature.notationalForms(
     value,
   );
@@ -618,7 +757,8 @@ FontFeature _uFontFeatureScientificInferiors(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureStylisticSet(Map<String, dynamic> __m) {
-  final int value = uInt(__m['value']);
+  final __m1 = __m['value'];
+  final int value = uInt(__m1);
   return FontFeature.stylisticSet(
     value,
   );
@@ -635,7 +775,8 @@ FontFeature _uFontFeatureSuperscripts(Map<String, dynamic> __m) {
 }
 
 FontFeature _uFontFeatureSwash(Map<String, dynamic> __m) {
-  final int value = uConst<int>(1, uInt)(__m['value']);
+  final __m1 = __m['value'];
+  final int value = (__m1 != null ? uInt(__m1) : 1);
   return FontFeature.swash(
     value,
   );
@@ -652,7 +793,8 @@ FontFeature _uFontFeatureSlashedZero(Map<String, dynamic> __m) {
 }
 
 TextDecoration _uTextDecorationCombine(Map<String, dynamic> __m) {
-  final List<TextDecoration> decorations = uList<TextDecoration>(uClass)(__m['decorations']);
+  final __m1 = __m['decorations'];
+  final List<TextDecoration> decorations = (__m1 is List<dynamic> ? __m1.map((v) => uClass<TextDecoration>(v)).toList() : die('not a list'));
   return TextDecoration.combine(
     decorations,
   );
@@ -693,31 +835,56 @@ TextOverflow _uTextOverflow(dynamic v) {
 }
 
 TextStyle _uTextStyle(Map<String, dynamic> __m) {
-  final bool inherit = uConst<bool>(true, uBool)(__m['inherit']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final double? fontSize = uNull<double>(uDouble)(__m['fontSize']);
-  final FontWeight? fontWeight = uNull<FontWeight>(uClass)(__m['fontWeight']);
-  final FontStyle? fontStyle = uNull<FontStyle>(_uFontStyle)(__m['fontStyle']);
-  final double? letterSpacing = uNull<double>(uDouble)(__m['letterSpacing']);
-  final double? wordSpacing = uNull<double>(uDouble)(__m['wordSpacing']);
-  final TextBaseline? textBaseline = uNull<TextBaseline>(_uTextBaseline)(__m['textBaseline']);
-  final double? height = uNull<double>(uDouble)(__m['height']);
-  final TextLeadingDistribution? leadingDistribution = uNull<TextLeadingDistribution>(_uTextLeadingDistribution)(__m['leadingDistribution']);
-  final Locale? locale = uNull<Locale>(uClass)(__m['locale']);
-  final Paint? foreground = uNull<Paint>(uClass)(__m['foreground']);
-  final Paint? background = uNull<Paint>(uClass)(__m['background']);
-  final List<Shadow>? shadows = uNull<List<Shadow>>(uList<Shadow>(uClass))(__m['shadows']);
-  final List<FontFeature>? fontFeatures = uNull<List<FontFeature>>(uList<FontFeature>(uClass))(__m['fontFeatures']);
-  final TextDecoration? decoration = uNull<TextDecoration>(uClass)(__m['decoration']);
-  final Color? decorationColor = uNull<Color>(uClass)(__m['decorationColor']);
-  final TextDecorationStyle? decorationStyle = uNull<TextDecorationStyle>(_uTextDecorationStyle)(__m['decorationStyle']);
-  final double? decorationThickness = uNull<double>(uDouble)(__m['decorationThickness']);
-  final String? debugLabel = uNull<String>(uString)(__m['debugLabel']);
-  final String? fontFamily = uNull<String>(uString)(__m['fontFamily']);
-  final List<String>? fontFamilyFallback = uNull<List<String>>(uList<String>(uString))(__m['fontFamilyFallback']);
-  final String? package = uNull<String>(uString)(__m['package']);
-  final TextOverflow? overflow = uNull<TextOverflow>(_uTextOverflow)(__m['overflow']);
+  final __m1 = __m['inherit'];
+  final bool inherit = (__m1 != null ? uBool(__m1) : true);
+  final __m2 = __m['color'];
+  final Color? color = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['fontSize'];
+  final double? fontSize = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['fontWeight'];
+  final FontWeight? fontWeight = (__m5 != null ? uClass<FontWeight>(__m5) : null);
+  final __m6 = __m['fontStyle'];
+  final FontStyle? fontStyle = (__m6 != null ? _uFontStyle(__m6) : null);
+  final __m7 = __m['letterSpacing'];
+  final double? letterSpacing = (__m7 != null ? uDouble(__m7) : null);
+  final __m8 = __m['wordSpacing'];
+  final double? wordSpacing = (__m8 != null ? uDouble(__m8) : null);
+  final __m9 = __m['textBaseline'];
+  final TextBaseline? textBaseline = (__m9 != null ? _uTextBaseline(__m9) : null);
+  final __m10 = __m['height'];
+  final double? height = (__m10 != null ? uDouble(__m10) : null);
+  final __m11 = __m['leadingDistribution'];
+  final TextLeadingDistribution? leadingDistribution = (__m11 != null ? _uTextLeadingDistribution(__m11) : null);
+  final __m12 = __m['locale'];
+  final Locale? locale = (__m12 != null ? uClass<Locale>(__m12) : null);
+  final __m13 = __m['foreground'];
+  final Paint? foreground = (__m13 != null ? uClass<Paint>(__m13) : null);
+  final __m14 = __m['background'];
+  final Paint? background = (__m14 != null ? uClass<Paint>(__m14) : null);
+  final __m15 = __m['shadows'];
+  final List<Shadow>? shadows = (__m15 != null ? (__m15 is List<dynamic> ? __m15.map((v) => uClass<Shadow>(v)).toList() : die('not a list')) : null);
+  final __m16 = __m['fontFeatures'];
+  final List<FontFeature>? fontFeatures = (__m16 != null ? (__m16 is List<dynamic> ? __m16.map((v) => uClass<FontFeature>(v)).toList() : die('not a list')) : null);
+  final __m17 = __m['decoration'];
+  final TextDecoration? decoration = (__m17 != null ? uClass<TextDecoration>(__m17) : null);
+  final __m18 = __m['decorationColor'];
+  final Color? decorationColor = (__m18 != null ? uClass<Color>(__m18) : null);
+  final __m19 = __m['decorationStyle'];
+  final TextDecorationStyle? decorationStyle = (__m19 != null ? _uTextDecorationStyle(__m19) : null);
+  final __m20 = __m['decorationThickness'];
+  final double? decorationThickness = (__m20 != null ? uDouble(__m20) : null);
+  final __m21 = __m['debugLabel'];
+  final String? debugLabel = (__m21 != null ? uString(__m21) : null);
+  final __m22 = __m['fontFamily'];
+  final String? fontFamily = (__m22 != null ? uString(__m22) : null);
+  final __m23 = __m['fontFamilyFallback'];
+  final List<String>? fontFamilyFallback = (__m23 != null ? (__m23 is List<dynamic> ? __m23.map((v) => uString(v)).toList() : die('not a list')) : null);
+  final __m24 = __m['package'];
+  final String? package = (__m24 != null ? uString(__m24) : null);
+  final __m25 = __m['overflow'];
+  final TextOverflow? overflow = (__m25 != null ? _uTextOverflow(__m25) : null);
   return TextStyle(
     inherit: inherit,
     color: color,
@@ -748,8 +915,10 @@ TextStyle _uTextStyle(Map<String, dynamic> __m) {
 }
 
 Size _uSize(Map<String, dynamic> __m) {
-  final double width = uDouble(__m['width']);
-  final double height = uDouble(__m['height']);
+  final __m1 = __m['width'];
+  final double width = uDouble(__m1);
+  final __m2 = __m['height'];
+  final double height = uDouble(__m2);
   return Size(
     width,
     height,
@@ -757,45 +926,54 @@ Size _uSize(Map<String, dynamic> __m) {
 }
 
 Size _uSizeCopy(Map<String, dynamic> __m) {
-  final Size source = uClass(__m['source']);
+  final __m1 = __m['source'];
+  final Size source = uClass<Size>(__m1);
   return Size.copy(
     source,
   );
 }
 
 Size _uSizeSquare(Map<String, dynamic> __m) {
-  final double dimension = uDouble(__m['dimension']);
+  final __m1 = __m['dimension'];
+  final double dimension = uDouble(__m1);
   return Size.square(
     dimension,
   );
 }
 
 Size _uSizeFromWidth(Map<String, dynamic> __m) {
-  final double width = uDouble(__m['width']);
+  final __m1 = __m['width'];
+  final double width = uDouble(__m1);
   return Size.fromWidth(
     width,
   );
 }
 
 Size _uSizeFromHeight(Map<String, dynamic> __m) {
-  final double height = uDouble(__m['height']);
+  final __m1 = __m['height'];
+  final double height = uDouble(__m1);
   return Size.fromHeight(
     height,
   );
 }
 
 Size _uSizeFromRadius(Map<String, dynamic> __m) {
-  final double radius = uDouble(__m['radius']);
+  final __m1 = __m['radius'];
+  final double radius = uDouble(__m1);
   return Size.fromRadius(
     radius,
   );
 }
 
 BoxConstraints _uBoxConstraints(Map<String, dynamic> __m) {
-  final double minWidth = uConst<double>(0.0, uDouble)(__m['minWidth']);
-  final double maxWidth = uConst<double>(double.infinity, uDouble)(__m['maxWidth']);
-  final double minHeight = uConst<double>(0.0, uDouble)(__m['minHeight']);
-  final double maxHeight = uConst<double>(double.infinity, uDouble)(__m['maxHeight']);
+  final __m1 = __m['minWidth'];
+  final double minWidth = (__m1 != null ? uDouble(__m1) : 0.0);
+  final __m2 = __m['maxWidth'];
+  final double maxWidth = (__m2 != null ? uDouble(__m2) : double.infinity);
+  final __m3 = __m['minHeight'];
+  final double minHeight = (__m3 != null ? uDouble(__m3) : 0.0);
+  final __m4 = __m['maxHeight'];
+  final double maxHeight = (__m4 != null ? uDouble(__m4) : double.infinity);
   return BoxConstraints(
     minWidth: minWidth,
     maxWidth: maxWidth,
@@ -805,15 +983,18 @@ BoxConstraints _uBoxConstraints(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraintsTight(Map<String, dynamic> __m) {
-  final Size size = uClass(__m['size']);
+  final __m1 = __m['size'];
+  final Size size = uClass<Size>(__m1);
   return BoxConstraints.tight(
     size,
   );
 }
 
 BoxConstraints _uBoxConstraintsTightFor(Map<String, dynamic> __m) {
-  final double? width = uNull<double>(uDouble)(__m['width']);
-  final double? height = uNull<double>(uDouble)(__m['height']);
+  final __m1 = __m['width'];
+  final double? width = (__m1 != null ? uDouble(__m1) : null);
+  final __m2 = __m['height'];
+  final double? height = (__m2 != null ? uDouble(__m2) : null);
   return BoxConstraints.tightFor(
     width: width,
     height: height,
@@ -821,8 +1002,10 @@ BoxConstraints _uBoxConstraintsTightFor(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraintsTightForFinite(Map<String, dynamic> __m) {
-  final double width = uConst<double>(double.infinity, uDouble)(__m['width']);
-  final double height = uConst<double>(double.infinity, uDouble)(__m['height']);
+  final __m1 = __m['width'];
+  final double width = (__m1 != null ? uDouble(__m1) : double.infinity);
+  final __m2 = __m['height'];
+  final double height = (__m2 != null ? uDouble(__m2) : double.infinity);
   return BoxConstraints.tightForFinite(
     width: width,
     height: height,
@@ -830,15 +1013,18 @@ BoxConstraints _uBoxConstraintsTightForFinite(Map<String, dynamic> __m) {
 }
 
 BoxConstraints _uBoxConstraintsLoose(Map<String, dynamic> __m) {
-  final Size size = uClass(__m['size']);
+  final __m1 = __m['size'];
+  final Size size = uClass<Size>(__m1);
   return BoxConstraints.loose(
     size,
   );
 }
 
 BoxConstraints _uBoxConstraintsExpand(Map<String, dynamic> __m) {
-  final double? width = uNull<double>(uDouble)(__m['width']);
-  final double? height = uNull<double>(uDouble)(__m['height']);
+  final __m1 = __m['width'];
+  final double? width = (__m1 != null ? uDouble(__m1) : null);
+  final __m2 = __m['height'];
+  final double? height = (__m2 != null ? uDouble(__m2) : null);
   return BoxConstraints.expand(
     width: width,
     height: height,
@@ -846,15 +1032,18 @@ BoxConstraints _uBoxConstraintsExpand(Map<String, dynamic> __m) {
 }
 
 Radius _uRadiusCircular(Map<String, dynamic> __m) {
-  final double radius = uDouble(__m['radius']);
+  final __m1 = __m['radius'];
+  final double radius = uDouble(__m1);
   return Radius.circular(
     radius,
   );
 }
 
 Radius _uRadiusElliptical(Map<String, dynamic> __m) {
-  final double x = uDouble(__m['x']);
-  final double y = uDouble(__m['y']);
+  final __m1 = __m['x'];
+  final double x = uDouble(__m1);
+  final __m2 = __m['y'];
+  final double y = uDouble(__m2);
   return Radius.elliptical(
     x,
     y,
@@ -862,22 +1051,26 @@ Radius _uRadiusElliptical(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusAll(Map<String, dynamic> __m) {
-  final Radius radius = uClass(__m['radius']);
+  final __m1 = __m['radius'];
+  final Radius radius = uClass<Radius>(__m1);
   return BorderRadius.all(
     radius,
   );
 }
 
 BorderRadius _uBorderRadiusCircular(Map<String, dynamic> __m) {
-  final double radius = uDouble(__m['radius']);
+  final __m1 = __m['radius'];
+  final double radius = uDouble(__m1);
   return BorderRadius.circular(
     radius,
   );
 }
 
 BorderRadius _uBorderRadiusVertical(Map<String, dynamic> __m) {
-  final Radius top = uConst(const Radius.circular(0.0), uClass)(__m['top']);
-  final Radius bottom = uConst(const Radius.circular(0.0), uClass)(__m['bottom']);
+  final __m1 = __m['top'];
+  final Radius top = (__m1 != null ? uClass<Radius>(__m1) : const Radius.circular(0.0));
+  final __m2 = __m['bottom'];
+  final Radius bottom = (__m2 != null ? uClass<Radius>(__m2) : const Radius.circular(0.0));
   return BorderRadius.vertical(
     top: top,
     bottom: bottom,
@@ -885,8 +1078,10 @@ BorderRadius _uBorderRadiusVertical(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusHorizontal(Map<String, dynamic> __m) {
-  final Radius left = uConst(const Radius.circular(0.0), uClass)(__m['left']);
-  final Radius right = uConst(const Radius.circular(0.0), uClass)(__m['right']);
+  final __m1 = __m['left'];
+  final Radius left = (__m1 != null ? uClass<Radius>(__m1) : const Radius.circular(0.0));
+  final __m2 = __m['right'];
+  final Radius right = (__m2 != null ? uClass<Radius>(__m2) : const Radius.circular(0.0));
   return BorderRadius.horizontal(
     left: left,
     right: right,
@@ -894,10 +1089,14 @@ BorderRadius _uBorderRadiusHorizontal(Map<String, dynamic> __m) {
 }
 
 BorderRadius _uBorderRadiusOnly(Map<String, dynamic> __m) {
-  final Radius topLeft = uConst(const Radius.circular(0.0), uClass)(__m['topLeft']);
-  final Radius topRight = uConst(const Radius.circular(0.0), uClass)(__m['topRight']);
-  final Radius bottomLeft = uConst(const Radius.circular(0.0), uClass)(__m['bottomLeft']);
-  final Radius bottomRight = uConst(const Radius.circular(0.0), uClass)(__m['bottomRight']);
+  final __m1 = __m['topLeft'];
+  final Radius topLeft = (__m1 != null ? uClass<Radius>(__m1) : const Radius.circular(0.0));
+  final __m2 = __m['topRight'];
+  final Radius topRight = (__m2 != null ? uClass<Radius>(__m2) : const Radius.circular(0.0));
+  final __m3 = __m['bottomLeft'];
+  final Radius bottomLeft = (__m3 != null ? uClass<Radius>(__m3) : const Radius.circular(0.0));
+  final __m4 = __m['bottomRight'];
+  final Radius bottomRight = (__m4 != null ? uClass<Radius>(__m4) : const Radius.circular(0.0));
   return BorderRadius.only(
     topLeft: topLeft,
     topRight: topRight,
@@ -907,21 +1106,36 @@ BorderRadius _uBorderRadiusOnly(Map<String, dynamic> __m) {
 }
 
 ToggleButtonsThemeData _uToggleButtonsThemeData(Map<String, dynamic> __m) {
-  final TextStyle? textStyle = uNull<TextStyle>(uClass)(__m['textStyle']);
-  final BoxConstraints? constraints = uNull<BoxConstraints>(uClass)(__m['constraints']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final Color? selectedColor = uNull<Color>(uClass)(__m['selectedColor']);
-  final Color? disabledColor = uNull<Color>(uClass)(__m['disabledColor']);
-  final Color? fillColor = uNull<Color>(uClass)(__m['fillColor']);
-  final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
-  final Color? highlightColor = uNull<Color>(uClass)(__m['highlightColor']);
-  final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
-  final Color? splashColor = uNull<Color>(uClass)(__m['splashColor']);
-  final Color? borderColor = uNull<Color>(uClass)(__m['borderColor']);
-  final Color? selectedBorderColor = uNull<Color>(uClass)(__m['selectedBorderColor']);
-  final Color? disabledBorderColor = uNull<Color>(uClass)(__m['disabledBorderColor']);
-  final BorderRadius? borderRadius = uNull<BorderRadius>(uClass)(__m['borderRadius']);
-  final double? borderWidth = uNull<double>(uDouble)(__m['borderWidth']);
+  final __m1 = __m['textStyle'];
+  final TextStyle? textStyle = (__m1 != null ? uClass<TextStyle>(__m1) : null);
+  final __m2 = __m['constraints'];
+  final BoxConstraints? constraints = (__m2 != null ? uClass<BoxConstraints>(__m2) : null);
+  final __m3 = __m['color'];
+  final Color? color = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['selectedColor'];
+  final Color? selectedColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['disabledColor'];
+  final Color? disabledColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['fillColor'];
+  final Color? fillColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['focusColor'];
+  final Color? focusColor = (__m7 != null ? uClass<Color>(__m7) : null);
+  final __m8 = __m['highlightColor'];
+  final Color? highlightColor = (__m8 != null ? uClass<Color>(__m8) : null);
+  final __m9 = __m['hoverColor'];
+  final Color? hoverColor = (__m9 != null ? uClass<Color>(__m9) : null);
+  final __m10 = __m['splashColor'];
+  final Color? splashColor = (__m10 != null ? uClass<Color>(__m10) : null);
+  final __m11 = __m['borderColor'];
+  final Color? borderColor = (__m11 != null ? uClass<Color>(__m11) : null);
+  final __m12 = __m['selectedBorderColor'];
+  final Color? selectedBorderColor = (__m12 != null ? uClass<Color>(__m12) : null);
+  final __m13 = __m['disabledBorderColor'];
+  final Color? disabledBorderColor = (__m13 != null ? uClass<Color>(__m13) : null);
+  final __m14 = __m['borderRadius'];
+  final BorderRadius? borderRadius = (__m14 != null ? uClass<BorderRadius>(__m14) : null);
+  final __m15 = __m['borderWidth'];
+  final double? borderWidth = (__m15 != null ? uDouble(__m15) : null);
   return ToggleButtonsThemeData(
     textStyle: textStyle,
     constraints: constraints,
@@ -942,19 +1156,32 @@ ToggleButtonsThemeData _uToggleButtonsThemeData(Map<String, dynamic> __m) {
 }
 
 TextTheme _uTextTheme(Map<String, dynamic> __m) {
-  final TextStyle? headline1 = uNull<TextStyle>(uClass)(__m['headline1']);
-  final TextStyle? headline2 = uNull<TextStyle>(uClass)(__m['headline2']);
-  final TextStyle? headline3 = uNull<TextStyle>(uClass)(__m['headline3']);
-  final TextStyle? headline4 = uNull<TextStyle>(uClass)(__m['headline4']);
-  final TextStyle? headline5 = uNull<TextStyle>(uClass)(__m['headline5']);
-  final TextStyle? headline6 = uNull<TextStyle>(uClass)(__m['headline6']);
-  final TextStyle? subtitle1 = uNull<TextStyle>(uClass)(__m['subtitle1']);
-  final TextStyle? subtitle2 = uNull<TextStyle>(uClass)(__m['subtitle2']);
-  final TextStyle? bodyText1 = uNull<TextStyle>(uClass)(__m['bodyText1']);
-  final TextStyle? bodyText2 = uNull<TextStyle>(uClass)(__m['bodyText2']);
-  final TextStyle? caption = uNull<TextStyle>(uClass)(__m['caption']);
-  final TextStyle? button = uNull<TextStyle>(uClass)(__m['button']);
-  final TextStyle? overline = uNull<TextStyle>(uClass)(__m['overline']);
+  final __m1 = __m['headline1'];
+  final TextStyle? headline1 = (__m1 != null ? uClass<TextStyle>(__m1) : null);
+  final __m2 = __m['headline2'];
+  final TextStyle? headline2 = (__m2 != null ? uClass<TextStyle>(__m2) : null);
+  final __m3 = __m['headline3'];
+  final TextStyle? headline3 = (__m3 != null ? uClass<TextStyle>(__m3) : null);
+  final __m4 = __m['headline4'];
+  final TextStyle? headline4 = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['headline5'];
+  final TextStyle? headline5 = (__m5 != null ? uClass<TextStyle>(__m5) : null);
+  final __m6 = __m['headline6'];
+  final TextStyle? headline6 = (__m6 != null ? uClass<TextStyle>(__m6) : null);
+  final __m7 = __m['subtitle1'];
+  final TextStyle? subtitle1 = (__m7 != null ? uClass<TextStyle>(__m7) : null);
+  final __m8 = __m['subtitle2'];
+  final TextStyle? subtitle2 = (__m8 != null ? uClass<TextStyle>(__m8) : null);
+  final __m9 = __m['bodyText1'];
+  final TextStyle? bodyText1 = (__m9 != null ? uClass<TextStyle>(__m9) : null);
+  final __m10 = __m['bodyText2'];
+  final TextStyle? bodyText2 = (__m10 != null ? uClass<TextStyle>(__m10) : null);
+  final __m11 = __m['caption'];
+  final TextStyle? caption = (__m11 != null ? uClass<TextStyle>(__m11) : null);
+  final __m12 = __m['button'];
+  final TextStyle? button = (__m12 != null ? uClass<TextStyle>(__m12) : null);
+  final __m13 = __m['overline'];
+  final TextStyle? overline = (__m13 != null ? uClass<TextStyle>(__m13) : null);
   return TextTheme(
     headline1: headline1,
     headline2: headline2,
@@ -999,9 +1226,12 @@ BorderStyle _uBorderStyle(dynamic v) {
 }
 
 BorderSide _uBorderSide(Map<String, dynamic> __m) {
-  final Color color = uConst(const Color(4278190080), uClass)(__m['color']);
-  final double width = uConst<double>(1.0, uDouble)(__m['width']);
-  final BorderStyle style = uConst(BorderStyle.solid, _uBorderStyle)(__m['style']);
+  final __m1 = __m['color'];
+  final Color color = (__m1 != null ? uClass<Color>(__m1) : const Color(4278190080));
+  final __m2 = __m['width'];
+  final double width = (__m2 != null ? uDouble(__m2) : 1.0);
+  final __m3 = __m['style'];
+  final BorderStyle style = (__m3 != null ? _uBorderStyle(__m3) : BorderStyle.solid);
   return BorderSide(
     color: color,
     width: width,
@@ -1010,32 +1240,58 @@ BorderSide _uBorderSide(Map<String, dynamic> __m) {
 }
 
 InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
-  final TextStyle? labelStyle = uNull<TextStyle>(uClass)(__m['labelStyle']);
-  final TextStyle? floatingLabelStyle = uNull<TextStyle>(uClass)(__m['floatingLabelStyle']);
-  final TextStyle? helperStyle = uNull<TextStyle>(uClass)(__m['helperStyle']);
-  final int? helperMaxLines = uNull<int>(uInt)(__m['helperMaxLines']);
-  final TextStyle? hintStyle = uNull<TextStyle>(uClass)(__m['hintStyle']);
-  final TextStyle? errorStyle = uNull<TextStyle>(uClass)(__m['errorStyle']);
-  final int? errorMaxLines = uNull<int>(uInt)(__m['errorMaxLines']);
-  final FloatingLabelBehavior floatingLabelBehavior = uConst(FloatingLabelBehavior.auto, _uFloatingLabelBehavior)(__m['floatingLabelBehavior']);
-  final bool isDense = uConst<bool>(false, uBool)(__m['isDense']);
-  final EdgeInsetsGeometry? contentPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['contentPadding']);
-  final bool isCollapsed = uConst<bool>(false, uBool)(__m['isCollapsed']);
-  final TextStyle? prefixStyle = uNull<TextStyle>(uClass)(__m['prefixStyle']);
-  final TextStyle? suffixStyle = uNull<TextStyle>(uClass)(__m['suffixStyle']);
-  final TextStyle? counterStyle = uNull<TextStyle>(uClass)(__m['counterStyle']);
-  final bool filled = uConst<bool>(false, uBool)(__m['filled']);
-  final Color? fillColor = uNull<Color>(uClass)(__m['fillColor']);
-  final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
-  final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
-  final InputBorder? errorBorder = uNull<InputBorder>(uClass)(__m['errorBorder']);
-  final InputBorder? focusedBorder = uNull<InputBorder>(uClass)(__m['focusedBorder']);
-  final InputBorder? focusedErrorBorder = uNull<InputBorder>(uClass)(__m['focusedErrorBorder']);
-  final InputBorder? disabledBorder = uNull<InputBorder>(uClass)(__m['disabledBorder']);
-  final InputBorder? enabledBorder = uNull<InputBorder>(uClass)(__m['enabledBorder']);
-  final InputBorder? border = uNull<InputBorder>(uClass)(__m['border']);
-  final bool alignLabelWithHint = uConst<bool>(false, uBool)(__m['alignLabelWithHint']);
-  final BoxConstraints? constraints = uNull<BoxConstraints>(uClass)(__m['constraints']);
+  final __m1 = __m['labelStyle'];
+  final TextStyle? labelStyle = (__m1 != null ? uClass<TextStyle>(__m1) : null);
+  final __m2 = __m['floatingLabelStyle'];
+  final TextStyle? floatingLabelStyle = (__m2 != null ? uClass<TextStyle>(__m2) : null);
+  final __m3 = __m['helperStyle'];
+  final TextStyle? helperStyle = (__m3 != null ? uClass<TextStyle>(__m3) : null);
+  final __m4 = __m['helperMaxLines'];
+  final int? helperMaxLines = (__m4 != null ? uInt(__m4) : null);
+  final __m5 = __m['hintStyle'];
+  final TextStyle? hintStyle = (__m5 != null ? uClass<TextStyle>(__m5) : null);
+  final __m6 = __m['errorStyle'];
+  final TextStyle? errorStyle = (__m6 != null ? uClass<TextStyle>(__m6) : null);
+  final __m7 = __m['errorMaxLines'];
+  final int? errorMaxLines = (__m7 != null ? uInt(__m7) : null);
+  final __m8 = __m['floatingLabelBehavior'];
+  final FloatingLabelBehavior floatingLabelBehavior = (__m8 != null ? _uFloatingLabelBehavior(__m8) : FloatingLabelBehavior.auto);
+  final __m9 = __m['isDense'];
+  final bool isDense = (__m9 != null ? uBool(__m9) : false);
+  final __m10 = __m['contentPadding'];
+  final EdgeInsetsGeometry? contentPadding = (__m10 != null ? uClass<EdgeInsetsGeometry>(__m10) : null);
+  final __m11 = __m['isCollapsed'];
+  final bool isCollapsed = (__m11 != null ? uBool(__m11) : false);
+  final __m12 = __m['prefixStyle'];
+  final TextStyle? prefixStyle = (__m12 != null ? uClass<TextStyle>(__m12) : null);
+  final __m13 = __m['suffixStyle'];
+  final TextStyle? suffixStyle = (__m13 != null ? uClass<TextStyle>(__m13) : null);
+  final __m14 = __m['counterStyle'];
+  final TextStyle? counterStyle = (__m14 != null ? uClass<TextStyle>(__m14) : null);
+  final __m15 = __m['filled'];
+  final bool filled = (__m15 != null ? uBool(__m15) : false);
+  final __m16 = __m['fillColor'];
+  final Color? fillColor = (__m16 != null ? uClass<Color>(__m16) : null);
+  final __m17 = __m['focusColor'];
+  final Color? focusColor = (__m17 != null ? uClass<Color>(__m17) : null);
+  final __m18 = __m['hoverColor'];
+  final Color? hoverColor = (__m18 != null ? uClass<Color>(__m18) : null);
+  final __m19 = __m['errorBorder'];
+  final InputBorder? errorBorder = (__m19 != null ? uClass<InputBorder>(__m19) : null);
+  final __m20 = __m['focusedBorder'];
+  final InputBorder? focusedBorder = (__m20 != null ? uClass<InputBorder>(__m20) : null);
+  final __m21 = __m['focusedErrorBorder'];
+  final InputBorder? focusedErrorBorder = (__m21 != null ? uClass<InputBorder>(__m21) : null);
+  final __m22 = __m['disabledBorder'];
+  final InputBorder? disabledBorder = (__m22 != null ? uClass<InputBorder>(__m22) : null);
+  final __m23 = __m['enabledBorder'];
+  final InputBorder? enabledBorder = (__m23 != null ? uClass<InputBorder>(__m23) : null);
+  final __m24 = __m['border'];
+  final InputBorder? border = (__m24 != null ? uClass<InputBorder>(__m24) : null);
+  final __m25 = __m['alignLabelWithHint'];
+  final bool alignLabelWithHint = (__m25 != null ? uBool(__m25) : false);
+  final __m26 = __m['constraints'];
+  final BoxConstraints? constraints = (__m26 != null ? uClass<BoxConstraints>(__m26) : null);
   return InputDecorationTheme(
     labelStyle: labelStyle,
     floatingLabelStyle: floatingLabelStyle,
@@ -1067,9 +1323,12 @@ InputDecorationTheme _uInputDecorationTheme(Map<String, dynamic> __m) {
 }
 
 IconThemeData _uIconThemeData(Map<String, dynamic> __m) {
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final double? opacity = uNull<double>(uDouble)(__m['opacity']);
-  final double? size = uNull<double>(uDouble)(__m['size']);
+  final __m1 = __m['color'];
+  final Color? color = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['opacity'];
+  final double? opacity = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['size'];
+  final double? size = (__m3 != null ? uDouble(__m3) : null);
   return IconThemeData(
     color: color,
     opacity: opacity,
@@ -1111,8 +1370,10 @@ TextDirection _uTextDirection(dynamic v) {
 }
 
 RangeValues _uRangeValues(Map<String, dynamic> __m) {
-  final double start = uDouble(__m['start']);
-  final double end = uDouble(__m['end']);
+  final __m1 = __m['start'];
+  final double start = uDouble(__m1);
+  final __m2 = __m['end'];
+  final double end = uDouble(__m2);
   return RangeValues(
     start,
     end,
@@ -1132,33 +1393,60 @@ Thumb _uThumb(dynamic v) {
 }
 
 SliderThemeData _uSliderThemeData(Map<String, dynamic> __m) {
-  final double? trackHeight = uNull<double>(uDouble)(__m['trackHeight']);
-  final Color? activeTrackColor = uNull<Color>(uClass)(__m['activeTrackColor']);
-  final Color? inactiveTrackColor = uNull<Color>(uClass)(__m['inactiveTrackColor']);
-  final Color? disabledActiveTrackColor = uNull<Color>(uClass)(__m['disabledActiveTrackColor']);
-  final Color? disabledInactiveTrackColor = uNull<Color>(uClass)(__m['disabledInactiveTrackColor']);
-  final Color? activeTickMarkColor = uNull<Color>(uClass)(__m['activeTickMarkColor']);
-  final Color? inactiveTickMarkColor = uNull<Color>(uClass)(__m['inactiveTickMarkColor']);
-  final Color? disabledActiveTickMarkColor = uNull<Color>(uClass)(__m['disabledActiveTickMarkColor']);
-  final Color? disabledInactiveTickMarkColor = uNull<Color>(uClass)(__m['disabledInactiveTickMarkColor']);
-  final Color? thumbColor = uNull<Color>(uClass)(__m['thumbColor']);
-  final Color? overlappingShapeStrokeColor = uNull<Color>(uClass)(__m['overlappingShapeStrokeColor']);
-  final Color? disabledThumbColor = uNull<Color>(uClass)(__m['disabledThumbColor']);
-  final Color? overlayColor = uNull<Color>(uClass)(__m['overlayColor']);
-  final Color? valueIndicatorColor = uNull<Color>(uClass)(__m['valueIndicatorColor']);
-  final SliderComponentShape? overlayShape = uNull<SliderComponentShape>(uClass)(__m['overlayShape']);
-  final SliderTickMarkShape? tickMarkShape = uNull<SliderTickMarkShape>(uClass)(__m['tickMarkShape']);
-  final SliderComponentShape? thumbShape = uNull<SliderComponentShape>(uClass)(__m['thumbShape']);
-  final SliderTrackShape? trackShape = uNull<SliderTrackShape>(uClass)(__m['trackShape']);
-  final SliderComponentShape? valueIndicatorShape = uNull<SliderComponentShape>(uClass)(__m['valueIndicatorShape']);
-  final RangeSliderTickMarkShape? rangeTickMarkShape = uNull<RangeSliderTickMarkShape>(uClass)(__m['rangeTickMarkShape']);
-  final RangeSliderThumbShape? rangeThumbShape = uNull<RangeSliderThumbShape>(uClass)(__m['rangeThumbShape']);
-  final RangeSliderTrackShape? rangeTrackShape = uNull<RangeSliderTrackShape>(uClass)(__m['rangeTrackShape']);
-  final RangeSliderValueIndicatorShape? rangeValueIndicatorShape = uNull<RangeSliderValueIndicatorShape>(uClass)(__m['rangeValueIndicatorShape']);
-  final ShowValueIndicator? showValueIndicator = uNull<ShowValueIndicator>(_uShowValueIndicator)(__m['showValueIndicator']);
-  final TextStyle? valueIndicatorTextStyle = uNull<TextStyle>(uClass)(__m['valueIndicatorTextStyle']);
-  final double? minThumbSeparation = uNull<double>(uDouble)(__m['minThumbSeparation']);
-  final Thumb? Function(TextDirection, RangeValues, double, Size, Size, double)? thumbSelector = uNull<Thumb? Function(TextDirection, RangeValues, double, Size, Size, double)>(uFunc)(__m['thumbSelector']);
+  final __m1 = __m['trackHeight'];
+  final double? trackHeight = (__m1 != null ? uDouble(__m1) : null);
+  final __m2 = __m['activeTrackColor'];
+  final Color? activeTrackColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['inactiveTrackColor'];
+  final Color? inactiveTrackColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['disabledActiveTrackColor'];
+  final Color? disabledActiveTrackColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['disabledInactiveTrackColor'];
+  final Color? disabledInactiveTrackColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['activeTickMarkColor'];
+  final Color? activeTickMarkColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['inactiveTickMarkColor'];
+  final Color? inactiveTickMarkColor = (__m7 != null ? uClass<Color>(__m7) : null);
+  final __m8 = __m['disabledActiveTickMarkColor'];
+  final Color? disabledActiveTickMarkColor = (__m8 != null ? uClass<Color>(__m8) : null);
+  final __m9 = __m['disabledInactiveTickMarkColor'];
+  final Color? disabledInactiveTickMarkColor = (__m9 != null ? uClass<Color>(__m9) : null);
+  final __m10 = __m['thumbColor'];
+  final Color? thumbColor = (__m10 != null ? uClass<Color>(__m10) : null);
+  final __m11 = __m['overlappingShapeStrokeColor'];
+  final Color? overlappingShapeStrokeColor = (__m11 != null ? uClass<Color>(__m11) : null);
+  final __m12 = __m['disabledThumbColor'];
+  final Color? disabledThumbColor = (__m12 != null ? uClass<Color>(__m12) : null);
+  final __m13 = __m['overlayColor'];
+  final Color? overlayColor = (__m13 != null ? uClass<Color>(__m13) : null);
+  final __m14 = __m['valueIndicatorColor'];
+  final Color? valueIndicatorColor = (__m14 != null ? uClass<Color>(__m14) : null);
+  final __m15 = __m['overlayShape'];
+  final SliderComponentShape? overlayShape = (__m15 != null ? uClass<SliderComponentShape>(__m15) : null);
+  final __m16 = __m['tickMarkShape'];
+  final SliderTickMarkShape? tickMarkShape = (__m16 != null ? uClass<SliderTickMarkShape>(__m16) : null);
+  final __m17 = __m['thumbShape'];
+  final SliderComponentShape? thumbShape = (__m17 != null ? uClass<SliderComponentShape>(__m17) : null);
+  final __m18 = __m['trackShape'];
+  final SliderTrackShape? trackShape = (__m18 != null ? uClass<SliderTrackShape>(__m18) : null);
+  final __m19 = __m['valueIndicatorShape'];
+  final SliderComponentShape? valueIndicatorShape = (__m19 != null ? uClass<SliderComponentShape>(__m19) : null);
+  final __m20 = __m['rangeTickMarkShape'];
+  final RangeSliderTickMarkShape? rangeTickMarkShape = (__m20 != null ? uClass<RangeSliderTickMarkShape>(__m20) : null);
+  final __m21 = __m['rangeThumbShape'];
+  final RangeSliderThumbShape? rangeThumbShape = (__m21 != null ? uClass<RangeSliderThumbShape>(__m21) : null);
+  final __m22 = __m['rangeTrackShape'];
+  final RangeSliderTrackShape? rangeTrackShape = (__m22 != null ? uClass<RangeSliderTrackShape>(__m22) : null);
+  final __m23 = __m['rangeValueIndicatorShape'];
+  final RangeSliderValueIndicatorShape? rangeValueIndicatorShape = (__m23 != null ? uClass<RangeSliderValueIndicatorShape>(__m23) : null);
+  final __m24 = __m['showValueIndicator'];
+  final ShowValueIndicator? showValueIndicator = (__m24 != null ? _uShowValueIndicator(__m24) : null);
+  final __m25 = __m['valueIndicatorTextStyle'];
+  final TextStyle? valueIndicatorTextStyle = (__m25 != null ? uClass<TextStyle>(__m25) : null);
+  final __m26 = __m['minThumbSeparation'];
+  final double? minThumbSeparation = (__m26 != null ? uDouble(__m26) : null);
+  final __m27 = __m['thumbSelector'];
+  final Thumb? Function(TextDirection, RangeValues, double, Size, Size, double)? thumbSelector = (__m27 != null ? uFunc<Thumb? Function(TextDirection, RangeValues, double, Size, Size, double)>(__m27) : null);
   return SliderThemeData(
     trackHeight: trackHeight,
     activeTrackColor: activeTrackColor,
@@ -1191,10 +1479,14 @@ SliderThemeData _uSliderThemeData(Map<String, dynamic> __m) {
 }
 
 SliderThemeData _uSliderThemeDataFromPrimaryColors(Map<String, dynamic> __m) {
-  final Color primaryColor = uClass(__m['primaryColor']);
-  final Color primaryColorDark = uClass(__m['primaryColorDark']);
-  final Color primaryColorLight = uClass(__m['primaryColorLight']);
-  final TextStyle valueIndicatorTextStyle = uClass(__m['valueIndicatorTextStyle']);
+  final __m1 = __m['primaryColor'];
+  final Color primaryColor = uClass<Color>(__m1);
+  final __m2 = __m['primaryColorDark'];
+  final Color primaryColorDark = uClass<Color>(__m2);
+  final __m3 = __m['primaryColorLight'];
+  final Color primaryColorLight = uClass<Color>(__m3);
+  final __m4 = __m['valueIndicatorTextStyle'];
+  final TextStyle valueIndicatorTextStyle = uClass<TextStyle>(__m4);
   return SliderThemeData.fromPrimaryColors(
     primaryColor: primaryColor,
     primaryColorDark: primaryColorDark,
@@ -1216,13 +1508,20 @@ TabBarIndicatorSize _uTabBarIndicatorSize(dynamic v) {
 }
 
 TabBarTheme _uTabBarTheme(Map<String, dynamic> __m) {
-  final Decoration? indicator = uNull<Decoration>(uClass)(__m['indicator']);
-  final TabBarIndicatorSize? indicatorSize = uNull<TabBarIndicatorSize>(_uTabBarIndicatorSize)(__m['indicatorSize']);
-  final Color? labelColor = uNull<Color>(uClass)(__m['labelColor']);
-  final EdgeInsetsGeometry? labelPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['labelPadding']);
-  final TextStyle? labelStyle = uNull<TextStyle>(uClass)(__m['labelStyle']);
-  final Color? unselectedLabelColor = uNull<Color>(uClass)(__m['unselectedLabelColor']);
-  final TextStyle? unselectedLabelStyle = uNull<TextStyle>(uClass)(__m['unselectedLabelStyle']);
+  final __m1 = __m['indicator'];
+  final Decoration? indicator = (__m1 != null ? uClass<Decoration>(__m1) : null);
+  final __m2 = __m['indicatorSize'];
+  final TabBarIndicatorSize? indicatorSize = (__m2 != null ? _uTabBarIndicatorSize(__m2) : null);
+  final __m3 = __m['labelColor'];
+  final Color? labelColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['labelPadding'];
+  final EdgeInsetsGeometry? labelPadding = (__m4 != null ? uClass<EdgeInsetsGeometry>(__m4) : null);
+  final __m5 = __m['labelStyle'];
+  final TextStyle? labelStyle = (__m5 != null ? uClass<TextStyle>(__m5) : null);
+  final __m6 = __m['unselectedLabelColor'];
+  final Color? unselectedLabelColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['unselectedLabelStyle'];
+  final TextStyle? unselectedLabelStyle = (__m7 != null ? uClass<TextStyle>(__m7) : null);
   return TabBarTheme(
     indicator: indicator,
     indicatorSize: indicatorSize,
@@ -1235,12 +1534,18 @@ TabBarTheme _uTabBarTheme(Map<String, dynamic> __m) {
 }
 
 Duration _uDuration(Map<String, dynamic> __m) {
-  final int days = uConst<int>(0, uInt)(__m['days']);
-  final int hours = uConst<int>(0, uInt)(__m['hours']);
-  final int minutes = uConst<int>(0, uInt)(__m['minutes']);
-  final int seconds = uConst<int>(0, uInt)(__m['seconds']);
-  final int milliseconds = uConst<int>(0, uInt)(__m['milliseconds']);
-  final int microseconds = uConst<int>(0, uInt)(__m['microseconds']);
+  final __m1 = __m['days'];
+  final int days = (__m1 != null ? uInt(__m1) : 0);
+  final __m2 = __m['hours'];
+  final int hours = (__m2 != null ? uInt(__m2) : 0);
+  final __m3 = __m['minutes'];
+  final int minutes = (__m3 != null ? uInt(__m3) : 0);
+  final __m4 = __m['seconds'];
+  final int seconds = (__m4 != null ? uInt(__m4) : 0);
+  final __m5 = __m['milliseconds'];
+  final int milliseconds = (__m5 != null ? uInt(__m5) : 0);
+  final __m6 = __m['microseconds'];
+  final int microseconds = (__m6 != null ? uInt(__m6) : 0);
   return Duration(
     days: days,
     hours: hours,
@@ -1266,18 +1571,30 @@ TooltipTriggerMode _uTooltipTriggerMode(dynamic v) {
 }
 
 TooltipThemeData _uTooltipThemeData(Map<String, dynamic> __m) {
-  final double? height = uNull<double>(uDouble)(__m['height']);
-  final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
-  final EdgeInsetsGeometry? margin = uNull<EdgeInsetsGeometry>(uClass)(__m['margin']);
-  final double? verticalOffset = uNull<double>(uDouble)(__m['verticalOffset']);
-  final bool? preferBelow = uNull<bool>(uBool)(__m['preferBelow']);
-  final bool? excludeFromSemantics = uNull<bool>(uBool)(__m['excludeFromSemantics']);
-  final Decoration? decoration = uNull<Decoration>(uClass)(__m['decoration']);
-  final TextStyle? textStyle = uNull<TextStyle>(uClass)(__m['textStyle']);
-  final Duration? waitDuration = uNull<Duration>(uClass)(__m['waitDuration']);
-  final Duration? showDuration = uNull<Duration>(uClass)(__m['showDuration']);
-  final TooltipTriggerMode? triggerMode = uNull<TooltipTriggerMode>(_uTooltipTriggerMode)(__m['triggerMode']);
-  final bool? enableFeedback = uNull<bool>(uBool)(__m['enableFeedback']);
+  final __m1 = __m['height'];
+  final double? height = (__m1 != null ? uDouble(__m1) : null);
+  final __m2 = __m['padding'];
+  final EdgeInsetsGeometry? padding = (__m2 != null ? uClass<EdgeInsetsGeometry>(__m2) : null);
+  final __m3 = __m['margin'];
+  final EdgeInsetsGeometry? margin = (__m3 != null ? uClass<EdgeInsetsGeometry>(__m3) : null);
+  final __m4 = __m['verticalOffset'];
+  final double? verticalOffset = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['preferBelow'];
+  final bool? preferBelow = (__m5 != null ? uBool(__m5) : null);
+  final __m6 = __m['excludeFromSemantics'];
+  final bool? excludeFromSemantics = (__m6 != null ? uBool(__m6) : null);
+  final __m7 = __m['decoration'];
+  final Decoration? decoration = (__m7 != null ? uClass<Decoration>(__m7) : null);
+  final __m8 = __m['textStyle'];
+  final TextStyle? textStyle = (__m8 != null ? uClass<TextStyle>(__m8) : null);
+  final __m9 = __m['waitDuration'];
+  final Duration? waitDuration = (__m9 != null ? uClass<Duration>(__m9) : null);
+  final __m10 = __m['showDuration'];
+  final Duration? showDuration = (__m10 != null ? uClass<Duration>(__m10) : null);
+  final __m11 = __m['triggerMode'];
+  final TooltipTriggerMode? triggerMode = (__m11 != null ? _uTooltipTriggerMode(__m11) : null);
+  final __m12 = __m['enableFeedback'];
+  final bool? enableFeedback = (__m12 != null ? uBool(__m12) : null);
   return TooltipThemeData(
     height: height,
     padding: padding,
@@ -1311,12 +1628,18 @@ Clip _uClip(dynamic v) {
 }
 
 CardTheme _uCardTheme(Map<String, dynamic> __m) {
-  final Clip? clipBehavior = uNull<Clip>(_uClip)(__m['clipBehavior']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final Color? shadowColor = uNull<Color>(uClass)(__m['shadowColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final EdgeInsetsGeometry? margin = uNull<EdgeInsetsGeometry>(uClass)(__m['margin']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
+  final __m1 = __m['clipBehavior'];
+  final Clip? clipBehavior = (__m1 != null ? _uClip(__m1) : null);
+  final __m2 = __m['color'];
+  final Color? color = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['shadowColor'];
+  final Color? shadowColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['elevation'];
+  final double? elevation = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['margin'];
+  final EdgeInsetsGeometry? margin = (__m5 != null ? uClass<EdgeInsetsGeometry>(__m5) : null);
+  final __m6 = __m['shape'];
+  final ShapeBorder? shape = (__m6 != null ? uClass<ShapeBorder>(__m6) : null);
   return CardTheme(
     clipBehavior: clipBehavior,
     color: color,
@@ -1328,24 +1651,42 @@ CardTheme _uCardTheme(Map<String, dynamic> __m) {
 }
 
 ChipThemeData _uChipThemeData(Map<String, dynamic> __m) {
-  final Color backgroundColor = uClass(__m['backgroundColor']);
-  final Color? deleteIconColor = uNull<Color>(uClass)(__m['deleteIconColor']);
-  final Color disabledColor = uClass(__m['disabledColor']);
-  final Color selectedColor = uClass(__m['selectedColor']);
-  final Color secondarySelectedColor = uClass(__m['secondarySelectedColor']);
-  final Color? shadowColor = uNull<Color>(uClass)(__m['shadowColor']);
-  final Color? selectedShadowColor = uNull<Color>(uClass)(__m['selectedShadowColor']);
-  final bool? showCheckmark = uNull<bool>(uBool)(__m['showCheckmark']);
-  final Color? checkmarkColor = uNull<Color>(uClass)(__m['checkmarkColor']);
-  final EdgeInsetsGeometry? labelPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['labelPadding']);
-  final EdgeInsetsGeometry padding = uClass(__m['padding']);
-  final BorderSide? side = uNull<BorderSide>(uClass)(__m['side']);
-  final OutlinedBorder? shape = uNull<OutlinedBorder>(uClass)(__m['shape']);
-  final TextStyle labelStyle = uClass(__m['labelStyle']);
-  final TextStyle secondaryLabelStyle = uClass(__m['secondaryLabelStyle']);
-  final Brightness brightness = _uBrightness(__m['brightness']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final double? pressElevation = uNull<double>(uDouble)(__m['pressElevation']);
+  final __m1 = __m['backgroundColor'];
+  final Color backgroundColor = uClass<Color>(__m1);
+  final __m2 = __m['deleteIconColor'];
+  final Color? deleteIconColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['disabledColor'];
+  final Color disabledColor = uClass<Color>(__m3);
+  final __m4 = __m['selectedColor'];
+  final Color selectedColor = uClass<Color>(__m4);
+  final __m5 = __m['secondarySelectedColor'];
+  final Color secondarySelectedColor = uClass<Color>(__m5);
+  final __m6 = __m['shadowColor'];
+  final Color? shadowColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['selectedShadowColor'];
+  final Color? selectedShadowColor = (__m7 != null ? uClass<Color>(__m7) : null);
+  final __m8 = __m['showCheckmark'];
+  final bool? showCheckmark = (__m8 != null ? uBool(__m8) : null);
+  final __m9 = __m['checkmarkColor'];
+  final Color? checkmarkColor = (__m9 != null ? uClass<Color>(__m9) : null);
+  final __m10 = __m['labelPadding'];
+  final EdgeInsetsGeometry? labelPadding = (__m10 != null ? uClass<EdgeInsetsGeometry>(__m10) : null);
+  final __m11 = __m['padding'];
+  final EdgeInsetsGeometry padding = uClass<EdgeInsetsGeometry>(__m11);
+  final __m12 = __m['side'];
+  final BorderSide? side = (__m12 != null ? uClass<BorderSide>(__m12) : null);
+  final __m13 = __m['shape'];
+  final OutlinedBorder? shape = (__m13 != null ? uClass<OutlinedBorder>(__m13) : null);
+  final __m14 = __m['labelStyle'];
+  final TextStyle labelStyle = uClass<TextStyle>(__m14);
+  final __m15 = __m['secondaryLabelStyle'];
+  final TextStyle secondaryLabelStyle = uClass<TextStyle>(__m15);
+  final __m16 = __m['brightness'];
+  final Brightness brightness = _uBrightness(__m16);
+  final __m17 = __m['elevation'];
+  final double? elevation = (__m17 != null ? uDouble(__m17) : null);
+  final __m18 = __m['pressElevation'];
+  final double? pressElevation = (__m18 != null ? uDouble(__m18) : null);
   return ChipThemeData(
     backgroundColor: backgroundColor,
     deleteIconColor: deleteIconColor,
@@ -1369,10 +1710,14 @@ ChipThemeData _uChipThemeData(Map<String, dynamic> __m) {
 }
 
 ChipThemeData _uChipThemeDataFromDefaults(Map<String, dynamic> __m) {
-  final Brightness? brightness = uNull<Brightness>(_uBrightness)(__m['brightness']);
-  final Color? primaryColor = uNull<Color>(uClass)(__m['primaryColor']);
-  final Color secondaryColor = uClass(__m['secondaryColor']);
-  final TextStyle labelStyle = uClass(__m['labelStyle']);
+  final __m1 = __m['brightness'];
+  final Brightness? brightness = (__m1 != null ? _uBrightness(__m1) : null);
+  final __m2 = __m['primaryColor'];
+  final Color? primaryColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['secondaryColor'];
+  final Color secondaryColor = uClass<Color>(__m3);
+  final __m4 = __m['labelStyle'];
+  final TextStyle labelStyle = uClass<TextStyle>(__m4);
   return ChipThemeData.fromDefaults(
     brightness: brightness,
     primaryColor: primaryColor,
@@ -1402,21 +1747,30 @@ TargetPlatform _uTargetPlatform(dynamic v) {
 }
 
 PageTransitionsTheme _uPageTransitionsTheme(Map<String, dynamic> __m) {
-  final Map<TargetPlatform, PageTransitionsBuilder> builders = uConst(<TargetPlatform, PageTransitionsBuilder>{TargetPlatform.android: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.linux: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.macOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.windows: const FadeUpwardsPageTransitionsBuilder()}, uMap<TargetPlatform, PageTransitionsBuilder>(_uTargetPlatform, uClass))(__m['builders']);
+  final __m1 = __m['builders'];
+  final Map<TargetPlatform, PageTransitionsBuilder> builders = (__m1 != null ? (__m1 is Map<dynamic, dynamic> ? __m1.map((k, v) => MapEntry(_uTargetPlatform(k), uClass<PageTransitionsBuilder>(v))) : die('not a map')) : <TargetPlatform, PageTransitionsBuilder>{TargetPlatform.android: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.linux: const FadeUpwardsPageTransitionsBuilder(), TargetPlatform.macOS: const CupertinoPageTransitionsBuilder(), TargetPlatform.windows: const FadeUpwardsPageTransitionsBuilder()});
   return PageTransitionsTheme(
     builders: builders,
   );
 }
 
 SystemUiOverlayStyle _uSystemUiOverlayStyle(Map<String, dynamic> __m) {
-  final Color? systemNavigationBarColor = uNull<Color>(uClass)(__m['systemNavigationBarColor']);
-  final Color? systemNavigationBarDividerColor = uNull<Color>(uClass)(__m['systemNavigationBarDividerColor']);
-  final Brightness? systemNavigationBarIconBrightness = uNull<Brightness>(_uBrightness)(__m['systemNavigationBarIconBrightness']);
-  final bool? systemNavigationBarContrastEnforced = uNull<bool>(uBool)(__m['systemNavigationBarContrastEnforced']);
-  final Color? statusBarColor = uNull<Color>(uClass)(__m['statusBarColor']);
-  final Brightness? statusBarBrightness = uNull<Brightness>(_uBrightness)(__m['statusBarBrightness']);
-  final Brightness? statusBarIconBrightness = uNull<Brightness>(_uBrightness)(__m['statusBarIconBrightness']);
-  final bool? systemStatusBarContrastEnforced = uNull<bool>(uBool)(__m['systemStatusBarContrastEnforced']);
+  final __m1 = __m['systemNavigationBarColor'];
+  final Color? systemNavigationBarColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['systemNavigationBarDividerColor'];
+  final Color? systemNavigationBarDividerColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['systemNavigationBarIconBrightness'];
+  final Brightness? systemNavigationBarIconBrightness = (__m3 != null ? _uBrightness(__m3) : null);
+  final __m4 = __m['systemNavigationBarContrastEnforced'];
+  final bool? systemNavigationBarContrastEnforced = (__m4 != null ? uBool(__m4) : null);
+  final __m5 = __m['statusBarColor'];
+  final Color? statusBarColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['statusBarBrightness'];
+  final Brightness? statusBarBrightness = (__m6 != null ? _uBrightness(__m6) : null);
+  final __m7 = __m['statusBarIconBrightness'];
+  final Brightness? statusBarIconBrightness = (__m7 != null ? _uBrightness(__m7) : null);
+  final __m8 = __m['systemStatusBarContrastEnforced'];
+  final bool? systemStatusBarContrastEnforced = (__m8 != null ? uBool(__m8) : null);
   return SystemUiOverlayStyle(
     systemNavigationBarColor: systemNavigationBarColor,
     systemNavigationBarDividerColor: systemNavigationBarDividerColor,
@@ -1430,23 +1784,40 @@ SystemUiOverlayStyle _uSystemUiOverlayStyle(Map<String, dynamic> __m) {
 }
 
 AppBarTheme _uAppBarTheme(Map<String, dynamic> __m) {
-  final Brightness? brightness = uNull<Brightness>(_uBrightness)(__m['brightness']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? foregroundColor = uNull<Color>(uClass)(__m['foregroundColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final Color? shadowColor = uNull<Color>(uClass)(__m['shadowColor']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final IconThemeData? iconTheme = uNull<IconThemeData>(uClass)(__m['iconTheme']);
-  final IconThemeData? actionsIconTheme = uNull<IconThemeData>(uClass)(__m['actionsIconTheme']);
-  final TextTheme? textTheme = uNull<TextTheme>(uClass)(__m['textTheme']);
-  final bool? centerTitle = uNull<bool>(uBool)(__m['centerTitle']);
-  final double? titleSpacing = uNull<double>(uDouble)(__m['titleSpacing']);
-  final double? toolbarHeight = uNull<double>(uDouble)(__m['toolbarHeight']);
-  final TextStyle? toolbarTextStyle = uNull<TextStyle>(uClass)(__m['toolbarTextStyle']);
-  final TextStyle? titleTextStyle = uNull<TextStyle>(uClass)(__m['titleTextStyle']);
-  final SystemUiOverlayStyle? systemOverlayStyle = uNull<SystemUiOverlayStyle>(uClass)(__m['systemOverlayStyle']);
-  final bool? backwardsCompatibility = uNull<bool>(uBool)(__m['backwardsCompatibility']);
+  final __m1 = __m['brightness'];
+  final Brightness? brightness = (__m1 != null ? _uBrightness(__m1) : null);
+  final __m2 = __m['color'];
+  final Color? color = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['foregroundColor'];
+  final Color? foregroundColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['elevation'];
+  final double? elevation = (__m5 != null ? uDouble(__m5) : null);
+  final __m6 = __m['shadowColor'];
+  final Color? shadowColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['shape'];
+  final ShapeBorder? shape = (__m7 != null ? uClass<ShapeBorder>(__m7) : null);
+  final __m8 = __m['iconTheme'];
+  final IconThemeData? iconTheme = (__m8 != null ? uClass<IconThemeData>(__m8) : null);
+  final __m9 = __m['actionsIconTheme'];
+  final IconThemeData? actionsIconTheme = (__m9 != null ? uClass<IconThemeData>(__m9) : null);
+  final __m10 = __m['textTheme'];
+  final TextTheme? textTheme = (__m10 != null ? uClass<TextTheme>(__m10) : null);
+  final __m11 = __m['centerTitle'];
+  final bool? centerTitle = (__m11 != null ? uBool(__m11) : null);
+  final __m12 = __m['titleSpacing'];
+  final double? titleSpacing = (__m12 != null ? uDouble(__m12) : null);
+  final __m13 = __m['toolbarHeight'];
+  final double? toolbarHeight = (__m13 != null ? uDouble(__m13) : null);
+  final __m14 = __m['toolbarTextStyle'];
+  final TextStyle? toolbarTextStyle = (__m14 != null ? uClass<TextStyle>(__m14) : null);
+  final __m15 = __m['titleTextStyle'];
+  final TextStyle? titleTextStyle = (__m15 != null ? uClass<TextStyle>(__m15) : null);
+  final __m16 = __m['systemOverlayStyle'];
+  final SystemUiOverlayStyle? systemOverlayStyle = (__m16 != null ? uClass<SystemUiOverlayStyle>(__m16) : null);
+  final __m17 = __m['backwardsCompatibility'];
+  final bool? backwardsCompatibility = (__m17 != null ? uBool(__m17) : null);
   return AppBarTheme(
     brightness: brightness,
     color: color,
@@ -1469,17 +1840,28 @@ AppBarTheme _uAppBarTheme(Map<String, dynamic> __m) {
 }
 
 ScrollbarThemeData _uScrollbarThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<double?>? thickness = uNull<MaterialStateProperty<double?>>(uClass)(__m['thickness']);
-  final bool? showTrackOnHover = uNull<bool>(uBool)(__m['showTrackOnHover']);
-  final bool? isAlwaysShown = uNull<bool>(uBool)(__m['isAlwaysShown']);
-  final Radius? radius = uNull<Radius>(uClass)(__m['radius']);
-  final MaterialStateProperty<Color?>? thumbColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['thumbColor']);
-  final MaterialStateProperty<Color?>? trackColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['trackColor']);
-  final MaterialStateProperty<Color?>? trackBorderColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['trackBorderColor']);
-  final double? crossAxisMargin = uNull<double>(uDouble)(__m['crossAxisMargin']);
-  final double? mainAxisMargin = uNull<double>(uDouble)(__m['mainAxisMargin']);
-  final double? minThumbLength = uNull<double>(uDouble)(__m['minThumbLength']);
-  final bool? interactive = uNull<bool>(uBool)(__m['interactive']);
+  final __m1 = __m['thickness'];
+  final MaterialStateProperty<double?>? thickness = (__m1 != null ? uClass<MaterialStateProperty<double?>>(__m1) : null);
+  final __m2 = __m['showTrackOnHover'];
+  final bool? showTrackOnHover = (__m2 != null ? uBool(__m2) : null);
+  final __m3 = __m['isAlwaysShown'];
+  final bool? isAlwaysShown = (__m3 != null ? uBool(__m3) : null);
+  final __m4 = __m['radius'];
+  final Radius? radius = (__m4 != null ? uClass<Radius>(__m4) : null);
+  final __m5 = __m['thumbColor'];
+  final MaterialStateProperty<Color?>? thumbColor = (__m5 != null ? uClass<MaterialStateProperty<Color?>>(__m5) : null);
+  final __m6 = __m['trackColor'];
+  final MaterialStateProperty<Color?>? trackColor = (__m6 != null ? uClass<MaterialStateProperty<Color?>>(__m6) : null);
+  final __m7 = __m['trackBorderColor'];
+  final MaterialStateProperty<Color?>? trackBorderColor = (__m7 != null ? uClass<MaterialStateProperty<Color?>>(__m7) : null);
+  final __m8 = __m['crossAxisMargin'];
+  final double? crossAxisMargin = (__m8 != null ? uDouble(__m8) : null);
+  final __m9 = __m['mainAxisMargin'];
+  final double? mainAxisMargin = (__m9 != null ? uDouble(__m9) : null);
+  final __m10 = __m['minThumbLength'];
+  final double? minThumbLength = (__m10 != null ? uDouble(__m10) : null);
+  final __m11 = __m['interactive'];
+  final bool? interactive = (__m11 != null ? uBool(__m11) : null);
   return ScrollbarThemeData(
     thickness: thickness,
     showTrackOnHover: showTrackOnHover,
@@ -1496,9 +1878,12 @@ ScrollbarThemeData _uScrollbarThemeData(Map<String, dynamic> __m) {
 }
 
 BottomAppBarTheme _uBottomAppBarTheme(Map<String, dynamic> __m) {
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final NotchedShape? shape = uNull<NotchedShape>(uClass)(__m['shape']);
+  final __m1 = __m['color'];
+  final Color? color = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['elevation'];
+  final double? elevation = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['shape'];
+  final NotchedShape? shape = (__m3 != null ? uClass<NotchedShape>(__m3) : null);
   return BottomAppBarTheme(
     color: color,
     elevation: elevation,
@@ -1507,11 +1892,16 @@ BottomAppBarTheme _uBottomAppBarTheme(Map<String, dynamic> __m) {
 }
 
 DialogTheme _uDialogTheme(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final TextStyle? titleTextStyle = uNull<TextStyle>(uClass)(__m['titleTextStyle']);
-  final TextStyle? contentTextStyle = uNull<TextStyle>(uClass)(__m['contentTextStyle']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['elevation'];
+  final double? elevation = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['shape'];
+  final ShapeBorder? shape = (__m3 != null ? uClass<ShapeBorder>(__m3) : null);
+  final __m4 = __m['titleTextStyle'];
+  final TextStyle? titleTextStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['contentTextStyle'];
+  final TextStyle? contentTextStyle = (__m5 != null ? uClass<TextStyle>(__m5) : null);
   return DialogTheme(
     backgroundColor: backgroundColor,
     elevation: elevation,
@@ -1522,25 +1912,44 @@ DialogTheme _uDialogTheme(Map<String, dynamic> __m) {
 }
 
 FloatingActionButtonThemeData _uFloatingActionButtonThemeData(Map<String, dynamic> __m) {
-  final Color? foregroundColor = uNull<Color>(uClass)(__m['foregroundColor']);
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
-  final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
-  final Color? splashColor = uNull<Color>(uClass)(__m['splashColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final double? focusElevation = uNull<double>(uDouble)(__m['focusElevation']);
-  final double? hoverElevation = uNull<double>(uDouble)(__m['hoverElevation']);
-  final double? disabledElevation = uNull<double>(uDouble)(__m['disabledElevation']);
-  final double? highlightElevation = uNull<double>(uDouble)(__m['highlightElevation']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final bool? enableFeedback = uNull<bool>(uBool)(__m['enableFeedback']);
-  final BoxConstraints? sizeConstraints = uNull<BoxConstraints>(uClass)(__m['sizeConstraints']);
-  final BoxConstraints? smallSizeConstraints = uNull<BoxConstraints>(uClass)(__m['smallSizeConstraints']);
-  final BoxConstraints? largeSizeConstraints = uNull<BoxConstraints>(uClass)(__m['largeSizeConstraints']);
-  final BoxConstraints? extendedSizeConstraints = uNull<BoxConstraints>(uClass)(__m['extendedSizeConstraints']);
-  final double? extendedIconLabelSpacing = uNull<double>(uDouble)(__m['extendedIconLabelSpacing']);
-  final EdgeInsetsGeometry? extendedPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['extendedPadding']);
-  final TextStyle? extendedTextStyle = uNull<TextStyle>(uClass)(__m['extendedTextStyle']);
+  final __m1 = __m['foregroundColor'];
+  final Color? foregroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['focusColor'];
+  final Color? focusColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['hoverColor'];
+  final Color? hoverColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['splashColor'];
+  final Color? splashColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['elevation'];
+  final double? elevation = (__m6 != null ? uDouble(__m6) : null);
+  final __m7 = __m['focusElevation'];
+  final double? focusElevation = (__m7 != null ? uDouble(__m7) : null);
+  final __m8 = __m['hoverElevation'];
+  final double? hoverElevation = (__m8 != null ? uDouble(__m8) : null);
+  final __m9 = __m['disabledElevation'];
+  final double? disabledElevation = (__m9 != null ? uDouble(__m9) : null);
+  final __m10 = __m['highlightElevation'];
+  final double? highlightElevation = (__m10 != null ? uDouble(__m10) : null);
+  final __m11 = __m['shape'];
+  final ShapeBorder? shape = (__m11 != null ? uClass<ShapeBorder>(__m11) : null);
+  final __m12 = __m['enableFeedback'];
+  final bool? enableFeedback = (__m12 != null ? uBool(__m12) : null);
+  final __m13 = __m['sizeConstraints'];
+  final BoxConstraints? sizeConstraints = (__m13 != null ? uClass<BoxConstraints>(__m13) : null);
+  final __m14 = __m['smallSizeConstraints'];
+  final BoxConstraints? smallSizeConstraints = (__m14 != null ? uClass<BoxConstraints>(__m14) : null);
+  final __m15 = __m['largeSizeConstraints'];
+  final BoxConstraints? largeSizeConstraints = (__m15 != null ? uClass<BoxConstraints>(__m15) : null);
+  final __m16 = __m['extendedSizeConstraints'];
+  final BoxConstraints? extendedSizeConstraints = (__m16 != null ? uClass<BoxConstraints>(__m16) : null);
+  final __m17 = __m['extendedIconLabelSpacing'];
+  final double? extendedIconLabelSpacing = (__m17 != null ? uDouble(__m17) : null);
+  final __m18 = __m['extendedPadding'];
+  final EdgeInsetsGeometry? extendedPadding = (__m18 != null ? uClass<EdgeInsetsGeometry>(__m18) : null);
+  final __m19 = __m['extendedTextStyle'];
+  final TextStyle? extendedTextStyle = (__m19 != null ? uClass<TextStyle>(__m19) : null);
   return FloatingActionButtonThemeData(
     foregroundColor: foregroundColor,
     backgroundColor: backgroundColor,
@@ -1579,14 +1988,22 @@ NavigationRailLabelType _uNavigationRailLabelType(dynamic v) {
 }
 
 NavigationRailThemeData _uNavigationRailThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final TextStyle? unselectedLabelTextStyle = uNull<TextStyle>(uClass)(__m['unselectedLabelTextStyle']);
-  final TextStyle? selectedLabelTextStyle = uNull<TextStyle>(uClass)(__m['selectedLabelTextStyle']);
-  final IconThemeData? unselectedIconTheme = uNull<IconThemeData>(uClass)(__m['unselectedIconTheme']);
-  final IconThemeData? selectedIconTheme = uNull<IconThemeData>(uClass)(__m['selectedIconTheme']);
-  final double? groupAlignment = uNull<double>(uDouble)(__m['groupAlignment']);
-  final NavigationRailLabelType? labelType = uNull<NavigationRailLabelType>(_uNavigationRailLabelType)(__m['labelType']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['elevation'];
+  final double? elevation = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['unselectedLabelTextStyle'];
+  final TextStyle? unselectedLabelTextStyle = (__m3 != null ? uClass<TextStyle>(__m3) : null);
+  final __m4 = __m['selectedLabelTextStyle'];
+  final TextStyle? selectedLabelTextStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['unselectedIconTheme'];
+  final IconThemeData? unselectedIconTheme = (__m5 != null ? uClass<IconThemeData>(__m5) : null);
+  final __m6 = __m['selectedIconTheme'];
+  final IconThemeData? selectedIconTheme = (__m6 != null ? uClass<IconThemeData>(__m6) : null);
+  final __m7 = __m['groupAlignment'];
+  final double? groupAlignment = (__m7 != null ? uDouble(__m7) : null);
+  final __m8 = __m['labelType'];
+  final NavigationRailLabelType? labelType = (__m8 != null ? _uNavigationRailLabelType(__m8) : null);
   return NavigationRailThemeData(
     backgroundColor: backgroundColor,
     elevation: elevation,
@@ -1600,12 +2017,18 @@ NavigationRailThemeData _uNavigationRailThemeData(Map<String, dynamic> __m) {
 }
 
 Typography _uTypography(Map<String, dynamic> __m) {
-  final TargetPlatform? platform = uNull<TargetPlatform>(_uTargetPlatform)(__m['platform']);
-  final TextTheme? black = uNull<TextTheme>(uClass)(__m['black']);
-  final TextTheme? white = uNull<TextTheme>(uClass)(__m['white']);
-  final TextTheme? englishLike = uNull<TextTheme>(uClass)(__m['englishLike']);
-  final TextTheme? dense = uNull<TextTheme>(uClass)(__m['dense']);
-  final TextTheme? tall = uNull<TextTheme>(uClass)(__m['tall']);
+  final __m1 = __m['platform'];
+  final TargetPlatform? platform = (__m1 != null ? _uTargetPlatform(__m1) : null);
+  final __m2 = __m['black'];
+  final TextTheme? black = (__m2 != null ? uClass<TextTheme>(__m2) : null);
+  final __m3 = __m['white'];
+  final TextTheme? white = (__m3 != null ? uClass<TextTheme>(__m3) : null);
+  final __m4 = __m['englishLike'];
+  final TextTheme? englishLike = (__m4 != null ? uClass<TextTheme>(__m4) : null);
+  final __m5 = __m['dense'];
+  final TextTheme? dense = (__m5 != null ? uClass<TextTheme>(__m5) : null);
+  final __m6 = __m['tall'];
+  final TextTheme? tall = (__m6 != null ? uClass<TextTheme>(__m6) : null);
   return Typography(
     platform: platform,
     black: black,
@@ -1617,12 +2040,18 @@ Typography _uTypography(Map<String, dynamic> __m) {
 }
 
 Typography _uTypographyMaterial2014(Map<String, dynamic> __m) {
-  final TargetPlatform? platform = uNull<TargetPlatform>(_uTargetPlatform)(__m['platform']);
-  final TextTheme? black = uNull<TextTheme>(uClass)(__m['black']);
-  final TextTheme? white = uNull<TextTheme>(uClass)(__m['white']);
-  final TextTheme? englishLike = uNull<TextTheme>(uClass)(__m['englishLike']);
-  final TextTheme? dense = uNull<TextTheme>(uClass)(__m['dense']);
-  final TextTheme? tall = uNull<TextTheme>(uClass)(__m['tall']);
+  final __m1 = __m['platform'];
+  final TargetPlatform? platform = (__m1 != null ? (__m1 != null ? _uTargetPlatform(__m1) : null) : TargetPlatform.android);
+  final __m2 = __m['black'];
+  final TextTheme? black = (__m2 != null ? uClass<TextTheme>(__m2) : null);
+  final __m3 = __m['white'];
+  final TextTheme? white = (__m3 != null ? uClass<TextTheme>(__m3) : null);
+  final __m4 = __m['englishLike'];
+  final TextTheme? englishLike = (__m4 != null ? uClass<TextTheme>(__m4) : null);
+  final __m5 = __m['dense'];
+  final TextTheme? dense = (__m5 != null ? uClass<TextTheme>(__m5) : null);
+  final __m6 = __m['tall'];
+  final TextTheme? tall = (__m6 != null ? uClass<TextTheme>(__m6) : null);
   return Typography.material2014(
     platform: platform,
     black: black,
@@ -1634,12 +2063,18 @@ Typography _uTypographyMaterial2014(Map<String, dynamic> __m) {
 }
 
 Typography _uTypographyMaterial2018(Map<String, dynamic> __m) {
-  final TargetPlatform? platform = uNull<TargetPlatform>(_uTargetPlatform)(__m['platform']);
-  final TextTheme? black = uNull<TextTheme>(uClass)(__m['black']);
-  final TextTheme? white = uNull<TextTheme>(uClass)(__m['white']);
-  final TextTheme? englishLike = uNull<TextTheme>(uClass)(__m['englishLike']);
-  final TextTheme? dense = uNull<TextTheme>(uClass)(__m['dense']);
-  final TextTheme? tall = uNull<TextTheme>(uClass)(__m['tall']);
+  final __m1 = __m['platform'];
+  final TargetPlatform? platform = (__m1 != null ? (__m1 != null ? _uTargetPlatform(__m1) : null) : TargetPlatform.android);
+  final __m2 = __m['black'];
+  final TextTheme? black = (__m2 != null ? uClass<TextTheme>(__m2) : null);
+  final __m3 = __m['white'];
+  final TextTheme? white = (__m3 != null ? uClass<TextTheme>(__m3) : null);
+  final __m4 = __m['englishLike'];
+  final TextTheme? englishLike = (__m4 != null ? uClass<TextTheme>(__m4) : null);
+  final __m5 = __m['dense'];
+  final TextTheme? dense = (__m5 != null ? uClass<TextTheme>(__m5) : null);
+  final __m6 = __m['tall'];
+  final TextTheme? tall = (__m6 != null ? uClass<TextTheme>(__m6) : null);
   return Typography.material2018(
     platform: platform,
     black: black,
@@ -1651,15 +2086,24 @@ Typography _uTypographyMaterial2018(Map<String, dynamic> __m) {
 }
 
 CupertinoTextThemeData _uCupertinoTextThemeData(Map<String, dynamic> __m) {
-  final Color primaryColor = uConst(const CupertinoDynamicColor.withBrightnessAndContrast(debugLabel: 'systemBlue', color: const Color.fromARGB(255, 0, 122, 255), darkColor: const Color.fromARGB(255, 10, 132, 255), highContrastColor: const Color.fromARGB(255, 0, 64, 221), darkHighContrastColor: const Color.fromARGB(255, 64, 156, 255)), uClass)(__m['primaryColor']);
-  final TextStyle? textStyle = uNull<TextStyle>(uClass)(__m['textStyle']);
-  final TextStyle? actionTextStyle = uNull<TextStyle>(uClass)(__m['actionTextStyle']);
-  final TextStyle? tabLabelTextStyle = uNull<TextStyle>(uClass)(__m['tabLabelTextStyle']);
-  final TextStyle? navTitleTextStyle = uNull<TextStyle>(uClass)(__m['navTitleTextStyle']);
-  final TextStyle? navLargeTitleTextStyle = uNull<TextStyle>(uClass)(__m['navLargeTitleTextStyle']);
-  final TextStyle? navActionTextStyle = uNull<TextStyle>(uClass)(__m['navActionTextStyle']);
-  final TextStyle? pickerTextStyle = uNull<TextStyle>(uClass)(__m['pickerTextStyle']);
-  final TextStyle? dateTimePickerTextStyle = uNull<TextStyle>(uClass)(__m['dateTimePickerTextStyle']);
+  final __m1 = __m['primaryColor'];
+  final Color primaryColor = (__m1 != null ? uClass<Color>(__m1) : const CupertinoDynamicColor.withBrightnessAndContrast(debugLabel: 'systemBlue', color: const Color.fromARGB(255, 0, 122, 255), darkColor: const Color.fromARGB(255, 10, 132, 255), highContrastColor: const Color.fromARGB(255, 0, 64, 221), darkHighContrastColor: const Color.fromARGB(255, 64, 156, 255)));
+  final __m2 = __m['textStyle'];
+  final TextStyle? textStyle = (__m2 != null ? uClass<TextStyle>(__m2) : null);
+  final __m3 = __m['actionTextStyle'];
+  final TextStyle? actionTextStyle = (__m3 != null ? uClass<TextStyle>(__m3) : null);
+  final __m4 = __m['tabLabelTextStyle'];
+  final TextStyle? tabLabelTextStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['navTitleTextStyle'];
+  final TextStyle? navTitleTextStyle = (__m5 != null ? uClass<TextStyle>(__m5) : null);
+  final __m6 = __m['navLargeTitleTextStyle'];
+  final TextStyle? navLargeTitleTextStyle = (__m6 != null ? uClass<TextStyle>(__m6) : null);
+  final __m7 = __m['navActionTextStyle'];
+  final TextStyle? navActionTextStyle = (__m7 != null ? uClass<TextStyle>(__m7) : null);
+  final __m8 = __m['pickerTextStyle'];
+  final TextStyle? pickerTextStyle = (__m8 != null ? uClass<TextStyle>(__m8) : null);
+  final __m9 = __m['dateTimePickerTextStyle'];
+  final TextStyle? dateTimePickerTextStyle = (__m9 != null ? uClass<TextStyle>(__m9) : null);
   return CupertinoTextThemeData(
     primaryColor: primaryColor,
     textStyle: textStyle,
@@ -1674,12 +2118,18 @@ CupertinoTextThemeData _uCupertinoTextThemeData(Map<String, dynamic> __m) {
 }
 
 NoDefaultCupertinoThemeData _uNoDefaultCupertinoThemeData(Map<String, dynamic> __m) {
-  final Brightness? brightness = uNull<Brightness>(_uBrightness)(__m['brightness']);
-  final Color? primaryColor = uNull<Color>(uClass)(__m['primaryColor']);
-  final Color? primaryContrastingColor = uNull<Color>(uClass)(__m['primaryContrastingColor']);
-  final CupertinoTextThemeData? textTheme = uNull<CupertinoTextThemeData>(uClass)(__m['textTheme']);
-  final Color? barBackgroundColor = uNull<Color>(uClass)(__m['barBackgroundColor']);
-  final Color? scaffoldBackgroundColor = uNull<Color>(uClass)(__m['scaffoldBackgroundColor']);
+  final __m1 = __m['brightness'];
+  final Brightness? brightness = (__m1 != null ? _uBrightness(__m1) : null);
+  final __m2 = __m['primaryColor'];
+  final Color? primaryColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['primaryContrastingColor'];
+  final Color? primaryContrastingColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['textTheme'];
+  final CupertinoTextThemeData? textTheme = (__m4 != null ? uClass<CupertinoTextThemeData>(__m4) : null);
+  final __m5 = __m['barBackgroundColor'];
+  final Color? barBackgroundColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['scaffoldBackgroundColor'];
+  final Color? scaffoldBackgroundColor = (__m6 != null ? uClass<Color>(__m6) : null);
   return NoDefaultCupertinoThemeData(
     brightness: brightness,
     primaryColor: primaryColor,
@@ -1703,13 +2153,20 @@ SnackBarBehavior _uSnackBarBehavior(dynamic v) {
 }
 
 SnackBarThemeData _uSnackBarThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? actionTextColor = uNull<Color>(uClass)(__m['actionTextColor']);
-  final Color? disabledActionTextColor = uNull<Color>(uClass)(__m['disabledActionTextColor']);
-  final TextStyle? contentTextStyle = uNull<TextStyle>(uClass)(__m['contentTextStyle']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final SnackBarBehavior? behavior = uNull<SnackBarBehavior>(_uSnackBarBehavior)(__m['behavior']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['actionTextColor'];
+  final Color? actionTextColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['disabledActionTextColor'];
+  final Color? disabledActionTextColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['contentTextStyle'];
+  final TextStyle? contentTextStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['elevation'];
+  final double? elevation = (__m5 != null ? uDouble(__m5) : null);
+  final __m6 = __m['shape'];
+  final ShapeBorder? shape = (__m6 != null ? uClass<ShapeBorder>(__m6) : null);
+  final __m7 = __m['behavior'];
+  final SnackBarBehavior? behavior = (__m7 != null ? _uSnackBarBehavior(__m7) : null);
   return SnackBarThemeData(
     backgroundColor: backgroundColor,
     actionTextColor: actionTextColor,
@@ -1722,13 +2179,20 @@ SnackBarThemeData _uSnackBarThemeData(Map<String, dynamic> __m) {
 }
 
 BottomSheetThemeData _uBottomSheetThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final Color? modalBackgroundColor = uNull<Color>(uClass)(__m['modalBackgroundColor']);
-  final double? modalElevation = uNull<double>(uDouble)(__m['modalElevation']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final Clip? clipBehavior = uNull<Clip>(_uClip)(__m['clipBehavior']);
-  final BoxConstraints? constraints = uNull<BoxConstraints>(uClass)(__m['constraints']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['elevation'];
+  final double? elevation = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['modalBackgroundColor'];
+  final Color? modalBackgroundColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['modalElevation'];
+  final double? modalElevation = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['shape'];
+  final ShapeBorder? shape = (__m5 != null ? uClass<ShapeBorder>(__m5) : null);
+  final __m6 = __m['clipBehavior'];
+  final Clip? clipBehavior = (__m6 != null ? _uClip(__m6) : null);
+  final __m7 = __m['constraints'];
+  final BoxConstraints? constraints = (__m7 != null ? uClass<BoxConstraints>(__m7) : null);
   return BottomSheetThemeData(
     backgroundColor: backgroundColor,
     elevation: elevation,
@@ -1741,11 +2205,16 @@ BottomSheetThemeData _uBottomSheetThemeData(Map<String, dynamic> __m) {
 }
 
 PopupMenuThemeData _uPopupMenuThemeData(Map<String, dynamic> __m) {
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final TextStyle? textStyle = uNull<TextStyle>(uClass)(__m['textStyle']);
-  final bool? enableFeedback = uNull<bool>(uBool)(__m['enableFeedback']);
+  final __m1 = __m['color'];
+  final Color? color = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['shape'];
+  final ShapeBorder? shape = (__m2 != null ? uClass<ShapeBorder>(__m2) : null);
+  final __m3 = __m['elevation'];
+  final double? elevation = (__m3 != null ? uDouble(__m3) : null);
+  final __m4 = __m['textStyle'];
+  final TextStyle? textStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['enableFeedback'];
+  final bool? enableFeedback = (__m5 != null ? uBool(__m5) : null);
   return PopupMenuThemeData(
     color: color,
     shape: shape,
@@ -1756,10 +2225,14 @@ PopupMenuThemeData _uPopupMenuThemeData(Map<String, dynamic> __m) {
 }
 
 MaterialBannerThemeData _uMaterialBannerThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final TextStyle? contentTextStyle = uNull<TextStyle>(uClass)(__m['contentTextStyle']);
-  final EdgeInsetsGeometry? padding = uNull<EdgeInsetsGeometry>(uClass)(__m['padding']);
-  final EdgeInsetsGeometry? leadingPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['leadingPadding']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['contentTextStyle'];
+  final TextStyle? contentTextStyle = (__m2 != null ? uClass<TextStyle>(__m2) : null);
+  final __m3 = __m['padding'];
+  final EdgeInsetsGeometry? padding = (__m3 != null ? uClass<EdgeInsetsGeometry>(__m3) : null);
+  final __m4 = __m['leadingPadding'];
+  final EdgeInsetsGeometry? leadingPadding = (__m4 != null ? uClass<EdgeInsetsGeometry>(__m4) : null);
   return MaterialBannerThemeData(
     backgroundColor: backgroundColor,
     contentTextStyle: contentTextStyle,
@@ -1769,11 +2242,16 @@ MaterialBannerThemeData _uMaterialBannerThemeData(Map<String, dynamic> __m) {
 }
 
 DividerThemeData _uDividerThemeData(Map<String, dynamic> __m) {
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final double? space = uNull<double>(uDouble)(__m['space']);
-  final double? thickness = uNull<double>(uDouble)(__m['thickness']);
-  final double? indent = uNull<double>(uDouble)(__m['indent']);
-  final double? endIndent = uNull<double>(uDouble)(__m['endIndent']);
+  final __m1 = __m['color'];
+  final Color? color = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['space'];
+  final double? space = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['thickness'];
+  final double? thickness = (__m3 != null ? uDouble(__m3) : null);
+  final __m4 = __m['indent'];
+  final double? indent = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['endIndent'];
+  final double? endIndent = (__m5 != null ? uDouble(__m5) : null);
   return DividerThemeData(
     color: color,
     space: space,
@@ -1828,15 +2306,24 @@ VerticalDirection _uVerticalDirection(dynamic v) {
 }
 
 ButtonBarThemeData _uButtonBarThemeData(Map<String, dynamic> __m) {
-  final MainAxisAlignment? alignment = uNull<MainAxisAlignment>(_uMainAxisAlignment)(__m['alignment']);
-  final MainAxisSize? mainAxisSize = uNull<MainAxisSize>(_uMainAxisSize)(__m['mainAxisSize']);
-  final ButtonTextTheme? buttonTextTheme = uNull<ButtonTextTheme>(_uButtonTextTheme)(__m['buttonTextTheme']);
-  final double? buttonMinWidth = uNull<double>(uDouble)(__m['buttonMinWidth']);
-  final double? buttonHeight = uNull<double>(uDouble)(__m['buttonHeight']);
-  final EdgeInsetsGeometry? buttonPadding = uNull<EdgeInsetsGeometry>(uClass)(__m['buttonPadding']);
-  final bool? buttonAlignedDropdown = uNull<bool>(uBool)(__m['buttonAlignedDropdown']);
-  final ButtonBarLayoutBehavior? layoutBehavior = uNull<ButtonBarLayoutBehavior>(_uButtonBarLayoutBehavior)(__m['layoutBehavior']);
-  final VerticalDirection? overflowDirection = uNull<VerticalDirection>(_uVerticalDirection)(__m['overflowDirection']);
+  final __m1 = __m['alignment'];
+  final MainAxisAlignment? alignment = (__m1 != null ? _uMainAxisAlignment(__m1) : null);
+  final __m2 = __m['mainAxisSize'];
+  final MainAxisSize? mainAxisSize = (__m2 != null ? _uMainAxisSize(__m2) : null);
+  final __m3 = __m['buttonTextTheme'];
+  final ButtonTextTheme? buttonTextTheme = (__m3 != null ? _uButtonTextTheme(__m3) : null);
+  final __m4 = __m['buttonMinWidth'];
+  final double? buttonMinWidth = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['buttonHeight'];
+  final double? buttonHeight = (__m5 != null ? uDouble(__m5) : null);
+  final __m6 = __m['buttonPadding'];
+  final EdgeInsetsGeometry? buttonPadding = (__m6 != null ? uClass<EdgeInsetsGeometry>(__m6) : null);
+  final __m7 = __m['buttonAlignedDropdown'];
+  final bool? buttonAlignedDropdown = (__m7 != null ? uBool(__m7) : null);
+  final __m8 = __m['layoutBehavior'];
+  final ButtonBarLayoutBehavior? layoutBehavior = (__m8 != null ? _uButtonBarLayoutBehavior(__m8) : null);
+  final __m9 = __m['overflowDirection'];
+  final VerticalDirection? overflowDirection = (__m9 != null ? _uVerticalDirection(__m9) : null);
   return ButtonBarThemeData(
     alignment: alignment,
     mainAxisSize: mainAxisSize,
@@ -1877,19 +2364,32 @@ BottomNavigationBarLandscapeLayout _uBottomNavigationBarLandscapeLayout(dynamic 
 }
 
 BottomNavigationBarThemeData _uBottomNavigationBarThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final double? elevation = uNull<double>(uDouble)(__m['elevation']);
-  final IconThemeData? selectedIconTheme = uNull<IconThemeData>(uClass)(__m['selectedIconTheme']);
-  final IconThemeData? unselectedIconTheme = uNull<IconThemeData>(uClass)(__m['unselectedIconTheme']);
-  final Color? selectedItemColor = uNull<Color>(uClass)(__m['selectedItemColor']);
-  final Color? unselectedItemColor = uNull<Color>(uClass)(__m['unselectedItemColor']);
-  final TextStyle? selectedLabelStyle = uNull<TextStyle>(uClass)(__m['selectedLabelStyle']);
-  final TextStyle? unselectedLabelStyle = uNull<TextStyle>(uClass)(__m['unselectedLabelStyle']);
-  final bool? showSelectedLabels = uNull<bool>(uBool)(__m['showSelectedLabels']);
-  final bool? showUnselectedLabels = uNull<bool>(uBool)(__m['showUnselectedLabels']);
-  final BottomNavigationBarType? type = uNull<BottomNavigationBarType>(_uBottomNavigationBarType)(__m['type']);
-  final bool? enableFeedback = uNull<bool>(uBool)(__m['enableFeedback']);
-  final BottomNavigationBarLandscapeLayout? landscapeLayout = uNull<BottomNavigationBarLandscapeLayout>(_uBottomNavigationBarLandscapeLayout)(__m['landscapeLayout']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['elevation'];
+  final double? elevation = (__m2 != null ? uDouble(__m2) : null);
+  final __m3 = __m['selectedIconTheme'];
+  final IconThemeData? selectedIconTheme = (__m3 != null ? uClass<IconThemeData>(__m3) : null);
+  final __m4 = __m['unselectedIconTheme'];
+  final IconThemeData? unselectedIconTheme = (__m4 != null ? uClass<IconThemeData>(__m4) : null);
+  final __m5 = __m['selectedItemColor'];
+  final Color? selectedItemColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['unselectedItemColor'];
+  final Color? unselectedItemColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['selectedLabelStyle'];
+  final TextStyle? selectedLabelStyle = (__m7 != null ? uClass<TextStyle>(__m7) : null);
+  final __m8 = __m['unselectedLabelStyle'];
+  final TextStyle? unselectedLabelStyle = (__m8 != null ? uClass<TextStyle>(__m8) : null);
+  final __m9 = __m['showSelectedLabels'];
+  final bool? showSelectedLabels = (__m9 != null ? uBool(__m9) : null);
+  final __m10 = __m['showUnselectedLabels'];
+  final bool? showUnselectedLabels = (__m10 != null ? uBool(__m10) : null);
+  final __m11 = __m['type'];
+  final BottomNavigationBarType? type = (__m11 != null ? _uBottomNavigationBarType(__m11) : null);
+  final __m12 = __m['enableFeedback'];
+  final bool? enableFeedback = (__m12 != null ? uBool(__m12) : null);
+  final __m13 = __m['landscapeLayout'];
+  final BottomNavigationBarLandscapeLayout? landscapeLayout = (__m13 != null ? _uBottomNavigationBarLandscapeLayout(__m13) : null);
   return BottomNavigationBarThemeData(
     backgroundColor: backgroundColor,
     elevation: elevation,
@@ -1908,23 +2408,40 @@ BottomNavigationBarThemeData _uBottomNavigationBarThemeData(Map<String, dynamic>
 }
 
 TimePickerThemeData _uTimePickerThemeData(Map<String, dynamic> __m) {
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? hourMinuteTextColor = uNull<Color>(uClass)(__m['hourMinuteTextColor']);
-  final Color? hourMinuteColor = uNull<Color>(uClass)(__m['hourMinuteColor']);
-  final Color? dayPeriodTextColor = uNull<Color>(uClass)(__m['dayPeriodTextColor']);
-  final Color? dayPeriodColor = uNull<Color>(uClass)(__m['dayPeriodColor']);
-  final Color? dialHandColor = uNull<Color>(uClass)(__m['dialHandColor']);
-  final Color? dialBackgroundColor = uNull<Color>(uClass)(__m['dialBackgroundColor']);
-  final Color? dialTextColor = uNull<Color>(uClass)(__m['dialTextColor']);
-  final Color? entryModeIconColor = uNull<Color>(uClass)(__m['entryModeIconColor']);
-  final TextStyle? hourMinuteTextStyle = uNull<TextStyle>(uClass)(__m['hourMinuteTextStyle']);
-  final TextStyle? dayPeriodTextStyle = uNull<TextStyle>(uClass)(__m['dayPeriodTextStyle']);
-  final TextStyle? helpTextStyle = uNull<TextStyle>(uClass)(__m['helpTextStyle']);
-  final ShapeBorder? shape = uNull<ShapeBorder>(uClass)(__m['shape']);
-  final ShapeBorder? hourMinuteShape = uNull<ShapeBorder>(uClass)(__m['hourMinuteShape']);
-  final OutlinedBorder? dayPeriodShape = uNull<OutlinedBorder>(uClass)(__m['dayPeriodShape']);
-  final BorderSide? dayPeriodBorderSide = uNull<BorderSide>(uClass)(__m['dayPeriodBorderSide']);
-  final InputDecorationTheme? inputDecorationTheme = uNull<InputDecorationTheme>(uClass)(__m['inputDecorationTheme']);
+  final __m1 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['hourMinuteTextColor'];
+  final Color? hourMinuteTextColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['hourMinuteColor'];
+  final Color? hourMinuteColor = (__m3 != null ? uClass<Color>(__m3) : null);
+  final __m4 = __m['dayPeriodTextColor'];
+  final Color? dayPeriodTextColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['dayPeriodColor'];
+  final Color? dayPeriodColor = (__m5 != null ? uClass<Color>(__m5) : null);
+  final __m6 = __m['dialHandColor'];
+  final Color? dialHandColor = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['dialBackgroundColor'];
+  final Color? dialBackgroundColor = (__m7 != null ? uClass<Color>(__m7) : null);
+  final __m8 = __m['dialTextColor'];
+  final Color? dialTextColor = (__m8 != null ? uClass<Color>(__m8) : null);
+  final __m9 = __m['entryModeIconColor'];
+  final Color? entryModeIconColor = (__m9 != null ? uClass<Color>(__m9) : null);
+  final __m10 = __m['hourMinuteTextStyle'];
+  final TextStyle? hourMinuteTextStyle = (__m10 != null ? uClass<TextStyle>(__m10) : null);
+  final __m11 = __m['dayPeriodTextStyle'];
+  final TextStyle? dayPeriodTextStyle = (__m11 != null ? uClass<TextStyle>(__m11) : null);
+  final __m12 = __m['helpTextStyle'];
+  final TextStyle? helpTextStyle = (__m12 != null ? uClass<TextStyle>(__m12) : null);
+  final __m13 = __m['shape'];
+  final ShapeBorder? shape = (__m13 != null ? uClass<ShapeBorder>(__m13) : null);
+  final __m14 = __m['hourMinuteShape'];
+  final ShapeBorder? hourMinuteShape = (__m14 != null ? uClass<ShapeBorder>(__m14) : null);
+  final __m15 = __m['dayPeriodShape'];
+  final OutlinedBorder? dayPeriodShape = (__m15 != null ? uClass<OutlinedBorder>(__m15) : null);
+  final __m16 = __m['dayPeriodBorderSide'];
+  final BorderSide? dayPeriodBorderSide = (__m16 != null ? uClass<BorderSide>(__m16) : null);
+  final __m17 = __m['inputDecorationTheme'];
+  final InputDecorationTheme? inputDecorationTheme = (__m17 != null ? uClass<InputDecorationTheme>(__m17) : null);
   return TimePickerThemeData(
     backgroundColor: backgroundColor,
     hourMinuteTextColor: hourMinuteTextColor,
@@ -1947,25 +2464,44 @@ TimePickerThemeData _uTimePickerThemeData(Map<String, dynamic> __m) {
 }
 
 ButtonStyle _uButtonStyle(Map<String, dynamic> __m) {
-  final MaterialStateProperty<TextStyle?>? textStyle = uNull<MaterialStateProperty<TextStyle?>>(uClass)(__m['textStyle']);
-  final MaterialStateProperty<Color?>? backgroundColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['backgroundColor']);
-  final MaterialStateProperty<Color?>? foregroundColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['foregroundColor']);
-  final MaterialStateProperty<Color?>? overlayColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['overlayColor']);
-  final MaterialStateProperty<Color?>? shadowColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['shadowColor']);
-  final MaterialStateProperty<double?>? elevation = uNull<MaterialStateProperty<double?>>(uClass)(__m['elevation']);
-  final MaterialStateProperty<EdgeInsetsGeometry?>? padding = uNull<MaterialStateProperty<EdgeInsetsGeometry?>>(uClass)(__m['padding']);
-  final MaterialStateProperty<Size?>? minimumSize = uNull<MaterialStateProperty<Size?>>(uClass)(__m['minimumSize']);
-  final MaterialStateProperty<Size?>? fixedSize = uNull<MaterialStateProperty<Size?>>(uClass)(__m['fixedSize']);
-  final MaterialStateProperty<Size?>? maximumSize = uNull<MaterialStateProperty<Size?>>(uClass)(__m['maximumSize']);
-  final MaterialStateProperty<BorderSide?>? side = uNull<MaterialStateProperty<BorderSide?>>(uClass)(__m['side']);
-  final MaterialStateProperty<OutlinedBorder?>? shape = uNull<MaterialStateProperty<OutlinedBorder?>>(uClass)(__m['shape']);
-  final MaterialStateProperty<MouseCursor?>? mouseCursor = uNull<MaterialStateProperty<MouseCursor?>>(uClass)(__m['mouseCursor']);
-  final VisualDensity? visualDensity = uNull<VisualDensity>(uClass)(__m['visualDensity']);
-  final MaterialTapTargetSize? tapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['tapTargetSize']);
-  final Duration? animationDuration = uNull<Duration>(uClass)(__m['animationDuration']);
-  final bool? enableFeedback = uNull<bool>(uBool)(__m['enableFeedback']);
-  final AlignmentGeometry? alignment = uNull<AlignmentGeometry>(uClass)(__m['alignment']);
-  final InteractiveInkFeatureFactory? splashFactory = uNull<InteractiveInkFeatureFactory>(uClass)(__m['splashFactory']);
+  final __m1 = __m['textStyle'];
+  final MaterialStateProperty<TextStyle?>? textStyle = (__m1 != null ? uClass<MaterialStateProperty<TextStyle?>>(__m1) : null);
+  final __m2 = __m['backgroundColor'];
+  final MaterialStateProperty<Color?>? backgroundColor = (__m2 != null ? uClass<MaterialStateProperty<Color?>>(__m2) : null);
+  final __m3 = __m['foregroundColor'];
+  final MaterialStateProperty<Color?>? foregroundColor = (__m3 != null ? uClass<MaterialStateProperty<Color?>>(__m3) : null);
+  final __m4 = __m['overlayColor'];
+  final MaterialStateProperty<Color?>? overlayColor = (__m4 != null ? uClass<MaterialStateProperty<Color?>>(__m4) : null);
+  final __m5 = __m['shadowColor'];
+  final MaterialStateProperty<Color?>? shadowColor = (__m5 != null ? uClass<MaterialStateProperty<Color?>>(__m5) : null);
+  final __m6 = __m['elevation'];
+  final MaterialStateProperty<double?>? elevation = (__m6 != null ? uClass<MaterialStateProperty<double?>>(__m6) : null);
+  final __m7 = __m['padding'];
+  final MaterialStateProperty<EdgeInsetsGeometry?>? padding = (__m7 != null ? uClass<MaterialStateProperty<EdgeInsetsGeometry?>>(__m7) : null);
+  final __m8 = __m['minimumSize'];
+  final MaterialStateProperty<Size?>? minimumSize = (__m8 != null ? uClass<MaterialStateProperty<Size?>>(__m8) : null);
+  final __m9 = __m['fixedSize'];
+  final MaterialStateProperty<Size?>? fixedSize = (__m9 != null ? uClass<MaterialStateProperty<Size?>>(__m9) : null);
+  final __m10 = __m['maximumSize'];
+  final MaterialStateProperty<Size?>? maximumSize = (__m10 != null ? uClass<MaterialStateProperty<Size?>>(__m10) : null);
+  final __m11 = __m['side'];
+  final MaterialStateProperty<BorderSide?>? side = (__m11 != null ? uClass<MaterialStateProperty<BorderSide?>>(__m11) : null);
+  final __m12 = __m['shape'];
+  final MaterialStateProperty<OutlinedBorder?>? shape = (__m12 != null ? uClass<MaterialStateProperty<OutlinedBorder?>>(__m12) : null);
+  final __m13 = __m['mouseCursor'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = (__m13 != null ? uClass<MaterialStateProperty<MouseCursor?>>(__m13) : null);
+  final __m14 = __m['visualDensity'];
+  final VisualDensity? visualDensity = (__m14 != null ? uClass<VisualDensity>(__m14) : null);
+  final __m15 = __m['tapTargetSize'];
+  final MaterialTapTargetSize? tapTargetSize = (__m15 != null ? _uMaterialTapTargetSize(__m15) : null);
+  final __m16 = __m['animationDuration'];
+  final Duration? animationDuration = (__m16 != null ? uClass<Duration>(__m16) : null);
+  final __m17 = __m['enableFeedback'];
+  final bool? enableFeedback = (__m17 != null ? uBool(__m17) : null);
+  final __m18 = __m['alignment'];
+  final AlignmentGeometry? alignment = (__m18 != null ? uClass<AlignmentGeometry>(__m18) : null);
+  final __m19 = __m['splashFactory'];
+  final InteractiveInkFeatureFactory? splashFactory = (__m19 != null ? uClass<InteractiveInkFeatureFactory>(__m19) : null);
   return ButtonStyle(
     textStyle: textStyle,
     backgroundColor: backgroundColor,
@@ -1990,30 +2526,36 @@ ButtonStyle _uButtonStyle(Map<String, dynamic> __m) {
 }
 
 TextButtonThemeData _uTextButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
+  final __m1 = __m['style'];
+  final ButtonStyle? style = (__m1 != null ? uClass<ButtonStyle>(__m1) : null);
   return TextButtonThemeData(
     style: style,
   );
 }
 
 ElevatedButtonThemeData _uElevatedButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
+  final __m1 = __m['style'];
+  final ButtonStyle? style = (__m1 != null ? uClass<ButtonStyle>(__m1) : null);
   return ElevatedButtonThemeData(
     style: style,
   );
 }
 
 OutlinedButtonThemeData _uOutlinedButtonThemeData(Map<String, dynamic> __m) {
-  final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
+  final __m1 = __m['style'];
+  final ButtonStyle? style = (__m1 != null ? uClass<ButtonStyle>(__m1) : null);
   return OutlinedButtonThemeData(
     style: style,
   );
 }
 
 TextSelectionThemeData _uTextSelectionThemeData(Map<String, dynamic> __m) {
-  final Color? cursorColor = uNull<Color>(uClass)(__m['cursorColor']);
-  final Color? selectionColor = uNull<Color>(uClass)(__m['selectionColor']);
-  final Color? selectionHandleColor = uNull<Color>(uClass)(__m['selectionHandleColor']);
+  final __m1 = __m['cursorColor'];
+  final Color? cursorColor = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['selectionColor'];
+  final Color? selectionColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['selectionHandleColor'];
+  final Color? selectionHandleColor = (__m3 != null ? uClass<Color>(__m3) : null);
   return TextSelectionThemeData(
     cursorColor: cursorColor,
     selectionColor: selectionColor,
@@ -2022,17 +2564,28 @@ TextSelectionThemeData _uTextSelectionThemeData(Map<String, dynamic> __m) {
 }
 
 DataTableThemeData _uDataTableThemeData(Map<String, dynamic> __m) {
-  final Decoration? decoration = uNull<Decoration>(uClass)(__m['decoration']);
-  final MaterialStateProperty<Color?>? dataRowColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['dataRowColor']);
-  final double? dataRowHeight = uNull<double>(uDouble)(__m['dataRowHeight']);
-  final TextStyle? dataTextStyle = uNull<TextStyle>(uClass)(__m['dataTextStyle']);
-  final MaterialStateProperty<Color?>? headingRowColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['headingRowColor']);
-  final double? headingRowHeight = uNull<double>(uDouble)(__m['headingRowHeight']);
-  final TextStyle? headingTextStyle = uNull<TextStyle>(uClass)(__m['headingTextStyle']);
-  final double? horizontalMargin = uNull<double>(uDouble)(__m['horizontalMargin']);
-  final double? columnSpacing = uNull<double>(uDouble)(__m['columnSpacing']);
-  final double? dividerThickness = uNull<double>(uDouble)(__m['dividerThickness']);
-  final double? checkboxHorizontalMargin = uNull<double>(uDouble)(__m['checkboxHorizontalMargin']);
+  final __m1 = __m['decoration'];
+  final Decoration? decoration = (__m1 != null ? uClass<Decoration>(__m1) : null);
+  final __m2 = __m['dataRowColor'];
+  final MaterialStateProperty<Color?>? dataRowColor = (__m2 != null ? uClass<MaterialStateProperty<Color?>>(__m2) : null);
+  final __m3 = __m['dataRowHeight'];
+  final double? dataRowHeight = (__m3 != null ? uDouble(__m3) : null);
+  final __m4 = __m['dataTextStyle'];
+  final TextStyle? dataTextStyle = (__m4 != null ? uClass<TextStyle>(__m4) : null);
+  final __m5 = __m['headingRowColor'];
+  final MaterialStateProperty<Color?>? headingRowColor = (__m5 != null ? uClass<MaterialStateProperty<Color?>>(__m5) : null);
+  final __m6 = __m['headingRowHeight'];
+  final double? headingRowHeight = (__m6 != null ? uDouble(__m6) : null);
+  final __m7 = __m['headingTextStyle'];
+  final TextStyle? headingTextStyle = (__m7 != null ? uClass<TextStyle>(__m7) : null);
+  final __m8 = __m['horizontalMargin'];
+  final double? horizontalMargin = (__m8 != null ? uDouble(__m8) : null);
+  final __m9 = __m['columnSpacing'];
+  final double? columnSpacing = (__m9 != null ? uDouble(__m9) : null);
+  final __m10 = __m['dividerThickness'];
+  final double? dividerThickness = (__m10 != null ? uDouble(__m10) : null);
+  final __m11 = __m['checkboxHorizontalMargin'];
+  final double? checkboxHorizontalMargin = (__m11 != null ? uDouble(__m11) : null);
   return DataTableThemeData(
     decoration: decoration,
     dataRowColor: dataRowColor,
@@ -2049,15 +2602,24 @@ DataTableThemeData _uDataTableThemeData(Map<String, dynamic> __m) {
 }
 
 CheckboxThemeData _uCheckboxThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<MouseCursor?>? mouseCursor = uNull<MaterialStateProperty<MouseCursor?>>(uClass)(__m['mouseCursor']);
-  final MaterialStateProperty<Color?>? fillColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['fillColor']);
-  final MaterialStateProperty<Color?>? checkColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['checkColor']);
-  final MaterialStateProperty<Color?>? overlayColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['overlayColor']);
-  final double? splashRadius = uNull<double>(uDouble)(__m['splashRadius']);
-  final MaterialTapTargetSize? materialTapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['materialTapTargetSize']);
-  final VisualDensity? visualDensity = uNull<VisualDensity>(uClass)(__m['visualDensity']);
-  final OutlinedBorder? shape = uNull<OutlinedBorder>(uClass)(__m['shape']);
-  final BorderSide? side = uNull<BorderSide>(uClass)(__m['side']);
+  final __m1 = __m['mouseCursor'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = (__m1 != null ? uClass<MaterialStateProperty<MouseCursor?>>(__m1) : null);
+  final __m2 = __m['fillColor'];
+  final MaterialStateProperty<Color?>? fillColor = (__m2 != null ? uClass<MaterialStateProperty<Color?>>(__m2) : null);
+  final __m3 = __m['checkColor'];
+  final MaterialStateProperty<Color?>? checkColor = (__m3 != null ? uClass<MaterialStateProperty<Color?>>(__m3) : null);
+  final __m4 = __m['overlayColor'];
+  final MaterialStateProperty<Color?>? overlayColor = (__m4 != null ? uClass<MaterialStateProperty<Color?>>(__m4) : null);
+  final __m5 = __m['splashRadius'];
+  final double? splashRadius = (__m5 != null ? uDouble(__m5) : null);
+  final __m6 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize? materialTapTargetSize = (__m6 != null ? _uMaterialTapTargetSize(__m6) : null);
+  final __m7 = __m['visualDensity'];
+  final VisualDensity? visualDensity = (__m7 != null ? uClass<VisualDensity>(__m7) : null);
+  final __m8 = __m['shape'];
+  final OutlinedBorder? shape = (__m8 != null ? uClass<OutlinedBorder>(__m8) : null);
+  final __m9 = __m['side'];
+  final BorderSide? side = (__m9 != null ? uClass<BorderSide>(__m9) : null);
   return CheckboxThemeData(
     mouseCursor: mouseCursor,
     fillColor: fillColor,
@@ -2072,12 +2634,18 @@ CheckboxThemeData _uCheckboxThemeData(Map<String, dynamic> __m) {
 }
 
 RadioThemeData _uRadioThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<MouseCursor?>? mouseCursor = uNull<MaterialStateProperty<MouseCursor?>>(uClass)(__m['mouseCursor']);
-  final MaterialStateProperty<Color?>? fillColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['fillColor']);
-  final MaterialStateProperty<Color?>? overlayColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['overlayColor']);
-  final double? splashRadius = uNull<double>(uDouble)(__m['splashRadius']);
-  final MaterialTapTargetSize? materialTapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['materialTapTargetSize']);
-  final VisualDensity? visualDensity = uNull<VisualDensity>(uClass)(__m['visualDensity']);
+  final __m1 = __m['mouseCursor'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = (__m1 != null ? uClass<MaterialStateProperty<MouseCursor?>>(__m1) : null);
+  final __m2 = __m['fillColor'];
+  final MaterialStateProperty<Color?>? fillColor = (__m2 != null ? uClass<MaterialStateProperty<Color?>>(__m2) : null);
+  final __m3 = __m['overlayColor'];
+  final MaterialStateProperty<Color?>? overlayColor = (__m3 != null ? uClass<MaterialStateProperty<Color?>>(__m3) : null);
+  final __m4 = __m['splashRadius'];
+  final double? splashRadius = (__m4 != null ? uDouble(__m4) : null);
+  final __m5 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize? materialTapTargetSize = (__m5 != null ? _uMaterialTapTargetSize(__m5) : null);
+  final __m6 = __m['visualDensity'];
+  final VisualDensity? visualDensity = (__m6 != null ? uClass<VisualDensity>(__m6) : null);
   return RadioThemeData(
     mouseCursor: mouseCursor,
     fillColor: fillColor,
@@ -2089,12 +2657,18 @@ RadioThemeData _uRadioThemeData(Map<String, dynamic> __m) {
 }
 
 SwitchThemeData _uSwitchThemeData(Map<String, dynamic> __m) {
-  final MaterialStateProperty<Color?>? thumbColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['thumbColor']);
-  final MaterialStateProperty<Color?>? trackColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['trackColor']);
-  final MaterialTapTargetSize? materialTapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['materialTapTargetSize']);
-  final MaterialStateProperty<MouseCursor?>? mouseCursor = uNull<MaterialStateProperty<MouseCursor?>>(uClass)(__m['mouseCursor']);
-  final MaterialStateProperty<Color?>? overlayColor = uNull<MaterialStateProperty<Color?>>(uClass)(__m['overlayColor']);
-  final double? splashRadius = uNull<double>(uDouble)(__m['splashRadius']);
+  final __m1 = __m['thumbColor'];
+  final MaterialStateProperty<Color?>? thumbColor = (__m1 != null ? uClass<MaterialStateProperty<Color?>>(__m1) : null);
+  final __m2 = __m['trackColor'];
+  final MaterialStateProperty<Color?>? trackColor = (__m2 != null ? uClass<MaterialStateProperty<Color?>>(__m2) : null);
+  final __m3 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize? materialTapTargetSize = (__m3 != null ? _uMaterialTapTargetSize(__m3) : null);
+  final __m4 = __m['mouseCursor'];
+  final MaterialStateProperty<MouseCursor?>? mouseCursor = (__m4 != null ? uClass<MaterialStateProperty<MouseCursor?>>(__m4) : null);
+  final __m5 = __m['overlayColor'];
+  final MaterialStateProperty<Color?>? overlayColor = (__m5 != null ? uClass<MaterialStateProperty<Color?>>(__m5) : null);
+  final __m6 = __m['splashRadius'];
+  final double? splashRadius = (__m6 != null ? uDouble(__m6) : null);
   return SwitchThemeData(
     thumbColor: thumbColor,
     trackColor: trackColor,
@@ -2106,11 +2680,16 @@ SwitchThemeData _uSwitchThemeData(Map<String, dynamic> __m) {
 }
 
 ProgressIndicatorThemeData _uProgressIndicatorThemeData(Map<String, dynamic> __m) {
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final Color? linearTrackColor = uNull<Color>(uClass)(__m['linearTrackColor']);
-  final double? linearMinHeight = uNull<double>(uDouble)(__m['linearMinHeight']);
-  final Color? circularTrackColor = uNull<Color>(uClass)(__m['circularTrackColor']);
-  final Color? refreshBackgroundColor = uNull<Color>(uClass)(__m['refreshBackgroundColor']);
+  final __m1 = __m['color'];
+  final Color? color = (__m1 != null ? uClass<Color>(__m1) : null);
+  final __m2 = __m['linearTrackColor'];
+  final Color? linearTrackColor = (__m2 != null ? uClass<Color>(__m2) : null);
+  final __m3 = __m['linearMinHeight'];
+  final double? linearMinHeight = (__m3 != null ? uDouble(__m3) : null);
+  final __m4 = __m['circularTrackColor'];
+  final Color? circularTrackColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['refreshBackgroundColor'];
+  final Color? refreshBackgroundColor = (__m5 != null ? uClass<Color>(__m5) : null);
   return ProgressIndicatorThemeData(
     color: color,
     linearTrackColor: linearTrackColor,
@@ -2121,87 +2700,168 @@ ProgressIndicatorThemeData _uProgressIndicatorThemeData(Map<String, dynamic> __m
 }
 
 ThemeData _uThemeData(Map<String, dynamic> __m) {
-  final Brightness? brightness = uNull<Brightness>(_uBrightness)(__m['brightness']);
-  final VisualDensity? visualDensity = uNull<VisualDensity>(uClass)(__m['visualDensity']);
-  final MaterialColor? primarySwatch = uNull<MaterialColor>(uClass)(__m['primarySwatch']);
-  final Color? primaryColor = uNull<Color>(uClass)(__m['primaryColor']);
-  final Brightness? primaryColorBrightness = uNull<Brightness>(_uBrightness)(__m['primaryColorBrightness']);
-  final Color? primaryColorLight = uNull<Color>(uClass)(__m['primaryColorLight']);
-  final Color? primaryColorDark = uNull<Color>(uClass)(__m['primaryColorDark']);
-  final Color? accentColor = uNull<Color>(uClass)(__m['accentColor']);
-  final Brightness? accentColorBrightness = uNull<Brightness>(_uBrightness)(__m['accentColorBrightness']);
-  final Color? canvasColor = uNull<Color>(uClass)(__m['canvasColor']);
-  final Color? shadowColor = uNull<Color>(uClass)(__m['shadowColor']);
-  final Color? scaffoldBackgroundColor = uNull<Color>(uClass)(__m['scaffoldBackgroundColor']);
-  final Color? bottomAppBarColor = uNull<Color>(uClass)(__m['bottomAppBarColor']);
-  final Color? cardColor = uNull<Color>(uClass)(__m['cardColor']);
-  final Color? dividerColor = uNull<Color>(uClass)(__m['dividerColor']);
-  final Color? focusColor = uNull<Color>(uClass)(__m['focusColor']);
-  final Color? hoverColor = uNull<Color>(uClass)(__m['hoverColor']);
-  final Color? highlightColor = uNull<Color>(uClass)(__m['highlightColor']);
-  final Color? splashColor = uNull<Color>(uClass)(__m['splashColor']);
-  final InteractiveInkFeatureFactory? splashFactory = uNull<InteractiveInkFeatureFactory>(uClass)(__m['splashFactory']);
-  final Color? selectedRowColor = uNull<Color>(uClass)(__m['selectedRowColor']);
-  final Color? unselectedWidgetColor = uNull<Color>(uClass)(__m['unselectedWidgetColor']);
-  final Color? disabledColor = uNull<Color>(uClass)(__m['disabledColor']);
-  final Color? buttonColor = uNull<Color>(uClass)(__m['buttonColor']);
-  final ButtonThemeData? buttonTheme = uNull<ButtonThemeData>(uClass)(__m['buttonTheme']);
-  final ToggleButtonsThemeData? toggleButtonsTheme = uNull<ToggleButtonsThemeData>(uClass)(__m['toggleButtonsTheme']);
-  final Color? secondaryHeaderColor = uNull<Color>(uClass)(__m['secondaryHeaderColor']);
-  final Color? textSelectionColor = uNull<Color>(uClass)(__m['textSelectionColor']);
-  final Color? cursorColor = uNull<Color>(uClass)(__m['cursorColor']);
-  final Color? textSelectionHandleColor = uNull<Color>(uClass)(__m['textSelectionHandleColor']);
-  final Color? backgroundColor = uNull<Color>(uClass)(__m['backgroundColor']);
-  final Color? dialogBackgroundColor = uNull<Color>(uClass)(__m['dialogBackgroundColor']);
-  final Color? indicatorColor = uNull<Color>(uClass)(__m['indicatorColor']);
-  final Color? hintColor = uNull<Color>(uClass)(__m['hintColor']);
-  final Color? errorColor = uNull<Color>(uClass)(__m['errorColor']);
-  final Color? toggleableActiveColor = uNull<Color>(uClass)(__m['toggleableActiveColor']);
-  final String? fontFamily = uNull<String>(uString)(__m['fontFamily']);
-  final TextTheme? textTheme = uNull<TextTheme>(uClass)(__m['textTheme']);
-  final TextTheme? primaryTextTheme = uNull<TextTheme>(uClass)(__m['primaryTextTheme']);
-  final TextTheme? accentTextTheme = uNull<TextTheme>(uClass)(__m['accentTextTheme']);
-  final InputDecorationTheme? inputDecorationTheme = uNull<InputDecorationTheme>(uClass)(__m['inputDecorationTheme']);
-  final IconThemeData? iconTheme = uNull<IconThemeData>(uClass)(__m['iconTheme']);
-  final IconThemeData? primaryIconTheme = uNull<IconThemeData>(uClass)(__m['primaryIconTheme']);
-  final IconThemeData? accentIconTheme = uNull<IconThemeData>(uClass)(__m['accentIconTheme']);
-  final SliderThemeData? sliderTheme = uNull<SliderThemeData>(uClass)(__m['sliderTheme']);
-  final TabBarTheme? tabBarTheme = uNull<TabBarTheme>(uClass)(__m['tabBarTheme']);
-  final TooltipThemeData? tooltipTheme = uNull<TooltipThemeData>(uClass)(__m['tooltipTheme']);
-  final CardTheme? cardTheme = uNull<CardTheme>(uClass)(__m['cardTheme']);
-  final ChipThemeData? chipTheme = uNull<ChipThemeData>(uClass)(__m['chipTheme']);
-  final TargetPlatform? platform = uNull<TargetPlatform>(_uTargetPlatform)(__m['platform']);
-  final MaterialTapTargetSize? materialTapTargetSize = uNull<MaterialTapTargetSize>(_uMaterialTapTargetSize)(__m['materialTapTargetSize']);
-  final bool? applyElevationOverlayColor = uNull<bool>(uBool)(__m['applyElevationOverlayColor']);
-  final PageTransitionsTheme? pageTransitionsTheme = uNull<PageTransitionsTheme>(uClass)(__m['pageTransitionsTheme']);
-  final AppBarTheme? appBarTheme = uNull<AppBarTheme>(uClass)(__m['appBarTheme']);
-  final ScrollbarThemeData? scrollbarTheme = uNull<ScrollbarThemeData>(uClass)(__m['scrollbarTheme']);
-  final BottomAppBarTheme? bottomAppBarTheme = uNull<BottomAppBarTheme>(uClass)(__m['bottomAppBarTheme']);
-  final ColorScheme? colorScheme = uNull<ColorScheme>(uClass)(__m['colorScheme']);
-  final DialogTheme? dialogTheme = uNull<DialogTheme>(uClass)(__m['dialogTheme']);
-  final FloatingActionButtonThemeData? floatingActionButtonTheme = uNull<FloatingActionButtonThemeData>(uClass)(__m['floatingActionButtonTheme']);
-  final NavigationRailThemeData? navigationRailTheme = uNull<NavigationRailThemeData>(uClass)(__m['navigationRailTheme']);
-  final Typography? typography = uNull<Typography>(uClass)(__m['typography']);
-  final NoDefaultCupertinoThemeData? cupertinoOverrideTheme = uNull<NoDefaultCupertinoThemeData>(uClass)(__m['cupertinoOverrideTheme']);
-  final SnackBarThemeData? snackBarTheme = uNull<SnackBarThemeData>(uClass)(__m['snackBarTheme']);
-  final BottomSheetThemeData? bottomSheetTheme = uNull<BottomSheetThemeData>(uClass)(__m['bottomSheetTheme']);
-  final PopupMenuThemeData? popupMenuTheme = uNull<PopupMenuThemeData>(uClass)(__m['popupMenuTheme']);
-  final MaterialBannerThemeData? bannerTheme = uNull<MaterialBannerThemeData>(uClass)(__m['bannerTheme']);
-  final DividerThemeData? dividerTheme = uNull<DividerThemeData>(uClass)(__m['dividerTheme']);
-  final ButtonBarThemeData? buttonBarTheme = uNull<ButtonBarThemeData>(uClass)(__m['buttonBarTheme']);
-  final BottomNavigationBarThemeData? bottomNavigationBarTheme = uNull<BottomNavigationBarThemeData>(uClass)(__m['bottomNavigationBarTheme']);
-  final TimePickerThemeData? timePickerTheme = uNull<TimePickerThemeData>(uClass)(__m['timePickerTheme']);
-  final TextButtonThemeData? textButtonTheme = uNull<TextButtonThemeData>(uClass)(__m['textButtonTheme']);
-  final ElevatedButtonThemeData? elevatedButtonTheme = uNull<ElevatedButtonThemeData>(uClass)(__m['elevatedButtonTheme']);
-  final OutlinedButtonThemeData? outlinedButtonTheme = uNull<OutlinedButtonThemeData>(uClass)(__m['outlinedButtonTheme']);
-  final TextSelectionThemeData? textSelectionTheme = uNull<TextSelectionThemeData>(uClass)(__m['textSelectionTheme']);
-  final DataTableThemeData? dataTableTheme = uNull<DataTableThemeData>(uClass)(__m['dataTableTheme']);
-  final CheckboxThemeData? checkboxTheme = uNull<CheckboxThemeData>(uClass)(__m['checkboxTheme']);
-  final RadioThemeData? radioTheme = uNull<RadioThemeData>(uClass)(__m['radioTheme']);
-  final SwitchThemeData? switchTheme = uNull<SwitchThemeData>(uClass)(__m['switchTheme']);
-  final ProgressIndicatorThemeData? progressIndicatorTheme = uNull<ProgressIndicatorThemeData>(uClass)(__m['progressIndicatorTheme']);
-  final bool? fixTextFieldOutlineLabel = uNull<bool>(uBool)(__m['fixTextFieldOutlineLabel']);
-  final bool? useTextSelectionTheme = uNull<bool>(uBool)(__m['useTextSelectionTheme']);
+  final __m1 = __m['brightness'];
+  final Brightness? brightness = (__m1 != null ? _uBrightness(__m1) : null);
+  final __m2 = __m['visualDensity'];
+  final VisualDensity? visualDensity = (__m2 != null ? uClass<VisualDensity>(__m2) : null);
+  final __m3 = __m['primarySwatch'];
+  final MaterialColor? primarySwatch = (__m3 != null ? uClass<MaterialColor>(__m3) : null);
+  final __m4 = __m['primaryColor'];
+  final Color? primaryColor = (__m4 != null ? uClass<Color>(__m4) : null);
+  final __m5 = __m['primaryColorBrightness'];
+  final Brightness? primaryColorBrightness = (__m5 != null ? _uBrightness(__m5) : null);
+  final __m6 = __m['primaryColorLight'];
+  final Color? primaryColorLight = (__m6 != null ? uClass<Color>(__m6) : null);
+  final __m7 = __m['primaryColorDark'];
+  final Color? primaryColorDark = (__m7 != null ? uClass<Color>(__m7) : null);
+  final __m8 = __m['accentColor'];
+  final Color? accentColor = (__m8 != null ? uClass<Color>(__m8) : null);
+  final __m9 = __m['accentColorBrightness'];
+  final Brightness? accentColorBrightness = (__m9 != null ? _uBrightness(__m9) : null);
+  final __m10 = __m['canvasColor'];
+  final Color? canvasColor = (__m10 != null ? uClass<Color>(__m10) : null);
+  final __m11 = __m['shadowColor'];
+  final Color? shadowColor = (__m11 != null ? uClass<Color>(__m11) : null);
+  final __m12 = __m['scaffoldBackgroundColor'];
+  final Color? scaffoldBackgroundColor = (__m12 != null ? uClass<Color>(__m12) : null);
+  final __m13 = __m['bottomAppBarColor'];
+  final Color? bottomAppBarColor = (__m13 != null ? uClass<Color>(__m13) : null);
+  final __m14 = __m['cardColor'];
+  final Color? cardColor = (__m14 != null ? uClass<Color>(__m14) : null);
+  final __m15 = __m['dividerColor'];
+  final Color? dividerColor = (__m15 != null ? uClass<Color>(__m15) : null);
+  final __m16 = __m['focusColor'];
+  final Color? focusColor = (__m16 != null ? uClass<Color>(__m16) : null);
+  final __m17 = __m['hoverColor'];
+  final Color? hoverColor = (__m17 != null ? uClass<Color>(__m17) : null);
+  final __m18 = __m['highlightColor'];
+  final Color? highlightColor = (__m18 != null ? uClass<Color>(__m18) : null);
+  final __m19 = __m['splashColor'];
+  final Color? splashColor = (__m19 != null ? uClass<Color>(__m19) : null);
+  final __m20 = __m['splashFactory'];
+  final InteractiveInkFeatureFactory? splashFactory = (__m20 != null ? uClass<InteractiveInkFeatureFactory>(__m20) : null);
+  final __m21 = __m['selectedRowColor'];
+  final Color? selectedRowColor = (__m21 != null ? uClass<Color>(__m21) : null);
+  final __m22 = __m['unselectedWidgetColor'];
+  final Color? unselectedWidgetColor = (__m22 != null ? uClass<Color>(__m22) : null);
+  final __m23 = __m['disabledColor'];
+  final Color? disabledColor = (__m23 != null ? uClass<Color>(__m23) : null);
+  final __m24 = __m['buttonColor'];
+  final Color? buttonColor = (__m24 != null ? uClass<Color>(__m24) : null);
+  final __m25 = __m['buttonTheme'];
+  final ButtonThemeData? buttonTheme = (__m25 != null ? uClass<ButtonThemeData>(__m25) : null);
+  final __m26 = __m['toggleButtonsTheme'];
+  final ToggleButtonsThemeData? toggleButtonsTheme = (__m26 != null ? uClass<ToggleButtonsThemeData>(__m26) : null);
+  final __m27 = __m['secondaryHeaderColor'];
+  final Color? secondaryHeaderColor = (__m27 != null ? uClass<Color>(__m27) : null);
+  final __m28 = __m['textSelectionColor'];
+  final Color? textSelectionColor = (__m28 != null ? uClass<Color>(__m28) : null);
+  final __m29 = __m['cursorColor'];
+  final Color? cursorColor = (__m29 != null ? uClass<Color>(__m29) : null);
+  final __m30 = __m['textSelectionHandleColor'];
+  final Color? textSelectionHandleColor = (__m30 != null ? uClass<Color>(__m30) : null);
+  final __m31 = __m['backgroundColor'];
+  final Color? backgroundColor = (__m31 != null ? uClass<Color>(__m31) : null);
+  final __m32 = __m['dialogBackgroundColor'];
+  final Color? dialogBackgroundColor = (__m32 != null ? uClass<Color>(__m32) : null);
+  final __m33 = __m['indicatorColor'];
+  final Color? indicatorColor = (__m33 != null ? uClass<Color>(__m33) : null);
+  final __m34 = __m['hintColor'];
+  final Color? hintColor = (__m34 != null ? uClass<Color>(__m34) : null);
+  final __m35 = __m['errorColor'];
+  final Color? errorColor = (__m35 != null ? uClass<Color>(__m35) : null);
+  final __m36 = __m['toggleableActiveColor'];
+  final Color? toggleableActiveColor = (__m36 != null ? uClass<Color>(__m36) : null);
+  final __m37 = __m['fontFamily'];
+  final String? fontFamily = (__m37 != null ? uString(__m37) : null);
+  final __m38 = __m['textTheme'];
+  final TextTheme? textTheme = (__m38 != null ? uClass<TextTheme>(__m38) : null);
+  final __m39 = __m['primaryTextTheme'];
+  final TextTheme? primaryTextTheme = (__m39 != null ? uClass<TextTheme>(__m39) : null);
+  final __m40 = __m['accentTextTheme'];
+  final TextTheme? accentTextTheme = (__m40 != null ? uClass<TextTheme>(__m40) : null);
+  final __m41 = __m['inputDecorationTheme'];
+  final InputDecorationTheme? inputDecorationTheme = (__m41 != null ? uClass<InputDecorationTheme>(__m41) : null);
+  final __m42 = __m['iconTheme'];
+  final IconThemeData? iconTheme = (__m42 != null ? uClass<IconThemeData>(__m42) : null);
+  final __m43 = __m['primaryIconTheme'];
+  final IconThemeData? primaryIconTheme = (__m43 != null ? uClass<IconThemeData>(__m43) : null);
+  final __m44 = __m['accentIconTheme'];
+  final IconThemeData? accentIconTheme = (__m44 != null ? uClass<IconThemeData>(__m44) : null);
+  final __m45 = __m['sliderTheme'];
+  final SliderThemeData? sliderTheme = (__m45 != null ? uClass<SliderThemeData>(__m45) : null);
+  final __m46 = __m['tabBarTheme'];
+  final TabBarTheme? tabBarTheme = (__m46 != null ? uClass<TabBarTheme>(__m46) : null);
+  final __m47 = __m['tooltipTheme'];
+  final TooltipThemeData? tooltipTheme = (__m47 != null ? uClass<TooltipThemeData>(__m47) : null);
+  final __m48 = __m['cardTheme'];
+  final CardTheme? cardTheme = (__m48 != null ? uClass<CardTheme>(__m48) : null);
+  final __m49 = __m['chipTheme'];
+  final ChipThemeData? chipTheme = (__m49 != null ? uClass<ChipThemeData>(__m49) : null);
+  final __m50 = __m['platform'];
+  final TargetPlatform? platform = (__m50 != null ? _uTargetPlatform(__m50) : null);
+  final __m51 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize? materialTapTargetSize = (__m51 != null ? _uMaterialTapTargetSize(__m51) : null);
+  final __m52 = __m['applyElevationOverlayColor'];
+  final bool? applyElevationOverlayColor = (__m52 != null ? uBool(__m52) : null);
+  final __m53 = __m['pageTransitionsTheme'];
+  final PageTransitionsTheme? pageTransitionsTheme = (__m53 != null ? uClass<PageTransitionsTheme>(__m53) : null);
+  final __m54 = __m['appBarTheme'];
+  final AppBarTheme? appBarTheme = (__m54 != null ? uClass<AppBarTheme>(__m54) : null);
+  final __m55 = __m['scrollbarTheme'];
+  final ScrollbarThemeData? scrollbarTheme = (__m55 != null ? uClass<ScrollbarThemeData>(__m55) : null);
+  final __m56 = __m['bottomAppBarTheme'];
+  final BottomAppBarTheme? bottomAppBarTheme = (__m56 != null ? uClass<BottomAppBarTheme>(__m56) : null);
+  final __m57 = __m['colorScheme'];
+  final ColorScheme? colorScheme = (__m57 != null ? uClass<ColorScheme>(__m57) : null);
+  final __m58 = __m['dialogTheme'];
+  final DialogTheme? dialogTheme = (__m58 != null ? uClass<DialogTheme>(__m58) : null);
+  final __m59 = __m['floatingActionButtonTheme'];
+  final FloatingActionButtonThemeData? floatingActionButtonTheme = (__m59 != null ? uClass<FloatingActionButtonThemeData>(__m59) : null);
+  final __m60 = __m['navigationRailTheme'];
+  final NavigationRailThemeData? navigationRailTheme = (__m60 != null ? uClass<NavigationRailThemeData>(__m60) : null);
+  final __m61 = __m['typography'];
+  final Typography? typography = (__m61 != null ? uClass<Typography>(__m61) : null);
+  final __m62 = __m['cupertinoOverrideTheme'];
+  final NoDefaultCupertinoThemeData? cupertinoOverrideTheme = (__m62 != null ? uClass<NoDefaultCupertinoThemeData>(__m62) : null);
+  final __m63 = __m['snackBarTheme'];
+  final SnackBarThemeData? snackBarTheme = (__m63 != null ? uClass<SnackBarThemeData>(__m63) : null);
+  final __m64 = __m['bottomSheetTheme'];
+  final BottomSheetThemeData? bottomSheetTheme = (__m64 != null ? uClass<BottomSheetThemeData>(__m64) : null);
+  final __m65 = __m['popupMenuTheme'];
+  final PopupMenuThemeData? popupMenuTheme = (__m65 != null ? uClass<PopupMenuThemeData>(__m65) : null);
+  final __m66 = __m['bannerTheme'];
+  final MaterialBannerThemeData? bannerTheme = (__m66 != null ? uClass<MaterialBannerThemeData>(__m66) : null);
+  final __m67 = __m['dividerTheme'];
+  final DividerThemeData? dividerTheme = (__m67 != null ? uClass<DividerThemeData>(__m67) : null);
+  final __m68 = __m['buttonBarTheme'];
+  final ButtonBarThemeData? buttonBarTheme = (__m68 != null ? uClass<ButtonBarThemeData>(__m68) : null);
+  final __m69 = __m['bottomNavigationBarTheme'];
+  final BottomNavigationBarThemeData? bottomNavigationBarTheme = (__m69 != null ? uClass<BottomNavigationBarThemeData>(__m69) : null);
+  final __m70 = __m['timePickerTheme'];
+  final TimePickerThemeData? timePickerTheme = (__m70 != null ? uClass<TimePickerThemeData>(__m70) : null);
+  final __m71 = __m['textButtonTheme'];
+  final TextButtonThemeData? textButtonTheme = (__m71 != null ? uClass<TextButtonThemeData>(__m71) : null);
+  final __m72 = __m['elevatedButtonTheme'];
+  final ElevatedButtonThemeData? elevatedButtonTheme = (__m72 != null ? uClass<ElevatedButtonThemeData>(__m72) : null);
+  final __m73 = __m['outlinedButtonTheme'];
+  final OutlinedButtonThemeData? outlinedButtonTheme = (__m73 != null ? uClass<OutlinedButtonThemeData>(__m73) : null);
+  final __m74 = __m['textSelectionTheme'];
+  final TextSelectionThemeData? textSelectionTheme = (__m74 != null ? uClass<TextSelectionThemeData>(__m74) : null);
+  final __m75 = __m['dataTableTheme'];
+  final DataTableThemeData? dataTableTheme = (__m75 != null ? uClass<DataTableThemeData>(__m75) : null);
+  final __m76 = __m['checkboxTheme'];
+  final CheckboxThemeData? checkboxTheme = (__m76 != null ? uClass<CheckboxThemeData>(__m76) : null);
+  final __m77 = __m['radioTheme'];
+  final RadioThemeData? radioTheme = (__m77 != null ? uClass<RadioThemeData>(__m77) : null);
+  final __m78 = __m['switchTheme'];
+  final SwitchThemeData? switchTheme = (__m78 != null ? uClass<SwitchThemeData>(__m78) : null);
+  final __m79 = __m['progressIndicatorTheme'];
+  final ProgressIndicatorThemeData? progressIndicatorTheme = (__m79 != null ? uClass<ProgressIndicatorThemeData>(__m79) : null);
+  final __m80 = __m['fixTextFieldOutlineLabel'];
+  final bool? fixTextFieldOutlineLabel = (__m80 != null ? uBool(__m80) : null);
+  final __m81 = __m['useTextSelectionTheme'];
+  final bool? useTextSelectionTheme = (__m81 != null ? uBool(__m81) : null);
   return ThemeData(
     brightness: brightness,
     visualDensity: visualDensity,
@@ -2288,84 +2948,162 @@ ThemeData _uThemeData(Map<String, dynamic> __m) {
 }
 
 ThemeData _uThemeDataRaw(Map<String, dynamic> __m) {
-  final VisualDensity visualDensity = uClass(__m['visualDensity']);
-  final Color primaryColor = uClass(__m['primaryColor']);
-  final Brightness primaryColorBrightness = _uBrightness(__m['primaryColorBrightness']);
-  final Color primaryColorLight = uClass(__m['primaryColorLight']);
-  final Color primaryColorDark = uClass(__m['primaryColorDark']);
-  final Color canvasColor = uClass(__m['canvasColor']);
-  final Color shadowColor = uClass(__m['shadowColor']);
-  final Color accentColor = uClass(__m['accentColor']);
-  final Brightness accentColorBrightness = _uBrightness(__m['accentColorBrightness']);
-  final Color scaffoldBackgroundColor = uClass(__m['scaffoldBackgroundColor']);
-  final Color bottomAppBarColor = uClass(__m['bottomAppBarColor']);
-  final Color cardColor = uClass(__m['cardColor']);
-  final Color dividerColor = uClass(__m['dividerColor']);
-  final Color focusColor = uClass(__m['focusColor']);
-  final Color hoverColor = uClass(__m['hoverColor']);
-  final Color highlightColor = uClass(__m['highlightColor']);
-  final Color splashColor = uClass(__m['splashColor']);
-  final InteractiveInkFeatureFactory splashFactory = uClass(__m['splashFactory']);
-  final Color selectedRowColor = uClass(__m['selectedRowColor']);
-  final Color unselectedWidgetColor = uClass(__m['unselectedWidgetColor']);
-  final Color disabledColor = uClass(__m['disabledColor']);
-  final ButtonThemeData buttonTheme = uClass(__m['buttonTheme']);
-  final Color buttonColor = uClass(__m['buttonColor']);
-  final ToggleButtonsThemeData toggleButtonsTheme = uClass(__m['toggleButtonsTheme']);
-  final Color secondaryHeaderColor = uClass(__m['secondaryHeaderColor']);
-  final Color textSelectionColor = uClass(__m['textSelectionColor']);
-  final Color cursorColor = uClass(__m['cursorColor']);
-  final Color textSelectionHandleColor = uClass(__m['textSelectionHandleColor']);
-  final Color backgroundColor = uClass(__m['backgroundColor']);
-  final Color dialogBackgroundColor = uClass(__m['dialogBackgroundColor']);
-  final Color indicatorColor = uClass(__m['indicatorColor']);
-  final Color hintColor = uClass(__m['hintColor']);
-  final Color errorColor = uClass(__m['errorColor']);
-  final Color toggleableActiveColor = uClass(__m['toggleableActiveColor']);
-  final TextTheme textTheme = uClass(__m['textTheme']);
-  final TextTheme primaryTextTheme = uClass(__m['primaryTextTheme']);
-  final TextTheme accentTextTheme = uClass(__m['accentTextTheme']);
-  final InputDecorationTheme inputDecorationTheme = uClass(__m['inputDecorationTheme']);
-  final IconThemeData iconTheme = uClass(__m['iconTheme']);
-  final IconThemeData primaryIconTheme = uClass(__m['primaryIconTheme']);
-  final IconThemeData accentIconTheme = uClass(__m['accentIconTheme']);
-  final SliderThemeData sliderTheme = uClass(__m['sliderTheme']);
-  final TabBarTheme tabBarTheme = uClass(__m['tabBarTheme']);
-  final TooltipThemeData tooltipTheme = uClass(__m['tooltipTheme']);
-  final CardTheme cardTheme = uClass(__m['cardTheme']);
-  final ChipThemeData chipTheme = uClass(__m['chipTheme']);
-  final TargetPlatform platform = _uTargetPlatform(__m['platform']);
-  final MaterialTapTargetSize materialTapTargetSize = _uMaterialTapTargetSize(__m['materialTapTargetSize']);
-  final bool applyElevationOverlayColor = uBool(__m['applyElevationOverlayColor']);
-  final PageTransitionsTheme pageTransitionsTheme = uClass(__m['pageTransitionsTheme']);
-  final AppBarTheme appBarTheme = uClass(__m['appBarTheme']);
-  final ScrollbarThemeData scrollbarTheme = uClass(__m['scrollbarTheme']);
-  final BottomAppBarTheme bottomAppBarTheme = uClass(__m['bottomAppBarTheme']);
-  final ColorScheme colorScheme = uClass(__m['colorScheme']);
-  final DialogTheme dialogTheme = uClass(__m['dialogTheme']);
-  final FloatingActionButtonThemeData floatingActionButtonTheme = uClass(__m['floatingActionButtonTheme']);
-  final NavigationRailThemeData navigationRailTheme = uClass(__m['navigationRailTheme']);
-  final Typography typography = uClass(__m['typography']);
-  final NoDefaultCupertinoThemeData? cupertinoOverrideTheme = uNull<NoDefaultCupertinoThemeData>(uClass)(__m['cupertinoOverrideTheme']);
-  final SnackBarThemeData snackBarTheme = uClass(__m['snackBarTheme']);
-  final BottomSheetThemeData bottomSheetTheme = uClass(__m['bottomSheetTheme']);
-  final PopupMenuThemeData popupMenuTheme = uClass(__m['popupMenuTheme']);
-  final MaterialBannerThemeData bannerTheme = uClass(__m['bannerTheme']);
-  final DividerThemeData dividerTheme = uClass(__m['dividerTheme']);
-  final ButtonBarThemeData buttonBarTheme = uClass(__m['buttonBarTheme']);
-  final BottomNavigationBarThemeData bottomNavigationBarTheme = uClass(__m['bottomNavigationBarTheme']);
-  final TimePickerThemeData timePickerTheme = uClass(__m['timePickerTheme']);
-  final TextButtonThemeData textButtonTheme = uClass(__m['textButtonTheme']);
-  final ElevatedButtonThemeData elevatedButtonTheme = uClass(__m['elevatedButtonTheme']);
-  final OutlinedButtonThemeData outlinedButtonTheme = uClass(__m['outlinedButtonTheme']);
-  final TextSelectionThemeData textSelectionTheme = uClass(__m['textSelectionTheme']);
-  final DataTableThemeData dataTableTheme = uClass(__m['dataTableTheme']);
-  final CheckboxThemeData checkboxTheme = uClass(__m['checkboxTheme']);
-  final RadioThemeData radioTheme = uClass(__m['radioTheme']);
-  final SwitchThemeData switchTheme = uClass(__m['switchTheme']);
-  final ProgressIndicatorThemeData progressIndicatorTheme = uClass(__m['progressIndicatorTheme']);
-  final bool fixTextFieldOutlineLabel = uBool(__m['fixTextFieldOutlineLabel']);
-  final bool useTextSelectionTheme = uBool(__m['useTextSelectionTheme']);
+  final __m1 = __m['visualDensity'];
+  final VisualDensity visualDensity = uClass<VisualDensity>(__m1);
+  final __m2 = __m['primaryColor'];
+  final Color primaryColor = uClass<Color>(__m2);
+  final __m3 = __m['primaryColorBrightness'];
+  final Brightness primaryColorBrightness = _uBrightness(__m3);
+  final __m4 = __m['primaryColorLight'];
+  final Color primaryColorLight = uClass<Color>(__m4);
+  final __m5 = __m['primaryColorDark'];
+  final Color primaryColorDark = uClass<Color>(__m5);
+  final __m6 = __m['canvasColor'];
+  final Color canvasColor = uClass<Color>(__m6);
+  final __m7 = __m['shadowColor'];
+  final Color shadowColor = uClass<Color>(__m7);
+  final __m8 = __m['accentColor'];
+  final Color accentColor = uClass<Color>(__m8);
+  final __m9 = __m['accentColorBrightness'];
+  final Brightness accentColorBrightness = _uBrightness(__m9);
+  final __m10 = __m['scaffoldBackgroundColor'];
+  final Color scaffoldBackgroundColor = uClass<Color>(__m10);
+  final __m11 = __m['bottomAppBarColor'];
+  final Color bottomAppBarColor = uClass<Color>(__m11);
+  final __m12 = __m['cardColor'];
+  final Color cardColor = uClass<Color>(__m12);
+  final __m13 = __m['dividerColor'];
+  final Color dividerColor = uClass<Color>(__m13);
+  final __m14 = __m['focusColor'];
+  final Color focusColor = uClass<Color>(__m14);
+  final __m15 = __m['hoverColor'];
+  final Color hoverColor = uClass<Color>(__m15);
+  final __m16 = __m['highlightColor'];
+  final Color highlightColor = uClass<Color>(__m16);
+  final __m17 = __m['splashColor'];
+  final Color splashColor = uClass<Color>(__m17);
+  final __m18 = __m['splashFactory'];
+  final InteractiveInkFeatureFactory splashFactory = uClass<InteractiveInkFeatureFactory>(__m18);
+  final __m19 = __m['selectedRowColor'];
+  final Color selectedRowColor = uClass<Color>(__m19);
+  final __m20 = __m['unselectedWidgetColor'];
+  final Color unselectedWidgetColor = uClass<Color>(__m20);
+  final __m21 = __m['disabledColor'];
+  final Color disabledColor = uClass<Color>(__m21);
+  final __m22 = __m['buttonTheme'];
+  final ButtonThemeData buttonTheme = uClass<ButtonThemeData>(__m22);
+  final __m23 = __m['buttonColor'];
+  final Color buttonColor = uClass<Color>(__m23);
+  final __m24 = __m['toggleButtonsTheme'];
+  final ToggleButtonsThemeData toggleButtonsTheme = uClass<ToggleButtonsThemeData>(__m24);
+  final __m25 = __m['secondaryHeaderColor'];
+  final Color secondaryHeaderColor = uClass<Color>(__m25);
+  final __m26 = __m['textSelectionColor'];
+  final Color textSelectionColor = uClass<Color>(__m26);
+  final __m27 = __m['cursorColor'];
+  final Color cursorColor = uClass<Color>(__m27);
+  final __m28 = __m['textSelectionHandleColor'];
+  final Color textSelectionHandleColor = uClass<Color>(__m28);
+  final __m29 = __m['backgroundColor'];
+  final Color backgroundColor = uClass<Color>(__m29);
+  final __m30 = __m['dialogBackgroundColor'];
+  final Color dialogBackgroundColor = uClass<Color>(__m30);
+  final __m31 = __m['indicatorColor'];
+  final Color indicatorColor = uClass<Color>(__m31);
+  final __m32 = __m['hintColor'];
+  final Color hintColor = uClass<Color>(__m32);
+  final __m33 = __m['errorColor'];
+  final Color errorColor = uClass<Color>(__m33);
+  final __m34 = __m['toggleableActiveColor'];
+  final Color toggleableActiveColor = uClass<Color>(__m34);
+  final __m35 = __m['textTheme'];
+  final TextTheme textTheme = uClass<TextTheme>(__m35);
+  final __m36 = __m['primaryTextTheme'];
+  final TextTheme primaryTextTheme = uClass<TextTheme>(__m36);
+  final __m37 = __m['accentTextTheme'];
+  final TextTheme accentTextTheme = uClass<TextTheme>(__m37);
+  final __m38 = __m['inputDecorationTheme'];
+  final InputDecorationTheme inputDecorationTheme = uClass<InputDecorationTheme>(__m38);
+  final __m39 = __m['iconTheme'];
+  final IconThemeData iconTheme = uClass<IconThemeData>(__m39);
+  final __m40 = __m['primaryIconTheme'];
+  final IconThemeData primaryIconTheme = uClass<IconThemeData>(__m40);
+  final __m41 = __m['accentIconTheme'];
+  final IconThemeData accentIconTheme = uClass<IconThemeData>(__m41);
+  final __m42 = __m['sliderTheme'];
+  final SliderThemeData sliderTheme = uClass<SliderThemeData>(__m42);
+  final __m43 = __m['tabBarTheme'];
+  final TabBarTheme tabBarTheme = uClass<TabBarTheme>(__m43);
+  final __m44 = __m['tooltipTheme'];
+  final TooltipThemeData tooltipTheme = uClass<TooltipThemeData>(__m44);
+  final __m45 = __m['cardTheme'];
+  final CardTheme cardTheme = uClass<CardTheme>(__m45);
+  final __m46 = __m['chipTheme'];
+  final ChipThemeData chipTheme = uClass<ChipThemeData>(__m46);
+  final __m47 = __m['platform'];
+  final TargetPlatform platform = _uTargetPlatform(__m47);
+  final __m48 = __m['materialTapTargetSize'];
+  final MaterialTapTargetSize materialTapTargetSize = _uMaterialTapTargetSize(__m48);
+  final __m49 = __m['applyElevationOverlayColor'];
+  final bool applyElevationOverlayColor = uBool(__m49);
+  final __m50 = __m['pageTransitionsTheme'];
+  final PageTransitionsTheme pageTransitionsTheme = uClass<PageTransitionsTheme>(__m50);
+  final __m51 = __m['appBarTheme'];
+  final AppBarTheme appBarTheme = uClass<AppBarTheme>(__m51);
+  final __m52 = __m['scrollbarTheme'];
+  final ScrollbarThemeData scrollbarTheme = uClass<ScrollbarThemeData>(__m52);
+  final __m53 = __m['bottomAppBarTheme'];
+  final BottomAppBarTheme bottomAppBarTheme = uClass<BottomAppBarTheme>(__m53);
+  final __m54 = __m['colorScheme'];
+  final ColorScheme colorScheme = uClass<ColorScheme>(__m54);
+  final __m55 = __m['dialogTheme'];
+  final DialogTheme dialogTheme = uClass<DialogTheme>(__m55);
+  final __m56 = __m['floatingActionButtonTheme'];
+  final FloatingActionButtonThemeData floatingActionButtonTheme = uClass<FloatingActionButtonThemeData>(__m56);
+  final __m57 = __m['navigationRailTheme'];
+  final NavigationRailThemeData navigationRailTheme = uClass<NavigationRailThemeData>(__m57);
+  final __m58 = __m['typography'];
+  final Typography typography = uClass<Typography>(__m58);
+  final __m59 = __m['cupertinoOverrideTheme'];
+  final NoDefaultCupertinoThemeData? cupertinoOverrideTheme = (__m59 != null ? uClass<NoDefaultCupertinoThemeData>(__m59) : null);
+  final __m60 = __m['snackBarTheme'];
+  final SnackBarThemeData snackBarTheme = uClass<SnackBarThemeData>(__m60);
+  final __m61 = __m['bottomSheetTheme'];
+  final BottomSheetThemeData bottomSheetTheme = uClass<BottomSheetThemeData>(__m61);
+  final __m62 = __m['popupMenuTheme'];
+  final PopupMenuThemeData popupMenuTheme = uClass<PopupMenuThemeData>(__m62);
+  final __m63 = __m['bannerTheme'];
+  final MaterialBannerThemeData bannerTheme = uClass<MaterialBannerThemeData>(__m63);
+  final __m64 = __m['dividerTheme'];
+  final DividerThemeData dividerTheme = uClass<DividerThemeData>(__m64);
+  final __m65 = __m['buttonBarTheme'];
+  final ButtonBarThemeData buttonBarTheme = uClass<ButtonBarThemeData>(__m65);
+  final __m66 = __m['bottomNavigationBarTheme'];
+  final BottomNavigationBarThemeData bottomNavigationBarTheme = uClass<BottomNavigationBarThemeData>(__m66);
+  final __m67 = __m['timePickerTheme'];
+  final TimePickerThemeData timePickerTheme = uClass<TimePickerThemeData>(__m67);
+  final __m68 = __m['textButtonTheme'];
+  final TextButtonThemeData textButtonTheme = uClass<TextButtonThemeData>(__m68);
+  final __m69 = __m['elevatedButtonTheme'];
+  final ElevatedButtonThemeData elevatedButtonTheme = uClass<ElevatedButtonThemeData>(__m69);
+  final __m70 = __m['outlinedButtonTheme'];
+  final OutlinedButtonThemeData outlinedButtonTheme = uClass<OutlinedButtonThemeData>(__m70);
+  final __m71 = __m['textSelectionTheme'];
+  final TextSelectionThemeData textSelectionTheme = uClass<TextSelectionThemeData>(__m71);
+  final __m72 = __m['dataTableTheme'];
+  final DataTableThemeData dataTableTheme = uClass<DataTableThemeData>(__m72);
+  final __m73 = __m['checkboxTheme'];
+  final CheckboxThemeData checkboxTheme = uClass<CheckboxThemeData>(__m73);
+  final __m74 = __m['radioTheme'];
+  final RadioThemeData radioTheme = uClass<RadioThemeData>(__m74);
+  final __m75 = __m['switchTheme'];
+  final SwitchThemeData switchTheme = uClass<SwitchThemeData>(__m75);
+  final __m76 = __m['progressIndicatorTheme'];
+  final ProgressIndicatorThemeData progressIndicatorTheme = uClass<ProgressIndicatorThemeData>(__m76);
+  final __m77 = __m['fixTextFieldOutlineLabel'];
+  final bool fixTextFieldOutlineLabel = uBool(__m77);
+  final __m78 = __m['useTextSelectionTheme'];
+  final bool useTextSelectionTheme = uBool(__m78);
   return ThemeData.raw(
     visualDensity: visualDensity,
     primaryColor: primaryColor,
@@ -2449,8 +3187,10 @@ ThemeData _uThemeDataRaw(Map<String, dynamic> __m) {
 }
 
 ThemeData _uThemeDataFrom(Map<String, dynamic> __m) {
-  final ColorScheme colorScheme = uClass(__m['colorScheme']);
-  final TextTheme? textTheme = uNull<TextTheme>(uClass)(__m['textTheme']);
+  final __m1 = __m['colorScheme'];
+  final ColorScheme colorScheme = uClass<ColorScheme>(__m1);
+  final __m2 = __m['textTheme'];
+  final TextTheme? textTheme = (__m2 != null ? uClass<TextTheme>(__m2) : null);
   return ThemeData.from(
     colorScheme: colorScheme,
     textTheme: textTheme,
@@ -2497,8 +3237,10 @@ ScrollBehavior _uScrollBehavior(Map<String, dynamic> __m) {
 }
 
 RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
-  final String? location = uNull<String>(uString)(__m['location']);
-  final Object? state = uNull<Object>(uClass)(__m['state']);
+  final __m1 = __m['location'];
+  final String? location = (__m1 != null ? uString(__m1) : null);
+  final __m2 = __m['state'];
+  final Object? state = (__m2 != null ? uClass<Object>(__m2) : null);
   return RouteInformation(
     location: location,
     state: state,
@@ -2506,41 +3248,76 @@ RouteInformation _uRouteInformation(Map<String, dynamic> __m) {
 }
 
 MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final GlobalKey<NavigatorState>? navigatorKey = uNull<GlobalKey<NavigatorState>>(uClass)(__m['navigatorKey']);
-  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = uNull<GlobalKey<ScaffoldMessengerState>>(uClass)(__m['scaffoldMessengerKey']);
-  final Widget? home = uNull<Widget>(uClass)(__m['home']);
-  final Map<String, Widget Function(BuildContext)> routes = uConst(<String, Widget Function(BuildContext)>{}, uMap<String, Widget Function(BuildContext)>(uString, uFunc))(__m['routes']);
-  final String? initialRoute = uNull<String>(uString)(__m['initialRoute']);
-  final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onGenerateRoute']);
-  final List<Route<dynamic>> Function(String)? onGenerateInitialRoutes = uNull<List<Route<dynamic>> Function(String)>(uFunc)(__m['onGenerateInitialRoutes']);
-  final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = uNull<Route<dynamic>? Function(RouteSettings)>(uFunc)(__m['onUnknownRoute']);
-  final List<NavigatorObserver> navigatorObservers = uConst(<NavigatorObserver>[], uList<NavigatorObserver>(uClass))(__m['navigatorObservers']);
-  final Widget Function(BuildContext, Widget?)? builder = uNull<Widget Function(BuildContext, Widget?)>(uFunc)(__m['builder']);
-  final String title = uConst<String>('', uString)(__m['title']);
-  final String Function(BuildContext)? onGenerateTitle = uNull<String Function(BuildContext)>(uFunc)(__m['onGenerateTitle']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final ThemeData? theme = uNull<ThemeData>(uClass)(__m['theme']);
-  final ThemeData? darkTheme = uNull<ThemeData>(uClass)(__m['darkTheme']);
-  final ThemeData? highContrastTheme = uNull<ThemeData>(uClass)(__m['highContrastTheme']);
-  final ThemeData? highContrastDarkTheme = uNull<ThemeData>(uClass)(__m['highContrastDarkTheme']);
-  final ThemeMode? themeMode = uNull<ThemeMode>(_uThemeMode)(__m['themeMode']);
-  final Locale? locale = uNull<Locale>(uClass)(__m['locale']);
-  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = uNull<Iterable<LocalizationsDelegate<dynamic>>>(uClass)(__m['localizationsDelegates']);
-  final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
-  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
-  final Iterable<Locale> supportedLocales = uConst(<Locale>[const Locale('en', 'US')], uClass)(__m['supportedLocales']);
-  final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
-  final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
-  final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
-  final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
-  final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
-  final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
-  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uMap<ShortcutActivator, Intent>(uClass, uClass))(__m['shortcuts']);
-  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uMap<Type, Action<Intent>>(uClass, uClass))(__m['actions']);
-  final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
-  final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
-  final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['navigatorKey'];
+  final GlobalKey<NavigatorState>? navigatorKey = (__m2 != null ? uClass<GlobalKey<NavigatorState>>(__m2) : null);
+  final __m3 = __m['scaffoldMessengerKey'];
+  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = (__m3 != null ? uClass<GlobalKey<ScaffoldMessengerState>>(__m3) : null);
+  final __m4 = __m['home'];
+  final Widget? home = (__m4 != null ? uClass<Widget>(__m4) : null);
+  final __m5 = __m['routes'];
+  final Map<String, Widget Function(BuildContext)> routes = (__m5 != null ? (__m5 is Map<dynamic, dynamic> ? __m5.map((k, v) => MapEntry(uString(k), uFunc<Widget Function(BuildContext)>(v))) : die('not a map')) : <String, Widget Function(BuildContext)>{});
+  final __m6 = __m['initialRoute'];
+  final String? initialRoute = (__m6 != null ? uString(__m6) : null);
+  final __m7 = __m['onGenerateRoute'];
+  final Route<dynamic>? Function(RouteSettings)? onGenerateRoute = (__m7 != null ? uFunc<Route<dynamic>? Function(RouteSettings)>(__m7) : null);
+  final __m8 = __m['onGenerateInitialRoutes'];
+  final List<Route<dynamic>> Function(String)? onGenerateInitialRoutes = (__m8 != null ? uFunc<List<Route<dynamic>> Function(String)>(__m8) : null);
+  final __m9 = __m['onUnknownRoute'];
+  final Route<dynamic>? Function(RouteSettings)? onUnknownRoute = (__m9 != null ? uFunc<Route<dynamic>? Function(RouteSettings)>(__m9) : null);
+  final __m10 = __m['navigatorObservers'];
+  final List<NavigatorObserver> navigatorObservers = (__m10 != null ? (__m10 is List<dynamic> ? __m10.map((v) => uClass<NavigatorObserver>(v)).toList() : die('not a list')) : <NavigatorObserver>[]);
+  final __m11 = __m['builder'];
+  final Widget Function(BuildContext, Widget?)? builder = (__m11 != null ? uFunc<Widget Function(BuildContext, Widget?)>(__m11) : null);
+  final __m12 = __m['title'];
+  final String title = (__m12 != null ? uString(__m12) : '');
+  final __m13 = __m['onGenerateTitle'];
+  final String Function(BuildContext)? onGenerateTitle = (__m13 != null ? uFunc<String Function(BuildContext)>(__m13) : null);
+  final __m14 = __m['color'];
+  final Color? color = (__m14 != null ? uClass<Color>(__m14) : null);
+  final __m15 = __m['theme'];
+  final ThemeData? theme = (__m15 != null ? uClass<ThemeData>(__m15) : null);
+  final __m16 = __m['darkTheme'];
+  final ThemeData? darkTheme = (__m16 != null ? uClass<ThemeData>(__m16) : null);
+  final __m17 = __m['highContrastTheme'];
+  final ThemeData? highContrastTheme = (__m17 != null ? uClass<ThemeData>(__m17) : null);
+  final __m18 = __m['highContrastDarkTheme'];
+  final ThemeData? highContrastDarkTheme = (__m18 != null ? uClass<ThemeData>(__m18) : null);
+  final __m19 = __m['themeMode'];
+  final ThemeMode? themeMode = (__m19 != null ? (__m19 != null ? _uThemeMode(__m19) : null) : ThemeMode.system);
+  final __m20 = __m['locale'];
+  final Locale? locale = (__m20 != null ? uClass<Locale>(__m20) : null);
+  final __m21 = __m['localizationsDelegates'];
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = (__m21 != null ? uClass<Iterable<LocalizationsDelegate<dynamic>>>(__m21) : null);
+  final __m22 = __m['localeListResolutionCallback'];
+  final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = (__m22 != null ? uFunc<Locale? Function(List<Locale>?, Iterable<Locale>)>(__m22) : null);
+  final __m23 = __m['localeResolutionCallback'];
+  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = (__m23 != null ? uFunc<Locale? Function(Locale?, Iterable<Locale>)>(__m23) : null);
+  final __m24 = __m['supportedLocales'];
+  final Iterable<Locale> supportedLocales = (__m24 != null ? uClass<Iterable<Locale>>(__m24) : <Locale>[const Locale('en', 'US')]);
+  final __m25 = __m['debugShowMaterialGrid'];
+  final bool debugShowMaterialGrid = (__m25 != null ? uBool(__m25) : false);
+  final __m26 = __m['showPerformanceOverlay'];
+  final bool showPerformanceOverlay = (__m26 != null ? uBool(__m26) : false);
+  final __m27 = __m['checkerboardRasterCacheImages'];
+  final bool checkerboardRasterCacheImages = (__m27 != null ? uBool(__m27) : false);
+  final __m28 = __m['checkerboardOffscreenLayers'];
+  final bool checkerboardOffscreenLayers = (__m28 != null ? uBool(__m28) : false);
+  final __m29 = __m['showSemanticsDebugger'];
+  final bool showSemanticsDebugger = (__m29 != null ? uBool(__m29) : false);
+  final __m30 = __m['debugShowCheckedModeBanner'];
+  final bool debugShowCheckedModeBanner = (__m30 != null ? uBool(__m30) : true);
+  final __m31 = __m['shortcuts'];
+  final Map<ShortcutActivator, Intent>? shortcuts = (__m31 != null ? (__m31 is Map<dynamic, dynamic> ? __m31.map((k, v) => MapEntry(uClass<ShortcutActivator>(k), uClass<Intent>(v))) : die('not a map')) : null);
+  final __m32 = __m['actions'];
+  final Map<Type, Action<Intent>>? actions = (__m32 != null ? (__m32 is Map<dynamic, dynamic> ? __m32.map((k, v) => MapEntry(uClass<Type>(k), uClass<Action<Intent>>(v))) : die('not a map')) : null);
+  final __m33 = __m['restorationScopeId'];
+  final String? restorationScopeId = (__m33 != null ? uString(__m33) : null);
+  final __m34 = __m['scrollBehavior'];
+  final ScrollBehavior? scrollBehavior = (__m34 != null ? uClass<ScrollBehavior>(__m34) : null);
+  final __m35 = __m['useInheritedMediaQuery'];
+  final bool useInheritedMediaQuery = (__m35 != null ? uBool(__m35) : false);
   return MaterialApp(
     key: key,
     navigatorKey: navigatorKey,
@@ -2581,37 +3358,68 @@ MaterialApp _uMaterialApp(Map<String, dynamic> __m) {
 }
 
 MaterialApp _uMaterialAppRouter(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = uNull<GlobalKey<ScaffoldMessengerState>>(uClass)(__m['scaffoldMessengerKey']);
-  final RouteInformationProvider? routeInformationProvider = uNull<RouteInformationProvider>(uClass)(__m['routeInformationProvider']);
-  final RouteInformationParser<Object> routeInformationParser = uClass(__m['routeInformationParser']);
-  final RouterDelegate<Object> routerDelegate = uClass(__m['routerDelegate']);
-  final BackButtonDispatcher? backButtonDispatcher = uNull<BackButtonDispatcher>(uClass)(__m['backButtonDispatcher']);
-  final Widget Function(BuildContext, Widget?)? builder = uNull<Widget Function(BuildContext, Widget?)>(uFunc)(__m['builder']);
-  final String title = uConst<String>('', uString)(__m['title']);
-  final String Function(BuildContext)? onGenerateTitle = uNull<String Function(BuildContext)>(uFunc)(__m['onGenerateTitle']);
-  final Color? color = uNull<Color>(uClass)(__m['color']);
-  final ThemeData? theme = uNull<ThemeData>(uClass)(__m['theme']);
-  final ThemeData? darkTheme = uNull<ThemeData>(uClass)(__m['darkTheme']);
-  final ThemeData? highContrastTheme = uNull<ThemeData>(uClass)(__m['highContrastTheme']);
-  final ThemeData? highContrastDarkTheme = uNull<ThemeData>(uClass)(__m['highContrastDarkTheme']);
-  final ThemeMode? themeMode = uNull<ThemeMode>(_uThemeMode)(__m['themeMode']);
-  final Locale? locale = uNull<Locale>(uClass)(__m['locale']);
-  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = uNull<Iterable<LocalizationsDelegate<dynamic>>>(uClass)(__m['localizationsDelegates']);
-  final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = uNull<Locale? Function(List<Locale>?, Iterable<Locale>)>(uFunc)(__m['localeListResolutionCallback']);
-  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = uNull<Locale? Function(Locale?, Iterable<Locale>)>(uFunc)(__m['localeResolutionCallback']);
-  final Iterable<Locale> supportedLocales = uConst(<Locale>[const Locale('en', 'US')], uClass)(__m['supportedLocales']);
-  final bool debugShowMaterialGrid = uConst<bool>(false, uBool)(__m['debugShowMaterialGrid']);
-  final bool showPerformanceOverlay = uConst<bool>(false, uBool)(__m['showPerformanceOverlay']);
-  final bool checkerboardRasterCacheImages = uConst<bool>(false, uBool)(__m['checkerboardRasterCacheImages']);
-  final bool checkerboardOffscreenLayers = uConst<bool>(false, uBool)(__m['checkerboardOffscreenLayers']);
-  final bool showSemanticsDebugger = uConst<bool>(false, uBool)(__m['showSemanticsDebugger']);
-  final bool debugShowCheckedModeBanner = uConst<bool>(true, uBool)(__m['debugShowCheckedModeBanner']);
-  final Map<ShortcutActivator, Intent>? shortcuts = uNull<Map<ShortcutActivator, Intent>>(uMap<ShortcutActivator, Intent>(uClass, uClass))(__m['shortcuts']);
-  final Map<Type, Action<Intent>>? actions = uNull<Map<Type, Action<Intent>>>(uMap<Type, Action<Intent>>(uClass, uClass))(__m['actions']);
-  final String? restorationScopeId = uNull<String>(uString)(__m['restorationScopeId']);
-  final ScrollBehavior? scrollBehavior = uNull<ScrollBehavior>(uClass)(__m['scrollBehavior']);
-  final bool useInheritedMediaQuery = uConst<bool>(false, uBool)(__m['useInheritedMediaQuery']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['scaffoldMessengerKey'];
+  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey = (__m2 != null ? uClass<GlobalKey<ScaffoldMessengerState>>(__m2) : null);
+  final __m3 = __m['routeInformationProvider'];
+  final RouteInformationProvider? routeInformationProvider = (__m3 != null ? uClass<RouteInformationProvider>(__m3) : null);
+  final __m4 = __m['routeInformationParser'];
+  final RouteInformationParser<Object> routeInformationParser = uClass<RouteInformationParser<Object>>(__m4);
+  final __m5 = __m['routerDelegate'];
+  final RouterDelegate<Object> routerDelegate = uClass<RouterDelegate<Object>>(__m5);
+  final __m6 = __m['backButtonDispatcher'];
+  final BackButtonDispatcher? backButtonDispatcher = (__m6 != null ? uClass<BackButtonDispatcher>(__m6) : null);
+  final __m7 = __m['builder'];
+  final Widget Function(BuildContext, Widget?)? builder = (__m7 != null ? uFunc<Widget Function(BuildContext, Widget?)>(__m7) : null);
+  final __m8 = __m['title'];
+  final String title = (__m8 != null ? uString(__m8) : '');
+  final __m9 = __m['onGenerateTitle'];
+  final String Function(BuildContext)? onGenerateTitle = (__m9 != null ? uFunc<String Function(BuildContext)>(__m9) : null);
+  final __m10 = __m['color'];
+  final Color? color = (__m10 != null ? uClass<Color>(__m10) : null);
+  final __m11 = __m['theme'];
+  final ThemeData? theme = (__m11 != null ? uClass<ThemeData>(__m11) : null);
+  final __m12 = __m['darkTheme'];
+  final ThemeData? darkTheme = (__m12 != null ? uClass<ThemeData>(__m12) : null);
+  final __m13 = __m['highContrastTheme'];
+  final ThemeData? highContrastTheme = (__m13 != null ? uClass<ThemeData>(__m13) : null);
+  final __m14 = __m['highContrastDarkTheme'];
+  final ThemeData? highContrastDarkTheme = (__m14 != null ? uClass<ThemeData>(__m14) : null);
+  final __m15 = __m['themeMode'];
+  final ThemeMode? themeMode = (__m15 != null ? (__m15 != null ? _uThemeMode(__m15) : null) : ThemeMode.system);
+  final __m16 = __m['locale'];
+  final Locale? locale = (__m16 != null ? uClass<Locale>(__m16) : null);
+  final __m17 = __m['localizationsDelegates'];
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates = (__m17 != null ? uClass<Iterable<LocalizationsDelegate<dynamic>>>(__m17) : null);
+  final __m18 = __m['localeListResolutionCallback'];
+  final Locale? Function(List<Locale>?, Iterable<Locale>)? localeListResolutionCallback = (__m18 != null ? uFunc<Locale? Function(List<Locale>?, Iterable<Locale>)>(__m18) : null);
+  final __m19 = __m['localeResolutionCallback'];
+  final Locale? Function(Locale?, Iterable<Locale>)? localeResolutionCallback = (__m19 != null ? uFunc<Locale? Function(Locale?, Iterable<Locale>)>(__m19) : null);
+  final __m20 = __m['supportedLocales'];
+  final Iterable<Locale> supportedLocales = (__m20 != null ? uClass<Iterable<Locale>>(__m20) : <Locale>[const Locale('en', 'US')]);
+  final __m21 = __m['debugShowMaterialGrid'];
+  final bool debugShowMaterialGrid = (__m21 != null ? uBool(__m21) : false);
+  final __m22 = __m['showPerformanceOverlay'];
+  final bool showPerformanceOverlay = (__m22 != null ? uBool(__m22) : false);
+  final __m23 = __m['checkerboardRasterCacheImages'];
+  final bool checkerboardRasterCacheImages = (__m23 != null ? uBool(__m23) : false);
+  final __m24 = __m['checkerboardOffscreenLayers'];
+  final bool checkerboardOffscreenLayers = (__m24 != null ? uBool(__m24) : false);
+  final __m25 = __m['showSemanticsDebugger'];
+  final bool showSemanticsDebugger = (__m25 != null ? uBool(__m25) : false);
+  final __m26 = __m['debugShowCheckedModeBanner'];
+  final bool debugShowCheckedModeBanner = (__m26 != null ? uBool(__m26) : true);
+  final __m27 = __m['shortcuts'];
+  final Map<ShortcutActivator, Intent>? shortcuts = (__m27 != null ? (__m27 is Map<dynamic, dynamic> ? __m27.map((k, v) => MapEntry(uClass<ShortcutActivator>(k), uClass<Intent>(v))) : die('not a map')) : null);
+  final __m28 = __m['actions'];
+  final Map<Type, Action<Intent>>? actions = (__m28 != null ? (__m28 is Map<dynamic, dynamic> ? __m28.map((k, v) => MapEntry(uClass<Type>(k), uClass<Action<Intent>>(v))) : die('not a map')) : null);
+  final __m29 = __m['restorationScopeId'];
+  final String? restorationScopeId = (__m29 != null ? uString(__m29) : null);
+  final __m30 = __m['scrollBehavior'];
+  final ScrollBehavior? scrollBehavior = (__m30 != null ? uClass<ScrollBehavior>(__m30) : null);
+  final __m31 = __m['useInheritedMediaQuery'];
+  final bool useInheritedMediaQuery = (__m31 != null ? uBool(__m31) : false);
   return MaterialApp.router(
     key: key,
     scaffoldMessengerKey: scaffoldMessengerKey,
@@ -2662,26 +3470,34 @@ KeyEventResult _uKeyEventResult(dynamic v) {
 }
 
 PhysicalKeyboardKey _uPhysicalKeyboardKey(Map<String, dynamic> __m) {
-  final int usbHidUsage = uInt(__m['usbHidUsage']);
+  final __m1 = __m['usbHidUsage'];
+  final int usbHidUsage = uInt(__m1);
   return PhysicalKeyboardKey(
     usbHidUsage,
   );
 }
 
 LogicalKeyboardKey _uLogicalKeyboardKey(Map<String, dynamic> __m) {
-  final int keyId = uInt(__m['keyId']);
+  final __m1 = __m['keyId'];
+  final int keyId = uInt(__m1);
   return LogicalKeyboardKey(
     keyId,
   );
 }
 
 FocusNode _uFocusNode(Map<String, dynamic> __m) {
-  final String? debugLabel = uNull<String>(uString)(__m['debugLabel']);
-  final KeyEventResult Function(FocusNode, RawKeyEvent)? onKey = uNull<KeyEventResult Function(FocusNode, RawKeyEvent)>(uFunc)(__m['onKey']);
-  final KeyEventResult Function(FocusNode, KeyEvent)? onKeyEvent = uNull<KeyEventResult Function(FocusNode, KeyEvent)>(uFunc)(__m['onKeyEvent']);
-  final bool skipTraversal = uConst<bool>(false, uBool)(__m['skipTraversal']);
-  final bool canRequestFocus = uConst<bool>(true, uBool)(__m['canRequestFocus']);
-  final bool descendantsAreFocusable = uConst<bool>(true, uBool)(__m['descendantsAreFocusable']);
+  final __m1 = __m['debugLabel'];
+  final String? debugLabel = (__m1 != null ? uString(__m1) : null);
+  final __m2 = __m['onKey'];
+  final KeyEventResult Function(FocusNode, RawKeyEvent)? onKey = (__m2 != null ? uFunc<KeyEventResult Function(FocusNode, RawKeyEvent)>(__m2) : null);
+  final __m3 = __m['onKeyEvent'];
+  final KeyEventResult Function(FocusNode, KeyEvent)? onKeyEvent = (__m3 != null ? uFunc<KeyEventResult Function(FocusNode, KeyEvent)>(__m3) : null);
+  final __m4 = __m['skipTraversal'];
+  final bool skipTraversal = (__m4 != null ? uBool(__m4) : false);
+  final __m5 = __m['canRequestFocus'];
+  final bool canRequestFocus = (__m5 != null ? uBool(__m5) : true);
+  final __m6 = __m['descendantsAreFocusable'];
+  final bool descendantsAreFocusable = (__m6 != null ? uBool(__m6) : true);
   return FocusNode(
     debugLabel: debugLabel,
     onKey: onKey,
@@ -2693,14 +3509,22 @@ FocusNode _uFocusNode(Map<String, dynamic> __m) {
 }
 
 ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final void Function()? onPressed = uNull<void Function()>(uFunc)(__m['onPressed']);
-  final void Function()? onLongPress = uNull<void Function()>(uFunc)(__m['onLongPress']);
-  final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
-  final FocusNode? focusNode = uNull<FocusNode>(uClass)(__m['focusNode']);
-  final bool autofocus = uConst<bool>(false, uBool)(__m['autofocus']);
-  final Clip clipBehavior = uConst(Clip.none, _uClip)(__m['clipBehavior']);
-  final Widget? child = uNull<Widget>(uClass)(__m['child']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['onPressed'];
+  final void Function()? onPressed = (__m2 != null ? uFunc<void Function()>(__m2) : null);
+  final __m3 = __m['onLongPress'];
+  final void Function()? onLongPress = (__m3 != null ? uFunc<void Function()>(__m3) : null);
+  final __m4 = __m['style'];
+  final ButtonStyle? style = (__m4 != null ? uClass<ButtonStyle>(__m4) : null);
+  final __m5 = __m['focusNode'];
+  final FocusNode? focusNode = (__m5 != null ? uClass<FocusNode>(__m5) : null);
+  final __m6 = __m['autofocus'];
+  final bool autofocus = (__m6 != null ? uBool(__m6) : false);
+  final __m7 = __m['clipBehavior'];
+  final Clip clipBehavior = (__m7 != null ? _uClip(__m7) : Clip.none);
+  final __m8 = __m['child'];
+  final Widget? child = (__m8 != null ? uClass<Widget>(__m8) : null);
   return ElevatedButton(
     key: key,
     onPressed: onPressed,
@@ -2714,15 +3538,24 @@ ElevatedButton _uElevatedButton(Map<String, dynamic> __m) {
 }
 
 ElevatedButton _uElevatedButtonIcon(Map<String, dynamic> __m) {
-  final Key? key = uNull<Key>(uClass)(__m['key']);
-  final void Function()? onPressed = uNull<void Function()>(uFunc)(__m['onPressed']);
-  final void Function()? onLongPress = uNull<void Function()>(uFunc)(__m['onLongPress']);
-  final ButtonStyle? style = uNull<ButtonStyle>(uClass)(__m['style']);
-  final FocusNode? focusNode = uNull<FocusNode>(uClass)(__m['focusNode']);
-  final bool? autofocus = uNull<bool>(uBool)(__m['autofocus']);
-  final Clip? clipBehavior = uNull<Clip>(_uClip)(__m['clipBehavior']);
-  final Widget icon = uClass(__m['icon']);
-  final Widget label = uClass(__m['label']);
+  final __m1 = __m['key'];
+  final Key? key = (__m1 != null ? uClass<Key>(__m1) : null);
+  final __m2 = __m['onPressed'];
+  final void Function()? onPressed = (__m2 != null ? uFunc<void Function()>(__m2) : null);
+  final __m3 = __m['onLongPress'];
+  final void Function()? onLongPress = (__m3 != null ? uFunc<void Function()>(__m3) : null);
+  final __m4 = __m['style'];
+  final ButtonStyle? style = (__m4 != null ? uClass<ButtonStyle>(__m4) : null);
+  final __m5 = __m['focusNode'];
+  final FocusNode? focusNode = (__m5 != null ? uClass<FocusNode>(__m5) : null);
+  final __m6 = __m['autofocus'];
+  final bool? autofocus = (__m6 != null ? uBool(__m6) : null);
+  final __m7 = __m['clipBehavior'];
+  final Clip? clipBehavior = (__m7 != null ? _uClip(__m7) : null);
+  final __m8 = __m['icon'];
+  final Widget icon = uClass<Widget>(__m8);
+  final __m9 = __m['label'];
+  final Widget label = uClass<Widget>(__m9);
   return ElevatedButton.icon(
     key: key,
     onPressed: onPressed,
