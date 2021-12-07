@@ -5,7 +5,7 @@ void main(List<String> arguments) {
   compiler.compile(
     loaderPath: '../client/lib/main.dart',
     clientOutputDir: '../client/lib',
-    pythonOutputDir: '../python/h2o_nitro',
+    pythonOutputDir: '../python',
     libraryWhitelist: {
       'material',
     },

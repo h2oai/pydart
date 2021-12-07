@@ -23,8 +23,13 @@ void compile({
       .then((elements) {
     final ir = IRBuilder.load(elements, elementWhitelist);
     _write(path.join(clientOutputDir, 'types.dart'), ClientTranslator.emit(ir));
-    _write(path.join(pythonOutputDir, 'types.ir'), IRBuilder.dump(ir));
-    _write(path.join(pythonOutputDir, 'types.py'), PythonTranslator.emit(ir));
+    _write(path.join(pythonOutputDir, 'h2o_nitro', 'types.ir'),
+        IRBuilder.dump(ir));
+    final pythonIR = refactor(ir);
+    _write(path.join(pythonOutputDir, 'h2o_nitro', 'types.py'),
+        PythonTranslator.emit(pythonIR));
+    _write(path.join(pythonOutputDir, 'tests', 'dump_list.py'),
+        generateTests(pythonIR));
   });
 }
 

@@ -104,6 +104,11 @@ String _sc(String s) => _n(_snakeCase(s));
 bool _isOptional(IRField f) =>
     f.isOptional || (f.isRequired && isNullable(f.type));
 
+Iterable<IRField> _getDefaultConstructorFields(IRClass e) {
+  final cs = e.constructors.where((c) => c.name.isEmpty);
+  return cs.isNotEmpty ? cs.first.fields : [];
+}
+
 class PythonTranslator {
   final p = Printer('    ');
   final _declaredNames = {..._builtins.values, ..._blacklist};
@@ -202,11 +207,6 @@ class PythonTranslator {
     }
   }
 
-  Iterable<IRField> _getDefaultConstructorFields(IRClass e) {
-    final cs = e.constructors.where((c) => c.name.isEmpty);
-    return cs.isNotEmpty ? cs.first.fields : [];
-  }
-
   void _emitDefaultArgs(IRClass e) {
     p.t(() {
       final req = _getDefaultConstructorFields(e).where((f) => !_isOptional(f));
@@ -291,7 +291,7 @@ class PythonTranslator {
         p('def $name(');
         // Non-default params must precede default params, so separate them.
         final req = c.fields.where((f) => !_isOptional(f));
-        final opt = c.fields.where((f) => _isOptional(f));
+        final opt = c.fields.where(_isOptional);
         p.t(() {
           if (isDefault) {
             p('self,');
@@ -421,44 +421,150 @@ class PythonTranslator {
     return p.lines.join();
   }
 
-  static IRElement _refactor(IRElement e) {
-    for (final refactoring in _refactorings) {
-      final targetClass = refactoring.a;
-      final targetField = refactoring.b;
-      if (e is IRClass && e.name == targetClass) {
-        final fields = e.fields.map((f) {
-          if (f.name == targetField) {
-            return IRField(
-              name: f.name,
-              type: IRParameterizedType(e, []),
-              value: f.value,
-              isPositional: f.isPositional,
-              isRequired: f.isRequired,
-              isOptional: f.isOptional,
-              hasDefaultValue: f.hasDefaultValue,
-            );
-          }
-          return f;
-        }).toList();
+  static String emit(Iterable<IRElement> elements) =>
+      PythonTranslator()._emit(elements);
+}
 
-        return IRClass(
-          e.path,
-          e.name,
-          isAbstract: e.isAbstract,
-          isInternal: e.isInternal,
-          parameters: e.parameters,
-          supertypes: e.supertypes,
-          interfaces: e.interfaces,
-          constructors: e.constructors,
-          fields: fields,
-          dartElement: e.dartElement,
-        );
+Iterable<IRElement> refactor(Iterable<IRElement> elements) =>
+    elements.where((e) => !_blacklist.contains(e.name)).map(_refactor);
+
+IRElement _refactor(IRElement e) {
+  for (final refactoring in _refactorings) {
+    final targetClass = refactoring.a;
+    final targetField = refactoring.b;
+    if (e is IRClass && e.name == targetClass) {
+      final fields = e.fields.map((f) {
+        if (f.name == targetField) {
+          return IRField(
+            name: f.name,
+            type: IRParameterizedType(e, []),
+            value: f.value,
+            isPositional: f.isPositional,
+            isRequired: f.isRequired,
+            isOptional: f.isOptional,
+            hasDefaultValue: f.hasDefaultValue,
+          );
+        }
+        return f;
+      }).toList();
+
+      return IRClass(
+        e.path,
+        e.name,
+        isAbstract: e.isAbstract,
+        isInternal: e.isInternal,
+        parameters: e.parameters,
+        supertypes: e.supertypes,
+        interfaces: e.interfaces,
+        constructors: e.constructors,
+        fields: fields,
+        dartElement: e.dartElement,
+      );
+    }
+  }
+
+  return e;
+}
+
+class SampleMaker {
+  var _counter = 42;
+
+  String make(IRType t) {
+    if (t == IRType.bool) return 'True';
+    if (t == IRType.int) return '${_counter++}';
+    if (t == IRType.double) return '0.${_counter++}';
+    if (t == IRType.string) return "'String ${_counter++}'";
+
+    if (t is IRParameterizedType) {
+      final e = t.element;
+      if (e == IRElement.func) return '_noop';
+      if (e == IRElement.nullable) return make(t.parameters.first);
+      switch (e.name) {
+        case 'List':
+          final items = rands(t.parameters.first).join(', ');
+          return '[$items]';
+        case 'Set':
+          final items = rands(t.parameters.first).join(', ');
+          return 'set($items)';
+        case 'Map':
+          final items = [1, 2, 3]
+              .map((_) =>
+                  '${make(t.parameters.first)}: ${make(t.parameters.last)}')
+              .join(', ');
+          return '{$items}';
+      }
+
+      if (e is IRClass) {
+        return '_sample_${_sc(e.name)}()';
+      } else if (e is IREnum) {
+        return '${_n(e.name)}.${_sc(e.values.last)}';
       }
     }
 
-    return e;
+    return 'undefined'; // reaching here is an error
   }
 
-  static String emit(List<IRElement> elements) => PythonTranslator()._emit(
-      elements.where((e) => !_blacklist.contains(e.name)).map(_refactor));
+  Iterable<String> rands(IRType t) => [1, 2, 3].map((_) => make(t));
+}
+
+void _emitTestFields(Printer p, Iterable<IRField> fields) {
+  p.t(() {
+    final sm = SampleMaker();
+    for (final f in fields) {
+      p('${_sc(f.name)}=${sm.make(f.type)},');
+    }
+  });
+}
+
+void _emitGenFunc(Printer p, Printer p2, IRElement e, IRConstructor c) {
+  final req = c.fields.where((f) => !_isOptional(f));
+  final opt = c.fields.where(_isOptional);
+  final filename = c.name.isEmpty ? e.name : '${e.name}_${c.name}';
+  final ctorName = c.name.isEmpty ? e.name : '${_n(e.name)}.${_sc(c.name)}';
+  final funcName = _sc(c.name.isEmpty ? e.name : '${e.name}__${c.name}');
+  final all = [...req, ...opt];
+  p2("('$filename', _sample_$funcName()),");
+  p('');
+  p('');
+  p('def _sample_$funcName():');
+  p.t(() {
+    p('return $ctorName(');
+    _emitTestFields(p, all);
+    p(')');
+  });
+  if (opt.isNotEmpty) {
+    p2("('$filename.min', _min_sample_$funcName()),");
+    p('');
+    p('');
+    p('def _min_sample_$funcName():');
+    p.t(() {
+      p('return $ctorName(');
+      _emitTestFields(p, req);
+      p(')');
+    });
+  }
+}
+
+String generateTests(Iterable<IRElement> elements) {
+  final p = Printer('    ');
+  p('from h2o_nitro import *');
+  p('');
+
+  final p2 = Printer('    ');
+  p2('');
+  p2('dump_list = [');
+
+  p2.t(() {
+    for (final e in elements) {
+      if (e is IRClass && !e.isAbstract) {
+        for (final c in e.constructors) {
+          _emitGenFunc(p, p2, e, c);
+        }
+      }
+    }
+  });
+  p2(']');
+
+  p.lines.addAll(p2.lines);
+  return p.lines.join();
 }
