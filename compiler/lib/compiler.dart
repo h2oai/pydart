@@ -29,7 +29,7 @@ void compile({
     _write(path.join(pythonOutputDir, 'h2o_nitro', 'types.py'),
         PythonTranslator.emit(pythonIR));
     _write(path.join(pythonOutputDir, 'tests', 'dump_list.py'),
-        generateTests(pythonIR));
+        PythonTestGenerator.emit(pythonIR));
   });
 }
 

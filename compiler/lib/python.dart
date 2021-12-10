@@ -466,36 +466,90 @@ IRElement _refactor(IRElement e) {
   return e;
 }
 
-class SampleMaker {
-  var _counter = 42;
+class Seq {
+  final int start;
+  int i = 0;
 
-  String make(IRType t) {
+  Seq(this.start) {
+    i = start;
+  }
+
+  int call() => i++;
+
+  void reset() => i = start;
+}
+
+class PythonTestGenerator {
+  final _seq = Seq(42);
+  late Map<String, IRClass> _subclasses;
+
+  PythonTestGenerator(Iterable<IRElement> elements) {
+    _subclasses = _identifySubclasses(elements);
+    assert(_subclasses.isNotEmpty);
+  }
+
+  static String _classKey(IRClass e) => '${e.name} ${e.path}';
+
+  static Map<String, IRClass> _identifySubclasses(
+      Iterable<IRElement> elements) {
+    final classes = elements.whereType<IRClass>();
+    final subtypes = <String, IRClass>{};
+    for (final c in classes) {
+      for (final st in [...c.supertypes, ...c.interfaces]) {
+        if (st is IRParameterizedType) {
+          final ste = st.element;
+          if (ste is IRClass) {
+            final key = _classKey(ste);
+            if (!subtypes.containsKey(key)) {
+              subtypes[key] = c;
+            }
+          }
+        }
+      }
+    }
+    return subtypes;
+  }
+
+  IRClass? _findSubclass(IRClass e) {
+    IRClass? sc = _subclasses[_classKey(e)];
+    while (sc != null && sc.isAbstract) {
+      sc = _subclasses[_classKey(sc)];
+    }
+    return sc;
+  }
+
+  String _make(IRType t) {
     if (t == IRType.bool) return 'True';
-    if (t == IRType.int) return '${_counter++}';
-    if (t == IRType.double) return '0.${_counter++}';
-    if (t == IRType.string) return "'String ${_counter++}'";
+    if (t == IRType.int) return '${_seq()}';
+    if (t == IRType.double) return '0.${_seq()}';
+    if (t == IRType.string) return "'String ${_seq()}'";
 
     if (t is IRParameterizedType) {
       final e = t.element;
       if (e == IRElement.func) return '_noop';
-      if (e == IRElement.nullable) return make(t.parameters.first);
+      if (e == IRElement.nullable) return _make(t.parameters.first);
       switch (e.name) {
         case 'List':
-          final items = rands(t.parameters.first).join(', ');
+          final items = _rands(t.parameters.first).join(', ');
           return '[$items]';
         case 'Set':
-          final items = rands(t.parameters.first).join(', ');
+          final items = _rands(t.parameters.first).join(', ');
           return 'set($items)';
         case 'Map':
           final items = [1, 2, 3]
               .map((_) =>
-                  '${make(t.parameters.first)}: ${make(t.parameters.last)}')
+                  '${_make(t.parameters.first)}: ${_make(t.parameters.last)}')
               .join(', ');
           return '{$items}';
       }
 
       if (e is IRClass) {
-        return '_sample_${_sc(e.name)}()';
+        final c = e.isAbstract ? _findSubclass(e) : e;
+        if (c != null) {
+          return '_sample_${_sc(c.name)}()';
+        } else {
+          return '_notfound_${_sc(e.name)}()';
+        }
       } else if (e is IREnum) {
         return '${_n(e.name)}.${_sc(e.values.last)}';
       }
@@ -504,67 +558,69 @@ class SampleMaker {
     return 'undefined'; // reaching here is an error
   }
 
-  Iterable<String> rands(IRType t) => [1, 2, 3].map((_) => make(t));
-}
+  Iterable<String> _rands(IRType t) => [1, 2, 3].map((_) => _make(t));
 
-void _emitTestFields(Printer p, Iterable<IRField> fields) {
-  p.t(() {
-    final sm = SampleMaker();
-    for (final f in fields) {
-      p('${_sc(f.name)}=${sm.make(f.type)},');
-    }
-  });
-}
-
-void _emitGenFunc(Printer p, Printer p2, IRElement e, IRConstructor c) {
-  final req = c.fields.where((f) => !_isOptional(f));
-  final opt = c.fields.where(_isOptional);
-  final filename = c.name.isEmpty ? e.name : '${e.name}_${c.name}';
-  final ctorName = c.name.isEmpty ? e.name : '${_n(e.name)}.${_sc(c.name)}';
-  final funcName = _sc(c.name.isEmpty ? e.name : '${e.name}__${c.name}');
-  final all = [...req, ...opt];
-  p2("('$filename', _sample_$funcName()),");
-  p('');
-  p('');
-  p('def _sample_$funcName():');
-  p.t(() {
-    p('return $ctorName(');
-    _emitTestFields(p, all);
-    p(')');
-  });
-  if (opt.isNotEmpty) {
-    p2("('$filename.min', _min_sample_$funcName()),");
-    p('');
-    p('');
-    p('def _min_sample_$funcName():');
+  void _emitTestFields(Printer p, Iterable<IRField> fields) {
     p.t(() {
-      p('return $ctorName(');
-      _emitTestFields(p, req);
-      p(')');
+      _seq.reset();
+      for (final f in fields) {
+        p('${_sc(f.name)}=${_make(f.type)},');
+      }
     });
   }
-}
 
-String generateTests(Iterable<IRElement> elements) {
-  final p = Printer('    ');
-  p('from h2o_nitro import *');
-  p('');
+  void _emitGenFunc(Printer p, Printer p2, IRElement e, IRConstructor c) {
+    final req = c.fields.where((f) => !_isOptional(f));
+    final opt = c.fields.where(_isOptional);
+    final filename = c.name.isEmpty ? e.name : '${e.name}_${c.name}';
+    final ctorName = c.name.isEmpty ? e.name : '${_n(e.name)}.${_sc(c.name)}';
+    final funcName = _sc(c.name.isEmpty ? e.name : '${e.name}__${c.name}');
+    final all = [...req, ...opt];
+    p2("('$filename', _sample_$funcName()),");
+    p('');
+    p('');
+    p('def _sample_$funcName():');
+    p.t(() {
+      p('return $ctorName(');
+      _emitTestFields(p, all);
+      p(')');
+    });
+    if (opt.isNotEmpty) {
+      p2("('$filename.min', _min_sample_$funcName()),");
+      p('');
+      p('');
+      p('def _min_sample_$funcName():');
+      p.t(() {
+        p('return $ctorName(');
+        _emitTestFields(p, req);
+        p(')');
+      });
+    }
+  }
 
-  final p2 = Printer('    ');
-  p2('');
-  p2('dump_list = [');
+  String _emit(Iterable<IRElement> elements) {
+    final p = Printer('    ');
+    p('from h2o_nitro import *');
 
-  p2.t(() {
-    for (final e in elements) {
-      if (e is IRClass && !e.isAbstract) {
-        for (final c in e.constructors) {
-          _emitGenFunc(p, p2, e, c);
+    final p2 = Printer('    ');
+    p2('');
+    p2('dump_list = [');
+
+    p2.t(() {
+      for (final e in elements) {
+        if (e is IRClass && !e.isAbstract) {
+          for (final c in e.constructors) {
+            _emitGenFunc(p, p2, e, c);
+          }
         }
       }
-    }
-  });
-  p2(']');
+    });
+    p2(']');
 
-  p.lines.addAll(p2.lines);
-  return p.lines.join();
+    p.lines.addAll(p2.lines);
+    return p.lines.join();
+  }
+
+  static String emit(Iterable<IRElement> elements) =>
+      PythonTestGenerator(elements)._emit(elements);
 }
