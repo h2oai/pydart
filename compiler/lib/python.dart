@@ -132,7 +132,7 @@ class PythonTranslator {
       final params = t.parameters.isNotEmpty
           ? (t.element == IRElement.func)
               // 'Callable' must be used as 'Callable[[arg, ...], result]'
-              ? '[[${comma(ps.sublist(0, ps.length - 1))}], ${ps.last}]'
+              ? '[[${comma(ps.sublist(0, ps.length - 1))}], Awaitable[${ps.last}]]'
               : '[${comma(ps)}]'
           : '';
       final name = _n(t.name);
@@ -400,7 +400,7 @@ class PythonTranslator {
   String _emit(Iterable<IRElement> elements) {
     p('from abc import ABC');
     p('from enum import Enum');
-    p('from typing import Generic, TypeVar, Callable, Any, Optional, Iterable, List, Dict');
+    p('from typing import Generic, TypeVar, Callable, Awaitable, Any, Optional, Iterable, List, Dict');
     p('');
     p('');
     p('def _noop(*args, **kwargs) -> Any:');
